@@ -35,7 +35,7 @@
   --color-cloud-11-accent: #c5c53c;
   --color-cloud-11-accent-rgb: 197, 197, 60;
 
-  --font-body: 'Prompt', 'sans-serif';
+  --font-body: var(--font-akzidenz-grotesk-bq, Arial, Helvetica, sans-serif);
   --font-heading: var(--font-body);
 
   --font-size-h1: 6.4rem;

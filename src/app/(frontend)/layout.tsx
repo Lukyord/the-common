@@ -7,13 +7,14 @@ import '@/styles/theme.css'
 import '@/styles/theme-rwd.css'
 import '@/styles/iconfont.css'
 import 'lenis/dist/lenis.css'
+import { akzidenzGrotesk } from '@/font/akzidenz-grotesk-bq'
 
-import { SafariProvider } from '@/context/SafariContext'
 import Theme from '@/components/theme'
+import { SafariProvider } from '@/context/SafariContext'
 
 export const metadata: Metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  description: 'The Common',
+  title: 'The Common Description',
 }
 
 type Props = {
@@ -22,7 +23,7 @@ type Props = {
 
 export default async function RootLayout({ children }: Props) {
   return (
-    <html lang="en">
+    <html lang="en" className={akzidenzGrotesk.variable}>
       <SafariProvider>
         <body>
           <div id="page">
