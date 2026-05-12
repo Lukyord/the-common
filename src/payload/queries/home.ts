@@ -1,16 +1,17 @@
 import { cache } from 'react'
 
-import type { Contact, Lifestyle } from '@/payload-types'
+import type { Contact, Homepage, Lifestyle } from '@/payload-types'
 import { getPayloadClient } from '@/payload/getPayloadClient'
 import { resolvePayloadQueries } from '@/payload/queries/functions/resolvePayloadQueries'
 
 type HomeLifestyle = Pick<Lifestyle, 'id' | 'text'>
 
-type PayloadDataErrors = Partial<Record<'contact' | 'lifestyle', string>>
+type PayloadDataErrors = Partial<Record<'contact' | 'homepage' | 'lifestyle', string>>
 
 export type HomePayloadData = {
   contact: Contact | null
   errors: PayloadDataErrors
+  homepage: Homepage | null
   lifestyles: HomeLifestyle[]
 }
 
@@ -28,6 +29,14 @@ export const getHomePayloadData = cache(async (): Promise<HomePayloadData> => {
         overrideAccess: false,
       }),
     },
+    homepage: {
+      errorMessage: 'Failed to load homepage global from Payload:',
+      promise: payload.findGlobal({
+        slug: 'homepage',
+        depth: 1,
+        overrideAccess: false,
+      }),
+    },
     lifestyle: {
       errorMessage: 'Failed to load lifestyle collection from Payload:',
       promise: payload.find({
@@ -37,11 +46,6 @@ export const getHomePayloadData = cache(async (): Promise<HomePayloadData> => {
         overrideAccess: false,
         pagination: false,
         sort: '-createdAt',
-        where: {
-          active: {
-            equals: true,
-          },
-        },
         select: {
           text: true,
         },
@@ -58,6 +62,7 @@ export const getHomePayloadData = cache(async (): Promise<HomePayloadData> => {
   return {
     contact: data.contact,
     errors,
+    homepage: data.homepage,
     lifestyles,
   }
 })

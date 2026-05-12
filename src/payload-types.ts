@@ -90,10 +90,14 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
+    about: About;
     contact: Contact;
+    homepage: Homepage;
   };
   globalsSelect: {
+    about: AboutSelect<false> | AboutSelect<true>;
     contact: ContactSelect<false> | ContactSelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
   };
   locale: null;
   widgets: {
@@ -171,7 +175,6 @@ export interface Media {
  */
 export interface Lifestyle {
   id: number;
-  active?: boolean | null;
   text: string;
   updatedAt: string;
   createdAt: string;
@@ -297,7 +300,6 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "lifestyle_select".
  */
 export interface LifestyleSelect<T extends boolean = true> {
-  active?: T;
   text?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -344,10 +346,71 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about".
+ */
+export interface About {
+  id: number;
+  hero?: {
+    title?: string | null;
+    backgroundMedia?: (number | null) | Media;
+    mobileBackgroundMedia?: (number | null) | Media;
+  };
+  info?:
+    | {
+        hexCode?: string | null;
+        richTextEditor?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        media?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  awards?: {
+    media?:
+      | {
+          media?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  kinnestMarquee?: {
+    media?:
+      | {
+          media?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact".
  */
 export interface Contact {
   id: number;
+  contactSubject?: string[] | null;
   email?: string | null;
   tel?: string | null;
   kinnestGroup?: string | null;
@@ -356,14 +419,166 @@ export interface Contact {
     facebook?: string | null;
     line?: string | null;
   };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: number;
+  hero?: {
+    backgroundMedia?: (number | null) | Media;
+    mobileBackgroundMedia?: (number | null) | Media;
+    title?: string | null;
+  };
+  motto?:
+    | {
+        text?: string | null;
+        shape?: ('hexagon' | 'circle' | 'square') | null;
+        id?: string | null;
+      }[]
+    | null;
+  about?: {
+    title?: string | null;
+    description?: string | null;
+    stickyNotes?:
+      | {
+          shape?: ('square' | 'circle' | 'heart') | null;
+          /**
+           * Use a design system hex code, e.g. #FFFFFF.
+           */
+          hexCode?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  peopleOfTheCommons?: {
+    title?: string | null;
+    cards?:
+      | {
+          media?: (number | null) | Media;
+          title?: string | null;
+          description?: string | null;
+          link?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  flexibleSectionShow?: boolean | null;
+  flexibleSection?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        media?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  recommender?: {
+    title?: string | null;
+    suffix?: string | null;
+    lifestyles?: (number | Lifestyle)[] | null;
+  };
+  membership?: {
+    title?: string | null;
+    description?: string | null;
+    button?: {
+      text?: string | null;
+      link?: string | null;
+    };
+    cardMedia?:
+      | {
+          media?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  bingo?: {
+    title?: string | null;
+    grid?:
+      | {
+          text?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about_select".
+ */
+export interface AboutSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        backgroundMedia?: T;
+        mobileBackgroundMedia?: T;
+      };
+  info?:
+    | T
+    | {
+        hexCode?: T;
+        richTextEditor?: T;
+        media?: T;
+        id?: T;
+      };
+  awards?:
+    | T
+    | {
+        media?:
+          | T
+          | {
+              media?: T;
+              id?: T;
+            };
+      };
+  kinnestMarquee?:
+    | T
+    | {
+        media?:
+          | T
+          | {
+              media?: T;
+              id?: T;
+            };
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact_select".
  */
 export interface ContactSelect<T extends boolean = true> {
+  contactSubject?: T;
   email?: T;
   tel?: T;
   kinnestGroup?: T;
@@ -373,6 +588,115 @@ export interface ContactSelect<T extends boolean = true> {
         instagram?: T;
         facebook?: T;
         line?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        backgroundMedia?: T;
+        mobileBackgroundMedia?: T;
+        title?: T;
+      };
+  motto?:
+    | T
+    | {
+        text?: T;
+        shape?: T;
+        id?: T;
+      };
+  about?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        stickyNotes?:
+          | T
+          | {
+              shape?: T;
+              hexCode?: T;
+              id?: T;
+            };
+      };
+  peopleOfTheCommons?:
+    | T
+    | {
+        title?: T;
+        cards?:
+          | T
+          | {
+              media?: T;
+              title?: T;
+              description?: T;
+              link?: T;
+              id?: T;
+            };
+      };
+  flexibleSectionShow?: T;
+  flexibleSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        media?: T;
+        id?: T;
+      };
+  recommender?:
+    | T
+    | {
+        title?: T;
+        suffix?: T;
+        lifestyles?: T;
+      };
+  membership?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        button?:
+          | T
+          | {
+              text?: T;
+              link?: T;
+            };
+        cardMedia?:
+          | T
+          | {
+              media?: T;
+              id?: T;
+            };
+      };
+  bingo?:
+    | T
+    | {
+        title?: T;
+        grid?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
       };
   updatedAt?: T;
   createdAt?: T;

@@ -22,7 +22,7 @@ export function SafariProvider({ children }: { children: ReactNode }) {
       supportsBackdropFilter =
         CSS.supports('backdrop-filter', 'blur(1px)') ||
         CSS.supports('-webkit-backdrop-filter', 'blur(1px)')
-    } catch (e) {
+    } catch (_e) {
       supportsBackdropFilter = false
     }
 

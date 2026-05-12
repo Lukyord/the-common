@@ -1,8 +1,20 @@
 import React from 'react'
+import type { Metadata } from 'next'
 
+import { generateMeta } from '@/lib/generateMeta'
 import { getHomePayloadData } from '@/payload/queries/home'
 
 export const dynamic = 'force-dynamic'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { homepage } = await getHomePayloadData()
+
+  return generateMeta({
+    meta: homepage?.meta,
+    fallbackTitle: homepage?.hero?.title,
+    fallbackDescription: homepage?.about?.description,
+  })
+}
 
 export default async function HomePage() {
   const { contact, errors, lifestyles } = await getHomePayloadData()

@@ -10,15 +10,6 @@ export const Lifestyle: CollectionConfig = {
   },
   fields: [
     {
-      name: 'active',
-      type: 'checkbox',
-      label: 'Active',
-      defaultValue: true,
-      admin: {
-        position: 'sidebar',
-      },
-    },
-    {
       name: 'text',
       type: 'text',
       label: 'Text',

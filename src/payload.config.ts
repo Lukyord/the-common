@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { sqliteD1Adapter } from '@payloadcms/db-d1-sqlite'
+import { seoPlugin } from '@payloadcms/plugin-seo'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -11,7 +12,9 @@ import { r2Storage } from '@payloadcms/storage-r2'
 import { Users } from './payload/collections/Users'
 import { Media } from './payload/collections/Media'
 import { Lifestyle } from './payload/collections/Lifestyle'
+import { About } from './payload/globals/About'
 import { Contact } from './payload/globals/Contact'
+import { Homepage } from './payload/globals/Homepage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -53,7 +56,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Lifestyle],
-  globals: [Contact],
+  globals: [About, Contact, Homepage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -62,6 +65,15 @@ export default buildConfig({
   db: sqliteD1Adapter({ binding: cloudflare.env.D1 }),
   logger: isProduction ? cloudflareLogger : undefined,
   plugins: [
+    seoPlugin({
+      globals: [About.slug, Contact.slug, Homepage.slug],
+      tabbedUI: true,
+      uploadsCollection: Media.slug,
+      generateTitle: ({ doc }) => doc?.hero?.title || 'The Common',
+      generateDescription: ({ doc }) => doc?.about?.description || doc?.membership?.description,
+      generateImage: ({ doc }) => doc?.hero?.backgroundMedia,
+      generateURL: () => process.env.NEXT_PUBLIC_SITE_URL || '/',
+    }),
     r2Storage({
       bucket: cloudflare.env.R2,
       collections: { media: true },
