@@ -2,6 +2,8 @@ import React from 'react'
 
 import { getHomePayloadData } from '@/payload/queries/home'
 
+export const dynamic = 'force-dynamic'
+
 export default async function HomePage() {
   const { contact, errors, lifestyles } = await getHomePayloadData()
   const hasContact = Boolean(
