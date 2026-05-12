@@ -1,0 +1,22 @@
+/* MEDIA QUERIES:MIN ==================== */
+@media (min-width: 992px) {
+  .hidden-device-md {
+    display: none !important;
+  }
+}
+
+/* MEDIA QUERIES:MAX ==================== */
+@media (max-width: 991px) {
+  /* COMPONENT */
+  /* DEFAULT ====================*/
+
+  /* SECTION ====================*/
+
+  /* ELEMENT ====================*/
+  /* HEADER  */
+
+  /* FOOTER */
+
+  /* PAGE */
+  /* PAGE: INDEX */
+}
