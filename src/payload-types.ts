@@ -411,6 +411,51 @@ export interface About {
 export interface Contact {
   id: number;
   contactSubject?: string[] | null;
+  accordion?:
+    | (
+        | {
+            title?: string | null;
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'doubleColumn';
+          }
+        | {
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'singleColumn';
+          }
+      )[]
+    | null;
   email?: string | null;
   tel?: string | null;
   kinnestGroup?: string | null;
@@ -579,6 +624,25 @@ export interface AboutSelect<T extends boolean = true> {
  */
 export interface ContactSelect<T extends boolean = true> {
   contactSubject?: T;
+  accordion?:
+    | T
+    | {
+        doubleColumn?:
+          | T
+          | {
+              title?: T;
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        singleColumn?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   email?: T;
   tel?: T;
   kinnestGroup?: T;

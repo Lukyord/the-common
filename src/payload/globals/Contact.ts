@@ -21,6 +21,48 @@ export const Contact: GlobalConfig = {
                 hasMany: true,
               },
             ]),
+            section('Accordion', [
+              {
+                name: 'accordion',
+                type: 'blocks',
+                label: 'Accordion',
+                blocks: [
+                  {
+                    slug: 'doubleColumn',
+                    labels: {
+                      singular: 'Double Column',
+                      plural: 'Double Columns',
+                    },
+                    fields: [
+                      {
+                        name: 'title',
+                        type: 'text',
+                        label: 'Title',
+                      },
+                      {
+                        name: 'richText',
+                        type: 'richText',
+                        label: 'Rich Text',
+                      },
+                    ],
+                  },
+                  {
+                    slug: 'singleColumn',
+                    labels: {
+                      singular: 'Single Column',
+                      plural: 'Single Columns',
+                    },
+                    fields: [
+                      {
+                        name: 'richText',
+                        type: 'richText',
+                        label: 'Rich Text',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ]),
             section('Contact Details', [
               {
                 name: 'email',
