@@ -7,6 +7,7 @@ import * as migration_20260512_083303 from './20260512_083303';
 import * as migration_20260512_090911 from './20260512_090911';
 import * as migration_20260512_095655 from './20260512_095655';
 import * as migration_20260513_145604_contact_accordion from './20260513_145604_contact_accordion';
+import * as migration_20260515_001957 from './20260515_001957';
 
 export const migrations = [
   {
@@ -52,6 +53,11 @@ export const migrations = [
   {
     up: migration_20260513_145604_contact_accordion.up,
     down: migration_20260513_145604_contact_accordion.down,
-    name: '20260513_145604_contact_accordion'
+    name: '20260513_145604_contact_accordion',
+  },
+  {
+    up: migration_20260515_001957.up,
+    down: migration_20260515_001957.down,
+    name: '20260515_001957'
   },
 ];

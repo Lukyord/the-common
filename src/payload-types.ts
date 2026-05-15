@@ -70,6 +70,12 @@ export interface Config {
     users: User;
     media: Media;
     lifestyle: Lifestyle;
+    branches: Branch;
+    'branch-contact-pages': BranchContactPage;
+    'branch-space-rental-pages': BranchSpaceRentalPage;
+    blogs: Blog;
+    vendors: Vendor;
+    'whats-on': WhatsOn;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +86,12 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     lifestyle: LifestyleSelect<false> | LifestyleSelect<true>;
+    branches: BranchesSelect<false> | BranchesSelect<true>;
+    'branch-contact-pages': BranchContactPagesSelect<false> | BranchContactPagesSelect<true>;
+    'branch-space-rental-pages': BranchSpaceRentalPagesSelect<false> | BranchSpaceRentalPagesSelect<true>;
+    blogs: BlogsSelect<false> | BlogsSelect<true>;
+    vendors: VendorsSelect<false> | VendorsSelect<true>;
+    'whats-on': WhatsOnSelect<false> | WhatsOnSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -180,6 +192,131 @@ export interface Lifestyle {
   createdAt: string;
 }
 /**
+ * Branch identity and landing page content.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branches".
+ */
+export interface Branch {
+  id: number;
+  name: string;
+  slug: string;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Contact page per branch.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branch-contact-pages".
+ */
+export interface BranchContactPage {
+  id: number;
+  title: string;
+  branch: number | Branch;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Space rental page per branch.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branch-space-rental-pages".
+ */
+export interface BranchSpaceRentalPage {
+  id: number;
+  title: string;
+  branch: number | Branch;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogs".
+ */
+export interface Blog {
+  id: number;
+  title: string;
+  slug: string;
+  branch: number | Branch;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vendors".
+ */
+export interface Vendor {
+  id: number;
+  title: string;
+  slug: string;
+  branch: number | Branch;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Activities and listings shown on each branch.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whats-on".
+ */
+export interface WhatsOn {
+  id: number;
+  title: string;
+  slug: string;
+  branch: number | Branch;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -214,6 +351,30 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'lifestyle';
         value: number | Lifestyle;
+      } | null)
+    | ({
+        relationTo: 'branches';
+        value: number | Branch;
+      } | null)
+    | ({
+        relationTo: 'branch-contact-pages';
+        value: number | BranchContactPage;
+      } | null)
+    | ({
+        relationTo: 'branch-space-rental-pages';
+        value: number | BranchSpaceRentalPage;
+      } | null)
+    | ({
+        relationTo: 'blogs';
+        value: number | Blog;
+      } | null)
+    | ({
+        relationTo: 'vendors';
+        value: number | Vendor;
+      } | null)
+    | ({
+        relationTo: 'whats-on';
+        value: number | WhatsOn;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -301,6 +462,111 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface LifestyleSelect<T extends boolean = true> {
   text?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branches_select".
+ */
+export interface BranchesSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branch-contact-pages_select".
+ */
+export interface BranchContactPagesSelect<T extends boolean = true> {
+  title?: T;
+  branch?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branch-space-rental-pages_select".
+ */
+export interface BranchSpaceRentalPagesSelect<T extends boolean = true> {
+  title?: T;
+  branch?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogs_select".
+ */
+export interface BlogsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  branch?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vendors_select".
+ */
+export interface VendorsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  branch?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whats-on_select".
+ */
+export interface WhatsOnSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  branch?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

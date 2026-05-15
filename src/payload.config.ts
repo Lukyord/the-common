@@ -12,6 +12,12 @@ import { r2Storage } from '@payloadcms/storage-r2'
 import { Users } from './payload/collections/Users'
 import { Media } from './payload/collections/Media'
 import { Lifestyle } from './payload/collections/Lifestyle'
+import { Branches } from './payload/collections/Branches'
+import { BranchContactPages } from './payload/collections/BranchContactPages'
+import { BranchSpaceRentalPages } from './payload/collections/BranchSpaceRentalPages'
+import { Blogs } from './payload/collections/Blogs'
+import { Vendors } from './payload/collections/Vendors'
+import { WhatsOn } from './payload/collections/WhatsOn'
 import { About } from './payload/globals/About'
 import { Contact } from './payload/globals/Contact'
 import { Homepage } from './payload/globals/Homepage'
@@ -55,7 +61,17 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Lifestyle],
+  collections: [
+    Users,
+    Media,
+    Lifestyle,
+    Branches,
+    BranchContactPages,
+    BranchSpaceRentalPages,
+    Blogs,
+    Vendors,
+    WhatsOn,
+  ],
   globals: [About, Contact, Homepage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -67,10 +83,22 @@ export default buildConfig({
   plugins: [
     seoPlugin({
       globals: [About.slug, Contact.slug, Homepage.slug],
+      collections: [
+        Branches.slug,
+        BranchContactPages.slug,
+        BranchSpaceRentalPages.slug,
+        Blogs.slug,
+        Vendors.slug,
+        WhatsOn.slug,
+      ],
       tabbedUI: true,
       uploadsCollection: Media.slug,
-      generateTitle: ({ doc }) => doc?.hero?.title || 'The Common',
-      generateDescription: ({ doc }) => doc?.about?.description || doc?.membership?.description,
+      generateTitle: ({ doc }) =>
+        doc?.title || doc?.name || doc?.hero?.title || 'The Common',
+      generateDescription: ({ doc }) =>
+        doc?.description ||
+        doc?.about?.description ||
+        doc?.membership?.description,
       generateImage: ({ doc }) => doc?.hero?.backgroundMedia,
       generateURL: () => process.env.NEXT_PUBLIC_SITE_URL || '/',
     }),
