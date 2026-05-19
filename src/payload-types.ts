@@ -262,7 +262,6 @@ export interface Blog {
   id: number;
   title: string;
   slug: string;
-  branch: number | Branch;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -523,7 +522,6 @@ export interface BranchSpaceRentalPagesSelect<T extends boolean = true> {
 export interface BlogsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
-  branch?: T;
   meta?:
     | T
     | {

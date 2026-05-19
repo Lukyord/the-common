@@ -29,12 +29,5 @@ export const Blogs: CollectionConfig = {
       unique: true,
       index: true,
     },
-    {
-      name: 'branch',
-      type: 'relationship',
-      relationTo: 'branches',
-      required: true,
-      index: true,
-    },
   ],
 }
