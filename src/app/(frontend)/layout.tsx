@@ -15,6 +15,18 @@ import { SafariProvider } from '@/context/SafariContext'
 export const metadata: Metadata = {
   description: 'The Common',
   title: 'The Common Description',
+  icons: {
+    icon: [
+      {
+        url: '/favicon.ico',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/favicon-invert.ico',
+        media: '(prefers-color-scheme: dark)',
+      },
+    ],
+  },
 }
 
 type Props = {
