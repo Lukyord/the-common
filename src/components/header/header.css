@@ -1,0 +1,152 @@
+/* HEADER ==================== */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  --bg-color: var(--color-dark-brown);
+}
+
+.header-nav {
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0;
+  transition: var(--duration) var(--timing-function);
+}
+
+.header-nav > * {
+  flex-shrink: 0;
+}
+
+/* Logo */
+.header-logo {
+  padding: var(--spacing-md) var(--spacing-2lg);
+  background-color: var(--bg-color);
+  transition: var(--duration) var(--timing-function);
+}
+.header-logo .logo-wrapper {
+  width: auto;
+  height: 8.9rem;
+  aspect-ratio: 0.887640449;
+  transition: var(--duration-x2) cubic-bezier(0.5, 1, 0.89, 1);
+}
+.header-logo .logo-wrapper .logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* MENU */
+.header-menu {
+  height: 100%;
+  flex-grow: 1;
+  transition: var(--duration) var(--timing-function);
+}
+
+.header-menu .menu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-3xs) var(--spacing-sm);
+  background-color: var(--bg-color);
+  transition: var(--duration-x2) var(--timing-function);
+}
+.header-menu .menu a {
+  display: inline-block;
+  padding: var(--spacing-6xs);
+}
+
+@media (min-width: 992px) {
+  html.page-scrolling .header-nav {
+    height: 9.8rem;
+    padding: 0 var(--spacing-lg);
+  }
+
+  html.page-scrolling .header-logo {
+    opacity: 0;
+    padding: 0;
+  }
+  html.page-scrolling .header-logo .logo-wrapper {
+    height: 0;
+  }
+
+  html.page-scrolling .header-menu .menu {
+    width: 64rem;
+    height: 5rem;
+  }
+
+  .header-menu .panel,
+  .header-menu .panel-scroll,
+  .header-menu .panel-body {
+    height: 100%;
+  }
+
+  .header-menu .panel-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 991px) {
+}
+
+/* HAMBURGER ====================*/
+.hamburger {
+  --hamburger-size: 2rem;
+  --hamburger-stroke-width: 0.15rem;
+  --rgb: var(--color-white-rgb);
+  position: relative;
+  display: block;
+  width: auto;
+  height: auto;
+  line-height: 1;
+}
+.hamburger .bars {
+  display: block;
+  width: var(--hamburger-size);
+  height: var(--hamburger-size);
+  position: relative;
+  transform: rotate(0deg);
+  transition: var(--duration) var(--timing-function);
+  cursor: pointer;
+}
+.hamburger .bars > .bar {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: var(--hamburger-stroke-width);
+  border-radius: 0.1rem;
+  background: rgba(var(--rgb), 1);
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: var(--duration) var(--timing-function);
+}
+.hamburger .bars > .bar:nth-child(1) {
+  top: calc((var(--hamburger-size) / 4) - (var(--hamburger-stroke-width) / 2));
+}
+.hamburger .bars > .bar:is(:nth-child(2), :nth-child(3)) {
+  top: calc((var(--hamburger-size) / 2) - (var(--hamburger-stroke-width) / 2));
+}
+.hamburger .bars > .bar:nth-child(4) {
+  top: calc((var(--hamburger-size) / 4) * 3 - (var(--hamburger-stroke-width) / 2));
+}
+html.header-menu-enabled .hamburger .bars > .bar:is(:nth-child(1), :nth-child(4)) {
+  top: calc((var(--hamburger-size) / 2) - (var(--hamburger-stroke-width) / 2));
+  left: 50%;
+  width: 0%;
+}
+html.header-menu-enabled .hamburger .bars > .bar:nth-child(2) {
+  transform: rotate(45deg);
+}
+html.header-menu-enabled .hamburger .bars > .bar:nth-child(3) {
+  transform: rotate(-45deg);
+}

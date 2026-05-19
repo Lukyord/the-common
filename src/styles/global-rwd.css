@@ -30,41 +30,41 @@
     font-size: var(--font-size-h3);
     line-height: var(--line-height-h3);
   }
-  .type-p-header {
+  .type-d-header {
     font-size: var(--font-size-h2);
     line-height: var(--line-height-h2);
   }
-  .type-p-title {
+  .type-d-title {
     font-size: var(--font-size-h4);
     line-height: var(--line-height-h4);
   }
-  .type-p-body-l {
+  .type-d-body-l {
     font-size: var(--font-size-h5);
     line-height: var(--line-height-h5);
   }
-  .type-p-body-l-medium {
+  .type-d-body-l-medium {
     font-size: var(--font-size-h5);
     line-height: var(--line-height-h5);
     font-weight: 500;
   }
-  .type-p-body-m {
+  .type-d-body-m {
     font-size: var(--font-size-h6);
     line-height: var(--line-height-h6);
   }
-  .type-p-body-m-medium {
+  .type-d-body-m-medium {
     font-size: var(--font-size-h6);
     line-height: var(--line-height-h6);
     font-weight: 500;
   }
-  .type-p-label {
+  .type-d-label {
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
   }
-  .type-p-text-link {
+  .type-d-text-link {
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
   }
-  .type-p-text-link-medium {
+  .type-d-text-link-medium {
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
     font-weight: 500;

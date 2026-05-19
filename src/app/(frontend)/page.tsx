@@ -80,6 +80,8 @@ export default async function HomePage() {
           )}
         </section>
       </section>
+
+      <div style={{ height: '300vh' }}></div>
     </main>
   )
 }

@@ -259,6 +259,7 @@ body {
   position: relative;
   min-height: 100svh;
   background: var(--color-dark-brown);
+  background: palevioletred;
   color: var(--color-white);
 }
 
@@ -401,7 +402,7 @@ body {
   width: 100vw;
   overflow: clip;
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto 1fr auto;
   min-height: 100svh;
   font-family: var(--font-body);
   font-weight: 400;
@@ -506,6 +507,18 @@ body {
 .size-small {
   font-size: var(--font-size-small) !important;
   line-height: var(--line-height-small) !important;
+}
+.type-caption {
+  font-size: 1.2rem;
+  line-height: 1.08;
+}
+.type-label {
+  font-size: 1.2rem;
+  line-height: 1.32;
+}
+.type-body-s {
+  font-size: 1.4rem;
+  line-height: 1.32;
 }
 
 /* TRANSITION ====================*/
@@ -697,59 +710,6 @@ html.no-touchevents .underline-hover:hover::before {
 
 /*CONTENT====================*/
 /* *** */
-
-/* HAMBURGER ====================*/
-.hamburger {
-  --hamburger-size: 2rem;
-  --hamburger-stroke-width: 0.15rem;
-  --rgb: var(--color-white-rgb);
-  position: relative;
-  display: block;
-  width: auto;
-  height: auto;
-  line-height: 1;
-}
-.hamburger .bars {
-  display: block;
-  width: var(--hamburger-size);
-  height: var(--hamburger-size);
-  position: relative;
-  transform: rotate(0deg);
-  transition: var(--duration) var(--timing-function);
-  cursor: pointer;
-}
-.hamburger .bars > .bar {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: var(--hamburger-stroke-width);
-  border-radius: 0.1rem;
-  background: rgba(var(--rgb), 1);
-  opacity: 1;
-  left: 0;
-  transform: rotate(0deg);
-  transition: var(--duration) var(--timing-function);
-}
-.hamburger .bars > .bar:nth-child(1) {
-  top: calc((var(--hamburger-size) / 4) - (var(--hamburger-stroke-width) / 2));
-}
-.hamburger .bars > .bar:is(:nth-child(2), :nth-child(3)) {
-  top: calc((var(--hamburger-size) / 2) - (var(--hamburger-stroke-width) / 2));
-}
-.hamburger .bars > .bar:nth-child(4) {
-  top: calc((var(--hamburger-size) / 4) * 3 - (var(--hamburger-stroke-width) / 2));
-}
-html.header-menu-enabled .hamburger .bars > .bar:is(:nth-child(1), :nth-child(4)) {
-  top: calc((var(--hamburger-size) / 2) - (var(--hamburger-stroke-width) / 2));
-  left: 50%;
-  width: 0%;
-}
-html.header-menu-enabled .hamburger .bars > .bar:nth-child(2) {
-  transform: rotate(45deg);
-}
-html.header-menu-enabled .hamburger .bars > .bar:nth-child(3) {
-  transform: rotate(-45deg);
-}
 
 /* MAIN ====================*/
 section {

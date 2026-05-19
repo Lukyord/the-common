@@ -12,6 +12,8 @@ import { akzidenzGrotesk } from '@/font/akzidenz-grotesk-bq'
 import Theme from '@/components/theme'
 import { SafariProvider } from '@/context/SafariContext'
 
+import { Header } from '@/components/header/Header'
+
 export const metadata: Metadata = {
   description: 'The Common',
   title: 'The Common Description',
@@ -33,13 +35,14 @@ type Props = {
   children: React.ReactNode
 }
 
-export default async function RootLayout({ children }: Props) {
+export default function RootLayout({ children }: Props) {
   return (
     <html lang="en" className={akzidenzGrotesk.variable}>
       <SafariProvider>
         <body>
           <div id="page">
             <Theme />
+            <Header />
             {children}
           </div>
         </body>
