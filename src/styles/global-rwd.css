@@ -21,6 +21,54 @@
   .hidden-device-md {
     display: none !important;
   }
+
+  .type-d-display-m {
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
+  }
+  .type-d-display-s {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
+  }
+  .type-p-header {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-h2);
+  }
+  .type-p-title {
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
+  }
+  .type-p-body-l {
+    font-size: var(--font-size-h5);
+    line-height: var(--line-height-h5);
+  }
+  .type-p-body-l-medium {
+    font-size: var(--font-size-h5);
+    line-height: var(--line-height-h5);
+    font-weight: 500;
+  }
+  .type-p-body-m {
+    font-size: var(--font-size-h6);
+    line-height: var(--line-height-h6);
+  }
+  .type-p-body-m-medium {
+    font-size: var(--font-size-h6);
+    line-height: var(--line-height-h6);
+    font-weight: 500;
+  }
+  .type-p-label {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+  }
+  .type-p-text-link {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+  }
+  .type-p-text-link-medium {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    font-weight: 500;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -77,6 +125,34 @@
 
     --header-height: 6.3rem;
     --logo-height: 3rem;
+  }
+  .type-m-display-l {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-h2);
+  }
+  .type-m-display {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
+  }
+  .type-m-headliner-m {
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
+  }
+  .type-m-title {
+    font-size: var(--font-size-h5);
+    line-height: var(--line-height-h5);
+  }
+  .type-m-body-m {
+    font-size: var(--font-size-h6);
+    line-height: var(--line-height-h6);
+  }
+  .type-m-body-r {
+    font-size: var(--font-size-h6);
+    line-height: var(--line-height-h6);
+  }
+  .type-m-body-s {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
   }
 
   .sc-inner.mb-t-header {
@@ -141,19 +217,6 @@
   }
 
   /* CTAs ====================*/
-  .button {
-    --button-height: 3.1rem;
-    --button-padding-x: var(--spacing-2xs);
-  }
-
-  .button:after,
-  .button:before {
-    content: none;
-  }
-
-  html.no-touchevents .button:hover span {
-    padding-right: var(--button-padding-x);
-  }
 }
 
 @media (max-width: 767px) {
