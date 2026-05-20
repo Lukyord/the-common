@@ -92,6 +92,7 @@
   --spacing-7xs: 0.2rem;
   --spacing-container: var(--spacing-lg);
   --gap-section: var(--spacing-4xl);
+  --container-max-width: 144rem;
 
   --header-height: 11rem;
   --logo-height: 4.2rem;

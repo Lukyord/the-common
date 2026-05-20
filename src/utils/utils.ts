@@ -82,7 +82,7 @@ export function onWindowResizeInstant(
 }
 
 /*::*  IS MOBILE VIEWPORT *::*/
-const MOBILE_BREAKPOINT = 991
+export const MOBILE_BREAKPOINT = 991
 
 export function isMobileViewport(): boolean {
   if (typeof window === 'undefined') return false

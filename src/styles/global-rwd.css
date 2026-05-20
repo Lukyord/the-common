@@ -50,6 +50,7 @@
   .type-d-body-m {
     font-size: var(--font-size-h6);
     line-height: var(--line-height-h6);
+    letter-spacing: 0.03em;
   }
   .type-d-body-m-medium {
     font-size: var(--font-size-h6);
@@ -150,6 +151,7 @@
   .type-m-body-r {
     font-size: var(--font-size-h6);
     line-height: var(--line-height-h6);
+    letter-spacing: 0.03em;
   }
   .type-m-body-s {
     font-size: var(--font-size-body);

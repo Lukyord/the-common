@@ -1,3 +1,5 @@
+import { MOBILE_BREAKPOINT } from '../utils'
+
 /*::* HANDLE VIDEO SOURCE *::*/
 type VideoElementWithDataset = HTMLVideoElement & {
   dataset: {
@@ -14,7 +16,7 @@ export function updateVideoSource(element: VideoElementWithDataset): void {
   if (!vdoSrc) return
 
   const viewportWidth = window.innerWidth
-  const nextSrc = viewportWidth < 992 && vdoSrcset ? vdoSrcset : vdoSrc
+  const nextSrc = viewportWidth <= MOBILE_BREAKPOINT && vdoSrcset ? vdoSrcset : vdoSrc
 
   element.setAttribute('src', nextSrc)
 }

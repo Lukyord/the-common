@@ -1,6 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
 
+import HorizontalMarquee from '@/components/common/horizontal-marquee'
 import { generateMeta } from '@/lib/generateMeta'
 import { getHomePayloadData } from '@/payload/queries/home'
 
@@ -17,7 +18,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const { contact, errors, lifestyles } = await getHomePayloadData()
+  const { contact, errors, homepage, lifestyles } = await getHomePayloadData()
+  const mottoItems = homepage?.motto?.filter((item) => item.text?.trim()) ?? []
+
   const hasContact = Boolean(
     contact?.email ||
     contact?.tel ||
@@ -29,6 +32,23 @@ export default async function HomePage() {
 
   return (
     <main id="main" className="index-page">
+      <section style={{ height: '100svh' }}></section>
+
+      {mottoItems.length > 0 && (
+        <div className="motto-marquee">
+          <HorizontalMarquee speed={25} direction="left">
+            <div className="motto-marquee__strip">
+              {mottoItems.map((item, index) => (
+                <div key={item.id ?? index} className="motto-marquee__item">
+                  <span className="shape" data-shape={item.shape}></span>
+                  <span className="type-d-body-m type-m-body-r">{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </HorizontalMarquee>
+        </div>
+      )}
+
       <section aria-labelledby="payload-data-title">
         <p>Payload test</p>
         <h1 id="payload-data-title">Homepage Data</h1>

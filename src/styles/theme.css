@@ -7,3 +7,44 @@
 
 /* PAGE ==================== */
 /* PAGE: INDEX */
+/* Motto Marquee */
+.motto-marquee {
+  background-color: var(--color-dark-brown);
+  padding: var(--spacing-xs) 0;
+  width: 100vw;
+}
+.motto-marquee .motto-marquee__strip {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: var(--spacing-2xs);
+  width: var(--container-max-width);
+  justify-content: center;
+  margin: 0 auto;
+}
+.motto-marquee .motto-marquee__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3xs);
+  padding: var(--spacing-4xs);
+}
+.motto-marquee__item .shape {
+  aspect-ratio: 1;
+  width: 1.6rem;
+  height: auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.motto-marquee__item .shape[data-shape='hexagon'] {
+  aspect-ratio: 1.125;
+  width: 1.8rem;
+  background-image: url('data:image/svg+xml,<svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 4V12L9 16L0 12V4L9 0L18 4Z" fill="%23E1C3DE"/></svg>');
+}
+.motto-marquee__item .shape[data-shape='circle'] {
+  background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" rx="8" fill="%23E1C3DE"/></svg>');
+}
+.motto-marquee__item .shape[data-shape='square'] {
+  background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" fill="%23E1C3DE"/></svg>');
+}

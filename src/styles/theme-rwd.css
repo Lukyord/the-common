@@ -26,4 +26,9 @@
 
   /* PAGE ==================== */
   /* PAGE: INDEX */
+  /* Motto Marquee */
+  .motto-marquee .motto-marquee__strip {
+    width: auto;
+    padding: 0 var(--spacing-lg);
+  }
 }
