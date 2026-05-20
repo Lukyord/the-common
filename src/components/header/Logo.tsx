@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 type LogoProps = {
@@ -7,7 +8,7 @@ type LogoProps = {
 
 export const Logo = ({ className, color = '#E8E4DB' }: LogoProps) => {
   return (
-    <div className="logo-wrapper">
+    <Link href="/" className="logo-wrapper">
       <svg
         className="logo"
         width="73"
@@ -62,6 +63,6 @@ export const Logo = ({ className, color = '#E8E4DB' }: LogoProps) => {
           fill={color}
         />
       </svg>
-    </div>
+    </Link>
   )
 }

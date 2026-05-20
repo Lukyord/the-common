@@ -6,10 +6,16 @@
   width: 100%;
   z-index: 100;
   --bg-color: var(--color-dark-brown);
+  --color: var(--color-beige);
+  --header-height-start: 8rem;
+  --header-height-scroll: 7.8rem;
+  --header-content-height-scroll: 5.8rem;
+  --header-content-offset-scroll: var(--spacing-sm);
 }
 
 .header-nav {
-  height: 8rem;
+  color: var(--color);
+  height: var(--header-height-start);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -28,6 +34,7 @@
   transition: var(--duration) var(--timing-function);
 }
 .header-logo .logo-wrapper {
+  display: block;
   width: auto;
   height: 8.9rem;
   aspect-ratio: 0.887640449;
@@ -63,23 +70,103 @@
   padding: var(--spacing-6xs);
 }
 
+/* LOCATION */
+.header-cta {
+  height: 100%;
+  width: 16.6rem;
+  transition: var(--duration) var(--timing-function);
+  position: relative;
+}
+
+.header-location {
+  height: 100%;
+  width: 100%;
+}
+
+.header-location .location-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  background-color: var(--bg-color);
+  width: 100%;
+  height: 100%;
+  transition: var(--duration-x2) var(--timing-function);
+}
+
+.header-location .location-trigger .ic {
+  transition: transform var(--duration-x2) var(--timing-function);
+}
+
+.header-location.is-open .location-trigger .ic {
+  transform: rotate(180deg);
+}
+
+.header-location .location-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-color);
+  display: grid;
+  grid-template-rows: 0fr;
+  pointer-events: none;
+  transition: grid-template-rows var(--duration-x2) var(--timing-function);
+}
+
+.header-location.is-open .location-panel {
+  grid-template-rows: 1fr;
+  pointer-events: auto;
+}
+
+.header-location .location-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.header-location .location-panel ul {
+  padding: var(--spacing-xs) var(--spacing-2sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xs);
+}
+
+.header-location .location-panel ul a {
+  display: inlin-block;
+  padding: var(--spacing-6xs);
+}
+
+.header-location .location-panel .location-label {
+  text-decoration: underline;
+  padding: 0 var(--spacing-6xs);
+}
+
 @media (min-width: 992px) {
   html.page-scrolling .header-nav {
-    height: 9.8rem;
+    height: var(--header-height-scroll);
     padding: 0 var(--spacing-lg);
   }
 
   html.page-scrolling .header-logo {
     opacity: 0;
     padding: 0;
+    margin-top: var(--header-content-offset-scroll);
+    /* width: 15.5rem; */
   }
   html.page-scrolling .header-logo .logo-wrapper {
-    height: 0;
+    height: 7rem;
   }
 
   html.page-scrolling .header-menu .menu {
-    width: 64rem;
-    height: 5rem;
+    margin-top: var(--header-content-offset-scroll);
+    width: 66rem;
+    height: var(--header-content-height-scroll);
+  }
+
+  html.page-scrolling .header-location .location-trigger {
+    margin-top: var(--header-content-offset-scroll);
+    width: 100%;
+    height: var(--header-content-height-scroll);
   }
 
   .header-menu .panel,

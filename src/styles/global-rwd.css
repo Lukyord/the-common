@@ -59,6 +59,7 @@
   .type-d-label {
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
+    letter-spacing: 0.03em;
   }
   .type-d-text-link {
     font-size: var(--font-size-body);

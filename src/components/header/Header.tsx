@@ -5,6 +5,7 @@ import './header.css'
 import { Logo } from './Logo'
 import HeaderMenuCtrl from './HeaderMenuCtrl'
 import Link from 'next/link'
+import { HeaderLocation } from './HeaderLocation'
 
 const HEADER_NAV_ITEMS = [
   { href: '/about', label: 'ABOUT' },
@@ -31,7 +32,7 @@ export async function Header() {
           <Logo />
         </div>
 
-        <nav className="header-menu fill-bg">
+        <nav className="header-menu">
           <div className="panel">
             <div className="panel-scroll" data-lenis-prevent>
               <div className="panel-body">
@@ -50,7 +51,7 @@ export async function Header() {
         </nav>
 
         <div className="header-cta">
-          <div className="header-location" style={{ width: '10rem' }}></div>
+          <HeaderLocation />
 
           <HeaderMenuCtrl />
         </div>
