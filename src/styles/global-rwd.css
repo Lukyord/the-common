@@ -125,7 +125,7 @@
     --spacing-container: var(--spacing-xs);
     --gap-section: var(--spacing-xl);
 
-    --header-height: 6.3rem;
+    --header-height: 10rem;
     --logo-height: 3rem;
   }
   .type-m-display-l {
@@ -143,6 +143,7 @@
   .type-m-title {
     font-size: var(--font-size-h5);
     line-height: var(--line-height-h5);
+    letter-spacing: 0.03em;
   }
   .type-m-body-m {
     font-size: var(--font-size-h6);

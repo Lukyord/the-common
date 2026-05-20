@@ -39,7 +39,10 @@ export async function Header() {
                 <ul className="menu">
                   {HEADER_NAV_ITEMS.map(({ href, label }) => (
                     <li key={href}>
-                      <Link href={href} className="type-d-label uppercase weight-medium">
+                      <Link
+                        href={href}
+                        className="type-d-label type-m-title uppercase weight-medium"
+                      >
                         {label}
                       </Link>
                     </li>
