@@ -32,7 +32,35 @@ export default async function HomePage() {
 
   return (
     <main id="main" className="index-page">
-      <section style={{ height: '100svh' }}></section>
+      <section data-section="index-hero">
+        <div className="sc-inner">
+          <div className="container">
+            <div className="location-selector">
+              <div className="location-selector__label">
+                <p className="type-d-label type-m-body-m letter-spacing-003 uppercase weight-medium">
+                  SELECT LOCATION
+                </p>
+              </div>
+
+              <div className="location-selector__item">
+                <div className="item-header">
+                  <div className="item-ttl">
+                    <h3 className="type-d-label type-m-body-m letter-spacing-003 uppercase weight-medium"></h3>
+                  </div>
+
+                  <i className="ic ic-arrow-topright"></i>
+                </div>
+
+                <p className="type-caption">OPENING HOURS</p>
+
+                <p className="type-caption">8am - 1am</p>
+              </div>
+              <div className="location-selector__item"></div>
+              <div className="location-selector__item"></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {mottoItems.length > 0 && (
         <div className="motto-marquee">
@@ -41,7 +69,9 @@ export default async function HomePage() {
               {mottoItems.map((item, index) => (
                 <div key={item.id ?? index} className="motto-marquee__item">
                   <span className="shape" data-shape={item.shape}></span>
-                  <span className="type-d-body-m type-m-body-r">{item.text}</span>
+                  <span className="type-d-body-m type-m-body-r letter-spacing-003">
+                    {item.text}
+                  </span>
                 </div>
               ))}
             </div>

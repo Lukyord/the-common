@@ -420,6 +420,9 @@ body {
 .style-italic {
   font-style: italic !important;
 }
+.letter-spacing-003 {
+  letter-spacing: 0.03em;
+}
 
 .weight-light {
   font-weight: 300 !important;

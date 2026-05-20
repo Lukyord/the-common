@@ -13,7 +13,7 @@ export const HeaderLocation = () => {
         aria-expanded={isOpen}
         onClick={() => setIsOpen((open) => !open)}
       >
-        <p className="type-d-label uppercase weight-medium">LOCATION</p>
+        <p className="type-d-label letter-spacing-003 uppercase weight-medium">LOCATION</p>
 
         <i className="ic ic-chevron-down size-icon-3xs"></i>
       </button>
@@ -22,20 +22,31 @@ export const HeaderLocation = () => {
         <div className="location-panel-inner">
           <ul>
             <li>
-              <p className="location-label type-d-label weight-medium">theCOMMONS</p>
+              <p className="location-label type-d-label letter-spacing-003 weight-medium">
+                theCOMMONS
+              </p>
             </li>
             <li>
-              <a href="/thonglor" className="type-d-label uppercase weight-medium">
+              <a
+                href="/thonglor"
+                className="type-d-label letter-spacing-003 uppercase weight-medium"
+              >
                 THONGLOR
               </a>
             </li>
             <li>
-              <a href="/saladaeng" className="type-d-label uppercase weight-medium">
+              <a
+                href="/saladaeng"
+                className="type-d-label letter-spacing-003 uppercase weight-medium"
+              >
                 SALADAENG
               </a>
             </li>
             <li>
-              <a href="/cloud-11" className="type-d-label uppercase weight-medium">
+              <a
+                href="/cloud-11"
+                className="type-d-label letter-spacing-003 uppercase weight-medium"
+              >
                 CLOUD 11
               </a>
             </li>

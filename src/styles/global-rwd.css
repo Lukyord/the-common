@@ -50,7 +50,6 @@
   .type-d-body-m {
     font-size: var(--font-size-h6);
     line-height: var(--line-height-h6);
-    letter-spacing: 0.03em;
   }
   .type-d-body-m-medium {
     font-size: var(--font-size-h6);
@@ -60,7 +59,6 @@
   .type-d-label {
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
-    letter-spacing: 0.03em;
   }
   .type-d-text-link {
     font-size: var(--font-size-body);
@@ -143,7 +141,6 @@
   .type-m-title {
     font-size: var(--font-size-h5);
     line-height: var(--line-height-h5);
-    letter-spacing: 0.03em;
   }
   .type-m-body-m {
     font-size: var(--font-size-h6);
@@ -152,7 +149,6 @@
   .type-m-body-r {
     font-size: var(--font-size-h6);
     line-height: var(--line-height-h6);
-    letter-spacing: 0.03em;
   }
   .type-m-body-s {
     font-size: var(--font-size-body);

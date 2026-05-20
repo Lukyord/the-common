@@ -41,7 +41,7 @@ export async function Header() {
                     <li key={href}>
                       <Link
                         href={href}
-                        className="type-d-label type-m-title uppercase weight-medium"
+                        className="type-d-label type-m-title letter-spacing-003 uppercase weight-medium"
                       >
                         {label}
                       </Link>

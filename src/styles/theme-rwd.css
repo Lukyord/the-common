@@ -26,6 +26,11 @@
 
   /* PAGE ==================== */
   /* PAGE: INDEX */
+  /* Index Hero */
+  [data-section='index-hero'] {
+    height: calc(100svh - 6.816rem);
+  }
+
   /* Motto Marquee */
   .motto-marquee .motto-marquee__strip {
     width: auto;
