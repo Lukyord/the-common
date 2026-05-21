@@ -13,6 +13,7 @@ import Theme from '@/components/theme'
 import { SafariProvider } from '@/context/SafariContext'
 
 import { Header } from '@/components/header/Header'
+import { Footer } from '@/components/footer/Footer'
 
 export const metadata: Metadata = {
   description: 'The Common',
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: Props) {
             <Theme />
             <Header />
             {children}
+            <Footer />
           </div>
         </body>
       </SafariProvider>

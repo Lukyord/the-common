@@ -4,6 +4,20 @@ import { notFound } from 'next/navigation'
 import type { Branch } from '@/payload-types'
 import { getPayloadClient } from '@/payload/getPayloadClient'
 
+export const getBranches = cache(async (): Promise<Branch[]> => {
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'branches',
+    depth: 1,
+    limit: 100,
+    overrideAccess: false,
+    pagination: false,
+    sort: 'createdAt',
+  })
+
+  return docs
+})
+
 export const getBranchBySlug = cache(async (slug: string): Promise<Branch> => {
   const payload = await getPayloadClient()
   const { docs } = await payload.find({

@@ -201,6 +201,14 @@ export interface Branch {
   id: number;
   name: string;
   slug: string;
+  logo?: (number | null) | Media;
+  primaryColor?: string | null;
+  bgColor?: string | null;
+  hero?: {
+    backgroundMedia?: (number | null) | Media;
+    mobileBackgroundMedia?: (number | null) | Media;
+    title?: string | null;
+  };
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -471,6 +479,16 @@ export interface LifestyleSelect<T extends boolean = true> {
 export interface BranchesSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
+  logo?: T;
+  primaryColor?: T;
+  bgColor?: T;
+  hero?:
+    | T
+    | {
+        backgroundMedia?: T;
+        mobileBackgroundMedia?: T;
+        title?: T;
+      };
   meta?:
     | T
     | {

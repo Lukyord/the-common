@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 
 import { MarkdownContent } from '@/components/common/markdown-content'
 import RenderMedia from '@/components/common/media'
-import HorizontalMarquee from '@/components/common/horizontal-marquee'
+import { MottoMarquee } from '@/components/elements/MottoMarquee'
 import { generateMeta } from '@/lib/generateMeta'
 import { resolveMedia } from '@/lib/resolveMedia'
 import { getHomePayloadData } from '@/payload/queries/home'
@@ -24,8 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
   const { contact, errors, homepage, lifestyles } = await getHomePayloadData()
   const { hero } = homepage
-  const mottoItems = homepage?.motto?.filter((item) => item.text?.trim()) ?? []
-
+  const heroBackground = resolveMedia(hero?.backgroundMedia)
+  const heroBackgroundMobile = resolveMedia(hero?.mobileBackgroundMedia)
   const hasContact = Boolean(
     contact?.email ||
     contact?.tel ||
@@ -40,11 +40,11 @@ export default async function HomePage() {
       {/* HOMEPAGE HERO ==================== */}
       <section data-section="index-hero">
         <div className="cover">
-          {resolveMedia(hero?.backgroundMedia)?.src && (
+          {heroBackground?.src && (
             <RenderMedia
-              src={resolveMedia(hero?.backgroundMedia)?.src ?? ''}
-              srcMobile={resolveMedia(hero?.mobileBackgroundMedia)?.src}
-              alt={resolveMedia(hero?.backgroundMedia)?.alt}
+              src={heroBackground.src}
+              srcMobile={heroBackgroundMobile?.src || heroBackground.src}
+              alt={heroBackground.alt}
               priority
             />
           )}
@@ -65,23 +65,7 @@ export default async function HomePage() {
         <LocationSelector />
       </section>
 
-      {/* MOTTO MARQUEE ==================== */}
-      {mottoItems.length > 0 && (
-        <div className="motto-marquee">
-          <HorizontalMarquee speed={25} direction="left">
-            <div className="motto-marquee__strip">
-              {mottoItems.map((item, index) => (
-                <div key={item.id ?? index} className="motto-marquee__item">
-                  <span className="shape" data-shape={item.shape}></span>
-                  <span className="type-d-body-m type-m-body-r letter-spacing-003">
-                    {item.text}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </HorizontalMarquee>
-        </div>
-      )}
+      <MottoMarquee items={homepage?.motto} />
 
       <section aria-labelledby="payload-data-title">
         <p>Payload test</p>

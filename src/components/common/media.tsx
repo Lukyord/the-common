@@ -61,7 +61,7 @@ export default function RenderMedia({
         return <p>No media available.</p>
     }
 
-    const mobileSrc = srcMobile || src
+    const mobileSrc = srcMobile?.trim() ? srcMobile.trim() : src
     const isImageDesktop = isImage(src)
     const isImageMobile = isImage(mobileSrc)
     const isVideoDesktop = isVideo(src)
@@ -99,7 +99,7 @@ export default function RenderMedia({
                     muted
                     loop
                     preload="auto"
-                    src=""
+                    src={src}
                 />
             </figure>
         )
