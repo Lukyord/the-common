@@ -31,6 +31,16 @@
     height: calc(100svh - 6.816rem);
   }
 
+  /* Location Selector */
+  .location-selector {
+    max-width: unset;
+    animation-delay: 10s;
+  }
+
+  .location-selector__inner {
+    padding: var(--spacing-sm) var(--spacing-3xs) var(--spacing-2sm);
+  }
+
   /* Motto Marquee */
   .motto-marquee .motto-marquee__strip {
     width: auto;

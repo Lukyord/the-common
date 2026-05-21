@@ -139,6 +139,7 @@ export default function HorizontalMarquee({
         style={{
           display: 'flex',
           width: 'fit-content',
+          margin: '0 auto',
         }}
       >
         {Array.from({ length: duplicateCount }).map((_, index) => (

@@ -100,8 +100,14 @@
 
   --duration: 0.3s;
   --duration-x2: 0.5s;
-  --duration-x3: 1s;
-  --duration-x4: 1.5s;
+  --duration-x3: 0.75s;
+  --duration-x4: 1s;
+  --duration-x5: 1.25s;
+  --duration-x6: 1.5s;
+  --duration-x7: 1.75s;
+  --duration-x8: 2s;
+  --duration-x9: 2.25s;
+  --duration-x10: 2.5s;
   --timing-function: ease-in-out;
 }
 
@@ -388,8 +394,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
-  -webkit-animation-duration: var(--duration);
-  animation-duration: var(--duration);
+  -webkit-animation-duration: var(--duration-x2);
+  animation-duration: var(--duration-x2);
   -webkit-animation-timing-function: var(--timing-function);
   animation-timing-function: var(--timing-function);
   -webkit-animation-iteration-count: 1;
@@ -610,6 +616,23 @@ html.resizing * {
   -webkit-animation-name: matrixZoomOut;
   animation-name: matrixZoomOut;
   animation-duration: 1s;
+}
+
+@keyframes entryTranslateY {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.entryTranslateY {
+  transform: translateY(100%);
+  animation-name: entryTranslateY;
+  animation-duration: var(--duration-x3);
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+  animation-fill-mode: forwards;
 }
 
 /* CTAs ====================*/

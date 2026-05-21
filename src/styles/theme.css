@@ -9,20 +9,91 @@
 /* PAGE: INDEX */
 /* Index Hero */
 [data-section='index-hero'] {
+  position: relative;
   height: calc(100svh - 7.318rem);
+  overflow: hidden;
+}
+
+[data-section='index-hero'] .sc-inner,
+[data-section='index-hero'] .container {
+  height: 100%;
 }
 
 /* Location Selector */
 .location-selector {
-  padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-2sm) var(--spacing-3xs);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 35.4rem;
+  animation-delay: var(--duration-x2);
+  overflow: hidden;
+}
+
+.location-selector__inner {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-3xs) var(--spacing-2sm) var(--spacing-sm);
   background-color: var(--color-dark-brown);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-4xs);
+  transition: transform var(--duration-x3) cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+html.page-scrolling .location-selector__inner {
+  transform: translateY(100%) !important;
 }
 
 .location-selector__label {
   margin-bottom: var(--spacing-5xs);
+}
+
+.location-selector__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  position: relative;
+  padding-right: var(--spacing-3xs);
+  transition: background-color var(--duration) var(--timing-function);
+}
+
+html.no-touchevents .location-selector__item:hover {
+  background-color: rgba(var(--color-white-rgb), 0.1);
+}
+
+.branch-shape {
+  aspect-ratio: 1.033333333;
+  position: relative;
+}
+
+.branch-shape svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.location-selector__item .branch-shape {
+  width: 6rem;
+  height: fit-content;
+  flex-shrink: 0;
+}
+
+.location-selector__item .item-text {
+  flex-grow: 1;
+}
+
+.location-selector__item .item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3xs);
+  width: 100%;
+  margin-bottom: var(--spacing-5xs);
+}
+
+html.no-touchevents .location-selector__item:hover .ic {
+  transform: translate(0.25rem, -0.25rem);
 }
 
 /* Motto Marquee */
@@ -36,10 +107,16 @@
   align-items: center;
   flex-wrap: nowrap;
   white-space: nowrap;
-  gap: var(--spacing-2xs);
+  gap: var(--spacing-5xs);
   width: var(--container-max-width);
-  justify-content: center;
+  justify-content: space-between;
   margin: 0 auto;
+}
+@media (min-width: 1441px) {
+  .motto-marquee .motto-marquee__strip {
+    width: min(100vw, 157.5rem);
+    padding: 0 var(--spacing-3xs);
+  }
 }
 .motto-marquee .motto-marquee__item {
   display: flex;

@@ -9,7 +9,7 @@
   --color: var(--color-beige);
   --header-height-start: 8rem;
   --header-height-scroll: 7.8rem;
-  --header-content-height-scroll: 5.8rem;
+  --header-content-height-scroll: 4.8rem;
   --header-content-offset-scroll: var(--spacing-sm);
 }
 
@@ -81,6 +81,7 @@
 .header-location {
   height: 100%;
   width: 100%;
+  transition: var(--duration-x2) var(--timing-function);
 }
 
 .header-location .location-trigger {
@@ -91,7 +92,6 @@
   background-color: var(--bg-color);
   width: 100%;
   height: 100%;
-  transition: var(--duration-x2) var(--timing-function);
 }
 
 .header-location .location-trigger .ic {
@@ -162,7 +162,11 @@
     height: var(--header-content-height-scroll);
   }
 
-  html.page-scrolling .header-location .location-trigger {
+  html.page-scrolling .header-cta {
+    width: 15.4rem;
+  }
+
+  html.page-scrolling .header-location {
     margin-top: var(--header-content-offset-scroll);
     width: 100%;
     height: var(--header-content-height-scroll);
@@ -176,7 +180,7 @@
 
   .header-menu .panel-body {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
   }
 }

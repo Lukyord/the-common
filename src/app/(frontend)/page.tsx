@@ -4,6 +4,8 @@ import type { Metadata } from 'next'
 import HorizontalMarquee from '@/components/common/horizontal-marquee'
 import { generateMeta } from '@/lib/generateMeta'
 import { getHomePayloadData } from '@/payload/queries/home'
+import { BranchShape } from '@/components/elements/BranchShape'
+import { LocationSelector } from '@/components/brand/homepage/LocationSelector'
 
 export const dynamic = 'force-dynamic'
 
@@ -32,36 +34,16 @@ export default async function HomePage() {
 
   return (
     <main id="main" className="index-page">
+      {/* HOMEPAGE HERO ==================== */}
       <section data-section="index-hero">
         <div className="sc-inner">
-          <div className="container">
-            <div className="location-selector">
-              <div className="location-selector__label">
-                <p className="type-d-label type-m-body-m letter-spacing-003 uppercase weight-medium">
-                  SELECT LOCATION
-                </p>
-              </div>
-
-              <div className="location-selector__item">
-                <div className="item-header">
-                  <div className="item-ttl">
-                    <h3 className="type-d-label type-m-body-m letter-spacing-003 uppercase weight-medium"></h3>
-                  </div>
-
-                  <i className="ic ic-arrow-topright"></i>
-                </div>
-
-                <p className="type-caption">OPENING HOURS</p>
-
-                <p className="type-caption">8am - 1am</p>
-              </div>
-              <div className="location-selector__item"></div>
-              <div className="location-selector__item"></div>
-            </div>
-          </div>
+          <div className="container"></div>
         </div>
+
+        <LocationSelector />
       </section>
 
+      {/* MOTTO MARQUEE ==================== */}
       {mottoItems.length > 0 && (
         <div className="motto-marquee">
           <HorizontalMarquee speed={25} direction="left">
