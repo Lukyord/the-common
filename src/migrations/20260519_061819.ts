@@ -1,6 +1,6 @@
 import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-d1-sqlite'
 
-export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
+export async function up({ db }: MigrateUpArgs): Promise<void> {
   await db.run(sql`PRAGMA foreign_keys=OFF;`)
   await db.run(sql`CREATE TABLE \`__new_blogs\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
@@ -14,7 +14,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	FOREIGN KEY (\`meta_image_id\`) REFERENCES \`media\`(\`id\`) ON UPDATE no action ON DELETE set null
   );
   `)
-  await db.run(sql`INSERT INTO \`__new_blogs\`("id", "title", "slug", "meta_title", "meta_description", "meta_image_id", "updated_at", "created_at") SELECT "id", "title", "slug", "meta_title", "meta_description", "meta_image_id", "updated_at", "created_at" FROM \`blogs\`;`)
+  await db.run(
+    sql`INSERT INTO \`__new_blogs\`("id", "title", "slug", "meta_title", "meta_description", "meta_image_id", "updated_at", "created_at") SELECT "id", "title", "slug", "meta_title", "meta_description", "meta_image_id", "updated_at", "created_at" FROM \`blogs\`;`,
+  )
   await db.run(sql`DROP TABLE \`blogs\`;`)
   await db.run(sql`ALTER TABLE \`__new_blogs\` RENAME TO \`blogs\`;`)
   await db.run(sql`PRAGMA foreign_keys=ON;`)
@@ -24,7 +26,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE INDEX \`blogs_created_at_idx\` ON \`blogs\` (\`created_at\`);`)
 }
 
-export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
-  await db.run(sql`ALTER TABLE \`blogs\` ADD \`branch_id\` integer NOT NULL REFERENCES branches(id);`)
+export async function down({ db }: MigrateDownArgs): Promise<void> {
+  await db.run(
+    sql`ALTER TABLE \`blogs\` ADD \`branch_id\` integer NOT NULL REFERENCES branches(id);`,
+  )
   await db.run(sql`CREATE INDEX \`blogs_branch_idx\` ON \`blogs\` (\`branch_id\`);`)
 }

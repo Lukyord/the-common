@@ -20,7 +20,8 @@
       "binding": "D1",
       "database_id": "4fdb4811-9e36-4db1-8a46-328b0b68a41c",
       "database_name": "the-common",
-      "remote": true,
+      // Use local D1 for dev/build; set CLOUDFLARE_REMOTE_BINDINGS=true for remote migrate/deploy
+      "remote": false,
     },
   ],
   "services": [

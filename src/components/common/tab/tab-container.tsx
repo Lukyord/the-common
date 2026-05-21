@@ -1,6 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useState, type PropsWithChildren } from 'react'
+import { useCallback, useEffect, useRef, useState, type PropsWithChildren } from 'react'
+
+declare global {
+    interface Window {
+        updateMatchHeight?: () => void
+    }
+}
 import { TabContext, type TabContextValue } from './tab-context'
 import { registerTabContainer, unregisterTabContainer, tabContainers } from './use-tab-control'
 
@@ -47,6 +53,8 @@ export function TabContainer({
 }: TabContainerProps) {
     const containerRef = useRef<HTMLDivElement>(null)
     const [activeTab, setActiveTabState] = useState<string | null>(defaultActiveTab || null)
+    const activeTabRef = useRef(activeTab)
+    activeTabRef.current = activeTab
     const id = containerId || `tab-container-${Math.random().toString(36).substring(2, 11)}`
 
     // Handle hash-based tab activation
@@ -92,7 +100,7 @@ export function TabContainer({
         }
     }, [activeTab, scrollToTop])
 
-    const setActiveTab = (tabId: string) => {
+    const setActiveTab = useCallback((tabId: string) => {
         setActiveTabState(tabId)
 
         // Update URL hash if it's a hash-based tab and updateUrlHash is enabled
@@ -101,19 +109,16 @@ export function TabContainer({
         }
 
         // Update MatchHeight after tab content is shown (if available)
-        if (
-            typeof window !== 'undefined' &&
-            typeof (window as any).updateMatchHeight === 'function'
-        ) {
+        if (typeof window !== 'undefined' && window.updateMatchHeight) {
             setTimeout(() => {
-                ;(window as any).updateMatchHeight()
+                window.updateMatchHeight?.()
             }, 100)
         }
-    }
+    }, [updateUrlHash])
 
     // Register this container in the global registry
     useEffect(() => {
-        const getActiveTab = () => activeTab
+        const getActiveTab = () => activeTabRef.current
         registerTabContainer(id, setActiveTab, getActiveTab)
 
         return () => {

@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState } from 'react'
 
 export const HeaderLocation = () => {
@@ -27,28 +28,28 @@ export const HeaderLocation = () => {
               </p>
             </li>
             <li>
-              <a
+              <Link
                 href="/thonglor"
                 className="type-d-label letter-spacing-003 uppercase weight-medium"
               >
                 THONGLOR
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/saladaeng"
                 className="type-d-label letter-spacing-003 uppercase weight-medium"
               >
                 SALADAENG
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/cloud-11"
                 className="type-d-label letter-spacing-003 uppercase weight-medium"
               >
                 CLOUD 11
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

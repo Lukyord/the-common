@@ -2,11 +2,10 @@ import Link from 'next/link'
 import React from 'react'
 
 type LogoProps = {
-  className?: string
   color?: string
 }
 
-export const Logo = ({ className, color = '#E8E4DB' }: LogoProps) => {
+export const Logo = ({ color = '#E8E4DB' }: LogoProps) => {
   return (
     <Link href="/" className="logo-wrapper">
       <svg

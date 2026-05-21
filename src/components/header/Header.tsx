@@ -23,7 +23,7 @@ function getSlugFromPathname(pathname: string): string {
 
 export async function Header() {
   const pathname = (await headers()).get('x-pathname') ?? '/'
-  const slug = getSlugFromPathname(pathname)
+  const _slug = getSlugFromPathname(pathname)
 
   return (
     <header id="header">

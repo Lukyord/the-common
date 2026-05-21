@@ -4,7 +4,6 @@ import type { Metadata } from 'next'
 import HorizontalMarquee from '@/components/common/horizontal-marquee'
 import { generateMeta } from '@/lib/generateMeta'
 import { getHomePayloadData } from '@/payload/queries/home'
-import { BranchShape } from '@/components/elements/BranchShape'
 import { LocationSelector } from '@/components/brand/homepage/LocationSelector'
 
 export const dynamic = 'force-dynamic'
