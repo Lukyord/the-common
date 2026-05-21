@@ -94,12 +94,9 @@ export default buildConfig({
       ],
       tabbedUI: true,
       uploadsCollection: Media.slug,
-      generateTitle: ({ doc }) =>
-        doc?.title || doc?.name || doc?.hero?.title || 'The Common',
+      generateTitle: ({ doc }) => doc?.title || doc?.name || doc?.hero?.title || 'The Common',
       generateDescription: ({ doc }) =>
-        doc?.description ||
-        doc?.about?.description ||
-        doc?.membership?.description,
+        doc?.description || doc?.about?.description || doc?.membership?.description,
       generateImage: ({ doc }) => doc?.hero?.backgroundMedia,
       generateURL: () => process.env.NEXT_PUBLIC_SITE_URL || '/',
     }),
@@ -108,6 +105,12 @@ export default buildConfig({
       collections: { media: true },
     }),
   ],
+  upload: {
+    uploadTimeout: 300000,
+    limits: {
+      fileSize: 50 * 1024 * 1024,
+    },
+  },
 })
 
 // Adapted from https://github.com/opennextjs/opennextjs-cloudflare/blob/d00b3a13e42e65aad76fba41774815726422cc39/packages/cloudflare/src/api/cloudflare-context.ts#L328C36-L328C46

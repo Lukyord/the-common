@@ -1,8 +1,11 @@
 import React from 'react'
 import type { Metadata } from 'next'
 
+import { MarkdownContent } from '@/components/common/markdown-content'
+import RenderMedia from '@/components/common/media'
 import HorizontalMarquee from '@/components/common/horizontal-marquee'
 import { generateMeta } from '@/lib/generateMeta'
+import { resolveMedia } from '@/lib/resolveMedia'
 import { getHomePayloadData } from '@/payload/queries/home'
 import { LocationSelector } from '@/components/brand/homepage/LocationSelector'
 
@@ -13,13 +16,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return generateMeta({
     meta: homepage?.meta,
-    fallbackTitle: homepage?.hero?.title,
+    fallbackTitle: homepage?.hero?.title?.replace(/\s+/g, ' ').trim(),
     fallbackDescription: homepage?.about?.description,
   })
 }
 
 export default async function HomePage() {
   const { contact, errors, homepage, lifestyles } = await getHomePayloadData()
+  const { hero } = homepage
   const mottoItems = homepage?.motto?.filter((item) => item.text?.trim()) ?? []
 
   const hasContact = Boolean(
@@ -35,8 +39,27 @@ export default async function HomePage() {
     <main id="main" className="index-page">
       {/* HOMEPAGE HERO ==================== */}
       <section data-section="index-hero">
-        <div className="sc-inner">
-          <div className="container"></div>
+        <div className="cover">
+          {resolveMedia(hero?.backgroundMedia)?.src && (
+            <RenderMedia
+              src={resolveMedia(hero?.backgroundMedia)?.src ?? ''}
+              srcMobile={resolveMedia(hero?.mobileBackgroundMedia)?.src}
+              alt={resolveMedia(hero?.backgroundMedia)?.alt}
+              priority
+            />
+          )}
+        </div>
+        <div className="sc-inner pc-t-100 pc-b-75 mb-t-100 mb-b-50">
+          <div className="container">
+            <div className="sc-ttl">
+              <MarkdownContent
+                as="h1"
+                inline
+                markdown={homepage.hero.title}
+                className="type-d-display-m type-m-display weight-medium"
+              />
+            </div>
+          </div>
         </div>
 
         <LocationSelector />
