@@ -556,6 +556,10 @@ html.resizing * {
   display: block;
 }
 
+html.no-touchevents a:hover {
+  opacity: 0.75;
+}
+
 /* ANIMATE ==================== */
 @keyframes fadeIn {
   from {

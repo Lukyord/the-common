@@ -62,7 +62,7 @@ export const LocationSelector = () => {
                     {location.name}
                   </h3>
                 </div>
-                <i className="ic ic-arrow-right size-icon-3xs" aria-hidden />
+                <i className="ic ic-arrow-square-top-right size-icon-3xs" aria-hidden />
               </div>
               {location.captions.map((caption) => (
                 <p key={caption} className="type-caption letter-spacing-003">

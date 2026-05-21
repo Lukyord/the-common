@@ -8,7 +8,7 @@
   --bg-color: var(--color-dark-brown);
   --color: var(--color-beige);
   --header-height-start: 8rem;
-  --header-height-scroll: 7.8rem;
+  --header-height-scroll: 6.8rem;
   --header-content-height-scroll: 4.8rem;
   --header-content-offset-scroll: var(--spacing-sm);
 }
@@ -94,6 +94,10 @@
   height: 100%;
 }
 
+html.no-touchevents .header-location .location-trigger:hover {
+  color: rgba(var(--color-beige-rgb), 0.75);
+}
+
 .header-location .location-trigger .ic {
   transition: transform var(--duration-x2) var(--timing-function);
 }
@@ -129,6 +133,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-2xs);
+  transition: padding var(--duration) var(--timing-function);
+}
+
+html.page-scrolling .header-location .location-panel ul {
+  padding: var(--spacing-xs) var(--spacing-sm);
 }
 
 .header-location .location-panel ul a {

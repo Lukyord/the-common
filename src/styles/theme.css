@@ -58,7 +58,7 @@ html.page-scrolling .location-selector__inner {
 }
 
 html.no-touchevents .location-selector__item:hover {
-  background-color: rgba(var(--color-white-rgb), 0.1);
+  background-color: rgba(var(--color-white-rgb), 0.3);
 }
 
 .branch-shape {
