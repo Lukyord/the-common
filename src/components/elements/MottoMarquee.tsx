@@ -28,9 +28,7 @@ export function MottoMarquee({ items }: MottoMarqueeProps) {
           {mottoItems.map((item, index) => (
             <div key={item.id ?? index} className="motto-marquee__item">
               <span className="shape" data-shape={item.shape}></span>
-              <span className="type-d-body-m type-m-body-r letter-spacing-003">
-                {item.text}
-              </span>
+              <span className="type-d-body-s type-m-body-r letter-spacing-003">{item.text}</span>
             </div>
           ))}
         </div>

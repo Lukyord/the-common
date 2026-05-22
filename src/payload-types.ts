@@ -859,7 +859,22 @@ export interface Homepage {
   flexibleSection?:
     | {
         title?: string | null;
-        description?: string | null;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        bgColor?: string | null;
         media?: (number | null) | Media;
         id?: string | null;
       }[]
@@ -1052,6 +1067,7 @@ export interface HomepageSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
+        bgColor?: T;
         media?: T;
         id?: T;
       };

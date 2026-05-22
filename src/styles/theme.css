@@ -149,3 +149,19 @@ html.no-touchevents .location-selector__item:hover .ic {
 .motto-marquee__item .shape[data-shape='square'] {
   background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" fill="%23E1C3DE"/></svg>');
 }
+
+/* Flexible Section */
+[data-section='flexible'] {
+  display: flex;
+  color: var(--color-dark-brown);
+}
+
+[data-section='flexible'] .text-slide,
+[data-section='flexible'] .media-slide {
+  width: 50%;
+}
+
+[data-section='flexible'] .slide-item {
+  width: 100%;
+  aspect-ratio: 1;
+}

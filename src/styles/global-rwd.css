@@ -22,39 +22,33 @@
     display: none !important;
   }
 
-  .type-d-display-m {
+  .type-d-display {
     font-size: var(--font-size-h1);
     line-height: var(--line-height-h1);
-  }
-  .type-d-display-s {
-    font-size: var(--font-size-h3);
-    line-height: var(--line-height-h3);
   }
   .type-d-header {
     font-size: var(--font-size-h2);
     line-height: var(--line-height-h2);
   }
   .type-d-title {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
+  }
+  .type-d-body-l {
     font-size: var(--font-size-h4);
     line-height: var(--line-height-h4);
   }
-  .type-d-body-l {
-    font-size: var(--font-size-h5);
-    line-height: var(--line-height-h5);
-  }
-  .type-d-body-l-medium {
-    font-size: var(--font-size-h5);
-    line-height: var(--line-height-h5);
-    font-weight: 500;
-  }
   .type-d-body-m {
+    font-size: var(--font-size-h5);
+    line-height: var(--line-height-h5);
+  }
+  .type-d-body-s {
     font-size: var(--font-size-h6);
     line-height: var(--line-height-h6);
   }
-  .type-d-body-m-medium {
-    font-size: var(--font-size-h6);
-    line-height: var(--line-height-h6);
-    font-weight: 500;
+  .type-d-body-xs {
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
   }
   .type-d-label {
     font-size: var(--font-size-body);
@@ -63,11 +57,6 @@
   .type-d-text-link {
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
-  }
-  .type-d-text-link-medium {
-    font-size: var(--font-size-body);
-    line-height: var(--line-height-body);
-    font-weight: 500;
   }
 }
 

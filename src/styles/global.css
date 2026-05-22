@@ -38,14 +38,14 @@
   --font-body: var(--font-akzidenz-grotesk-bq, Arial, Helvetica, sans-serif);
   --font-heading: var(--font-body);
 
-  --font-size-h1: 6.4rem;
-  --font-size-h2: 4.8rem;
-  --font-size-h3: 4rem;
-  --font-size-h4: 3.2rem;
-  --font-size-h5: 2.4rem;
-  --font-size-h6: 2rem;
+  --font-size-h1: 6rem;
+  --font-size-h2: 4rem;
+  --font-size-h3: 3.2rem;
+  --font-size-h4: 2.4rem;
+  --font-size-h5: 2rem;
+  --font-size-h6: 1.8rem;
   --font-size-body: 1.6rem;
-  --font-size-small: 1.2rem;
+  --font-size-small: 1.4rem;
 
   --line-height-h1: 1.16;
   --line-height-h2: 1.08;

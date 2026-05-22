@@ -1,5 +1,19 @@
 import type { Field, GlobalConfig } from 'payload'
 
+const colorPickerField = (name: string, label: string): Field => ({
+  name,
+  type: 'text',
+  label,
+  admin: {
+    components: {
+      Field: {
+        path: '@/components/payload/color-picker-field',
+        exportName: 'ColorPickerField',
+      },
+    },
+  },
+})
+
 const shapeOptions = {
   hexagon: 'Hexagon',
   circle: 'Circle',
@@ -183,9 +197,10 @@ export const Homepage: GlobalConfig = {
                   },
                   {
                     name: 'description',
-                    type: 'textarea',
+                    type: 'richText',
                     label: 'Description',
                   },
+                  colorPickerField('bgColor', 'Background Color'),
                   {
                     name: 'media',
                     type: 'upload',
