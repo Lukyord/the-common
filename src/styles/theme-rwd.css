@@ -62,6 +62,16 @@
     aspect-ratio: unset;
   }
 
+  [data-section='flexible'] .text-slide .swiper-slide {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  [data-section='flexible'] .text-slide .slide-item {
+    flex-grow: 1;
+  }
+
   [data-section='flexible'] .text-slide .slide-item-inner {
     min-height: 100vw;
     gap: var(--spacing-sm);

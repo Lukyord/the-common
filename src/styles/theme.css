@@ -161,6 +161,10 @@ html.no-touchevents .location-selector__item:hover .ic {
   width: 50%;
 }
 
+[data-section='flexible'] .text-slide .swiper {
+  overflow: visible;
+}
+
 [data-section='flexible'] .slide-item {
   width: 100%;
   aspect-ratio: 1;

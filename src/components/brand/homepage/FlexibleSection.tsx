@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import type { Swiper as SwiperInstance } from 'swiper'
-import { Controller, EffectFade, Pagination } from 'swiper/modules'
+import { Controller, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
@@ -51,17 +51,17 @@ export function FlexibleSection({ show, items }: FlexibleSectionProps) {
       >
         <div className="text-slide">
           <Swiper
-            modules={[Controller, EffectFade, Pagination]}
-            autoHeight={true}
-            effect="fade"
-            fadeEffect={{ crossFade: true }}
+            modules={[Controller, Pagination]}
             pagination={{ clickable: true }}
             onSwiper={setTextSwiper}
             onSlideChange={handleSlideChange}
             controller={{ control: mediaSwiper }}
           >
             {slides.map((slide) => (
-              <SwiperSlide key={slide.id}>
+              <SwiperSlide
+                key={slide.id}
+                style={slide.bgColor ? { backgroundColor: slide.bgColor } : undefined}
+              >
                 <div className="slide-item">
                   <div className="slide-item-inner">
                     {slide.title && (
@@ -83,9 +83,7 @@ export function FlexibleSection({ show, items }: FlexibleSectionProps) {
 
         <div className="media-slide">
           <Swiper
-            modules={[Controller, EffectFade]}
-            effect="fade"
-            fadeEffect={{ crossFade: true }}
+            modules={[Controller]}
             onSwiper={setMediaSwiper}
             onSlideChange={handleSlideChange}
             controller={{ control: textSwiper }}
