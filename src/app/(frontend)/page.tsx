@@ -48,7 +48,7 @@ export default async function HomePage() {
                 as="h1"
                 inline
                 markdown={homepage.hero.title}
-                className="type-d-display-m type-m-display weight-medium"
+                className="type-d-display type-m-display weight-medium"
               />
             </div>
           </div>

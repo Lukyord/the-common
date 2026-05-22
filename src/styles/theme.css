@@ -164,4 +164,37 @@ html.no-touchevents .location-selector__item:hover .ic {
 [data-section='flexible'] .slide-item {
   width: 100%;
   aspect-ratio: 1;
+  position: relative;
+}
+
+[data-section='flexible'] .text-slide .slide-item-inner {
+  height: 100%;
+  max-width: calc(var(--container-max-width) / 2);
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-2sm);
+  padding: var(--spacing-container);
+  padding-right: var(--spacing-xl);
+}
+
+[data-section='flexible'] .entry-content {
+  font-size: var(--font-size-h5);
+  line-height: var(--line-height-h5);
+  letter-spacing: var(--letter-spacing-002);
+}
+
+[data-section='flexible'] .text-slide .swiper-pagination-bullets.swiper-pagination-horizontal {
+  --swiper-pagination-bottom: var(--spacing-lg);
+}
+
+[data-section='flexible'] .text-slide .swiper-pagination-bullet {
+  --swiper-pagination-bullet-width: 0.8rem;
+  --swiper-pagination-bullet-height: 0.8rem;
+  --swiper-pagination-color: var(--color-cloud-11-olive);
+  --swiper-pagination-bullet-inactive-color: transparent;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-horizontal-gap: var(--spacing-5xs);
+  border: 0.1rem solid var(--color-cloud-11-olive);
 }
