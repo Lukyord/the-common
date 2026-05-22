@@ -7,11 +7,7 @@ const nextConfig: NextConfig = {
     middlewareClientMaxBodySize: '100mb',
   },
   images: {
-    localPatterns: [
-      {
-        pathname: '/api/media/file/**',
-      },
-    ],
+    unoptimized: true,
   },
   // Packages with Cloudflare Workers (workerd) specific code
   // Read more: https://opennext.js.org/cloudflare/howtos/workerd
