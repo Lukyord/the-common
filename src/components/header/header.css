@@ -68,6 +68,7 @@
 .header-menu .menu a {
   display: inline-block;
   padding: var(--spacing-6xs);
+  transition: opacity var(--duration) var(--timing-function);
 }
 
 /* LOCATION */

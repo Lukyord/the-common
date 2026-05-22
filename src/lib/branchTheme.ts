@@ -12,7 +12,9 @@ function themeStyle(vars: Record<string, string | undefined>): CSSProperties | u
   return Object.keys(style).length > 0 ? (style as CSSProperties) : undefined
 }
 
-export function branchHeaderThemeStyle(branch?: Branch | null): CSSProperties | undefined {
+type BranchHeaderTheme = Pick<Branch, 'bgColor' | 'primaryColor'>
+
+export function branchHeaderThemeStyle(branch?: BranchHeaderTheme | null): CSSProperties | undefined {
   if (!branch) return undefined
 
   return themeStyle({
@@ -21,7 +23,9 @@ export function branchHeaderThemeStyle(branch?: Branch | null): CSSProperties | 
   })
 }
 
-export function branchFooterThemeStyle(branch?: Branch | null): CSSProperties | undefined {
+type BranchFooterTheme = Pick<Branch, 'footerBg' | 'footerColor'>
+
+export function branchFooterThemeStyle(branch?: BranchFooterTheme | null): CSSProperties | undefined {
   if (!branch) return undefined
 
   return themeStyle({
