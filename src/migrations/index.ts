@@ -10,6 +10,7 @@ import * as migration_20260513_145604_contact_accordion from './20260513_145604_
 import * as migration_20260515_001957 from './20260515_001957';
 import * as migration_20260519_061819 from './20260519_061819';
 import * as migration_20260521_100611_branch_branding_fields from './20260521_100611_branch_branding_fields';
+import * as migration_20260522_051321 from './20260522_051321';
 
 export const migrations = [
   {
@@ -70,6 +71,11 @@ export const migrations = [
   {
     up: migration_20260521_100611_branch_branding_fields.up,
     down: migration_20260521_100611_branch_branding_fields.down,
-    name: '20260521_100611_branch_branding_fields'
+    name: '20260521_100611_branch_branding_fields',
+  },
+  {
+    up: migration_20260522_051321.up,
+    down: migration_20260522_051321.down,
+    name: '20260522_051321'
   },
 ];
