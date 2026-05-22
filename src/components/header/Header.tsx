@@ -1,10 +1,13 @@
 import { headers } from 'next/headers'
+import Link from 'next/link'
 
 import './header.css'
 
+import { branchHeaderThemeStyle } from '@/lib/branchTheme'
+import { getSlugFromPathname } from '@/lib/pathname'
+import { getBranches } from '@/payload/queries/branch'
 import { Logo } from './Logo'
 import HeaderMenuCtrl from './HeaderMenuCtrl'
-import Link from 'next/link'
 import { HeaderLocation } from './HeaderLocation'
 
 const HEADER_NAV_ITEMS = [
@@ -16,20 +19,18 @@ const HEADER_NAV_ITEMS = [
   { href: '/contact', label: 'CONTACT' },
 ] as const
 
-function getSlugFromPathname(pathname: string): string {
-  if (pathname === '/') return ''
-  return pathname.split('/').filter(Boolean)[0] ?? ''
-}
-
 export async function Header() {
   const pathname = (await headers()).get('x-pathname') ?? '/'
-  const _slug = getSlugFromPathname(pathname)
+  const slug = getSlugFromPathname(pathname)
+  const branches = await getBranches()
+  const currentBranch = branches.find((branch) => branch.slug === slug)
+  const themeStyle = branchHeaderThemeStyle(currentBranch)
 
   return (
-    <header id="header">
+    <header id="header" style={themeStyle}>
       <div className="header-nav">
         <div className="header-logo">
-          <Logo />
+          <Logo color={currentBranch?.primaryColor} />
         </div>
 
         <nav className="header-menu">

@@ -202,8 +202,56 @@ export interface Branch {
   name: string;
   slug: string;
   logo?: (number | null) | Media;
+  tel?: string | null;
   primaryColor?: string | null;
   bgColor?: string | null;
+  footerBg?: string | null;
+  footerColor?: string | null;
+  findUs?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  openingHours?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  parkingOptions?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   hero?: {
     backgroundMedia?: (number | null) | Media;
     mobileBackgroundMedia?: (number | null) | Media;
@@ -480,8 +528,14 @@ export interface BranchesSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   logo?: T;
+  tel?: T;
   primaryColor?: T;
   bgColor?: T;
+  footerBg?: T;
+  footerColor?: T;
+  findUs?: T;
+  openingHours?: T;
+  parkingOptions?: T;
   hero?:
     | T
     | {

@@ -220,7 +220,7 @@ html.page-scrolling .header-location .location-panel ul {
     justify-content: flex-end;
     gap: var(--spacing-sm);
     padding-right: var(--spacing-container);
-    background-color: var(--color-dark-brown);
+    background-color: var(--bg-color);
     flex-grow: 1;
   }
 
@@ -251,7 +251,7 @@ html.page-scrolling .header-location .location-panel ul {
     flex-grow: 0;
     position: relative;
     z-index: 1;
-    background-color: var(--color-dark-brown);
+    background-color: var(--bg-color);
   }
 
   .panel {
@@ -261,7 +261,7 @@ html.page-scrolling .header-location .location-panel ul {
     left: 0;
     width: 100vw;
     height: 100dvh;
-    background-color: var(--color-dark-brown);
+    background-color: var(--bg-color);
     overflow: hidden;
     z-index: 95;
     pointer-events: none;
@@ -325,7 +325,6 @@ html.page-scrolling .header-location .location-panel ul {
 .hamburger {
   --hamburger-size: 2.3rem;
   --hamburger-stroke-width: 0.1rem;
-  --rgb: var(--color-white-rgb);
   position: relative;
   display: block;
   width: auto;
@@ -347,7 +346,7 @@ html.page-scrolling .header-location .location-panel ul {
   width: 100%;
   height: var(--hamburger-stroke-width);
   border-radius: 0.1rem;
-  background: rgba(var(--rgb), 1);
+  background: var(--color);
   opacity: 1;
   left: 0;
   transform: rotate(0deg);

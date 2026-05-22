@@ -70,8 +70,30 @@ export const Branches: CollectionConfig = {
       relationTo: 'media',
       label: 'Branch Logo',
     },
+    {
+      name: 'tel',
+      type: 'text',
+      label: 'Tel',
+    },
     colorPickerField('primaryColor', 'Primary Color'),
     colorPickerField('bgColor', 'Background Color'),
+    colorPickerField('footerBg', 'Footer BG'),
+    colorPickerField('footerColor', 'Footer Color'),
+    {
+      name: 'findUs',
+      type: 'richText',
+      label: 'Find Us',
+    },
+    {
+      name: 'openingHours',
+      type: 'richText',
+      label: 'Opening Hours',
+    },
+    {
+      name: 'parkingOptions',
+      type: 'richText',
+      label: 'Parking Options',
+    },
     {
       name: 'hero',
       type: 'group',

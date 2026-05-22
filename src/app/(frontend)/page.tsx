@@ -38,7 +38,7 @@ export default async function HomePage() {
   return (
     <main id="main" className="index-page">
       {/* HOMEPAGE HERO ==================== */}
-      <section data-section="index-hero">
+      <section data-section="index-hero" className="bg-dark-brown">
         <div className="cover">
           {heroBackground?.src && (
             <RenderMedia

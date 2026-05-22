@@ -15,6 +15,8 @@ export default async function BranchPage({ params }: Props) {
   return (
     <main id="main">
       <h1>{branch.name}</h1>
+
+      <div style={{ height: '100vh' }}></div>
     </main>
   )
 }
