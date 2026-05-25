@@ -242,11 +242,8 @@ export const Homepage: GlobalConfig = {
             section('Membership', [
               {
                 name: 'membership',
-                type: 'group',
-                label: 'Membership',
-                admin: {
-                  hideGutter: true,
-                },
+                type: 'array',
+                label: 'Slides',
                 fields: [
                   {
                     name: 'title',
@@ -276,17 +273,10 @@ export const Homepage: GlobalConfig = {
                     ],
                   },
                   {
-                    name: 'cardMedia',
-                    type: 'array',
-                    label: 'Card Media',
-                    fields: [
-                      {
-                        name: 'media',
-                        type: 'upload',
-                        relationTo: 'media',
-                        label: 'Media',
-                      },
-                    ],
+                    name: 'media',
+                    type: 'upload',
+                    relationTo: 'media',
+                    label: 'Media',
                   },
                 ],
               },

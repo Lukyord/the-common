@@ -884,20 +884,18 @@ export interface Homepage {
     suffix?: string | null;
     lifestyles?: (number | Lifestyle)[] | null;
   };
-  membership?: {
-    title?: string | null;
-    description?: string | null;
-    button?: {
-      text?: string | null;
-      link?: string | null;
-    };
-    cardMedia?:
-      | {
-          media?: (number | null) | Media;
-          id?: string | null;
-        }[]
-      | null;
-  };
+  membership?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        button?: {
+          text?: string | null;
+          link?: string | null;
+        };
+        media?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
   bingo?: {
     title?: string | null;
     grid?:
@@ -1089,12 +1087,8 @@ export interface HomepageSelect<T extends boolean = true> {
               text?: T;
               link?: T;
             };
-        cardMedia?:
-          | T
-          | {
-              media?: T;
-              id?: T;
-            };
+        media?: T;
+        id?: T;
       };
   bingo?:
     | T

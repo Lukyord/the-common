@@ -96,7 +96,9 @@ export default buildConfig({
       uploadsCollection: Media.slug,
       generateTitle: ({ doc }) => doc?.title || doc?.name || doc?.hero?.title || 'The Common',
       generateDescription: ({ doc }) =>
-        doc?.description || doc?.about?.description || doc?.membership?.description,
+        doc?.description ||
+        doc?.about?.description ||
+        doc?.membership?.[0]?.description,
       generateImage: ({ doc }) => doc?.hero?.backgroundMedia,
       generateURL: () => process.env.NEXT_PUBLIC_SITE_URL || '/',
     }),
