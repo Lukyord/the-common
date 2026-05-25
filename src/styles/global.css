@@ -257,7 +257,6 @@ body {
   position: relative;
   min-height: 100svh;
   background: var(--color-dark-brown);
-  background: palevioletred;
   color: var(--color-body-black);
 }
 
@@ -526,6 +525,9 @@ body {
 .type-body-s {
   font-size: 1.4rem;
   line-height: 1.32;
+}
+.text-wrap-balance {
+  text-wrap: balance;
 }
 
 /* TRANSITION ====================*/

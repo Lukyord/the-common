@@ -274,6 +274,10 @@ html.no-touchevents .location-selector__item:hover .ic {
   width: 50%;
 }
 
+[data-section='flexible'] .media-slide {
+  background-color: var(--color-dark-brown);
+}
+
 [data-section='flexible'] .text-slide .swiper {
   overflow: visible;
 }
@@ -360,4 +364,136 @@ html.no-touchevents .location-selector__item:hover .ic {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
+}
+
+/* BINGO */
+[data-section='bingo'] {
+  background-color: var(--color-thonglor-cyan);
+}
+
+.bingo-cursor {
+  font-size: 1.6rem;
+  line-height: 1.28;
+  letter-spacing: var(--letter-spacing-002);
+  font-weight: 500;
+  color: var(--color-dark-brown);
+  background-color: var(--color-beige);
+  padding: var(--spacing-4xs) var(--spacing-2xs);
+  border-radius: 50rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 6px 12px 4px #2f2f2f1a;
+}
+
+[data-section='bingo'] .content {
+  display: grid;
+  grid-template-columns: 55.714285714% 1fr;
+  grid-template-rows: auto auto;
+  row-gap: var(--spacing-4xl);
+}
+
+[data-section='bingo'] .bingo-interactive {
+  position: relative;
+  display: grid;
+  grid-template-columns: 55.714285714% 1fr;
+  grid-template-rows: auto auto;
+  row-gap: var(--spacing-4xl);
+}
+
+[data-section='bingo'] .bingo-stamps-pool {
+  position: relative;
+  width: 77.5641026%;
+  aspect-ratio: 1.450839329;
+  grid-column: 1;
+  grid-row: 2;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+[data-section='bingo'] .bingo-stamps-pool-slot {
+  width: 12.8rem;
+  aspect-ratio: 1;
+}
+
+[data-section='bingo'] .bingo-stamps-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+[data-section='bingo'] .bingo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  grid-row: 1 / span 2;
+  position: relative;
+}
+
+[data-section='bingo'] .bingo-congrats {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 99;
+  height: auto;
+  aspect-ratio: 1.333333333;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+[data-section='bingo'] .bingo-congrats.is-visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+[data-section='bingo'] .bingo-grid-item {
+  position: relative;
+  isolation: isolate;
+  width: calc(100% / 3);
+  height: fit-content;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3xs);
+  background-color: #95f4e2;
+  text-align: center;
+  text-wrap: balance;
+}
+
+[data-section='bingo'] .bingo-grid-item > p {
+  position: relative;
+  z-index: 0;
+}
+
+[data-section='bingo'] .bingo-grid-item .stamp.is-snapped {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  mix-blend-mode: var(--stamp-blend-mode, normal);
+  opacity: var(--stamp-opacity, 1);
+}
+
+[data-section='bingo'] .bingo-grid-item:nth-child(even) {
+  background-color: #e6e8e866;
+}
+
+[data-section='bingo'] .bingo-stamps-layer .stamp {
+  position: absolute;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  pointer-events: auto;
+}
+
+[data-section='bingo'] .bingo-stamps-layer .stamp:active,
+[data-section='bingo'] .bingo-stamps-layer .stamp.is-dragging {
+  cursor: grabbing;
 }

@@ -11,6 +11,7 @@ import { getHomePayloadData } from '@/payload/queries/home'
 import { LocationSelector } from '@/components/brand/homepage/LocationSelector'
 import { ScrollShapeSection } from '@/components/brand/homepage/ScrollShapeSection'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import { Bingo } from '@/components/brand/homepage/bingo'
 import { FullscreenSlide } from '@/components/brand/homepage/FullscreenSlide'
 
 export const dynamic = 'force-dynamic'
@@ -67,6 +68,8 @@ export default async function HomePage() {
       <FlexibleSection show={homepage?.flexibleSectionShow} items={homepage?.flexibleSection} />
 
       <FullscreenSlide slides={homepage?.membership} />
+
+      <Bingo data={homepage?.bingo} />
 
       <div style={{ height: '100vh' }}></div>
     </main>
