@@ -11,6 +11,7 @@ import { getHomePayloadData } from '@/payload/queries/home'
 import { LocationSelector } from '@/components/brand/homepage/LocationSelector'
 import { ScrollShapeSection } from '@/components/brand/homepage/ScrollShapeSection'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
 
@@ -65,7 +66,13 @@ export default async function HomePage() {
 
       <FlexibleSection show={homepage?.flexibleSectionShow} items={homepage?.flexibleSection} />
 
-      <div style={{ height: '100vh' }}></div>
+      <div style={{ height: '100vh' }}>
+        <Link href="/" className="button-orange">
+          <span>
+            <span>JOIN OUR CIRCLE</span>
+          </span>
+        </Link>
+      </div>
     </main>
   )
 }
