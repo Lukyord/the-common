@@ -8,6 +8,8 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
+const PENDING_CLASS = 'animate-on-scroll-pending'
+
 type AnimateOnScrollProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
   'className' | 'onEnter' | 'onLeave'
@@ -64,22 +66,18 @@ export default function AnimateOnScroll({
     if (!element) return
 
     const showElement = (target: HTMLElement, callback?: () => void) => {
-      target.style.visibility = 'visible'
+      target.classList.remove(PENDING_CLASS)
       addClasses(target, triggerClass)
       callback?.()
     }
 
     const hideElement = (target: HTMLElement, callback?: () => void) => {
       if (!once) {
-        target.style.visibility = 'hidden'
+        target.classList.add(PENDING_CLASS)
         removeClasses(target, triggerClass)
       }
       callback?.()
     }
-
-    // Initial setup
-    element.style.visibility = 'hidden'
-    element.classList.add('animate')
 
     const runShow = () => {
       if (delay) {
@@ -118,8 +116,10 @@ export default function AnimateOnScroll({
     }
   }, [triggerClass, start, toggleActions, once, delay, onEnter, onLeave, onEnterBack, onLeaveBack])
 
+  const rootClassName = [PENDING_CLASS, 'animate', className].filter(Boolean).join(' ')
+
   return (
-    <div ref={elementRef} className={className} {...rest}>
+    <div ref={elementRef} className={rootClassName} {...rest}>
       {children}
     </div>
   )

@@ -35,6 +35,9 @@
   --color-cloud-11-accent: #c5c53c;
   --color-cloud-11-accent-rgb: 197, 197, 60;
 
+  --color-body-black: var(--color-dark-brown);
+  --color-body-black-rgb: var(--color-dark-brown-rgb);
+
   --font-body: var(--font-akzidenz-grotesk-bq, Arial, Helvetica, sans-serif);
   --font-heading: var(--font-body);
 
@@ -251,7 +254,7 @@ body {
   min-height: 100svh;
   background: var(--color-dark-brown);
   background: palevioletred;
-  color: var(--color-white);
+  color: var(--color-body-black);
 }
 
 h1,
@@ -551,6 +554,10 @@ html.no-touchevents a:hover {
 }
 
 /* ANIMATE ==================== */
+.animate-on-scroll-pending {
+  visibility: hidden;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

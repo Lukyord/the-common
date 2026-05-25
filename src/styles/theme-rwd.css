@@ -47,6 +47,20 @@
     padding: 0 var(--spacing-lg);
   }
 
+  /* Scroll Shape */
+  [data-card='hexagon-1'] .card-media {
+    width: 24.2rem;
+  }
+
+  [data-card='hexagon-1'] .card-content {
+    padding-left: 0;
+  }
+
+  [data-card='hexagon-1'] .card-desc,
+  [data-card='hexagon-1'] .card-ttl {
+    max-width: 24.2rem;
+  }
+
   /* Flexible Section */
   [data-section='flexible'] {
     flex-direction: column;

@@ -11,6 +11,7 @@ import { akzidenzGrotesk } from '@/font/akzidenz-grotesk-bq'
 
 import Theme from '@/components/theme'
 import { SafariProvider } from '@/context/SafariContext'
+import LenisProvider from '@/components/LenisProvider'
 
 import { Header } from '@/components/header/Header'
 import { Footer } from '@/components/footer/Footer'
@@ -40,14 +41,16 @@ export default function RootLayout({ children }: Props) {
   return (
     <html lang="en" className={akzidenzGrotesk.variable}>
       <SafariProvider>
-        <body>
-          <div id="page">
-            <Theme />
-            <Header />
-            {children}
-            <Footer />
-          </div>
-        </body>
+        <LenisProvider>
+          <body>
+            <div id="page">
+              <Theme />
+              <Header />
+              {children}
+              <Footer />
+            </div>
+          </body>
+        </LenisProvider>
       </SafariProvider>
     </html>
   )

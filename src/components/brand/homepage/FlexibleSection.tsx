@@ -14,6 +14,7 @@ import RenderMedia from '@/components/common/media'
 import { lexicalToHtml } from '@/lib/lexicalToHtml'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type { Homepage } from '@/payload-types'
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 type FlexibleSectionProps = {
   show?: Homepage['flexibleSectionShow']
@@ -49,7 +50,7 @@ export function FlexibleSection({ show, items }: FlexibleSectionProps) {
         data-section="flexible"
         style={activeBgColor ? { backgroundColor: activeBgColor } : undefined}
       >
-        <div className="text-slide">
+        <AnimateOnScroll triggerClass="fadeIn" className="text-slide">
           <Swiper
             modules={[Controller, Pagination]}
             pagination={{ clickable: true }}
@@ -79,9 +80,9 @@ export function FlexibleSection({ show, items }: FlexibleSectionProps) {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </AnimateOnScroll>
 
-        <div className="media-slide">
+        <AnimateOnScroll className="media-slide">
           <Swiper
             modules={[Controller]}
             onSwiper={setMediaSwiper}
@@ -96,7 +97,7 @@ export function FlexibleSection({ show, items }: FlexibleSectionProps) {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </AnimateOnScroll>
       </section>
     )
   )
