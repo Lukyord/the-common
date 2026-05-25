@@ -1000,6 +1000,21 @@ section.header-margin {
     pointer-events: auto;
   }
 }
+
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  --swiper-pagination-bottom: var(--spacing-lg);
+}
+
+.swiper-pagination-bullet {
+  --swiper-pagination-bullet-width: 0.8rem;
+  --swiper-pagination-bullet-height: 0.8rem;
+  --swiper-pagination-color: var(--color-cloud-11-olive);
+  --swiper-pagination-bullet-inactive-color: transparent;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-horizontal-gap: var(--spacing-5xs);
+  border: 0.1rem solid var(--color-cloud-11-olive);
+}
+
 /* ENTRY CONTENT ====================*/
 .entry-content {
   --gap-content: var(--spacing-sm);

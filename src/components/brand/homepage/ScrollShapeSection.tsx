@@ -51,7 +51,7 @@ export const ScrollShapeSection = ({ data }: ScrollShapeSectionProps) => {
       <div className="cover">
         <RenderMedia src="/designs/people-bg.webp" alt="People of the Commons Background" />
       </div>
-      <div className="sc-inner">
+      <div className="sc-inner pc-t-100 pc-b-100 mb-t-75 mb-b-75">
         <div className="container">
           {data?.title && (
             <AnimateOnScroll triggerClass="fadeIn" className="sc-ttl">

@@ -302,16 +302,62 @@ html.no-touchevents .location-selector__item:hover .ic {
   letter-spacing: var(--letter-spacing-002);
 }
 
-[data-section='flexible'] .text-slide .swiper-pagination-bullets.swiper-pagination-horizontal {
-  --swiper-pagination-bottom: var(--spacing-lg);
+/* Fullscreen Slide */
+[data-section='fullscreen-slide'] .container {
+  --mask-box-image-offset: var(--spacing-container);
+  -webkit-mask-box-image: -webkit-linear-gradient(
+    0deg,
+    transparent 0%,
+    white var(--mask-box-image-offset),
+    white calc(100% - var(--mask-box-image-offset) * 2),
+    transparent calc(100% - var(--mask-box-image-offset)),
+    transparent 100%
+  );
 }
 
-[data-section='flexible'] .text-slide .swiper-pagination-bullet {
-  --swiper-pagination-bullet-width: 0.8rem;
-  --swiper-pagination-bullet-height: 0.8rem;
-  --swiper-pagination-color: var(--color-cloud-11-olive);
-  --swiper-pagination-bullet-inactive-color: transparent;
-  --swiper-pagination-bullet-inactive-opacity: 1;
-  --swiper-pagination-bullet-horizontal-gap: var(--spacing-5xs);
-  border: 0.1rem solid var(--color-cloud-11-olive);
+[data-section='fullscreen-slide'] .swiper {
+  overflow: visible;
+}
+
+[data-section='fullscreen-slide'] .swiper .swiper-pagination {
+  position: static;
+  margin-top: var(--spacing-lg);
+}
+
+[data-section='fullscreen-slide'] .membership-item {
+  display: flex;
+}
+
+[data-section='fullscreen-slide'] .membership-item .item-content {
+  width: 50%;
+}
+
+[data-section='fullscreen-slide'] .membership-item .item-media {
+  width: 50%;
+  height: fit-content;
+  aspect-ratio: 1.619047619;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-section='fullscreen-slide'] .item-media .item-media-inner {
+  height: auto;
+  width: 74.5588235%;
+  aspect-ratio: 1.810714286;
+  position: relative;
+}
+
+[data-section='fullscreen-slide'] .item-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  justify-content: center;
+  padding-right: min(9rem, 6.25vw);
+}
+
+[data-section='fullscreen-slide'] .item-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
 }
