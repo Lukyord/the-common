@@ -45,7 +45,7 @@ export const Bingo = ({ data }: BingoProps) => {
         <div className="container">
           <div className="bingo-interactive" ref={playfieldRef}>
             <AnimateOnScroll triggerClass="fadeIn" className="sc-ttl text-wrap-balance">
-              <h2 className="type-d-header type-headliner-m letter-spacing-002 weight-medium">
+              <h2 className="type-d-header type-m-headliner-m letter-spacing-002 weight-medium">
                 {data?.title}
               </h2>
             </AnimateOnScroll>

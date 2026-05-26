@@ -386,13 +386,6 @@ html.no-touchevents .location-selector__item:hover .ic {
   box-shadow: 0px 6px 12px 4px #2f2f2f1a;
 }
 
-[data-section='bingo'] .content {
-  display: grid;
-  grid-template-columns: 55.714285714% 1fr;
-  grid-template-rows: auto auto;
-  row-gap: var(--spacing-4xl);
-}
-
 [data-section='bingo'] .bingo-interactive {
   position: relative;
   display: grid;

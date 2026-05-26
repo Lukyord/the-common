@@ -163,4 +163,36 @@
   [data-section='fullscreen-slide'] .item-header .item-desc {
     font-weight: 500;
   }
+
+  /* BINGO */
+  .bingo-cursor {
+    display: none;
+  }
+
+  [data-section='bingo'] .bingo-interactive {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    row-gap: var(--spacing-2sm);
+  }
+
+  [data-section='bingo'] .bingo-stamps-pool {
+    width: 100%;
+    height: max(20.512820513vw, 8rem);
+    margin-top: var(--spacing-4xs);
+    aspect-ratio: unset;
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  [data-section='bingo'] .bingo-stamps-pool-slot {
+    width: max(20.512820513vw, 8rem);
+  }
+
+  [data-section='bingo'] .bingo-grid {
+    grid-row: 2;
+  }
+
+  [data-section='bingo'] .bingo-grid-item {
+    font-size: 4vw;
+  }
 }

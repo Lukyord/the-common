@@ -8,11 +8,22 @@ import {
   type RefObject,
 } from 'react'
 import { flushSync } from 'react-dom'
+import { isMobileViewport } from '@/utils/utils'
 import { getCompletedBingoLines } from './checkBingoLines'
 import type { StampLayout } from './types'
 
 const GRID_SIZE = 9
 const STAMP_COUNT = 9
+
+/** bingo-3.webp (stamp index 2) on grid item 3 (cell index 2). */
+const INITIAL_SNAPPED_CELL = 2
+const INITIAL_SNAPPED_STAMP = 2
+
+function createInitialCellStamps(): (number | null)[] {
+  const cells = Array<number | null>(GRID_SIZE).fill(null)
+  cells[INITIAL_SNAPPED_CELL] = INITIAL_SNAPPED_STAMP
+  return cells
+}
 
 type DragState = {
   stampIndex: number
@@ -71,11 +82,17 @@ function getCellIndexFromPoint(
   return null
 }
 
-function getRandomPoolLayouts(
-  pool: HTMLElement,
-  playfield: HTMLElement,
-  count: number,
-): Partial<Record<number, StampLayout>> | null {
+type PoolMetrics = {
+  poolX: number
+  poolY: number
+  poolHeight: number
+  width: number
+  height: number
+  maxX: number
+  maxY: number
+}
+
+function measurePoolMetrics(pool: HTMLElement, playfield: HTMLElement): PoolMetrics | null {
   const sizeEl = pool.querySelector<HTMLElement>('.bingo-stamps-pool-slot')
   if (!sizeEl) return null
 
@@ -85,11 +102,26 @@ function getRandomPoolLayouts(
   const width = sizeRect.width
   const height = sizeRect.height
 
-  const poolX = poolRect.left - pf.left
-  const poolY = poolRect.top - pf.top
-  const maxX = Math.max(0, poolRect.width - width)
-  const maxY = Math.max(0, poolRect.height - height)
+  return {
+    poolX: poolRect.left - pf.left,
+    poolY: poolRect.top - pf.top,
+    poolHeight: poolRect.height,
+    width,
+    height,
+    maxX: Math.max(0, poolRect.width - width),
+    maxY: Math.max(0, poolRect.height - height),
+  }
+}
 
+function getRandomPoolLayouts(
+  pool: HTMLElement,
+  playfield: HTMLElement,
+  count: number,
+): Partial<Record<number, StampLayout>> | null {
+  const metrics = measurePoolMetrics(pool, playfield)
+  if (!metrics) return null
+
+  const { poolX, poolY, width, height, maxX, maxY } = metrics
   const layouts: Partial<Record<number, StampLayout>> = {}
   for (let index = 0; index < count; index++) {
     layouts[index] = {
@@ -99,6 +131,36 @@ function getRandomPoolLayouts(
       height,
     }
   }
+
+  return layouts
+}
+
+/** Mobile pool: equal x spacing, left to right, vertically stacked (same y). */
+function getMobileSpreadPoolLayouts(
+  pool: HTMLElement,
+  playfield: HTMLElement,
+  count: number,
+  gridStampIndex: number,
+): Partial<Record<number, StampLayout>> | null {
+  const metrics = measurePoolMetrics(pool, playfield)
+  if (!metrics) return null
+
+  const { poolX, poolY, poolHeight, width, height, maxX } = metrics
+  const y = poolY + Math.max(0, (poolHeight - height) / 2)
+  const poolIndices: number[] = []
+  for (let index = 0; index < count; index++) {
+    if (index !== gridStampIndex) poolIndices.push(index)
+  }
+
+  const layouts: Partial<Record<number, StampLayout>> = {}
+  const n = poolIndices.length
+
+  poolIndices.forEach((stampIndex, i) => {
+    const x = n <= 1 ? poolX : poolX + (i / (n - 1)) * maxX
+    layouts[stampIndex] = { x, y, width, height }
+  })
+
+  layouts[gridStampIndex] = { x: poolX, y, width, height }
 
   return layouts
 }
@@ -113,7 +175,7 @@ export function useBingoDrag(
   options?: UseBingoDragOptions,
 ) {
   const onPointerMove = options?.onPointerMove
-  const [cellStamps, setCellStamps] = useState<(number | null)[]>(() => Array(GRID_SIZE).fill(null))
+  const [cellStamps, setCellStamps] = useState<(number | null)[]>(createInitialCellStamps)
   const [stampLayouts, setStampLayouts] = useState<Partial<Record<number, StampLayout>>>({})
   const [drag, setDrag] = useState<DragState | null>(null)
   const [isDragging, setIsDragging] = useState(false)
@@ -168,9 +230,18 @@ export function useBingoDrag(
     const pool = poolMeasureRef.current
     if (!playfield || !pool || hasInitializedLayouts.current) return
 
-    const initial = getRandomPoolLayouts(pool, playfield, STAMP_COUNT)
+    const initial = isMobileViewport()
+      ? getMobileSpreadPoolLayouts(pool, playfield, STAMP_COUNT, INITIAL_SNAPPED_STAMP)
+      : getRandomPoolLayouts(pool, playfield, STAMP_COUNT)
 
     if (initial && Object.keys(initial).length === STAMP_COUNT) {
+      const snappedLayout = getSnappedCellLayout(
+        INITIAL_SNAPPED_CELL,
+        playfield,
+        initial[INITIAL_SNAPPED_STAMP]!,
+      )
+      if (snappedLayout) initial[INITIAL_SNAPPED_STAMP] = snappedLayout
+
       hasInitializedLayouts.current = true
       setStampLayouts(initial)
       setLayoutsReady(true)
