@@ -13,6 +13,7 @@ import * as migration_20260521_100611_branch_branding_fields from './20260521_10
 import * as migration_20260522_051321 from './20260522_051321';
 import * as migration_20260522_093131_homepage_flexible_section_fields from './20260522_093131_homepage_flexible_section_fields';
 import * as migration_20260525_080751_homepage_membership from './20260525_080751_homepage_membership';
+import * as migration_20260526_093848 from './20260526_093848';
 
 export const migrations = [
   {
@@ -88,6 +89,11 @@ export const migrations = [
   {
     up: migration_20260525_080751_homepage_membership.up,
     down: migration_20260525_080751_homepage_membership.down,
-    name: '20260525_080751_homepage_membership'
+    name: '20260525_080751_homepage_membership',
+  },
+  {
+    up: migration_20260526_093848.up,
+    down: migration_20260526_093848.down,
+    name: '20260526_093848'
   },
 ];
