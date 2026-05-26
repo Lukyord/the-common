@@ -1,0 +1,30 @@
+.admin-theme-logo,
+.admin-theme-icon {
+  display: inline-flex;
+  line-height: 0;
+  aspect-ratio: 1;
+}
+
+.admin-theme-logo__img--dark {
+  display: none;
+}
+
+.admin-theme-logo img,
+.admin-theme-icon img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+  object-position: center;
+}
+
+html[data-theme='dark'] {
+  .admin-theme-logo__img--light,
+  .admin-theme-icon .admin-theme-logo__img--light {
+    display: none;
+  }
+
+  .admin-theme-logo__img--dark,
+  .admin-theme-icon .admin-theme-logo__img--dark {
+    display: inline-block;
+  }
+}

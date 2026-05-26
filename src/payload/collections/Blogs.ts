@@ -9,7 +9,6 @@ export const Blogs: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'branch'],
-    group: 'Branches',
   },
   access: {
     read: () => true,

@@ -61,6 +61,12 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      graphics: {
+        Logo: '@/components/payload/admin-graphics',
+        Icon: '@/components/payload/admin-graphics#AdminIcon',
+      },
+    },
   },
   collections: [
     Users,
