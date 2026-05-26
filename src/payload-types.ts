@@ -74,6 +74,7 @@ export interface Config {
     'branch-contact-pages': BranchContactPage;
     'branch-space-rental-pages': BranchSpaceRentalPage;
     blogs: Blog;
+    'vendor-categories': VendorCategory;
     vendors: Vendor;
     'whats-on': WhatsOn;
     'payload-kv': PayloadKv;
@@ -90,6 +91,7 @@ export interface Config {
     'branch-contact-pages': BranchContactPagesSelect<false> | BranchContactPagesSelect<true>;
     'branch-space-rental-pages': BranchSpaceRentalPagesSelect<false> | BranchSpaceRentalPagesSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
+    'vendor-categories': VendorCategoriesSelect<false> | VendorCategoriesSelect<true>;
     vendors: VendorsSelect<false> | VendorsSelect<true>;
     'whats-on': WhatsOnSelect<false> | WhatsOnSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -203,6 +205,13 @@ export interface Branch {
   slug: string;
   logo?: (number | null) | Media;
   tel?: string | null;
+  floors?:
+    | {
+        floorId: string;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
   primaryColor?: string | null;
   bgColor?: string | null;
   footerBg?: string | null;
@@ -331,13 +340,91 @@ export interface Blog {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vendor-categories".
+ */
+export interface VendorCategory {
+  id: number;
+  categoryId: string;
+  text: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "vendors".
  */
 export interface Vendor {
   id: number;
-  title: string;
+  media?: (number | null) | Media;
+  name: string;
   slug: string;
   branch: number | Branch;
+  /**
+   * Options are loaded from the selected branch’s floors.
+   */
+  floor?: string | null;
+  floorLocation?: string | null;
+  /**
+   * The lot number of the vendor on the floor.
+   */
+  lotNumber?: number | null;
+  category?: (number | null) | VendorCategory;
+  lifestyles?: (number | Lifestyle)[] | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  tags?:
+    | (
+        | 'vegan-option'
+        | 'spicy'
+        | 'kid-friendly'
+        | 'delivery-app'
+        | 'family-size'
+        | 'artisanal'
+        | 'halal-friendly'
+        | 'vegetarian'
+        | 'quick-bite'
+        | 'premium-craft'
+        | 'only-at-the-commons'
+        | 'dairy-free-option'
+        | 'local-sourced'
+      )[]
+    | null;
+  openingHours?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  tel?: string[] | null;
+  moreAt?:
+    | {
+        text?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -422,6 +509,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'blogs';
         value: number | Blog;
+      } | null)
+    | ({
+        relationTo: 'vendor-categories';
+        value: number | VendorCategory;
       } | null)
     | ({
         relationTo: 'vendors';
@@ -529,6 +620,13 @@ export interface BranchesSelect<T extends boolean = true> {
   slug?: T;
   logo?: T;
   tel?: T;
+  floors?:
+    | T
+    | {
+        floorId?: T;
+        text?: T;
+        id?: T;
+      };
   primaryColor?: T;
   bgColor?: T;
   footerBg?: T;
@@ -606,12 +704,39 @@ export interface BlogsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vendor-categories_select".
+ */
+export interface VendorCategoriesSelect<T extends boolean = true> {
+  categoryId?: T;
+  text?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "vendors_select".
  */
 export interface VendorsSelect<T extends boolean = true> {
-  title?: T;
+  media?: T;
+  name?: T;
   slug?: T;
   branch?: T;
+  floor?: T;
+  floorLocation?: T;
+  lotNumber?: T;
+  category?: T;
+  lifestyles?: T;
+  description?: T;
+  tags?: T;
+  openingHours?: T;
+  tel?: T;
+  moreAt?:
+    | T
+    | {
+        text?: T;
+        link?: T;
+        id?: T;
+      };
   meta?:
     | T
     | {

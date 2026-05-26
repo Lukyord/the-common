@@ -439,6 +439,14 @@ html.no-touchevents .location-selector__item:hover .ic {
 [data-section='flexible'] .text-slide .swiper {
   overflow: visible;
 }
+[data-section='flexible']
+  .text-slide
+  .swiper
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+  max-width: calc(var(--container-max-width) / 2);
+  left: auto;
+  right: 0;
+}
 
 [data-section='flexible'] .slide-item {
   width: 100%;

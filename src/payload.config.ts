@@ -16,6 +16,7 @@ import { Branches } from './payload/collections/Branches'
 import { BranchContactPages } from './payload/collections/BranchContactPages'
 import { BranchSpaceRentalPages } from './payload/collections/BranchSpaceRentalPages'
 import { Blogs } from './payload/collections/Blogs'
+import { VendorCategories } from './payload/collections/VendorCategories'
 import { Vendors } from './payload/collections/Vendors'
 import { WhatsOn } from './payload/collections/WhatsOn'
 import { About } from './payload/globals/About'
@@ -76,6 +77,7 @@ export default buildConfig({
     BranchContactPages,
     BranchSpaceRentalPages,
     Blogs,
+    VendorCategories,
     Vendors,
     WhatsOn,
   ],
@@ -100,11 +102,9 @@ export default buildConfig({
       ],
       tabbedUI: true,
       uploadsCollection: Media.slug,
-      generateTitle: ({ doc }) => doc?.title || doc?.name || doc?.hero?.title || 'The Common',
+      generateTitle: ({ doc }) => doc?.name || doc?.title || doc?.hero?.title || 'The Common',
       generateDescription: ({ doc }) =>
-        doc?.description ||
-        doc?.about?.description ||
-        doc?.membership?.[0]?.description,
+        doc?.description || doc?.about?.description || doc?.membership?.[0]?.description,
       generateImage: ({ doc }) => doc?.hero?.backgroundMedia,
       generateURL: () => process.env.NEXT_PUBLIC_SITE_URL || '/',
     }),

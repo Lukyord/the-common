@@ -75,6 +75,25 @@ export const Branches: CollectionConfig = {
       type: 'text',
       label: 'Tel',
     },
+    {
+      name: 'floors',
+      type: 'array',
+      label: 'Floors',
+      fields: [
+        {
+          name: 'floorId',
+          type: 'text',
+          label: 'Id',
+          required: true,
+        },
+        {
+          name: 'text',
+          type: 'text',
+          label: 'Text',
+          required: true,
+        },
+      ],
+    },
     colorPickerField('primaryColor', 'Primary Color'),
     colorPickerField('bgColor', 'Background Color'),
     colorPickerField('footerBg', 'Footer BG'),
