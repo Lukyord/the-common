@@ -344,7 +344,6 @@ export interface Blog {
  */
 export interface VendorCategory {
   id: number;
-  categoryId: string;
   text: string;
   updatedAt: string;
   createdAt: string;
@@ -707,7 +706,6 @@ export interface BlogsSelect<T extends boolean = true> {
  * via the `definition` "vendor-categories_select".
  */
 export interface VendorCategoriesSelect<T extends boolean = true> {
-  categoryId?: T;
   text?: T;
   updatedAt?: T;
   createdAt?: T;

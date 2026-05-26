@@ -16,6 +16,7 @@ import * as migration_20260525_080751_homepage_membership from './20260525_08075
 import * as migration_20260526_093848 from './20260526_093848';
 import * as migration_20260526_102848 from './20260526_102848';
 import * as migration_20260526_110104 from './20260526_110104';
+import * as migration_20260526_111205_normalize_vendor_cat from './20260526_111205_normalize_vendor_cat';
 
 export const migrations = [
   {
@@ -106,6 +107,11 @@ export const migrations = [
   {
     up: migration_20260526_110104.up,
     down: migration_20260526_110104.down,
-    name: '20260526_110104'
+    name: '20260526_110104',
+  },
+  {
+    up: migration_20260526_111205_normalize_vendor_cat.up,
+    down: migration_20260526_111205_normalize_vendor_cat.down,
+    name: '20260526_111205_normalize_vendor_cat'
   },
 ];

@@ -2,6 +2,10 @@ import type { CollectionConfig } from 'payload'
 
 export const Lifestyle: CollectionConfig = {
   slug: 'lifestyle',
+  labels: {
+    singular: 'Lifestyle',
+    plural: 'Lifestyles',
+  },
   admin: {
     useAsTitle: 'text',
   },

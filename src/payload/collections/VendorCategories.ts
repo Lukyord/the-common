@@ -8,21 +8,11 @@ export const VendorCategories: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'text',
-    defaultColumns: ['categoryId', 'text'],
-    group: 'Branches',
   },
   access: {
     read: () => true,
   },
   fields: [
-    {
-      name: 'categoryId',
-      type: 'text',
-      label: 'Id',
-      required: true,
-      unique: true,
-      index: true,
-    },
     {
       name: 'text',
       type: 'text',
