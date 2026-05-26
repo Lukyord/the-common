@@ -1,6 +1,7 @@
 'use client'
 
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import { MarkdownContent } from '@/components/common/markdown-content'
 import RenderMedia from '@/components/common/media'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type { Homepage } from '@/payload-types'
@@ -55,9 +56,12 @@ export const ScrollShapeSection = ({ data }: ScrollShapeSectionProps) => {
         <div className="container">
           {data?.title && (
             <AnimateOnScroll triggerClass="fadeIn" className="sc-ttl">
-              <h2 className="type-d-header type-m-headliner-m weight-medium letter-spacing-002">
+              <MarkdownContent
+                as="h2"
+                className="type-d-header type-m-headliner-m weight-medium letter-spacing-002"
+              >
                 {data.title}
-              </h2>
+              </MarkdownContent>
             </AnimateOnScroll>
           )}
 
@@ -77,16 +81,22 @@ export const ScrollShapeSection = ({ data }: ScrollShapeSectionProps) => {
                       <div className="card-content">
                         {card.title && (
                           <div className="card-ttl">
-                            <h3 className="type-d-title weight-medium type-m-title letter-spacing-002">
+                            <MarkdownContent
+                              as="h3"
+                              className="type-d-title weight-medium type-m-title letter-spacing-002"
+                            >
                               {card.title}
-                            </h3>
+                            </MarkdownContent>
                           </div>
                         )}
                         {card.description && (
                           <div className="card-desc">
-                            <p className="type-d-body-m letter-spacing-002 type-m-body-r">
+                            <MarkdownContent
+                              as="p"
+                              className="type-d-body-m letter-spacing-002 type-m-body-r"
+                            >
                               {card.description}
-                            </p>
+                            </MarkdownContent>
                           </div>
                         )}
                       </div>

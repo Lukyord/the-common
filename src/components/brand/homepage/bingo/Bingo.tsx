@@ -50,7 +50,7 @@ export const Bingo = ({ data }: BingoProps) => {
               </h2>
             </AnimateOnScroll>
 
-            <div className="bingo-grid">
+            <AnimateOnScroll delay={500} triggerClass="fadeIn" className="bingo-grid">
               <div className={`bingo-congrats${showCongrats ? ' is-visible' : ''}`}>
                 <picture className="object-fit">
                   <Image
@@ -87,7 +87,7 @@ export const Bingo = ({ data }: BingoProps) => {
                   </div>
                 )
               })}
-            </div>
+            </AnimateOnScroll>
 
             <div ref={bingo.poolMeasureRef} className="bingo-stamps-pool" aria-hidden>
               <div className="bingo-stamps-pool-slot" />

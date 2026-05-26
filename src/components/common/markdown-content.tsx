@@ -1,15 +1,17 @@
-import type { ElementType } from 'react'
+import type { ElementType, ReactNode } from 'react'
 import { marked } from 'marked'
 
 import { HtmlContent } from '@/components/common/html-content'
 
 marked.setOptions({ breaks: true, gfm: true })
 
+const PHRASING_HOST_TAGS = new Set(['a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'label', 'p', 'span'])
+
 type MarkdownContentProps = {
   as?: ElementType
   className?: string
   inline?: boolean
-  markdown?: string | null
+  children?: ReactNode
 }
 
 export function markdownToHtml(markdown: string, inline = false) {
@@ -24,13 +26,18 @@ export function MarkdownContent({
   as,
   className,
   inline = false,
-  markdown,
+  children,
 }: MarkdownContentProps) {
-  if (!markdown?.trim()) {
+  if (typeof children !== 'string' || !children.trim()) {
     return null
   }
 
-  const html = markdownToHtml(markdown, inline)
+  const useInline =
+    inline || (typeof as === 'string' && PHRASING_HOST_TAGS.has(as.toLowerCase()))
 
-  return <HtmlContent as={as} className={className} html={html} />
+  return (
+    <HtmlContent as={as} className={className}>
+      {markdownToHtml(children, useInline)}
+    </HtmlContent>
+  )
 }

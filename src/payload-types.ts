@@ -835,10 +835,9 @@ export interface Homepage {
     stickyNotes?:
       | {
           shape?: ('square' | 'circle' | 'heart') | null;
-          /**
-           * Use a design system hex code, e.g. #FFFFFF.
-           */
-          hexCode?: string | null;
+          text?: string | null;
+          bgColor?: string | null;
+          textColor?: string | null;
           id?: string | null;
         }[]
       | null;
@@ -1041,7 +1040,9 @@ export interface HomepageSelect<T extends boolean = true> {
           | T
           | {
               shape?: T;
-              hexCode?: T;
+              text?: T;
+              bgColor?: T;
+              textColor?: T;
               id?: T;
             };
       };

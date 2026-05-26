@@ -185,7 +185,9 @@
   left: 0;
   right: 0;
 }
-
+.bg-orange {
+  background-color: var(--color-saladaeng-orange) !important;
+}
 .bg-dark-brown {
   background-color: var(--color-dark-brown) !important;
 }
@@ -670,6 +672,7 @@ html.no-touchevents a:hover {
 [class*='button-'] > span > span {
   position: relative;
   z-index: 5;
+  transition: color var(--duration) var(--timing-function);
 }
 
 [class*='button-'] > span:after {
@@ -684,10 +687,32 @@ html.no-touchevents a:hover {
   transition: width var(--duration-x3) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+html.no-touchevents [class*='button-']:hover {
+  opacity: 1;
+}
+
+html.no-touchevents [class*='button-'].c-beige-hover:hover > span > span {
+  color: var(--color-beige);
+}
+
 html.no-touchevents [class*='button-']:hover > span:after {
   width: 100%;
 }
-
+.button-template {
+  --button-bg-color: var(--button-color, var(--template-color, currentColor));
+  &::before {
+    background-color: var(--button-bg-color);
+    background-image: none;
+    mask-image: url('data:image/svg+xml,<svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 5V15L11 20L0 15V5L11 0L22 5Z" fill="black"/></svg>');
+    -webkit-mask-image: url('data:image/svg+xml,<svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 5V15L11 20L0 15V5L11 0L22 5Z" fill="black"/></svg>');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+  }
+}
 .button-orange {
   --button-bg-color: var(--color-saladaeng-orange);
   &::before {
@@ -710,6 +735,12 @@ html.no-touchevents [class*='button-']:hover > span:after {
   --button-bg-color: var(--color-cloud-11-accent);
   &::before {
     background-image: url('data:image/svg+xml,<svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 5V15L11 20L0 15V5L11 0L22 5Z" fill="%23C5C53C"/></svg>');
+  }
+}
+.button-navy {
+  --button-bg-color: var(--color-thonglor-navy);
+  &::before {
+    background-image: url('data:image/svg+xml,<svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 5V15L11 20L0 15V5L11 0L22 5Z" fill="%230C2F64"/></svg>');
   }
 }
 

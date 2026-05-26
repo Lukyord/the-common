@@ -108,6 +108,8 @@ export const Homepage: GlobalConfig = {
                     name: 'stickyNotes',
                     type: 'array',
                     label: 'Sticky Notes',
+                    minRows: 3,
+                    maxRows: 3,
                     fields: [
                       {
                         name: 'shape',
@@ -120,13 +122,12 @@ export const Homepage: GlobalConfig = {
                         ],
                       },
                       {
-                        name: 'hexCode',
+                        name: 'text',
                         type: 'text',
-                        label: 'Hex Code',
-                        admin: {
-                          description: 'Use a design system hex code, e.g. #FFFFFF.',
-                        },
+                        label: 'Text',
                       },
+                      colorPickerField('bgColor', 'Background Color'),
+                      colorPickerField('textColor', 'Text Color'),
                     ],
                   },
                 ],

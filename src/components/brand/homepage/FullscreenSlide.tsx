@@ -11,6 +11,7 @@ import type { Homepage } from '@/payload-types'
 import Link from 'next/link'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { Pagination, Autoplay } from 'swiper/modules'
+import { MarkdownContent } from '@/components/common/markdown-content'
 
 type FullscreenSlideProps = {
   slides?: Homepage['membership']
@@ -52,16 +53,22 @@ export const FullscreenSlide = ({ slides: membershipSlides }: FullscreenSlidePro
                     <div className="item-header">
                       {slide.title && (
                         <AnimateOnScroll triggerClass="fadeIn" className="item-ttl">
-                          <h3 className="type-d-header type-m-headliner-m weight-medium letter-spacing-002">
+                          <MarkdownContent
+                            as="h3"
+                            className="type-d-header type-m-headliner-m weight-medium letter-spacing-002"
+                          >
                             {slide.title}
-                          </h3>
+                          </MarkdownContent>
                         </AnimateOnScroll>
                       )}
                       {slide.description && (
                         <AnimateOnScroll triggerClass="fadeIn" className="item-desc">
-                          <p className="type-d-body-l type-m-title letter-spacing-002">
+                          <MarkdownContent
+                            as="p"
+                            className="type-d-body-l type-m-title letter-spacing-002"
+                          >
                             {slide.description}
-                          </p>
+                          </MarkdownContent>
                         </AnimateOnScroll>
                       )}
                     </div>

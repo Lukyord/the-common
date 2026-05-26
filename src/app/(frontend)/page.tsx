@@ -13,6 +13,7 @@ import { ScrollShapeSection } from '@/components/brand/homepage/ScrollShapeSecti
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { Bingo } from '@/components/brand/homepage/bingo'
 import { FullscreenSlide } from '@/components/brand/homepage/FullscreenSlide'
+import { HomepageAbout } from '@/components/brand/homepage/HomepageAbout'
 
 export const dynamic = 'force-dynamic'
 
@@ -51,9 +52,10 @@ export default async function HomePage() {
               <MarkdownContent
                 as="h1"
                 inline
-                markdown={homepage.hero.title}
                 className="type-d-display type-m-display weight-medium"
-              />
+              >
+                {homepage.hero.title}
+              </MarkdownContent>
             </AnimateOnScroll>
           </div>
         </div>
@@ -63,6 +65,8 @@ export default async function HomePage() {
 
       <MottoMarquee items={homepage?.motto} />
 
+      <HomepageAbout data={homepage?.about} />
+
       <ScrollShapeSection data={homepage?.peopleOfTheCommons} />
 
       <FlexibleSection show={homepage?.flexibleSectionShow} items={homepage?.flexibleSection} />
@@ -70,8 +74,6 @@ export default async function HomePage() {
       <FullscreenSlide slides={homepage?.membership} />
 
       <Bingo data={homepage?.bingo} />
-
-      <div style={{ height: '100vh' }}></div>
     </main>
   )
 }

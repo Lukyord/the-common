@@ -15,6 +15,7 @@ import { lexicalToHtml } from '@/lib/lexicalToHtml'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type { Homepage } from '@/payload-types'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import { MarkdownContent } from '@/components/common/markdown-content'
 
 type FlexibleSectionProps = {
   show?: Homepage['flexibleSectionShow']
@@ -50,7 +51,7 @@ export function FlexibleSection({ show, items }: FlexibleSectionProps) {
         data-section="flexible"
         style={activeBgColor ? { backgroundColor: activeBgColor } : undefined}
       >
-        <AnimateOnScroll triggerClass="fadeIn" className="text-slide">
+        <div className="text-slide">
           <Swiper
             modules={[Controller, Pagination]}
             pagination={{ clickable: true }}
@@ -63,24 +64,27 @@ export function FlexibleSection({ show, items }: FlexibleSectionProps) {
                 key={slide.id}
                 style={slide.bgColor ? { backgroundColor: slide.bgColor } : undefined}
               >
-                <div className="slide-item">
+                <AnimateOnScroll triggerClass="fadeIn" className="slide-item">
                   <div className="slide-item-inner">
                     {slide.title && (
                       <div className="item-ttl">
-                        <h2 className="type-d-header type-m-headliner-m weight-medium letter-spacing-002">
+                        <MarkdownContent
+                          as="h2"
+                          className="type-d-header type-m-headliner-m weight-medium letter-spacing-002"
+                        >
                           {slide.title}
-                        </h2>
+                        </MarkdownContent>
                       </div>
                     )}
                     {slide.descriptionHtml && (
                       <div dangerouslySetInnerHTML={{ __html: slide.descriptionHtml }} />
                     )}
                   </div>
-                </div>
+                </AnimateOnScroll>
               </SwiperSlide>
             ))}
           </Swiper>
-        </AnimateOnScroll>
+        </div>
 
         <AnimateOnScroll className="media-slide">
           <Swiper

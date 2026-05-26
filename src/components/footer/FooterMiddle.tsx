@@ -16,7 +16,7 @@ export function FooterMiddle({ branch }: FooterMiddleProps) {
             </h3>
           </div>
           <div className="info-content">
-            <HtmlContent html={html} />
+            <HtmlContent>{html}</HtmlContent>
           </div>
         </div>
       ))}

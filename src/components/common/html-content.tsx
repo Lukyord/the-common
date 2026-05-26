@@ -1,15 +1,15 @@
-import type { ElementType } from 'react'
+import type { ElementType, ReactNode } from 'react'
 
 type HtmlContentProps = {
   as?: ElementType
   className?: string
-  html?: string | null
+  children?: ReactNode
 }
 
-export function HtmlContent({ as: Tag = 'div', className, html }: HtmlContentProps) {
-  if (!html?.trim()) {
+export function HtmlContent({ as: Tag = 'div', className, children }: HtmlContentProps) {
+  if (typeof children !== 'string' || !children.trim()) {
     return null
   }
 
-  return <Tag className={className} dangerouslySetInnerHTML={{ __html: html }} />
+  return <Tag className={className} dangerouslySetInnerHTML={{ __html: children }} />
 }
