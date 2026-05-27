@@ -1,10 +1,10 @@
 import type { CollectionConfig, Validate } from 'payload'
 import { vendorTagSelectOptions } from '@/constants/vendorTags'
 
-const validateVendorFloor: Validate<string | null | undefined, { branch?: number | { id: number } }> = async (
-  value,
-  { data, req },
-) => {
+const validateVendorFloor: Validate<
+  string | null | undefined,
+  { branch?: number | { id: number } }
+> = async (value, { data, req }) => {
   if (!value) return true
 
   const branchRef = data?.branch
@@ -140,7 +140,35 @@ export const Vendors: CollectionConfig = {
       name: 'tel',
       type: 'text',
       label: 'Tel',
+      admin: {
+        description: 'The format should be +66XXXXXXXXX',
+      },
       hasMany: true,
+    },
+    {
+      name: 'social',
+      type: 'group',
+      label: 'Social',
+      admin: {
+        hideGutter: true,
+      },
+      fields: [
+        {
+          name: 'facebook',
+          type: 'text',
+          label: 'Facebook',
+        },
+        {
+          name: 'instagram',
+          type: 'text',
+          label: 'Instagram',
+        },
+        {
+          name: 'grab',
+          type: 'text',
+          label: 'Grab',
+        },
+      ],
     },
     {
       name: 'moreAt',

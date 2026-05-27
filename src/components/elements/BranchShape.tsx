@@ -17,7 +17,7 @@ export const BranchShape = ({ branch, mainColor }: BranchShapeProps) => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M6 27.1837V12H40.2V24.2449H51.9551V30.8571H56.3633V48H6V43.8367H9.67347V40.1633H13.5918V27.1837H6Z"
+            d="M52 30.9V24.3H40.2V12H6V27.2H13.6V40.2H9.7V43.9H6V48.1H56.4V31H52V30.9ZM25.3 40.2H19.1V27.2H25.3V40.2Z"
             fill={mainColor ?? '#15E8BF'}
           />
         </svg>

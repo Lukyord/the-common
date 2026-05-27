@@ -205,6 +205,10 @@
   color: var(--color-beige) !important;
   --rgb: var(--color-beige-rgb);
 }
+.c-pink {
+  color: var(--color-cloud-11-pink) !important;
+  --rgb: var(--color-cloud-11-pink-rgb);
+}
 
 /* RESET ==================== */
 *,

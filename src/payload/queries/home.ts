@@ -4,7 +4,7 @@ import type { Contact, Homepage, Lifestyle } from '@/payload-types'
 import { getPayloadClient } from '@/payload/getPayloadClient'
 import { resolvePayloadQueries } from '@/payload/queries/functions/resolvePayloadQueries'
 
-type HomeLifestyle = Pick<Lifestyle, 'id' | 'text'>
+export type HomeLifestyle = Pick<Lifestyle, 'id' | 'text'>
 
 type PayloadDataErrors = Partial<Record<'contact' | 'homepage' | 'lifestyle', string>>
 

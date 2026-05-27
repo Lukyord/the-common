@@ -1,19 +1,22 @@
-import React from 'react'
 import type { Metadata } from 'next'
+
+import { generateMeta } from '@/lib/generateMeta'
+import { resolveMedia } from '@/lib/resolveMedia'
+
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import RenderMedia from '@/components/common/media'
 
 import { FlexibleSection } from '@/components/brand/homepage/FlexibleSection'
 import { MarkdownContent } from '@/components/common/markdown-content'
-import RenderMedia from '@/components/common/media'
 import { MottoMarquee } from '@/components/elements/MottoMarquee'
-import { generateMeta } from '@/lib/generateMeta'
-import { resolveMedia } from '@/lib/resolveMedia'
 import { getHomePayloadData } from '@/payload/queries/home'
 import { LocationSelector } from '@/components/brand/homepage/LocationSelector'
 import { ScrollShapeSection } from '@/components/brand/homepage/ScrollShapeSection'
-import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { Bingo } from '@/components/brand/homepage/bingo'
 import { FullscreenSlide } from '@/components/brand/homepage/FullscreenSlide'
 import { HomepageAbout } from '@/components/brand/homepage/HomepageAbout'
+import { MoodSection } from '@/components/brand/homepage/mood/MoodSection'
+import { resolveMoodLifestyles } from '@/components/brand/homepage/mood/resolveMoodLifestyles'
 
 export const dynamic = 'force-dynamic'
 
@@ -28,7 +31,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const { homepage } = await getHomePayloadData()
+  const { homepage, lifestyles } = await getHomePayloadData()
+  const moodLifestyles = resolveMoodLifestyles(homepage?.recommender?.lifestyles, lifestyles)
   const { hero } = homepage
   const heroBackground = resolveMedia(hero?.backgroundMedia)
   const heroBackgroundMobile = resolveMedia(hero?.mobileBackgroundMedia)
@@ -46,7 +50,7 @@ export default async function HomePage() {
             />
           )}
         </div>
-        <div className="sc-inner pc-t-100 pc-b-75 mb-t-100 mb-b-50">
+        <div className="sc-inner pc-t-100 pc-b-75 mb-t-100 mb-b-100">
           <div className="container">
             <AnimateOnScroll delay={300} triggerClass="fadeIn" className="sc-ttl">
               <MarkdownContent
@@ -70,6 +74,8 @@ export default async function HomePage() {
       <ScrollShapeSection data={homepage?.peopleOfTheCommons} />
 
       <FlexibleSection show={homepage?.flexibleSectionShow} items={homepage?.flexibleSection} />
+
+      <MoodSection lifestyles={moodLifestyles} />
 
       <FullscreenSlide slides={homepage?.membership} />
 

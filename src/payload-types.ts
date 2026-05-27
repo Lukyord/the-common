@@ -416,7 +416,15 @@ export interface Vendor {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * The format should be +66XXXXXXXXX
+   */
   tel?: string[] | null;
+  social?: {
+    facebook?: string | null;
+    instagram?: string | null;
+    grab?: string | null;
+  };
   moreAt?:
     | {
         text?: string | null;
@@ -728,6 +736,13 @@ export interface VendorsSelect<T extends boolean = true> {
   tags?: T;
   openingHours?: T;
   tel?: T;
+  social?:
+    | T
+    | {
+        facebook?: T;
+        instagram?: T;
+        grab?: T;
+      };
   moreAt?:
     | T
     | {

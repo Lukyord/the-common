@@ -19,6 +19,11 @@
   -webkit-mask-image: url('../../public/shapes/hexagon-1.svg');
 }
 
+.clip-hexagon-2 {
+  mask-image: url('../../public/shapes/hexagon-2.svg');
+  -webkit-mask-image: url('../../public/shapes/hexagon-2.svg');
+}
+
 /* FOOTER ==================== */
 
 /* SECTION ==================== */
@@ -320,6 +325,23 @@ html.page-scrolling .location-selector__inner {
 
 .location-selector__label {
   margin-bottom: var(--spacing-5xs);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3xs);
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: default;
+}
+
+.location-items__inner {
+  display: flex;
+  flex-direction: column;
 }
 
 .location-selector__item {
@@ -364,10 +386,8 @@ html.no-touchevents .location-selector__item:hover {
   gap: var(--spacing-3xs);
   width: 100%;
   margin-bottom: var(--spacing-5xs);
-}
-
-html.no-touchevents .location-selector__item:hover .ic {
-  transform: translate(0.25rem, -0.25rem);
+  position: relative;
+  z-index: 3;
 }
 
 /* Motto Marquee */
@@ -655,4 +675,182 @@ html.no-touchevents .location-selector__item:hover .ic {
 [data-section='bingo'] .bingo-stamps-layer .stamp:active,
 [data-section='bingo'] .bingo-stamps-layer .stamp.is-dragging {
   cursor: grabbing;
+}
+
+/* Mood Section */
+[data-section='mood'] {
+  color: var(--color-white);
+}
+
+[data-section='mood'] .sc-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5xs);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Mood Selector */
+[data-section='mood'] .mood-selector {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+[data-section='mood'] .mood-selector__label {
+  padding: var(--spacing-7xs) var(--spacing-4xs);
+  color: var(--color-body-black);
+  background-color: var(--color-cloud-11-pink);
+}
+
+[data-section='mood'] .mood-selector__dropdown {
+  position: relative;
+  color: var(--color-white);
+}
+
+[data-section='mood'] .mood-selector__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6xs);
+  color: inherit;
+}
+
+[data-section='mood'] .mood-selector__dropdown .current {
+  padding: var(--spacing-7xs) var(--spacing-4xs);
+  overflow: hidden;
+  transition: width var(--duration-x2) var(--timing-function);
+}
+
+[data-section='mood'] .mood-selector__dropdown .current__content {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+[data-section='mood'] .mood-selector__dropdown .odometer {
+  overflow: hidden;
+}
+
+[data-section='mood'] .mood-selector__dropdown .odometer__track {
+  transition: transform var(--duration-x2) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-section='mood'] .mood-selector__dropdown .odometer__track.is-resetting {
+  transition: none;
+}
+
+[data-section='mood'] .mood-selector__dropdown .odometer__item {
+  width: max-content;
+  white-space: nowrap;
+}
+
+[data-section='mood'] .mood-selector__dropdown .current__underline {
+  display: block;
+  height: 0.2rem;
+  margin-top: 0.8rem;
+  background-color: currentColor;
+  transition: width var(--duration-x2) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-section='mood'] .mood-selector__dropdown .current,
+  [data-section='mood'] .mood-selector__dropdown .current__underline,
+  [data-section='mood'] .mood-selector__dropdown .odometer__track {
+    transition: none;
+  }
+}
+
+[data-section='mood'] .mood-selector__dropdown .icon .ic {
+  transition: transform var(--duration) var(--timing-function);
+}
+
+[data-section='mood'] .mood-selector__dropdown.is-open .icon .ic {
+  transform: rotate(180deg);
+}
+
+[data-section='mood'] .mood-selector__panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+  min-width: 100%;
+  padding: var(--spacing-6xs) 0;
+  background-color: var(--color-body-black);
+  transition: opacity var(--duration) var(--timing-function);
+  padding: var(--spacing-xs) var(--spacing-xs);
+}
+
+[data-section='mood'] .mood-selector__panel[data-hidden='true'] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+[data-section='mood'] .mood-selector__panel ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-7xs);
+  width: max-content;
+}
+
+[data-section='mood'] .mood-selector__panel li button {
+  transition: color var(--duration) var(--timing-function);
+}
+
+html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover {
+  color: var(--color-cloud-11-pink);
+}
+
+/* Mood Cards Content */
+[data-section='mood'] .content {
+  height: 50rem;
+  position: relative;
+}
+
+[data-card='mood'] {
+  --offset-x: var(--spacing-4lg);
+  --offset-y: var(--spacing-2sm);
+  width: 36.6rem;
+  position: absolute;
+  aspect-ratio: 0.933673469;
+}
+
+[data-card='mood']:nth-child(1) {
+  top: 0;
+  right: 15%;
+}
+
+[data-card='mood']:nth-child(2) {
+  left: 50%;
+  bottom: 1%;
+  transform: translateX(-50%);
+}
+
+[data-card='mood']:nth-child(3) {
+  top: 10%;
+  left: 15%;
+}
+
+[data-card='mood'] .card-media {
+  height: 100%;
+  width: 100%;
+}
+
+[data-card='mood'] .card-ttl {
+  position: absolute;
+}
+
+[data-card='mood']:nth-child(1) .card-ttl {
+  top: var(--offset-y);
+  right: var(--offset-x);
+}
+
+[data-card='mood']:nth-child(2) .card-ttl {
+  bottom: var(--offset-y);
+  right: var(--offset-x);
+  max-width: 10rem;
+  text-align: right;
+}
+
+[data-card='mood']:nth-child(3) .card-ttl {
+  bottom: var(--offset-y);
+  left: var(--offset-x);
 }

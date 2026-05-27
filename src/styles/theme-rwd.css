@@ -11,6 +11,10 @@
 
   /* PAGE ==================== */
   /* PAGE: INDEX */
+
+  .location-selector__label {
+    pointer-events: none;
+  }
 }
 
 /* MEDIA QUERIES:MAX ==================== */
@@ -95,11 +99,55 @@
   /* Location Selector */
   .location-selector {
     max-width: unset;
-    animation-delay: 10s;
   }
 
   .location-selector__inner {
-    padding: var(--spacing-sm) var(--spacing-3xs) var(--spacing-2sm);
+    padding: var(--spacing-sm) var(--spacing-3xs) 0;
+  }
+
+  .location-selector__label {
+    cursor: pointer;
+    margin-bottom: 0;
+    padding-left: var(--spacing-5xs);
+    padding-right: var(--spacing-4xs);
+  }
+
+  .location-selector__label > .ic {
+    transition: transform var(--duration) var(--timing-function);
+  }
+
+  .location-selector.is-open .location-selector__label > .ic {
+    transform: rotate(-180deg);
+  }
+
+  .location-items {
+    display: grid;
+    grid-template-rows: 0fr;
+    pointer-events: none;
+    transition: grid-template-rows var(--duration) var(--timing-function);
+  }
+
+  .location-selector.is-open .location-items {
+    grid-template-rows: 1fr;
+    pointer-events: auto;
+  }
+
+  .location-items__inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .location-selector__item .item-header .ic {
+    font-size: 0.85rem !important;
+  }
+
+  .branch-shape {
+    aspect-ratio: 1.049180328;
+  }
+
+  .location-selector__item .branch-shape {
+    width: 5rem;
+    margin: 0.5rem;
   }
 
   /* Motto Marquee */
