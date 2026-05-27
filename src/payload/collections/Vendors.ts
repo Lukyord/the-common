@@ -179,6 +179,11 @@ export const Vendors: CollectionConfig = {
           type: 'text',
           label: 'Grab',
         },
+        {
+          name: 'website',
+          type: 'text',
+          label: 'Website',
+        },
       ],
     },
     {

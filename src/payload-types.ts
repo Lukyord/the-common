@@ -424,6 +424,7 @@ export interface Vendor {
     facebook?: string | null;
     instagram?: string | null;
     grab?: string | null;
+    website?: string | null;
   };
   moreAt?:
     | {
@@ -742,6 +743,7 @@ export interface VendorsSelect<T extends boolean = true> {
         facebook?: T;
         instagram?: T;
         grab?: T;
+        website?: T;
       };
   moreAt?:
     | T
