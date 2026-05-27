@@ -2,12 +2,20 @@
 
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 
+import type { MoodVendorPoolItem } from '@/components/brand/homepage/mood/mapMoodVendorCard'
+import {
+  collectMoodImageUrlsForLifestyle,
+  preloadImages,
+} from '@/components/brand/homepage/mood/moodImagePreload'
 import type { HomeLifestyle } from '@/payload/queries/home'
 
 const SHOWCASE_INTERVAL_MS = 2000
 
 type MoodSelectorProps = {
   lifestyles: HomeLifestyle[]
+  vendorPool: MoodVendorPoolItem[]
+  selectedLifestyleId: number | null
+  onLifestyleSelect: (id: number) => void
 }
 
 function buildTrackItems(lifestyles: HomeLifestyle[], loop: boolean) {
@@ -15,7 +23,12 @@ function buildTrackItems(lifestyles: HomeLifestyle[], loop: boolean) {
   return [...lifestyles, lifestyles[0]]
 }
 
-export const MoodSelector = ({ lifestyles }: MoodSelectorProps) => {
+export const MoodSelector = ({
+  lifestyles,
+  vendorPool,
+  selectedLifestyleId,
+  onLifestyleSelect,
+}: MoodSelectorProps) => {
   const listboxId = useId()
   const dropdownRef = useRef<HTMLDivElement>(null)
   const currentRef = useRef<HTMLDivElement>(null)
@@ -23,13 +36,12 @@ export const MoodSelector = ({ lifestyles }: MoodSelectorProps) => {
   const [currentWidth, setCurrentWidth] = useState<number | null>(null)
   const [underlineWidth, setUnderlineWidth] = useState<number | null>(null)
   const [itemHeight, setItemHeight] = useState<number | null>(null)
-  const [selectedId, setSelectedId] = useState<number | null>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [showcaseIndex, setShowcaseIndex] = useState(0)
   const [trackIndex, setTrackIndex] = useState(0)
 
-  const hasSelection = selectedId !== null
-  const selectedIndex = lifestyles.findIndex(({ id }) => id === selectedId)
+  const hasSelection = selectedLifestyleId !== null
+  const selectedIndex = lifestyles.findIndex(({ id }) => id === selectedLifestyleId)
   const isLooping = !hasSelection && lifestyles.length > 1
   const trackItems = buildTrackItems(lifestyles, isLooping)
   const cloneIndex = isLooping ? lifestyles.length : -1
@@ -131,6 +143,14 @@ export const MoodSelector = ({ lifestyles }: MoodSelectorProps) => {
   useEffect(() => {
     if (!isOpen) return
 
+    for (const { id } of lifestyles) {
+      preloadImages(collectMoodImageUrlsForLifestyle(vendorPool, id))
+    }
+  }, [isOpen, lifestyles, vendorPool])
+
+  useEffect(() => {
+    if (!isOpen) return
+
     const handlePointerDown = (event: MouseEvent) => {
       if (!dropdownRef.current?.contains(event.target as Node)) {
         setIsOpen(false)
@@ -157,8 +177,13 @@ export const MoodSelector = ({ lifestyles }: MoodSelectorProps) => {
   }
 
   const handleSelect = (id: number) => {
-    setSelectedId(id)
+    preloadImages(collectMoodImageUrlsForLifestyle(vendorPool, id))
+    onLifestyleSelect(id)
     setIsOpen(false)
+  }
+
+  const handleOptionPreload = (id: number) => {
+    preloadImages(collectMoodImageUrlsForLifestyle(vendorPool, id))
   }
 
   return (
@@ -219,10 +244,12 @@ export const MoodSelector = ({ lifestyles }: MoodSelectorProps) => {
       <div className="mood-selector__panel" data-hidden={!isOpen}>
         <ul id={listboxId} role="listbox" aria-label="Mood options">
           {lifestyles.map(({ id, text }) => (
-            <li key={id} role="option" aria-selected={selectedId === id}>
+            <li key={id} role="option" aria-selected={selectedLifestyleId === id}>
               <button
                 type="button"
                 className="type-d-title type-m-title letter-spacing-003 weight-medium"
+                onMouseEnter={() => handleOptionPreload(id)}
+                onFocus={() => handleOptionPreload(id)}
                 onClick={() => handleSelect(id)}
               >
                 {text}

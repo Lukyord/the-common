@@ -800,6 +800,7 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 }
 
 /* Mood Cards Content */
+
 [data-section='mood'] .content {
   height: 50rem;
   position: relative;
@@ -811,6 +812,24 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   width: 36.6rem;
   position: absolute;
   aspect-ratio: 0.933673469;
+  transition: var(--duration-x3) var(--timing-function);
+}
+
+[data-card='mood']:nth-child(1) .card-media > [class*='clip-'] {
+  background-color: var(--bg-color, var(--color-thonglor-cyan));
+}
+
+[data-card='mood']:nth-child(2) .card-media > [class*='clip-'] {
+  background-color: var(--bg-color, var(--color-cloud-11-pink));
+}
+
+[data-card='mood']:nth-child(3) .card-media > [class*='clip-'] {
+  background-color: var(--bg-color, var(--color-saladaeng-orange));
+}
+
+[data-card='mood'].is-empty {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 [data-card='mood']:nth-child(1) {
@@ -829,6 +848,22 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   left: 15%;
 }
 
+.is-mood-selected [data-card='mood']:nth-child(1) {
+  top: 3.5%;
+  right: 63.5%;
+}
+
+.is-mood-selected [data-card='mood']:nth-child(2) {
+  left: 50%;
+  bottom: 12.5%;
+  transform: translateX(-50%);
+}
+
+.is-mood-selected [data-card='mood']:nth-child(3) {
+  top: 3.5%;
+  left: 65.5%;
+}
+
 [data-card='mood'] .card-media {
   height: 100%;
   width: 100%;
@@ -836,6 +871,7 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 
 [data-card='mood'] .card-ttl {
   position: absolute;
+  transition: var(--duration-x2) var(--timing-function);
 }
 
 [data-card='mood']:nth-child(1) .card-ttl {
@@ -853,4 +889,40 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 [data-card='mood']:nth-child(3) .card-ttl {
   bottom: var(--offset-y);
   left: var(--offset-x);
+  max-width: 20rem;
+}
+
+.is-mood-selected [data-card='mood']:nth-child(1) .card-ttl,
+.is-mood-selected [data-card='mood']:nth-child(2) .card-ttl,
+.is-mood-selected [data-card='mood']:nth-child(3) .card-ttl {
+  top: auto;
+  bottom: var(--offset-y);
+  right: auto;
+  left: var(--offset-x);
+  max-width: unset;
+  text-align: left;
+  text-wrap: balance;
+}
+
+[data-card='mood'] .branch {
+  position: absolute;
+  left: 0;
+  top: var(--spacing-2sm);
+  padding: 0 var(--spacing-4xs);
+  background-color: var(--bg-color);
+  color: var(--color);
+}
+
+[data-card='mood'] .card-ttl.fadeIn,
+[data-card='mood'] .branch.fadeIn {
+  animation-duration: var(--duration-x2);
+  animation-timing-function: var(--timing-function);
+  animation-fill-mode: forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-card='mood'] .card-ttl.fadeIn,
+  [data-card='mood'] .branch.fadeIn {
+    animation: none;
+  }
 }

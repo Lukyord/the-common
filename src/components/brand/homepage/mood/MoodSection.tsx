@@ -1,15 +1,50 @@
-import type { HomeLifestyle } from '@/payload/queries/home'
+'use client'
 
-import { MoodSelector } from '@/components/brand/homepage/mood/MoodSelector'
+import { useMemo, useState } from 'react'
+
+import { MOOD_CARD_BRANCH_SLUGS } from '@/constants/moodBranches'
+import type {
+  MoodVendorCard,
+  MoodVendorPoolItem,
+} from '@/components/brand/homepage/mood/mapMoodVendorCard'
 import { MoodCard } from '@/components/brand/homepage/mood/MoodCard'
+import { MoodSelector } from '@/components/brand/homepage/mood/MoodSelector'
+import {
+  buildDefaultMoodCardSlots,
+  pickMoodVendorsForLifestyle,
+} from '@/components/brand/homepage/mood/pickMoodVendorsForLifestyle'
+import { useMoodImagePreload } from '@/components/brand/homepage/mood/useMoodImagePreload'
+import type { HomeLifestyle } from '@/payload/queries/home'
 
 type MoodSectionProps = {
   lifestyles: HomeLifestyle[]
+  defaultVendors: MoodVendorCard[]
+  vendorPool: MoodVendorPoolItem[]
 }
 
-export const MoodSection = ({ lifestyles }: MoodSectionProps) => {
+export const MoodSection = ({ lifestyles, defaultVendors, vendorPool }: MoodSectionProps) => {
+  const sectionRef = useMoodImagePreload({ vendorPool, defaultVendors })
+  const [selectedLifestyleId, setSelectedLifestyleId] = useState<number | null>(null)
+
+  const hasMoodSelection = selectedLifestyleId != null
+
+  const cardSlots = useMemo(
+    () =>
+      hasMoodSelection
+        ? pickMoodVendorsForLifestyle(vendorPool, selectedLifestyleId)
+        : buildDefaultMoodCardSlots(defaultVendors),
+    [defaultVendors, hasMoodSelection, selectedLifestyleId, vendorPool],
+  )
+
+  const hasCards = cardSlots.some(Boolean)
+
   return (
-    <section data-section="mood">
+    <section
+      ref={sectionRef}
+      data-section="mood"
+      className={hasMoodSelection ? 'is-mood-selected' : undefined}
+      data-mood-id={hasMoodSelection ? selectedLifestyleId : undefined}
+    >
       <div className="sc-inner pc-t-100 pc-b-100 mb-t-100 mb-b-100">
         <div className="container">
           <div className="sc-header">
@@ -24,32 +59,38 @@ export const MoodSection = ({ lifestyles }: MoodSectionProps) => {
               <p className="mood-selector__label type-d-title type-m-title letter-spacing-003 weight-medium">
                 FEELING LIKE...
               </p>
-              <MoodSelector lifestyles={lifestyles} />
+              <MoodSelector
+                lifestyles={lifestyles}
+                vendorPool={vendorPool}
+                selectedLifestyleId={selectedLifestyleId}
+                onLifestyleSelect={setSelectedLifestyleId}
+              />
             </div>
           </div>
 
           <div className="content">
-            <MoodCard
-              media={{
-                src: '/designs/roots.webp',
-                alt: 'Roots',
-              }}
-              title="Roots"
-            />
-            <MoodCard
-              media={{
-                src: '/designs/all-kinds.webp',
-                alt: 'All Kinds',
-              }}
-              title="All Kinds"
-            />
-            <MoodCard
-              media={{
-                src: '/designs/montys-by-roast.webp',
-                alt: "Monty's by Roast",
-              }}
-              title="Monty's by Roast"
-            />
+            {hasCards &&
+              MOOD_CARD_BRANCH_SLUGS.map((branchSlug, index) => {
+                const vendor = cardSlots[index]
+
+                if (!vendor) {
+                  return (
+                    <div key={branchSlug} data-card="mood" className="card is-empty" aria-hidden />
+                  )
+                }
+
+                return (
+                  <MoodCard
+                    key={branchSlug}
+                    contentKey={vendor.id}
+                    media={vendor.media}
+                    title={vendor.title}
+                    link={vendor.link}
+                    branch={hasMoodSelection ? vendor.branch : undefined}
+                    priority={!hasMoodSelection}
+                  />
+                )
+              })}
           </div>
         </div>
       </div>

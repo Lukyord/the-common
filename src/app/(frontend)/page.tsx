@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const { homepage, lifestyles } = await getHomePayloadData()
+  const { homepage, lifestyles, defaultMoodVendors, moodVendorPool } = await getHomePayloadData()
   const moodLifestyles = resolveMoodLifestyles(homepage?.recommender?.lifestyles, lifestyles)
   const { hero } = homepage
   const heroBackground = resolveMedia(hero?.backgroundMedia)
@@ -75,7 +75,11 @@ export default async function HomePage() {
 
       <FlexibleSection show={homepage?.flexibleSectionShow} items={homepage?.flexibleSection} />
 
-      <MoodSection lifestyles={moodLifestyles} />
+      <MoodSection
+        lifestyles={moodLifestyles}
+        defaultVendors={defaultMoodVendors}
+        vendorPool={moodVendorPool}
+      />
 
       <FullscreenSlide slides={homepage?.membership} />
 

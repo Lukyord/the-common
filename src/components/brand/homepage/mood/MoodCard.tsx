@@ -1,25 +1,30 @@
 import Link from 'next/link'
-
-import type { Media } from '@/payload-types'
+import type { CSSProperties } from 'react'
 
 import RenderMedia from '@/components/common/media'
+import type { MoodVendorBranch } from '@/components/brand/homepage/mood/mapMoodVendorCard'
 import { MarkdownContent } from '@/components/common/markdown-content'
 
 type MoodCardProps = {
+  contentKey: string | number
   media: {
     src: string
     alt: string
   }
   title: string
-  branch?: {
-    name: string
-    bgColor: string
-    color: string
-  }
+  branch?: MoodVendorBranch
   link?: string
+  priority?: boolean
 }
 
-export const MoodCard = ({ media, title, branch, link }: MoodCardProps) => {
+export const MoodCard = ({
+  contentKey,
+  media,
+  title,
+  branch,
+  link,
+  priority = false,
+}: MoodCardProps) => {
   return (
     <div data-card="mood" className="card">
       {link && (
@@ -29,10 +34,10 @@ export const MoodCard = ({ media, title, branch, link }: MoodCardProps) => {
       )}
       <div className="card-media">
         <div className="clip-hexagon-2">
-          {media.src && <RenderMedia src={media.src} alt={media.alt} />}
+          {media.src && <RenderMedia src={media.src} alt={media.alt} priority={priority} />}
         </div>
       </div>
-      <div className="card-ttl">
+      <div key={`title-${contentKey}`} className="card-ttl fadeIn">
         <MarkdownContent
           as="h3"
           className="type-d-title weight-medium type-m-title letter-spacing-002 uppercase"
@@ -41,8 +46,17 @@ export const MoodCard = ({ media, title, branch, link }: MoodCardProps) => {
         </MarkdownContent>
       </div>
       {branch && (
-        <div className="branch">
-          <p className="type-d-body-m uppercase letter-spacing-002">{branch.name}</p>
+        <div
+          key={`branch-${contentKey}`}
+          className="branch fadeIn"
+          style={
+            {
+              '--bg-color': branch.bgColor,
+              '--color': branch.color,
+            } as CSSProperties
+          }
+        >
+          <p className="type-d-body-m uppercase letter-spacing-002 weight-medium">{branch.name}</p>
         </div>
       )}
     </div>

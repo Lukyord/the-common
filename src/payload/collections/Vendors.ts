@@ -39,7 +39,7 @@ export const Vendors: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'branch', 'mainTag'],
+    defaultColumns: ['name', 'branch', 'floor', 'lotNumber'],
     group: 'Branches',
   },
   access: {
@@ -68,6 +68,17 @@ export const Vendors: CollectionConfig = {
       required: true,
       unique: true,
       index: true,
+      admin: {
+        custom: {
+          sourceField: 'name',
+        },
+        components: {
+          Field: {
+            path: '@/components/payload/generate-slug-field',
+            exportName: 'GenerateSlugField',
+          },
+        },
+      },
     },
     {
       name: 'branch',

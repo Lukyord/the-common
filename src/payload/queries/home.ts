@@ -1,18 +1,28 @@
 import { cache } from 'react'
 
+import {
+  mapMoodVendorCards,
+  mapMoodVendorPool,
+} from '@/components/brand/homepage/mood/mapMoodVendorCard'
 import type { Contact, Homepage, Lifestyle } from '@/payload-types'
 import { getPayloadClient } from '@/payload/getPayloadClient'
 import { resolvePayloadQueries } from '@/payload/queries/functions/resolvePayloadQueries'
+import type {
+  MoodVendorCard,
+  MoodVendorPoolItem,
+} from '@/components/brand/homepage/mood/mapMoodVendorCard'
 
 export type HomeLifestyle = Pick<Lifestyle, 'id' | 'text'>
 
-type PayloadDataErrors = Partial<Record<'contact' | 'homepage' | 'lifestyle', string>>
+type PayloadDataErrors = Partial<Record<'contact' | 'homepage' | 'lifestyle' | 'vendors', string>>
 
 export type HomePayloadData = {
   contact: Contact | null
   errors: PayloadDataErrors
   homepage: Homepage | null
   lifestyles: HomeLifestyle[]
+  defaultMoodVendors: MoodVendorCard[]
+  moodVendorPool: MoodVendorPoolItem[]
 }
 
 const LIFESTYLE_LIMIT = 10
@@ -51,6 +61,16 @@ export const getHomePayloadData = cache(async (): Promise<HomePayloadData> => {
         },
       }),
     },
+    vendors: {
+      errorMessage: 'Failed to load vendors from Payload:',
+      promise: payload.find({
+        collection: 'vendors',
+        depth: 2,
+        limit: 500,
+        overrideAccess: false,
+        pagination: false,
+      }),
+    },
   })
 
   const lifestyles =
@@ -59,10 +79,16 @@ export const getHomePayloadData = cache(async (): Promise<HomePayloadData> => {
       text,
     })) ?? []
 
+  const vendorDocs = data.vendors?.docs ?? []
+  const defaultMoodVendors = mapMoodVendorCards(vendorDocs)
+  const moodVendorPool = mapMoodVendorPool(vendorDocs)
+
   return {
     contact: data.contact,
     errors,
     homepage: data.homepage,
     lifestyles,
+    defaultMoodVendors,
+    moodVendorPool,
   }
 })
