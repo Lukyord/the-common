@@ -15,6 +15,7 @@ import {
 } from '@/components/brand/homepage/mood/pickMoodVendorsForLifestyle'
 import { useMoodImagePreload } from '@/components/brand/homepage/mood/useMoodImagePreload'
 import type { HomeLifestyle } from '@/payload/queries/home'
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 type MoodSectionProps = {
   lifestyles: HomeLifestyle[]
@@ -47,7 +48,7 @@ export const MoodSection = ({ lifestyles, defaultVendors, vendorPool }: MoodSect
     >
       <div className="sc-inner pc-t-100 pc-b-100 mb-t-100 mb-b-100">
         <div className="container">
-          <div className="sc-header">
+          <AnimateOnScroll triggerClass="fadeIn" className="sc-header">
             <h2 className="type-d-header type-m-headliner-m letter-spacing-002 weight-medium">
               WHAT ARE YOU IN THE
             </h2>
@@ -66,9 +67,9 @@ export const MoodSection = ({ lifestyles, defaultVendors, vendorPool }: MoodSect
                 onLifestyleSelect={setSelectedLifestyleId}
               />
             </div>
-          </div>
+          </AnimateOnScroll>
 
-          <div className="content">
+          <AnimateOnScroll triggerClass="fadeIn" className="content">
             {hasCards &&
               MOOD_CARD_BRANCH_SLUGS.map((branchSlug, index) => {
                 const vendor = cardSlots[index]
@@ -91,7 +92,7 @@ export const MoodSection = ({ lifestyles, defaultVendors, vendorPool }: MoodSect
                   />
                 )
               })}
-          </div>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>

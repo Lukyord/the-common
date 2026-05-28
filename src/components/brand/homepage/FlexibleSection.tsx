@@ -15,6 +15,7 @@ import { lexicalToHtml } from '@/lib/lexicalToHtml'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type { Homepage } from '@/payload-types'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import AnimatedRichText from '@/components/common/AnimatedRichText'
 import { MarkdownContent } from '@/components/common/markdown-content'
 
 type FlexibleSectionProps = {
@@ -76,9 +77,7 @@ export function FlexibleSection({ show, items }: FlexibleSectionProps) {
                         </MarkdownContent>
                       </div>
                     )}
-                    {slide.descriptionHtml && (
-                      <div dangerouslySetInnerHTML={{ __html: slide.descriptionHtml }} />
-                    )}
+                    {slide.descriptionHtml && <AnimatedRichText html={slide.descriptionHtml} />}
                   </div>
                 </AnimateOnScroll>
               </SwiperSlide>

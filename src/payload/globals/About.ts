@@ -62,6 +62,11 @@ export const About: GlobalConfig = {
                     },
                   },
                   {
+                    name: 'title',
+                    type: 'text',
+                    label: 'Title',
+                  },
+                  {
                     name: 'richTextEditor',
                     type: 'richText',
                     label: 'Rich Text Editor',
@@ -84,6 +89,19 @@ export const About: GlobalConfig = {
                   hideGutter: true,
                 },
                 fields: [
+                  {
+                    name: 'mediaWithLink',
+                    type: 'array',
+                    label: 'Media With Link',
+                    fields: [
+                      {
+                        name: 'media',
+                        type: 'upload',
+                        relationTo: 'media',
+                        label: 'Media',
+                      },
+                    ],
+                  },
                   {
                     name: 'media',
                     type: 'array',

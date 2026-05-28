@@ -27,34 +27,39 @@
 /* FOOTER ==================== */
 
 /* SECTION ==================== */
-
-/* PAGE ==================== */
-/* PAGE: INDEX */
-/* Index Hero */
-[data-section='index-hero'] {
+/* Page Hero */
+[data-section='page-hero'] {
   position: relative;
-  height: calc(100svh - 7.318rem);
+  height: 100svh;
   overflow: hidden;
   color: var(--color-white);
 }
 
-[data-section='index-hero'] .sc-inner,
-[data-section='index-hero'] .container {
+[data-section='page-hero'].marquee-offset {
+  height: calc(100svh - 7.067rem);
+}
+
+[data-section='page-hero'] .sc-inner,
+[data-section='page-hero'] .container {
   height: 100%;
 }
 
-[data-section='index-hero'] .container {
+[data-section='page-hero'] .container {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  z-index: 5;
 }
 
+/* PAGE ==================== */
+/* PAGE: INDEX */
 /* About  */
 [data-section='homepage-about'] .container {
   min-height: calc(100lvh - var(--gap-section) * 2);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: var(--spacing-2sm);
 }
 
 [data-section='homepage-about'] .content {
@@ -84,6 +89,7 @@
 
 [data-section='homepage-about'] .sticky-note {
   position: absolute;
+  cursor: pointer;
 }
 
 [data-section='homepage-about'] .sticky-note:not([data-shape='heart']) {
@@ -925,4 +931,49 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   [data-card='mood'] .branch.fadeIn {
     animation: none;
   }
+}
+
+/* PAGE: ABOUT */
+/* Flexible Section */
+[data-section='info-template'] {
+  display: flex;
+  color: var(--color-dark-brown);
+}
+
+[data-section='info-template'].reverse {
+  flex-direction: row-reverse;
+}
+
+[data-section='info-template'] .text-content,
+[data-section='info-template'] .media-content {
+  width: 50%;
+  aspect-ratio: 1;
+}
+
+[data-section='info-template'] .media-content {
+  position: relative;
+  background-color: var(--color-dark-brown);
+}
+
+[data-section='info-template'] .text-content .text-content-inner {
+  height: 100%;
+  max-width: calc(var(--container-max-width) / 2);
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-2sm);
+  padding: var(--spacing-container);
+  padding-right: var(--spacing-xl);
+}
+
+[data-section='info-template'].reverse .text-content .text-content-inner {
+  margin-right: unset;
+  margin-left: auto;
+}
+
+[data-section='info-template'] .entry-content {
+  font-size: var(--font-size-h5);
+  line-height: var(--line-height-h5);
+  letter-spacing: var(--letter-spacing-002);
 }

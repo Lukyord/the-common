@@ -1,13 +1,11 @@
 import type { CSSProperties } from 'react'
 
-import type { Homepage } from '@/payload-types'
 import Link from 'next/link'
 import { MarkdownContent } from '@/components/common/markdown-content'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
-type HomepageAboutProps = {
-  data?: Homepage['about']
-}
+import { HomepageStickyNotes } from './HomepageStickyNotes'
+import type { HomepageAboutProps } from './types'
 
 export const HomepageAbout = ({ data }: HomepageAboutProps) => {
   const stickyNotes = data?.stickyNotes ?? []
@@ -21,33 +19,7 @@ export const HomepageAbout = ({ data }: HomepageAboutProps) => {
     <section data-section="homepage-about" className="bg-orange">
       <div className="sc-inner pc-t-125 pc-b-75 mb-t-100 mb-b-75">
         <div className="container">
-          {hasStickyNotes && (
-            <div className="sticky-notes-wrapper">
-              {stickyNotes.map((note, index) => (
-                <AnimateOnScroll
-                  triggerClass="fadeIn"
-                  key={note.id ?? `sticky-note-${index}`}
-                  className="sticky-note"
-                  style={
-                    {
-                      '--background-color': note.bgColor,
-                      '--text-color': note.textColor,
-                    } as CSSProperties
-                  }
-                  data-shape={note.shape}
-                >
-                  <div className="sticky-note-text">
-                    <MarkdownContent
-                      as="p"
-                      className="type-d-header weight-medium letter-spacing-002"
-                    >
-                      {note.text}
-                    </MarkdownContent>
-                  </div>
-                </AnimateOnScroll>
-              ))}
-            </div>
-          )}
+          {hasStickyNotes && <HomepageStickyNotes notes={stickyNotes} />}
           <div className="content">
             <div className="content-header">
               {data.title && (

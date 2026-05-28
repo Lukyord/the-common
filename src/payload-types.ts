@@ -834,6 +834,7 @@ export interface About {
   info?:
     | {
         hexCode?: string | null;
+        title?: string | null;
         richTextEditor?: {
           root: {
             type: string;
@@ -854,6 +855,12 @@ export interface About {
       }[]
     | null;
   awards?: {
+    mediaWithLink?:
+      | {
+          media?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
     media?:
       | {
           media?: (number | null) | Media;
@@ -1071,6 +1078,7 @@ export interface AboutSelect<T extends boolean = true> {
     | T
     | {
         hexCode?: T;
+        title?: T;
         richTextEditor?: T;
         media?: T;
         id?: T;
@@ -1078,6 +1086,12 @@ export interface AboutSelect<T extends boolean = true> {
   awards?:
     | T
     | {
+        mediaWithLink?:
+          | T
+          | {
+              media?: T;
+              id?: T;
+            };
         media?:
           | T
           | {

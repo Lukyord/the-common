@@ -1,11 +1,15 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, type Dispatch, type SetStateAction } from 'react'
 
 const HEADER_MENU_HTML_CLASS = 'header-menu-enabled'
 
-export default function HeaderMenuCtrl() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+type HeaderMenuCtrlProps = {
+  isMenuOpen: boolean
+  setIsMenuOpen: Dispatch<SetStateAction<boolean>>
+}
+
+export default function HeaderMenuCtrl({ isMenuOpen, setIsMenuOpen }: HeaderMenuCtrlProps) {
 
   useEffect(() => {
     const root = document.documentElement

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useState } from 'react'
 
 import { branchHeaderThemeStyle } from '@/lib/branchTheme'
 import { getSlugFromPathname } from '@/lib/pathname'
@@ -25,6 +26,7 @@ type HeaderClientProps = {
 
 export function HeaderClient({ branches }: HeaderClientProps) {
   const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const slug = getSlugFromPathname(pathname)
   const currentBranch = branches.find((branch) => branch.slug === slug)
   const themeStyle = branchHeaderThemeStyle(currentBranch)
@@ -46,6 +48,7 @@ export function HeaderClient({ branches }: HeaderClientProps) {
                       <Link
                         href={href}
                         className="type-d-label type-m-title letter-spacing-003 uppercase weight-medium"
+                        onClick={() => setIsMenuOpen(false)}
                       >
                         {label}
                       </Link>
@@ -60,7 +63,7 @@ export function HeaderClient({ branches }: HeaderClientProps) {
         <div className="header-cta">
           <HeaderLocation />
 
-          <HeaderMenuCtrl />
+          <HeaderMenuCtrl isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         </div>
       </div>
     </header>

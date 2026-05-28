@@ -14,7 +14,7 @@ import { LocationSelector } from '@/components/brand/homepage/LocationSelector'
 import { ScrollShapeSection } from '@/components/brand/homepage/ScrollShapeSection'
 import { Bingo } from '@/components/brand/homepage/bingo'
 import { FullscreenSlide } from '@/components/brand/homepage/FullscreenSlide'
-import { HomepageAbout } from '@/components/brand/homepage/HomepageAbout'
+import { HomepageAbout } from '@/components/brand/homepage/about'
 import { MoodSection } from '@/components/brand/homepage/mood/MoodSection'
 import { resolveMoodLifestyles } from '@/components/brand/homepage/mood/resolveMoodLifestyles'
 
@@ -25,8 +25,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return generateMeta({
     meta: homepage?.meta,
-    fallbackTitle: homepage?.hero?.title?.replace(/\s+/g, ' ').trim(),
-    fallbackDescription: homepage?.about?.description,
   })
 }
 
@@ -36,10 +34,11 @@ export default async function HomePage() {
   const { hero } = homepage
   const heroBackground = resolveMedia(hero?.backgroundMedia)
   const heroBackgroundMobile = resolveMedia(hero?.mobileBackgroundMedia)
+
   return (
     <main id="main" className="index-page">
       {/* HOMEPAGE HERO ==================== */}
-      <section data-section="index-hero" className="bg-dark-brown">
+      <section data-section="page-hero" className="bg-dark-brown marquee-offset">
         <div className="cover">
           {heroBackground?.src && (
             <RenderMedia

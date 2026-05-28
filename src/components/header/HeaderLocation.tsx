@@ -30,6 +30,7 @@ export const HeaderLocation = () => {
             <li>
               <Link
                 href="/thonglor"
+                onClick={() => setIsOpen(false)}
                 className="type-d-label letter-spacing-003 uppercase weight-medium"
               >
                 THONGLOR
@@ -38,6 +39,7 @@ export const HeaderLocation = () => {
             <li>
               <Link
                 href="/saladaeng"
+                onClick={() => setIsOpen(false)}
                 className="type-d-label letter-spacing-003 uppercase weight-medium"
               >
                 SALADAENG
@@ -46,6 +48,7 @@ export const HeaderLocation = () => {
             <li>
               <Link
                 href="/cloud-11"
+                onClick={() => setIsOpen(false)}
                 className="type-d-label letter-spacing-003 uppercase weight-medium"
               >
                 CLOUD 11
