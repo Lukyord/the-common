@@ -438,4 +438,13 @@
     padding: 0 var(--spacing-container);
     margin-top: var(--spacing-3xs);
   }
+
+  /* Award Marquee */
+  [data-section='awards'] .sc-ttl {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .award-marquee > .horizontal-marquee:not(:first-child) {
+    margin-top: var(--spacing-sm);
+  }
 }

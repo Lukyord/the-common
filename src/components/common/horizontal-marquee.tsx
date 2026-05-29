@@ -86,15 +86,16 @@ export default function HorizontalMarquee({
       if (!firstChild) return
 
       const contentWidth = firstChild.offsetWidth
-      const moveDistance = direction === 'left' ? -contentWidth : contentWidth
+      const fromX = direction === 'left' ? 0 : -contentWidth
+      const toX = direction === 'left' ? -contentWidth : 0
 
-      gsap.set(wrapper, { x: 0 })
+      gsap.set(wrapper, { x: fromX })
 
       animationRef.current = gsap.fromTo(
         wrapper,
-        { x: 0 },
+        { x: fromX },
         {
-          x: moveDistance,
+          x: toX,
           duration: speed,
           ease: 'none',
           repeat: -1,

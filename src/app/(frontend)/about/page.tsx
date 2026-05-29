@@ -1,6 +1,8 @@
 import React from 'react'
 import type { Metadata } from 'next'
 
+import { AwardsSection, toAwardsData } from '@/components/brand/about/AwardsSection'
+import { ReSection } from '@/components/brand/about/ReSection'
 import { InfoSection, toInfoBlocks } from '@/components/brand/homepage/about'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import RenderMedia from '@/components/common/media'
@@ -8,7 +10,6 @@ import { MarkdownContent } from '@/components/common/markdown-content'
 import { generateMeta } from '@/lib/generateMeta'
 import { resolveMedia } from '@/lib/resolveMedia'
 import { getAboutPayloadData } from '@/payload/queries/about'
-import { ReSection } from '@/components/brand/about/ReSection'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,11 +25,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AboutPage() {
   const { about } = await getAboutPayloadData()
-  const { hero, info } = about
+  const { hero, info, awards } = about
   const heroBackground = resolveMedia(hero?.backgroundMedia)
   const heroBackgroundMobile = resolveMedia(hero?.mobileBackgroundMedia)
   const infoBlocks = info?.length ? toInfoBlocks(info) : []
   const [firstInfoBlock, ...moreInfoBlocks] = infoBlocks
+  const awardsData = toAwardsData(awards)
 
   return (
     <main id="main" className="about-page">
@@ -71,6 +73,8 @@ export default async function AboutPage() {
           className="full-screen"
         />
       ))}
+
+      <AwardsSection {...awardsData} />
     </main>
   )
 }

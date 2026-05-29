@@ -855,9 +855,11 @@ export interface About {
       }[]
     | null;
   awards?: {
+    title?: string | null;
     mediaWithLink?:
       | {
           media?: (number | null) | Media;
+          link?: string | null;
           id?: string | null;
         }[]
       | null;
@@ -1093,10 +1095,12 @@ export interface AboutSelect<T extends boolean = true> {
   awards?:
     | T
     | {
+        title?: T;
         mediaWithLink?:
           | T
           | {
               media?: T;
+              link?: T;
               id?: T;
             };
         media?:

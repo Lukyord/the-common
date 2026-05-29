@@ -191,6 +191,9 @@
 .bg-dark-brown {
   background-color: var(--color-dark-brown) !important;
 }
+.bg-beige {
+  background-color: var(--color-beige) !important;
+}
 .c-black {
   color: var(--color-black) !important;
   --rgb: var(--color-black-rgb);

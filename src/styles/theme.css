@@ -1239,3 +1239,40 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 [data-section='about-re'] .re-trigger[data-type='redistribute']:hover {
   transform: translate(var(--hover-offset), var(--hover-offset));
 }
+
+/* Award Marquee */
+[data-section='awards'] .sc-ttl {
+  margin-bottom: var(--spacing-xl);
+}
+
+.award-marquee {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+.award-marquee > .horizontal-marquee:not(:first-child) {
+  margin-top: var(--spacing-2lg);
+}
+.award-marquee .award-marquee__strip {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: var(--spacing-2lg);
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 var(--spacing-container);
+}
+.award-marquee .award-marquee__item {
+  position: relative;
+  mix-blend-mode: multiply;
+}
+.award-marquee .award-marquee__item.main {
+  aspect-ratio: 2;
+  width: 16rem;
+}
+
+.award-marquee .award-marquee__item.secondary {
+  aspect-ratio: 2;
+  width: 12rem;
+}

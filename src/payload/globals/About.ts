@@ -90,6 +90,11 @@ export const About: GlobalConfig = {
                 },
                 fields: [
                   {
+                    name: 'title',
+                    type: 'text',
+                    label: 'Title',
+                  },
+                  {
                     name: 'mediaWithLink',
                     type: 'array',
                     label: 'Media With Link',
@@ -99,6 +104,11 @@ export const About: GlobalConfig = {
                         type: 'upload',
                         relationTo: 'media',
                         label: 'Media',
+                      },
+                      {
+                        name: 'link',
+                        type: 'text',
+                        label: 'Link',
                       },
                     ],
                   },
