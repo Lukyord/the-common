@@ -19,6 +19,7 @@ export type InfoSectionProps = {
   block: AboutInfoBlock
   reverse?: boolean
   priority?: boolean
+  className?: string
 }
 
 export function toInfoBlocks(info: NonNullable<About['info']>): AboutInfoBlock[] {
@@ -31,11 +32,11 @@ export function toInfoBlocks(info: NonNullable<About['info']>): AboutInfoBlock[]
   }))
 }
 
-export function InfoSection({ block, reverse = false, priority }: InfoSectionProps) {
+export function InfoSection({ block, reverse = false, priority, className }: InfoSectionProps) {
   return (
     <section
       data-section="info-template"
-      className={`${reverse && 'reverse'}`}
+      className={`${reverse && 'reverse'} ${className}`}
       style={block.hexCode ? { backgroundColor: block.hexCode } : undefined}
     >
       <AnimateOnScroll triggerClass="fadeIn" className="media-content">

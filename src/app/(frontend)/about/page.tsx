@@ -8,6 +8,7 @@ import { MarkdownContent } from '@/components/common/markdown-content'
 import { generateMeta } from '@/lib/generateMeta'
 import { resolveMedia } from '@/lib/resolveMedia'
 import { getAboutPayloadData } from '@/payload/queries/about'
+import { ReSection } from '@/components/brand/about/ReSection'
 
 export const dynamic = 'force-dynamic'
 
@@ -58,12 +59,17 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {firstInfoBlock && <InfoSection block={firstInfoBlock} priority />}
+      {firstInfoBlock && <InfoSection block={firstInfoBlock} priority className="full-screen" />}
 
-      <section data-section="about-re"></section>
+      <ReSection />
 
       {moreInfoBlocks.map((block, index) => (
-        <InfoSection key={block.id} block={block} reverse={index % 2 === 0} />
+        <InfoSection
+          key={block.id}
+          block={block}
+          reverse={index % 2 === 0}
+          className="full-screen"
+        />
       ))}
     </main>
   )

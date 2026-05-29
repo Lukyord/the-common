@@ -940,6 +940,10 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   color: var(--color-dark-brown);
 }
 
+[data-section='info-template'].full-screen {
+  min-height: 100svh;
+}
+
 [data-section='info-template'].reverse {
   flex-direction: row-reverse;
 }
@@ -976,4 +980,49 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   font-size: var(--font-size-h5);
   line-height: var(--line-height-h5);
   letter-spacing: var(--letter-spacing-002);
+}
+
+/* About Re */
+[data-section='about-re'] {
+  background-color: var(--color-beige);
+}
+
+[data-section='about-re'] .sc-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-2sm);
+}
+
+[data-section='about-re'] .sc-header .sc-desc {
+  max-width: 90rem;
+}
+
+[data-section='about-re'] .content {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  gap: var(--spacing-lg);
+}
+
+[data-section='about-re'] .media-container {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  aspect-ratio: 0.982216142;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+[data-section='about-re'] .media-container .media {
+  width: 79.166666667%;
+  height: 83.584131327%;
+}
+
+[data-section='about-re'] .trigger-wrapper {
+  width: 89.166666667%;
+  aspect-ratio: 1.202247191;
 }

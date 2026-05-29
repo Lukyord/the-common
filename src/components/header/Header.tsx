@@ -14,6 +14,7 @@ export async function Header() {
 function toHeaderBranchItem(branch: Branch): HeaderBranchItem {
   return {
     slug: branch.slug,
+    name: branch.name,
     primaryColor: branch.primaryColor ?? null,
     bgColor: branch.bgColor ?? null,
   }

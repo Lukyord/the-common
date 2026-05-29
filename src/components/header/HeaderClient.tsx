@@ -10,6 +10,7 @@ import { Logo } from './Logo'
 import HeaderMenuCtrl from './HeaderMenuCtrl'
 import { HeaderLocation } from './HeaderLocation'
 import type { HeaderBranchItem } from './header-types'
+import { HeaderLocationMobile } from './HeaderLocationMobile'
 
 const HEADER_NAV_ITEMS = [
   { href: '/about', label: 'ABOUT' },
@@ -55,13 +56,19 @@ export function HeaderClient({ branches }: HeaderClientProps) {
                     </li>
                   ))}
                 </ul>
+
+                <HeaderLocationMobile
+                  className="hidden-device-md"
+                  branches={branches}
+                  setIsMenuOpen={setIsMenuOpen}
+                />
               </div>
             </div>
           </div>
         </nav>
 
         <div className="header-cta">
-          <HeaderLocation />
+          <HeaderLocation className="show-md" branches={branches} />
 
           <HeaderMenuCtrl isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         </div>

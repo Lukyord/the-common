@@ -226,26 +226,49 @@ html.page-scrolling .header-location .location-panel ul {
     flex-grow: 1;
   }
 
-  .header-location {
-    width: 8rem;
+  .header-location-mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-xs);
+    padding: var(--spacing-md) var(--spacing-container);
+    position: relative;
   }
 
-  .header-location .location-trigger {
+  .header-location-mobile .location-trigger {
+    gap: var(--spacing-2xs);
+  }
+
+  .header-location-mobile .location-trigger-wrapper {
+    position: relative;
+  }
+
+  .header-location-mobile .location-trigger-inner {
+    display: flex;
+    align-items: center;
     gap: var(--spacing-4xs);
-  }
-
-  .header-location .location-trigger > * {
-    font-size: var(--font-size-small);
+    position: relative;
+    margin-top: 0.3rem;
   }
 
   .header-location .location-panel {
-    left: auto;
-    right: 0;
-    width: 15.6rem;
+    left: 0;
+    right: auto;
+    width: auto;
+    padding-top: var(--spacing-4xs);
+    padding-bottom: var(--spacing-lg);
   }
 
   .header-location .location-panel ul {
     padding-top: var(--spacing-5xs);
+    gap: var(--spacing-4xs);
+    padding-left: 0;
+    padding-right: 0;
+    align-items: center;
+  }
+
+  .header-location .location-panel ul a {
+    padding-left: 0;
+    text-wrap: nowrap;
   }
 
   /* Header Menu */

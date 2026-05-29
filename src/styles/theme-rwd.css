@@ -34,7 +34,6 @@
 
   /* PAGE ==================== */
   /* PAGE: INDEX */
-
   /* About  */
   [data-section='homepage-about'] .container {
     gap: var(--spacing-md);
@@ -311,6 +310,10 @@
 
   /* PAGE: ABOUT */
   /* Flexible Section */
+  [data-section='info-template'].full-screen {
+    min-height: unset;
+  }
+
   [data-section='info-template'],
   [data-section='info-template'].reverse {
     flex-direction: column-reverse;
@@ -344,5 +347,11 @@
   [data-section='info-template'] .entry-content {
     font-size: var(--font-size-h6);
     line-height: var(--line-height-h6);
+  }
+
+  /* About Re */
+  [data-section='about-re'] .sc-header {
+    gap: var(--spacing-4xs);
+    margin-bottom: var(--spacing-sm);
   }
 }
