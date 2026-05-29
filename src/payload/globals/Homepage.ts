@@ -20,6 +20,12 @@ const shapeOptions = {
   square: 'Square',
 }
 
+const announcementFormatOptions = {
+  square: 'Square',
+  vertical: 'Vertical',
+  landscape: 'Landscape',
+}
+
 export const Homepage: GlobalConfig = {
   slug: 'homepage',
   label: 'Homepage',
@@ -33,6 +39,44 @@ export const Homepage: GlobalConfig = {
         {
           label: 'Content',
           fields: [
+            section('Announcement', [
+              {
+                name: 'announcementShow',
+                type: 'checkbox',
+                label: 'Show Announcement',
+                defaultValue: false,
+              },
+              {
+                name: 'announcement',
+                type: 'group',
+                label: 'Announcement',
+                admin: {
+                  hideGutter: true,
+                },
+                fields: [
+                  {
+                    name: 'format',
+                    type: 'select',
+                    label: 'Format',
+                    options: Object.entries(announcementFormatOptions).map(([value, label]) => ({
+                      label,
+                      value,
+                    })),
+                  },
+                  {
+                    name: 'media',
+                    type: 'upload',
+                    relationTo: 'media',
+                    label: 'Media',
+                  },
+                  {
+                    name: 'link',
+                    type: 'text',
+                    label: 'Link',
+                  },
+                ],
+              },
+            ]),
             section('Hero', [
               {
                 name: 'hero',
@@ -211,24 +255,29 @@ export const Homepage: GlobalConfig = {
                 ],
               },
             ]),
-            section('Recommender', [
+            section('What Are You In The Mood For?', [
               {
-                name: 'recommender',
+                name: 'whatAreYouInTheMoodFor',
                 type: 'group',
-                label: 'Recommender',
+                label: 'What Are You In The Mood For?',
                 admin: {
                   hideGutter: true,
                 },
                 fields: [
                   {
-                    name: 'title',
+                    name: 'titleLineOne',
                     type: 'text',
-                    label: 'Title',
+                    label: 'Title Line One',
                   },
                   {
-                    name: 'suffix',
+                    name: 'titleLineTwo',
                     type: 'text',
-                    label: 'Suffix',
+                    label: 'Title Line Two',
+                  },
+                  {
+                    name: 'preSentence',
+                    type: 'text',
+                    label: 'Pre Sentence',
                   },
                   {
                     name: 'lifestyles',

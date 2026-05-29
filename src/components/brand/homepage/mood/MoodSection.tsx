@@ -15,15 +15,26 @@ import {
 } from '@/components/brand/homepage/mood/pickMoodVendorsForLifestyle'
 import { useMoodImagePreload } from '@/components/brand/homepage/mood/useMoodImagePreload'
 import type { HomeLifestyle } from '@/payload/queries/home'
+import type { Homepage } from '@/payload-types'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
+const DEFAULT_COPY = {
+  titleLineOne: 'WHAT ARE YOU IN THE',
+  titleLineTwo: 'MOOD FOR?',
+  preSentence: 'FEELING LIKE...',
+} as const
+
 type MoodSectionProps = {
+  data?: Homepage['whatAreYouInTheMoodFor']
   lifestyles: HomeLifestyle[]
   defaultVendors: MoodVendorCard[]
   vendorPool: MoodVendorPoolItem[]
 }
 
-export const MoodSection = ({ lifestyles, defaultVendors, vendorPool }: MoodSectionProps) => {
+export const MoodSection = ({ data, lifestyles, defaultVendors, vendorPool }: MoodSectionProps) => {
+  const titleLineOne = data?.titleLineOne?.trim() || DEFAULT_COPY.titleLineOne
+  const titleLineTwo = data?.titleLineTwo?.trim() || DEFAULT_COPY.titleLineTwo
+  const preSentence = data?.preSentence?.trim() || DEFAULT_COPY.preSentence
   const sectionRef = useMoodImagePreload({ vendorPool, defaultVendors })
   const [selectedLifestyleId, setSelectedLifestyleId] = useState<number | null>(null)
 
@@ -50,15 +61,15 @@ export const MoodSection = ({ lifestyles, defaultVendors, vendorPool }: MoodSect
         <div className="container">
           <AnimateOnScroll triggerClass="fadeIn" className="sc-header">
             <h2 className="type-d-header type-m-headliner-m letter-spacing-002 weight-medium">
-              WHAT ARE YOU IN THE
+              {titleLineOne}
             </h2>
 
             <div className="mood-selector">
               <p className="type-d-header type-m-headliner-m letter-spacing-002 weight-medium">
-                MOOD FOR?
+                {titleLineTwo}
               </p>
               <p className="mood-selector__label type-d-title type-m-title letter-spacing-003 weight-medium">
-                FEELING LIKE...
+                {preSentence}
               </p>
               <MoodSelector
                 lifestyles={lifestyles}

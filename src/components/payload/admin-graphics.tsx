@@ -19,6 +19,7 @@ function ThemeLogo({ className, height }: ThemeLogoProps) {
         height={height}
         src={LOGO_BLACK}
         style={imgStyle}
+        width={height}
       />
       <Image
         alt="The Common"
@@ -26,6 +27,7 @@ function ThemeLogo({ className, height }: ThemeLogoProps) {
         height={height}
         src={LOGO_WHITE}
         style={imgStyle}
+        width={height}
       />
     </span>
   )

@@ -34,6 +34,22 @@
 
   /* PAGE ==================== */
   /* PAGE: INDEX */
+  /* Announcement */
+  .announcement-close {
+    top: calc(-1 * var(--spacing-3xs));
+    right: 0;
+    transform: translate(0, -100%);
+    font-size: 1.75rem;
+  }
+
+  .announcement .media.square,
+  .announcement .media.vertical,
+  .announcement .media.landscape {
+    width: 100%;
+    height: auto;
+    max-width: 57.5rem;
+  }
+
   /* About  */
   [data-section='homepage-about'] .container {
     gap: var(--spacing-md);

@@ -223,13 +223,13 @@
 }
 
 ::-moz-selection {
-  background: #1c41d2;
-  color: var(--color-white);
+  background: var(--color-dark-brown);
+  color: var(--color-beige);
 }
 
 ::selection {
-  background: #1c41d2;
-  color: var(--color-white);
+  background: var(--color-dark-brown);
+  color: var(--color-beige);
 }
 
 article,

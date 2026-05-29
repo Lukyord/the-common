@@ -24,6 +24,21 @@
   -webkit-mask-image: url('../../public/shapes/hexagon-2.svg');
 }
 
+.clip-hexagon-square {
+  mask-image: url('../../public/shapes/hexagon-square.svg');
+  -webkit-mask-image: url('../../public/shapes/hexagon-square.svg');
+}
+
+.clip-hexagon-portrait {
+  mask-image: url('../../public/shapes/hexagon-portrait.svg');
+  -webkit-mask-image: url('../../public/shapes/hexagon-portrait.svg');
+}
+
+.clip-hexagon-landscape {
+  mask-image: url('../../public/shapes/hexagon-landscape.svg');
+  -webkit-mask-image: url('../../public/shapes/hexagon-landscape.svg');
+}
+
 /* FOOTER ==================== */
 
 /* SECTION ==================== */
@@ -53,6 +68,76 @@
 
 /* PAGE ==================== */
 /* PAGE: INDEX */
+/* Announcement */
+.announcement {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-container);
+  background-color: rgba(var(--color-dark-brown-rgb), 0.4);
+  color: var(--color-white);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity var(--duration) var(--timing-function),
+    visibility var(--duration) var(--timing-function);
+  cursor: pointer;
+}
+.announcement * {
+  pointer-events: none;
+}
+
+.announcement.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.announcement.open * {
+  pointer-events: auto;
+}
+
+.announcement .media {
+  position: relative;
+  height: fit-content;
+}
+
+.announcement-close {
+  position: absolute;
+  z-index: 3;
+  top: calc(-1 * var(--spacing-2xs));
+  right: calc(-1 * var(--spacing-4xs));
+  transform: translate(100%, -100%);
+  display: flex;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 3rem;
+  transition: opacity var(--duration) var(--timing-function);
+}
+
+html.no-touchevents .announcement-close:hover {
+  opacity: 0.5;
+}
+
+.announcement .media.square {
+  width: max(39.583333333%, 57rem);
+  aspect-ratio: 1;
+}
+
+.announcement .media.vertical {
+  width: max(30.9375%, 44.55rem);
+  aspect-ratio: 0.779527559;
+}
+
+.announcement .media.landscape {
+  width: max(62.638888889%, 90.5rem);
+  aspect-ratio: 1.578302712;
+}
+
 /* About  */
 [data-section='homepage-about'] .container {
   min-height: calc(100lvh - var(--gap-section) * 2);
@@ -693,6 +778,8 @@ html.no-touchevents .location-selector__item:hover {
   flex-direction: column;
   gap: var(--spacing-5xs);
   margin-bottom: var(--spacing-xl);
+  position: relative;
+  z-index: 5;
 }
 
 /* Mood Selector */

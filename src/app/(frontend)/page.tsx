@@ -6,6 +6,7 @@ import { resolveMedia } from '@/lib/resolveMedia'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import RenderMedia from '@/components/common/media'
 
+import { Announcement } from '@/components/brand/homepage/Announcement'
 import { FlexibleSection } from '@/components/brand/homepage/FlexibleSection'
 import { MarkdownContent } from '@/components/common/markdown-content'
 import { MottoMarquee } from '@/components/elements/MottoMarquee'
@@ -30,59 +31,67 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function HomePage() {
   const { homepage, lifestyles, defaultMoodVendors, moodVendorPool } = await getHomePayloadData()
-  const moodLifestyles = resolveMoodLifestyles(homepage?.recommender?.lifestyles, lifestyles)
+  const moodLifestyles = resolveMoodLifestyles(
+    homepage?.whatAreYouInTheMoodFor?.lifestyles,
+    lifestyles,
+  )
   const { hero } = homepage
   const heroBackground = resolveMedia(hero?.backgroundMedia)
   const heroBackgroundMobile = resolveMedia(hero?.mobileBackgroundMedia)
 
   return (
-    <main id="main" className="index-page">
-      {/* HOMEPAGE HERO ==================== */}
-      <section data-section="page-hero" className="bg-dark-brown marquee-offset">
-        <div className="cover">
-          {heroBackground?.src && (
-            <RenderMedia
-              src={heroBackground.src}
-              srcMobile={heroBackgroundMobile?.src || heroBackground.src}
-              alt={heroBackground.alt}
-              priority
-            />
-          )}
-        </div>
-        <div className="sc-inner pc-t-100 pc-b-75 mb-t-100 mb-b-100">
-          <div className="container">
-            <AnimateOnScroll delay={300} triggerClass="fadeIn" className="sc-ttl">
-              <MarkdownContent
-                as="h1"
-                inline
-                className="type-d-display type-m-display weight-medium"
-              >
-                {homepage.hero.title}
-              </MarkdownContent>
-            </AnimateOnScroll>
+    <>
+      <Announcement show={homepage?.announcementShow} data={homepage?.announcement} />
+
+      <main id="main" className="index-page">
+        {/* HOMEPAGE HERO ==================== */}
+        <section data-section="page-hero" className="bg-dark-brown marquee-offset">
+          <div className="cover">
+            {heroBackground?.src && (
+              <RenderMedia
+                src={heroBackground.src}
+                srcMobile={heroBackgroundMobile?.src || heroBackground.src}
+                alt={heroBackground.alt}
+                priority
+              />
+            )}
           </div>
-        </div>
+          <div className="sc-inner pc-t-100 pc-b-75 mb-t-100 mb-b-100">
+            <div className="container">
+              <AnimateOnScroll delay={300} triggerClass="fadeIn" className="sc-ttl">
+                <MarkdownContent
+                  as="h1"
+                  inline
+                  className="type-d-display type-m-display weight-medium"
+                >
+                  {homepage.hero.title}
+                </MarkdownContent>
+              </AnimateOnScroll>
+            </div>
+          </div>
 
-        <LocationSelector />
-      </section>
+          <LocationSelector />
+        </section>
 
-      <MottoMarquee items={homepage?.motto} />
+        <MottoMarquee items={homepage?.motto} />
 
-      <HomepageAbout data={homepage?.about} />
+        <HomepageAbout data={homepage?.about} />
 
-      <ScrollShapeSection data={homepage?.peopleOfTheCommons} />
+        <ScrollShapeSection data={homepage?.peopleOfTheCommons} />
 
-      <FlexibleSection show={homepage?.flexibleSectionShow} items={homepage?.flexibleSection} />
+        <FlexibleSection show={homepage?.flexibleSectionShow} items={homepage?.flexibleSection} />
 
-      <MoodSection
-        lifestyles={moodLifestyles}
-        defaultVendors={defaultMoodVendors}
-        vendorPool={moodVendorPool}
-      />
+        <MoodSection
+          data={homepage?.whatAreYouInTheMoodFor}
+          lifestyles={moodLifestyles}
+          defaultVendors={defaultMoodVendors}
+          vendorPool={moodVendorPool}
+        />
 
-      <FullscreenSlide slides={homepage?.membership} />
+        <FullscreenSlide slides={homepage?.membership} />
 
-      <Bingo data={homepage?.bingo} />
-    </main>
+        <Bingo data={homepage?.bingo} />
+      </main>
+    </>
   )
 }

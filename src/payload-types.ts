@@ -964,6 +964,12 @@ export interface Contact {
  */
 export interface Homepage {
   id: number;
+  announcementShow?: boolean | null;
+  announcement?: {
+    format?: ('square' | 'vertical' | 'landscape') | null;
+    media?: (number | null) | Media;
+    link?: string | null;
+  };
   hero?: {
     backgroundMedia?: (number | null) | Media;
     mobileBackgroundMedia?: (number | null) | Media;
@@ -1025,9 +1031,10 @@ export interface Homepage {
         id?: string | null;
       }[]
     | null;
-  recommender?: {
-    title?: string | null;
-    suffix?: string | null;
+  whatAreYouInTheMoodFor?: {
+    titleLineOne?: string | null;
+    titleLineTwo?: string | null;
+    preSentence?: string | null;
     lifestyles?: (number | Lifestyle)[] | null;
   };
   membership?:
@@ -1171,6 +1178,14 @@ export interface ContactSelect<T extends boolean = true> {
  * via the `definition` "homepage_select".
  */
 export interface HomepageSelect<T extends boolean = true> {
+  announcementShow?: T;
+  announcement?:
+    | T
+    | {
+        format?: T;
+        media?: T;
+        link?: T;
+      };
   hero?:
     | T
     | {
@@ -1224,11 +1239,12 @@ export interface HomepageSelect<T extends boolean = true> {
         media?: T;
         id?: T;
       };
-  recommender?:
+  whatAreYouInTheMoodFor?:
     | T
     | {
-        title?: T;
-        suffix?: T;
+        titleLineOne?: T;
+        titleLineTwo?: T;
+        preSentence?: T;
         lifestyles?: T;
       };
   membership?:
