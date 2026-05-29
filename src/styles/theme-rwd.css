@@ -452,4 +452,18 @@
   [data-section='not-found'] .container {
     align-items: flex-start;
   }
+
+  /* PAGE: PRIVACY POLICY */
+  [data-section='privacy-policy'] .container {
+    flex-direction: column;
+  }
+
+  [data-section='privacy-policy'] .sc-ttl {
+    flex-grow: unset;
+    position: static;
+  }
+
+  [data-section='privacy-policy'] .privacy-policy-content {
+    max-width: unset;
+  }
 }

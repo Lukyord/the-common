@@ -1305,3 +1305,26 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 [data-section='not-found'] .sc-desc {
   margin-bottom: var(--spacing-xl);
 }
+
+/* PAGE: PRIVACY POLICY */
+[data-section='privacy-policy'] {
+  background-color: var(--color-beige);
+  overflow: unset;
+}
+
+[data-section='privacy-policy'] .container {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+[data-section='privacy-policy'] .sc-ttl {
+  flex-grow: 1;
+  position: sticky;
+  top: calc(var(--header-height) + var(--spacing-lg));
+  height: fit-content;
+}
+
+[data-section='privacy-policy'] .privacy-policy-content {
+  max-width: 68.7rem;
+  flex-shrink: 0;
+}

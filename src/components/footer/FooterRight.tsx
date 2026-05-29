@@ -55,7 +55,7 @@ export function FooterRight({ contact }: FooterRightProps) {
         )}
 
         <AnimateOnScroll triggerClass="fadeIn">
-          <Link href="" className="type-d-text-link type-m-body-r letter-spacing-003">
+          <Link href="/privacy-policy" className="type-d-text-link type-m-body-r letter-spacing-003">
             Privacy Policy
           </Link>
         </AnimateOnScroll>

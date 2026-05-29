@@ -28,6 +28,28 @@ type ParsedNode = {
 }
 
 const DEFAULT_SKIP_TAGS = ['ul', 'ol']
+const UNWRAP_ROOT_CLASSES = ['entry-content', 'payload-richtext']
+
+function unwrapRootNodes(nodes: ChildNode[]): ChildNode[] {
+  if (nodes.length !== 1 || nodes[0].nodeType !== Node.ELEMENT_NODE) {
+    return nodes
+  }
+
+  const element = nodes[0] as HTMLElement
+  if (element.tagName.toLowerCase() !== 'div') {
+    return nodes
+  }
+
+  const shouldUnwrap = UNWRAP_ROOT_CLASSES.some((className) =>
+    element.classList.contains(className),
+  )
+
+  if (!shouldUnwrap) {
+    return nodes
+  }
+
+  return unwrapRootNodes(Array.from(element.childNodes))
+}
 
 export default function AnimatedRichText({
   html,
@@ -104,8 +126,9 @@ export default function AnimatedRichText({
 
     const parser = new DOMParser()
     const documentNode = parser.parseFromString(html, 'text/html')
+    const rootNodes = unwrapRootNodes(Array.from(documentNode.body.childNodes))
 
-    return Array.from(documentNode.body.childNodes)
+    return rootNodes
       .map((node, index) => nodeToReact(node, `richtext-${index}`))
       .filter((item): item is ParsedNode => item !== null)
   }, [html, isMounted])

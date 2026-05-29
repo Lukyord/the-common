@@ -406,7 +406,7 @@ body {
 
 #page {
   width: 100vw;
-  overflow: clip;
+  /* overflow: clip; */
   display: grid;
   grid-template-rows: 1fr auto;
   min-height: 100svh;
@@ -1057,12 +1057,12 @@ section.header-margin {
 
 /* ENTRY CONTENT ====================*/
 .entry-content {
-  --gap-content: var(--spacing-sm);
+  --gap-content: var(--spacing-xs);
   letter-spacing: 0.02em;
 }
 .entry-content :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .entry-content :is(h6) {
@@ -1114,8 +1114,9 @@ section.header-margin {
   margin-top: var(--gap-content);
 }
 
-.entry-content > p:not(:first-child) + ul {
-  margin-top: 0;
+.entry-content p:has(br:first-child:last-child) {
+  line-height: 1;
+  height: 0;
 }
 
 .entry-content strong {

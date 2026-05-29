@@ -22,6 +22,7 @@ import { WhatsOn } from './payload/collections/WhatsOn'
 import { About } from './payload/globals/About'
 import { Contact } from './payload/globals/Contact'
 import { Homepage } from './payload/globals/Homepage'
+import { PrivacyPolicy } from './payload/globals/PrivacyPolicy'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -81,7 +82,7 @@ export default buildConfig({
     Vendors,
     WhatsOn,
   ],
-  globals: [About, Contact, Homepage],
+  globals: [About, Contact, Homepage, PrivacyPolicy],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -91,7 +92,7 @@ export default buildConfig({
   logger: isProduction ? cloudflareLogger : undefined,
   plugins: [
     seoPlugin({
-      globals: [About.slug, Contact.slug, Homepage.slug],
+      globals: [About.slug, Contact.slug, Homepage.slug, PrivacyPolicy.slug],
       collections: [
         Branches.slug,
         BranchContactPages.slug,
