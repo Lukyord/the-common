@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 const LOGO_BLACK = '/designs/logo-black.webp'
 const LOGO_WHITE = '/designs/logo-white.webp'
 
@@ -11,14 +13,14 @@ function ThemeLogo({ className, height }: ThemeLogoProps) {
 
   return (
     <span className={className}>
-      <img
+      <Image
         alt="The Common"
         className="admin-theme-logo__img admin-theme-logo__img--light"
         height={height}
         src={LOGO_BLACK}
         style={imgStyle}
       />
-      <img
+      <Image
         alt="The Common"
         className="admin-theme-logo__img admin-theme-logo__img--dark"
         height={height}

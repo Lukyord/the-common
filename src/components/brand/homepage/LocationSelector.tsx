@@ -1,6 +1,5 @@
 'use client'
 
-import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { BranchShape } from '@/components/elements/BranchShape'
 import Link from 'next/link'
 import { useState, type ComponentProps } from 'react'

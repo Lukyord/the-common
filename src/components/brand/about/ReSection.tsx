@@ -39,7 +39,7 @@ export const ReSection = () => {
             <div className="trigger-wrapper"></div>
             <div className="content-desc">
               <MarkdownContent as="p" className="letter-spacing-002 type-d-body-m type-m-body-r">
-                Bring your reusable cups and containers to our eateries. They'll gladly add your
+                Bring your reusable cups and containers to our eateries. They&apos;ll gladly add your
                 favorite treats.
               </MarkdownContent>
             </div>
