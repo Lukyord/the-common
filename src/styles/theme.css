@@ -1276,3 +1276,32 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   aspect-ratio: 2;
   width: 12rem;
 }
+
+/* PAGE: NOT FOUND */
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+}
+[data-section='not-found'] {
+  flex-grow: 1;
+  color: var(--color-beige);
+}
+[data-section='not-found'] .sc-inner {
+  height: 100%;
+}
+
+[data-section='not-found'] .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+[data-section='not-found'] .sc-ttl {
+  margin-bottom: var(--spacing-2xs);
+}
+
+[data-section='not-found'] .sc-desc {
+  margin-bottom: var(--spacing-xl);
+}

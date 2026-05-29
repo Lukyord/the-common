@@ -447,4 +447,9 @@
   .award-marquee > .horizontal-marquee:not(:first-child) {
     margin-top: var(--spacing-sm);
   }
+
+  /* PAGE: NOT FOUND */
+  [data-section='not-found'] .container {
+    align-items: flex-start;
+  }
 }
