@@ -27,6 +27,8 @@ export function Announcement({ show, data }: AnnouncementProps) {
 
   const media = resolveMedia(data?.media)
 
+  if (!show || !data || !media) return null
+
   const format = data?.format ?? 'square'
   const clipClass = CLIP_BY_FORMAT[format] ?? CLIP_BY_FORMAT.square
 
