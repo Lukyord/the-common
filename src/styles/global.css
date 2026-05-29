@@ -1055,7 +1055,7 @@ section.header-margin {
 /* ENTRY CONTENT ====================*/
 .entry-content {
   --gap-content: var(--spacing-sm);
-  letter-spacing: var(--letter-spacing-002);
+  letter-spacing: 0.02em;
 }
 .entry-content :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-heading);

@@ -495,7 +495,7 @@ html.no-touchevents .location-selector__item:hover {
 [data-section='flexible'] .entry-content {
   font-size: var(--font-size-h5);
   line-height: var(--line-height-h5);
-  letter-spacing: var(--letter-spacing-002);
+  letter-spacing: 0.02em;
 }
 
 /* Fullscreen Slide */
@@ -566,7 +566,7 @@ html.no-touchevents .location-selector__item:hover {
 .bingo-cursor {
   font-size: 1.6rem;
   line-height: 1.28;
-  letter-spacing: var(--letter-spacing-002);
+  letter-spacing: 0.02em;
   font-weight: 500;
   color: var(--color-dark-brown);
   background-color: var(--color-beige);
@@ -979,7 +979,7 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 [data-section='info-template'] .entry-content {
   font-size: var(--font-size-h5);
   line-height: var(--line-height-h5);
-  letter-spacing: var(--letter-spacing-002);
+  letter-spacing: 0.02em;
 }
 
 /* About Re */
@@ -1022,7 +1022,133 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   height: 83.584131327%;
 }
 
+[data-section='about-re'] .media-container .clip-hexagon-2 {
+  position: relative;
+}
+
+[data-section='about-re'] .media-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--duration) var(--timing-function);
+  pointer-events: none;
+}
+
+[data-section='about-re'] .media-slide.is-active {
+  opacity: 1;
+}
+
 [data-section='about-re'] .trigger-wrapper {
   width: 89.166666667%;
   aspect-ratio: 1.202247191;
+  position: relative;
+}
+
+[data-section='about-re'] .re-trigger {
+  position: absolute;
+  height: fit-content;
+  overflow: hidden;
+  font-size: var(--font-size-h2);
+  line-height: 1.18;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform var(--duration) var(--timing-function),
+    background-color var(--duration) var(--timing-function);
+}
+
+[data-section='about-re'] .re-trigger .text {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+[data-section='about-re'] .re-trigger[data-type='reuse'] {
+  aspect-ratio: 1;
+  width: 37.38317757%;
+  left: 5.056074766%;
+  top: 6.453183521%;
+  border-radius: 50%;
+  rotate: -7.4deg;
+  background-color: var(--color-saladaeng-orange);
+}
+[data-section='about-re'] .re-trigger[data-type='recycle'] {
+  aspect-ratio: 1;
+  width: 39.875389408%;
+  left: 47.255451713%;
+  top: 5.140449438%;
+  rotate: 4.4deg;
+  background-color: var(--color-thonglor-navy);
+  color: var(--color-white);
+}
+[data-section='about-re'] .re-trigger[data-type='refill'] {
+  aspect-ratio: 1.695364238;
+  width: 39.875389408%;
+  left: 3.708722741%;
+  top: 59.629213483%;
+  rotate: 1.4deg;
+  background-color: var(--color-cloud-11-pink);
+}
+[data-section='about-re'] .re-trigger[data-type='redistribute'] {
+  aspect-ratio: 1.441801268;
+  width: 48.524922118%;
+  left: 46.080996885%;
+  top: 55.604868914%;
+  rotate: -1.53deg;
+  background-color: var(--color-cloud-11-accent);
+  text-align: left;
+}
+
+[data-section='about-re'] .re-trigger:hover {
+  z-index: 10;
+}
+
+[data-section='about-re']
+  .trigger-wrapper.has-trigger-hover:hover
+  .re-trigger[data-type='reuse']:not(:hover) {
+  background-color: color-mix(in srgb, var(--color-saladaeng-orange) 35%, transparent);
+}
+
+[data-section='about-re']
+  .trigger-wrapper.has-trigger-hover:hover
+  .re-trigger[data-type='recycle']:not(:hover) {
+  background-color: color-mix(in srgb, var(--color-thonglor-navy) 35%, transparent);
+}
+
+[data-section='about-re']
+  .trigger-wrapper.has-trigger-hover:hover
+  .re-trigger[data-type='refill']:not(:hover) {
+  background-color: color-mix(in srgb, var(--color-cloud-11-pink) 35%, transparent);
+}
+
+[data-section='about-re']
+  .trigger-wrapper.has-trigger-hover:hover
+  .re-trigger[data-type='redistribute']:not(:hover) {
+  background-color: color-mix(in srgb, var(--color-cloud-11-accent) 35%, transparent);
+}
+
+[data-section='about-re'] .re-trigger {
+  --hover-offset: 2.5%;
+  --hover-offset-neg: calc(-1 * var(--hover-offset));
+}
+
+[data-section='about-re'] .re-trigger[data-type='reuse']:hover {
+  transform: translate(var(--hover-offset-neg), var(--hover-offset-neg));
+}
+
+[data-section='about-re'] .re-trigger[data-type='recycle']:hover {
+  transform: translate(var(--hover-offset), var(--hover-offset-neg));
+}
+
+[data-section='about-re'] .re-trigger[data-type='refill']:hover {
+  transform: translate(var(--hover-offset-neg), var(--hover-offset));
+}
+
+[data-section='about-re'] .re-trigger[data-type='redistribute']:hover {
+  transform: translate(var(--hover-offset), var(--hover-offset));
 }

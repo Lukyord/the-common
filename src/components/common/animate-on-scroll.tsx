@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useEffect, ReactNode } from 'react'
+import React, { useRef, useEffect, useState, ReactNode } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -42,48 +42,29 @@ export default function AnimateOnScroll({
   ...rest
 }: AnimateOnScrollProps) {
   const elementRef = useRef<HTMLDivElement>(null)
-
-  // Helper function to add classes
-  const addClasses = (element: HTMLElement, classes: string | string[]) => {
-    if (Array.isArray(classes)) {
-      classes.forEach((cls) => element.classList.add(cls))
-    } else {
-      element.classList.add(classes)
-    }
-  }
-
-  // Helper function to remove classes
-  const removeClasses = (element: HTMLElement, classes: string | string[]) => {
-    if (Array.isArray(classes)) {
-      classes.forEach((cls) => element.classList.remove(cls))
-    } else {
-      element.classList.remove(classes)
-    }
-  }
+  const [isRevealed, setIsRevealed] = useState(false)
 
   useEffect(() => {
     const element = elementRef.current
     if (!element) return
 
-    const showElement = (target: HTMLElement, callback?: () => void) => {
-      target.classList.remove(PENDING_CLASS)
-      addClasses(target, triggerClass)
+    const showElement = (callback?: () => void) => {
+      setIsRevealed(true)
       callback?.()
     }
 
-    const hideElement = (target: HTMLElement, callback?: () => void) => {
+    const hideElement = (callback?: () => void) => {
       if (!once) {
-        target.classList.add(PENDING_CLASS)
-        removeClasses(target, triggerClass)
+        setIsRevealed(false)
       }
       callback?.()
     }
 
     const runShow = () => {
       if (delay) {
-        setTimeout(() => showElement(element, onEnter), delay)
+        setTimeout(() => showElement(onEnter), delay)
       } else {
-        showElement(element, onEnter)
+        showElement(onEnter)
       }
     }
 
@@ -93,7 +74,7 @@ export default function AnimateOnScroll({
       toggleActions,
       onEnter: runShow,
       onLeave: () => {
-        hideElement(element, onLeave)
+        hideElement(onLeave)
       },
       onEnterBack: () => {
         if (!once) {
@@ -102,7 +83,7 @@ export default function AnimateOnScroll({
         onEnterBack?.()
       },
       onLeaveBack: () => {
-        hideElement(element, onLeaveBack)
+        hideElement(onLeaveBack)
       },
     })
 
@@ -116,7 +97,15 @@ export default function AnimateOnScroll({
     }
   }, [triggerClass, start, toggleActions, once, delay, onEnter, onLeave, onEnterBack, onLeaveBack])
 
-  const rootClassName = [PENDING_CLASS, 'animate', className].filter(Boolean).join(' ')
+  const triggerClasses = Array.isArray(triggerClass) ? triggerClass : [triggerClass]
+  const rootClassName = [
+    !isRevealed && PENDING_CLASS,
+    'animate',
+    ...(isRevealed ? triggerClasses : []),
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <div ref={elementRef} className={rootClassName} {...rest}>
