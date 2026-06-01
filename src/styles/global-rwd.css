@@ -114,6 +114,7 @@
 
     --header-height: 10rem;
     --logo-height: 3rem;
+    --input-font-size: var(--font-size-h6);
   }
   .type-m-display-l {
     font-size: var(--font-size-h2);
@@ -206,6 +207,10 @@
   }
 
   /* CTAs ====================*/
+  [class*='button-'] {
+    font-size: var(--font-size-h6);
+    line-height: var(--line-height-h6);
+  }
 }
 
 @media (max-width: 767px) {

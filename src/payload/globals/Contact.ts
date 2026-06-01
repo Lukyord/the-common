@@ -13,6 +13,20 @@ export const Contact: GlobalConfig = {
         {
           label: 'Content',
           fields: [
+            section('Background', [
+              {
+                name: 'contactBg',
+                type: 'upload',
+                relationTo: 'media',
+                label: 'Contact BG',
+              },
+              {
+                name: 'contactBgMobile',
+                type: 'upload',
+                relationTo: 'media',
+                label: 'Contact BG Mobile',
+              },
+            ]),
             section('Contact Form', [
               {
                 name: 'contactSubject',

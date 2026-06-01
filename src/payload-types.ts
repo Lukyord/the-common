@@ -897,6 +897,8 @@ export interface About {
  */
 export interface Contact {
   id: number;
+  contactBg?: (number | null) | Media;
+  contactBgMobile?: (number | null) | Media;
   contactSubject?: string[] | null;
   accordion?:
     | (
@@ -1171,6 +1173,8 @@ export interface AboutSelect<T extends boolean = true> {
  * via the `definition` "contact_select".
  */
 export interface ContactSelect<T extends boolean = true> {
+  contactBg?: T;
+  contactBgMobile?: T;
   contactSubject?: T;
   accordion?:
     | T

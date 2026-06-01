@@ -5,6 +5,7 @@ import RenderMedia from '@/components/common/media'
 import { MarkdownContent } from '@/components/common/markdown-content'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type { About } from '@/payload-types'
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 export type AwardMarqueeItem = {
   id?: string | null
@@ -43,16 +44,16 @@ export function AwardsSection({ title, main, secondary }: AwardsSectionProps) {
     <section data-section="awards" className="bg-beige">
       <div className="sc-inner pc-t-100 pc-b-100 mb-t-75 mb-b-75">
         <div className="container">
-          <div className="sc-ttl">
+          <AnimateOnScroll triggerClass="fadeIn" className="sc-ttl">
             <MarkdownContent
               as="h2"
               className="type-d-header type-m-headliner-m weight-medium uppercase letter-spacing-002"
             >
               {title}
             </MarkdownContent>
-          </div>
+          </AnimateOnScroll>
 
-          <div className="award-marquee">
+          <AnimateOnScroll triggerClass="fadeIn" className="award-marquee">
             <HorizontalMarquee speed={25} direction="left">
               <div className="award-marquee__strip">
                 {main.map((item, index) => (
@@ -77,7 +78,7 @@ export function AwardsSection({ title, main, secondary }: AwardsSectionProps) {
                 ))}
               </div>
             </HorizontalMarquee>
-          </div>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>

@@ -5,6 +5,7 @@ import RenderMedia from '@/components/common/media'
 import { toExternalHref } from '@/components/footer/footer-utils'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type { About } from '@/payload-types'
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 export type KinnestMarqueeItem = {
   id?: string | null
@@ -37,7 +38,7 @@ export default function KinnestMarquee({ items, kinnestLink }: KinnestMarqueePro
 
   return (
     <section data-section="kinnest-marquee">
-      <div className="kinnest-marquee">
+      <AnimateOnScroll triggerClass="fadeIn" className="kinnest-marquee">
         <HorizontalMarquee speed={50} direction="left">
           <div className="kinnest-marquee__strip">
             {items.map((item, index) => (
@@ -53,7 +54,7 @@ export default function KinnestMarquee({ items, kinnestLink }: KinnestMarqueePro
             ))}
           </div>
         </HorizontalMarquee>
-      </div>
+      </AnimateOnScroll>
 
       <div className="kinnest-cta">
         {kinnestHref && (
@@ -67,11 +68,11 @@ export default function KinnestMarquee({ items, kinnestLink }: KinnestMarqueePro
             &nbsp;
           </Link>
         )}
-        <div className="logo">
+        <AnimateOnScroll triggerClass="fadeIn" className="logo">
           <RenderMedia src="/designs/kinnest-logo.svg" alt="Kinnest Logo" priority />
-        </div>
+        </AnimateOnScroll>
 
-        <div className="text">
+        <AnimateOnScroll triggerClass="fadeIn" className="text">
           <div className="text-desc">
             <p className="type-d-body-l type-m-title letter-spacing-002">
               A member of Kinnest Group
@@ -81,7 +82,7 @@ export default function KinnestMarquee({ items, kinnestLink }: KinnestMarqueePro
           <div className="icon">
             <i className="ic ic-arrow-square-top-right size-icon-2xs"></i>
           </div>
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   )

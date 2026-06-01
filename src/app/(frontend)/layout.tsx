@@ -15,6 +15,8 @@ import LenisProvider from '@/components/LenisProvider'
 
 import { Header } from '@/components/header/Header'
 import { Footer } from '@/components/footer/Footer'
+import ClientInit from '@/components/ClientInit'
+import ToasterProvider from '@/components/ToasterProvider'
 
 export const metadata: Metadata = {
   description: 'The Common',
@@ -45,6 +47,9 @@ export default function RootLayout({ children }: Props) {
           <body>
             <div id="page">
               <Theme />
+              <ClientInit />
+              <ToasterProvider />
+
               <Header />
               {children}
               <Footer />

@@ -118,7 +118,7 @@ html.no-touchevents .footer-branch__item:hover .branch-name .ic {
   border-radius: 0.9rem;
 }
 
-.footer-copyright {
+.footer-copyright > * {
   opacity: 0.6;
 }
 

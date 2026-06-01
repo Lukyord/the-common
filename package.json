@@ -45,7 +45,10 @@
     "payload": "3.82.1",
     "react": "19.2.1",
     "react-dom": "19.2.1",
-    "swiper": "^12.1.4"
+    "react-hot-toast": "^2.6.0",
+    "resend": "^6.12.4",
+    "swiper": "^12.1.4",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -80,6 +83,15 @@
     "bindings": {
       "PAYLOAD_SECRET": {
         "description": "Generate a random string using `openssl rand -hex 32`"
+      },
+      "RESEND_API_KEY": {
+        "description": "Resend API key for contact form emails"
+      },
+      "RESEND_FROM_EMAIL": {
+        "description": "Verified Resend sender, e.g. The Common <noreply@yourdomain.com>"
+      },
+      "CONTACT_INQUIRY_TO_EMAIL": {
+        "description": "Optional fallback recipient if Contact global email is empty"
       }
     }
   }

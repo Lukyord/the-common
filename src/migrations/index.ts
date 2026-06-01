@@ -24,6 +24,7 @@ import * as migration_20260528_111107 from './20260528_111107';
 import * as migration_20260529_075225 from './20260529_075225';
 import * as migration_20260529_092424 from './20260529_092424';
 import * as migration_20260529_101546_privacy_policy_global from './20260529_101546_privacy_policy_global';
+import * as migration_20260601_131438_contact_bg from './20260601_131438_contact_bg';
 
 export const migrations = [
   {
@@ -154,6 +155,11 @@ export const migrations = [
   {
     up: migration_20260529_101546_privacy_policy_global.up,
     down: migration_20260529_101546_privacy_policy_global.down,
-    name: '20260529_101546_privacy_policy_global'
+    name: '20260529_101546_privacy_policy_global',
+  },
+  {
+    up: migration_20260601_131438_contact_bg.up,
+    down: migration_20260601_131438_contact_bg.down,
+    name: '20260601_131438_contact_bg'
   },
 ];

@@ -1362,6 +1362,7 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 [data-section='not-found'] {
   flex-grow: 1;
   color: var(--color-beige);
+  background-color: #581613;
 }
 [data-section='not-found'] .sc-inner {
   height: 100%;
@@ -1370,9 +1371,10 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 [data-section='not-found'] .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 100%;
+  max-width: calc(40rem + var(--spacing-container) * 2);
 }
 
 [data-section='not-found'] .sc-ttl {
@@ -1404,4 +1406,59 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 [data-section='privacy-policy'] .privacy-policy-content {
   max-width: 68.7rem;
   flex-shrink: 0;
+}
+
+/* PAGE: CONTACT */
+/* Contact Form */
+[data-section='contact'] {
+  min-height: 100svh;
+  display: flex;
+}
+
+[data-section='contact'] .contact-media {
+  width: 50%;
+  aspect-ratio: 1;
+  position: relative;
+}
+
+[data-section='contact'] .contact-media .contact-header {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: var(--spacing-2xl) var(--spacing-container);
+  background-color: var(--color-dark-brown);
+  color: var(--color-beige);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  min-width: 75.6944444444%;
+}
+
+[data-section='contact'] .contact-media .contact-header .contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4xs);
+}
+
+[data-section='contact'] .contact-form {
+  width: 50%;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-6xl) var(--spacing-container);
+  color: var(--color-beige);
+  position: relative;
+  z-index: 5;
+}
+
+[data-section='contact'] .contact-form form {
+  width: 100%;
+}
+
+[data-section='contact'] .contact-form .form-submit {
+  align-self: flex-end;
+}
+
+[data-section='contact'] .contact-form .form-submit [class*='button-'] {
+  margin-left: auto;
 }

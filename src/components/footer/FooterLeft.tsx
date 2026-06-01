@@ -32,7 +32,7 @@ export function FooterLeft({ currentBranch, branches, contact }: FooterLeftProps
           <AnimateOnScroll triggerClass="fadeIn" className="email">
             <Link
               href={emailHref}
-              className="type-d-title type-m-headliner-m weight-medium letter-spacing-003"
+              className="type-d-body-l type-m-title weight-medium letter-spacing-003"
             >
               {contact.email}
             </Link>
