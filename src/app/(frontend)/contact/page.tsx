@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 
 import ContactForm, { toContactFormProps } from '@/components/brand/contact/ContactForm'
+import ContactAccordionContainer, {
+  toContactAccordionProps,
+} from '@/components/brand/contact/ContactAccordionContainer'
 import { generateMeta } from '@/lib/generateMeta'
 import { getContactPayloadData } from '@/payload/queries/contact'
 
@@ -22,6 +25,8 @@ export default async function ContactPage() {
   return (
     <main id="main" className="contact-page">
       <ContactForm {...toContactFormProps(contact)} />
+
+      <ContactAccordionContainer {...toContactAccordionProps(contact)} />
     </main>
   )
 }

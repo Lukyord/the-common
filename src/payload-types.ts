@@ -904,26 +904,33 @@ export interface Contact {
     | (
         | {
             title?: string | null;
-            richText?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
+            columns?:
+              | {
+                  title?: string | null;
+                  richText?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  id?: string | null;
+                }[]
+              | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'doubleColumn';
           }
         | {
+            title?: string | null;
             richText?: {
               root: {
                 type: string;
@@ -939,6 +946,8 @@ export interface Contact {
               };
               [k: string]: unknown;
             } | null;
+            buttonText?: string | null;
+            link?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'singleColumn';
@@ -1183,14 +1192,23 @@ export interface ContactSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
-              richText?: T;
+              columns?:
+                | T
+                | {
+                    title?: T;
+                    richText?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
         singleColumn?:
           | T
           | {
+              title?: T;
               richText?: T;
+              buttonText?: T;
+              link?: T;
               id?: T;
               blockName?: T;
             };

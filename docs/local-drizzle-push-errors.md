@@ -75,19 +75,43 @@ NOT NULL constraint failed: vendors.branch_id: SQLITE_CONSTRAINT
 
 **Drift signal:** `SELECT name FROM sqlite_master WHERE type='table' AND name LIKE '__new_%';` returns `__new_branches`.
 
-**Fix (local only):** drop the orphaned rebuild table, then fix any other half-applied columns (e.g. contact BG per above):
+**Fix (local only):** stop dev, then run the repair helper (uses `sqlite3` + `PRAGMA foreign_keys=OFF`; safe when `__new_*` is missing):
 
 ```bash
-pnpm exec wrangler d1 execute D1 --local --command "
-DROP TABLE IF EXISTS __new_branches;
-DROP INDEX IF EXISTS contact_contact_bg_idx;
-DROP INDEX IF EXISTS contact_contact_bg_mobile_idx;
-ALTER TABLE contact DROP COLUMN contact_bg_id;
-ALTER TABLE contact DROP COLUMN contact_bg_mobile_id;
-"
+pnpm run db:repair-local
 ```
 
-Stop dev before running SQL if commands hang. Restart `pnpm run dev` and let push finish once.
+It will:
+
+- finish `__new_branches` → `branches` only when that orphan table exists
+- finish `__new_vendors` → `vendors` only when that orphan table exists
+- otherwise drop a stuck `vendors_media_idx` so push can recreate it
+
+Do **not** run `scripts/d1-repair-branches-push.sql` via wrangler when `__new_branches` is already gone — that runs `DROP TABLE branches` and fails with `vendors.branch_id` NOT NULL.
+
+### Example: `payload_locked_documents_rels` + `…_order_idx already exists`
+
+```text
+CREATE INDEX `payload_locked_documents_rels_order_idx` …
+index payload_locked_documents_rels_order_idx already exists
+```
+
+```bash
+pnpm run db:repair-local
+pnpm run dev
+```
+
+### Example: `vendors` + `vendors_media_idx already exists`
+
+```text
+CREATE INDEX `vendors_media_idx` ON `vendors` (`media_id`);
+index vendors_media_idx already exists
+```
+
+```bash
+pnpm run db:repair-local
+pnpm run dev
+```
 
 ## If repair still fails
 

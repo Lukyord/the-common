@@ -1098,11 +1098,11 @@ section.header-margin {
 .entry-content ul {
   margin: 0;
   padding: 0;
-  list-style-type: disc;
-  padding-left: 1.05em;
+  list-style-type: square;
+  padding-left: 1.5em;
 }
 .entry-content ul li::marker {
-  font-size: 0.5em;
+  font-size: 1em;
 }
 .entry-content ol {
   margin: 0;
@@ -1131,34 +1131,29 @@ section.header-margin {
 
 /* ACCORDION ====================*/
 .accordion {
-  border-bottom: 0.1rem solid var(--color-white);
+  padding: var(--spacing-2lg) var(--spacing-container);
 }
-.accordion:first-child {
-  border-top: 0.1rem solid var(--color-white);
-}
-.accordion > .entry-title {
-  --size: var(--icon-size-md);
-  --stroke-width: 0.2rem;
+.accordion .entry-title {
+  --size: var(--icon-size-xl);
+  --stroke-width: 0.3rem;
   font-family: var(--font-body);
-  font-weight: var(--font-weight-regular);
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
+  font-weight: 500;
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
   color: inherit;
   position: relative;
   display: flex;
   align-items: center;
   gap: var(--spacing-3xs);
-  padding: var(--spacing-2sm) 0;
-  padding-right: calc(var(--size) + var(--spacing-3xs));
   transition: var(--duration) var(--timing-function);
   cursor: pointer;
-  border-bottom: var(--border-width) var(--border-style) var(--border-color);
+  letter-spacing: 0.02em;
 }
 .accordion.active > .entry-title {
   color: inherit;
 }
-.accordion > .entry-title:before,
-.accordion > .entry-title:after {
+.accordion .entry-title:before,
+.accordion .entry-title:after {
   content: '';
   position: absolute;
   right: 0;
@@ -1166,16 +1161,15 @@ section.header-margin {
   background-color: currentColor;
   pointer-events: none;
   transition: var(--duration) var(--timing-function);
-  border-radius: var(--border-radius-sm);
 }
-.accordion > .entry-title:before {
+.accordion .entry-title:before {
   width: var(--stroke-width);
   height: var(--size);
   transform: translate(-50%, -50%) scaleY(1);
   right: calc((var(--size) / 2) - var(--stroke-width));
   transform-origin: center center;
 }
-.accordion > .entry-title:after {
+.accordion .entry-title:after {
   width: var(--size);
   height: var(--stroke-width);
   transform: translateY(-50%);
@@ -1192,7 +1186,7 @@ section.header-margin {
   height: var(--accordion-height);
 }
 .accordion > .entry-panel .entry-panel-inner {
-  padding-bottom: var(--spacing-2sm);
+  padding-top: var(--spacing-2lg);
 }
 
 /* FUNCTION:TAB ====================*/

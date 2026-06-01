@@ -1,0 +1,14 @@
+-- Unstick drizzle push: indexes exist but push retries CREATE INDEX on this table.
+DROP INDEX IF EXISTS payload_locked_documents_rels_order_idx;
+DROP INDEX IF EXISTS payload_locked_documents_rels_parent_idx;
+DROP INDEX IF EXISTS payload_locked_documents_rels_path_idx;
+DROP INDEX IF EXISTS payload_locked_documents_rels_users_id_idx;
+DROP INDEX IF EXISTS payload_locked_documents_rels_media_id_idx;
+DROP INDEX IF EXISTS payload_locked_documents_rels_lifestyle_id_idx;
+DROP INDEX IF EXISTS payload_locked_documents_rels_branches_id_idx;
+DROP INDEX IF EXISTS payload_locked_documents_rels_branch_contact_pages_id_idx;
+DROP INDEX IF EXISTS payload_locked_documents_rels_branch_space_rental_pages__idx;
+DROP INDEX IF EXISTS payload_locked_documents_rels_blogs_id_idx;
+DROP INDEX IF EXISTS payload_locked_documents_rels_vendor_categories_id_idx;
+DROP INDEX IF EXISTS payload_locked_documents_rels_vendors_id_idx;
+DROP INDEX IF EXISTS payload_locked_documents_rels_whats_on_id_idx;

@@ -12,6 +12,7 @@
     "deploy:database": "pnpm run migrate:remote && wrangler d1 execute D1 --command 'PRAGMA optimize' --env=$CLOUDFLARE_ENV --remote",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
     "db:clear-locks": "wrangler d1 execute D1 --local --file scripts/d1-repair-locks.sql",
+    "db:repair-local": "bash scripts/db-repair-local.sh",
     "db:reset-local": "rm -rf .wrangler/state/v3/d1",
     "devsafe": "rm -rf .next && rm -rf .open-next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",

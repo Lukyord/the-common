@@ -54,9 +54,21 @@ export const Contact: GlobalConfig = {
                         label: 'Title',
                       },
                       {
-                        name: 'richText',
-                        type: 'richText',
-                        label: 'Rich Text',
+                        name: 'columns',
+                        type: 'array',
+                        label: 'Columns',
+                        fields: [
+                          {
+                            name: 'title',
+                            type: 'text',
+                            label: 'Title',
+                          },
+                          {
+                            name: 'richText',
+                            type: 'richText',
+                            label: 'Rich Text',
+                          },
+                        ],
                       },
                     ],
                   },
@@ -68,9 +80,24 @@ export const Contact: GlobalConfig = {
                     },
                     fields: [
                       {
+                        name: 'title',
+                        type: 'text',
+                        label: 'Title',
+                      },
+                      {
                         name: 'richText',
                         type: 'richText',
                         label: 'Rich Text',
+                      },
+                      {
+                        name: 'buttonText',
+                        type: 'text',
+                        label: 'Button Text',
+                      },
+                      {
+                        name: 'link',
+                        type: 'text',
+                        label: 'Link',
                       },
                     ],
                   },

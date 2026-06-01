@@ -1462,3 +1462,61 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 [data-section='contact'] .contact-form .form-submit [class*='button-'] {
   margin-left: auto;
 }
+
+/* Contact Accodion */
+[data-section='contact-accordion'] .accordion:nth-child(3n + 1) {
+  background-color: var(--color-thonglor-cyan);
+}
+[data-section='contact-accordion'] .accordion:nth-child(3n + 2) {
+  background-color: var(--color-saladaeng-orange);
+}
+[data-section='contact-accordion'] .accordion:nth-child(3n + 3) {
+  background-color: var(--color-cloud-11-pink);
+}
+
+[data-section='contact-accordion'] .accordion-columns {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2lg);
+}
+
+[data-section='contact-accordion'] .accordion-column {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+}
+
+[data-section='contact-accordion'] .accordion-column:not(:last-child) {
+  padding-bottom: var(--spacing-md);
+  border-bottom: 0.1rem solid rgba(var(--color-dark-brown-rgb), 0.4);
+}
+
+[data-section='contact-accordion'] .accordion-column-title {
+  flex-shrink: 0;
+}
+
+[data-section='contact-accordion'] .accordion-column-content {
+  flex: 0 0 50%;
+  width: 50%;
+}
+
+[data-section='contact-accordion'] .accordion-single-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  align-items: flex-start;
+}
+
+[data-section='contact-accordion'] .accordion-single-content .accordion-column-content {
+  flex: 0 0 72.05882352941%;
+  width: 72.05882352941%;
+}
+
+[data-section='contact-accordion'] .entry-content div:has(> h1, > h2, > h3, > h4, > h5, > h6) + * {
+  --gap-content: var(--spacing-4xs);
+}
+
+[data-section='contact-accordion'] .entry-content *:is(ul, ol) {
+  --gap-content: var(--spacing-sm);
+}

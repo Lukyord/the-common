@@ -1,114 +1,136 @@
 'use client'
 
-import { useEffect, useRef, useState, type PropsWithChildren } from 'react'
+import { useCallback, useEffect, useRef, useState, type PropsWithChildren } from 'react'
 import { onWindowResize } from '@/utils/utils'
 import { AccordionContext, type AccordionContextValue } from './accordion-context'
 
 type AccordionContainerProps = PropsWithChildren<{
-    toggle?: boolean
-    triggerFirst?: boolean
-    className?: string
-    defaultActiveItems?: string[]
+  toggle?: boolean
+  triggerFirst?: boolean
+  className?: string
+  defaultActiveItems?: string[]
 }>
 
+function measurePanel(panel: HTMLDivElement) {
+  const inner = panel.querySelector<HTMLElement>('.entry-panel-inner')
+
+  if (inner) {
+    return Math.ceil(inner.getBoundingClientRect().height)
+  }
+
+  const originalHeight = panel.style.height
+  panel.style.height = 'auto'
+  const fullHeight = panel.offsetHeight
+  panel.style.height = originalHeight
+
+  return Math.ceil(fullHeight)
+}
+
 export function AccordionContainer({
-    children,
-    toggle = false,
-    triggerFirst = false,
-    className = '',
-    defaultActiveItems = [],
+  children,
+  toggle = false,
+  triggerFirst = false,
+  className = '',
+  defaultActiveItems = [],
 }: AccordionContainerProps) {
-    const containerRef = useRef<HTMLDivElement>(null)
-    const [activeItems, setActiveItems] = useState<Set<string>>(new Set(defaultActiveItems))
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [activeItems, setActiveItems] = useState<Set<string>>(new Set(defaultActiveItems))
 
-    // Set panel height using CSS variable
-    const setPanelHeights = () => {
-        if (!containerRef.current) return
+  const setPanelHeights = useCallback(() => {
+    if (!containerRef.current) return
 
-        const panels = containerRef.current.querySelectorAll<HTMLDivElement>('.entry-panel')
-        panels.forEach((panel) => {
-            const originalHeight = panel.style.height
-            panel.style.height = 'auto'
-            const fullHeight = panel.offsetHeight
-            panel.style.height = originalHeight
-            panel.style.setProperty('--accordion-height', `${fullHeight}px`)
-        })
+    containerRef.current.querySelectorAll<HTMLDivElement>('.entry-panel').forEach((panel) => {
+      panel.style.setProperty('--accordion-height', `${measurePanel(panel)}px`)
+    })
+  }, [])
+
+  useEffect(() => {
+    if (!containerRef.current) return
+
+    const timeoutId = window.setTimeout(setPanelHeights, 0)
+    const cleanupResize = onWindowResize(setPanelHeights)
+
+    const observers: ResizeObserver[] = []
+
+    containerRef.current.querySelectorAll<HTMLElement>('.entry-panel-inner').forEach((inner) => {
+      const panel = inner.closest<HTMLDivElement>('.entry-panel')
+      if (!panel) return
+
+      const observer = new ResizeObserver(() => {
+        panel.style.setProperty('--accordion-height', `${measurePanel(panel)}px`)
+      })
+
+      observer.observe(inner)
+      observers.push(observer)
+    })
+
+    const fontsReady = document.fonts?.ready.then(setPanelHeights)
+
+    return () => {
+      window.clearTimeout(timeoutId)
+      cleanupResize()
+      observers.forEach((observer) => observer.disconnect())
+      void fontsReady
     }
+  }, [children, setPanelHeights])
 
-    // Set heights on init and on window resize
-    useEffect(() => {
-        // Wait for next tick to ensure DOM is ready
-        const timeoutId = setTimeout(() => {
-            setPanelHeights()
-        }, 0)
+  useEffect(() => {
+    const frameId = requestAnimationFrame(setPanelHeights)
+    return () => cancelAnimationFrame(frameId)
+  }, [activeItems, setPanelHeights])
 
-        // Set heights on window resize
-        const cleanup = onWindowResize(() => {
-            setPanelHeights()
-        })
-
-        return () => {
-            clearTimeout(timeoutId)
-            cleanup()
+  useEffect(() => {
+    if (triggerFirst && containerRef.current) {
+      const firstAccordion = containerRef.current.querySelector('.accordion')
+      if (firstAccordion) {
+        const firstItemId = firstAccordion.getAttribute('data-item-id')
+        if (firstItemId) {
+          setActiveItems(new Set([firstItemId]))
         }
-    }, [children])
+      }
+    }
+  }, [triggerFirst])
 
-    // Trigger first accordion if needed
-    useEffect(() => {
-        if (triggerFirst && containerRef.current) {
-            const firstAccordion = containerRef.current.querySelector('.accordion')
-            if (firstAccordion) {
-                const firstItemId = firstAccordion.getAttribute('data-item-id')
-                if (firstItemId) {
-                    setActiveItems(new Set([firstItemId]))
-                }
-            }
+  const handleToggle = (itemId: string) => {
+    setActiveItems((prev) => {
+      const newSet = new Set(prev)
+
+      if (toggle) {
+        if (newSet.has(itemId)) {
+          return newSet
         }
-    }, [triggerFirst])
 
-    const handleToggle = (itemId: string) => {
-        setActiveItems((prev) => {
-            const newSet = new Set(prev)
+        return new Set([itemId])
+      }
 
-            if (toggle) {
-                // Toggle mode: only one open at a time
-                if (newSet.has(itemId)) {
-                    // If clicking the active item, don't close it (as per original JS logic)
-                    return newSet
-                } else {
-                    // Close all others and open this one
-                    return new Set([itemId])
-                }
-            } else {
-                // Regular mode: toggle individual items
-                if (newSet.has(itemId)) {
-                    newSet.delete(itemId)
-                } else {
-                    newSet.add(itemId)
-                }
-                return newSet
-            }
-        })
-    }
+      if (newSet.has(itemId)) {
+        newSet.delete(itemId)
+      } else {
+        newSet.add(itemId)
+      }
 
-    const isActive = (itemId: string) => activeItems.has(itemId)
+      return newSet
+    })
+  }
 
-    const containerClasses =
-        `accordion-container ${toggle ? 'toggle' : ''} ${triggerFirst ? 'trigger-first' : ''} ${className}`.trim()
+  const isActive = (itemId: string) => activeItems.has(itemId)
 
-    const contextValue: AccordionContextValue = {
-        activeItems,
-        toggleItem: handleToggle,
-        registerPanel: () => {}, // No longer needed, but keeping for compatibility
-        isActive,
-        toggle,
-    }
+  const containerClasses =
+    `accordion-container ${toggle ? 'toggle' : ''} ${triggerFirst ? 'trigger-first' : ''} ${className}`.trim()
 
-    return (
-        <AccordionContext.Provider value={contextValue}>
-            <div ref={containerRef} className={containerClasses}>
-                {children}
-            </div>
-        </AccordionContext.Provider>
-    )
+  const contextValue: AccordionContextValue = {
+    activeItems,
+    toggleItem: handleToggle,
+    registerPanel: () => {},
+    isActive,
+    toggle,
+  }
+
+  return (
+    <AccordionContext.Provider value={contextValue}>
+      <div ref={containerRef} className={containerClasses}>
+        {children}
+      </div>
+    </AccordionContext.Provider>
+  )
 }

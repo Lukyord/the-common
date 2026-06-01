@@ -206,10 +206,43 @@
     padding-bottom: calc(var(--gap-section) * 2);
   }
 
+  .entry-content :is(h6) {
+    font-size: var(--font-size-h6) !important;
+    line-height: var(--line-height-h6);
+  }
+  .entry-content :is(h5) {
+    font-size: var(--font-size-h6) !important;
+    line-height: var(--line-height-h6);
+  }
+  .entry-content :is(h4) {
+    font-size: var(--font-size-h5) !important;
+    line-height: var(--line-height-h5);
+  }
+  .entry-content :is(h3) {
+    font-size: var(--font-size-h4) !important;
+    line-height: var(--line-height-h4);
+  }
+  .entry-content :is(h2) {
+    font-size: var(--font-size-h3) !important;
+    line-height: var(--line-height-h3);
+  }
+  .entry-content :is(h1) {
+    font-size: var(--font-size-h2) !important;
+    line-height: var(--line-height-h2);
+  }
+
   /* CTAs ====================*/
   [class*='button-'] {
     font-size: var(--font-size-h6);
     line-height: var(--line-height-h6);
+  }
+
+  /* FORM ====================*/
+  .input.filled .label.anim.fixed {
+    font-size: calc(var(--input-font-size) * 0.7);
+  }
+  .input:has(*:-internal-autofill-selected) .label.anim.fixed {
+    font-size: calc(var(--input-font-size) * 0.7);
   }
 }
 
