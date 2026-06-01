@@ -53,7 +53,7 @@ export const LocationSelector = () => {
           <p className="type-d-label type-m-body-m letter-spacing-003 uppercase weight-medium">
             SELECT LOCATION
           </p>
-          <i className="ic ic-angle-down size-icon-2xs hidden-device-md c-beige" aria-hidden></i>
+          <i className="ic ic-arrow-down size-icon-2xs hidden-device-md c-beige" aria-hidden></i>
         </button>
 
         <div className="location-items">

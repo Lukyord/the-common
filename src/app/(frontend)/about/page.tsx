@@ -2,6 +2,7 @@ import React from 'react'
 import type { Metadata } from 'next'
 
 import { AwardsSection, toAwardsData } from '@/components/brand/about/AwardsSection'
+import KinnestMarquee, { toKinnestMarqueeData } from '@/components/brand/about/KinnestMarquee'
 import { ReSection } from '@/components/brand/about/ReSection'
 import { InfoSection, toInfoBlocks } from '@/components/brand/homepage/about'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
@@ -10,6 +11,7 @@ import { MarkdownContent } from '@/components/common/markdown-content'
 import { generateMeta } from '@/lib/generateMeta'
 import { resolveMedia } from '@/lib/resolveMedia'
 import { getAboutPayloadData } from '@/payload/queries/about'
+import { getContactPayloadData } from '@/payload/queries/contact'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,13 +26,17 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  const { about } = await getAboutPayloadData()
+  const [{ about }, { contact }] = await Promise.all([
+    getAboutPayloadData(),
+    getContactPayloadData(),
+  ])
   const { hero, info, awards } = about
   const heroBackground = resolveMedia(hero?.backgroundMedia)
   const heroBackgroundMobile = resolveMedia(hero?.mobileBackgroundMedia)
   const infoBlocks = info?.length ? toInfoBlocks(info) : []
   const [firstInfoBlock, ...moreInfoBlocks] = infoBlocks
   const awardsData = toAwardsData(awards)
+  const kinnestMarqueeData = toKinnestMarqueeData(about?.kinnestMarquee, contact?.kinnestGroup)
 
   return (
     <main id="main" className="about-page">
@@ -75,6 +81,8 @@ export default async function AboutPage() {
       ))}
 
       <AwardsSection {...awardsData} />
+
+      <KinnestMarquee {...kinnestMarqueeData} />
     </main>
   )
 }

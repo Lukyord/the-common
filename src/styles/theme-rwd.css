@@ -118,6 +118,7 @@
 
   .location-selector__inner {
     padding: var(--spacing-sm) var(--spacing-3xs) 0;
+    gap: var(--spacing-xs);
   }
 
   .location-selector__label {
@@ -446,6 +447,26 @@
 
   .award-marquee > .horizontal-marquee:not(:first-child) {
     margin-top: var(--spacing-sm);
+  }
+
+  /* Kinnest Marquee */
+  [data-section='kinnest-marquee'] .kinnest-marquee__item {
+    height: 52.3076923077vw;
+  }
+
+  [data-section='kinnest-marquee'] .kinnest-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--spacing-lg) var(--spacing-container);
+  }
+
+  [data-section='kinnest-marquee'] .kinnest-cta .logo {
+    width: 13.887rem;
+  }
+
+  [data-section='kinnest-marquee'] .kinnest-cta .text {
+    width: 100%;
+    justify-content: space-between;
   }
 
   /* PAGE: NOT FOUND */
