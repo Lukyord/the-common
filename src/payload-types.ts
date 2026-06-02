@@ -268,6 +268,40 @@ export interface Branch {
     mobileBackgroundMedia?: (number | null) | Media;
     title?: string | null;
   };
+  about?: {
+    bgColor?: string | null;
+    title?: string | null;
+    description?: string | null;
+    backgroundMedia?: (number | null) | Media;
+    mobileBackgroundMedia?: (number | null) | Media;
+  };
+  vibesCheck?: {
+    title?: string | null;
+    primaryColor?: string | null;
+    secondaryColor?: string | null;
+    gallery?:
+      | {
+          title?: string | null;
+          day?: {
+            media?: (number | null) | Media;
+            mediaMobile?: (number | null) | Media;
+          };
+          night?: {
+            media?: (number | null) | Media;
+            mediaMobile?: (number | null) | Media;
+          };
+          id?: string | null;
+        }[]
+      | null;
+  };
+  vendorsSection?: {
+    title?: string | null;
+    displayType?: ('latest' | 'highlight') | null;
+    /**
+     * Manually select up to 3 vendors. Only vendors from this branch are shown.
+     */
+    highlightVendors?: (number | Vendor)[] | null;
+  };
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -276,77 +310,6 @@ export interface Branch {
      */
     image?: (number | null) | Media;
   };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * Contact page per branch.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "branch-contact-pages".
- */
-export interface BranchContactPage {
-  id: number;
-  title: string;
-  branch: number | Branch;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * Space rental page per branch.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "branch-space-rental-pages".
- */
-export interface BranchSpaceRentalPage {
-  id: number;
-  title: string;
-  branch: number | Branch;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blogs".
- */
-export interface Blog {
-  id: number;
-  title: string;
-  slug: string;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "vendor-categories".
- */
-export interface VendorCategory {
-  id: number;
-  text: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -435,6 +398,77 @@ export interface Vendor {
         id?: string | null;
       }[]
     | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vendor-categories".
+ */
+export interface VendorCategory {
+  id: number;
+  text: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Contact page per branch.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branch-contact-pages".
+ */
+export interface BranchContactPage {
+  id: number;
+  title: string;
+  branch: number | Branch;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Space rental page per branch.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branch-space-rental-pages".
+ */
+export interface BranchSpaceRentalPage {
+  id: number;
+  title: string;
+  branch: number | Branch;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogs".
+ */
+export interface Blog {
+  id: number;
+  title: string;
+  slug: string;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -650,6 +684,47 @@ export interface BranchesSelect<T extends boolean = true> {
         backgroundMedia?: T;
         mobileBackgroundMedia?: T;
         title?: T;
+      };
+  about?:
+    | T
+    | {
+        bgColor?: T;
+        title?: T;
+        description?: T;
+        backgroundMedia?: T;
+        mobileBackgroundMedia?: T;
+      };
+  vibesCheck?:
+    | T
+    | {
+        title?: T;
+        primaryColor?: T;
+        secondaryColor?: T;
+        gallery?:
+          | T
+          | {
+              title?: T;
+              day?:
+                | T
+                | {
+                    media?: T;
+                    mediaMobile?: T;
+                  };
+              night?:
+                | T
+                | {
+                    media?: T;
+                    mediaMobile?: T;
+                  };
+              id?: T;
+            };
+      };
+  vendorsSection?:
+    | T
+    | {
+        title?: T;
+        displayType?: T;
+        highlightVendors?: T;
       };
   meta?:
     | T

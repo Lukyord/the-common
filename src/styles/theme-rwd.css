@@ -32,6 +32,18 @@
     height: calc(100svh - 6.816rem);
   }
 
+  /* Card Section */
+  [data-section='card-section'] .sc-header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-2sm);
+  }
+
+  [data-section='card-section'] .card-container {
+    --column: 1;
+    --gap-x: var(--spacing-container);
+  }
+
   /* PAGE ==================== */
   /* PAGE: INDEX */
   /* Announcement */
@@ -568,5 +580,63 @@
   [data-section='contact-accordion'] .accordion-single-content .accordion-column-content {
     flex: 0 0 100%;
     width: 100%;
+  }
+
+  /* BRANCH ======================== */
+  /* PAGE: BRANCH LANDING */
+  [data-section='about-section'] .container {
+    min-height: unset;
+  }
+
+  [data-section='about-section'] .media-content {
+    grid-template-columns: 1fr;
+    margin-bottom: var(--spacing-md);
+  }
+  [data-section='about-section'] .media-content .media {
+    aspect-ratio: 1.5034843206;
+    height: auto;
+    position: relative;
+  }
+
+  [data-section='about-section'] .sc-header {
+    flex-direction: column;
+  }
+
+  [data-section='about-section'] .sc-header .sc-desc {
+    width: 100%;
+  }
+
+  [data-section='vibe'] .container {
+    min-height: 80svh;
+    gap: var(--spacing-2xl);
+  }
+
+  [data-section='vibe'] .time-toggle-btn.is-night::after {
+    width: 1.4rem;
+    margin-left: var(--spacing-5xs);
+  }
+  [data-section='vibe'] .time-toggle-btn.is-day::before {
+    width: 1.4rem;
+    margin-right: var(--spacing-5xs);
+  }
+
+  [data-section='vibe'] .media-trigger-overflow {
+    padding: var(--spacing-2xs) var(--spacing-3xs);
+    --mask-box-image-offset: var(--spacing-3xs);
+  }
+
+  [data-section='vibe'] .media-trigger-container {
+    width: 100vw;
+    margin-left: calc(-1 * var(--spacing-container));
+    margin-right: calc(-1 * var(--spacing-container));
+  }
+
+  [data-section='vibe'] .media-trigger-wrapper {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  [data-section='vibe'] .time-toggle-btn {
+    padding: var(--spacing-5xs);
   }
 }

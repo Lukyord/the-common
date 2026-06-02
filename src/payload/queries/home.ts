@@ -27,6 +27,26 @@ export type HomePayloadData = {
 
 const LIFESTYLE_LIMIT = 10
 
+export type HomepageMottoData = {
+  motto: Homepage['motto']
+}
+
+export const getHomepageMottoData = cache(async (): Promise<HomepageMottoData> => {
+  const payload = await getPayloadClient()
+  const homepage = await payload.findGlobal({
+    slug: 'homepage',
+    depth: 0,
+    overrideAccess: false,
+    select: {
+      motto: true,
+    },
+  })
+
+  return {
+    motto: homepage?.motto ?? null,
+  }
+})
+
 export const getHomePayloadData = cache(async (): Promise<HomePayloadData> => {
   const payload = await getPayloadClient()
 

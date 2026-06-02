@@ -74,22 +74,16 @@ export default async function HomePage() {
         </section>
 
         <MottoMarquee items={homepage?.motto} />
-
         <HomepageAbout data={homepage?.about} />
-
         <ScrollShapeSection data={homepage?.peopleOfTheCommons} />
-
         <FlexibleSection show={homepage?.flexibleSectionShow} items={homepage?.flexibleSection} />
-
         <MoodSection
           data={homepage?.whatAreYouInTheMoodFor}
           lifestyles={moodLifestyles}
           defaultVendors={defaultMoodVendors}
           vendorPool={moodVendorPool}
         />
-
         <FullscreenSlide slides={homepage?.membership} />
-
         <Bingo data={homepage?.bingo} />
       </main>
     </>

@@ -64,9 +64,73 @@
   -webkit-mask-image: url('../../public/shapes/about-shape-6.svg');
 }
 
+/* VENDER CARD */
+[data-card='vendor'] .card-media {
+  aspect-ratio: 1;
+  width: 100%;
+  height: fit-content;
+  margin-bottom: var(--spacing-2xs);
+}
+
+[data-card='vendor'] .card-ttl {
+  margin-bottom: var(--spacing-3xs);
+}
+
+[data-card='vendor'] .card-desc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-3xs);
+}
+
+[data-card='vendor'] .card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3xs);
+}
+
+[data-card='vendor'] .tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-6xs) var(--spacing-4xs);
+  background-color: transparent;
+  border: 0.1rem solid var(--color-dark-brown);
+  position: relative;
+  z-index: 5;
+}
+
+html.no-touchevents [data-card='vendor'] .tag:hover {
+  background-color: var(--color-dark-brown);
+  color: var(--color-beige);
+}
+
 /* FOOTER ==================== */
 
 /* SECTION ==================== */
+/* Card Section */
+[data-section='card-section'] .sc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  margin-bottom: var(--spacing-lg);
+}
+
+[data-section='card-section'] .card-container {
+  --column: 3;
+  --gap-x: var(--spacing-sm);
+}
+
+[data-section='card-section'] .swiper {
+  overflow: visible;
+}
+
+[data-section='card-section'] .swiper-pagination {
+  position: static;
+  margin-top: var(--spacing-md);
+}
+
 /* Page Hero */
 [data-section='page-hero'] {
   position: relative;
@@ -1519,4 +1583,214 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 
 [data-section='contact-accordion'] .entry-content *:is(ul, ol) {
   --gap-content: var(--spacing-sm);
+}
+
+/* BRANCH ======================== */
+/* PAGE: BRANCH LANDING */
+[data-section='about-section'] {
+  background-color: var(--about-bg-color);
+  color: var(--color-white);
+}
+[data-section='about-section'] .container {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+[data-section='about-section'] .media-content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 63.4558823529% 1fr;
+  margin-bottom: var(--spacing-2xl);
+}
+[data-section='about-section'] .media-content .media {
+  aspect-ratio: 1.5034843206;
+  height: auto;
+  position: relative;
+}
+
+[data-section='about-section'] .sc-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--spacing-2xs);
+}
+
+[data-section='about-section'] .sc-header .sc-desc {
+  width: 45.3676470588%;
+}
+
+[data-section='vibe'] {
+  position: relative;
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+[data-section='vibe'] .sc-inner {
+  position: relative;
+  z-index: 3;
+}
+
+[data-section='vibe'] .container {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+[data-section='vibe'] .sc-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+[data-section='vibe'] .sc-media *:is(figure, img, video, picture) {
+  width: 100%;
+  height: 100%;
+}
+
+[data-section='vibe'] .sc-media.is-fading-out {
+  opacity: 1;
+  animation: vibe-fade-out 0.2s var(--timing-function) forwards;
+}
+
+[data-section='vibe'] .sc-media.is-fading-in {
+  opacity: 0;
+  animation: vibe-fade-in 0.4s var(--timing-function) forwards;
+}
+
+[data-section='vibe'] .sc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-2md);
+}
+
+[data-section='vibe'] .time-toggle-tab {
+  display: flex;
+}
+
+[data-section='vibe'] .time-toggle-btn {
+  display: flex;
+  align-items: center;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  padding: var(--spacing-7xs) var(--spacing-4xs);
+  transition: var(--duration) var(--timing-function);
+  width: fit-content;
+}
+
+[data-section='vibe'] .time-toggle-btn:before,
+[data-section='vibe'] .time-toggle-btn:after {
+  content: '';
+  height: fit-content;
+  width: 0;
+  aspect-ratio: 1;
+  overflow: hidden;
+  margin-left: 0;
+  margin-right: 0;
+  transition:
+    width var(--duration) var(--timing-function),
+    margin-left var(--duration) var(--timing-function) 0.15s,
+    margin-right var(--duration) var(--timing-function) 0.15s;
+}
+
+[data-section='vibe'] .time-toggle-btn:before {
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+}
+
+[data-section='vibe'] .time-toggle-btn:after {
+  background-color: var(--primary-color);
+}
+
+[data-section='vibe'] .time-toggle-btn.is-day {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+[data-section='vibe'] .time-toggle-btn.is-day::before {
+  width: 2rem;
+  margin-right: var(--spacing-3xs);
+}
+
+[data-section='vibe'] .time-toggle-btn.is-night::after {
+  width: 2rem;
+  margin-left: var(--spacing-3xs);
+}
+
+[data-section='vibe'] .media-trigger-container {
+  background-color: var(--color-beige);
+  width: fit-content;
+  margin: 0 auto;
+}
+
+[data-section='vibe'] .media-trigger-overflow {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: var(--spacing-sm) var(--spacing-2sm);
+  --mask-box-image-offset: var(--spacing-2sm);
+  -webkit-mask-box-image: -webkit-linear-gradient(
+    0deg,
+    transparent 0%,
+    white var(--mask-box-image-offset),
+    white calc(100% - var(--mask-box-image-offset)),
+    transparent 100%
+  );
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+[data-section='vibe'] .media-trigger-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6xs);
+}
+
+[data-section='vibe'] .media-trigger-btn {
+  flex-shrink: 0;
+  color: #24282f4d;
+  background: transparent;
+  padding: var(--spacing-5xs) var(--spacing-2xs);
+  transition: var(--duration) var(--timing-function);
+}
+
+[data-section='vibe'] .media-trigger-btn.is-active {
+  color: var(--primary-color);
+  background: var(--secondary-color);
+}
+
+html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hover {
+  opacity: 0.5;
+}
+
+@keyframes vibe-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes vibe-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Branch Landing Vendors */
+.branch-landing-vendors {
+  background-color: var(--color-beige);
 }

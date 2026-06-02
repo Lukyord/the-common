@@ -41,6 +41,7 @@ export default function CustomSelect({
   placeholder = '',
 }: CustomSelectProps) {
   const listboxId = useId()
+  const labelId = `${id}-label`
   const rootRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const normalizedOptions = normalizeOptions(options)
@@ -123,7 +124,7 @@ export default function CustomSelect({
 
   return (
     <div ref={rootRef} className={rootClassName} data-has-error={error ? '' : undefined}>
-      <label className="label anim fixed" htmlFor={id}>
+      <label id={labelId} className="label anim fixed" htmlFor={id}>
         <span>{label}</span>
       </label>
 
@@ -141,7 +142,9 @@ export default function CustomSelect({
 
         <button
           type="button"
+          role="combobox"
           className="custom-select__trigger"
+          aria-labelledby={labelId}
           aria-expanded={isOpen}
           aria-haspopup="listbox"
           aria-controls={listboxId}
