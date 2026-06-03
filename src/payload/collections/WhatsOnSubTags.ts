@@ -1,10 +1,10 @@
 import type { CollectionConfig } from 'payload'
 
-export const VendorCategories: CollectionConfig = {
-  slug: 'vendor-categories',
+export const WhatsOnSubTags: CollectionConfig = {
+  slug: 'whats-on-sub-tags',
   labels: {
-    singular: 'Vendor Category',
-    plural: 'Vendor Categories',
+    singular: "What's On Sub Tag",
+    plural: "What's On Sub Tags",
   },
   admin: {
     useAsTitle: 'text',

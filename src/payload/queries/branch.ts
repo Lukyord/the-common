@@ -1,7 +1,6 @@
 import { cache } from 'react'
 import { notFound } from 'next/navigation'
 
-import { WHATS_ON_MAIN_TAGS, WHATS_ON_SUB_TAGS } from '@/constants/whatsOnTags'
 import { getActiveWhatsOnWhere, isWhatsOnArchived } from '@/lib/whatsOnArchive'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type { Branch, Vendor, WhatsOn } from '@/payload-types'
@@ -155,17 +154,17 @@ export type BranchLandingWhatsOnCard = {
   highlightText?: string | null
 }
 
-function getWhatsOnMainTagText(tagId: WhatsOn['mainTag']) {
-  if (!tagId) return null
-  return WHATS_ON_MAIN_TAGS.find((tag) => tag.id === tagId)?.text ?? null
+function getWhatsOnMainTagText(tag: WhatsOn['mainTag']) {
+  if (!tag || typeof tag === 'number') return null
+  return tag.text ?? null
 }
 
-function getWhatsOnSubTagTexts(tagIds: WhatsOn['subTags']) {
-  if (!tagIds?.length) return []
+function getWhatsOnSubTagTexts(tags: WhatsOn['subTags']) {
+  if (!tags?.length) return []
 
-  return tagIds.flatMap((tagId) => {
-    const text = WHATS_ON_SUB_TAGS.find((tag) => tag.id === tagId)?.text
-    return text ? [text] : []
+  return tags.flatMap((tag) => {
+    if (typeof tag === 'number') return []
+    return tag.text ? [tag.text] : []
   })
 }
 

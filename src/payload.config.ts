@@ -19,6 +19,8 @@ import { Blogs } from './payload/collections/Blogs'
 import { VendorCategories } from './payload/collections/VendorCategories'
 import { Vendors } from './payload/collections/Vendors'
 import { WhatsOn } from './payload/collections/WhatsOn'
+import { WhatsOnMainTags } from './payload/collections/WhatsOnMainTags'
+import { WhatsOnSubTags } from './payload/collections/WhatsOnSubTags'
 import { About } from './payload/globals/About'
 import { Contact } from './payload/globals/Contact'
 import { Homepage } from './payload/globals/Homepage'
@@ -73,14 +75,18 @@ export default buildConfig({
   collections: [
     Users,
     Media,
-    Lifestyle,
+    // Branches first in sidebar (group order follows first collection in this list)
     Branches,
     BranchContactPages,
     BranchSpaceRentalPages,
     Blogs,
-    VendorCategories,
     Vendors,
     WhatsOn,
+    // Miscellaneous last in sidebar (group order follows first collection in this list)
+    Lifestyle,
+    VendorCategories,
+    WhatsOnMainTags,
+    WhatsOnSubTags,
   ],
   globals: [About, Contact, Homepage, PrivacyPolicy],
   editor: lexicalEditor(),

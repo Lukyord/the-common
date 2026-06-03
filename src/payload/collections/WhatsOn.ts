@@ -1,5 +1,4 @@
 import type { CollectionConfig, Field, Validate } from 'payload'
-import { whatsOnMainTagSelectOptions, whatsOnSubTagSelectOptions } from '@/constants/whatsOnTags'
 
 const validateSubTags: Validate = (value) => {
   if (!value) return true
@@ -111,15 +110,15 @@ export const WhatsOn: CollectionConfig = {
     },
     {
       name: 'mainTag',
-      type: 'select',
+      type: 'relationship',
+      relationTo: 'whats-on-main-tags',
       label: 'Main Tag',
-      options: whatsOnMainTagSelectOptions,
     },
     {
       name: 'subTags',
-      type: 'select',
+      type: 'relationship',
+      relationTo: 'whats-on-sub-tags',
       label: 'Sub Tag',
-      options: whatsOnSubTagSelectOptions,
       hasMany: true,
       validate: validateSubTags,
     },

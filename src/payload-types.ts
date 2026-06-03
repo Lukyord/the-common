@@ -69,14 +69,16 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    lifestyle: Lifestyle;
     branches: Branch;
     'branch-contact-pages': BranchContactPage;
     'branch-space-rental-pages': BranchSpaceRentalPage;
     blogs: Blog;
-    'vendor-categories': VendorCategory;
     vendors: Vendor;
     'whats-on': WhatsOn;
+    lifestyle: Lifestyle;
+    'vendor-categories': VendorCategory;
+    'whats-on-main-tags': WhatsOnMainTag;
+    'whats-on-sub-tags': WhatsOnSubTag;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,14 +88,16 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    lifestyle: LifestyleSelect<false> | LifestyleSelect<true>;
     branches: BranchesSelect<false> | BranchesSelect<true>;
     'branch-contact-pages': BranchContactPagesSelect<false> | BranchContactPagesSelect<true>;
     'branch-space-rental-pages': BranchSpaceRentalPagesSelect<false> | BranchSpaceRentalPagesSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
-    'vendor-categories': VendorCategoriesSelect<false> | VendorCategoriesSelect<true>;
     vendors: VendorsSelect<false> | VendorsSelect<true>;
     'whats-on': WhatsOnSelect<false> | WhatsOnSelect<true>;
+    lifestyle: LifestyleSelect<false> | LifestyleSelect<true>;
+    'vendor-categories': VendorCategoriesSelect<false> | VendorCategoriesSelect<true>;
+    'whats-on-main-tags': WhatsOnMainTagsSelect<false> | WhatsOnMainTagsSelect<true>;
+    'whats-on-sub-tags': WhatsOnSubTagsSelect<false> | WhatsOnSubTagsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -184,16 +188,6 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lifestyle".
- */
-export interface Lifestyle {
-  id: number;
-  text: string;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * Branch identity and landing page content.
@@ -425,6 +419,16 @@ export interface VendorCategory {
   createdAt: string;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lifestyle".
+ */
+export interface Lifestyle {
+  id: number;
+  text: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Activities and listings shown on each branch.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -444,21 +448,8 @@ export interface WhatsOn {
   bgColor?: string | null;
   date?: string | null;
   time?: string | null;
-  mainTag?: ('signature-event' | 'thewholesome-club' | 'community-fun' | 'workshop') | null;
-  subTags?:
-    | (
-        | 'music'
-        | 'kids-family'
-        | 'food-drinks'
-        | 'market'
-        | 'art-culture'
-        | 'health-well-being'
-        | 'pet'
-        | 'lifestyle'
-        | 'social-impact'
-        | 'sustainability'
-      )[]
-    | null;
+  mainTag?: (number | null) | WhatsOnMainTag;
+  subTags?: (number | WhatsOnSubTag)[] | null;
   highlightText?: {
     enabled?: boolean | null;
     text?: string | null;
@@ -488,6 +479,26 @@ export interface WhatsOn {
      */
     image?: (number | null) | Media;
   };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whats-on-main-tags".
+ */
+export interface WhatsOnMainTag {
+  id: number;
+  text: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whats-on-sub-tags".
+ */
+export interface WhatsOnSubTag {
+  id: number;
+  text: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -585,10 +596,6 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'lifestyle';
-        value: number | Lifestyle;
-      } | null)
-    | ({
         relationTo: 'branches';
         value: number | Branch;
       } | null)
@@ -605,16 +612,28 @@ export interface PayloadLockedDocument {
         value: number | Blog;
       } | null)
     | ({
-        relationTo: 'vendor-categories';
-        value: number | VendorCategory;
-      } | null)
-    | ({
         relationTo: 'vendors';
         value: number | Vendor;
       } | null)
     | ({
         relationTo: 'whats-on';
         value: number | WhatsOn;
+      } | null)
+    | ({
+        relationTo: 'lifestyle';
+        value: number | Lifestyle;
+      } | null)
+    | ({
+        relationTo: 'vendor-categories';
+        value: number | VendorCategory;
+      } | null)
+    | ({
+        relationTo: 'whats-on-main-tags';
+        value: number | WhatsOnMainTag;
+      } | null)
+    | ({
+        relationTo: 'whats-on-sub-tags';
+        value: number | WhatsOnSubTag;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -695,15 +714,6 @@ export interface MediaSelect<T extends boolean = true> {
   filesize?: T;
   width?: T;
   height?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lifestyle_select".
- */
-export interface LifestyleSelect<T extends boolean = true> {
-  text?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -846,15 +856,6 @@ export interface BlogsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "vendor-categories_select".
- */
-export interface VendorCategoriesSelect<T extends boolean = true> {
-  text?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "vendors_select".
  */
 export interface VendorsSelect<T extends boolean = true> {
@@ -929,6 +930,42 @@ export interface WhatsOnSelect<T extends boolean = true> {
         description?: T;
         image?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lifestyle_select".
+ */
+export interface LifestyleSelect<T extends boolean = true> {
+  text?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vendor-categories_select".
+ */
+export interface VendorCategoriesSelect<T extends boolean = true> {
+  text?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whats-on-main-tags_select".
+ */
+export interface WhatsOnMainTagsSelect<T extends boolean = true> {
+  text?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whats-on-sub-tags_select".
+ */
+export interface WhatsOnSubTagsSelect<T extends boolean = true> {
+  text?: T;
   updatedAt?: T;
   createdAt?: T;
 }

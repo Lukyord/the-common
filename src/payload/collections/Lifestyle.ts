@@ -8,6 +8,7 @@ export const Lifestyle: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'text',
+    group: 'Miscellaneous',
   },
   access: {
     read: () => true,
