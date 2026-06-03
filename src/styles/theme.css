@@ -1279,11 +1279,15 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-2sm);
 }
 
 [data-section='about-re'] .sc-header .sc-desc {
   max-width: 90rem;
+}
+
+[data-section='about-re'] .sc-header .sc-ttl-logo {
+  aspect-ratio: 7.04347826087;
+  width: 32.4rem;
 }
 
 [data-section='about-re'] .content {
@@ -1293,7 +1297,7 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-lg) 0;
 }
 
 [data-section='about-re'] .media-container {
@@ -1327,7 +1331,7 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 }
 
 [data-section='about-re'] .trigger-wrapper {
-  width: 89.166666667%;
+  width: 89.2%;
   aspect-ratio: 1.202247191;
   position: relative;
 }
@@ -1343,9 +1347,7 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   text-align: center;
   text-transform: uppercase;
   cursor: pointer;
-  transition:
-    transform var(--duration) var(--timing-function),
-    background-color var(--duration) var(--timing-function);
+  transition: transform var(--duration) var(--timing-function);
 }
 
 [data-section='about-re'] .re-trigger .text {
@@ -1355,54 +1357,47 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-[data-section='about-re'] .re-trigger[data-type='reuse'] {
-  aspect-ratio: 1;
-  width: 37.38317757%;
-  left: 5.056074766%;
-  top: 6.453183521%;
-  border-radius: 50%;
-  rotate: -7.4deg;
-  background-color: var(--color-saladaeng-orange);
-}
 [data-section='about-re'] .re-trigger[data-type='recycle'] {
   aspect-ratio: 1;
-  width: 39.875389408%;
-  left: 47.255451713%;
-  top: 5.140449438%;
-  rotate: 4.4deg;
-  background-color: var(--color-thonglor-navy);
-  color: var(--color-white);
+  width: 34.2679127726%;
+  left: 3.5218068536%;
+  top: 10.04119850187%;
+  rotate: -12.1deg;
 }
+[data-section='about-re'] .re-trigger[data-type='reuse'] {
+  aspect-ratio: 1;
+  width: 40.2647975078%;
+  left: 42.523364486%;
+  top: 3.7453183521%;
+  border-radius: 50%;
+}
+
 [data-section='about-re'] .re-trigger[data-type='refill'] {
-  aspect-ratio: 1.695364238;
-  width: 39.875389408%;
-  left: 3.708722741%;
-  top: 59.629213483%;
-  rotate: 1.4deg;
-  background-color: var(--color-cloud-11-pink);
+  aspect-ratio: 1;
+  width: 36.292834891%;
+  left: 5.2959501558%;
+  top: 52.05992509363%;
 }
 [data-section='about-re'] .re-trigger[data-type='redistribute'] {
-  aspect-ratio: 1.441801268;
-  width: 48.524922118%;
-  left: 46.080996885%;
-  top: 55.604868914%;
-  rotate: -1.53deg;
-  background-color: var(--color-cloud-11-accent);
-  text-align: left;
+  aspect-ratio: 1.7020408163;
+  width: 64.953271028%;
+  left: 43.4579439252%;
+  top: 55.05617977528%;
+}
+
+[data-section='about-re'] .re-trigger .cover {
+  transition: opacity var(--duration) var(--timing-function);
 }
 
 [data-section='about-re'] .re-trigger:hover {
   z-index: 10;
 }
 
-[data-section='about-re']
-  .trigger-wrapper.has-trigger-hover:hover
-  .re-trigger[data-type='reuse']:not(:hover) {
-  background-color: color-mix(in srgb, var(--color-saladaeng-orange) 35%, transparent);
+[data-section='about-re'] .trigger-wrapper:has(.re-trigger:hover) .re-trigger:not(:hover) .cover {
+  opacity: 0.6;
 }
 
-[data-section='about-re']
+/* [data-section='about-re']
   .trigger-wrapper.has-trigger-hover:hover
   .re-trigger[data-type='recycle']:not(:hover) {
   background-color: color-mix(in srgb, var(--color-thonglor-navy) 35%, transparent);
@@ -1418,21 +1413,19 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   .trigger-wrapper.has-trigger-hover:hover
   .re-trigger[data-type='redistribute']:not(:hover) {
   background-color: color-mix(in srgb, var(--color-cloud-11-accent) 35%, transparent);
-}
+} */
 
 [data-section='about-re'] .re-trigger {
   --hover-offset: 2.5%;
   --hover-offset-neg: calc(-1 * var(--hover-offset));
 }
 
-[data-section='about-re'] .re-trigger[data-type='reuse']:hover {
+[data-section='about-re'] .re-trigger[data-type='recycle']:hover {
   transform: translate(var(--hover-offset-neg), var(--hover-offset-neg));
 }
-
-[data-section='about-re'] .re-trigger[data-type='recycle']:hover {
+[data-section='about-re'] .re-trigger[data-type='reuse']:hover {
   transform: translate(var(--hover-offset), var(--hover-offset-neg));
 }
-
 [data-section='about-re'] .re-trigger[data-type='refill']:hover {
   transform: translate(var(--hover-offset-neg), var(--hover-offset));
 }
@@ -1537,7 +1530,7 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 [data-section='not-found'] {
   flex-grow: 1;
   color: var(--color-beige);
-  background-color: #581613;
+  background-color: var(--color-dark-brown);
 }
 [data-section='not-found'] .sc-inner {
   height: 100%;
@@ -1733,12 +1726,14 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 [data-section='about-section'] .sc-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   gap: var(--spacing-2xs);
 }
 
 [data-section='about-section'] .sc-header .sc-desc {
   width: 45.3676470588%;
+  flex-shrink: 0;
 }
 
 [data-section='vibe'] {

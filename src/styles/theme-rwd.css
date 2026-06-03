@@ -380,8 +380,11 @@
 
   /* About Re */
   [data-section='about-re'] .sc-header {
-    gap: var(--spacing-4xs);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-2lg);
+  }
+
+  [data-section='about-re'] .sc-header .sc-ttl-logo {
+    width: 58.1333333333vw;
   }
 
   [data-section='about-re'] .content {
@@ -404,19 +407,19 @@
     grid-row: 1;
     width: 100%;
     aspect-ratio: unset;
-    height: max(37.333333333vw, 14rem);
+    height: max(41.3333333333vw, 15.5rem);
     display: flex;
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    padding: 0 var(--spacing-container);
     &::-webkit-scrollbar {
       display: none;
     }
     &::-webkit-scrollbar {
       display: none;
     }
-    padding: var(--spacing-2xs) var(--spacing-container);
   }
 
   [data-section='about-re'] .re-trigger {
@@ -424,27 +427,32 @@
     font-size: 4.8vw;
     flex-shrink: 0;
   }
-  [data-section='about-re'] .re-trigger[data-type='reuse'] {
-    width: 28.8%;
-    left: unset;
-    top: unset;
-  }
   [data-section='about-re'] .re-trigger[data-type='recycle'] {
-    width: 30.933333333%;
+    width: 32vw;
     left: unset;
     top: unset;
   }
-  [data-section='about-re'] .re-trigger[data-type='refill'] {
-    width: 30.933333333%;
+  [data-section='about-re'] .re-trigger[data-type='reuse'] {
+    width: 37.3333333333vw;
     left: unset;
     top: unset;
-    margin-top: 10.133333333vw;
+    margin-top: 3.7706666667vw;
+    margin-left: 2vw;
+  }
+
+  [data-section='about-re'] .re-trigger[data-type='refill'] {
+    width: 34.6666666667vw;
+    left: unset;
+    top: unset;
+    margin-top: 0;
   }
   [data-section='about-re'] .re-trigger[data-type='redistribute'] {
-    width: 37.333333333%;
+    width: 56.2666666667vw;
     left: unset;
     top: unset;
-    margin-top: 2.52vw;
+    margin-top: 3.7706666667vw;
+    margin-right: 31.4666666667vw;
+    margin-left: 2vw;
   }
 
   [data-section='about-re'] .content-desc {
@@ -600,6 +608,7 @@
 
   [data-section='about-section'] .sc-header {
     flex-direction: column;
+    align-items: flex-start;
   }
 
   [data-section='about-section'] .sc-header .sc-desc {

@@ -7,65 +7,43 @@ import React, { useState } from 'react'
 
 const RE_TRIGGERS = [
   {
-    type: 'reuse',
+    type: 'recycle',
     image: '/designs/re-1.webp',
-    pattern: '/designs/re-pattern-1.webp',
-    alt: 'REUSE',
-    title: 'ReUSE',
+    bg: '/designs/recycle.webp',
+    alt: 'Recycle',
   },
   {
-    type: 'recycle',
+    type: 'reuse',
     image: '/designs/re-2.webp',
-    pattern: '/designs/re-pattern-2.webp',
-    alt: 'RECYCLE',
-    title: 'Recycle',
+    bg: '/designs/reuse.webp',
+    alt: 'Reuse',
   },
   {
     type: 'refill',
     image: '/designs/re-3.webp',
-    pattern: '/designs/re-pattern-3.webp',
-    alt: 'REFILL',
-    title: 'Refill',
+    bg: '/designs/refill.webp',
+    alt: 'Refill',
   },
   {
     type: 'redistribute',
     image: '/designs/re-4.webp',
-    pattern: '/designs/re-pattern-4.webp',
-    alt: 'REDISTRIBUTE',
-    title: (
-      <>
-        Re-
-        <br />
-        distribute
-      </>
-    ),
+    bg: '/designs/redistribute.webp',
+    alt: 'Redistribute',
   },
 ] as const
 
 type ReType = (typeof RE_TRIGGERS)[number]['type']
 
 export const ReSection = () => {
-  const [activeType, setActiveType] = useState<ReType>('reuse')
-  const [hasTriggerHover, setHasTriggerHover] = useState(false)
+  const [activeType, setActiveType] = useState<ReType>('recycle')
 
   return (
     <section data-section="about-re">
       <div className="sc-inner">
         <div className="container">
           <div className="sc-header">
-            <AnimateOnScroll triggerClass="fadeIn" className="sc-ttl">
-              <MarkdownContent
-                as="h2"
-                className="type-d-header type-m-headliner-m uppercase weight-medium letter-spacing-002"
-              >
-                {'ONE COMMUNITY.\nONE PLANET. ONE LOVE.'}
-              </MarkdownContent>
-            </AnimateOnScroll>
-            <AnimateOnScroll triggerClass="fadeIn" className="sc-desc">
-              <MarkdownContent as="p" className="type-d-body-m type-m-body-r letter-spacing-002">
-                Discover easy ways to REUSE, RECYCLE, REFILL & REDISTRIBUTE resources at theCOMMONS.
-                Small acts create meaningful impacts.
-              </MarkdownContent>
+            <AnimateOnScroll triggerClass="fadeIn" className="sc-ttl-logo">
+              <RenderMedia src="/designs/re-series-logo.webp" alt="RE Series Logo" />
             </AnimateOnScroll>
           </div>
 
@@ -85,31 +63,17 @@ export const ReSection = () => {
                 </div>
               </div>
             </div>
-            <div
-              className={`
-                  trigger-wrapper 
-                  ${hasTriggerHover ? 'has-trigger-hover' : ''}
-                `}
-            >
-              {RE_TRIGGERS.map(({ type, pattern, alt, title }) => (
+            <div className="trigger-wrapper">
+              {RE_TRIGGERS.map(({ type, bg, alt }) => (
                 <AnimateOnScroll
                   key={type}
                   triggerClass="fadeIn"
                   className={`re-trigger`}
                   data-type={type}
-                  onMouseEnter={() => {
-                    setActiveType(type)
-                    setHasTriggerHover(true)
-                  }}
-                  onMouseLeave={() => {
-                    setHasTriggerHover(false)
-                  }}
+                  onMouseEnter={() => setActiveType(type)}
                 >
                   <div className="cover">
-                    <RenderMedia src={pattern} alt={alt} />
-                  </div>
-                  <div className="text">
-                    <h3>{title}</h3>
+                    <RenderMedia src={bg} alt={alt} />
                   </div>
                 </AnimateOnScroll>
               ))}
