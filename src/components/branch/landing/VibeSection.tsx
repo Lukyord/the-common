@@ -7,6 +7,7 @@ import { resolveMedia } from '@/lib/resolveMedia'
 import RenderMedia from '@/components/common/media'
 import { MarkdownContent } from '@/components/common/markdown-content'
 import { CSSProperties } from 'react'
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 type VibeSectionProps = {
   data?: Branch['vibesCheck'] | null
@@ -17,8 +18,8 @@ const FADE_IN_DURATION_MS = 400
 
 export default function VibeSection({ data }: VibeSectionProps) {
   const gallery = data?.gallery?.filter((item) => item?.day?.media || item?.night?.media) || []
-  const [selectedIsNight, setSelectedIsNight] = useState(false)
-  const [displayedIsNight, setDisplayedIsNight] = useState(false)
+  const [selectedIsNight, setSelectedIsNight] = useState(true)
+  const [displayedIsNight, setDisplayedIsNight] = useState(true)
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [displayedIndex, setDisplayedIndex] = useState(0)
   const [transitionState, setTransitionState] = useState<'idle' | 'fading-out' | 'fading-in'>(
@@ -108,17 +109,17 @@ export default function VibeSection({ data }: VibeSectionProps) {
       <div className="container">
         <div className="sc-header">
           {data?.title && (
-            <div className="sc-ttl">
+            <AnimateOnScroll triggerClass="fadeIn" className="sc-ttl">
               <MarkdownContent
                 as="h2"
                 className="type-d-header type-m-headliner-m letter-spacing-002 weight-medium uppercase"
               >
                 {data.title}
               </MarkdownContent>
-            </div>
+            </AnimateOnScroll>
           )}
 
-          <div className="time-toggle-tab">
+          <AnimateOnScroll triggerClass="fadeIn" className="time-toggle-tab">
             <button
               type="button"
               className={`type-d-body-l type-m-body-s uppercase letter-spacing-002 time-toggle-btn ${selectedIsNight ? 'is-night' : 'is-day'}`}
@@ -127,10 +128,10 @@ export default function VibeSection({ data }: VibeSectionProps) {
             >
               {selectedIsNight ? 'Night' : 'Day'}
             </button>
-          </div>
+          </AnimateOnScroll>
         </div>
 
-        <div className="media-trigger-container">
+        <AnimateOnScroll triggerClass="fadeIn" className="media-trigger-container">
           <div className="media-trigger-overflow" data-lenis-prevent>
             <div className="media-trigger-wrapper">
               {gallery.map((item, index) => (
@@ -145,7 +146,7 @@ export default function VibeSection({ data }: VibeSectionProps) {
               ))}
             </div>
           </div>
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   )

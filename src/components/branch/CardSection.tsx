@@ -55,7 +55,7 @@ export default function CardSection<TCard = MoodVendorCard>({
               </AnimateOnScroll>
             )}
             {cta?.label && cta?.href && (
-              <div className="sc-cta">
+              <AnimateOnScroll triggerClass="fadeIn" className="sc-cta">
                 <Link
                   href={cta.href}
                   className="button-template"
@@ -65,7 +65,7 @@ export default function CardSection<TCard = MoodVendorCard>({
                     <span>{cta.label}</span>
                   </span>
                 </Link>
-              </div>
+              </AnimateOnScroll>
             )}
           </div>
 

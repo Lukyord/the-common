@@ -53,6 +53,7 @@ export const Vendors: CollectionConfig = {
       label: 'Media',
       admin: {
         className: 'upload-field--aspect-1',
+        description: 'Recommended aspect ratio: 1',
       },
     },
     {

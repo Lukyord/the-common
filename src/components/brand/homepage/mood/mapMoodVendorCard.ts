@@ -48,7 +48,7 @@ export function mapVendorToMoodCard(vendor: Vendor): MoodVendorCard | null {
     id: vendor.id,
     media: { src: media.src, alt: media.alt || vendor.name },
     title: vendor.name,
-    link: `/${branch.slug}/vendor/${vendor.slug}`,
+    link: `/${branch.slug}/vendors/${vendor.slug}`,
     branch: {
       name: branch.name,
       bgColor: branch.bgColor ?? 'var(--color-white)',

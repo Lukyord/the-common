@@ -1,8 +1,10 @@
 import Link from 'next/link'
 
 import RenderMedia from '@/components/common/media'
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 type VendorCardProps = {
+  branchSlug?: string | null
   media?: {
     src: string
     alt?: string
@@ -13,7 +15,14 @@ type VendorCardProps = {
   link?: string
 }
 
-export default function VendorCard({ media, title, tags = [], location, link }: VendorCardProps) {
+export default function VendorCard({
+  branchSlug,
+  media,
+  title,
+  tags = [],
+  location,
+  link,
+}: VendorCardProps) {
   const cardContent = (
     <>
       <div className="card-media">
@@ -28,7 +37,11 @@ export default function VendorCard({ media, title, tags = [], location, link }: 
         {tags.length > 0 && (
           <div className="card-tags">
             {tags.map((tag) => (
-              <Link href={`/vendors?tag=${tag}`} key={tag} className="tag">
+              <Link
+                href={`/vendors/filter?branch=${branchSlug}&category=${tag}`}
+                key={tag}
+                className="tag"
+              >
                 <p className="type-d-body-xs type-m-body-s letter-spacing-002">{tag}</p>
               </Link>
             ))}
@@ -41,13 +54,13 @@ export default function VendorCard({ media, title, tags = [], location, link }: 
   )
 
   return (
-    <div data-card="vendor" className="card">
+    <AnimateOnScroll triggerClass="fadeIn" data-card="vendor" className="card">
       {link ? (
         <Link href={link} className="link-overlay" aria-label={title}>
           &nbsp;
         </Link>
       ) : null}
       {cardContent}
-    </div>
+    </AnimateOnScroll>
   )
 }

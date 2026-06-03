@@ -1,5 +1,7 @@
 import type { CollectionConfig, Field, Validate } from 'payload'
 
+import { getActiveWhatsOnWhere } from '@/lib/whatsOnArchive'
+
 const colorPickerField = (name: string, label: string): Field => ({
   name,
   type: 'text',
@@ -363,7 +365,7 @@ export const Branches: CollectionConfig = {
                     admin: {
                       condition: (_, siblingData) => siblingData?.displayType === 'highlight',
                       description:
-                        "Manually select up to 3 items. Only items linked to this branch are shown.",
+                        "Manually select up to 3 items. Only active items linked to this branch are shown.",
                     },
                     filterOptions: ({ data }) => {
                       if (!data?.id || typeof data.id !== 'number') {
@@ -371,9 +373,14 @@ export const Branches: CollectionConfig = {
                       }
 
                       return {
-                        branch: {
-                          contains: data.id,
-                        },
+                        and: [
+                          {
+                            branch: {
+                              contains: data.id,
+                            },
+                          },
+                          getActiveWhatsOnWhere(),
+                        ],
                       }
                     },
                   },

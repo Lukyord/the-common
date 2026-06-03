@@ -306,7 +306,7 @@ export interface Branch {
     title?: string | null;
     displayType?: ('latest' | 'highlight') | null;
     /**
-     * Manually select up to 3 items. Only items linked to this branch are shown.
+     * Manually select up to 3 items. Only active items linked to this branch are shown.
      */
     highlightWhatsOn?: (number | WhatsOn)[] | null;
   };
@@ -327,6 +327,9 @@ export interface Branch {
  */
 export interface Vendor {
   id: number;
+  /**
+   * Recommended aspect ratio: 1
+   */
   media?: (number | null) | Media;
   gallery?: (number | Media)[] | null;
   name: string;
@@ -433,6 +436,9 @@ export interface WhatsOn {
   slug: string;
   branch: (number | Branch)[];
   dateToBeArchived?: string | null;
+  /**
+   * Recommended aspect ratio: 4 / 5
+   */
   media?: (number | null) | Media;
   gallery?: (number | Media)[] | null;
   bgColor?: string | null;

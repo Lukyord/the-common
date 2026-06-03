@@ -144,6 +144,11 @@
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
   }
+  .type-m-caption,
+  .type-m-body-xs {
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+  }
 
   .sc-inner.mb-t-header {
     padding-top: var(--header-height);

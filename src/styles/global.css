@@ -1053,11 +1053,16 @@ section.header-margin {
 .swiper-pagination-bullet {
   --swiper-pagination-bullet-width: 0.8rem;
   --swiper-pagination-bullet-height: 0.8rem;
-  --swiper-pagination-color: var(--color-cloud-11-olive);
+  --swiper-pagination-color: var(--color-dark-brown);
   --swiper-pagination-bullet-inactive-color: transparent;
   --swiper-pagination-bullet-inactive-opacity: 1;
   --swiper-pagination-bullet-horizontal-gap: var(--spacing-5xs);
-  border: 0.1rem solid var(--color-cloud-11-olive);
+  border: 0.1rem solid var(--color-dark-brown);
+}
+
+.dark-bg .swiper-pagination-bullet {
+  --swiper-pagination-color: var(--color-beige);
+  border: 0.1rem solid var(--color-beige);
 }
 
 /* ENTRY CONTENT ====================*/

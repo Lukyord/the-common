@@ -66,16 +66,20 @@ export default async function BranchPage({ params }: Props) {
 
       <BranchVendorsSection
         title={branch?.vendorsSection?.title}
-        cards={vendorCards}
         branchSlug={branch?.slug}
         buttonColor={branch.bgColor}
+        cards={vendorCards}
       />
 
       <BranchWhatsOnSection
+        themeColor={{
+          bgColor: branch?.bgColor,
+          color: branch?.primaryColor,
+        }}
         title={branch?.whatsOnSection?.title}
-        cards={whatsOnCards}
         branchSlug={branch?.slug}
         buttonColor={branch.bgColor}
+        cards={whatsOnCards}
       />
     </main>
   )

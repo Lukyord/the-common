@@ -109,6 +109,108 @@ html.no-touchevents [data-card='vendor'] .tag:hover {
   color: var(--color-beige);
 }
 
+/* WHATS ON CARD ==================== */
+[data-card='whats-on'] {
+  color: var(--color-dark-brown);
+  overflow: hidden;
+}
+[data-card='whats-on'] .card-media {
+  aspect-ratio: 0.8;
+  height: auto;
+  margin-bottom: var(--spacing-3xs);
+}
+
+[data-card='whats-on'] .highlight {
+  position: absolute;
+  top: var(--spacing-2xs);
+  left: var(--spacing-2xs);
+  background-color: var(--bg-color, var(--color-dark-brown));
+  color: var(--color, var(--color-beige));
+  padding: var(--spacing-6xs) var(--spacing-4xs);
+}
+
+[data-card='whats-on'] .card-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+[data-card='whats-on'] .card-date-time {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-6xs);
+}
+
+[data-card='whats-on'] .card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4xs);
+}
+
+[data-card='whats-on'] .card-tags .tag {
+  padding: var(--spacing-6xs) var(--spacing-5xs);
+  color: var(--color-dark-brown);
+  border: 0.1rem solid var(--color-dark-brown);
+}
+
+[data-card='whats-on'] .card-tags .tag.main {
+  background-color: var(--color-dark-brown);
+  color: var(--color-beige);
+  position: relative;
+  z-index: 5;
+}
+
+[data-card='whats-on']:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25%;
+  height: auto;
+  z-index: 1;
+  aspect-ratio: 4.07407407407;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform var(--duration) var(--timing-function);
+  transform: translateY(-100%);
+}
+html.no-touchevents [data-card='whats-on']:hover:after {
+  transform: translateY(0);
+}
+.dark-bg [data-card='whats-on']:after {
+  background-image: url('../../public/shapes/whatson-hover-dark-brown.svg');
+}
+.beige-bg [data-card='whats-on']:after {
+  background-image: url('../../public/shapes/whatson-hover-beige.svg');
+}
+.checked-bg [data-card='whats-on']:after {
+  background-image: url('../../public/shapes/whatson-hover-beige-checked.webp');
+}
+
+.dark-bg [data-card='whats-on'] {
+  color: var(--color-white);
+}
+
+.dark-bg [data-card='whats-on'] .card-date-time {
+  color: var(--color-beige);
+}
+
+.dark-bg [data-card='whats-on'] .card-date-time .separator {
+  opacity: 0.6;
+}
+
+.dark-bg [data-card='whats-on'] .card-tags .tag {
+  color: var(--color-beige);
+  border: 0.1rem solid var(--color-beige);
+}
+
+.dark-bg [data-card='whats-on'] .card-tags .tag.main {
+  background-color: var(--color-beige);
+  color: var(--color-dark-brown);
+}
+
 /* FOOTER ==================== */
 
 /* SECTION ==================== */
@@ -675,6 +777,11 @@ html.no-touchevents .location-selector__item:hover {
   font-size: var(--font-size-h5);
   line-height: var(--line-height-h5);
   letter-spacing: 0.02em;
+}
+
+[data-section='flexible'] .swiper-pagination-bullet {
+  --swiper-pagination-color: var(--color-cloud-11-olive);
+  border: 0.1rem solid var(--color-cloud-11-olive);
 }
 
 /* Fullscreen Slide */
@@ -1812,4 +1919,8 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
 .branch-landing-whats-on {
   background-color: var(--color-dark-brown);
   color: var(--color-white);
+}
+
+.branch-landing-whats-on .sc-ttl {
+  color: var(--color-beige);
 }

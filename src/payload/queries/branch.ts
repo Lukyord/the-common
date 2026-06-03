@@ -2,6 +2,7 @@ import { cache } from 'react'
 import { notFound } from 'next/navigation'
 
 import { WHATS_ON_MAIN_TAGS, WHATS_ON_SUB_TAGS } from '@/constants/whatsOnTags'
+import { getActiveWhatsOnWhere, isWhatsOnArchived } from '@/lib/whatsOnArchive'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type { Branch, Vendor, WhatsOn } from '@/payload-types'
 import { getPayloadClient } from '@/payload/getPayloadClient'
@@ -62,7 +63,7 @@ function mapVendorToBranchLandingCard(vendor: Vendor): BranchLandingVendorCard |
   return {
     id: vendor.id,
     title: vendor.name,
-    link: `/${branch.slug}/vendor/${vendor.slug}`,
+    link: `/${branch.slug}/vendors/${vendor.slug}`,
     media: {
       src: media.src,
       alt: media.alt || vendor.name,
@@ -72,68 +73,70 @@ function mapVendorToBranchLandingCard(vendor: Vendor): BranchLandingVendorCard |
   }
 }
 
-export const getBranchLandingVendors = cache(async (branch: Branch): Promise<BranchLandingVendorCard[]> => {
-  if (!branch?.id) return []
+export const getBranchLandingVendors = cache(
+  async (branch: Branch): Promise<BranchLandingVendorCard[]> => {
+    if (!branch?.id) return []
 
-  const payload = await getPayloadClient()
-  const displayType = branch.vendorsSection?.displayType ?? 'latest'
+    const payload = await getPayloadClient()
+    const displayType = branch.vendorsSection?.displayType ?? 'latest'
 
-  const highlightIds =
-    branch.vendorsSection?.highlightVendors
-      ?.flatMap((vendor) => {
-        if (typeof vendor === 'number') return [vendor]
-        if (typeof vendor === 'object' && vendor?.id) return [vendor.id]
-        return []
-      })
-      .slice(0, BRANCH_VENDOR_LIMIT) ?? []
-
-  const query =
-    displayType === 'highlight' && highlightIds.length
-      ? await payload.find({
-          collection: 'vendors',
-          depth: 1,
-          limit: BRANCH_VENDOR_LIMIT,
-          overrideAccess: false,
-          pagination: false,
-          where: {
-            and: [
-              {
-                id: {
-                  in: highlightIds,
-                },
-              },
-              {
-                branch: {
-                  equals: branch.id,
-                },
-              },
-            ],
-          },
+    const highlightIds =
+      branch.vendorsSection?.highlightVendors
+        ?.flatMap((vendor) => {
+          if (typeof vendor === 'number') return [vendor]
+          if (typeof vendor === 'object' && vendor?.id) return [vendor.id]
+          return []
         })
-      : await payload.find({
-          collection: 'vendors',
-          depth: 1,
-          limit: BRANCH_VENDOR_LIMIT,
-          overrideAccess: false,
-          pagination: false,
-          sort: '-createdAt',
-          where: {
-            branch: {
-              equals: branch.id,
+        .slice(0, BRANCH_VENDOR_LIMIT) ?? []
+
+    const query =
+      displayType === 'highlight' && highlightIds.length
+        ? await payload.find({
+            collection: 'vendors',
+            depth: 1,
+            limit: BRANCH_VENDOR_LIMIT,
+            overrideAccess: false,
+            pagination: false,
+            where: {
+              and: [
+                {
+                  id: {
+                    in: highlightIds,
+                  },
+                },
+                {
+                  branch: {
+                    equals: branch.id,
+                  },
+                },
+              ],
             },
-          },
-        })
+          })
+        : await payload.find({
+            collection: 'vendors',
+            depth: 1,
+            limit: BRANCH_VENDOR_LIMIT,
+            overrideAccess: false,
+            pagination: false,
+            sort: '-createdAt',
+            where: {
+              branch: {
+                equals: branch.id,
+              },
+            },
+          })
 
-  const docs =
-    displayType === 'highlight' && highlightIds.length
-      ? [...query.docs].sort((a, b) => highlightIds.indexOf(a.id) - highlightIds.indexOf(b.id))
-      : query.docs
+    const docs =
+      displayType === 'highlight' && highlightIds.length
+        ? [...query.docs].sort((a, b) => highlightIds.indexOf(a.id) - highlightIds.indexOf(b.id))
+        : query.docs
 
-  return docs.flatMap((vendor) => {
-    const card = mapVendorToBranchLandingCard(vendor)
-    return card ? [card] : []
-  })
-})
+    return docs.flatMap((vendor) => {
+      const card = mapVendorToBranchLandingCard(vendor)
+      return card ? [card] : []
+    })
+  },
+)
 
 const BRANCH_WHATS_ON_LIMIT = 3
 
@@ -166,15 +169,6 @@ function getWhatsOnSubTagTexts(tagIds: WhatsOn['subTags']) {
   })
 }
 
-function isWhatsOnArchived(item: WhatsOn) {
-  if (!item.dateToBeArchived) return false
-  const archiveDate = new Date(item.dateToBeArchived)
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-  archiveDate.setHours(0, 0, 0, 0)
-  return archiveDate <= today
-}
-
 function mapWhatsOnToBranchLandingCard(
   item: WhatsOn,
   branchSlug: string,
@@ -187,7 +181,7 @@ function mapWhatsOnToBranchLandingCard(
   return {
     id: item.id,
     title: item.title,
-    link: `/${branchSlug}/event/${item.slug}`,
+    link: `/${branchSlug}/whats-on/${item.slug}`,
     media: {
       src: media.src,
       alt: media.alt || item.title,
@@ -198,21 +192,6 @@ function mapWhatsOnToBranchLandingCard(
     subTags: getWhatsOnSubTagTexts(item.subTags),
     highlightText: highlightText ?? null,
   }
-}
-
-const activeWhatsOnWhere = {
-  or: [
-    {
-      dateToBeArchived: {
-        exists: false,
-      },
-    },
-    {
-      dateToBeArchived: {
-        greater_than: new Date().toISOString().split('T')[0],
-      },
-    },
-  ],
 }
 
 export const getBranchLandingWhatsOn = cache(
@@ -236,6 +215,7 @@ export const getBranchLandingWhatsOn = cache(
         contains: branch.id,
       },
     }
+    const activeWhatsOnWhere = getActiveWhatsOnWhere()
 
     const query =
       displayType === 'highlight' && highlightIds.length
