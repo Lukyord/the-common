@@ -43,6 +43,15 @@ else
   fi
 fi
 
+if has_table '__new_branches_rels'; then
+  echo "Found __new_branches_rels — drop it manually or reset local D1."
+else
+  if has_table 'branches_rels' && sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='branches_rels_order_idx';" | grep -q 1; then
+    echo "Dropping branches_rels indexes so drizzle push can recreate them…"
+    sqlite3 "${DB}" < scripts/d1-repair-branches-rels-idx.sql
+  fi
+fi
+
 if has_table '__new_whats_on'; then
   echo "Found __new_whats_on — drop it manually or reset local D1."
 else

@@ -1,4 +1,8 @@
-import { getBranchBySlug, getBranchLandingVendors } from '@/payload/queries/branch'
+import {
+  getBranchBySlug,
+  getBranchLandingVendors,
+  getBranchLandingWhatsOn,
+} from '@/payload/queries/branch'
 import { getHomepageMottoData } from '@/payload/queries/home'
 import { resolveMedia } from '@/lib/resolveMedia'
 import RenderMedia from '@/components/common/media'
@@ -7,6 +11,7 @@ import { MarkdownContent } from '@/components/common/markdown-content'
 import { MottoMarquee } from '@/components/elements/MottoMarquee'
 import AboutSection from '@/components/branch/landing/AboutSection'
 import BranchVendorsSection from '@/components/branch/landing/BranchVendorsSection'
+import BranchWhatsOnSection from '@/components/branch/landing/BranchWhatsOnSection'
 import VibeSection from '@/components/branch/landing/VibeSection'
 
 export const dynamic = 'force-dynamic'
@@ -18,7 +23,10 @@ type Props = {
 export default async function BranchPage({ params }: Props) {
   const { branch: slug } = await params
   const [branch, homepageMotto] = await Promise.all([getBranchBySlug(slug), getHomepageMottoData()])
-  const vendorCards = await getBranchLandingVendors(branch)
+  const [vendorCards, whatsOnCards] = await Promise.all([
+    getBranchLandingVendors(branch),
+    getBranchLandingWhatsOn(branch),
+  ])
   const heroBackground = resolveMedia(branch?.hero?.backgroundMedia)
   const heroBackgroundMobile = resolveMedia(branch?.hero?.mobileBackgroundMedia)
 
@@ -59,6 +67,13 @@ export default async function BranchPage({ params }: Props) {
       <BranchVendorsSection
         title={branch?.vendorsSection?.title}
         cards={vendorCards}
+        branchSlug={branch?.slug}
+        buttonColor={branch.bgColor}
+      />
+
+      <BranchWhatsOnSection
+        title={branch?.whatsOnSection?.title}
+        cards={whatsOnCards}
         branchSlug={branch?.slug}
         buttonColor={branch.bgColor}
       />

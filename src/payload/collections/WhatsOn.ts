@@ -91,18 +91,11 @@ export const WhatsOn: CollectionConfig = {
     },
     {
       name: 'gallery',
-      type: 'array',
+      type: 'upload',
+      relationTo: 'media',
       label: 'Gallery',
+      hasMany: true,
       maxRows: 5,
-      fields: [
-        {
-          name: 'media',
-          type: 'upload',
-          relationTo: 'media',
-          label: 'Media',
-          required: true,
-        },
-      ],
     },
     colorPickerField('bgColor', 'Bg Color'),
     {

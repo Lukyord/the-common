@@ -1807,3 +1807,9 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
 .branch-landing-vendors {
   background-color: var(--color-beige);
 }
+
+/* Branch Landing Whats On */
+.branch-landing-whats-on {
+  background-color: var(--color-dark-brown);
+  color: var(--color-white);
+}

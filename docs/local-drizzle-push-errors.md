@@ -101,6 +101,18 @@ pnpm run db:repair-local
 pnpm run dev
 ```
 
+### Example: `branches_rels` + `branches_rels_order_idx already exists`
+
+```text
+CREATE INDEX `branches_rels_order_idx` ON `branches_rels` (`order`);
+index branches_rels_order_idx already exists
+```
+
+```bash
+pnpm run db:repair-local
+pnpm run dev
+```
+
 ### Example: `vendors` + `vendors_media_idx already exists`
 
 ```text

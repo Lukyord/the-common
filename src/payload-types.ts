@@ -302,6 +302,14 @@ export interface Branch {
      */
     highlightVendors?: (number | Vendor)[] | null;
   };
+  whatsOnSection?: {
+    title?: string | null;
+    displayType?: ('latest' | 'highlight') | null;
+    /**
+     * Manually select up to 3 items. Only items linked to this branch are shown.
+     */
+    highlightWhatsOn?: (number | WhatsOn)[] | null;
+  };
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -414,6 +422,70 @@ export interface VendorCategory {
   createdAt: string;
 }
 /**
+ * Activities and listings shown on each branch.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whats-on".
+ */
+export interface WhatsOn {
+  id: number;
+  title: string;
+  slug: string;
+  branch: (number | Branch)[];
+  dateToBeArchived?: string | null;
+  media?: (number | null) | Media;
+  gallery?: (number | Media)[] | null;
+  bgColor?: string | null;
+  date?: string | null;
+  time?: string | null;
+  mainTag?: ('signature-event' | 'thewholesome-club' | 'community-fun' | 'workshop') | null;
+  subTags?:
+    | (
+        | 'music'
+        | 'kids-family'
+        | 'food-drinks'
+        | 'market'
+        | 'art-culture'
+        | 'health-well-being'
+        | 'pet'
+        | 'lifestyle'
+        | 'social-impact'
+        | 'sustainability'
+      )[]
+    | null;
+  highlightText?: {
+    enabled?: boolean | null;
+    text?: string | null;
+  };
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Contact page per branch.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -463,75 +535,6 @@ export interface Blog {
   id: number;
   title: string;
   slug: string;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * Activities and listings shown on each branch.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "whats-on".
- */
-export interface WhatsOn {
-  id: number;
-  title: string;
-  slug: string;
-  branch: (number | Branch)[];
-  dateToBeArchived?: string | null;
-  media?: (number | null) | Media;
-  gallery?:
-    | {
-        media: number | Media;
-        id?: string | null;
-      }[]
-    | null;
-  bgColor?: string | null;
-  date?: string | null;
-  time?: string | null;
-  mainTag?: ('signature-event' | 'thewholesome-club' | 'community-fun' | 'workshop') | null;
-  subTags?:
-    | (
-        | 'music'
-        | 'kids-family'
-        | 'food-drinks'
-        | 'market'
-        | 'art-culture'
-        | 'health-well-being'
-        | 'pet'
-        | 'lifestyle'
-        | 'social-impact'
-        | 'sustainability'
-      )[]
-    | null;
-  highlightText?: {
-    enabled?: boolean | null;
-    text?: string | null;
-  };
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  buttonText?: string | null;
-  buttonLink?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -767,6 +770,13 @@ export interface BranchesSelect<T extends boolean = true> {
         displayType?: T;
         highlightVendors?: T;
       };
+  whatsOnSection?:
+    | T
+    | {
+        title?: T;
+        displayType?: T;
+        highlightWhatsOn?: T;
+      };
   meta?:
     | T
     | {
@@ -891,12 +901,7 @@ export interface WhatsOnSelect<T extends boolean = true> {
   branch?: T;
   dateToBeArchived?: T;
   media?: T;
-  gallery?:
-    | T
-    | {
-        media?: T;
-        id?: T;
-      };
+  gallery?: T;
   bgColor?: T;
   date?: T;
   time?: T;

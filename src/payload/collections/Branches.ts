@@ -42,6 +42,25 @@ const validateHighlightVendors: Validate = (value) => {
   return value.length <= 3 || 'You can select up to 3 highlighted vendors.'
 }
 
+const validateHighlightWhatsOn: Validate = (value) => {
+  if (!value) return true
+
+  if (!Array.isArray(value)) return true
+
+  return value.length <= 3 || "You can select up to 3 highlighted what's on items."
+}
+
+function section(label: string, fields: Field[]): Field {
+  return {
+    type: 'collapsible',
+    label,
+    admin: {
+      initCollapsed: true,
+    },
+    fields,
+  }
+}
+
 export const Branches: CollectionConfig = {
   slug: 'branches',
   labels: {
@@ -132,161 +151,235 @@ export const Branches: CollectionConfig = {
         {
           label: 'Branch Landing',
           fields: [
-            {
-              name: 'hero',
-              type: 'group',
-              label: 'Hero',
-              admin: {
-                hideGutter: true,
+            section('Hero', [
+              {
+                name: 'hero',
+                type: 'group',
+                label: 'Hero',
+                admin: {
+                  hideGutter: true,
+                },
+                fields: heroFields,
               },
-              fields: heroFields,
-            },
-            {
-              name: 'about',
-              type: 'group',
-              label: 'About',
-              fields: [
-                colorPickerField('bgColor', 'Background Color'),
-                {
-                  name: 'title',
-                  type: 'text',
-                  label: 'Title',
+            ]),
+            section('About', [
+              {
+                name: 'about',
+                type: 'group',
+                label: 'About',
+                admin: {
+                  hideGutter: true,
                 },
-                {
-                  name: 'description',
-                  type: 'textarea',
-                  label: 'Description',
-                },
-                {
-                  name: 'backgroundMedia',
-                  type: 'upload',
-                  relationTo: 'media',
-                  label: 'Background Media',
-                },
-                {
-                  name: 'mobileBackgroundMedia',
-                  type: 'upload',
-                  relationTo: 'media',
-                  label: 'Mobile Background Media',
-                },
-              ],
-            },
-            {
-              name: 'vibesCheck',
-              type: 'group',
-              label: 'Vibes Check',
-              fields: [
-                {
-                  name: 'title',
-                  type: 'text',
-                  label: 'Title',
-                },
-                colorPickerField('primaryColor', 'Primary Color'),
-                colorPickerField('secondaryColor', 'Secondary Color'),
-                {
-                  name: 'gallery',
-                  type: 'array',
-                  label: 'Gallery',
-                  fields: [
-                    {
-                      name: 'title',
-                      type: 'text',
-                      label: 'Title',
-                    },
-                    {
-                      name: 'day',
-                      type: 'group',
-                      label: 'Day',
-                      fields: [
-                        {
-                          name: 'media',
-                          type: 'upload',
-                          relationTo: 'media',
-                          label: 'Media',
-                        },
-                        {
-                          name: 'mediaMobile',
-                          type: 'upload',
-                          relationTo: 'media',
-                          label: 'Media Mobile',
-                        },
-                      ],
-                    },
-                    {
-                      name: 'night',
-                      type: 'group',
-                      label: 'Night',
-                      fields: [
-                        {
-                          name: 'media',
-                          type: 'upload',
-                          relationTo: 'media',
-                          label: 'Media',
-                        },
-                        {
-                          name: 'mediaMobile',
-                          type: 'upload',
-                          relationTo: 'media',
-                          label: 'Media Mobile',
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              name: 'vendorsSection',
-              type: 'group',
-              label: 'Vendors Section',
-              fields: [
-                {
-                  name: 'title',
-                  type: 'text',
-                  label: 'Title',
-                },
-                {
-                  name: 'displayType',
-                  type: 'radio',
-                  label: 'Branch Display Type',
-                  defaultValue: 'latest',
-                  options: [
-                    {
-                      label: 'Latest',
-                      value: 'latest',
-                    },
-                    {
-                      label: 'Highlight',
-                      value: 'highlight',
-                    },
-                  ],
-                },
-                {
-                  name: 'highlightVendors',
-                  type: 'relationship',
-                  relationTo: 'vendors',
-                  label: 'Highlight Vendors',
-                  hasMany: true,
-                  validate: validateHighlightVendors,
-                  admin: {
-                    condition: (_, siblingData) => siblingData?.displayType === 'highlight',
-                    description:
-                      'Manually select up to 3 vendors. Only vendors from this branch are shown.',
+                fields: [
+                  colorPickerField('bgColor', 'Background Color'),
+                  {
+                    name: 'title',
+                    type: 'text',
+                    label: 'Title',
                   },
-                  filterOptions: ({ data }) => {
-                    if (!data?.id || typeof data.id !== 'number') {
-                      return false
-                    }
-
-                    return {
-                      branch: {
-                        equals: data.id,
+                  {
+                    name: 'description',
+                    type: 'textarea',
+                    label: 'Description',
+                  },
+                  {
+                    name: 'backgroundMedia',
+                    type: 'upload',
+                    relationTo: 'media',
+                    label: 'Background Media',
+                  },
+                  {
+                    name: 'mobileBackgroundMedia',
+                    type: 'upload',
+                    relationTo: 'media',
+                    label: 'Mobile Background Media',
+                  },
+                ],
+              },
+            ]),
+            section('Vibes Check', [
+              {
+                name: 'vibesCheck',
+                type: 'group',
+                label: 'Vibes Check',
+                admin: {
+                  hideGutter: true,
+                },
+                fields: [
+                  {
+                    name: 'title',
+                    type: 'text',
+                    label: 'Title',
+                  },
+                  colorPickerField('primaryColor', 'Primary Color'),
+                  colorPickerField('secondaryColor', 'Secondary Color'),
+                  {
+                    name: 'gallery',
+                    type: 'array',
+                    label: 'Gallery',
+                    fields: [
+                      {
+                        name: 'title',
+                        type: 'text',
+                        label: 'Title',
                       },
-                    }
+                      {
+                        name: 'day',
+                        type: 'group',
+                        label: 'Day',
+                        fields: [
+                          {
+                            name: 'media',
+                            type: 'upload',
+                            relationTo: 'media',
+                            label: 'Media',
+                          },
+                          {
+                            name: 'mediaMobile',
+                            type: 'upload',
+                            relationTo: 'media',
+                            label: 'Media Mobile',
+                          },
+                        ],
+                      },
+                      {
+                        name: 'night',
+                        type: 'group',
+                        label: 'Night',
+                        fields: [
+                          {
+                            name: 'media',
+                            type: 'upload',
+                            relationTo: 'media',
+                            label: 'Media',
+                          },
+                          {
+                            name: 'mediaMobile',
+                            type: 'upload',
+                            relationTo: 'media',
+                            label: 'Media Mobile',
+                          },
+                        ],
+                      },
+                    ],
                   },
+                ],
+              },
+            ]),
+            section('Vendors Section', [
+              {
+                name: 'vendorsSection',
+                type: 'group',
+                label: 'Vendors Section',
+                admin: {
+                  hideGutter: true,
                 },
-              ],
-            },
+                fields: [
+                  {
+                    name: 'title',
+                    type: 'text',
+                    label: 'Title',
+                  },
+                  {
+                    name: 'displayType',
+                    type: 'radio',
+                    label: 'Branch Display Type',
+                    defaultValue: 'latest',
+                    options: [
+                      {
+                        label: 'Latest',
+                        value: 'latest',
+                      },
+                      {
+                        label: 'Highlight',
+                        value: 'highlight',
+                      },
+                    ],
+                  },
+                  {
+                    name: 'highlightVendors',
+                    type: 'relationship',
+                    relationTo: 'vendors',
+                    label: 'Highlight Vendors',
+                    hasMany: true,
+                    validate: validateHighlightVendors,
+                    admin: {
+                      condition: (_, siblingData) => siblingData?.displayType === 'highlight',
+                      description:
+                        'Manually select up to 3 vendors. Only vendors from this branch are shown.',
+                    },
+                    filterOptions: ({ data }) => {
+                      if (!data?.id || typeof data.id !== 'number') {
+                        return false
+                      }
+
+                      return {
+                        branch: {
+                          equals: data.id,
+                        },
+                      }
+                    },
+                  },
+                ],
+              },
+            ]),
+            section("What's On Section", [
+              {
+                name: 'whatsOnSection',
+                type: 'group',
+                label: "What's On Section",
+                admin: {
+                  hideGutter: true,
+                },
+                fields: [
+                  {
+                    name: 'title',
+                    type: 'text',
+                    label: 'Title',
+                  },
+                  {
+                    name: 'displayType',
+                    type: 'radio',
+                    label: 'Branch Display Type',
+                    defaultValue: 'latest',
+                    options: [
+                      {
+                        label: 'Latest',
+                        value: 'latest',
+                      },
+                      {
+                        label: 'Highlight',
+                        value: 'highlight',
+                      },
+                    ],
+                  },
+                  {
+                    name: 'highlightWhatsOn',
+                    type: 'relationship',
+                    relationTo: 'whats-on',
+                    label: "Highlight What's On",
+                    hasMany: true,
+                    validate: validateHighlightWhatsOn,
+                    admin: {
+                      condition: (_, siblingData) => siblingData?.displayType === 'highlight',
+                      description:
+                        "Manually select up to 3 items. Only items linked to this branch are shown.",
+                    },
+                    filterOptions: ({ data }) => {
+                      if (!data?.id || typeof data.id !== 'number') {
+                        return false
+                      }
+
+                      return {
+                        branch: {
+                          contains: data.id,
+                        },
+                      }
+                    },
+                  },
+                ],
+              },
+            ]),
           ],
         },
       ],
