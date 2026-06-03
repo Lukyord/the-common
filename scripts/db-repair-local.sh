@@ -43,4 +43,20 @@ else
   fi
 fi
 
+if has_table '__new_whats_on'; then
+  echo "Found __new_whats_on — drop it manually or reset local D1."
+else
+  missing_whats_on_idx=0
+  for idx in whats_on_slug_idx whats_on_branch_idx whats_on_media_idx; do
+    if ! sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='${idx}';" | grep -q 1; then
+      missing_whats_on_idx=1
+      break
+    fi
+  done
+  if [[ "${missing_whats_on_idx}" -eq 1 ]]; then
+    echo "Recreating missing whats_on indexes…"
+    sqlite3 "${DB}" < scripts/d1-repair-whats-on-idx.sql
+  fi
+fi
+
 echo "Done. Restart: pnpm run dev"

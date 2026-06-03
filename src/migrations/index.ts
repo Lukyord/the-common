@@ -27,6 +27,8 @@ import * as migration_20260529_101546_privacy_policy_global from './20260529_101
 import * as migration_20260601_131438_contact_bg from './20260601_131438_contact_bg';
 import * as migration_20260601_153356_contact_accordion from './20260601_153356_contact_accordion';
 import * as migration_20260602_113513 from './20260602_113513';
+import * as migration_20260603_015121_whats_on_fields from './20260603_015121_whats_on_fields';
+import * as migration_20260603_015710_vendors_gallery from './20260603_015710_vendors_gallery';
 
 export const migrations = [
   {
@@ -172,6 +174,16 @@ export const migrations = [
   {
     up: migration_20260602_113513.up,
     down: migration_20260602_113513.down,
-    name: '20260602_113513'
+    name: '20260602_113513',
+  },
+  {
+    up: migration_20260603_015121_whats_on_fields.up,
+    down: migration_20260603_015121_whats_on_fields.down,
+    name: '20260603_015121_whats_on_fields',
+  },
+  {
+    up: migration_20260603_015710_vendors_gallery.up,
+    down: migration_20260603_015710_vendors_gallery.down,
+    name: '20260603_015710_vendors_gallery'
   },
 ];

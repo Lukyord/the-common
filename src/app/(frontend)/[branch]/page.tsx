@@ -25,16 +25,16 @@ export default async function BranchPage({ params }: Props) {
   return (
     <main id="main" className="branch-page">
       <section data-section="page-hero" className="bg-dark-brown marquee-offset">
-        <div className="cover">
-          {heroBackground?.src && (
+        {heroBackground?.src && (
+          <div className="cover">
             <RenderMedia
               src={heroBackground.src}
               srcMobile={heroBackgroundMobile?.src || heroBackground.src}
               alt={heroBackground.alt}
               priority
             />
-          )}
-        </div>
+          </div>
+        )}
         <div className="sc-inner pc-t-100 pc-b-75 mb-t-100 mb-b-100">
           <div className="container">
             <AnimateOnScroll delay={300} triggerClass="fadeIn" className="sc-ttl">

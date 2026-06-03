@@ -30,10 +30,17 @@ export default function AboutSection({ data }: AboutSectionProps) {
               {background?.src && (
                 <div className="cover">
                   <RenderMedia
-                    src={background.src}
-                    srcMobile={backgroundMobile?.src || background.src}
-                    alt={background.alt}
+                    src="/designs/branch-landing-frame.webp"
+                    srcMobile="/designs/branch-landing-frame.webp"
+                    alt="Branch Landing Frame"
                   />
+                  <div className="clip-double-rect">
+                    <RenderMedia
+                      src={background.src}
+                      srcMobile={backgroundMobile?.src || background.src}
+                      alt={background.alt}
+                    />
+                  </div>
                 </div>
               )}
             </AnimateOnScroll>

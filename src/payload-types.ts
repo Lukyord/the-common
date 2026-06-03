@@ -320,6 +320,7 @@ export interface Branch {
 export interface Vendor {
   id: number;
   media?: (number | null) | Media;
+  gallery?: (number | Media)[] | null;
   name: string;
   slug: string;
   branch: number | Branch;
@@ -352,18 +353,11 @@ export interface Vendor {
   tags?:
     | (
         | 'vegan-option'
-        | 'spicy'
-        | 'kid-friendly'
-        | 'delivery-app'
-        | 'family-size'
-        | 'artisanal'
-        | 'halal-friendly'
-        | 'vegetarian'
-        | 'quick-bite'
-        | 'premium-craft'
-        | 'only-at-the-commons'
         | 'dairy-free-option'
-        | 'local-sourced'
+        | 'vegetarian-option'
+        | 'halal-friendly'
+        | 'party-size'
+        | 'only-at-the-commons'
       )[]
     | null;
   openingHours?: {
@@ -491,6 +485,40 @@ export interface WhatsOn {
   title: string;
   slug: string;
   branch: number | Branch;
+  dateToBeArchived?: string | null;
+  media?: (number | null) | Media;
+  gallery?:
+    | {
+        media: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  bgColor?: string | null;
+  date?: string | null;
+  time?: string | null;
+  mainTag?: string | null;
+  subTags?: string[] | null;
+  highlightText?: {
+    enabled?: boolean | null;
+    text?: string | null;
+  };
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -802,6 +830,7 @@ export interface VendorCategoriesSelect<T extends boolean = true> {
  */
 export interface VendorsSelect<T extends boolean = true> {
   media?: T;
+  gallery?: T;
   name?: T;
   slug?: T;
   branch?: T;
@@ -847,6 +876,28 @@ export interface WhatsOnSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   branch?: T;
+  dateToBeArchived?: T;
+  media?: T;
+  gallery?:
+    | T
+    | {
+        media?: T;
+        id?: T;
+      };
+  bgColor?: T;
+  date?: T;
+  time?: T;
+  mainTag?: T;
+  subTags?: T;
+  highlightText?:
+    | T
+    | {
+        enabled?: T;
+        text?: T;
+      };
+  content?: T;
+  buttonText?: T;
+  buttonLink?: T;
   meta?:
     | T
     | {

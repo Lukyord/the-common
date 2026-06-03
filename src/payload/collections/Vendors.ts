@@ -56,6 +56,14 @@ export const Vendors: CollectionConfig = {
       },
     },
     {
+      name: 'gallery',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Gallery',
+      hasMany: true,
+      maxRows: 5,
+    },
+    {
       name: 'name',
       type: 'text',
       label: 'Name',

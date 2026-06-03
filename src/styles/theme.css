@@ -63,6 +63,10 @@
   mask-image: url('../../public/shapes/about-shape-6.svg');
   -webkit-mask-image: url('../../public/shapes/about-shape-6.svg');
 }
+.clip-double-rect {
+  mask-image: url('../../public/shapes/double-rect.svg');
+  -webkit-mask-image: url('../../public/shapes/double-rect.svg');
+}
 
 /* VENDER CARD */
 [data-card='vendor'] .card-media {
@@ -1608,6 +1612,15 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   aspect-ratio: 1.5034843206;
   height: auto;
   position: relative;
+}
+
+[data-section='about-section'] .media-content .media > .cover > figure {
+  z-index: 3;
+}
+
+[data-section='about-section'] .media-content .media .clip-double-rect {
+  position: absolute;
+  inset: 0;
 }
 
 [data-section='about-section'] .sc-header {
