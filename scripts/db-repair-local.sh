@@ -52,19 +52,33 @@ else
   fi
 fi
 
+if has_table '__new_whats_on_rels'; then
+  echo "Found __new_whats_on_rels — drop it manually or reset local D1."
+else
+  if has_table 'whats_on_rels' && sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='whats_on_rels_order_idx';" | grep -q 1; then
+    echo "Repairing whats_on_rels indexes so drizzle push can finish…"
+    sqlite3 "${DB}" < scripts/d1-repair-whats-on-rels-idx.sql
+  fi
+fi
+
 if has_table '__new_whats_on'; then
   echo "Found __new_whats_on — drop it manually or reset local D1."
 else
-  missing_whats_on_idx=0
-  for idx in whats_on_slug_idx whats_on_branch_idx whats_on_media_idx; do
-    if ! sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='${idx}';" | grep -q 1; then
-      missing_whats_on_idx=1
-      break
+  if sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='whats_on_slug_idx';" | grep -q 1; then
+    echo "Dropping whats_on indexes so drizzle push can recreate them…"
+    sqlite3 "${DB}" < scripts/d1-repair-whats-on-push-idx.sql
+  else
+    missing_whats_on_idx=0
+    for idx in whats_on_slug_idx whats_on_branch_idx whats_on_media_idx; do
+      if ! sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='${idx}';" | grep -q 1; then
+        missing_whats_on_idx=1
+        break
+      fi
+    done
+    if [[ "${missing_whats_on_idx}" -eq 1 ]]; then
+      echo "Recreating missing whats_on indexes…"
+      sqlite3 "${DB}" < scripts/d1-repair-whats-on-idx.sql
     fi
-  done
-  if [[ "${missing_whats_on_idx}" -eq 1 ]]; then
-    echo "Recreating missing whats_on indexes…"
-    sqlite3 "${DB}" < scripts/d1-repair-whats-on-idx.sql
   fi
 fi
 

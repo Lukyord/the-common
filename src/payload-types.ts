@@ -72,6 +72,7 @@ export interface Config {
     branches: Branch;
     'branch-contact-pages': BranchContactPage;
     'branch-space-rental-pages': BranchSpaceRentalPage;
+    'branch-whats-on-pages': BranchWhatsOnPage;
     blogs: Blog;
     vendors: Vendor;
     'whats-on': WhatsOn;
@@ -91,6 +92,7 @@ export interface Config {
     branches: BranchesSelect<false> | BranchesSelect<true>;
     'branch-contact-pages': BranchContactPagesSelect<false> | BranchContactPagesSelect<true>;
     'branch-space-rental-pages': BranchSpaceRentalPagesSelect<false> | BranchSpaceRentalPagesSelect<true>;
+    'branch-whats-on-pages': BranchWhatsOnPagesSelect<false> | BranchWhatsOnPagesSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     vendors: VendorsSelect<false> | VendorsSelect<true>;
     'whats-on': WhatsOnSelect<false> | WhatsOnSelect<true>;
@@ -545,6 +547,52 @@ export interface BranchSpaceRentalPage {
   createdAt: string;
 }
 /**
+ * What's On page per branch.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branch-whats-on-pages".
+ */
+export interface BranchWhatsOnPage {
+  id: number;
+  title: string;
+  branch: number | Branch;
+  landing?: {
+    title?: string | null;
+    cards?:
+      | {
+          background?: string | null;
+          pattern?: ('zig-zag' | 'pill') | null;
+          front?: {
+            title?: string | null;
+          };
+          back?: {
+            title?: string | null;
+            description?: string | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+  };
+  club?: {
+    title?: string | null;
+    mainTag?: (number | null) | WhatsOnMainTag;
+  };
+  allEventsAndWorkshops?: {
+    title?: string | null;
+    mainTag?: (number | null) | WhatsOnMainTag;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "blogs".
  */
@@ -606,6 +654,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'branch-space-rental-pages';
         value: number | BranchSpaceRentalPage;
+      } | null)
+    | ({
+        relationTo: 'branch-whats-on-pages';
+        value: number | BranchWhatsOnPage;
       } | null)
     | ({
         relationTo: 'blogs';
@@ -827,6 +879,58 @@ export interface BranchContactPagesSelect<T extends boolean = true> {
 export interface BranchSpaceRentalPagesSelect<T extends boolean = true> {
   title?: T;
   branch?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branch-whats-on-pages_select".
+ */
+export interface BranchWhatsOnPagesSelect<T extends boolean = true> {
+  title?: T;
+  branch?: T;
+  landing?:
+    | T
+    | {
+        title?: T;
+        cards?:
+          | T
+          | {
+              background?: T;
+              pattern?: T;
+              front?:
+                | T
+                | {
+                    title?: T;
+                  };
+              back?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                  };
+              id?: T;
+            };
+      };
+  club?:
+    | T
+    | {
+        title?: T;
+        mainTag?: T;
+      };
+  allEventsAndWorkshops?:
+    | T
+    | {
+        title?: T;
+        mainTag?: T;
+      };
   meta?:
     | T
     | {

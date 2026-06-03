@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 
 import { getActiveWhatsOnWhere, isWhatsOnArchived } from '@/lib/whatsOnArchive'
 import { resolveMedia } from '@/lib/resolveMedia'
-import type { Branch, Vendor, WhatsOn } from '@/payload-types'
+import type { Branch, BranchWhatsOnPage, Vendor, WhatsOn } from '@/payload-types'
 import { getPayloadClient } from '@/payload/getPayloadClient'
 
 export const getBranches = cache(async (): Promise<Branch[]> => {
@@ -33,6 +33,24 @@ export const getBranchBySlug = cache(async (slug: string): Promise<Branch> => {
 
   return branch
 })
+
+export const getBranchWhatsOnPageBySlug = cache(
+  async (branchSlug: string): Promise<BranchWhatsOnPage> => {
+    const branch = await getBranchBySlug(branchSlug)
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'branch-whats-on-pages',
+      where: { branch: { equals: branch.id } },
+      depth: 1,
+      limit: 1,
+    })
+
+    const page = docs[0]
+    if (!page) notFound()
+
+    return page
+  },
+)
 
 const BRANCH_VENDOR_LIMIT = 3
 

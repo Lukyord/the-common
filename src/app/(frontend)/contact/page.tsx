@@ -6,6 +6,7 @@ import ContactAccordionContainer, {
 } from '@/components/brand/contact/ContactAccordionContainer'
 import { generateMeta } from '@/lib/generateMeta'
 import { getContactPayloadData } from '@/payload/queries/contact'
+import ContactReSeries from '@/components/brand/contact/ContactReSeries'
 
 export const dynamic = 'force-dynamic'
 
@@ -27,6 +28,8 @@ export default async function ContactPage() {
       <ContactForm {...toContactFormProps(contact)} />
 
       <ContactAccordionContainer {...toContactAccordionProps(contact)} />
+
+      <ContactReSeries />
     </main>
   )
 }

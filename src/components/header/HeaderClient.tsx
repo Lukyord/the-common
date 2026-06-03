@@ -12,13 +12,20 @@ import { HeaderLocation } from './HeaderLocation'
 import type { HeaderBranchItem } from './header-types'
 import { HeaderLocationMobile } from './HeaderLocationMobile'
 
-const HEADER_NAV_ITEMS = [
+const BRAND_HEADER_NAV_ITEMS = [
   { href: '/about', label: 'ABOUT' },
   { href: '/whats-on', label: "WHAT'S ON" },
   { href: '/vendors', label: 'VENDORS' },
   { href: '/blogs', label: 'BLOG' },
   { href: '/space-rental', label: 'SPACE RENTAL' },
   { href: '/contact', label: 'CONTACT' },
+] as const
+
+const BRANCH_HEADER_NAV_SEGMENTS = [
+  { segment: 'whats-on', label: "WHAT'S ON" },
+  { segment: 'vendors', label: 'VENDORS' },
+  { segment: 'space-rental', label: 'SPACE RENTAL' },
+  { segment: 'contact', label: 'CONTACT' },
 ] as const
 
 type HeaderClientProps = {
@@ -31,6 +38,12 @@ export function HeaderClient({ branches }: HeaderClientProps) {
   const slug = getSlugFromPathname(pathname)
   const currentBranch = branches.find((branch) => branch.slug === slug)
   const themeStyle = branchHeaderThemeStyle(currentBranch)
+  const headerNavItems = currentBranch
+    ? BRANCH_HEADER_NAV_SEGMENTS.map(({ segment, label }) => ({
+        href: `/${currentBranch.slug}/${segment}`,
+        label,
+      }))
+    : BRAND_HEADER_NAV_ITEMS
 
   return (
     <header id="header" style={themeStyle}>
@@ -44,7 +57,7 @@ export function HeaderClient({ branches }: HeaderClientProps) {
             <div className="panel-scroll" data-lenis-prevent>
               <div className="panel-body">
                 <ul className="menu">
-                  {HEADER_NAV_ITEMS.map(({ href, label }) => (
+                  {headerNavItems.map(({ href, label }) => (
                     <li key={href}>
                       <Link
                         href={href}

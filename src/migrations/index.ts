@@ -32,6 +32,7 @@ import * as migration_20260603_015710_vendors_gallery from './20260603_015710_ve
 import * as migration_20260603_021749_whats_on_branch_has_many from './20260603_021749_whats_on_branch_has_many';
 import * as migration_20260603_032621_whats_on_section from './20260603_032621_whats_on_section';
 import * as migration_20260603_062945_whats_on_tags from './20260603_062945_whats_on_tags';
+import * as migration_20260603_104605_barnch_whats_on from './20260603_104605_barnch_whats_on';
 
 export const migrations = [
   {
@@ -202,6 +203,11 @@ export const migrations = [
   {
     up: migration_20260603_062945_whats_on_tags.up,
     down: migration_20260603_062945_whats_on_tags.down,
-    name: '20260603_062945_whats_on_tags'
+    name: '20260603_062945_whats_on_tags',
+  },
+  {
+    up: migration_20260603_104605_barnch_whats_on.up,
+    down: migration_20260603_104605_barnch_whats_on.down,
+    name: '20260603_104605_barnch_whats_on'
   },
 ];
