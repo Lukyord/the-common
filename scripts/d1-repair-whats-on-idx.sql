@@ -9,7 +9,6 @@ DROP INDEX IF EXISTS whats_on_updated_at_idx;
 DROP INDEX IF EXISTS whats_on_created_at_idx;
 
 CREATE UNIQUE INDEX IF NOT EXISTS whats_on_slug_idx ON whats_on (slug);
-CREATE INDEX IF NOT EXISTS whats_on_branch_idx ON whats_on (branch_id);
 CREATE INDEX IF NOT EXISTS whats_on_media_idx ON whats_on (media_id);
 CREATE INDEX IF NOT EXISTS whats_on_meta_meta_image_idx ON whats_on (meta_image_id);
 CREATE INDEX IF NOT EXISTS whats_on_updated_at_idx ON whats_on (updated_at);

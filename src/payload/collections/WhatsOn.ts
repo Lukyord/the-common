@@ -1,4 +1,11 @@
-import type { CollectionConfig, Field } from 'payload'
+import type { CollectionConfig, Field, Validate } from 'payload'
+import { whatsOnMainTagSelectOptions, whatsOnSubTagSelectOptions } from '@/constants/whatsOnTags'
+
+const validateSubTags: Validate = (value) => {
+  if (!value) return true
+  if (!Array.isArray(value)) return true
+  return value.length <= 3 || 'You can select up to 3 sub tags.'
+}
 
 const colorPickerField = (name: string, label: string): Field => ({
   name,
@@ -45,7 +52,7 @@ export const WhatsOn: CollectionConfig = {
       index: true,
       admin: {
         custom: {
-          sourceField: 'name',
+          sourceField: 'title',
         },
         components: {
           Field: {
@@ -59,6 +66,7 @@ export const WhatsOn: CollectionConfig = {
       name: 'branch',
       type: 'relationship',
       relationTo: 'branches',
+      hasMany: true,
       required: true,
       index: true,
     },
@@ -109,15 +117,17 @@ export const WhatsOn: CollectionConfig = {
     },
     {
       name: 'mainTag',
-      type: 'text',
+      type: 'select',
       label: 'Main Tag',
+      options: whatsOnMainTagSelectOptions,
     },
     {
       name: 'subTags',
-      type: 'text',
+      type: 'select',
       label: 'Sub Tag',
+      options: whatsOnSubTagSelectOptions,
       hasMany: true,
-      maxRows: 3,
+      validate: validateSubTags,
     },
     {
       name: 'highlightText',

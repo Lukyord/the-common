@@ -484,7 +484,7 @@ export interface WhatsOn {
   id: number;
   title: string;
   slug: string;
-  branch: number | Branch;
+  branch: (number | Branch)[];
   dateToBeArchived?: string | null;
   media?: (number | null) | Media;
   gallery?:
@@ -496,8 +496,21 @@ export interface WhatsOn {
   bgColor?: string | null;
   date?: string | null;
   time?: string | null;
-  mainTag?: string | null;
-  subTags?: string[] | null;
+  mainTag?: ('signature-event' | 'thewholesome-club' | 'community-fun' | 'workshop') | null;
+  subTags?:
+    | (
+        | 'music'
+        | 'kids-family'
+        | 'food-drinks'
+        | 'market'
+        | 'art-culture'
+        | 'health-well-being'
+        | 'pet'
+        | 'lifestyle'
+        | 'social-impact'
+        | 'sustainability'
+      )[]
+    | null;
   highlightText?: {
     enabled?: boolean | null;
     text?: string | null;
