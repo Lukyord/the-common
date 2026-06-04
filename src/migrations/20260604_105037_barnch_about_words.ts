@@ -1,27 +1,10 @@
 import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-d1-sqlite'
 
 export async function up({ db }: MigrateUpArgs): Promise<void> {
-  await db.run(sql`CREATE TABLE \`branches_about_word_groups\` (
-  	\`_order\` integer NOT NULL,
-  	\`_parent_id\` integer NOT NULL,
-  	\`id\` text PRIMARY KEY NOT NULL,
-  	\`word\` text NOT NULL,
-  	\`media_id\` integer,
-  	\`title\` text,
-  	\`description\` text,
-  	FOREIGN KEY (\`media_id\`) REFERENCES \`media\`(\`id\`) ON UPDATE no action ON DELETE set null,
-  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`branches\`(\`id\`) ON UPDATE no action ON DELETE cascade
-  );
-  `)
-  await db.run(
-    sql`CREATE INDEX \`branches_about_word_groups_order_idx\` ON \`branches_about_word_groups\` (\`_order\`);`,
-  )
-  await db.run(
-    sql`CREATE INDEX \`branches_about_word_groups_parent_id_idx\` ON \`branches_about_word_groups\` (\`_parent_id\`);`,
-  )
-  await db.run(
-    sql`CREATE INDEX \`branches_about_word_groups_media_idx\` ON \`branches_about_word_groups\` (\`media_id\`);`,
-  )
+  // Recover from a failed deploy that created child/new tables but did not finish.
+  await db.run(sql`DROP TABLE IF EXISTS \`branches_about_word_groups\`;`)
+  await db.run(sql`DROP TABLE IF EXISTS \`__new_branches\`;`)
+
   await db.run(sql`PRAGMA foreign_keys=OFF;`)
   await db.run(sql`CREATE TABLE \`__new_branches\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
@@ -77,6 +60,28 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   )
   await db.run(sql`CREATE INDEX \`branches_updated_at_idx\` ON \`branches\` (\`updated_at\`);`)
   await db.run(sql`CREATE INDEX \`branches_created_at_idx\` ON \`branches\` (\`created_at\`);`)
+
+  await db.run(sql`CREATE TABLE \`branches_about_word_groups\` (
+  	\`_order\` integer NOT NULL,
+  	\`_parent_id\` integer NOT NULL,
+  	\`id\` text PRIMARY KEY NOT NULL,
+  	\`word\` text NOT NULL,
+  	\`media_id\` integer,
+  	\`title\` text,
+  	\`description\` text,
+  	FOREIGN KEY (\`media_id\`) REFERENCES \`media\`(\`id\`) ON UPDATE no action ON DELETE set null,
+  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`branches\`(\`id\`) ON UPDATE no action ON DELETE cascade
+  );
+  `)
+  await db.run(
+    sql`CREATE INDEX \`branches_about_word_groups_order_idx\` ON \`branches_about_word_groups\` (\`_order\`);`,
+  )
+  await db.run(
+    sql`CREATE INDEX \`branches_about_word_groups_parent_id_idx\` ON \`branches_about_word_groups\` (\`_parent_id\`);`,
+  )
+  await db.run(
+    sql`CREATE INDEX \`branches_about_word_groups_media_idx\` ON \`branches_about_word_groups\` (\`media_id\`);`,
+  )
 }
 
 export async function down({ db }: MigrateDownArgs): Promise<void> {
