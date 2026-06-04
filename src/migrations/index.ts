@@ -33,6 +33,7 @@ import * as migration_20260603_021749_whats_on_branch_has_many from './20260603_
 import * as migration_20260603_032621_whats_on_section from './20260603_032621_whats_on_section';
 import * as migration_20260603_062945_whats_on_tags from './20260603_062945_whats_on_tags';
 import * as migration_20260603_104605_barnch_whats_on from './20260603_104605_barnch_whats_on';
+import * as migration_20260604_082841_vendor_category_has_many from './20260604_082841_vendor_category_has_many';
 
 export const migrations = [
   {
@@ -208,6 +209,11 @@ export const migrations = [
   {
     up: migration_20260603_104605_barnch_whats_on.up,
     down: migration_20260603_104605_barnch_whats_on.down,
-    name: '20260603_104605_barnch_whats_on'
+    name: '20260603_104605_barnch_whats_on',
+  },
+  {
+    up: migration_20260604_082841_vendor_category_has_many.up,
+    down: migration_20260604_082841_vendor_category_has_many.down,
+    name: '20260604_082841_vendor_category_has_many'
   },
 ];

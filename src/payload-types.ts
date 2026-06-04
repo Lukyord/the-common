@@ -340,7 +340,10 @@ export interface Vendor {
    * The lot number of the vendor on the floor.
    */
   lotNumber?: number | null;
-  category?: (number | null) | VendorCategory;
+  /**
+   * Select up to 2 categories.
+   */
+  category?: (number | VendorCategory)[] | null;
   lifestyles?: (number | Lifestyle)[] | null;
   description?: {
     root: {
@@ -448,6 +451,31 @@ export interface WhatsOn {
   media?: (number | null) | Media;
   gallery?: (number | Media)[] | null;
   bgColor?: string | null;
+  /**
+   * Pick dates for filtering and display. Patterns: single, range, multiple dates, multiple date ranges (e.g. Thu 21 – Sat 23 Sep 26, Mon 28 – Wed 30 Sep 26).
+   */
+  eventSchedule: {
+    pattern: 'single' | 'range' | 'multiple' | 'multiple-range';
+    date?: string | null;
+    startDate?: string | null;
+    endDate?: string | null;
+    dates?:
+      | {
+          date: string;
+          id?: string | null;
+        }[]
+      | null;
+    ranges?:
+      | {
+          startDate: string;
+          endDate: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Auto-generated from Event Schedule on save.
+   */
   date?: string | null;
   time?: string | null;
   mainTag?: (number | null) | WhatsOnMainTag;
@@ -572,6 +600,11 @@ export interface BranchWhatsOnPage {
           id?: string | null;
         }[]
       | null;
+  };
+  latest?: {
+    title?: string | null;
+    background?: string | null;
+    allBranchesBackground?: string | null;
   };
   club?: {
     title?: string | null;
@@ -919,6 +952,13 @@ export interface BranchWhatsOnPagesSelect<T extends boolean = true> {
               id?: T;
             };
       };
+  latest?:
+    | T
+    | {
+        title?: T;
+        background?: T;
+        allBranchesBackground?: T;
+      };
   club?:
     | T
     | {
@@ -1014,6 +1054,27 @@ export interface WhatsOnSelect<T extends boolean = true> {
   media?: T;
   gallery?: T;
   bgColor?: T;
+  eventSchedule?:
+    | T
+    | {
+        pattern?: T;
+        date?: T;
+        startDate?: T;
+        endDate?: T;
+        dates?:
+          | T
+          | {
+              date?: T;
+              id?: T;
+            };
+        ranges?:
+          | T
+          | {
+              startDate?: T;
+              endDate?: T;
+              id?: T;
+            };
+      };
   date?: T;
   time?: T;
   mainTag?: T;

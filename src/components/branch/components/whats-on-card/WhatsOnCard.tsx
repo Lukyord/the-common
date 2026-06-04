@@ -3,9 +3,11 @@ import Link from 'next/link'
 import RenderMedia from '@/components/common/media'
 import { MarkdownContent } from '@/components/common/markdown-content'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import WhatsOnCardTip from './WhatsOnCardTip'
 
 type WhatsOnCardProps = {
   branchSlug?: string | null
+  backgroundColor?: string | null
   themeColor?: {
     bgColor: string
     color: string
@@ -25,6 +27,7 @@ type WhatsOnCardProps = {
 
 export default function WhatsOnCard({
   branchSlug,
+  backgroundColor,
   themeColor,
   media,
   title,
@@ -44,6 +47,8 @@ export default function WhatsOnCard({
         { '--bg-color': themeColor?.bgColor, '--color': themeColor?.color } as React.CSSProperties
       }
     >
+      <WhatsOnCardTip color={backgroundColor} />
+
       {media?.src && (
         <div className="card-media">
           <RenderMedia src={media.src} alt={media.alt || title} />

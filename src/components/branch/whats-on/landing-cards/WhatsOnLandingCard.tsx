@@ -5,6 +5,7 @@ import type { CSSProperties, KeyboardEvent, PointerEvent } from 'react'
 import { MarkdownContent } from '@/components/common/markdown-content'
 
 import type { WhatsOnLandingCardData } from './types'
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 type WhatsOnLandingCardProps = {
   card: WhatsOnLandingCardData
@@ -59,50 +60,56 @@ export function WhatsOnLandingCard({
       aria-pressed={isFlipped}
       aria-label={card.front?.title || `Card ${index + 1}`}
     >
-      <div className={`whats-on-landing-card-inner${isFlipped ? ' is-flipped' : ''}`}>
-        <div
-          className="whats-on-landing-card-face whats-on-landing-card-face--front"
-          style={{ '--card-bg': background } as CSSProperties}
-        >
-          {pattern && (
-            <div className="whats-on-landing-card-pattern" data-pattern={pattern} aria-hidden />
-          )}
-          <div className="whats-on-landing-card-content">
-            {card.front?.title && (
-              <MarkdownContent
-                as="h2"
-                className="type-d-header type-m-title weight-medium letter-spacing-002"
-              >
-                {card.front.title}
-              </MarkdownContent>
+      <AnimateOnScroll
+        triggerClass="fadeEntry"
+        className="whats-on-landing-card-enter"
+        style={{ '--entry-delay': `${index * 0.1}s` } as CSSProperties}
+      >
+        <div className={`whats-on-landing-card-inner${isFlipped ? ' is-flipped' : ''}`}>
+          <div
+            className="whats-on-landing-card-face whats-on-landing-card-face--front"
+            style={{ '--card-bg': background } as CSSProperties}
+          >
+            {pattern && (
+              <div className="whats-on-landing-card-pattern" data-pattern={pattern} aria-hidden />
             )}
+            <div className="whats-on-landing-card-content">
+              {card.front?.title && (
+                <MarkdownContent
+                  as="h2"
+                  className="type-d-header type-m-title weight-medium letter-spacing-002"
+                >
+                  {card.front.title}
+                </MarkdownContent>
+              )}
+            </div>
           </div>
-        </div>
 
-        <div
-          className="whats-on-landing-card-face whats-on-landing-card-face--back"
-          style={{ '--card-bg': background } as CSSProperties}
-        >
-          {pattern && (
-            <div className="whats-on-landing-card-pattern" data-pattern={pattern} aria-hidden />
-          )}
-          <div className="whats-on-landing-card-content">
-            {card.back?.title && (
-              <MarkdownContent
-                as="h2"
-                className="type-d-header type-m-title weight-medium letter-spacing-002"
-              >
-                {card.back.title}
-              </MarkdownContent>
+          <div
+            className="whats-on-landing-card-face whats-on-landing-card-face--back"
+            style={{ '--card-bg': background } as CSSProperties}
+          >
+            {pattern && (
+              <div className="whats-on-landing-card-pattern" data-pattern={pattern} aria-hidden />
             )}
-            {card.back?.description && (
-              <MarkdownContent as="p" className="type-d-body-l type-m-body-r letter-spacing-002">
-                {card.back.description}
-              </MarkdownContent>
-            )}
+            <div className="whats-on-landing-card-content">
+              {card.back?.title && (
+                <MarkdownContent
+                  as="h2"
+                  className="type-d-header type-m-title weight-medium letter-spacing-002"
+                >
+                  {card.back.title}
+                </MarkdownContent>
+              )}
+              {card.back?.description && (
+                <MarkdownContent as="p" className="type-d-body-l type-m-body-r letter-spacing-002">
+                  {card.back.description}
+                </MarkdownContent>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </AnimateOnScroll>
     </div>
   )
 }

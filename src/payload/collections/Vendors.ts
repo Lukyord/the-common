@@ -31,6 +31,14 @@ const validateVendorFloor: Validate<
   return 'The selected floor is not valid for this branch.'
 }
 
+const validateVendorCategories: Validate = (value) => {
+  if (!value) return true
+
+  if (!Array.isArray(value)) return true
+
+  return value.length <= 2 || 'You can select up to 2 categories.'
+}
+
 export const Vendors: CollectionConfig = {
   slug: 'vendors',
   labels: {
@@ -130,7 +138,12 @@ export const Vendors: CollectionConfig = {
       name: 'category',
       type: 'relationship',
       relationTo: 'vendor-categories',
-      label: 'Category',
+      label: 'Categories',
+      hasMany: true,
+      validate: validateVendorCategories,
+      admin: {
+        description: 'Select up to 2 categories.',
+      },
     },
     {
       name: 'lifestyles',

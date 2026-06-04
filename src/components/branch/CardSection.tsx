@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
-type CardSectionProps<TCard = MoodVendorCard> = {
+type CardSectionProps<TCard> = {
   sectionClassName?: string
   scInnerClassName?: string
   title?: string | null
@@ -22,18 +22,16 @@ type CardSectionProps<TCard = MoodVendorCard> = {
     buttonClassName?: string
     buttonColor?: string
   }
-  showBranch?: boolean
   renderCard?: (card: TCard, index: number) => ReactNode
   getCardKey?: (card: TCard, index: number) => string | number
 }
 
-export default function CardSection<TCard = MoodVendorCard>({
+export default function CardSection<TCard>({
   sectionClassName,
   scInnerClassName,
   title,
   cards = [],
   cta,
-  showBranch = false,
   renderCard,
   getCardKey,
 }: CardSectionProps<TCard>) {

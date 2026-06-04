@@ -26,6 +26,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-body-arrow-right:before {
+  content: '\e91c';
+}
 .ic-chevron-down:before {
   content: '\e90c';
 }

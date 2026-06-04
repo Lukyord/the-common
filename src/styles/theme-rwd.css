@@ -21,6 +21,14 @@
 @media (max-width: 991px) {
   /* COMPONENT */
   /* DEFAULT ==================== */
+  /* Button Banner */
+  .banner-button {
+    min-height: 7.4rem;
+  }
+
+  .banner-button .ic {
+    font-size: 2.2rem;
+  }
 
   /* HEADER ==================== */
 
@@ -647,5 +655,16 @@
 
   [data-section='vibe'] .time-toggle-btn {
     padding: var(--spacing-5xs);
+  }
+
+  /* PAGE: BRANCH WHATS ON */
+  /* What's On Latest */
+  .whats-on-latest {
+    min-height: calc(100svh - var(--header-height));
+  }
+
+  .whats-on-latest-empty {
+    text-wrap: balance;
+    padding: var(--spacing-xl) 0;
   }
 }

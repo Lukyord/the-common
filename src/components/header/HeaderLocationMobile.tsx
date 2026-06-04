@@ -2,8 +2,9 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
+import { useClickOutside } from '@/hooks/useClickOutside'
 import { getSlugFromPathname } from '@/lib/pathname'
 import type { HeaderBranchItem } from './header-types'
 
@@ -26,9 +27,12 @@ export const HeaderLocationMobile = ({ className, setIsMenuOpen, branches }: pro
     setIsOpen(false)
     setIsMenuOpen(false)
   }
+  const containerRef = useRef<HTMLDivElement>(null)
+  useClickOutside(containerRef, () => setIsOpen(false), isOpen)
 
   return (
     <div
+      ref={containerRef}
       className={`header-location header-location-mobile ${isOpen ? ' is-open' : ''} ${className}`}
     >
       <div className="location-trigger">

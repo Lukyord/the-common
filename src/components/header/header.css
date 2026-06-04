@@ -181,6 +181,10 @@ html.page-scrolling .header-location .location-panel ul {
     height: var(--header-content-height-scroll);
   }
 
+  html.page-scrolling .header--branch .header-menu .menu {
+    width: 50rem;
+  }
+
   html.page-scrolling .header-cta {
     width: 15.4rem;
   }

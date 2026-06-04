@@ -1,5 +1,7 @@
 import type { CollectionConfig, Field, Validate } from 'payload'
 
+import { syncWhatsOnDateFromSchedule } from '@/payload/hooks/whatsOnEventSchedule'
+
 const validateSubTags: Validate = (value) => {
   if (!value) return true
   if (!Array.isArray(value)) return true
@@ -34,6 +36,9 @@ export const WhatsOn: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    beforeChange: [syncWhatsOnDateFromSchedule],
   },
   fields: [
     {
@@ -99,9 +104,115 @@ export const WhatsOn: CollectionConfig = {
     },
     colorPickerField('bgColor', 'Bg Color'),
     {
+      name: 'eventSchedule',
+      type: 'group',
+      label: 'Event Schedule',
+      admin: {
+        description:
+          'Pick dates for filtering and display. Patterns: single, range, multiple dates, multiple date ranges (e.g. Thu 21 – Sat 23 Sep 26, Mon 28 – Wed 30 Sep 26).',
+      },
+      fields: [
+        {
+          name: 'pattern',
+          type: 'select',
+          label: 'Date Pattern',
+          defaultValue: 'single',
+          required: true,
+          options: [
+            { label: 'Single date', value: 'single' },
+            { label: 'Date range', value: 'range' },
+            { label: 'Multiple dates', value: 'multiple' },
+            { label: 'Multiple date ranges', value: 'multiple-range' },
+          ],
+        },
+        {
+          name: 'date',
+          type: 'date',
+          label: 'Date',
+          required: true,
+          admin: {
+            date: { pickerAppearance: 'dayOnly' },
+            condition: (_, siblingData) => siblingData?.pattern === 'single',
+          },
+        },
+        {
+          name: 'startDate',
+          type: 'date',
+          label: 'Start Date',
+          required: true,
+          admin: {
+            date: { pickerAppearance: 'dayOnly' },
+            condition: (_, siblingData) => siblingData?.pattern === 'range',
+          },
+        },
+        {
+          name: 'endDate',
+          type: 'date',
+          label: 'End Date',
+          required: true,
+          admin: {
+            date: { pickerAppearance: 'dayOnly' },
+            condition: (_, siblingData) => siblingData?.pattern === 'range',
+          },
+        },
+        {
+          name: 'dates',
+          type: 'array',
+          label: 'Dates',
+          minRows: 1,
+          admin: {
+            condition: (_, siblingData) => siblingData?.pattern === 'multiple',
+          },
+          fields: [
+            {
+              name: 'date',
+              type: 'date',
+              label: 'Date',
+              required: true,
+              admin: {
+                date: { pickerAppearance: 'dayOnly' },
+              },
+            },
+          ],
+        },
+        {
+          name: 'ranges',
+          type: 'array',
+          label: 'Date Ranges',
+          minRows: 1,
+          admin: {
+            condition: (_, siblingData) => siblingData?.pattern === 'multiple-range',
+          },
+          fields: [
+            {
+              name: 'startDate',
+              type: 'date',
+              label: 'Start Date',
+              required: true,
+              admin: {
+                date: { pickerAppearance: 'dayOnly' },
+              },
+            },
+            {
+              name: 'endDate',
+              type: 'date',
+              label: 'End Date',
+              required: true,
+              admin: {
+                date: { pickerAppearance: 'dayOnly' },
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: 'date',
       type: 'text',
-      label: 'Date',
+      label: 'Date Display',
+      admin: {
+        description: 'Auto-generated from Event Schedule on save.',
+      },
     },
     {
       name: 'time',

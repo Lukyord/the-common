@@ -1,7 +1,7 @@
 'use client'
 
 import CardSection from '@/components/branch/CardSection'
-import WhatsOnCard from '@/components/branch/components/WhatsOnCard'
+import WhatsOnCard from '@/components/branch/components/whats-on-card/WhatsOnCard'
 
 type BranchWhatsOnSectionProps = {
   title?: string | null
@@ -42,7 +42,12 @@ export default function BranchWhatsOnSection({
       cards={cards}
       getCardKey={(card) => card.id}
       renderCard={(card) => (
-        <WhatsOnCard branchSlug={branchSlug} themeColor={themeColor} {...card} />
+        <WhatsOnCard
+          branchSlug={branchSlug}
+          themeColor={themeColor}
+          {...card}
+          backgroundColor="var(--color-dark-brown)"
+        />
       )}
       cta={
         branchSlug

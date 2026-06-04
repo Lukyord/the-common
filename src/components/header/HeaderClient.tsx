@@ -46,7 +46,11 @@ export function HeaderClient({ branches }: HeaderClientProps) {
     : BRAND_HEADER_NAV_ITEMS
 
   return (
-    <header id="header" style={themeStyle}>
+    <header
+      id="header"
+      style={themeStyle}
+      className={currentBranch ? 'header--branch' : 'header--brand'}
+    >
       <div className="header-nav">
         <div className="header-logo">
           <Logo color={currentBranch?.primaryColor ?? undefined} />

@@ -1429,7 +1429,97 @@ html.no-touchevents .custom-select__option:hover,
 
 @media (prefers-reduced-motion: reduce) {
   .custom-select__panel,
-  .custom-select__icon .ic {
+  .custom-select__icon .ic,
+  .animated-dropdown__icon .ic,
+  .animated-dropdown__panel {
     transition: none;
   }
+}
+
+.animated-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.animated-dropdown__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.animated-dropdown__icon .ic {
+  transition: transform var(--duration) var(--timing-function);
+}
+
+.animated-dropdown.is-open .animated-dropdown__icon .ic {
+  transform: rotate(180deg);
+}
+
+.animated-dropdown__panel {
+  --dropdown-panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 5;
+  min-width: 18.6rem;
+  width: max-content;
+  min-width: 100%;
+  opacity: 0;
+  transform: translateX(3rem);
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    opacity var(--duration-x3) var(--dropdown-panel-ease),
+    transform var(--duration-x3) var(--dropdown-panel-ease),
+    visibility 0s linear var(--duration-x3);
+}
+
+.animated-dropdown__panel.is-open {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  visibility: visible;
+  transition:
+    opacity var(--duration-x3) var(--dropdown-panel-ease),
+    transform var(--duration-x3) var(--dropdown-panel-ease),
+    visibility 0s;
+}
+
+.animated-dropdown__panel ul {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: var(--spacing-5xs) 0;
+  list-style: none;
+}
+
+.animated-dropdown__option {
+  width: 100%;
+  padding: var(--spacing-4xs) var(--spacing-3xs);
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity var(--duration) var(--timing-function);
+}
+
+html.no-touchevents .animated-dropdown__option:hover,
+.animated-dropdown__option:focus-visible {
+  opacity: 0.5;
+}
+
+.animated-dropdown__option[aria-selected='true'] {
+  opacity: 0.5;
 }

@@ -1,5 +1,28 @@
 /* COMPONENT */
 /* DEFAULT ==================== */
+/* Button Banner */
+.banner-button {
+  min-height: 11rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-white);
+  background-color: var(--button-bg-color);
+  padding: 0 var(--spacing-container);
+}
+
+.banner-button .ic {
+  font-size: 2.8rem;
+}
+
+html.no-touchevents .banner-button:hover {
+  opacity: 1;
+}
+
+html.no-touchevents .banner-button:hover i {
+  transform: translateX(var(--spacing-2xs));
+}
+
 /* CLIP */
 [class*='clip-'] {
   height: 100%;
@@ -114,6 +137,29 @@ html.no-touchevents [data-card='vendor'] .tag:hover {
   color: var(--color-dark-brown);
   overflow: hidden;
 }
+[data-card='whats-on'] .whats-on-card-tip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25%;
+  height: auto;
+  z-index: 1;
+  aspect-ratio: 4.07407407407;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform var(--duration-x2) cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(-100%);
+}
+
+html.no-touchevents [data-card='whats-on']:hover .whats-on-card-tip {
+  transform: translateY(0);
+}
+
+/* .checked-bg [data-card='whats-on']:after {
+  background-image: url('../../public/shapes/whatson-hover-beige-checked.webp');
+} */
+
 [data-card='whats-on'] .card-media {
   aspect-ratio: 0.8;
   height: auto;
@@ -135,6 +181,23 @@ html.no-touchevents [data-card='vendor'] .tag:hover {
   gap: var(--spacing-6xs);
   margin-bottom: var(--spacing-sm);
 }
+
+[data-card='whats-on'] .card-header .card-ttl {
+  display: flex;
+  gap: var(--spacing-2sm);
+  justify-content: space-between;
+  align-items: flex-start;
+  text-wrap: balance;
+}
+
+/* [data-card='whats-on'] .card-header .card-ttl:after {
+  content: '';
+  flex-shrink: 0;
+  width: 2.4rem;
+  aspect-ratio: 1;
+  background-color: var(--bg-color, var(--color-dark-brown));
+  border-radius: 50%;
+} */
 
 [data-card='whats-on'] .card-date-time {
   display: flex;
@@ -159,34 +222,6 @@ html.no-touchevents [data-card='vendor'] .tag:hover {
   color: var(--color-beige);
   position: relative;
   z-index: 5;
-}
-
-[data-card='whats-on']:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 25%;
-  height: auto;
-  z-index: 1;
-  aspect-ratio: 4.07407407407;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: transform var(--duration) var(--timing-function);
-  transform: translateY(-100%);
-}
-html.no-touchevents [data-card='whats-on']:hover:after {
-  transform: translateY(0);
-}
-.dark-bg [data-card='whats-on']:after {
-  background-image: url('../../public/shapes/whatson-hover-dark-brown.svg');
-}
-.beige-bg [data-card='whats-on']:after {
-  background-image: url('../../public/shapes/whatson-hover-beige.svg');
-}
-.checked-bg [data-card='whats-on']:after {
-  background-image: url('../../public/shapes/whatson-hover-beige-checked.webp');
 }
 
 .dark-bg [data-card='whats-on'] {
@@ -1983,6 +2018,16 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   cursor: grabbing;
 }
 
+.whats-on-landing-card-enter {
+  width: 100%;
+  height: 100%;
+}
+
+.whats-on-landing-card-enter.animate.fadeEntry {
+  animation-delay: var(--entry-delay, 0s);
+  animation-fill-mode: both;
+}
+
 .whats-on-landing-card-inner {
   position: relative;
   width: 100%;
@@ -2062,4 +2107,68 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   .whats-on-landing-card-content {
     gap: var(--spacing-4xs);
   }
+}
+
+/* PAGE: BRANCH WHATS ON */
+/* What's On Latest */
+.whats-on-latest {
+  background-color: var(--bg-color, var(--color-dark-brown));
+  color: var(--color-white);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.whats-on-latest > *:first-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.whats-on-latest .container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.whats-on-latest > *:last-child {
+  flex-shrink: 0;
+}
+
+.whats-on-latest .sc-header {
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.whats-on-latest .sc-header .left {
+  display: flex;
+  gap: var(--spacing-2xs);
+}
+
+.whats-on-latest .sc-header .right {
+  flex-shrink: 0;
+}
+
+.whats-on-latest .sc-ttl {
+  color: var(--color-beige);
+}
+
+.whats-on-latest .sc-time p {
+  color: var(--color-beige);
+}
+
+.whats-on-latest .time-frame-dropdown .animated-dropdown__panel {
+  background-color: var(--bg-color, var(--color-dark-brown));
+}
+
+.whats-on-latest-empty {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 66rem;
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+  text-align: center;
+  color: rgba(var(--color-white-rgb), 0.8);
 }

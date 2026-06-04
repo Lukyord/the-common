@@ -66,15 +66,22 @@ export type BranchLandingVendorCard = {
   location: string
 }
 
+function getVendorCategoryTexts(category: Vendor['category']): string[] {
+  if (!category?.length) return []
+
+  return category.flatMap((item) => {
+    if (typeof item === 'object' && item?.text) return [item.text]
+    return []
+  })
+}
+
 function mapVendorToBranchLandingCard(vendor: Vendor): BranchLandingVendorCard | null {
   const media = resolveMedia(vendor.media)
   const branch = typeof vendor.branch === 'object' ? vendor.branch : null
 
   if (!media?.src || !branch?.slug) return null
 
-  const categoryText =
-    typeof vendor.category === 'object' && vendor.category?.text ? vendor.category.text : undefined
-  const tags = categoryText ? [categoryText] : []
+  const tags = getVendorCategoryTexts(vendor.category)
   const location = vendor.floorLocation ?? ''
 
   return {
@@ -165,6 +172,7 @@ export type BranchLandingWhatsOnCard = {
     src: string
     alt: string
   }
+  eventSchedule?: WhatsOn['eventSchedule'] | null
   date?: string | null
   time?: string | null
   mainTag?: string | null
@@ -203,6 +211,7 @@ function mapWhatsOnToBranchLandingCard(
       src: media.src,
       alt: media.alt || item.title,
     },
+    eventSchedule: item.eventSchedule ?? null,
     date: item.date,
     time: item.time,
     mainTag: getWhatsOnMainTagText(item.mainTag),
@@ -270,6 +279,38 @@ export const getBranchLandingWhatsOn = cache(
       displayType === 'highlight' && highlightIds.length
         ? [...query.docs].sort((a, b) => highlightIds.indexOf(a.id) - highlightIds.indexOf(b.id))
         : query.docs
+
+    return docs.flatMap((item) => {
+      if (isWhatsOnArchived(item)) return []
+      const card = mapWhatsOnToBranchLandingCard(item, branch.slug)
+      return card ? [card] : []
+    })
+  },
+)
+
+export const getBranchWhatsOnLatest = cache(
+  async (branch: Branch): Promise<BranchLandingWhatsOnCard[]> => {
+    if (!branch?.id || !branch.slug) return []
+
+    const payload = await getPayloadClient()
+    const branchFilter = {
+      branch: {
+        contains: branch.id,
+      },
+    }
+    const activeWhatsOnWhere = getActiveWhatsOnWhere()
+
+    const { docs } = await payload.find({
+      collection: 'whats-on',
+      depth: 1,
+      limit: 200,
+      overrideAccess: false,
+      pagination: false,
+      sort: 'createdAt',
+      where: {
+        and: [branchFilter, activeWhatsOnWhere],
+      },
+    })
 
     return docs.flatMap((item) => {
       if (isWhatsOnArchived(item)) return []

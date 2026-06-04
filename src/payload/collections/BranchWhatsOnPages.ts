@@ -118,6 +118,25 @@ export const BranchWhatsOnPages: CollectionConfig = {
         ],
       },
     ]),
+    section('Latest', [
+      {
+        name: 'latest',
+        type: 'group',
+        label: 'Latest',
+        admin: {
+          hideGutter: true,
+        },
+        fields: [
+          {
+            name: 'title',
+            type: 'text',
+            label: 'Title',
+          },
+          colorPickerField('background', 'Background'),
+          colorPickerField('allBranchesBackground', 'All Branches Background'),
+        ],
+      },
+    ]),
     section('Club', [
       {
         name: 'club',
