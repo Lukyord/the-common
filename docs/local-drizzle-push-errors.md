@@ -89,6 +89,21 @@ It will:
 
 Do **not** run `scripts/d1-repair-branches-push.sql` via wrangler when `__new_branches` is already gone — that runs `DROP TABLE branches` and fails with `vendors.branch_id` NOT NULL.
 
+### Example: removing `about.title` / `about.description` / about background uploads
+
+Push may warn about deleting `about_title`, `about_description`, `about_background_media_id`, `about_mobile_background_media_id`, then fail on `DROP TABLE branches` (same `vendors.branch_id` error).
+
+**Drift signal:** `__new_branches` exists; `branches` still has the old `about_*` columns; `branches_about_word_groups` may already exist.
+
+**Fix (local only):** stop dev, then:
+
+```bash
+pnpm run db:repair-local
+pnpm run dev
+```
+
+That finishes the interrupted rebuild (`__new_branches` → `branches` with `PRAGMA foreign_keys=OFF`). Your branch rows and other tables are kept; only the dropped about columns are removed from `branches`.
+
 ### Example: `payload_locked_documents_rels` + `…_order_idx already exists`
 
 ```text

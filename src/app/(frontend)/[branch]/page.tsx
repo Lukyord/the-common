@@ -60,7 +60,7 @@ export default async function BranchPage({ params }: Props) {
 
       <MottoMarquee items={homepageMotto?.motto} />
 
-      <AboutSection data={branch?.about} />
+      <AboutSection data={branch?.about} branchSlug={branch?.slug} />
 
       <VibeSection data={branch?.vibesCheck} />
 

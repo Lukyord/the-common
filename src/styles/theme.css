@@ -1758,6 +1758,190 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   inset: 0;
 }
 
+[data-section='about-section'] .media-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--duration) var(--timing-function);
+  pointer-events: none;
+}
+
+[data-section='about-section'] .media-slide.is-active {
+  opacity: 1;
+}
+
+[data-section='about-section'] .about-content-stack {
+  display: grid;
+}
+
+[data-section='about-section'] .about-content-stack > .content-slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity var(--duration) var(--timing-function);
+}
+
+[data-section='about-section'] .about-content-stack > .content-slide.is-active {
+  opacity: 1;
+}
+
+[data-section='about-section'] .words {
+  position: relative;
+}
+
+[data-section='about-section'] .about-word-trigger {
+  --offset: 2.5%;
+  --offset-neg: calc(-1 * var(--offset));
+  font-size: min(4.1666666667vw, 6rem);
+  line-height: 1.16;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  color: var(--color-dark-brown);
+  padding: min(0.5555555556vw, 0.8rem) min(1.1111111111vw, 1.6rem);
+  transition: transform var(--duration) var(--timing-function);
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.about-word-trigger:hover {
+  transform: translate(var(--hover-x), var(--hover-y));
+}
+
+.about-word-trigger[data-word='explore'] {
+  --hover-x: var(--offset-neg);
+  --hover-y: var(--offset-neg);
+  color: var(--color-white);
+  background-image: url('../../public/designs/branch-about-bg-1.webp');
+}
+
+.about-word-trigger[data-word='pamper'] {
+  --hover-x: var(--offset);
+  --hover-y: var(--offset-neg);
+  background-image: url('../../public/designs/branch-about-bg-2.webp');
+}
+
+.about-word-trigger[data-word='move'] {
+  --hover-x: var(--offset-neg);
+  --hover-y: var(--offset);
+  background-image: url('../../public/designs/branch-about-bg-3.webp');
+}
+
+.about-word-trigger[data-word='eat'] {
+  --hover-x: 0;
+  --hover-y: var(--offset);
+  color: var(--color-white);
+  background-image: url('../../public/designs/branch-about-bg-4.webp');
+}
+
+.about-word-trigger[data-word='give-back'] {
+  --hover-x: var(--offset);
+  --hover-y: var(--offset);
+  background-image: url('../../public/designs/branch-about-bg-5.webp');
+}
+.about-word-trigger[data-word='gather'] {
+  --hover-x: var(--offset-neg);
+  --hover-y: var(--offset);
+  background-image: url('../../public/designs/branch-about-bg-3.webp');
+}
+
+.branch-thonglor {
+  .about-word-trigger[data-word='explore'] {
+    top: 63.3745644599%;
+    left: -7.3921971253%;
+  }
+
+  .about-word-trigger[data-word='pamper'] {
+    top: 62.6672473868%;
+    left: 45.7864476386%;
+    rotate: 2.37deg;
+  }
+
+  .about-word-trigger[data-word='move'] {
+    top: 80.831010453%;
+    left: -32.2381930185%;
+    rotate: -1.7deg;
+  }
+
+  .about-word-trigger[data-word='eat'] {
+    color: var(--color-white);
+    top: 80.487804878%;
+    left: 6.9815195072%;
+  }
+
+  .about-word-trigger[data-word='give-back'] {
+    top: 80.863066%;
+    left: 33.9630390144%;
+    rotate: 0.81deg;
+  }
+}
+
+.branch-saladaeng {
+  .about-word-trigger[data-word='explore'] {
+    top: 63.3745644599%;
+    left: -7.3921971253%;
+  }
+
+  .about-word-trigger[data-word='pamper'] {
+    top: 62.6672473868%;
+    left: 45.7864476386%;
+    rotate: 2.37deg;
+  }
+
+  .about-word-trigger[data-word='eat'] {
+    color: var(--color-white);
+    top: 80.487804878%;
+    left: -1.977412731%;
+    rotate: -2.24deg;
+  }
+
+  .about-word-trigger[data-word='give-back'] {
+    top: 80.863066%;
+    left: 26.4887063655%;
+    rotate: 0.81deg;
+  }
+}
+
+.branch-cloud-11 {
+  .about-word-trigger[data-word='explore'] {
+    color: var(--color-white);
+    top: 45.1219512195%;
+    left: 33.8809034908%;
+  }
+
+  .about-word-trigger[data-word='move'] {
+    color: var(--color-white);
+    top: 62.063066%;
+    left: 3.9014373717%;
+    rotate: -1.88deg;
+    background-image: url('../../public/designs/branch-about-bg-6.webp');
+  }
+
+  .about-word-trigger[data-word='pamper'] {
+    top: 62.543554007%;
+    left: 45.7864476386%;
+    rotate: 2.37deg;
+  }
+
+  .about-word-trigger[data-word='gather'] {
+    top: 80.831010453%;
+    left: -41.06776180698%;
+    rotate: -1.7deg;
+  }
+
+  .about-word-trigger[data-word='eat'] {
+    color: var(--color-white);
+    top: 80.487804878%;
+    left: 6.9815195072%;
+  }
+
+  .about-word-trigger[data-word='give-back'] {
+    top: 80.863066%;
+    left: 33.9630390144%;
+    rotate: 0.81deg;
+  }
+}
+
 [data-section='about-section'] .sc-header {
   display: flex;
   justify-content: space-between;
@@ -1771,6 +1955,7 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   flex-shrink: 0;
 }
 
+/* Vibe Section */
 [data-section='vibe'] {
   position: relative;
   color: var(--color-white);

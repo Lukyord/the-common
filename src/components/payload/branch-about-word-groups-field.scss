@@ -1,0 +1,17 @@
+.branch-about-word-groups-field__group {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--theme-elevation-150);
+}
+
+.branch-about-word-groups-field__group:first-of-type {
+  margin-top: 1rem;
+}
+
+.branch-about-word-groups-field__word {
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}

@@ -619,6 +619,18 @@
     align-items: flex-start;
   }
 
+  [data-section='about-section'] .words {
+    width: 82.1333333333%;
+    margin-left: auto;
+    aspect-ratio: 0.8484320557;
+  }
+
+  [data-section='about-section'] .about-word-trigger {
+    --offset: 2.5%;
+    font-size: 8.5333333333vw;
+    padding: 1.6vw 2.6666666667vw;
+  }
+
   [data-section='about-section'] .sc-header .sc-desc {
     width: 100%;
   }

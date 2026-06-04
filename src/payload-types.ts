@@ -266,10 +266,18 @@ export interface Branch {
   };
   about?: {
     bgColor?: string | null;
-    title?: string | null;
-    description?: string | null;
-    backgroundMedia?: (number | null) | Media;
-    mobileBackgroundMedia?: (number | null) | Media;
+    /**
+     * Words are fixed per branch slug. Fill in media, title, and description for each word below.
+     */
+    wordGroups?:
+      | {
+          word: string;
+          media?: (number | null) | Media;
+          title?: string | null;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
   };
   vibesCheck?: {
     title?: string | null;
@@ -834,10 +842,15 @@ export interface BranchesSelect<T extends boolean = true> {
     | T
     | {
         bgColor?: T;
-        title?: T;
-        description?: T;
-        backgroundMedia?: T;
-        mobileBackgroundMedia?: T;
+        wordGroups?:
+          | T
+          | {
+              word?: T;
+              media?: T;
+              title?: T;
+              description?: T;
+              id?: T;
+            };
       };
   vibesCheck?:
     | T

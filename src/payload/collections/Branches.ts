@@ -1,6 +1,12 @@
 import type { CollectionConfig, Field, Validate } from 'payload'
 
+import {
+  BRANCH_ABOUT_WORDS_BY_SLUG,
+  getBranchAboutWordLabel,
+  type BranchAboutWord,
+} from '@/constants/branchAboutWords'
 import { getActiveWhatsOnWhere } from '@/lib/whatsOnArchive'
+import { syncBranchAboutWordGroups } from '@/payload/hooks/syncBranchAboutWordGroups'
 
 const colorPickerField = (name: string, label: string): Field => ({
   name,
@@ -52,6 +58,31 @@ const validateHighlightWhatsOn: Validate = (value) => {
   return value.length <= 3 || "You can select up to 3 highlighted what's on items."
 }
 
+const validateAboutWordGroups: Validate = (value, { data }) => {
+  const slug = data?.slug
+  if (!slug || typeof slug !== 'string') return true
+
+  const expected = BRANCH_ABOUT_WORDS_BY_SLUG[slug]
+  if (!expected) return true
+
+  if (!Array.isArray(value)) {
+    return `This branch requires ${expected.length} word groups.`
+  }
+
+  if (value.length !== expected.length) {
+    return `This branch requires exactly ${expected.length} word groups.`
+  }
+
+  for (let i = 0; i < expected.length; i++) {
+    const row = value[i] as { word?: BranchAboutWord } | undefined
+    if (row?.word !== expected[i]) {
+      return `Word group ${i + 1} must be "${getBranchAboutWordLabel(expected[i])}".`
+    }
+  }
+
+  return true
+}
+
 function section(label: string, fields: Field[]): Field {
   return {
     type: 'collapsible',
@@ -77,6 +108,9 @@ export const Branches: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    beforeChange: [syncBranchAboutWordGroups],
   },
   fields: [
     {
@@ -175,26 +209,45 @@ export const Branches: CollectionConfig = {
                 fields: [
                   colorPickerField('bgColor', 'Background Color'),
                   {
-                    name: 'title',
-                    type: 'text',
-                    label: 'Title',
-                  },
-                  {
-                    name: 'description',
-                    type: 'textarea',
-                    label: 'Description',
-                  },
-                  {
-                    name: 'backgroundMedia',
-                    type: 'upload',
-                    relationTo: 'media',
-                    label: 'Background Media',
-                  },
-                  {
-                    name: 'mobileBackgroundMedia',
-                    type: 'upload',
-                    relationTo: 'media',
-                    label: 'Mobile Background Media',
+                    name: 'wordGroups',
+                    type: 'array',
+                    label: 'Word Groups',
+                    validate: validateAboutWordGroups,
+                    admin: {
+                      description:
+                        'Words are fixed per branch slug. Fill in media, title, and description for each word below.',
+                      isSortable: false,
+                      components: {
+                        Field:
+                          '@/components/payload/branch-about-word-groups-field#BranchAboutWordGroupsField',
+                      },
+                    },
+                    fields: [
+                      {
+                        name: 'word',
+                        type: 'text',
+                        required: true,
+                        admin: {
+                          hidden: true,
+                        },
+                      },
+                      {
+                        name: 'media',
+                        type: 'upload',
+                        relationTo: 'media',
+                        label: 'Media',
+                      },
+                      {
+                        name: 'title',
+                        type: 'text',
+                        label: 'Title',
+                      },
+                      {
+                        name: 'description',
+                        type: 'textarea',
+                        label: 'Description',
+                      },
+                    ],
                   },
                 ],
               },
@@ -365,7 +418,7 @@ export const Branches: CollectionConfig = {
                     admin: {
                       condition: (_, siblingData) => siblingData?.displayType === 'highlight',
                       description:
-                        "Manually select up to 3 items. Only active items linked to this branch are shown.",
+                        'Manually select up to 3 items. Only active items linked to this branch are shown.',
                     },
                     filterOptions: ({ data }) => {
                       if (!data?.id || typeof data.id !== 'number') {
