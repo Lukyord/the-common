@@ -61,6 +61,15 @@ else
   fi
 fi
 
+if has_table '__new_branch_whats_on_pages'; then
+  echo "Found __new_branch_whats_on_pages — drop it manually or reset local D1."
+else
+  if has_table 'branch_whats_on_pages' && sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='branch_whats_on_pages_branch_idx';" | grep -q 1; then
+    echo "Dropping branch_whats_on_pages_branch_idx so drizzle push can recreate it…"
+    sqlite3 "${DB}" < scripts/d1-repair-branch-whats-on-pages-idx.sql
+  fi
+fi
+
 if has_table '__new_whats_on'; then
   echo "Found __new_whats_on — drop it manually or reset local D1."
 else

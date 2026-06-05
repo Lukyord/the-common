@@ -73,13 +73,13 @@ export default function WhatsOnLatest({
       <div className="sc-inner pc-t-100 pc-b-100 mb-t-75 mb-b-75">
         <div className="container">
           <div className="sc-header type-d-header type-m-headliner-m letter-spacing-002 weight-medium uppercase">
-            <div className="left">
+            <AnimateOnScroll triggerClass="fadeIn" className="left">
               {title && (
-                <AnimateOnScroll triggerClass="fadeIn" className="sc-ttl">
+                <div className="sc-ttl">
                   <MarkdownContent as="h2" inline>
                     {title}
                   </MarkdownContent>
-                </AnimateOnScroll>
+                </div>
               )}
               <div className="time-selector">
                 <AnimatedDropdown
@@ -93,12 +93,12 @@ export default function WhatsOnLatest({
                   onChange={(value) => setSelectedTimeframe(value as WhatsOnTimeframeId)}
                 />
               </div>
-            </div>
-            <div className="right show-md">
+            </AnimateOnScroll>
+            <AnimateOnScroll triggerClass="fadeIn" className="right show-md">
               <div className="sc-time">
                 <p>{selectedOption?.displayLabel}</p>
               </div>
-            </div>
+            </AnimateOnScroll>
           </div>
 
           {filteredCards.length > 0 ? (
@@ -118,24 +118,28 @@ export default function WhatsOnLatest({
             </div>
           ) : (
             <div className="whats-on-latest-empty">
-              <p className="type-d-body-m type-m-body-s letter-spacing-002">{emptyMessage}</p>
+              <AnimateOnScroll triggerClass="fadeIn" className="whats-on-latest-empty-content">
+                <p className="type-d-body-m type-m-body-s letter-spacing-002">{emptyMessage}</p>
+              </AnimateOnScroll>
             </div>
           )}
         </div>
       </div>
 
-      <Link
-        href="/whats-on"
-        className="banner-button"
-        style={{ '--button-bg-color': allBranchesBackground } as CSSProperties}
-      >
-        <p className="type-d-header type-m-headliner-m uppercase weight-medium letter-spacing-002">
-          <span className="show-md"> EXPLORE FROM ALL BRANCHES</span>
-          <span className="hidden-device-md">EXPLORE ALL BRANCH</span>
-        </p>
+      <AnimateOnScroll triggerClass="fadeIn">
+        <Link
+          href="/whats-on"
+          className="banner-button"
+          style={{ '--button-bg-color': allBranchesBackground } as CSSProperties}
+        >
+          <p className="type-d-header type-m-headliner-m uppercase weight-medium letter-spacing-002">
+            <span className="show-md"> EXPLORE FROM ALL BRANCHES</span>
+            <span className="hidden-device-md">EXPLORE ALL BRANCH</span>
+          </p>
 
-        <i className="ic ic-body-arrow-right"></i>
-      </Link>
+          <i className="ic ic-body-arrow-right"></i>
+        </Link>
+      </AnimateOnScroll>
     </section>
   )
 }

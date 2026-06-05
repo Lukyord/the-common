@@ -148,7 +148,7 @@ html.no-touchevents [data-card='vendor'] .tag:hover {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transition: transform var(--duration-x2) cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--duration-x3) cubic-bezier(0.22, 1, 0.36, 1);
   transform: translateY(-100%);
 }
 
@@ -156,9 +156,13 @@ html.no-touchevents [data-card='whats-on']:hover .whats-on-card-tip {
   transform: translateY(0);
 }
 
-/* .checked-bg [data-card='whats-on']:after {
+.bg-checked [data-card='whats-on'] .whats-on-card-tip {
   background-image: url('../../public/shapes/whatson-hover-beige-checked.webp');
-} */
+
+  > svg {
+    display: none;
+  }
+}
 
 [data-card='whats-on'] .card-media {
   aspect-ratio: 0.8;
@@ -2434,4 +2438,35 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   padding: var(--spacing-xl) 0;
   text-align: center;
   color: rgba(var(--color-white-rgb), 0.8);
+}
+
+/* Whats On Club */
+.whats-on-club {
+  background-image: url('../../public/designs/checked-bg.webp');
+  background-size: contain;
+  background-repeat: repeat;
+}
+
+/* Whats On Others */
+.whats-on-others {
+  color: var(--color-white);
+}
+
+.whats-on-others .card-container {
+  --column: 3.5;
+}
+
+.whats-on-others .swiper .swiper-button-next {
+  right: 0;
+  top: calc(-1 * var(--spacing-2lg));
+  margin-top: 0;
+  transform: translateY(-100%);
+}
+
+.whats-on-others .swiper .swiper-button-prev {
+  left: auto;
+  right: calc(var(--swiper-navigation-size) + var(--spacing-md));
+  top: calc(-1 * var(--spacing-2lg));
+  margin-top: 0;
+  transform: translateY(-100%);
 }

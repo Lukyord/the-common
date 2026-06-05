@@ -140,6 +140,30 @@ pnpm run db:repair-local
 pnpm run dev
 ```
 
+### Example: `branch_whats_on_pages` + `branch_whats_on_pages_branch_idx already exists`
+
+Often after changing `allEventsAndWorkshops.mainTag` to `hasMany` (column → `branch_whats_on_pages_rels`):
+
+```text
+CREATE UNIQUE INDEX `branch_whats_on_pages_branch_idx` ON `branch_whats_on_pages` (`branch_id`);
+index branch_whats_on_pages_branch_idx already exists
+```
+
+**Drift signal:** `all_events_and_workshops_main_tag_id` is gone, `branch_whats_on_pages_rels` exists, but push still errors on `branch_whats_on_pages_branch_idx`.
+
+```bash
+pnpm run db:repair-local
+pnpm run dev
+```
+
+Or manually:
+
+```bash
+pnpm exec wrangler d1 execute D1 --local --command "DROP INDEX IF EXISTS branch_whats_on_pages_branch_idx;"
+```
+
+Then restart dev.
+
 ### Example: `vendors` + `vendors_media_idx already exists`
 
 ```text

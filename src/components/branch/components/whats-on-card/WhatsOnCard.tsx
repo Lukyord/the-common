@@ -5,7 +5,7 @@ import { MarkdownContent } from '@/components/common/markdown-content'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import WhatsOnCardTip from './WhatsOnCardTip'
 
-type WhatsOnCardProps = {
+export type WhatsOnCardProps = {
   branchSlug?: string | null
   backgroundColor?: string | null
   themeColor?: {

@@ -710,4 +710,14 @@
     text-wrap: balance;
     padding: var(--spacing-xl) 0;
   }
+
+  /* Whats On Others */
+  .whats-on-others .card-container {
+    --column: 1.2;
+  }
+
+  .whats-on-others .swiper .swiper-button-next,
+  .whats-on-others .swiper .swiper-button-prev {
+    display: none;
+  }
 }

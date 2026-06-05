@@ -1,18 +1,25 @@
 'use client'
 
 import Link from 'next/link'
-import type { ReactNode } from 'react'
-import type { MoodVendorCard } from '@/components/brand/homepage/mood/mapMoodVendorCard'
+import type { CSSProperties, ReactNode } from 'react'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { MarkdownContent } from '@/components/common/markdown-content'
-import { Pagination } from 'swiper/modules'
+import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
+import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-type CardSectionProps<TCard> = {
+export type CardSectionSliderConfig = {
+  navigation?: boolean
+  pagination?: boolean | { clickable?: boolean }
+  speed?: number
+}
+
+export type CardSectionProps<TCard> = {
   sectionClassName?: string
+  sectionStyle?: CSSProperties
   scInnerClassName?: string
   title?: string | null
   cards: TCard[]
@@ -22,23 +29,30 @@ type CardSectionProps<TCard> = {
     buttonClassName?: string
     buttonColor?: string
   }
+  slider?: CardSectionSliderConfig
   renderCard?: (card: TCard, index: number) => ReactNode
   getCardKey?: (card: TCard, index: number) => string | number
 }
 
 export default function CardSection<TCard>({
   sectionClassName,
+  sectionStyle,
   scInnerClassName,
   title,
   cards = [],
   cta,
+  slider,
   renderCard,
   getCardKey,
 }: CardSectionProps<TCard>) {
   if (!title && cards.length === 0) return null
 
+  const showNavigation = slider?.navigation === true
+  const showPagination = slider?.pagination === true
+  const modules = [...(showNavigation ? [Navigation] : []), ...(showPagination ? [Pagination] : [])]
+
   return (
-    <section data-section="card-section" className={sectionClassName}>
+    <section data-section="card-section" className={sectionClassName} style={sectionStyle}>
       <div className={`sc-inner ${scInnerClassName}`}>
         <div className="container">
           <div className="sc-header">
@@ -69,7 +83,22 @@ export default function CardSection<TCard>({
 
           {cards.length > 0 && (
             <div className="card-container" data-card-layout="slider">
-              <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView="auto">
+              <Swiper
+                modules={modules}
+                navigation={showNavigation}
+                speed={slider?.speed ?? 800}
+                pagination={
+                  showPagination
+                    ? {
+                        clickable:
+                          typeof slider?.pagination === 'object'
+                            ? (slider.pagination.clickable ?? true)
+                            : true,
+                      }
+                    : false
+                }
+                slidesPerView="auto"
+              >
                 {renderCard &&
                   cards.map((card, index) => (
                     <SwiperSlide key={getCardKey?.(card, index) ?? index}>

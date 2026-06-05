@@ -1,30 +1,16 @@
 'use client'
 
-import CardSection from '@/components/branch/CardSection'
+import CardSection, { CardSectionProps } from '@/components/branch/CardSection'
 import WhatsOnCard from '@/components/branch/components/whats-on-card/WhatsOnCard'
+import type { WhatsOnCardProps } from '@/components/branch/components/whats-on-card/WhatsOnCard'
 
-type BranchWhatsOnSectionProps = {
-  title?: string | null
+type BranchWhatsOnSectionProps = Omit<
+  CardSectionProps<WhatsOnCardProps>,
+  'sectionClassName' | 'scInnerClassName' | 'cta' | 'renderCard' | 'getCardKey'
+> & {
   branchSlug?: string | null
-  themeColor?: {
-    bgColor: string
-    color: string
-  } | null
+  themeColor?: WhatsOnCardProps['themeColor'] | null
   buttonColor?: string | null
-  cards: {
-    id: number
-    title: string
-    link: string
-    media: {
-      src: string
-      alt: string
-    }
-    date?: string | null
-    time?: string | null
-    mainTag?: string | null
-    subTags: string[]
-    highlightText?: string | null
-  }[]
 }
 
 export default function BranchWhatsOnSection({
@@ -40,7 +26,7 @@ export default function BranchWhatsOnSection({
       sectionClassName="branch-landing-whats-on dark-bg"
       title={title}
       cards={cards}
-      getCardKey={(card) => card.id}
+      getCardKey={(card) => card.title}
       renderCard={(card) => (
         <WhatsOnCard
           branchSlug={branchSlug}

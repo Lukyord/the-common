@@ -1060,9 +1060,39 @@ section.header-margin {
 
 .swiper .swiper-button-prev,
 .swiper .swiper-button-next {
+  display: block;
+  margin-top: 0;
+  --swiper-navigation-size: 2.4rem;
+
+  &:before {
+    content: none;
+  }
+
+  &:after {
+    font-family: 'iconfont';
+    font-size: var(--icon-size-sm);
+    color: var(--color-beige);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   &.swiper-button-disabled {
     pointer-events: auto;
   }
+}
+
+.swiper .swiper-button-prev:after {
+  content: '\e90d';
+}
+.swiper .swiper-button-next:after {
+  content: '\e90e';
+}
+
+.swiper-button-prev > svg,
+.swiper-button-next > svg {
+  display: none;
 }
 
 .swiper-pagination-bullets.swiper-pagination-horizontal {

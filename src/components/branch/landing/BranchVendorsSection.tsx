@@ -1,23 +1,17 @@
 'use client'
 
-import CardSection from '@/components/branch/CardSection'
+import CardSection, { CardSectionProps } from '@/components/branch/CardSection'
 import VendorCard from '@/components/branch/components/VendorCard'
+import type { ComponentProps } from 'react'
 
-type BranchVendorsSectionProps = {
-  title?: string | null
+type VendorCardProps = ComponentProps<typeof VendorCard>
+
+type BranchVendorsSectionProps = Omit<
+  CardSectionProps<VendorCardProps>,
+  'sectionClassName' | 'scInnerClassName' | 'cta' | 'renderCard' | 'getCardKey'
+> & {
   branchSlug?: string | null
   buttonColor?: string | null
-  cards: {
-    id: number
-    title: string
-    link: string
-    media: {
-      src: string
-      alt: string
-    }
-    tags: string[]
-    location: string
-  }[]
 }
 
 export default function BranchVendorsSection({
@@ -32,7 +26,7 @@ export default function BranchVendorsSection({
       scInnerClassName="pc-t-100 pc-b-100 mb-t-75 mb-b-75"
       title={title}
       cards={cards}
-      getCardKey={(card) => card.id}
+      getCardKey={(card) => card.title}
       renderCard={(card) => (
         <VendorCard
           branchSlug={branchSlug}
@@ -43,11 +37,15 @@ export default function BranchVendorsSection({
           link={card.link}
         />
       )}
-      cta={{
-        label: 'VIEW VENDORS',
-        href: `/${branchSlug}/vendors`,
-        buttonColor: buttonColor ?? undefined,
-      }}
+      cta={
+        branchSlug
+          ? {
+              label: 'VIEW VENDORS',
+              href: `/${branchSlug}/vendors`,
+              buttonColor: buttonColor ?? undefined,
+            }
+          : undefined
+      }
     />
   )
 }
