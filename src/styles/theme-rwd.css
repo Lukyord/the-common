@@ -519,6 +519,7 @@
     max-width: unset;
   }
 
+  /* PAGE: CONTACT */
   /* Contact Form */
   [data-section='contact'] {
     flex-direction: column;
@@ -540,6 +541,7 @@
 
   [data-section='contact'] .contact-form {
     width: 100%;
+    min-height: unset;
     padding: var(--spacing-xl) var(--spacing-container);
   }
 
@@ -596,6 +598,35 @@
   [data-section='contact-accordion'] .accordion-single-content .accordion-column-content {
     flex: 0 0 100%;
     width: 100%;
+  }
+
+  /* Contact Re Series */
+  [data-section='contact-re-series'] .container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  [data-section='contact-re-series'] .container .sc-desc {
+    padding-bottom: 0;
+  }
+  [data-section='contact-re-series'] .sc-header {
+    padding-bottom: var(--spacing-2lg);
+    padding-top: var(--spacing-xs);
+    overflow: hidden;
+  }
+  [data-section='contact-re-series'] .entry-content {
+    font-size: 1.6rem;
+  }
+  [data-section='contact-re-series'] .sc-ttl > *:first-child {
+    margin-left: 4.8rem;
+  }
+  [data-section='contact-re-series'] .flower-orange {
+    width: 4rem;
+  }
+  [data-section='contact-re-series'] .hand-flower {
+    width: 8.3rem;
+    bottom: -1rem;
+    right: 2.8818443804%;
+    transition: transform var(--duration) var(--timing-function);
   }
 
   /* BRANCH ======================== */

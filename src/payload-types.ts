@@ -621,6 +621,7 @@ export interface BranchWhatsOnPage {
   allEventsAndWorkshops?: {
     title?: string | null;
     mainTag?: (number | null) | WhatsOnMainTag;
+    eventArchiveBackground?: string | null;
   };
   meta?: {
     title?: string | null;
@@ -983,6 +984,7 @@ export interface BranchWhatsOnPagesSelect<T extends boolean = true> {
     | {
         title?: T;
         mainTag?: T;
+        eventArchiveBackground?: T;
       };
   meta?:
     | T

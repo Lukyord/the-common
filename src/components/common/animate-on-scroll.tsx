@@ -42,7 +42,34 @@ export default function AnimateOnScroll({
   ...rest
 }: AnimateOnScrollProps) {
   const elementRef = useRef<HTMLDivElement>(null)
+  const hasShownRef = useRef(false)
   const [isRevealed, setIsRevealed] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  useEffect(() => {
+    const element = elementRef.current
+    if (!element || !isRevealed || !isAnimating) return
+
+    const finishAnimation = () => setIsAnimating(false)
+
+    const onAnimationEnd = (event: AnimationEvent) => {
+      if (event.target !== element) return
+      finishAnimation()
+    }
+
+    element.addEventListener('animationend', onAnimationEnd)
+
+    const styles = getComputedStyle(element)
+    const duration = parseFloat(styles.animationDuration) || 0
+    const animationDelay = parseFloat(styles.animationDelay) || 0
+    const fallbackMs = (duration + animationDelay) * 1000 + 100
+    const fallback = window.setTimeout(finishAnimation, fallbackMs)
+
+    return () => {
+      element.removeEventListener('animationend', onAnimationEnd)
+      window.clearTimeout(fallback)
+    }
+  }, [isRevealed, isAnimating, triggerClass])
 
   useEffect(() => {
     const element = elementRef.current
@@ -50,17 +77,23 @@ export default function AnimateOnScroll({
 
     const showElement = (callback?: () => void) => {
       setIsRevealed(true)
+      setIsAnimating(true)
       callback?.()
     }
 
     const hideElement = (callback?: () => void) => {
       if (!once) {
         setIsRevealed(false)
+        setIsAnimating(false)
+        hasShownRef.current = false
       }
       callback?.()
     }
 
     const runShow = () => {
+      if (once && hasShownRef.current) return
+      hasShownRef.current = true
+
       if (delay) {
         setTimeout(() => showElement(onEnter), delay)
       } else {
@@ -72,6 +105,7 @@ export default function AnimateOnScroll({
       trigger: element,
       start,
       toggleActions,
+      once,
       onEnter: runShow,
       onLeave: () => {
         hideElement(onLeave)
@@ -101,7 +135,7 @@ export default function AnimateOnScroll({
   const rootClassName = [
     !isRevealed && PENDING_CLASS,
     'animate',
-    ...(isRevealed ? triggerClasses : []),
+    ...(isRevealed && isAnimating ? triggerClasses : []),
     className,
   ]
     .filter(Boolean)

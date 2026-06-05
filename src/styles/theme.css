@@ -1724,6 +1724,84 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   --gap-content: var(--spacing-sm);
 }
 
+/* Contact Re Series */
+[data-section='contact-re-series'] > .cover img {
+  background-size: contain;
+  background-repeat: repeat;
+}
+
+[data-section='contact-re-series'] .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+[data-section='contact-re-series'] .container .sc-desc {
+  padding-bottom: calc(var(--gap-section) * 1.5);
+}
+
+[data-section='contact-re-series'] .entry-content {
+  font-size: 2rem;
+}
+
+[data-section='contact-re-series'] .sc-ttl,
+[data-section='contact-re-series'] .sc-header {
+  display: inline-block;
+  position: relative;
+}
+[data-section='contact-re-series'] .sc-ttl > *:first-child {
+  margin-left: 10.8rem;
+  position: relative;
+}
+[data-section='contact-re-series'] .sc-ttl > * {
+  position: relative;
+  z-index: 5;
+}
+
+[data-section='contact-re-series'] .flower-orange {
+  position: absolute;
+  bottom: 0;
+  right: 100%;
+  width: 10.8rem;
+  aspect-ratio: 1;
+  transition: transform var(--duration) var(--timing-function);
+}
+
+html.no-touchevents [data-section='contact-re-series'] .flower-orange:hover {
+  transform: rotate(-16deg);
+}
+
+[data-section='contact-re-series'] .hand-flower {
+  aspect-ratio: 0.6375838926;
+  width: 19rem;
+  position: absolute;
+  bottom: -2.5rem;
+  right: 11.5606936416%;
+  transition: transform var(--duration) var(--timing-function);
+
+  .hand {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .flower-green {
+    width: 50.5263157895%;
+    aspect-ratio: 1.2113564669;
+    position: absolute;
+    top: 1%;
+    left: 22%;
+    transition: transform var(--duration) var(--timing-function);
+  }
+}
+
+html.no-touchevents [data-section='contact-re-series'] .hand-flower:hover {
+  transform: translateY(-2.5rem);
+
+  .flower-green {
+    transform: rotate(-26deg);
+  }
+}
+
 /* BRANCH ======================== */
 /* PAGE: BRANCH LANDING */
 [data-section='about-section'] {

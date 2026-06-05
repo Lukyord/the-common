@@ -180,6 +180,7 @@ export const BranchWhatsOnPages: CollectionConfig = {
             relationTo: 'whats-on-main-tags',
             label: 'Main Tag',
           },
+          colorPickerField('eventArchiveBackground', 'Event Archive Background'),
         ],
       },
     ]),
