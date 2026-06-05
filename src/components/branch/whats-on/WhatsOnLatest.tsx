@@ -14,7 +14,7 @@ import {
   filterByTimeframe,
   type WhatsOnTimeframeId,
 } from '@/lib/whatsOnTimeframe'
-import { Pagination } from 'swiper/modules'
+import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
@@ -103,7 +103,15 @@ export default function WhatsOnLatest({
 
           {filteredCards.length > 0 ? (
             <div className="card-container" data-card-layout="slider">
-              <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView="auto">
+              <Swiper
+                autoplay={{
+                  delay: 6000,
+                  disableOnInteraction: false,
+                }}
+                modules={[Pagination, Autoplay]}
+                pagination={{ clickable: true }}
+                slidesPerView="auto"
+              >
                 {filteredCards.map((card) => (
                   <SwiperSlide key={card.id}>
                     <WhatsOnCard

@@ -32,7 +32,8 @@ export default function AnimatedDropdown({
   const [panelPhase, setPanelPhase] = useState<PanelPhase>('closed')
 
   const selectedLabel = options.find((option) => option.value === value)?.label ?? ''
-  const isPanelActive = panelPhase === 'entering' || panelPhase === 'open' || panelPhase === 'exiting'
+  const isPanelActive =
+    panelPhase === 'entering' || panelPhase === 'open' || panelPhase === 'exiting'
 
   useEffect(() => {
     if (isOpen) {
@@ -118,7 +119,7 @@ export default function AnimatedDropdown({
       >
         <span className="animated-dropdown__value">{selectedLabel}</span>
         <span className="animated-dropdown__icon" aria-hidden>
-          <i className="ic ic-chevron-down size-icon-sm" />
+          <i className="ic ic-chevron-down size-icon-xs" />
         </span>
       </button>
 

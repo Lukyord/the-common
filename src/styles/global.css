@@ -1520,7 +1520,7 @@ html.no-touchevents .custom-select__option:hover,
   width: max-content;
   min-width: 100%;
   opacity: 0;
-  transform: translateX(3rem);
+  transform: translateY(1.5rem);
   pointer-events: none;
   visibility: hidden;
   transition:
@@ -1531,7 +1531,7 @@ html.no-touchevents .custom-select__option:hover,
 
 .animated-dropdown__panel.is-open {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
   pointer-events: auto;
   visibility: visible;
   transition:

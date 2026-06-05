@@ -30,6 +30,7 @@ export default function BranchVendorsSection({
       renderCard={(card) => (
         <VendorCard
           branchSlug={branchSlug}
+          branches={card.branches}
           title={card.title}
           media={card.media}
           tags={card.tags}

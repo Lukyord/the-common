@@ -1,7 +1,13 @@
 import { cache } from 'react'
 import { notFound } from 'next/navigation'
 
-import { getActiveWhatsOnWhere, isWhatsOnArchived } from '@/lib/whatsOnArchive'
+import type { CardBranchDotItem } from '@/components/branch/components/card-branch-dots'
+import { normalizeCardBranches } from '@/components/branch/components/card-branch-dots'
+import {
+  getActiveWhatsOnWhere,
+  getArchivedWhatsOnWhere,
+  isWhatsOnArchived,
+} from '@/lib/whatsOnArchive'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type { Branch, BranchWhatsOnPage, Vendor, WhatsOn } from '@/payload-types'
 import { getPayloadClient } from '@/payload/getPayloadClient'
@@ -64,6 +70,7 @@ export type BranchLandingVendorCard = {
   }
   tags: string[]
   location: string
+  branches: CardBranchDotItem[]
 }
 
 function getVendorCategoryTexts(category: Vendor['category']): string[] {
@@ -94,6 +101,7 @@ function mapVendorToBranchLandingCard(vendor: Vendor): BranchLandingVendorCard |
     },
     tags,
     location,
+    branches: normalizeCardBranches(vendor.branch),
   }
 }
 
@@ -172,12 +180,15 @@ export type BranchLandingWhatsOnCard = {
     src: string
     alt: string
   }
+  bgColor?: string | null
+  dateToBeArchived?: string | null
   eventSchedule?: WhatsOn['eventSchedule'] | null
   date?: string | null
   time?: string | null
   mainTag?: string | null
   subTags: string[]
   highlightText?: string | null
+  branches: CardBranchDotItem[]
 }
 
 function getWhatsOnMainTagText(tag: WhatsOn['mainTag']) {
@@ -211,12 +222,15 @@ function mapWhatsOnToBranchLandingCard(
       src: media.src,
       alt: media.alt || item.title,
     },
+    bgColor: item.bgColor?.trim() || null,
+    dateToBeArchived: item.dateToBeArchived ?? null,
     eventSchedule: item.eventSchedule ?? null,
     date: item.date,
     time: item.time,
     mainTag: getWhatsOnMainTagText(item.mainTag),
     subTags: getWhatsOnSubTagTexts(item.subTags),
     highlightText: highlightText ?? null,
+    branches: normalizeCardBranches(item.branch),
   }
 }
 
@@ -356,3 +370,51 @@ export const getBranchWhatsOnLatest = cache(
     })
   },
 )
+
+export const GRID_CARD_PAGE_SIZE = 4
+
+export type GridCardPageResult<T extends { id: number }> = {
+  cards: T[]
+  hasMore: boolean
+}
+
+export const getBranchWhatsOnArchived = async (
+  branch: Branch,
+  page = 1,
+  limit = GRID_CARD_PAGE_SIZE,
+): Promise<GridCardPageResult<BranchLandingWhatsOnCard>> => {
+  if (!branch?.id || !branch.slug) {
+    return { cards: [], hasMore: false }
+  }
+
+  const payload = await getPayloadClient()
+  const { docs, hasNextPage } = await payload.find({
+    collection: 'whats-on',
+    depth: 1,
+    page,
+    limit,
+    overrideAccess: false,
+    pagination: true,
+    sort: '-dateToBeArchived',
+    where: {
+      and: [
+        {
+          branch: {
+            contains: branch.id,
+          },
+        },
+        getArchivedWhatsOnWhere(),
+      ],
+    },
+  })
+
+  const cards = docs.flatMap((item) => {
+    const card = mapWhatsOnToBranchLandingCard(item, branch.slug)
+    return card ? [card] : []
+  })
+
+  return {
+    cards,
+    hasMore: hasNextPage,
+  }
+}

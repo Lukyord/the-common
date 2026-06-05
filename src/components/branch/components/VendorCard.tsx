@@ -2,9 +2,14 @@ import Link from 'next/link'
 
 import RenderMedia from '@/components/common/media'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import {
+  CardBranchDots,
+  type CardBranchDotItem,
+} from '@/components/branch/components/card-branch-dots'
 
 type VendorCardProps = {
   branchSlug?: string | null
+  branches?: CardBranchDotItem[]
   media?: {
     src: string
     alt?: string
@@ -17,6 +22,7 @@ type VendorCardProps = {
 
 export default function VendorCard({
   branchSlug,
+  branches = [],
   media,
   title,
   tags = [],
@@ -31,6 +37,8 @@ export default function VendorCard({
 
       <div className="card-ttl">
         <h3 className="type-d-body-l type-m-title letter-spacing-002 weight-medium">{title}</h3>
+
+        <CardBranchDots branches={branches} />
       </div>
 
       <div className="card-desc">

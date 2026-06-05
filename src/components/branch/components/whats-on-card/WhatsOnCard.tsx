@@ -3,10 +3,15 @@ import Link from 'next/link'
 import RenderMedia from '@/components/common/media'
 import { MarkdownContent } from '@/components/common/markdown-content'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import {
+  CardBranchDots,
+  type CardBranchDotItem,
+} from '@/components/branch/components/card-branch-dots'
 import WhatsOnCardTip from './WhatsOnCardTip'
 
 export type WhatsOnCardProps = {
   branchSlug?: string | null
+  branches?: CardBranchDotItem[]
   backgroundColor?: string | null
   themeColor?: {
     bgColor: string
@@ -27,6 +32,7 @@ export type WhatsOnCardProps = {
 
 export default function WhatsOnCard({
   branchSlug,
+  branches = [],
   backgroundColor,
   themeColor,
   media,
@@ -47,10 +53,9 @@ export default function WhatsOnCard({
         { '--bg-color': themeColor?.bgColor, '--color': themeColor?.color } as React.CSSProperties
       }
     >
-      <WhatsOnCardTip color={backgroundColor} />
-
       {media?.src && (
         <div className="card-media">
+          <WhatsOnCardTip color={backgroundColor} />
           <RenderMedia src={media.src} alt={media.alt || title} />
 
           {highlightText && (
@@ -80,6 +85,8 @@ export default function WhatsOnCard({
           >
             {title}
           </MarkdownContent>
+
+          <CardBranchDots branches={branches} />
         </div>
       </div>
       <div className="card-tags">

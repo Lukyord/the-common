@@ -46,6 +46,35 @@ export function getActiveWhatsOnWhere(): Where {
   }
 }
 
+export function getArchivedWhatsOnWhere(): Where {
+  const today = getTodayDateString()
+
+  return {
+    and: [
+      {
+        dateToBeArchived: {
+          exists: true,
+        },
+      },
+      {
+        dateToBeArchived: {
+          not_equals: null,
+        },
+      },
+      {
+        dateToBeArchived: {
+          not_equals: '',
+        },
+      },
+      {
+        dateToBeArchived: {
+          less_than_equal: today,
+        },
+      },
+    ],
+  }
+}
+
 export function isWhatsOnArchived(item: { dateToBeArchived?: string | null }) {
   if (!isArchiveDateSet(item.dateToBeArchived)) return false
 

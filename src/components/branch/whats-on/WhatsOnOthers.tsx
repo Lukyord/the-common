@@ -47,7 +47,7 @@ export default function WhatsOnOthers({
 
       <AnimateOnScroll triggerClass="fadeIn">
         <Link
-          href="/whats-on"
+          href={`/${branchSlug}/whats-on/archive`}
           className="banner-button"
           style={{ '--button-bg-color': eventArchiveBackground } as CSSProperties}
         >
