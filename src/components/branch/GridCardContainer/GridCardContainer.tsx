@@ -6,15 +6,28 @@ import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import AnimatedDropdown from '@/components/common/AnimatedDropdown'
 import BackLink from '@/components/common/BackLink'
 
+import {
+  buildBranchFilterOptions,
+  buildCategoryFilterOptions,
+  filterGridCardsByBranch,
+  filterGridCardsByCategory,
+  GRID_CARD_FILTER_ALL,
+  type GridCard,
+} from './filterGridCards'
 import { renderGridCard } from './renderGridCard'
 import { GRID_CARD_SORT_OPTIONS, sortGridCards } from './sortGridCards'
 import type { GridCardContainerProps, GridCardLoadMoreResult, GridCardSortOrder } from './types'
+
+const GRID_CARD_DROPDOWN_CLASS =
+  'grid-card-dropdown type-d-body-m type-m-body-m weight-medium letter-spacing-002'
 
 export default function GridCardContainer({
   backLink,
   title,
   showCount = false,
   showSort = false,
+  showBranchFilter = false,
+  showCategoryFilter = false,
   filterSlot,
   cards: initialCards,
   hasMore: initialHasMore = false,
@@ -31,11 +44,41 @@ export default function GridCardContainer({
   const [page, setPage] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
   const [sortOrder, setSortOrder] = useState<GridCardSortOrder>('newest-oldest')
+  const [branchFilter, setBranchFilter] = useState(GRID_CARD_FILTER_ALL)
+  const [categoryFilter, setCategoryFilter] = useState(GRID_CARD_FILTER_ALL)
 
-  const sortedCards = useMemo(
-    () => (showSort ? (sortGridCards(cards, cardVariant, sortOrder) as typeof cards) : cards),
-    [cards, cardVariant, showSort, sortOrder],
+  const branchFilterOptions = useMemo(
+    () => (showBranchFilter ? buildBranchFilterOptions(cards as GridCard[]) : []),
+    [cards, showBranchFilter],
   )
+
+  const categoryFilterOptions = useMemo(
+    () =>
+      showCategoryFilter ? buildCategoryFilterOptions(cards as GridCard[], cardVariant) : [],
+    [cards, cardVariant, showCategoryFilter],
+  )
+
+  const filteredCards = useMemo((): typeof cards => {
+    let nextCards: GridCard[] = cards as GridCard[]
+
+    if (showBranchFilter) {
+      nextCards = filterGridCardsByBranch(nextCards, branchFilter)
+    }
+
+    if (showCategoryFilter) {
+      nextCards = filterGridCardsByCategory(nextCards, categoryFilter, cardVariant)
+    }
+
+    return nextCards as typeof cards
+  }, [branchFilter, cards, cardVariant, categoryFilter, showBranchFilter, showCategoryFilter])
+
+  const displayCards = useMemo(
+    () =>
+      showSort ? (sortGridCards(filteredCards, cardVariant, sortOrder) as typeof cards) : filteredCards,
+    [cardVariant, filteredCards, showSort, sortOrder],
+  )
+
+  const showFilters = showSort || showBranchFilter || showCategoryFilter || filterSlot
 
   const handleLoadMore = useCallback(async () => {
     if (!loadMoreUrl || isLoading || !hasMore) return
@@ -80,16 +123,38 @@ export default function GridCardContainer({
         <div className="sc-ttl">
           <h2 className="type-d-header type-m-display letter-spacing-002 weight-medium uppercase">
             {title}
-            {showCount ? ` (${cards.length})` : null}
+            {showCount ? ` (${displayCards.length})` : null}
           </h2>
         </div>
 
-        {showSort || filterSlot ? (
+        {showFilters ? (
           <div className="sc-filter-sortby">
+            {showBranchFilter ? (
+              <div className="grid-card-filter">
+                <AnimatedDropdown
+                  className={GRID_CARD_DROPDOWN_CLASS}
+                  ariaLabel="Filter by branch"
+                  options={branchFilterOptions}
+                  value={branchFilter}
+                  onChange={setBranchFilter}
+                />
+              </div>
+            ) : null}
+            {showCategoryFilter ? (
+              <div className="grid-card-filter">
+                <AnimatedDropdown
+                  className={GRID_CARD_DROPDOWN_CLASS}
+                  ariaLabel="Filter by category"
+                  options={categoryFilterOptions}
+                  value={categoryFilter}
+                  onChange={setCategoryFilter}
+                />
+              </div>
+            ) : null}
             {showSort ? (
               <div className="grid-card-sort">
                 <AnimatedDropdown
-                  className="grid-card-sort-dropdown type-d-body-m type-m-body-m weight-medium letter-spacing-002"
+                  className={GRID_CARD_DROPDOWN_CLASS}
                   ariaLabel="Sort by"
                   options={[...GRID_CARD_SORT_OPTIONS]}
                   value={sortOrder}
@@ -102,9 +167,9 @@ export default function GridCardContainer({
         ) : null}
       </div>
 
-      {sortedCards.length > 0 ? (
+      {displayCards.length > 0 ? (
         <div className="card-container" data-card-layout={cardLayout}>
-          {sortedCards.map((card, index) => (
+          {displayCards.map((card, index) => (
             <div key={card.id} style={{ order: index }}>
               {renderGridCard(card, cardVariant, cardContext)}
             </div>

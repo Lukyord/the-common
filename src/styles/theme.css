@@ -323,6 +323,8 @@ html.no-touchevents .card-branch-dot:hover .branch-dot-name {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
+  position: relative;
+  z-index: 20;
 }
 
 .grid-card-contianer .animated-dropdown {
@@ -331,13 +333,13 @@ html.no-touchevents .card-branch-dot:hover .branch-dot-name {
   border-bottom: 0.2rem solid var(--color-dark-brown);
 }
 
-.grid-card-contianer .grid-card-sort-dropdown .animated-dropdown__panel {
+.grid-card-contianer .grid-card-dropdown .animated-dropdown__panel {
   right: 0;
   left: auto;
   top: calc(100% + var(--spacing-2xs));
   background-color: var(--color-beige);
   min-width: 18.6rem;
-  width: 100%;
+  width: max-content;
 }
 .grid-card-contianer .animated-dropdown__option {
   text-align: right;
@@ -348,12 +350,12 @@ html.no-touchevents .card-branch-dot:hover .branch-dot-name {
   --gap-x: var(--spacing-sm);
   --gap-y: var(--spacing-xl);
   grid-auto-flow: row;
+  margin-bottom: var(--spacing-4xl);
 }
 
 .grid-card-contianer .grid-card-see-more {
   display: flex;
   justify-content: center;
-  margin-top: var(--spacing-4xl);
 }
 
 .grid-card-contianer .see-more-button {

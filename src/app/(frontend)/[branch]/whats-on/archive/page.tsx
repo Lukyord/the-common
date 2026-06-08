@@ -39,8 +39,10 @@ export default async function ArchivePage({ params }: Props) {
             }}
             backLink={{ href: `/${branchSlug}/whats-on` }}
             title="EVENT ARCHIVE"
-            showCount
+            // showCount
             showSort
+            // showBranchFilter
+            // showCategoryFilter
             cards={archiveResult.cards}
             hasMore={archiveResult.hasMore}
             loadMoreUrl="/api/cards/whats-on-archive"

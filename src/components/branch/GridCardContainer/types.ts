@@ -35,6 +35,8 @@ type GridCardContainerBaseProps = {
   title: string
   showCount?: boolean
   showSort?: boolean
+  showBranchFilter?: boolean
+  showCategoryFilter?: boolean
   filterSlot?: ReactNode
   hasMore?: boolean
   loadMoreUrl?: string

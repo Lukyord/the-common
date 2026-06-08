@@ -42,7 +42,7 @@
   .grid-card-contianer .sc-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--spacing-3xs);
+    gap: var(--spacing-xs);
   }
 
   .grid-card-contianer .sc-filter-sortby {
@@ -53,7 +53,7 @@
     padding-left: 0;
   }
 
-  .grid-card-contianer .grid-card-sort-dropdown .animated-dropdown__panel {
+  .grid-card-contianer .grid-card-dropdown .animated-dropdown__panel {
     right: auto;
     left: 0;
     min-width: unset;
@@ -66,10 +66,7 @@
     --column: 2;
     --gap-x: var(--spacing-4xs);
     --gap-y: var(--spacing-md);
-  }
-
-  .grid-card-contianer .grid-card-see-more {
-    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
   }
 
   /* Index Hero */
@@ -759,7 +756,8 @@
   }
 
   .grid-card-contianer .card-container {
-    --column: 1;
-    --gap-x: var(--spacing-container);
+    --column: 2;
+    --gap-x: var(--spacing-4xs);
+    --gap-y: var(--spacing-md);
   }
 }
