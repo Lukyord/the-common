@@ -51,7 +51,7 @@ export const LocationSelector = () => {
           onClick={() => setIsOpen((open) => !open)}
         >
           <p className="type-d-label type-m-body-m letter-spacing-003 uppercase weight-medium">
-            SELECT LOCATION
+            PICK LOCATION
           </p>
           <i className="ic ic-arrow-down size-icon-2xs hidden-device-md c-beige" aria-hidden></i>
         </button>

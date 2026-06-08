@@ -56,7 +56,7 @@ export default async function HomePage() {
               />
             </div>
           )}
-          <div className="sc-inner pc-t-100 pc-b-75 mb-t-100 mb-b-100">
+          <div className="sc-inner pc-t-100 pc-b-75 mb-t-100 mb-b-125">
             <div className="container">
               <AnimateOnScroll delay={300} triggerClass="fadeIn" className="sc-ttl">
                 <MarkdownContent
