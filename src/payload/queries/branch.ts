@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 
 import type { CardBranchDotItem } from '@/components/branch/components/card-branch-dots'
 import { normalizeCardBranches } from '@/components/branch/components/card-branch-dots'
+import { getWhatsOnBranchLocationText } from '@/constants/whatsOnBranchLocations'
 import {
   getActiveWhatsOnWhere,
   getArchivedWhatsOnWhere,
@@ -371,12 +372,108 @@ export const getBranchWhatsOnLatest = cache(
   },
 )
 
-export const GRID_CARD_PAGE_SIZE = 4
+export const GRID_CARD_PAGE_SIZE = 12
 
 export type GridCardPageResult<T extends { id: number }> = {
   cards: T[]
   hasMore: boolean
 }
+
+export type WhatsOnSingleBranch = {
+  slug: string
+  name: string
+  location: string | null
+  bgColor: string | null
+  color: string | null
+}
+
+export type WhatsOnSingleData = {
+  title: string
+  date?: string | null
+  time?: string | null
+  mainTag?: string | null
+  subTags: string[]
+  branches: WhatsOnSingleBranch[]
+  content?: WhatsOn['content'] | null
+  buttonText?: string | null
+  buttonLink?: string | null
+  buttonColor?: string | null
+  bgColor?: string | null
+  gallery: { src: string; alt: string }[]
+  meta?: WhatsOn['meta']
+}
+
+function mapWhatsOnSingleBranches(item: WhatsOn): WhatsOnSingleBranch[] {
+  if (!item.branch?.length) return []
+
+  return item.branch.flatMap((entry) => {
+    if (typeof entry === 'number' || !entry.slug) return []
+
+    return [
+      {
+        slug: entry.slug,
+        name: entry.name,
+        location: getWhatsOnBranchLocationText(entry.slug, item.branchLocations),
+        bgColor: entry.vibesCheck?.secondaryColor?.trim() || null,
+        color: entry.vibesCheck?.primaryColor?.trim() || null,
+      },
+    ]
+  })
+}
+
+function resolveGalleryMedia(gallery?: WhatsOn['gallery']) {
+  if (!gallery?.length) return []
+
+  return gallery.flatMap((item) => {
+    const media = resolveMedia(item)
+    return media ? [media] : []
+  })
+}
+
+function whatsOnBelongsToBranch(item: WhatsOn, branchId: number) {
+  if (!item.branch?.length) return false
+
+  return item.branch.some((entry) => {
+    if (typeof entry === 'number') return entry === branchId
+    return entry.id === branchId
+  })
+}
+
+export const getWhatsOnBySlug = cache(
+  async (branchSlug: string, slug: string): Promise<WhatsOnSingleData> => {
+    const branch = await getBranchBySlug(branchSlug)
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'whats-on',
+      where: { slug: { equals: slug } },
+      depth: 2,
+      limit: 1,
+      overrideAccess: false,
+    })
+
+    const item = docs[0]
+    if (!item || !whatsOnBelongsToBranch(item, branch.id)) notFound()
+
+    const gallery = resolveGalleryMedia(item.gallery)
+    const fallbackMedia = resolveMedia(item.media)
+
+    return {
+      title: item.title,
+      date: item.date,
+      time: item.time,
+      mainTag: getWhatsOnMainTagText(item.mainTag),
+      subTags: getWhatsOnSubTagTexts(item.subTags),
+      branches: mapWhatsOnSingleBranches(item),
+      content: item.content,
+      buttonText: item.buttonText,
+      buttonLink: item.buttonLink,
+      buttonColor: branch.bgColor?.trim() || null,
+      bgColor: item.bgColor?.trim() || null,
+      gallery: gallery.length ? gallery : fallbackMedia ? [fallbackMedia] : [],
+      meta: item.meta,
+    }
+  },
+)
 
 export const getBranchWhatsOnArchived = async (
   branch: Branch,

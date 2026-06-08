@@ -452,6 +452,14 @@ export interface WhatsOn {
   title: string;
   slug: string;
   branch: (number | Branch)[];
+  /**
+   * Set the location for each selected branch.
+   */
+  branchLocations?: {
+    thonglor?: string | null;
+    saladaeng?: string | null;
+    cloud11?: string | null;
+  };
   dateToBeArchived?: string | null;
   /**
    * Recommended aspect ratio: 4 / 5
@@ -1067,6 +1075,13 @@ export interface WhatsOnSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   branch?: T;
+  branchLocations?:
+    | T
+    | {
+        thonglor?: T;
+        saladaeng?: T;
+        cloud11?: T;
+      };
   dateToBeArchived?: T;
   media?: T;
   gallery?: T;

@@ -1,5 +1,6 @@
 import type { CollectionConfig, Field, Validate } from 'payload'
 
+import { WHATS_ON_BRANCH_LOCATION_FIELDS } from '@/constants/whatsOnBranchLocations'
 import { syncWhatsOnDateFromSchedule } from '@/payload/hooks/whatsOnEventSchedule'
 
 const validateSubTags: Validate = (value) => {
@@ -73,6 +74,27 @@ export const WhatsOn: CollectionConfig = {
       hasMany: true,
       required: true,
       index: true,
+      maxDepth: 1,
+    },
+    {
+      name: 'branchLocations',
+      type: 'group',
+      label: 'Branch Locations',
+      admin: {
+        hideGutter: true,
+        condition: (data) => Array.isArray(data?.branch) && data.branch.length > 0,
+        description: 'Set the location for each selected branch.',
+        components: {
+          Field: '@/components/payload/whats-on-branch-locations-field#WhatsOnBranchLocationsField',
+        },
+      },
+      fields: [
+        ...WHATS_ON_BRANCH_LOCATION_FIELDS.map(({ name, label }) => ({
+          name,
+          type: 'text' as const,
+          label,
+        })),
+      ],
     },
     {
       name: 'dateToBeArchived',

@@ -151,11 +151,11 @@ html.page-scrolling .header-location .location-panel ul {
 }
 
 .header-location .location-panel ul a {
-  display: inlin-block;
+  display: inline-block;
   padding: var(--spacing-6xs);
 }
 
-.header-location .location-panel .location-label {
+.header-location .location-panel ul a.is-current {
   text-decoration: underline;
   padding: 0 var(--spacing-6xs);
 }

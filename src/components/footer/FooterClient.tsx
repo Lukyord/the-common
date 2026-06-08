@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation'
 
 import { branchFooterThemeStyle } from '@/lib/branchTheme'
-import { getSlugFromPathname } from '@/lib/pathname'
+import { getSlugFromPathname, isFooterHiddenPathname } from '@/lib/pathname'
 import { FooterLeft } from './FooterLeft'
 import { FooterMiddle } from './FooterMiddle'
 import { FooterRight } from './FooterRight'
@@ -16,6 +16,11 @@ type FooterClientProps = {
 
 export function FooterClient({ branches, contact }: FooterClientProps) {
   const pathname = usePathname()
+
+  if (isFooterHiddenPathname(pathname)) {
+    return null
+  }
+
   const slug = getSlugFromPathname(pathname)
   const currentBranch = branches.find((branch) => branch.slug === slug)
   const footerBranches = currentBranch

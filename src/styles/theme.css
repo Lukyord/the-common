@@ -230,6 +230,7 @@ html.no-touchevents [data-card='whats-on']:hover .whats-on-card-tip {
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translateY(-50%);
   font-size: 1.2rem;
   padding: 0.2rem var(--spacing-4xs);
   background-color: var(--color-dark-brown);
@@ -240,6 +241,10 @@ html.no-touchevents [data-card='whats-on']:hover .whats-on-card-tip {
   transition: opacity var(--duration) var(--timing-function);
   opacity: 0;
   pointer-events: none;
+}
+.card-branch-dot[data-align='left'] .branch-dot-name {
+  left: auto;
+  right: 50%;
 }
 html.no-touchevents .card-branch-dot:hover .branch-dot-name {
   opacity: 1;
@@ -261,13 +266,13 @@ html.no-touchevents .card-branch-dot:hover .branch-dot-name {
   padding: var(--spacing-6xs) var(--spacing-5xs);
   color: var(--color-dark-brown);
   border: 0.1rem solid var(--color-dark-brown);
+  position: relative;
+  z-index: 5;
 }
 
 [data-card='whats-on'] .card-tags .tag.main {
   background-color: var(--color-dark-brown);
   color: var(--color-beige);
-  position: relative;
-  z-index: 5;
 }
 
 .dark-bg [data-card='whats-on'] {
@@ -302,7 +307,7 @@ html.no-touchevents .card-branch-dot:hover .branch-dot-name {
   gap: var(--spacing-lg);
 }
 
-.grid-card-contianer .back {
+.back {
   display: flex;
   align-items: center;
   gap: var(--spacing-4xs);
@@ -2593,4 +2598,156 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   transform: translateY(-100%);
 }
 
-/* PAGE: BRANCH WHATS ON ARCHIVE */
+/* PAGE: BRANCH WHATS SINGLE */
+[data-section='whats-on-single'] {
+  background-color: var(--color-beige);
+  overflow: unset;
+  height: 100svh;
+  background-image: url('../../public/designs/crm-bg.webp');
+  background-size: contain;
+  background-repeat: repeat;
+}
+
+[data-section='whats-on-single'] .content-container {
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+
+[data-section='whats-on-single'] .content-text {
+  width: 50%;
+  padding: 0 var(--spacing-container);
+  padding-top: calc(var(--header-height) + var(--spacing-6xl));
+}
+
+[data-section='whats-on-single'] .content-gallery {
+  width: 50%;
+  height: 100svh;
+  padding-top: var(--header-height);
+  position: sticky;
+  top: 0;
+}
+
+[data-section='whats-on-single'] .content-gallery .swiper,
+[data-section='whats-on-single'] .content-gallery .swiper .gallery-media {
+  height: 100%;
+}
+
+[data-section='whats-on-single'] .content-gallery .swiper .gallery-media *:is(img, video) {
+  position: static;
+  object-fit: contain;
+}
+
+[data-section='whats-on-single'] .content-gallery .swiper-pagination {
+  mix-blend-mode: difference;
+}
+
+[data-section='whats-on-single'] .content-text .sc-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2sm);
+  margin-top: var(--spacing-2sm);
+}
+
+[data-section='whats-on-single'] .content-text .sc-header .sc-ttl-tags {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+[data-section='whats-on-single'] .content-text .sc-header .sc-ttl-tags .sc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4xs);
+}
+
+[data-section='whats-on-single'] .sc-tags .tag {
+  padding: var(--spacing-6xs) var(--spacing-4xs);
+  color: var(--color-dark-brown);
+  border: 0.1rem solid var(--color-dark-brown);
+}
+
+[data-section='whats-on-single'] .sc-tags .tag.main {
+  background-color: var(--color-dark-brown);
+  color: var(--color-beige);
+  position: relative;
+  z-index: 5;
+}
+
+[data-section='whats-on-single'] .sc-info {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+[data-section='whats-on-single'] .sc-info .info-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4xs);
+  flex: 1;
+  padding: var(--spacing-4xs) 0;
+}
+
+[data-section='whats-on-single'] .sc-info .divider {
+  width: 0.1rem;
+  height: auto;
+  background-color: rgba(var(--color-dark-brown-rgb), 0.4);
+}
+
+[data-section='whats-on-single'] .sc-info .divider:last-child {
+  display: none;
+}
+
+[data-section='whats-on-single'] .sc-info .branches {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4xs);
+}
+[data-section='whats-on-single'] .sc-info .branches .branch {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-5xs);
+}
+
+[data-section='whats-on-single'] .sc-info .branches .branch .branch-location {
+  width: 2.6rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  padding: var(--spacing-5xs) var(--spacing-6xs);
+  text-align: center;
+  font-size: 1.2rem;
+  text-wrap: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+
+[data-section='whats-on-single'] .sc-cta {
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+[data-section='whats-on-single'] .sc-content {
+  margin-top: var(--spacing-xl);
+}
+
+[data-section='whats-on-single'] .content-scroll {
+  height: calc(100svh - var(--header-height) - var(--spacing-6xl) - 3rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  --mask-box-image-offset: var(--spacing-2sm);
+  -webkit-mask-box-image: -webkit-linear-gradient(
+    90deg,
+    transparent 0%,
+    white var(--mask-box-image-offset),
+    white calc(100% - var(--mask-box-image-offset)),
+    transparent 100%
+  );
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

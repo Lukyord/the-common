@@ -760,4 +760,42 @@
     --gap-x: var(--spacing-4xs);
     --gap-y: var(--spacing-md);
   }
+
+  /* PAGE: BRANCH WHATS SINGLE */
+  [data-section='whats-on-single'] {
+    height: auto;
+    background-size: 300%;
+    background-image: url('../../public/designs/checked-bg.webp');
+  }
+
+  [data-section='whats-on-single'] .content-container {
+    flex-direction: column-reverse;
+  }
+
+  [data-section='whats-on-single'] .content-text {
+    width: 100%;
+    padding-top: var(--spacing-lg);
+  }
+
+  [data-section='whats-on-single'] .content-gallery {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 0.7129277567;
+    padding-top: var(--header-height);
+    position: static;
+  }
+
+  [data-section='whats-on-single'] .sc-info {
+    gap: var(--spacing-2xs);
+  }
+
+  [data-section='whats-on-single'] .sc-content {
+    margin-top: var(--spacing-2lg);
+  }
+
+  [data-section='whats-on-single'] .content-scroll {
+    height: auto;
+    overflow-y: unset;
+    -webkit-mask-box-image: unset;
+  }
 }
