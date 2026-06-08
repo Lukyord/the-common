@@ -1386,6 +1386,10 @@ export interface Homepage {
     description?: string | null;
     stickyNotes?:
       | {
+          /**
+           * Recommended aspect ratio: 1.4326
+           */
+          media?: (number | null) | Media;
           shape?: ('square' | 'circle' | 'heart') | null;
           text?: string | null;
           bgColor?: string | null;
@@ -1653,6 +1657,7 @@ export interface HomepageSelect<T extends boolean = true> {
         stickyNotes?:
           | T
           | {
+              media?: T;
               shape?: T;
               text?: T;
               bgColor?: T;

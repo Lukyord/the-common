@@ -17,7 +17,7 @@ export const HomepageAbout = ({ data }: HomepageAboutProps) => {
 
   return (
     <section data-section="homepage-about" className="bg-orange">
-      <div className="sc-inner pc-t-125 pc-b-75 mb-t-100 mb-b-75">
+      <div className="sc-inner pc-t-50 pc-b-75 mb-t-75 mb-b-50">
         <div className="container">
           {hasStickyNotes && <HomepageStickyNotes notes={stickyNotes} />}
           <div className="content">

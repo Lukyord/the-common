@@ -151,7 +151,7 @@
     padding: var(--spacing-2sm);
   }
 
-  [data-section='homepage-about'] .sticky-note:nth-child(1) {
+  /* [data-section='homepage-about'] .sticky-note:nth-child(1) {
     top: 17.358490566%;
     left: 4.034582133%;
   }
@@ -163,7 +163,7 @@
 
   [data-section='homepage-about'] .sticky-note:nth-child(3) {
     bottom: 10%;
-  }
+  } */
 
   /* Location Selector */
   .location-selector {
@@ -688,6 +688,8 @@
     width: 82.1333333333%;
     margin-left: auto;
     aspect-ratio: 0.8484320557;
+    margin-right: calc(-1.5 * var(--spacing-container));
+    margin-top: -70vw;
   }
 
   [data-section='about-section'] .about-word-trigger {

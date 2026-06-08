@@ -164,6 +164,20 @@ pnpm exec wrangler d1 execute D1 --local --command "DROP INDEX IF EXISTS branch_
 
 Then restart dev.
 
+### Example: `homepage_about_sticky_notes` + `homepage_about_sticky_notes_order_idx already exists`
+
+Often after adding `media` upload to homepage sticky notes:
+
+```text
+CREATE INDEX `homepage_about_sticky_notes_order_idx` ON `homepage_about_sticky_notes` (`_order`);
+index homepage_about_sticky_notes_order_idx already exists
+```
+
+```bash
+pnpm run db:repair-local
+pnpm run dev
+```
+
 ### Example: `vendors` + `vendors_media_idx already exists`
 
 ```text

@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-DB="$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -maxdepth 1 -name '*.sqlite' ! -name '*-wal' ! -name '*-shm' 2>/dev/null | head -1)"
+DB="$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -maxdepth 1 -name '*.sqlite' ! -name '*-wal' ! -name '*-shm' ! -name 'metadata.sqlite' 2>/dev/null | head -1)"
 
 if [[ -z "${DB}" ]]; then
   echo "No local D1 sqlite file found. Run pnpm run dev once, or pnpm run db:reset-local."
@@ -68,6 +68,11 @@ else
     echo "Dropping branch_whats_on_pages_branch_idx so drizzle push can recreate it…"
     sqlite3 "${DB}" < scripts/d1-repair-branch-whats-on-pages-idx.sql
   fi
+fi
+
+if has_table 'homepage_about_sticky_notes' && sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='homepage_about_sticky_notes_order_idx';" | grep -q 1; then
+  echo "Dropping homepage_about_sticky_notes indexes so drizzle push can recreate them…"
+  sqlite3 "${DB}" < scripts/d1-repair-homepage-about-sticky-notes-idx.sql
 fi
 
 if has_table '__new_whats_on'; then

@@ -156,6 +156,15 @@ export const Homepage: GlobalConfig = {
                     maxRows: 3,
                     fields: [
                       {
+                        name: 'media',
+                        type: 'upload',
+                        relationTo: 'media',
+                        label: 'Media',
+                        admin: {
+                          description: 'Recommended aspect ratio: 1.4326',
+                        },
+                      },
+                      {
                         name: 'shape',
                         type: 'select',
                         label: 'Shape',

@@ -527,8 +527,8 @@ html.no-touchevents .announcement-close:hover {
 }
 
 [data-section='homepage-about'] .sticky-notes-wrapper {
-  aspect-ratio: 1.6;
-  width: 60.544852941%;
+  aspect-ratio: 1.6459375422;
+  width: 71.6176470588%;
   margin: 0 auto;
   position: relative;
 }
@@ -538,12 +538,17 @@ html.no-touchevents .announcement-close:hover {
   cursor: pointer;
 }
 
+[data-section='homepage-about'] .sticky-note-media {
+  width: 100%;
+  height: 100%;
+}
+
 [data-section='homepage-about'] .sticky-note:not([data-shape='heart']) {
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
-[data-section='homepage-about'] .sticky-note:nth-child(1) {
+/* [data-section='homepage-about'] .sticky-note:nth-child(1) {
   top: var(--spacing-xs);
   left: 0;
   z-index: 1;
@@ -562,6 +567,26 @@ html.no-touchevents .announcement-close:hover {
   transform: translateX(-50%);
   z-index: 3;
   rotate: -6.8deg;
+} */
+
+[data-section='homepage-about'] .sticky-note:nth-child(1) {
+  bottom: var(--spacing-lg);
+  left: 0;
+  z-index: 1;
+}
+
+[data-section='homepage-about'] .sticky-note:nth-child(2) {
+  right: 17.5%;
+  top: 10%;
+  transform: rotate(-6deg);
+  z-index: 2;
+}
+
+[data-section='homepage-about'] .sticky-note:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  rotate: 11.48deg;
 }
 
 [data-section='homepage-about'] .sticky-note[data-shape='square'] {
@@ -569,6 +594,18 @@ html.no-touchevents .announcement-close:hover {
   width: 42.2rem;
   padding: var(--spacing-2sm);
   position: absolute;
+}
+
+[data-section='homepage-about'] .sticky-note[data-has-media][data-shape='square'] {
+  width: 51.3347022587%;
+  aspect-ratio: 1.4326647564;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+[data-section='homepage-about'] .sticky-note[data-has-media][data-shape='square'] *:is(img, video) {
+  object-fit: contain;
 }
 
 [data-section='homepage-about'] .sticky-note[data-shape='circle'] {
@@ -588,7 +625,7 @@ html.no-touchevents .announcement-close:hover {
   width: 45.8rem;
   color: var(--text-color);
   padding: var(--spacing-2lg);
-  background-image: url('../../public/designs/heart.webp');
+  background-image: url('../../public/designs/smile-heart.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -601,9 +638,13 @@ html.no-touchevents .announcement-close:hover {
   background-position: center;
   background-repeat: no-repeat;
   transform-origin: bottom;
+}
+[data-section='homepage-about'] .sticky-note[data-shape='heart'].heart-edge-animate:before,
+[data-section='homepage-about'] .sticky-note[data-shape='heart'].heart-edge-animate:after {
   animation-duration: 3.6s;
   animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 @keyframes heart-edge-before {
   0%,
@@ -634,19 +675,23 @@ html.no-touchevents .announcement-close:hover {
   }
 }
 [data-section='homepage-about'] .sticky-note[data-shape='heart']:before {
-  left: 9%;
+  left: 9.4%;
   top: -3%;
   aspect-ratio: 9.679878049;
   width: 28.930131004%;
   background-image: url('../../public/designs/heart-edge-left.webp');
-  animation-name: heart-edge-before;
 }
 [data-section='homepage-about'] .sticky-note[data-shape='heart']:after {
-  right: 10.25%;
+  right: 9.8%;
   top: -4%;
   aspect-ratio: 8.194622279;
   width: 28.27510917%;
   background-image: url('../../public/designs/heart-edge-right.webp');
+}
+[data-section='homepage-about'] .sticky-note[data-shape='heart'].heart-edge-animate:before {
+  animation-name: heart-edge-before;
+}
+[data-section='homepage-about'] .sticky-note[data-shape='heart'].heart-edge-animate:after {
   animation-name: heart-edge-after;
 }
 
@@ -2008,6 +2053,7 @@ html.no-touchevents [data-section='contact-re-series'] .hand-flower:hover {
   padding: min(0.5555555556vw, 0.8rem) min(1.1111111111vw, 1.6rem);
   transition: transform var(--duration) var(--timing-function);
   position: absolute;
+  z-index: 5;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
