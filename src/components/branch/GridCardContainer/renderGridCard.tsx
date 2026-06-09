@@ -10,7 +10,7 @@ export function renderGridCard(
   context: GridCardContext,
 ) {
   if (variant === 'whats-on') {
-    const { bgColor, ...whatsOnCardProps } = card as BranchLandingWhatsOnCard
+    const { bgColor: _bgColor, ...whatsOnCardProps } = card as BranchLandingWhatsOnCard
 
     return (
       <WhatsOnCard
