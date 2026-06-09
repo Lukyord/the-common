@@ -8,9 +8,10 @@
   --bg-color: var(--color-dark-brown);
   --color: var(--color-beige);
   --header-height-start: 8rem;
-  --header-height-scroll: 6.8rem;
+  --header-height-scroll: 8rem;
   --header-content-height-scroll: 4.8rem;
   --header-content-offset-scroll: var(--spacing-sm);
+  --header-content-offset-scroll: 0;
   --rgb: var(--color);
   --hover-rgb: var(--color);
 }
@@ -31,7 +32,7 @@
 
 /* Logo */
 .header-logo {
-  min-width: 15.4rem;
+  width: 15.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,6 +88,12 @@ html.no-touchevents #header a:hover {
   width: 18rem;
   transition: var(--duration-x2) var(--timing-function);
   position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.header--branch .header-cta {
+  width: 15rem;
 }
 
 .header-location {
@@ -181,6 +188,7 @@ html.page-scrolling .header-location .location-panel ul {
     opacity: 0;
     padding: 0;
     margin-top: var(--header-content-offset-scroll);
+    margin-top: 3.2rem;
   }
   html.page-scrolling .header-logo .logo-wrapper {
     height: 7rem;
@@ -223,7 +231,7 @@ html.page-scrolling .header-location .location-panel ul {
 
   .header-menu .panel-body {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
   }
 }
