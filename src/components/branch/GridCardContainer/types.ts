@@ -1,9 +1,6 @@
 import type { ReactNode } from 'react'
 
-import type {
-  BranchLandingVendorCard,
-  BranchLandingWhatsOnCard,
-} from '@/payload/queries/branch'
+import type { BranchLandingVendorCard, BranchLandingWhatsOnCard } from '@/payload/queries/branch'
 
 export type GridCardItem = {
   id: number

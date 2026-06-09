@@ -53,8 +53,7 @@ export default function GridCardContainer({
   )
 
   const categoryFilterOptions = useMemo(
-    () =>
-      showCategoryFilter ? buildCategoryFilterOptions(cards as GridCard[], cardVariant) : [],
+    () => (showCategoryFilter ? buildCategoryFilterOptions(cards as GridCard[], cardVariant) : []),
     [cards, cardVariant, showCategoryFilter],
   )
 
@@ -74,7 +73,9 @@ export default function GridCardContainer({
 
   const displayCards = useMemo(
     () =>
-      showSort ? (sortGridCards(filteredCards, cardVariant, sortOrder) as typeof cards) : filteredCards,
+      showSort
+        ? (sortGridCards(filteredCards, cardVariant, sortOrder) as typeof cards)
+        : filteredCards,
     [cardVariant, filteredCards, showSort, sortOrder],
   )
 

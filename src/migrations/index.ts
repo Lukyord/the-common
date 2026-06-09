@@ -39,6 +39,7 @@ import * as migration_20260605_080703_branch_whats_on_all_events from './2026060
 import * as migration_20260608_074823 from './20260608_074823';
 import * as migration_20260608_095619_sticky_note_media from './20260608_095619_sticky_note_media';
 import * as migration_20260609_051918 from './20260609_051918';
+import * as migration_20260609_091637 from './20260609_091637';
 
 export const migrations = [
   {
@@ -244,6 +245,11 @@ export const migrations = [
   {
     up: migration_20260609_051918.up,
     down: migration_20260609_051918.down,
-    name: '20260609_051918'
+    name: '20260609_051918',
+  },
+  {
+    up: migration_20260609_091637.up,
+    down: migration_20260609_091637.down,
+    name: '20260609_091637'
   },
 ];

@@ -1,8 +1,23 @@
 import { cache } from 'react'
 import { notFound } from 'next/navigation'
 
-import type { CardBranchDotItem } from '@/components/branch/components/card-branch-dots'
-import { normalizeCardBranches } from '@/components/branch/components/card-branch-dots'
+import type {
+  BranchLandingVendorCard,
+  BranchVendorCard,
+  LifestyleOption,
+} from '@/components/branch/vendors/types'
+
+export type {
+  BranchLandingVendorCard,
+  BranchVendorCard,
+  LifestyleOption,
+} from '@/components/branch/vendors/types'
+export { BRANCH_VENDORS_PAGE_SIZE } from '@/components/branch/vendors/types'
+import { BRANCH_VENDORS_PAGE_SIZE } from '@/components/branch/vendors/types'
+import {
+  normalizeCardBranches,
+  type CardBranchDotItem,
+} from '@/components/branch/components/card-branch-dots'
 import { getWhatsOnBranchLocationText } from '@/constants/whatsOnBranchLocations'
 import {
   getActiveWhatsOnWhere,
@@ -10,7 +25,14 @@ import {
   isWhatsOnArchived,
 } from '@/lib/whatsOnArchive'
 import { resolveMedia } from '@/lib/resolveMedia'
-import type { Branch, BranchContactPage, BranchWhatsOnPage, Vendor, WhatsOn } from '@/payload-types'
+import type {
+  Branch,
+  BranchContactPage,
+  BranchVendorPage,
+  BranchWhatsOnPage,
+  Vendor,
+  WhatsOn,
+} from '@/payload-types'
 import { getPayloadClient } from '@/payload/getPayloadClient'
 
 export const getBranches = cache(async (): Promise<Branch[]> => {
@@ -77,26 +99,39 @@ export const getBranchContactPageBySlug = cache(
   },
 )
 
-const BRANCH_VENDOR_LIMIT = 3
+export const getBranchVendorPageBySlug = cache(
+  async (branchSlug: string): Promise<BranchVendorPage> => {
+    const branch = await getBranchBySlug(branchSlug)
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'branch-vendor-pages',
+      where: { branch: { equals: branch.id } },
+      depth: 1,
+      limit: 1,
+    })
 
-export type BranchLandingVendorCard = {
-  id: number
-  title: string
-  link: string
-  media: {
-    src: string
-    alt: string
-  }
-  tags: string[]
-  location: string
-  branches: CardBranchDotItem[]
-}
+    const page = docs[0]
+    if (!page) notFound()
+
+    return page
+  },
+)
+
+const BRANCH_VENDOR_LIMIT = 3
 
 function getVendorCategoryTexts(category: Vendor['category']): string[] {
   if (!category?.length) return []
 
   return category.flatMap((item) => {
     if (typeof item === 'object' && item?.text) return [item.text]
+    return []
+  })
+}
+
+function getVendorLifestyleIds(lifestyles: Vendor['lifestyles']): number[] {
+  return (lifestyles ?? []).flatMap((lifestyle) => {
+    if (typeof lifestyle === 'number') return [lifestyle]
+    if (lifestyle?.id) return [lifestyle.id]
     return []
   })
 }
@@ -121,6 +156,85 @@ function mapVendorToBranchLandingCard(vendor: Vendor): BranchLandingVendorCard |
     tags,
     location,
     branches: normalizeCardBranches(vendor.branch),
+  }
+}
+
+function mapVendorToBranchVendorCard(vendor: Vendor): BranchVendorCard | null {
+  const card = mapVendorToBranchLandingCard(vendor)
+  if (!card) return null
+
+  return {
+    ...card,
+    lifestyleIds: getVendorLifestyleIds(vendor.lifestyles),
+  }
+}
+
+export const getLifestyles = cache(async (): Promise<LifestyleOption[]> => {
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'lifestyle',
+    limit: 100,
+    overrideAccess: false,
+    pagination: false,
+    sort: 'text',
+  })
+
+  return docs.map(({ id, text }) => ({ id, text }))
+})
+
+function buildBranchVendorsWhere(branchId: number, lifestyleIds?: number[]) {
+  const branchWhere = {
+    branch: {
+      equals: branchId,
+    },
+  }
+
+  if (!lifestyleIds?.length) return branchWhere
+
+  return {
+    and: [
+      branchWhere,
+      {
+        or: lifestyleIds.map((id) => ({
+          lifestyles: {
+            contains: id,
+          },
+        })),
+      },
+    ],
+  }
+}
+
+export const getBranchVendors = async (
+  branch: Branch,
+  page = 1,
+  limit = BRANCH_VENDORS_PAGE_SIZE,
+  lifestyleIds?: number[],
+): Promise<GridCardPageResult<BranchVendorCard>> => {
+  if (!branch?.id) {
+    return { cards: [], hasMore: false }
+  }
+
+  const payload = await getPayloadClient()
+  const { docs, hasNextPage } = await payload.find({
+    collection: 'vendors',
+    depth: 2,
+    page,
+    limit,
+    overrideAccess: false,
+    pagination: true,
+    sort: 'name',
+    where: buildBranchVendorsWhere(branch.id, lifestyleIds),
+  })
+
+  const cards = docs.flatMap((vendor) => {
+    const card = mapVendorToBranchVendorCard(vendor)
+    return card ? [card] : []
+  })
+
+  return {
+    cards,
+    hasMore: hasNextPage,
   }
 }
 

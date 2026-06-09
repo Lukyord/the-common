@@ -139,6 +139,7 @@ html.no-touchevents .banner-button:hover i {
 html.no-touchevents [data-card='vendor'] .tag:hover {
   background-color: var(--color-dark-brown);
   color: var(--color-beige);
+  opacity: 1;
 }
 
 /* WHATS ON CARD ==================== */
@@ -381,6 +382,98 @@ html.no-touchevents .grid-card-contianer .see-more-button:hover {
 
 .grid-card-contianer .see-more-button:disabled {
   opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Vendors List */
+[data-section='vendors-list'] .sc-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-2lg);
+}
+
+[data-section='vendors-list'] .tags-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2xs);
+}
+
+[data-section='vendors-list'] .tags-filter__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4xs) var(--spacing-xs);
+  background-color: var(--color-dark-brown);
+  color: var(--color-beige);
+  transition: var(--duration) var(--timing-function);
+}
+
+html.no-touchevents [data-section='vendors-list'] .tags-filter__tag:not(.is-active):hover {
+  opacity: 0.75;
+}
+
+[data-section='vendors-list'] .tags-filter__tag.is-active {
+  background-color: var(--bg-color);
+  color: var(--color);
+}
+
+[data-section='vendors-list'] .tags-filter__close {
+  --icon-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    width var(--duration) var(--timing-function),
+    opacity var(--duration) var(--timing-function),
+    margin var(--duration) var(--timing-function);
+}
+
+[data-section='vendors-list'] .tags-filter__close .ic {
+  font-size: var(--icon-size);
+}
+
+[data-section='vendors-list'] .tags-filter__tag.is-active .tags-filter__close {
+  width: var(--icon-size);
+  opacity: 1;
+  margin-left: var(--spacing-xs);
+}
+
+[data-section='vendors-list'] .card-container {
+  --column: 3;
+  --gap-x: var(--spacing-sm);
+  --gap-y: var(--spacing-sm);
+}
+
+[data-section='vendors-list'] .vendors-empty {
+  text-align: center;
+  padding-top: var(--spacing-2lg);
+  padding-bottom: var(--spacing-2lg);
+}
+
+[data-section='vendors-list'] .vendors-see-more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-5xl);
+}
+
+[data-section='vendors-list'] .see-more-button {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  text-decoration-thickness: 0.1em;
+  transition: opacity var(--duration) var(--timing-function);
+}
+
+html.no-touchevents [data-section='vendors-list'] .see-more-button:hover,
+[data-section='vendors-list'] .see-more-button:disabled {
+  opacity: 0.5;
+}
+
+[data-section='vendors-list'] .see-more-button:disabled {
   cursor: not-allowed;
   pointer-events: none;
 }

@@ -1,9 +1,6 @@
 import type { CardBranchDotItem } from '@/components/branch/components/card-branch-dots'
 
-import type {
-  BranchLandingVendorCard,
-  BranchLandingWhatsOnCard,
-} from '@/payload/queries/branch'
+import type { BranchLandingVendorCard, BranchLandingWhatsOnCard } from '@/payload/queries/branch'
 
 import type { GridCardVariant } from './types'
 
@@ -36,7 +33,9 @@ function buildBranchFilterOptionsFromCards(cards: GridCardWithBranches[]): GridC
   return [{ value: GRID_CARD_FILTER_ALL, label: 'All Branches' }, ...branches]
 }
 
-function buildWhatsOnCategoryFilterOptions(cards: BranchLandingWhatsOnCard[]): GridCardFilterOption[] {
+function buildWhatsOnCategoryFilterOptions(
+  cards: BranchLandingWhatsOnCard[],
+): GridCardFilterOption[] {
   const mainTags: GridCardFilterOption[] = []
   const subTags: GridCardFilterOption[] = []
   const seenMain = new Set<string>()
@@ -59,7 +58,9 @@ function buildWhatsOnCategoryFilterOptions(cards: BranchLandingWhatsOnCard[]): G
   return [{ value: GRID_CARD_FILTER_ALL, label: 'All Categories' }, ...mainTags, ...subTags]
 }
 
-function buildVendorCategoryFilterOptions(cards: BranchLandingVendorCard[]): GridCardFilterOption[] {
+function buildVendorCategoryFilterOptions(
+  cards: BranchLandingVendorCard[],
+): GridCardFilterOption[] {
   const seen = new Set<string>()
   const categories: GridCardFilterOption[] = []
 

@@ -72,6 +72,7 @@ export interface Config {
     branches: Branch;
     'branch-contact-pages': BranchContactPage;
     'branch-space-rental-pages': BranchSpaceRentalPage;
+    'branch-vendor-pages': BranchVendorPage;
     'branch-whats-on-pages': BranchWhatsOnPage;
     blogs: Blog;
     vendors: Vendor;
@@ -92,6 +93,7 @@ export interface Config {
     branches: BranchesSelect<false> | BranchesSelect<true>;
     'branch-contact-pages': BranchContactPagesSelect<false> | BranchContactPagesSelect<true>;
     'branch-space-rental-pages': BranchSpaceRentalPagesSelect<false> | BranchSpaceRentalPagesSelect<true>;
+    'branch-vendor-pages': BranchVendorPagesSelect<false> | BranchVendorPagesSelect<true>;
     'branch-whats-on-pages': BranchWhatsOnPagesSelect<false> | BranchWhatsOnPagesSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     vendors: VendorsSelect<false> | VendorsSelect<true>;
@@ -650,6 +652,27 @@ export interface BranchSpaceRentalPage {
   createdAt: string;
 }
 /**
+ * Vendors page per branch.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branch-vendor-pages".
+ */
+export interface BranchVendorPage {
+  id: number;
+  title: string;
+  branch: number | Branch;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * What's On page per branch.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -764,6 +787,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'branch-space-rental-pages';
         value: number | BranchSpaceRentalPage;
+      } | null)
+    | ({
+        relationTo: 'branch-vendor-pages';
+        value: number | BranchVendorPage;
       } | null)
     | ({
         relationTo: 'branch-whats-on-pages';
@@ -1025,6 +1052,23 @@ export interface BranchContactPagesSelect<T extends boolean = true> {
  * via the `definition` "branch-space-rental-pages_select".
  */
 export interface BranchSpaceRentalPagesSelect<T extends boolean = true> {
+  title?: T;
+  branch?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branch-vendor-pages_select".
+ */
+export interface BranchVendorPagesSelect<T extends boolean = true> {
   title?: T;
   branch?: T;
   meta?:

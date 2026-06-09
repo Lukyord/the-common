@@ -15,6 +15,7 @@ import { Lifestyle } from './payload/collections/Lifestyle'
 import { Branches } from './payload/collections/Branches'
 import { BranchContactPages } from './payload/collections/BranchContactPages'
 import { BranchSpaceRentalPages } from './payload/collections/BranchSpaceRentalPages'
+import { BranchVendorPages } from './payload/collections/BranchVendorPages'
 import { BranchWhatsOnPages } from './payload/collections/BranchWhatsOnPages'
 import { Blogs } from './payload/collections/Blogs'
 import { VendorCategories } from './payload/collections/VendorCategories'
@@ -80,6 +81,7 @@ export default buildConfig({
     Branches,
     BranchContactPages,
     BranchSpaceRentalPages,
+    BranchVendorPages,
     BranchWhatsOnPages,
     Blogs,
     Vendors,
@@ -105,6 +107,7 @@ export default buildConfig({
         Branches.slug,
         BranchContactPages.slug,
         BranchSpaceRentalPages.slug,
+        BranchVendorPages.slug,
         BranchWhatsOnPages.slug,
         Blogs.slug,
         Vendors.slug,

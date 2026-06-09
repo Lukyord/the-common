@@ -74,6 +74,46 @@
     height: calc(100svh - 6.816rem);
   }
 
+  /* Vendor List */
+  [data-section='vendors-list'] .sc-header {
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+  }
+
+  [data-section='vendors-list'] .tags-filter {
+    gap: var(--spacing-5xs);
+  }
+
+  [data-section='vendors-list'] .tags-filter__tag {
+    padding: var(--spacing-5xs) var(--spacing-4xs);
+    white-space: nowrap;
+  }
+
+  [data-section='vendors-list'] .tags-filter__close .ic {
+    --icon-size: 1.2rem;
+  }
+
+  [data-section='vendors-list'] .tags-filter__tag.is-active .tags-filter__close {
+    margin-left: var(--spacing-5xs);
+  }
+
+  [data-section='vendors-list'] .card-container {
+    --column: 2;
+    --gap-x: var(--spacing-5xs);
+    --gap-y: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  [data-section='vendors-list'] .vendors-empty {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+  }
+
+  [data-section='vendors-list'] .vendors-see-more {
+    margin-top: var(--spacing-2lg);
+  }
+
   /* Card Section */
   [data-section='card-section'] .sc-header {
     flex-direction: column;
