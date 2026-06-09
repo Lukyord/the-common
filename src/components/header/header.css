@@ -11,6 +11,8 @@
   --header-height-scroll: 6.8rem;
   --header-content-height-scroll: 4.8rem;
   --header-content-offset-scroll: var(--spacing-sm);
+  --rgb: var(--color);
+  --hover-rgb: var(--color);
 }
 
 .header-nav {
@@ -52,6 +54,10 @@
 }
 
 /* MENU */
+html.no-touchevents #header a:hover {
+  opacity: 1;
+}
+
 .header-menu {
   height: 100%;
   flex-grow: 1;
@@ -64,21 +70,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
   padding: var(--spacing-3xs) var(--spacing-sm);
   background-color: var(--bg-color);
   transition: var(--duration-x2) var(--timing-function);
 }
 .header-menu .menu a {
   display: inline-block;
-  padding: var(--spacing-6xs);
+  padding: var(--spacing-6xs) 0;
   transition: opacity var(--duration) var(--timing-function);
 }
 
 /* LOCATION */
 .header-cta {
   height: 100%;
-  width: 16.6rem;
+  width: 18rem;
   transition: var(--duration-x2) var(--timing-function);
   position: relative;
 }
@@ -86,18 +92,24 @@
 .header-location {
   height: 100%;
   width: 100%;
+  background-color: var(--bg-color);
   transition: var(--duration-x2) var(--timing-function);
+  position: relative;
 }
 
 .header-location .location-trigger {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: var(--spacing-sm);
-  background-color: var(--bg-color);
-  width: 100%;
-  height: 100%;
   transition: var(--duration-x2) var(--timing-function);
+  width: fit-content;
+  height: auto;
+  position: absolute;
+  right: var(--spacing-2sm);
+  top: 50%;
+  transform: translate(0%, -50%);
+  text-wrap: nowrap;
 }
 
 .header-location .location-trigger > * {
@@ -152,12 +164,11 @@ html.page-scrolling .header-location .location-panel ul {
 
 .header-location .location-panel ul a {
   display: inline-block;
-  padding: var(--spacing-6xs);
+  padding: var(--spacing-6xs) 0;
 }
 
-.header-location .location-panel ul a.is-current {
-  text-decoration: underline;
-  padding: 0 var(--spacing-6xs);
+.header-location .location-panel ul a.is-current::before {
+  width: 100%;
 }
 
 @media (min-width: 992px) {
@@ -187,6 +198,15 @@ html.page-scrolling .header-location .location-panel ul {
 
   html.page-scrolling .header-cta {
     width: 18rem;
+  }
+
+  html.page-scrolling .header--branch .header-cta {
+    width: 15rem;
+  }
+
+  html.page-scrolling .header-location .location-trigger {
+    right: 50%;
+    transform: translate(50%, -50%);
   }
 
   html.page-scrolling .header-location {
@@ -249,6 +269,7 @@ html.page-scrolling .header-location .location-panel ul {
 
   .header-location-mobile .location-trigger {
     gap: var(--spacing-2xs);
+    position: static;
   }
 
   .header-location-mobile .location-trigger-wrapper {
@@ -266,9 +287,9 @@ html.page-scrolling .header-location .location-panel ul {
   .header-location .location-panel {
     left: 0;
     right: auto;
-    width: auto;
     padding-top: var(--spacing-4xs);
     padding-bottom: var(--spacing-lg);
+    width: calc(100% - 3rem);
   }
 
   .header-location .location-panel ul {

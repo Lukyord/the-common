@@ -48,7 +48,10 @@ export function FooterRight({ contact }: FooterRightProps) {
 
         {contact.kinnestGroup && kinnestHref && (
           <AnimateOnScroll triggerClass="fadeIn">
-            <Link href={kinnestHref} className="type-d-text-link type-m-body-r letter-spacing-003">
+            <Link
+              href={kinnestHref}
+              className="underline-hover type-d-text-link type-m-body-r letter-spacing-003"
+            >
               A Member of Kinnest Group
             </Link>
           </AnimateOnScroll>
@@ -57,14 +60,17 @@ export function FooterRight({ contact }: FooterRightProps) {
         <AnimateOnScroll triggerClass="fadeIn">
           <Link
             href="/privacy-policy"
-            className="type-d-text-link type-m-body-r letter-spacing-003"
+            className="underline-hover type-d-text-link type-m-body-r letter-spacing-003"
           >
             Privacy Policy
           </Link>
         </AnimateOnScroll>
 
         <AnimateOnScroll triggerClass="fadeIn">
-          <Link href="" className="type-d-text-link type-m-body-r letter-spacing-003">
+          <Link
+            href=""
+            className="underline-hover type-d-text-link type-m-body-r letter-spacing-003"
+          >
             FAQs
           </Link>
         </AnimateOnScroll>

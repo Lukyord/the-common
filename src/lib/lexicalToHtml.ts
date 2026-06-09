@@ -48,13 +48,27 @@ const resolveHref = (node: SerializedLinkNode) => {
   return node.fields.url ?? '#'
 }
 
+const BR_ONLY_PARAGRAPH_RE = /<p(\s[^>]*)?>\s*(<br\s*\/?>)\s*<\/p>/gi
+
+function markBrOnlyParagraphs(html: string): string {
+  return html.replace(BR_ONLY_PARAGRAPH_RE, (_, attrs = '', brTag) => {
+    if (/class\s*=/i.test(attrs)) {
+      return `<p${attrs.replace(/class\s*=\s*(['"])([^'"]*)\1/i, 'class=$1$2 p-br-only$1')}>${brTag}</p>`
+    }
+
+    return `<p class="p-br-only"${attrs}>${brTag}</p>`
+  })
+}
+
 export function lexicalToHtml(data: BranchRichText | SerializedEditorState | null | undefined): string {
   if (!data) return ''
 
-  const html = convertLexicalToHTML({
-    data: data as SerializedEditorState,
-    converters: extendLinkFeature,
-  })
+  const html = markBrOnlyParagraphs(
+    convertLexicalToHTML({
+      data: data as SerializedEditorState,
+      converters: extendLinkFeature,
+    }),
+  )
 
   if (html.includes('class="payload-richtext"')) {
     return html.replace('class="payload-richtext"', 'class="payload-richtext entry-content"')

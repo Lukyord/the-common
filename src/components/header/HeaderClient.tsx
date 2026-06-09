@@ -65,7 +65,7 @@ export function HeaderClient({ branches }: HeaderClientProps) {
                     <li key={href}>
                       <Link
                         href={href}
-                        className="type-d-label type-m-title letter-spacing-003 uppercase weight-medium"
+                        className="underline-hover type-d-label type-m-title letter-spacing-003 uppercase weight-medium"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {label}

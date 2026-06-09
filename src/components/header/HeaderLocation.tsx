@@ -31,9 +31,8 @@ export const HeaderLocation = ({ className, branches }: props) => {
         aria-expanded={isOpen}
         onClick={() => setIsOpen((open) => !open)}
       >
-        <p
-          className={`${currentBranch ? 'type-d-label' : 'type-d-body-xs'} letter-spacing-003 uppercase weight-medium`}
-        >
+        {/* ${currentBranch ? 'type-d-label' : 'type-d-body-xs'} */}
+        <p className={`type-d-body-xs letter-spacing-003 uppercase weight-medium`}>
           {currentBranch ? currentBranch.name : 'PICK LOCATION'}
         </p>
 
@@ -47,7 +46,7 @@ export const HeaderLocation = ({ className, branches }: props) => {
               <Link
                 href={`/`}
                 onClick={close}
-                className={`type-d-body-xs letter-spacing-003 uppercase weight-medium ${currentBranch === null ? 'is-current' : ''}`}
+                className={`type-d-body-xs letter-spacing-003 weight-medium underline-hover ${currentBranch === null ? 'is-current' : ''}`}
               >
                 theCOMMONS
               </Link>
@@ -57,7 +56,7 @@ export const HeaderLocation = ({ className, branches }: props) => {
                 <Link
                   href={`/${branch.slug}`}
                   onClick={close}
-                  className={`type-d-body-xs letter-spacing-003 uppercase weight-medium ${currentBranch === branch ? 'is-current' : ''}`}
+                  className={`type-d-body-xs letter-spacing-003 weight-medium underline-hover ${currentBranch === branch ? 'is-current' : ''}`}
                 >
                   {branch.name}
                 </Link>

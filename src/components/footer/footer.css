@@ -118,6 +118,15 @@ html.no-touchevents .footer-branch__item:hover .branch-name .ic {
   border-radius: 0.9rem;
 }
 
+.footer-right .footer-links .underline-hover {
+  --rgb: var(--color);
+  --hover-rgb: var(--color);
+}
+
+html.no-touchevents #footer .footer-right a:hover {
+  opacity: 1;
+}
+
 .footer-copyright > * {
   opacity: 0.6;
 }

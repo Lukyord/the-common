@@ -789,8 +789,8 @@ html.no-touchevents [class*='button-']:hover > span:after {
 }
 
 .underline-hover {
-  --hover-rgb: var(--color-black-rgb);
-  --rgb: var(--color-black-rgb);
+  --hover-rgb: inherit;
+  --rgb: inherit;
   display: inline-block;
   position: relative;
 }
@@ -802,12 +802,12 @@ html.no-touchevents [class*='button-']:hover > span:after {
   left: 0;
   width: 0;
   height: 0.1rem;
-  background-color: rgba(var(--rgb), 1);
+  background-color: var(--rgb);
   transition: var(--duration) var(--timing-function);
 }
 
 html.no-touchevents .underline-hover:hover {
-  color: rgba(var(--hover-rgb), 1);
+  color: var(--hover-rgb);
 }
 html.no-touchevents .underline-hover:hover::before {
   width: 100%;
@@ -1173,7 +1173,7 @@ section.header-margin {
   margin-top: var(--gap-content);
 }
 
-.entry-content p:has(br:first-child:last-child) {
+.entry-content p.p-br-only {
   line-height: 1;
   height: 0;
 }

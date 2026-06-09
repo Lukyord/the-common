@@ -209,6 +209,11 @@ html.no-touchevents [data-card='whats-on']:hover .whats-on-card-tip {
   text-wrap: balance;
 }
 
+html.no-touchevents [data-card]:has(.card-branch-dots):hover,
+html.no-touchevents .swiper-slide:has(.card-branch-dots):hover {
+  z-index: 20;
+}
+
 .card-branch-dots {
   display: flex;
   flex-shrink: 0;
@@ -848,11 +853,10 @@ html.page-scrolling .location-selector__inner {
   gap: var(--spacing-2xs);
   position: relative;
   padding-right: var(--spacing-3xs);
-  transition: background-color var(--duration) var(--timing-function);
 }
 
-html.no-touchevents .location-selector__item:hover {
-  background-color: rgba(var(--color-white-rgb), 0.15);
+html.no-touchevents .location-selector__item:hover .ic {
+  transform: translate(0.2rem, -0.2rem);
 }
 
 .branch-shape {
@@ -871,6 +875,20 @@ html.no-touchevents .location-selector__item:hover {
   width: 6rem;
   height: fit-content;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: background-color var(--duration) var(--timing-function);
+}
+
+.location-selector__item .branch-shape svg {
+  width: 80%;
+}
+
+html.no-touchevents .location-selector__item:hover .branch-shape {
+  background-color: rgba(var(--color-white-rgb), 0.15);
 }
 
 .location-selector__item .item-text {
@@ -908,7 +926,7 @@ html.no-touchevents .location-selector__item:hover {
 @media (min-width: 1441px) {
   .motto-marquee .motto-marquee__strip {
     width: min(100vw, 157.5rem);
-    padding: 0 var(--spacing-3xs);
+    padding: 0 var(--spacing-2sm);
   }
 }
 .motto-marquee .motto-marquee__item {
@@ -1254,9 +1272,12 @@ html.no-touchevents .location-selector__item:hover {
 }
 
 [data-section='mood'] .mood-selector__dropdown .current {
+  --transition-duration: 0.6s;
+  --current-min-w: 21.6rem;
+  min-width: var(--current-min-w);
   padding: var(--spacing-7xs) var(--spacing-4xs);
   overflow: hidden;
-  transition: width var(--duration-x2) var(--timing-function);
+  transition: width var(--transition-duration) var(--timing-function);
 }
 
 [data-section='mood'] .mood-selector__dropdown .current__content {
@@ -1270,7 +1291,7 @@ html.no-touchevents .location-selector__item:hover {
 }
 
 [data-section='mood'] .mood-selector__dropdown .odometer__track {
-  transition: transform var(--duration-x2) cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--transition-duration) var(--timing-function);
 }
 
 [data-section='mood'] .mood-selector__dropdown .odometer__track.is-resetting {
@@ -1283,11 +1304,12 @@ html.no-touchevents .location-selector__item:hover {
 }
 
 [data-section='mood'] .mood-selector__dropdown .current__underline {
+  min-width: var(--current-min-w);
   display: block;
   height: 0.2rem;
   margin-top: 0.8rem;
   background-color: currentColor;
-  transition: width var(--duration-x2) cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width var(--transition-duration) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1326,7 +1348,7 @@ html.no-touchevents .location-selector__item:hover {
 [data-section='mood'] .mood-selector__panel ul {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-7xs);
+  gap: var(--spacing-3xs);
   width: max-content;
 }
 
@@ -1750,6 +1772,10 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   background-color: #581613;
   color: #fde367;
   position: relative;
+}
+
+html.no-touchevents [data-section='kinnest-marquee'] .kinnest-cta:hover .ic {
+  transform: translate(0.2rem, -0.2rem);
 }
 
 [data-section='kinnest-marquee'] .kinnest-cta .logo {
