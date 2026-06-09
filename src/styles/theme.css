@@ -1002,14 +1002,26 @@ html.no-touchevents .location-selector__item:hover {
     0deg,
     transparent 0%,
     white var(--mask-box-image-offset),
-    white calc(100% - var(--mask-box-image-offset) * 2),
-    transparent calc(100% - var(--mask-box-image-offset)),
+    white calc(100% - var(--mask-box-image-offset)),
     transparent 100%
   );
 }
 
+[data-section='fullscreen-slide'] .swiper-container {
+  /* width: 100%; */
+  position: relative;
+  --swiper-gap: var(--spacing-container);
+  margin-left: calc(var(--swiper-gap) * -1 / 2);
+  margin-right: calc(var(--swiper-gap) * -1 / 2);
+}
+
 [data-section='fullscreen-slide'] .swiper {
   overflow: visible;
+}
+
+[data-section='fullscreen-slide'] .swiper-slide {
+  padding-left: calc(var(--swiper-gap) / 2);
+  padding-right: calc(var(--swiper-gap) / 2);
 }
 
 [data-section='fullscreen-slide'] .swiper .swiper-pagination {
@@ -1036,8 +1048,9 @@ html.no-touchevents .location-selector__item:hover {
 
 [data-section='fullscreen-slide'] .item-media .item-media-inner {
   height: auto;
-  width: 74.5588235%;
-  aspect-ratio: 1.810714286;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: unset;
   position: relative;
 }
 
@@ -1045,14 +1058,35 @@ html.no-touchevents .location-selector__item:hover {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xl);
-  justify-content: center;
-  padding-right: min(9rem, 6.25vw);
+  justify-content: space-between;
+}
+
+[data-section='fullscreen-slide'] .membership-item .item-content:before {
+  content: '';
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+[data-section='fullscreen-slide'] .item-rich-text {
+  font-size: var(--font-size-h6);
+  line-height: var(--line-height-h6);
 }
 
 [data-section='fullscreen-slide'] .item-header {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
+}
+
+[data-section='fullscreen-slide'] .item-header .item-desc {
+  padding-right: min(6.25vw, 9rem);
+}
+
+[data-section='fullscreen-slide'] .item-cta {
+  margin-top: var(--spacing-xl);
 }
 
 /* BINGO */

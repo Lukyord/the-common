@@ -164,6 +164,28 @@ pnpm exec wrangler d1 execute D1 --local --command "DROP INDEX IF EXISTS branch_
 
 Then restart dev.
 
+### Example: `branch_contact_pages` + `branch_contact_pages_branch_idx already exists`
+
+Often after adding contact fields (background uploads, accordion blocks, etc.):
+
+```text
+CREATE UNIQUE INDEX `branch_contact_pages_branch_idx` ON `branch_contact_pages` (`branch_id`);
+index branch_contact_pages_branch_idx already exists
+```
+
+```bash
+pnpm run db:repair-local
+pnpm run dev
+```
+
+Or manually:
+
+```bash
+pnpm exec wrangler d1 execute D1 --local --command "DROP INDEX IF EXISTS branch_contact_pages_branch_idx;"
+```
+
+Then restart dev.
+
 ### Example: `homepage_about_sticky_notes` + `homepage_about_sticky_notes_order_idx already exists`
 
 Often after adding `media` upload to homepage sticky notes:

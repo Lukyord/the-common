@@ -558,6 +558,65 @@ export interface BranchContactPage {
   id: number;
   title: string;
   branch: number | Branch;
+  contactBg?: (number | null) | Media;
+  contactBgMobile?: (number | null) | Media;
+  contactSubject?: string[] | null;
+  accordion?:
+    | (
+        | {
+            title?: string | null;
+            columns?:
+              | {
+                  title?: string | null;
+                  richText?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'doubleColumn';
+          }
+        | {
+            title?: string | null;
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            buttonText?: string | null;
+            link?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'singleColumn';
+          }
+      )[]
+    | null;
+  email?: string | null;
+  tel?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -918,6 +977,39 @@ export interface BranchesSelect<T extends boolean = true> {
 export interface BranchContactPagesSelect<T extends boolean = true> {
   title?: T;
   branch?: T;
+  contactBg?: T;
+  contactBgMobile?: T;
+  contactSubject?: T;
+  accordion?:
+    | T
+    | {
+        doubleColumn?:
+          | T
+          | {
+              title?: T;
+              columns?:
+                | T
+                | {
+                    title?: T;
+                    richText?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        singleColumn?:
+          | T
+          | {
+              title?: T;
+              richText?: T;
+              buttonText?: T;
+              link?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  email?: T;
+  tel?: T;
   meta?:
     | T
     | {
@@ -1444,6 +1536,21 @@ export interface Homepage {
     | {
         title?: string | null;
         description?: string | null;
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
         button?: {
           text?: string | null;
           link?: string | null;
@@ -1702,6 +1809,7 @@ export interface HomepageSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
+        richText?: T;
         button?:
           | T
           | {

@@ -315,6 +315,11 @@ export const Homepage: GlobalConfig = {
                     label: 'Description',
                   },
                   {
+                    name: 'richText',
+                    type: 'richText',
+                    label: 'Rich Text',
+                  },
+                  {
                     name: 'button',
                     type: 'group',
                     label: 'Button',

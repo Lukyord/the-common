@@ -4,6 +4,13 @@ import ContactFormFields from '@/components/brand/contact/ContactFormFields'
 import { toEmailHref, toTelHref } from '@/components/footer/footer-utils'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type { Contact } from '@/payload-types'
+
+type ContactFormData = Pick<
+  Contact,
+  'contactBg' | 'contactBgMobile' | 'tel' | 'email' | 'contactSubject'
+> & {
+  title?: string | null
+}
 import Link from 'next/link'
 
 export type ResolvedMedia = NonNullable<ReturnType<typeof resolveMedia>>
@@ -18,14 +25,14 @@ export type ContactFormProps = {
   priority?: boolean
 }
 
-export function toContactFormProps(contact?: Contact | null): ContactFormProps {
+export function toContactFormProps(data?: ContactFormData | null): ContactFormProps {
   return {
-    title: 'Contact',
-    bg: resolveMedia(contact?.contactBg),
-    bgMobile: resolveMedia(contact?.contactBgMobile),
-    tel: contact?.tel ?? null,
-    email: contact?.email ?? null,
-    subjects: contact?.contactSubject?.filter((item) => item.trim().length > 0) ?? [],
+    title: data?.title ?? 'Contact',
+    bg: resolveMedia(data?.contactBg),
+    bgMobile: resolveMedia(data?.contactBgMobile),
+    tel: data?.tel ?? null,
+    email: data?.email ?? null,
+    subjects: data?.contactSubject?.filter((item) => item.trim().length > 0) ?? [],
     priority: true,
   }
 }

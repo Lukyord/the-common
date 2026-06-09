@@ -38,6 +38,7 @@ import * as migration_20260604_105037_barnch_about_words from './20260604_105037
 import * as migration_20260605_080703_branch_whats_on_all_events from './20260605_080703_branch_whats_on_all_events';
 import * as migration_20260608_074823 from './20260608_074823';
 import * as migration_20260608_095619_sticky_note_media from './20260608_095619_sticky_note_media';
+import * as migration_20260609_051918 from './20260609_051918';
 
 export const migrations = [
   {
@@ -238,6 +239,11 @@ export const migrations = [
   {
     up: migration_20260608_095619_sticky_note_media.up,
     down: migration_20260608_095619_sticky_note_media.down,
-    name: '20260608_095619_sticky_note_media'
+    name: '20260608_095619_sticky_note_media',
+  },
+  {
+    up: migration_20260609_051918.up,
+    down: migration_20260609_051918.down,
+    name: '20260609_051918'
   },
 ];

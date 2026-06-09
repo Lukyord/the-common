@@ -1,16 +1,18 @@
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
-import type { Contact } from '@/payload-types'
+import type { BranchContactPage, Contact } from '@/payload-types'
+
+type ContactAccordionData = Pick<Contact | BranchContactPage, 'accordion'>
 
 import ContactAccordion, {
   type ContactAccordionItem,
   type ContactAccordionProps,
 } from './ContactAccordion'
 
-export function toContactAccordionProps(contact?: Contact | null): ContactAccordionProps {
+export function toContactAccordionProps(data?: ContactAccordionData | null): ContactAccordionProps {
   const items: ContactAccordionItem[] = []
 
-  for (const [index, block] of (contact?.accordion ?? []).entries()) {
+  for (const [index, block] of (data?.accordion ?? []).entries()) {
     const id = block.id ?? `contact-accordion-${index}`
 
     if (block.blockType === 'doubleColumn') {

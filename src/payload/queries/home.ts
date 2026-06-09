@@ -47,6 +47,26 @@ export const getHomepageMottoData = cache(async (): Promise<HomepageMottoData> =
   }
 })
 
+export type HomepageMembershipData = {
+  membership: Homepage['membership']
+}
+
+export const getHomepageMembershipData = cache(async (): Promise<HomepageMembershipData> => {
+  const payload = await getPayloadClient()
+  const homepage = await payload.findGlobal({
+    slug: 'homepage',
+    depth: 1,
+    overrideAccess: false,
+    select: {
+      membership: true,
+    },
+  })
+
+  return {
+    membership: homepage?.membership ?? null,
+  }
+})
+
 export const getHomePayloadData = cache(async (): Promise<HomePayloadData> => {
   const payload = await getPayloadClient()
 

@@ -1228,18 +1228,18 @@ section.header-margin {
   height: var(--stroke-width);
   transform: translateY(-50%);
 }
-.accordion.active > .entry-title::before {
+.accordion.active .entry-title::before {
   transform: translate(-50%, -50%) scaleY(0);
 }
-.accordion > .entry-panel {
+.accordion .entry-panel {
   overflow: hidden;
   height: 0;
   transition: var(--duration-x2) var(--timing-function);
 }
-.accordion.active > .entry-panel {
+.accordion.active .entry-panel {
   height: var(--accordion-height);
 }
-.accordion > .entry-panel .entry-panel-inner {
+.accordion .entry-panel .entry-panel-inner {
   padding-top: var(--spacing-2lg);
 }
 

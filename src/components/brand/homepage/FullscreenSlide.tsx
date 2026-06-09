@@ -6,10 +6,12 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 
 import RenderMedia from '@/components/common/media'
+import { lexicalToHtml } from '@/lib/lexicalToHtml'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type { Homepage } from '@/payload-types'
 import Link from 'next/link'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import AnimatedRichText from '@/components/common/AnimatedRichText'
 import { Pagination, Autoplay } from 'swiper/modules'
 import { MarkdownContent } from '@/components/common/markdown-content'
 
@@ -22,6 +24,7 @@ function toSlides(items: NonNullable<Homepage['membership']>) {
     id: item.id ?? `membership-${index}`,
     title: item.title,
     description: item.description,
+    richTextHtml: lexicalToHtml(item.richText) || undefined,
     button: item.button,
     media: resolveMedia(item.media),
   }))
@@ -39,61 +42,72 @@ export const FullscreenSlide = ({ slides: membershipSlides }: FullscreenSlidePro
       </div>
       <div className="sc-inner pc-t-75 pc-b-75 mb-t-100 mb-b-100">
         <div className="container">
-          <Swiper
-            autoplay={{ delay: 10000 }}
-            loop={true}
-            modules={[Pagination, Autoplay]}
-            pagination={{ clickable: true }}
-            speed={1000}
-          >
-            {slides.map((slide) => (
-              <SwiperSlide key={slide.id}>
-                <div className="membership-item">
-                  <div className="item-content">
-                    <div className="item-header">
-                      {slide.title && (
-                        <AnimateOnScroll triggerClass="fadeIn" className="item-ttl">
-                          <MarkdownContent
-                            as="h3"
-                            className="type-d-header type-m-headliner-m weight-medium letter-spacing-002"
-                          >
-                            {slide.title}
-                          </MarkdownContent>
-                        </AnimateOnScroll>
-                      )}
-                      {slide.description && (
-                        <AnimateOnScroll triggerClass="fadeIn" className="item-desc">
-                          <MarkdownContent
-                            as="p"
-                            className="type-d-body-l type-m-title letter-spacing-002"
-                          >
-                            {slide.description}
-                          </MarkdownContent>
+          <div className="swiper-container">
+            <Swiper
+              autoplay={{ delay: 10000 }}
+              autoHeight
+              loop
+              modules={[Pagination, Autoplay]}
+              observer
+              observeParents
+              pagination={{ clickable: true }}
+              speed={1000}
+            >
+              {slides.map((slide) => (
+                <SwiperSlide key={slide.id}>
+                  <div className="membership-item">
+                    <div className="item-content">
+                      <div className="item-header">
+                        {slide.title && (
+                          <AnimateOnScroll triggerClass="fadeIn" className="item-ttl">
+                            <MarkdownContent
+                              as="h3"
+                              className="type-d-header type-m-headliner-m weight-medium letter-spacing-002"
+                            >
+                              {slide.title}
+                            </MarkdownContent>
+                          </AnimateOnScroll>
+                        )}
+                        {slide.description && (
+                          <AnimateOnScroll triggerClass="fadeIn" className="item-desc">
+                            <MarkdownContent
+                              as="p"
+                              className="type-d-body-l type-m-title letter-spacing-002"
+                            >
+                              {slide.description}
+                            </MarkdownContent>
+                          </AnimateOnScroll>
+                        )}
+
+                        {slide.richTextHtml && (
+                          <div className="item-rich-text entry-content">
+                            <AnimatedRichText html={slide.richTextHtml} />
+                          </div>
+                        )}
+                      </div>
+                      {slide.button?.text && slide.button?.link && (
+                        <AnimateOnScroll triggerClass="fadeIn" className="item-cta">
+                          <Link href={slide.button.link} className="button-orange">
+                            <span>
+                              <span>{slide.button.text}</span>
+                            </span>
+                          </Link>
                         </AnimateOnScroll>
                       )}
                     </div>
-                    {slide.button?.text && slide.button?.link && (
-                      <AnimateOnScroll triggerClass="fadeIn" className="item-cta">
-                        <Link href={slide.button.link} className="button-orange">
-                          <span>
-                            <span>{slide.button.text}</span>
-                          </span>
-                        </Link>
-                      </AnimateOnScroll>
+
+                    {slide.media?.src && (
+                      <div className="item-media">
+                        <AnimateOnScroll triggerClass="fadeIn" className="item-media-inner">
+                          <RenderMedia src={slide.media.src} alt={slide.media.alt} />
+                        </AnimateOnScroll>
+                      </div>
                     )}
                   </div>
-
-                  {slide.media?.src && (
-                    <div className="item-media">
-                      <AnimateOnScroll triggerClass="fadeIn" className="item-media-inner">
-                        <RenderMedia src={slide.media.src} alt={slide.media.alt} />
-                      </AnimateOnScroll>
-                    </div>
-                  )}
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
       </div>
     </section>

@@ -10,7 +10,7 @@ import {
   isWhatsOnArchived,
 } from '@/lib/whatsOnArchive'
 import { resolveMedia } from '@/lib/resolveMedia'
-import type { Branch, BranchWhatsOnPage, Vendor, WhatsOn } from '@/payload-types'
+import type { Branch, BranchContactPage, BranchWhatsOnPage, Vendor, WhatsOn } from '@/payload-types'
 import { getPayloadClient } from '@/payload/getPayloadClient'
 
 export const getBranches = cache(async (): Promise<Branch[]> => {
@@ -47,6 +47,24 @@ export const getBranchWhatsOnPageBySlug = cache(
     const payload = await getPayloadClient()
     const { docs } = await payload.find({
       collection: 'branch-whats-on-pages',
+      where: { branch: { equals: branch.id } },
+      depth: 1,
+      limit: 1,
+    })
+
+    const page = docs[0]
+    if (!page) notFound()
+
+    return page
+  },
+)
+
+export const getBranchContactPageBySlug = cache(
+  async (branchSlug: string): Promise<BranchContactPage> => {
+    const branch = await getBranchBySlug(branchSlug)
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'branch-contact-pages',
       where: { branch: { equals: branch.id } },
       depth: 1,
       limit: 1,
@@ -390,6 +408,7 @@ export type WhatsOnSingleBranch = {
 export type WhatsOnSingleData = {
   title: string
   date?: string | null
+  dateToBeArchived?: string | null
   time?: string | null
   mainTag?: string | null
   subTags: string[]
@@ -460,6 +479,7 @@ export const getWhatsOnBySlug = cache(
     return {
       title: item.title,
       date: item.date,
+      dateToBeArchived: item.dateToBeArchived ?? null,
       time: item.time,
       mainTag: getWhatsOnMainTagText(item.mainTag),
       subTags: getWhatsOnSubTagTexts(item.subTags),

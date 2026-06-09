@@ -70,6 +70,15 @@ else
   fi
 fi
 
+if has_table '__new_branch_contact_pages'; then
+  echo "Found __new_branch_contact_pages — drop it manually or reset local D1."
+else
+  if has_table 'branch_contact_pages' && sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='branch_contact_pages_branch_idx';" | grep -q 1; then
+    echo "Dropping branch_contact_pages_branch_idx so drizzle push can recreate it…"
+    sqlite3 "${DB}" < scripts/d1-repair-branch-contact-pages-idx.sql
+  fi
+fi
+
 if has_table 'homepage_about_sticky_notes' && sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='homepage_about_sticky_notes_order_idx';" | grep -q 1; then
   echo "Dropping homepage_about_sticky_notes indexes so drizzle push can recreate them…"
   sqlite3 "${DB}" < scripts/d1-repair-homepage-about-sticky-notes-idx.sql
