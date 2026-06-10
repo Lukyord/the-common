@@ -20,8 +20,8 @@
       "binding": "D1",
       "database_id": "4fdb4811-9e36-4db1-8a46-328b0b68a41c",
       "database_name": "the-common",
-      // remote: true so `payload migrate` hits production D1 when CLOUDFLARE_REMOTE_BINDINGS=true (deploy:database).
-      // Local dev stays on local D1 because dev does not set CLOUDFLARE_REMOTE_BINDINGS.
+      // remote: true so production builds and `payload migrate` (NODE_ENV=production) use remote D1.
+      // Local dev uses local D1 because NODE_ENV is not production.
       "remote": true,
     },
   ],
