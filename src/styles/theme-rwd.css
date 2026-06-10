@@ -845,4 +845,33 @@
     overflow-y: unset;
     -webkit-mask-box-image: unset;
   }
+
+  /* PAGE: BRANCH VENDORS */
+  [data-section='vendor-map'] {
+    flex-direction: column;
+    height: auto;
+  }
+
+  [data-section='vendor-map'] .map {
+    aspect-ratio: 0.6048387097;
+  }
+
+  [data-section='vendor-map'] .map .map-plan {
+    top: 23%;
+    left: 0;
+  }
+
+  [data-section='vendor-map'] .map .floors-container {
+    top: 13.2258064516%;
+    right: var(--spacing-container);
+  }
+
+  [data-section='vendor-map'] .map .floor-trigger {
+    width: 4rem;
+  }
+
+  [data-section='vendor-map'] .info {
+    width: 100%;
+    padding: var(--spacing-2md) var(--spacing-container);
+  }
 }

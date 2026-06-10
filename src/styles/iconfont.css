@@ -26,6 +26,72 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-amen-bike:before {
+  content: '\e926';
+}
+.ic-amen-book:before {
+  content: '\e927';
+}
+.ic-offer-nut:before {
+  content: '\e930';
+}
+.ic-amen-dine-in:before {
+  content: '\e931';
+}
+.ic-amen-water:before {
+  content: '\e91e';
+}
+.ic-amen-family:before {
+  content: '\e91f';
+}
+.ic-amen-recycling:before {
+  content: '\e920';
+}
+.ic-amen-toilet:before {
+  content: '\e921';
+}
+.ic-offer-take-away:before {
+  content: '\e922';
+}
+.ic-offer-work-friendly:before {
+  content: '\e924';
+}
+.ic-offer-alc:before {
+  content: '\e925';
+}
+.ic-amen-plant:before {
+  content: '\e928';
+}
+.ic-amen-photobooth:before {
+  content: '\e929';
+}
+.ic-amen-diaper-changing:before {
+  content: '\e92b';
+}
+.ic-amen-meeting-room:before {
+  content: '\e92c';
+}
+.ic-amen-music:before {
+  content: '\e92d';
+}
+.ic-amen-locker-room:before {
+  content: '\e92e';
+}
+.ic-offer-vegan:before {
+  content: '\e92f';
+}
+.ic-offer-party-size:before {
+  content: '\e932';
+}
+.ic-offer-halal:before {
+  content: '\e934';
+}
+.ic-offer-only-common:before {
+  content: '\e938';
+}
+.ic-offer-diary-free:before {
+  content: '\e93a';
+}
 .ic-body-arrow-left:before {
   content: '\e91d';
 }

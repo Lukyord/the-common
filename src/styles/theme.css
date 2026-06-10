@@ -3136,8 +3136,12 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
 }
 
 [data-section='vendor-map'] .map .map-plan__media {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+[data-section='vendor-map'] .map .map-plan__media.plan-overlay {
+  z-index: 5;
+  pointer-events: none;
 }
 
 [data-section='vendor-map'] .map .map-plan__media.is-fading-out {

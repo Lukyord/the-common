@@ -1,0 +1,33 @@
+.lot {
+  position: absolute;
+  z-index: 2;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.lot svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.lot__shape {
+  fill: var(--lot-default-color);
+  transition: fill 0.2s ease;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.lot__shape:hover,
+.lot:has(.lot__label:hover) .lot__shape {
+  fill: var(--lot-active-color);
+}
+
+.lot__label {
+  fill: #200000;
+  pointer-events: all;
+  cursor: pointer;
+}

@@ -40,7 +40,11 @@ export default async function VendorPage({ params }: Props) {
 
   return (
     <main id="main" className="vendors-page">
-      <VendorMap branchSlug={branch.slug} />
+      <VendorMap
+        branchSlug={branch.slug}
+        defaultMapTileColor={page.defaultMapTileColor}
+        activeMapTileColor={page.activeMapTileColor}
+      />
 
       <VendorsListSection
         sectionClassName="bg-beige"

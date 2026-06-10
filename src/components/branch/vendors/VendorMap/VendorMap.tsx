@@ -9,17 +9,59 @@ import {
 } from '@/constants/vendorMapData'
 import { useEffect, useRef, useState } from 'react'
 
+import MapLot from './MapLot'
+import { getFloorLots } from './lots'
 import { useMapPanZoom } from './useMapPanZoom'
+import { getFloorVendors } from './vendorMapUtil'
+
+import './styles.css'
 
 const FADE_OUT_DURATION_MS = 200
 const FADE_IN_DURATION_MS = 400
 
-type VendorMapProps = {
-  branchSlug: string
+const FALLBACK_DEFAULT_MAP_TILE_COLOR = '#CFEAE0'
+const FALLBACK_ACTIVE_MAP_TILE_COLOR = '#15E8BF'
+
+type MapTransitionState = 'idle' | 'fading-out' | 'fading-in'
+
+type MapPlanMediaProps = {
+  src: string
+  alt: string
+  transitionState: MapTransitionState
+  overlay?: boolean
 }
 
-export default function VendorMap({ branchSlug }: VendorMapProps) {
+function MapPlanMedia({ src, alt, transitionState, overlay = false }: MapPlanMediaProps) {
+  const className = [
+    'map-plan__media',
+    overlay && 'plan-overlay',
+    transitionState === 'fading-out' && 'is-fading-out',
+    transitionState === 'fading-in' && 'is-fading-in',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  return (
+    <div className={className}>
+      <RenderMedia key={src} src={src} alt={alt} />
+    </div>
+  )
+}
+
+type VendorMapProps = {
+  branchSlug: string
+  defaultMapTileColor?: string | null
+  activeMapTileColor?: string | null
+}
+
+export default function VendorMap({
+  branchSlug,
+  defaultMapTileColor,
+  activeMapTileColor,
+}: VendorMapProps) {
   const config = getVendorMapConfig(branchSlug)
+  const defaultColor = defaultMapTileColor ?? FALLBACK_DEFAULT_MAP_TILE_COLOR
+  const activeColor = activeMapTileColor ?? FALLBACK_ACTIVE_MAP_TILE_COLOR
   const viewportRef = useRef<HTMLDivElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
   const panzoomRef = useMapPanZoom(viewportRef, stageRef)
@@ -28,9 +70,7 @@ export default function VendorMap({ branchSlug }: VendorMapProps) {
     return branchConfig ? getVendorMapDefaultFloorId(branchConfig) : ''
   })
   const [displayedFloor, setDisplayedFloor] = useState<VendorMapFloorId>(selectedFloor)
-  const [transitionState, setTransitionState] = useState<'idle' | 'fading-out' | 'fading-in'>(
-    'idle',
-  )
+  const [transitionState, setTransitionState] = useState<MapTransitionState>('idle')
 
   useEffect(() => {
     if (!config) return
@@ -66,13 +106,13 @@ export default function VendorMap({ branchSlug }: VendorMapProps) {
   if (!config) return null
 
   const displayedFloorData = getVendorMapFloor(config, displayedFloor)
-  const mapMediaClassName = `map-plan__media${
-    transitionState === 'fading-out'
-      ? ' is-fading-out'
-      : transitionState === 'fading-in'
-        ? ' is-fading-in'
-        : ''
-  }`
+  const floorLots = getFloorLots(branchSlug, displayedFloor)
+  const floorVendors = getFloorVendors(branchSlug, displayedFloor)
+  const mapMediaProps = {
+    src: displayedFloorData.mapSrc,
+    alt: displayedFloorData.mapAlt,
+    transitionState,
+  }
 
   const handleFloorClick = (floorId: VendorMapFloorId) => {
     if (floorId === selectedFloor) return
@@ -83,13 +123,24 @@ export default function VendorMap({ branchSlug }: VendorMapProps) {
     <section data-section="vendor-map">
       <div className="map" ref={viewportRef}>
         <div className="map-plan" ref={stageRef}>
-          <div className={mapMediaClassName}>
-            <RenderMedia
-              key={displayedFloorData.mapSrc}
-              src={displayedFloorData.mapSrc}
-              alt={displayedFloorData.mapAlt}
-            />
-          </div>
+          <MapPlanMedia {...mapMediaProps} />
+          <MapPlanMedia {...mapMediaProps} overlay />
+
+          {floorLots &&
+            floorVendors.map((vendor) => {
+              const lot = floorLots[vendor.lotNumber]
+              if (!lot) return null
+
+              return (
+                <MapLot
+                  key={vendor.lotNumber}
+                  lotNumber={vendor.lotNumber}
+                  defaultColor={defaultColor}
+                  activeColor={activeColor}
+                  {...lot}
+                />
+              )
+            })}
         </div>
         <div className="floors-container map-plan-interactive">
           {config.floors.map((floor) => (
