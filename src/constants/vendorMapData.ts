@@ -9,11 +9,8 @@ export type VendorMapFloor = {
   label: string
   mapSrc: string
   mapAlt: string
-}
-
-export type VendorMapBranchInfo = {
-  title: string
-  description: string
+  title?: string
+  description?: string
 }
 
 export type VendorMapBranchConfig = {
@@ -21,7 +18,6 @@ export type VendorMapBranchConfig = {
   name: string
   defaultFloor: VendorMapFloorId
   floors: VendorMapFloor[]
-  info: VendorMapBranchInfo
 }
 
 export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig> = {
@@ -55,10 +51,6 @@ export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig>
         mapAlt: 'Thonglor Floor 3 Map Plan',
       },
     ],
-    info: {
-      title: 'Thonglor',
-      description: 'Select a floor to explore vendors at Thonglor.',
-    },
   },
   saladaeng: {
     slug: 'saladaeng',
@@ -84,10 +76,6 @@ export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig>
         mapAlt: 'Saladaeng Floor 2 Map Plan',
       },
     ],
-    info: {
-      title: 'Saladaeng',
-      description: 'Select a floor to explore vendors at Saladaeng.',
-    },
   },
   'cloud-11': {
     slug: 'cloud-11',
@@ -125,10 +113,6 @@ export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig>
         mapAlt: 'Cloud 11 Floor 4 Map Plan',
       },
     ],
-    info: {
-      title: 'Cloud 11',
-      description: 'Select a floor to explore vendors at Cloud 11.',
-    },
   },
 }
 

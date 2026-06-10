@@ -28,7 +28,9 @@ export default function VendorMap({ branchSlug }: VendorMapProps) {
     return branchConfig ? getVendorMapDefaultFloorId(branchConfig) : ''
   })
   const [displayedFloor, setDisplayedFloor] = useState<VendorMapFloorId>(selectedFloor)
-  const [transitionState, setTransitionState] = useState<'idle' | 'fading-out' | 'fading-in'>('idle')
+  const [transitionState, setTransitionState] = useState<'idle' | 'fading-out' | 'fading-in'>(
+    'idle',
+  )
 
   useEffect(() => {
     if (!config) return
@@ -98,16 +100,15 @@ export default function VendorMap({ branchSlug }: VendorMapProps) {
               aria-pressed={selectedFloor === floor.id}
               onClick={() => handleFloorClick(floor.id)}
             >
-              <p className="type-d-body-l uppercase weight-medium letter-spacing-002">{floor.label}</p>
+              <p className="type-d-body-l uppercase weight-medium letter-spacing-002">
+                {floor.label}
+              </p>
             </button>
           ))}
         </div>
         <div className="store-info map-plan-interactive"></div>
       </div>
-      <div className="info">
-        <h2 className="type-d-body-l uppercase weight-medium letter-spacing-002">{config.info.title}</h2>
-        <p className="type-d-body-m">{config.info.description}</p>
-      </div>
+      <div className="info"></div>
     </section>
   )
 }

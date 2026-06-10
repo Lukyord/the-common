@@ -161,6 +161,16 @@ export const Branches: CollectionConfig = {
                   label: 'Text',
                   required: true,
                 },
+                {
+                  name: 'title',
+                  type: 'text',
+                  label: 'Title',
+                },
+                {
+                  name: 'description',
+                  type: 'textarea',
+                  label: 'Description',
+                },
               ],
             },
             colorPickerField('primaryColor', 'Primary Color'),

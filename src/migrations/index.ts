@@ -41,6 +41,7 @@ import * as migration_20260608_095619_sticky_note_media from './20260608_095619_
 import * as migration_20260609_051918 from './20260609_051918';
 import * as migration_20260609_091637 from './20260609_091637';
 import * as migration_20260610_054900 from './20260610_054900';
+import * as migration_20260610_081621 from './20260610_081621';
 
 export const migrations = [
   {
@@ -256,6 +257,11 @@ export const migrations = [
   {
     up: migration_20260610_054900.up,
     down: migration_20260610_054900.down,
-    name: '20260610_054900'
+    name: '20260610_054900',
+  },
+  {
+    up: migration_20260610_081621.up,
+    down: migration_20260610_081621.down,
+    name: '20260610_081621'
   },
 ];

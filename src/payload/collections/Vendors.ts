@@ -122,11 +122,6 @@ export const Vendors: CollectionConfig = {
       },
     },
     {
-      name: 'floorLocation',
-      type: 'text',
-      label: 'Floor Location',
-    },
-    {
       name: 'lotNumber',
       type: 'number',
       label: 'Lot Number',

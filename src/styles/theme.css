@@ -3077,6 +3077,14 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   justify-content: center;
   color: var(--color-beige);
   position: relative;
+  cursor: pointer;
+  transition: opacity var(--duration) var(--timing-function);
+}
+[data-section='vendor-map'] .map .floor-trigger.is-active {
+  cursor: default;
+}
+[data-section='vendor-map'] .map .floor-trigger:not(.is-active):hover {
+  opacity: 0.8;
 }
 
 [data-section='vendor-map'] .map .floor-trigger > p {
@@ -3114,8 +3122,7 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   opacity: 1;
 }
 
-[data-section='vendor-map'] .map .floor-trigger.is-active > p,
-[data-section='vendor-map'] .map .floor-trigger:not(.is-active):hover > p {
+[data-section='vendor-map'] .map .floor-trigger.is-active > p {
   color: var(--color-dark-brown);
 }
 

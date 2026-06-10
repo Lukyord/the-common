@@ -209,6 +209,8 @@ export interface Branch {
     | {
         floorId: string;
         text: string;
+        title?: string | null;
+        description?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -345,7 +347,6 @@ export interface Vendor {
    * Options are loaded from the selected branch’s floors.
    */
   floor?: string | null;
-  floorLocation?: string | null;
   /**
    * The lot number of the vendor on the floor.
    */
@@ -941,6 +942,8 @@ export interface BranchesSelect<T extends boolean = true> {
     | {
         floorId?: T;
         text?: T;
+        title?: T;
+        description?: T;
         id?: T;
       };
   primaryColor?: T;
@@ -1202,7 +1205,6 @@ export interface VendorsSelect<T extends boolean = true> {
   slug?: T;
   branch?: T;
   floor?: T;
-  floorLocation?: T;
   lotNumber?: T;
   category?: T;
   lifestyles?: T;
