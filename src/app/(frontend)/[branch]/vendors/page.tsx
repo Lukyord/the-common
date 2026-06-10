@@ -5,6 +5,7 @@ import VendorsListSection from '@/components/branch/vendors/VendorsListSection'
 import { generateMeta } from '@/lib/generateMeta'
 import {
   getBranchBySlug,
+  getBranchMapVendors,
   getBranchVendorPageBySlug,
   getBranchVendors,
   getLifestyles,
@@ -32,18 +33,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function VendorPage({ params }: Props) {
   const { branch: branchSlug } = await params
   const branch = await getBranchBySlug(branchSlug)
-  const [lifestyles, vendorResult, page] = await Promise.all([
+  const [lifestyles, vendorResult, page, mapVendors] = await Promise.all([
     getLifestyles(),
     getBranchVendors(branch),
     getBranchVendorPageBySlug(branchSlug),
+    getBranchMapVendors(branch),
   ])
 
   return (
     <main id="main" className="vendors-page">
       <VendorMap
         branchSlug={branch.slug}
+        floors={branch.floors}
         defaultMapTileColor={page.defaultMapTileColor}
         activeMapTileColor={page.activeMapTileColor}
+        mapVendors={mapVendors}
+        branchTheme={{
+          bgColor: branch.primaryColor,
+          primaryColor: branch.bgColor,
+        }}
       />
 
       <VendorsListSection

@@ -5,12 +5,14 @@ import type {
   BranchLandingVendorCard,
   BranchVendorCard,
   LifestyleOption,
+  VendorMapListItem,
 } from '@/components/branch/vendors/types'
 
 export type {
   BranchLandingVendorCard,
   BranchVendorCard,
   LifestyleOption,
+  VendorMapListItem,
 } from '@/components/branch/vendors/types'
 export { BRANCH_VENDORS_PAGE_SIZE } from '@/components/branch/vendors/types'
 import { BRANCH_VENDORS_PAGE_SIZE } from '@/components/branch/vendors/types'
@@ -24,6 +26,7 @@ import {
   getArchivedWhatsOnWhere,
   isWhatsOnArchived,
 } from '@/lib/whatsOnArchive'
+import { lexicalToHtml } from '@/lib/lexicalToHtml'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type {
   Branch,
@@ -174,6 +177,54 @@ function mapVendorToBranchVendorCard(vendor: Vendor): BranchVendorCard | null {
     lifestyleIds: getVendorLifestyleIds(vendor.lifestyles),
   }
 }
+
+function mapVendorToMapListItem(vendor: Vendor, branchSlug: string): VendorMapListItem | null {
+  if (!vendor.floor || !vendor.lotNumber) return null
+
+  const media = resolveMedia(vendor.media)
+  const openingHoursHtml = lexicalToHtml(vendor.openingHours)
+
+  return {
+    lotNumber: vendor.lotNumber,
+    floor: vendor.floor,
+    name: vendor.name,
+    link: `/${branchSlug}/vendors/${vendor.slug}`,
+    tags: getVendorCategoryTexts(vendor.category),
+    media: media?.src
+      ? {
+          src: media.src,
+          alt: media.alt || vendor.name,
+        }
+      : undefined,
+    openingHoursHtml: openingHoursHtml || undefined,
+  }
+}
+
+export const getBranchMapVendors = cache(async (branch: Branch): Promise<VendorMapListItem[]> => {
+  if (!branch?.id) return []
+
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'vendors',
+    depth: 1,
+    limit: 500,
+    overrideAccess: false,
+    pagination: false,
+    sort: 'lotNumber',
+    where: {
+      and: [
+        { branch: { equals: branch.id } },
+        { floor: { exists: true } },
+        { lotNumber: { exists: true } },
+      ],
+    },
+  })
+
+  return docs.flatMap((vendor) => {
+    const item = mapVendorToMapListItem(vendor, branch.slug)
+    return item ? [item] : []
+  })
+})
 
 export const getLifestyles = cache(async (): Promise<LifestyleOption[]> => {
   const payload = await getPayloadClient()

@@ -31,3 +31,7 @@
   pointer-events: all;
   cursor: pointer;
 }
+
+[data-section='vendor-map'] .vendor-list__item--selectable {
+  cursor: pointer;
+}

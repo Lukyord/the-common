@@ -2471,7 +2471,7 @@ html.no-touchevents [data-section='contact-re-series'] .hand-flower:hover {
 
 [data-section='vibe'] .sc-media.is-fading-in {
   opacity: 0;
-  animation: vibe-fade-in 0.4s var(--timing-function) forwards;
+  animation: vibe-fade-in 0.2s var(--timing-function) forwards;
 }
 
 [data-section='vibe'] .sc-header {
@@ -3144,18 +3144,201 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   pointer-events: none;
 }
 
-[data-section='vendor-map'] .map .map-plan__media.is-fading-out {
+[data-section='vendor-map'] .map .map-plan.is-fading-out {
   opacity: 1;
-  animation: vibe-fade-out 0.2s var(--timing-function) forwards;
+  animation: vibe-fade-out 0.1s var(--timing-function) forwards;
 }
 
-[data-section='vendor-map'] .map .map-plan__media.is-fading-in {
+[data-section='vendor-map'] .map .map-plan.is-fading-in {
   opacity: 0;
-  animation: vibe-fade-in 0.4s var(--timing-function) forwards;
+  animation: vibe-fade-in 0.2s var(--timing-function) forwards;
 }
+
+[data-section='vendor-map'] .map .store-info {
+  position: absolute;
+  left: var(--spacing-container);
+  bottom: var(--spacing-container);
+  z-index: 6;
+  display: flex;
+  width: 38rem;
+  min-height: 15rem;
+  height: auto;
+  background-color: #fafaf8;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity var(--duration) var(--timing-function);
+}
+
+[data-section='vendor-map'] .map .store-info.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+[data-section='vendor-map'] .map .store-info.is-fading-out {
+  opacity: 1;
+  animation: vibe-fade-out 0.1s var(--timing-function) forwards;
+}
+
+[data-section='vendor-map'] .map .store-info.is-fading-in {
+  opacity: 0;
+  animation: vibe-fade-in 0.2s var(--timing-function) forwards;
+}
+
+[data-section='vendor-map'] .map .store-info .store-media {
+  flex-shrink: 0;
+  width: 14.5rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+[data-section='vendor-map'] .map .store-info .store-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-2xs);
+  flex-grow: 1;
+}
+
+[data-section='vendor-map'] .map .store-info .content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-5xs);
+}
+
+[data-section='vendor-map'] .map .store-info .counter {
+  flex-shrink: 0;
+  width: 4.2rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+  color: var(--color);
+  transition:
+    background-color var(--duration) var(--timing-function),
+    color var(--duration) var(--timing-function);
+}
+
+html.no-touchevents [data-section='vendor-map'] .map .store-info:hover .ic {
+  transform: translate(0.2rem, -0.2rem);
+}
+
+[data-section='vendor-map'] .map .store-info .content-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-7xs);
+}
+
+[data-section='vendor-map'] .map .store-info .opening-hours {
+  font-size: var(--font-size-small);
+}
+
+/* [data-section='vendor-map'] .map .store-info .opening-hours strong {
+  font-weight: 400;
+} */
 
 [data-section='vendor-map'] .info {
   width: 43.05555555556%;
   flex-shrink: 0;
   background-color: var(--color-dark-brown);
+  padding: calc(var(--header-height) + var(--spacing-xl)) var(--spacing-container) var(--spacing-xl);
+}
+
+[data-section='vendor-map'] .info-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+[data-section='vendor-map'] .info-inner.is-fading-out {
+  opacity: 1;
+  animation: vibe-fade-out 0.1s var(--timing-function) forwards;
+}
+
+[data-section='vendor-map'] .info-inner.is-fading-in {
+  opacity: 0;
+  animation: vibe-fade-in 0.2s var(--timing-function) forwards;
+}
+
+[data-section='vendor-map'] .info-inner > * {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+[data-section='vendor-map'] .info-header .info-desc {
+  opacity: 0.8;
+}
+
+[data-section='vendor-map'] .vendor-list .card-container {
+  --column: 2;
+  --gap-x: var(--spacing-xs);
+}
+
+[data-section='vendor-map'] .vendor-list__swiper {
+  width: 100%;
+}
+
+[data-section='vendor-map']
+  .vendor-list__swiper
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+  --swiper-pagination-bottom: 0;
+  position: relative;
+  margin-top: var(--spacing-xs);
+}
+
+[data-section='vendor-map'] .vendor-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-7xs);
+}
+
+[data-section='vendor-map'] .vendor-list__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-5xs);
+  color: var(--color-white);
+}
+
+[data-section='vendor-map'] .vendor-list__counter {
+  flex-shrink: 0;
+  width: 2.4rem;
+  margin: 0.2rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition:
+    background-color var(--duration) var(--timing-function),
+    color var(--duration) var(--timing-function);
+}
+
+[data-section='vendor-map'] .vendor-list__name {
+  align-self: center;
+  transition: color var(--duration) var(--timing-function);
+}
+
+html.no-touchevents
+  [data-section='vendor-map']
+  .vendor-list__item:has(.vendor-list__name:not(.vendor-list__name--empty)):hover
+  .vendor-list__counter {
+  background-color: var(--bg-color);
+  color: var(--color);
+}
+
+html.no-touchevents
+  [data-section='vendor-map']
+  .vendor-list__item:has(.vendor-list__name:not(.vendor-list__name--empty)):hover
+  .vendor-list__name {
+  opacity: 1;
+  color: var(--color);
+}
+
+[data-section='vendor-map'] .vendor-list__name--empty {
+  opacity: 0.4;
+  pointer-events: none;
 }

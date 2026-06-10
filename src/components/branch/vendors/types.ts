@@ -23,3 +23,16 @@ export type LifestyleOption = {
   id: number
   text: string
 }
+
+export type VendorMapListItem = {
+  lotNumber: number
+  floor: string
+  name: string
+  link: string
+  tags: string[]
+  media?: {
+    src: string
+    alt: string
+  }
+  openingHoursHtml?: string
+}

@@ -854,6 +854,7 @@
 
   [data-section='vendor-map'] .map {
     aspect-ratio: 0.6048387097;
+    max-height: 85svh;
   }
 
   [data-section='vendor-map'] .map .map-plan {
@@ -870,8 +871,43 @@
     width: 4rem;
   }
 
+  [data-section='vendor-map'] .map .store-info {
+    left: var(--spacing-container);
+    bottom: var(--spacing-2sm);
+    max-width: min(calc(100vw - var(--spacing-container) * 2), 34.7rem);
+    min-height: 13.8rem;
+  }
+
+  [data-section='vendor-map'] .map .store-info .counter {
+    width: 3rem;
+  }
+
+  [data-section='vendor-map'] .map .store-info .store-media {
+    width: 13.3rem;
+  }
+
+  [data-section='vendor-map'] .map .store-info .store-content {
+    gap: var(--spacing-2xs);
+  }
+
+  [data-section='vendor-map'] .map .store-info .opening-hours {
+    font-size: var(--font-size-body);
+  }
+
   [data-section='vendor-map'] .info {
     width: 100%;
     padding: var(--spacing-2md) var(--spacing-container);
+  }
+
+  [data-section='vendor-map'] .info-inner {
+    gap: var(--spacing-md);
+  }
+
+  [data-section='vendor-map'] .info-inner > * {
+    gap: var(--spacing-2xs);
+  }
+
+  [data-section='vendor-map'] .vendor-list .card-container {
+    --column: 1.65;
   }
 }

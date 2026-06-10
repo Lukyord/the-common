@@ -1,24 +1,4 @@
-export const VENDOR_MAP_BRANCH_SLUGS = ['thonglor', 'saladaeng', 'cloud-11'] as const
-
-export type VendorMapBranchSlug = (typeof VENDOR_MAP_BRANCH_SLUGS)[number]
-
-export type VendorMapFloorId = string
-
-export type VendorMapFloor = {
-  id: VendorMapFloorId
-  label: string
-  mapSrc: string
-  mapAlt: string
-  title?: string
-  description?: string
-}
-
-export type VendorMapBranchConfig = {
-  slug: VendorMapBranchSlug
-  name: string
-  defaultFloor: VendorMapFloorId
-  floors: VendorMapFloor[]
-}
+import type { VendorMapBranchConfig, VendorMapBranchSlug } from './types'
 
 export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig> = {
   thonglor: {
@@ -31,6 +11,7 @@ export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig>
         label: 'M',
         mapSrc: '/map/tl/mf/TL-MF-outline.svg',
         mapAlt: 'Thonglor M Floor Map Plan',
+        vendors: Array.from({ length: 20 }, (_, index) => ({ lotNumber: index + 1 })),
       },
       {
         id: '1',
@@ -114,26 +95,4 @@ export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig>
       },
     ],
   },
-}
-
-export function isVendorMapBranchSlug(slug: string): slug is VendorMapBranchSlug {
-  return VENDOR_MAP_BRANCH_SLUGS.includes(slug as VendorMapBranchSlug)
-}
-
-export function getVendorMapConfig(branchSlug: string): VendorMapBranchConfig | null {
-  if (!isVendorMapBranchSlug(branchSlug)) return null
-  return VENDOR_MAP_DATA[branchSlug]
-}
-
-export function getVendorMapFloor(
-  config: VendorMapBranchConfig,
-  floorId: VendorMapFloorId,
-): VendorMapFloor {
-  return config.floors.find((floor) => floor.id === floorId) ?? config.floors[0]
-}
-
-export function getVendorMapDefaultFloorId(config: VendorMapBranchConfig): VendorMapFloorId {
-  return config.floors.some((floor) => floor.id === config.defaultFloor)
-    ? config.defaultFloor
-    : config.floors[0].id
 }

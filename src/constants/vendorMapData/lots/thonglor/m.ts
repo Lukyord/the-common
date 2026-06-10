@@ -1,4 +1,4 @@
-import type { FloorLots } from '../../types.ts'
+import type { FloorLots } from '../../types'
 
 export const thonglorMFloorLots: FloorLots = {
   1: {
