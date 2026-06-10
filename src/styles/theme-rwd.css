@@ -853,8 +853,7 @@
   }
 
   [data-section='vendor-map'] .map {
-    aspect-ratio: 0.6048387097;
-    max-height: 85svh;
+    height: min(85svh, calc(100vw / 0.6048387097));
   }
 
   [data-section='vendor-map'] .map .map-plan {
