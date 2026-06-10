@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import DeliveryCtaSection from '@/components/branch/vendors/DeliveryCtaSection'
 import VendorsListSection from '@/components/branch/vendors/VendorsListSection'
 import { generateMeta } from '@/lib/generateMeta'
 import {
@@ -30,7 +31,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function VendorPage({ params }: Props) {
   const { branch: branchSlug } = await params
   const branch = await getBranchBySlug(branchSlug)
-  const [lifestyles, vendorResult] = await Promise.all([getLifestyles(), getBranchVendors(branch)])
+  const [lifestyles, vendorResult, page] = await Promise.all([
+    getLifestyles(),
+    getBranchVendors(branch),
+    getBranchVendorPageBySlug(branchSlug),
+  ])
 
   return (
     <main id="main" className="vendors-page">
@@ -50,7 +55,7 @@ export default async function VendorPage({ params }: Props) {
         loadMoreUrl="/api/cards/vendors"
       />
 
-      <section data-section="delivery-cta"></section>
+      <DeliveryCtaSection data={page} />
     </main>
   )
 }

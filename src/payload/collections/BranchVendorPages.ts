@@ -1,4 +1,29 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, Field } from 'payload'
+
+const colorPickerField = (name: string, label: string): Field => ({
+  name,
+  type: 'text',
+  label,
+  admin: {
+    components: {
+      Field: {
+        path: '@/components/payload/color-picker-field',
+        exportName: 'ColorPickerField',
+      },
+    },
+  },
+})
+
+function section(label: string, fields: Field[]): Field {
+  return {
+    type: 'collapsible',
+    label,
+    admin: {
+      initCollapsed: true,
+    },
+    fields,
+  }
+}
 
 export const BranchVendorPages: CollectionConfig = {
   slug: 'branch-vendor-pages',
@@ -30,5 +55,34 @@ export const BranchVendorPages: CollectionConfig = {
       unique: true,
       index: true,
     },
+    section('Map', [
+      colorPickerField('defaultMapTileColor', 'Default Map Tile Color'),
+      colorPickerField('activeMapTileColor', 'Active Map Tile Color'),
+      colorPickerField('pinColor', 'Pin Color'),
+    ]),
+    section('Delivery', [
+      colorPickerField('backgroundColor', 'Background Color'),
+      colorPickerField('textColor', 'Text Color'),
+      {
+        name: 'deliveryTitle',
+        type: 'text',
+        label: 'Delivery Title',
+      },
+      {
+        name: 'content',
+        type: 'richText',
+        label: 'Content',
+      },
+      {
+        name: 'grabLink',
+        type: 'text',
+        label: 'Grab Link',
+      },
+      {
+        name: 'linemanLink',
+        type: 'text',
+        label: 'Lineman Link',
+      },
+    ]),
   ],
 }

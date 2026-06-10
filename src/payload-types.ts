@@ -661,6 +661,29 @@ export interface BranchVendorPage {
   id: number;
   title: string;
   branch: number | Branch;
+  defaultMapTileColor?: string | null;
+  activeMapTileColor?: string | null;
+  pinColor?: string | null;
+  backgroundColor?: string | null;
+  textColor?: string | null;
+  deliveryTitle?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  grabLink?: string | null;
+  linemanLink?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -1071,6 +1094,15 @@ export interface BranchSpaceRentalPagesSelect<T extends boolean = true> {
 export interface BranchVendorPagesSelect<T extends boolean = true> {
   title?: T;
   branch?: T;
+  defaultMapTileColor?: T;
+  activeMapTileColor?: T;
+  pinColor?: T;
+  backgroundColor?: T;
+  textColor?: T;
+  deliveryTitle?: T;
+  content?: T;
+  grabLink?: T;
+  linemanLink?: T;
   meta?:
     | T
     | {

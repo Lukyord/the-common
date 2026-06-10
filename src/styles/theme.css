@@ -306,6 +306,66 @@ html.no-touchevents .card-branch-dot:hover .branch-dot-name {
 /* FOOTER ==================== */
 
 /* SECTION ==================== */
+/* DELIVERY CTA ==================== */
+[data-section='delivery-cta'] .container {
+  display: flex;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+[data-section='delivery-cta'] .text-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xs);
+}
+
+[data-section='delivery-cta'] .text-content .entry-content {
+  font-size: var(--font-size-h6);
+  line-height: var(--line-height-h6);
+}
+
+[data-section='delivery-cta'] .media-cta {
+  flex-shrink: 0;
+  width: 54.4852941176%;
+  aspect-ratio: 2.2941176471;
+  position: relative;
+  --hover-offset: 2%;
+  --hover-offset-neg: calc(-1 * var(--hover-offset));
+}
+[data-section='delivery-cta'] .media-cta > * {
+  position: absolute;
+}
+[data-section='delivery-cta'] .media-cta .bag {
+  aspect-ratio: 1;
+  width: 44.1295546559%;
+  top: 0;
+  left: -6%;
+}
+
+[data-section='delivery-cta'] .media-cta .grab {
+  aspect-ratio: 2.8125;
+  width: 60.7287449393%;
+  bottom: 2.786377709%;
+  left: 11.7408906883%;
+  transition: transform var(--duration) var(--timing-function);
+}
+[data-section='delivery-cta'] .media-cta .lineman {
+  aspect-ratio: 4.8006382979;
+  width: 60.7287449393%;
+  bottom: 32.5077399381%;
+  left: 39.1363022942%;
+  rotate: -2.21deg;
+  transition: transform var(--duration) var(--timing-function);
+  z-index: 3;
+}
+html.no-touchevents [data-section='delivery-cta'] .media-cta .grab:hover {
+  transform: translate(var(--hover-offset-neg), var(--hover-offset));
+}
+html.no-touchevents [data-section='delivery-cta'] .media-cta .lineman:hover {
+  transform: translate(var(--hover-offset), var(--hover-offset-neg));
+}
+
 /* GRID CARD CONTIANER ==================== */
 .grid-card-contianer {
   display: flex;
@@ -2124,7 +2184,7 @@ html.no-touchevents [data-section='contact-re-series'] .flower-orange:hover {
 }
 
 html.no-touchevents [data-section='contact-re-series'] .hand-flower:hover {
-  transform: translateY(-2.5rem);
+  transform: translateY(-2.3rem);
 
   .flower-green {
     transform: rotate(-26deg);
