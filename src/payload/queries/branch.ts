@@ -136,6 +136,13 @@ function getVendorLifestyleIds(lifestyles: Vendor['lifestyles']): number[] {
   })
 }
 
+function getVendorFloorTitle(vendor: Vendor, branch: Branch | null): string {
+  if (!vendor.floor || !branch?.floors?.length) return ''
+
+  const floor = branch.floors.find((item) => item.floorId === vendor.floor)
+  return floor?.title?.trim() || ''
+}
+
 function mapVendorToBranchLandingCard(vendor: Vendor): BranchLandingVendorCard | null {
   const media = resolveMedia(vendor.media)
   const branch = typeof vendor.branch === 'object' ? vendor.branch : null
@@ -143,7 +150,6 @@ function mapVendorToBranchLandingCard(vendor: Vendor): BranchLandingVendorCard |
   if (!media?.src || !branch?.slug) return null
 
   const tags = getVendorCategoryTexts(vendor.category)
-  const location = vendor.floorLocation ?? ''
 
   return {
     id: vendor.id,
@@ -154,7 +160,7 @@ function mapVendorToBranchLandingCard(vendor: Vendor): BranchLandingVendorCard |
       alt: media.alt || vendor.name,
     },
     tags,
-    location,
+    location: getVendorFloorTitle(vendor, branch),
     branches: normalizeCardBranches(vendor.branch),
   }
 }
