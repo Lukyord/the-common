@@ -34,6 +34,7 @@ const realpath = (value: string) => (fs.existsSync(value) ? fs.realpathSync(valu
 
 const isCLI = process.argv.some((value) => realpath(value).endsWith(path.join('payload', 'bin.js')))
 const isProduction = process.env.NODE_ENV === 'production'
+const useLocalD1 = process.env.USE_LOCAL_D1 === 'true'
 
 const createLog =
   (level: string, fn: typeof console.log) => (objOrMsg: object | string, msg?: string) => {
@@ -56,7 +57,7 @@ const cloudflareLogger = {
 } as unknown as PayloadLogger
 
 const cloudflare =
-  isCLI || !isProduction
+  isCLI || !isProduction || useLocalD1
     ? await getCloudflareContextFromWrangler()
     : await getCloudflareContext({ async: true })
 
@@ -139,7 +140,7 @@ function getCloudflareContextFromWrangler(): Promise<CloudflareContext> {
     ({ getPlatformProxy }) =>
       getPlatformProxy({
         environment: process.env.CLOUDFLARE_ENV,
-        remoteBindings: isProduction,
+        remoteBindings: isProduction && !useLocalD1,
       } satisfies GetPlatformProxyOptions),
   )
 }
