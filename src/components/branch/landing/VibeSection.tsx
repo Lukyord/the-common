@@ -18,8 +18,8 @@ const FADE_IN_DURATION_MS = 400
 
 export default function VibeSection({ data }: VibeSectionProps) {
   const gallery = data?.gallery?.filter((item) => item?.day?.media || item?.night?.media) || []
-  const [selectedIsNight, setSelectedIsNight] = useState(true)
-  const [displayedIsNight, setDisplayedIsNight] = useState(true)
+  const [selectedIsNight, setSelectedIsNight] = useState(false)
+  const [displayedIsNight, setDisplayedIsNight] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [displayedIndex, setDisplayedIndex] = useState(0)
   const [transitionState, setTransitionState] = useState<'idle' | 'fading-out' | 'fading-in'>(

@@ -11,6 +11,9 @@ importers:
       '@opennextjs/cloudflare':
         specifier: ^1.11.0
         version: 1.19.9(next@15.4.11(@babel/core@7.29.0)(@playwright/test@1.58.2)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(wrangler@4.98.0)
+      '@panzoom/panzoom':
+        specifier: ^4.6.2
+        version: 4.6.2
       '@payloadcms/db-d1-sqlite':
         specifier: 3.82.1
         version: 3.82.1(payload@3.82.1(graphql@16.14.0)(typescript@5.7.3))
@@ -1895,6 +1898,9 @@ packages:
     peerDependencies:
       next: '>=15.5.18 <16 || >=16.2.6'
       wrangler: ^4.86.0
+
+  '@panzoom/panzoom@4.6.2':
+    resolution: {integrity: sha512-Zn3B5/hwa6eYIPRSKX0xf2clv8nviTX8AnAU5kU/EugiTDhG41ya2wlBqYrZJYCWQROr/5XkWObZhIkepi89qw==}
 
   '@payloadcms/db-d1-sqlite@3.82.1':
     resolution: {integrity: sha512-wnRrPYSwzPrNMMt/K1gB5+NidtmKsSyvWiDDWIUv3aKXBKkI7lH9aPOda32acJpGp1cXqoHjx2p2wb6jDpLsMg==}
@@ -7518,6 +7524,8 @@ snapshots:
       - aws-crt
       - encoding
       - supports-color
+
+  '@panzoom/panzoom@4.6.2': {}
 
   '@payloadcms/db-d1-sqlite@3.82.1(payload@3.82.1(graphql@16.14.0)(typescript@5.7.3))':
     dependencies:

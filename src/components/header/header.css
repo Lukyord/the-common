@@ -297,15 +297,15 @@ html.page-scrolling .header-location .location-panel ul {
     right: auto;
     padding-top: var(--spacing-4xs);
     padding-bottom: var(--spacing-lg);
-    width: calc(100% - 3rem);
+    width: max-content;
   }
 
   .header-location .location-panel ul {
     padding-top: var(--spacing-5xs);
     gap: var(--spacing-4xs);
-    padding-left: 0;
-    padding-right: 0;
-    align-items: center;
+    padding: 0 !important;
+    padding-top: var(--spacing-6xs) !important;
+    align-items: flex-start;
   }
 
   .header-location .location-panel ul a {

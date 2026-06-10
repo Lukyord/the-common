@@ -577,7 +577,10 @@
     min-height: calc(54rem + var(--header-height));
   }
   [data-section='not-found'] .container {
-    justify-content: flex-start;
+    justify-content: center;
+  }
+  [data-section='not-found'] .not-found-illus {
+    width: 20rem;
   }
 
   /* PAGE: PRIVACY POLICY */
@@ -679,6 +682,7 @@
   [data-section='contact-re-series'] .container {
     display: grid;
     grid-template-columns: 1fr;
+    padding-bottom: var(--spacing-sm);
   }
   [data-section='contact-re-series'] .container .sc-desc {
     padding-bottom: 0;
@@ -700,7 +704,7 @@
   [data-section='contact-re-series'] .hand-flower {
     width: 8.3rem;
     bottom: -1rem;
-    right: 2.8818443804%;
+    right: 6.4%;
     transition: transform var(--duration) var(--timing-function);
   }
 

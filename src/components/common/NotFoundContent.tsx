@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { CSSProperties } from 'react'
 
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import RenderMedia from './media'
 
 export default function NotFoundContent() {
   return (
@@ -11,10 +12,14 @@ export default function NotFoundContent() {
         className="header-padding"
         aria-labelledby="not-found-title"
       >
-        <div className="sc-inner pc-t-100 pc-b-100 mb-t-175 mb-b-200">
+        <div className="sc-inner pc-t-100 pc-b-100 mb-t-50 mb-b-50">
           <div className="container">
             <div className="sc-header">
-              <AnimateOnScroll delay={300} triggerClass="fadeIn" className="sc-ttl">
+              <AnimateOnScroll triggerClass="fadeIn" delay={300} className="not-found-illus">
+                <RenderMedia src="/designs/not-found-illus.svg" alt="Not Found Illustration" />
+              </AnimateOnScroll>
+
+              <AnimateOnScroll delay={450} triggerClass="fadeIn" className="sc-ttl">
                 <h1
                   id="not-found-title"
                   className="type-d-header type-m-headliner-m weight-medium letter-spacing-002"
@@ -22,7 +27,7 @@ export default function NotFoundContent() {
                   Page not found
                 </h1>
               </AnimateOnScroll>
-              <AnimateOnScroll delay={450} className="sc-desc" triggerClass="fadeIn">
+              <AnimateOnScroll delay={600} className="sc-desc" triggerClass="fadeIn">
                 <p className="type-d-body-s type-m-body-s letter-spacing-002">
                   The page you requested couldn’t be found.
                 </p>

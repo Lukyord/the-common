@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.11.0",
+    "@panzoom/panzoom": "^4.6.2",
     "@payloadcms/db-d1-sqlite": "3.82.1",
     "@payloadcms/next": "3.82.1",
     "@payloadcms/plugin-seo": "3.82.1",

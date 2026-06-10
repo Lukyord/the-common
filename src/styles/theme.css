@@ -355,7 +355,7 @@ html.no-touchevents .card-branch-dot:hover .branch-dot-name {
   width: 60.7287449393%;
   bottom: 32.5077399381%;
   left: 39.1363022942%;
-  rotate: -2.21deg;
+  rotate: -0.79deg;
   transition: transform var(--duration) var(--timing-function);
   z-index: 3;
 }
@@ -1950,6 +1950,7 @@ html.no-touchevents [data-section='kinnest-marquee'] .kinnest-cta:hover .ic {
 .not-found-page {
   display: flex;
   flex-direction: column;
+  min-height: 100svh;
 }
 [data-section='not-found'] {
   flex-grow: 1;
@@ -1963,10 +1964,20 @@ html.no-touchevents [data-section='kinnest-marquee'] .kinnest-cta:hover .ic {
 [data-section='not-found'] .container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
+  text-align: center;
   height: 100%;
   max-width: calc(40rem + var(--spacing-container) * 2);
+}
+
+[data-section='not-found'] .not-found-illus {
+  width: 23.5rem;
+  aspect-ratio: 1.140776699;
+  position: relative;
+  margin-bottom: var(--spacing-lg);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 [data-section='not-found'] .sc-ttl {
@@ -1974,7 +1985,7 @@ html.no-touchevents [data-section='kinnest-marquee'] .kinnest-cta:hover .ic {
 }
 
 [data-section='not-found'] .sc-desc {
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
 }
 
 /* PAGE: PRIVACY POLICY */
@@ -3026,4 +3037,114 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* PAGE: BRANCH VENDORS */
+[data-section='vendor-map'] {
+  display: flex;
+  height: 100svh;
+}
+
+[data-section='vendor-map'] .map {
+  flex-grow: 1;
+  background-color: var(--color-beige);
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+}
+
+[data-section='vendor-map'] .map.is-grabbing {
+  cursor: grabbing;
+}
+
+[data-section='vendor-map'] .map .floors-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5xs);
+  position: absolute;
+  top: 15.8024691358%;
+  right: var(--spacing-lg);
+  z-index: 2;
+}
+
+[data-section='vendor-map'] .map .floor-trigger {
+  width: 6rem;
+  aspect-ratio: 1;
+  background-color: var(--color-dark-brown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-beige);
+  position: relative;
+}
+
+[data-section='vendor-map'] .map .floor-trigger > p {
+  position: relative;
+  z-index: 2;
+  transition: color var(--duration) var(--timing-function);
+}
+
+[data-section='vendor-map'] .map .floor-trigger:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity var(--duration) var(--timing-function);
+}
+
+[data-section='vendor-map'] .map .floor-trigger:nth-child(4n + 1):before {
+  background-image: url('../../public/map/floor-bg-1.svg');
+}
+[data-section='vendor-map'] .map .floor-trigger:nth-child(4n + 2):before {
+  background-image: url('../../public/map/floor-bg-2.webp');
+}
+[data-section='vendor-map'] .map .floor-trigger:nth-child(4n + 3):before {
+  background-image: url('../../public/map/floor-bg-3.webp');
+}
+[data-section='vendor-map'] .map .floor-trigger:nth-child(4n + 4):before {
+  background-image: url('../../public/map/floor-bg-4.webp');
+}
+
+[data-section='vendor-map'] .map .floor-trigger.is-active:before {
+  opacity: 1;
+}
+
+[data-section='vendor-map'] .map .floor-trigger.is-active > p,
+[data-section='vendor-map'] .map .floor-trigger:not(.is-active):hover > p {
+  color: var(--color-dark-brown);
+}
+
+[data-section='vendor-map'] .map .map-plan {
+  aspect-ratio: 1.2130177515;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+[data-section='vendor-map'] .map .map-plan__media {
+  width: 100%;
+  height: 100%;
+}
+
+[data-section='vendor-map'] .map .map-plan__media.is-fading-out {
+  opacity: 1;
+  animation: vibe-fade-out 0.2s var(--timing-function) forwards;
+}
+
+[data-section='vendor-map'] .map .map-plan__media.is-fading-in {
+  opacity: 0;
+  animation: vibe-fade-in 0.4s var(--timing-function) forwards;
+}
+
+[data-section='vendor-map'] .info {
+  width: 43.05555555556%;
+  flex-shrink: 0;
+  background-color: var(--color-dark-brown);
 }

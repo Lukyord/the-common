@@ -57,6 +57,17 @@ export const HeaderLocationMobile = ({ className, setIsMenuOpen, branches }: pro
           <div className="location-panel">
             <div className="location-panel-inner">
               <ul>
+                {currentBranch && (
+                  <li>
+                    <Link
+                      href="/"
+                      onClick={close}
+                      className="type-m-body-m letter-spacing-002 weight-medium uppercase"
+                    >
+                      theCOMMONS
+                    </Link>
+                  </li>
+                )}
                 {choiceBranches.map((branch) => (
                   <li key={branch.slug}>
                     <Link

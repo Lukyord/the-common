@@ -9,6 +9,7 @@ import {
   getBranchVendors,
   getLifestyles,
 } from '@/payload/queries/branch'
+import VendorMap from '@/components/branch/vendors/VendorMap/VendorMap'
 
 export const dynamic = 'force-dynamic'
 
@@ -39,7 +40,7 @@ export default async function VendorPage({ params }: Props) {
 
   return (
     <main id="main" className="vendors-page">
-      <section style={{ height: '100vh' }}></section>
+      <VendorMap branchSlug={branch.slug} />
 
       <VendorsListSection
         sectionClassName="bg-beige"

@@ -7,7 +7,17 @@ export default function ContactReSeries() {
       <div className="cover">
         <RenderMedia src="/designs/checked-bg.webp" alt="Re Series Background" />
       </div>
-      <div className="sc-inner pc-t-150 pc-b-0 mb-t-75 mb-b-150">
+
+      <AnimateOnScroll triggerClass="fadeEntry" className="hand-flower hidden-device-md">
+        <div className="flower-green">
+          <RenderMedia src="/designs/green-flower.webp" alt="Green Flower" />
+        </div>
+        <div className="hand">
+          <RenderMedia src="/designs/orange-hand.webp" alt="Orange Hand" />
+        </div>
+      </AnimateOnScroll>
+
+      <div className="sc-inner pc-t-150 pc-b-0 mb-t-75 mb-b-200">
         <div className="container">
           <div className="sc-header">
             <h2 className="sc-ttl type-d-header type-m-headliner-m uppercase weight-medium letter-spacing-002">
@@ -25,7 +35,7 @@ export default function ContactReSeries() {
               </AnimateOnScroll>
             </h2>
 
-            <AnimateOnScroll triggerClass="fadeEntry" delay={400} className="hand-flower">
+            <AnimateOnScroll triggerClass="fadeEntry" delay={400} className="hand-flower show-md">
               <div className="flower-green">
                 <RenderMedia src="/designs/green-flower.webp" alt="Green Flower" />
               </div>
