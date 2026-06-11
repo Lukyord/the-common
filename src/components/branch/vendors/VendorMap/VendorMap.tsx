@@ -22,6 +22,7 @@ import { useFloorTransition } from './hooks/useFloorTransition'
 import { useIsMobile } from './hooks/useIsMobile'
 import { useMapPanZoom } from './hooks/useMapPanZoom'
 import { useStoreSelection } from './hooks/useStoreSelection'
+import { useVendorMapImagePreload } from './hooks/useVendorMapImagePreload'
 import {
   FALLBACK_ACTIVE_MAP_TILE_COLOR,
   FALLBACK_DEFAULT_MAP_TILE_COLOR,
@@ -80,6 +81,12 @@ function VendorMapContent({
     isMobile,
     sectionRef,
   })
+  useVendorMapImagePreload({
+    sectionRef,
+    mapVendors,
+    displayedFloor,
+  })
+
   const {
     displayedAmenityId,
     hoverAmenity,

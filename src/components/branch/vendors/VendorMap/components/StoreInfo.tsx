@@ -19,11 +19,7 @@ export default function StoreInfo({ vendor, className, style }: StoreInfoProps) 
       </Link>
       {vendor.media ? (
         <div className="store-media">
-          <RenderMedia
-            key={vendor.media.src}
-            src={vendor.media.src}
-            alt={vendor.media.alt}
-          />
+          <RenderMedia src={vendor.media.src} alt={vendor.media.alt} priority />
         </div>
       ) : null}
       <div className="store-content">
