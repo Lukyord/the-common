@@ -1,5 +1,8 @@
 import type {
+  AmenityId,
+  FloorAmenities,
   FloorLots,
+  FloorMapOnlyLots,
   MapVendor,
   VendorMapBranchConfig,
   VendorMapFloorId,
@@ -11,6 +14,7 @@ import type { VendorMapListItem } from '@/components/branch/vendors/types'
 
 import { getVendorByLot } from '../lib/utils'
 import MapLot from './MapLot'
+import MapPin from './MapPin'
 import MapPlanMedia from './MapPlanMedia'
 import StoreInfo from './StoreInfo'
 
@@ -21,17 +25,23 @@ type VendorMapPlanProps = {
   mapSrc: string
   mapAlt: string
   floorLots: FloorLots | null
+  floorMapOnlyLots: FloorMapOnlyLots | null
+  floorAmenities: FloorAmenities
+  displayedAmenityId: AmenityId | null
+  amenityPinsClassName: string
   floorVendors: MapVendor[]
   mapVendors: VendorMapListItem[]
   displayedFloor: VendorMapFloorId
   defaultColor: string
   activeColor: string
+  pinColor: string
   isMobile: boolean
   config: VendorMapBranchConfig
   selectedFloor: VendorMapFloorId
   onFloorSelect: (floorId: VendorMapFloorId) => void
   onStoreSelect: (lotNumber: number, floor: VendorMapFloorId) => void
   onStoreHover: (lotNumber: number, floor: VendorMapFloorId) => void
+  selectedLotNumber?: number
   storeInfoVendor?: VendorMapListItem
   storeInfoClassName: string
   themeStyle?: CSSProperties
@@ -44,21 +54,29 @@ export default function VendorMapPlan({
   mapSrc,
   mapAlt,
   floorLots,
+  floorMapOnlyLots,
+  floorAmenities,
+  displayedAmenityId,
+  amenityPinsClassName,
   floorVendors,
   mapVendors,
   displayedFloor,
   defaultColor,
   activeColor,
+  pinColor,
   isMobile,
   config,
   selectedFloor,
   onFloorSelect,
   onStoreSelect,
   onStoreHover,
+  selectedLotNumber,
   storeInfoVendor,
   storeInfoClassName,
   themeStyle,
 }: VendorMapPlanProps) {
+  const displayedAmenity = floorAmenities.find((amenity) => amenity.id === displayedAmenityId)
+
   return (
     <div className="map" ref={viewportRef}>
       <div className={mapPlanClassName} ref={stageRef}>
@@ -78,6 +96,7 @@ export default function VendorMapPlan({
                 lotNumber={vendor.lotNumber}
                 defaultColor={defaultColor}
                 activeColor={activeColor}
+                isActive={selectedLotNumber === vendor.lotNumber}
                 href={isMobile ? undefined : cmsVendor?.link}
                 label={cmsVendor?.name}
                 onClick={
@@ -88,6 +107,27 @@ export default function VendorMapPlan({
               />
             )
           })}
+
+        {floorMapOnlyLots &&
+          Object.entries(floorMapOnlyLots).map(([mapKey, lot]) => (
+            <MapLot
+              key={mapKey}
+              mapKey={mapKey}
+              interactive={false}
+              label={mapKey.charAt(0).toUpperCase() + mapKey.slice(1)}
+              defaultColor={defaultColor}
+              activeColor={activeColor}
+              {...lot}
+            />
+          ))}
+
+        {displayedAmenity ? (
+          <div className={amenityPinsClassName}>
+            {displayedAmenity.pins.map((pin, index) => (
+              <MapPin key={`${displayedAmenity.id}-${index}`} layout={pin} color={pinColor} />
+            ))}
+          </div>
+        ) : null}
       </div>
 
       <div className="floors-container map-plan-interactive">

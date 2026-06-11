@@ -1,7 +1,10 @@
 import { VENDOR_MAP_DATA } from './branches'
-import { VENDOR_MAP_FLOOR_LOTS } from './lots'
+import { VENDOR_MAP_FLOOR_AMENITIES } from './amenities'
+import { VENDOR_MAP_FLOOR_LOTS, VENDOR_MAP_FLOOR_MAP_ONLY_LOTS } from './lots'
 import type {
+  FloorAmenities,
   FloorLots,
+  FloorMapOnlyLots,
   MapVendor,
   VendorMapBranchConfig,
   VendorMapBranchSlug,
@@ -40,6 +43,23 @@ export function getFloorLots(
   if (!branchLots) return null
 
   return branchLots[floorId] ?? null
+}
+
+export function getFloorMapOnlyLots(
+  branchSlug: string,
+  floorId: VendorMapFloorId,
+): FloorMapOnlyLots | null {
+  const branchLots = VENDOR_MAP_FLOOR_MAP_ONLY_LOTS[branchSlug as VendorMapBranchSlug]
+  if (!branchLots) return null
+
+  return branchLots[floorId] ?? null
+}
+
+export function getFloorAmenities(branchSlug: string, floorId: VendorMapFloorId): FloorAmenities {
+  const branchAmenities = VENDOR_MAP_FLOOR_AMENITIES[branchSlug as VendorMapBranchSlug]
+  if (!branchAmenities) return []
+
+  return branchAmenities[floorId] ?? []
 }
 
 export function getFloorVendors(branchSlug: string, floorId: VendorMapFloorId): MapVendor[] {

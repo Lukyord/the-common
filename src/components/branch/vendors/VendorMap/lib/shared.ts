@@ -14,6 +14,7 @@ export type VendorMapProps = {
   floors?: Branch['floors']
   defaultMapTileColor?: string | null
   activeMapTileColor?: string | null
+  pinColor?: string | null
   mapVendors?: VendorMapListItem[]
   branchTheme?: {
     bgColor?: string | null

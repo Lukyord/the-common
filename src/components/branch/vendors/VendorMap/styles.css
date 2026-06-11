@@ -5,6 +5,7 @@
   border: 0;
   background: transparent;
   pointer-events: none;
+  transition: none;
 }
 
 .lot svg {
@@ -22,7 +23,8 @@
 }
 
 .lot__shape:hover,
-.lot:has(.lot__label:hover) .lot__shape {
+.lot:has(.lot__label:hover) .lot__shape,
+.lot.is-active .lot__shape {
   fill: var(--lot-active-color);
 }
 
@@ -32,6 +34,128 @@
   cursor: pointer;
 }
 
-[data-section='vendor-map'] .vendor-list__item--selectable {
+.lot--map-only .lot__label {
+  pointer-events: none;
+  cursor: default;
+}
+
+.lot--map-only .lot__shape:hover,
+.lot--map-only:has(.lot__label:hover) .lot__shape {
+  fill: var(--lot-active-color);
+}
+
+[data-section='vendor-map'] .vendor-list__item--selectable,
+[data-section='vendor-map'] .amenity-list__item--selectable {
   cursor: pointer;
+}
+
+.map-pins {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+[data-section='vendor-map'] .map-pins.is-visible {
+  opacity: 1;
+}
+
+[data-section='vendor-map'] .map-pins.is-fading-out {
+  opacity: 1;
+  animation: vibe-fade-out 0.1s var(--timing-function) forwards;
+}
+
+[data-section='vendor-map'] .map-pins.is-fading-in {
+  opacity: 0;
+  animation: vibe-fade-in 0.2s var(--timing-function) forwards;
+}
+
+.map-pin {
+  position: absolute;
+  width: 2.3rem;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+}
+
+.map-pin svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 5px 4px #31313133);
+}
+
+[data-section='vendor-map'] .amenity-list__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2xs) var(--spacing-lg);
+}
+
+[data-section='vendor-map'] .amenity-list__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4xs);
+  color: var(--color-white);
+  cursor: default;
+}
+
+[data-section='vendor-map'] .amenity-list__icon {
+  flex-shrink: 0;
+  width: 3.2rem;
+  aspect-ratio: 1;
+  font-size: 1.8rem;
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.1rem solid var(--color-white);
+  transition: var(--duration) var(--timing-function);
+}
+
+[data-section='vendor-map'] .amenity-list__icon .ic {
+  transition: color var(--duration) var(--timing-function);
+}
+
+[data-section='vendor-map'] .amenity-list__icon .ic {
+  &.ic-amen-bike {
+    font-size: 1.27rem;
+  }
+  &.ic-amen-photobooth {
+    font-size: 1.4rem;
+  }
+  &.ic-amen-book,
+  &.ic-amen-music {
+    font-size: 1.5rem;
+  }
+  &.ic-amen-diaper-changing,
+  &.ic-amen-meeting-room,
+  &.ic-amen-locker-room {
+    font-size: 1.6rem;
+  }
+  &.ic-amen-plant {
+    font-size: 2.1rem;
+  }
+  &.ic-amen-family {
+    font-size: 1.9rem;
+  }
+}
+
+[data-section='vendor-map'] .amenity-list__name {
+  align-self: center;
+  transition: color var(--duration) var(--timing-function);
+}
+
+html.no-touchevents [data-section='vendor-map'] .amenity-list__item:hover .amenity-list__icon {
+  color: var(--color);
+  border-color: #482e2c;
+  background-color: #482e2c;
+}
+
+html.no-touchevents [data-section='vendor-map'] .amenity-list__item:hover .amenity-list__name {
+  color: var(--color);
+}
+
+@media (max-width: 991px) {
+  [data-section='vendor-map'] .amenity-list__items {
+    gap: var(--spacing-2xs) var(--spacing-2sm);
+  }
 }

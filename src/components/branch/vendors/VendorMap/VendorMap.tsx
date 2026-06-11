@@ -1,11 +1,15 @@
 'use client'
 
 import {
+  getFloorAmenities,
   getFloorLots,
+  getFloorMapOnlyLots,
   getFloorVendors,
   getVendorMapConfig,
   getVendorMapFloor,
+  type AmenityId,
   type VendorMapBranchConfig,
+  type VendorMapFloorId,
 } from '@/constants/vendorMapData/index'
 import { useRef } from 'react'
 
@@ -13,11 +17,16 @@ import { branchHeaderThemeStyle } from '@/lib/branchTheme'
 
 import VendorMapInfo from './components/VendorMapInfo'
 import VendorMapPlan from './components/VendorMapPlan'
+import { useAmenitySelection } from './hooks/useAmenitySelection'
 import { useFloorTransition } from './hooks/useFloorTransition'
 import { useIsMobile } from './hooks/useIsMobile'
 import { useMapPanZoom } from './hooks/useMapPanZoom'
 import { useStoreSelection } from './hooks/useStoreSelection'
-import { FALLBACK_ACTIVE_MAP_TILE_COLOR, FALLBACK_DEFAULT_MAP_TILE_COLOR } from './lib/constants'
+import {
+  FALLBACK_ACTIVE_MAP_TILE_COLOR,
+  FALLBACK_DEFAULT_MAP_TILE_COLOR,
+  FALLBACK_PIN_COLOR,
+} from './lib/constants'
 import { getBranchFloorById, type VendorMapProps } from './lib/shared'
 
 import './styles.css'
@@ -31,6 +40,7 @@ function VendorMapContent({
   floors,
   defaultMapTileColor,
   activeMapTileColor,
+  pinColor,
   mapVendors = [],
   branchTheme,
   config,
@@ -38,6 +48,7 @@ function VendorMapContent({
   const themeStyle = branchHeaderThemeStyle(branchTheme)
   const defaultColor = defaultMapTileColor ?? FALLBACK_DEFAULT_MAP_TILE_COLOR
   const activeColor = activeMapTileColor ?? FALLBACK_ACTIVE_MAP_TILE_COLOR
+  const resolvedPinColor = pinColor ?? FALLBACK_PIN_COLOR
   const isMobile = useIsMobile()
 
   const sectionRef = useRef<HTMLElement>(null)
@@ -45,22 +56,19 @@ function VendorMapContent({
   const stageRef = useRef<HTMLDivElement>(null)
   const panzoomRef = useMapPanZoom(viewportRef, stageRef)
 
-  const {
-    selectedFloor,
-    displayedFloor,
-    selectFloor,
-    mapPlanClassName,
-    infoInnerClassName,
-  } = useFloorTransition({
-    branchSlug,
-    config,
-    panzoomRef,
-  })
+  const { selectedFloor, displayedFloor, selectFloor, mapPlanClassName, infoInnerClassName } =
+    useFloorTransition({
+      branchSlug,
+      config,
+      panzoomRef,
+    })
 
   const floorVendors = getFloorVendors(branchSlug, displayedFloor)
+  const floorAmenities = getFloorAmenities(branchSlug, displayedFloor)
   const {
     storeInfoVendor,
     storeInfoClassName,
+    selectedLotNumber,
     selectStore,
     hoverStore,
     selectMobileVendor,
@@ -72,13 +80,57 @@ function VendorMapContent({
     isMobile,
     sectionRef,
   })
+  const {
+    displayedAmenityId,
+    hoverAmenity,
+    clearAmenity,
+    selectMobileAmenity,
+    amenityPinsClassName,
+  } = useAmenitySelection({
+    displayedFloor,
+    isMobile,
+    sectionRef,
+  })
 
   const displayedFloorData = getVendorMapFloor(config, displayedFloor)
   const floorLots = getFloorLots(branchSlug, displayedFloor)
+  const floorMapOnlyLots = getFloorMapOnlyLots(branchSlug, displayedFloor)
   const displayedBranchFloor = getBranchFloorById(floors, displayedFloor)
 
+  const handleStoreHover = (lotNumber: number, floor: VendorMapFloorId) => {
+    clearAmenity()
+    hoverStore(lotNumber, floor)
+  }
+
+  const handleAmenityHover = (amenityId: AmenityId) => {
+    clearStore()
+    hoverAmenity(amenityId)
+  }
+
+  const handleMobileAmenitySelect = (amenityId: AmenityId) => {
+    clearStore()
+    panzoomRef.current?.reset({ animate: false })
+    selectMobileAmenity(amenityId)
+  }
+
+  const handleMobileVendorSelect = (lotNumber: number) => {
+    clearAmenity()
+    selectMobileVendor(lotNumber)
+  }
+
+  const handleStoreSelect = (lotNumber: number, floor: VendorMapFloorId) => {
+    clearAmenity()
+    selectStore(lotNumber, floor)
+  }
+
+  const handleSectionLeave = () => {
+    if (isMobile) return
+    clearStore()
+    clearAmenity()
+  }
+
   return (
-    <section ref={sectionRef} data-section="vendor-map" onMouseLeave={clearStore}>
+    <section ref={sectionRef} data-section="vendor-map" onMouseLeave={handleSectionLeave}>
       <VendorMapPlan
         viewportRef={viewportRef}
         stageRef={stageRef}
@@ -86,18 +138,24 @@ function VendorMapContent({
         mapSrc={displayedFloorData.mapSrc}
         mapAlt={displayedFloorData.mapAlt}
         floorLots={floorLots}
+        floorMapOnlyLots={floorMapOnlyLots}
+        floorAmenities={floorAmenities}
+        displayedAmenityId={displayedAmenityId}
+        amenityPinsClassName={amenityPinsClassName}
         floorVendors={floorVendors}
         mapVendors={mapVendors}
         displayedFloor={displayedFloor}
         defaultColor={defaultColor}
         activeColor={activeColor}
+        pinColor={resolvedPinColor}
         isMobile={isMobile}
         config={config}
         selectedFloor={selectedFloor}
         onFloorSelect={selectFloor}
-        onStoreSelect={selectStore}
-        onStoreHover={hoverStore}
-        storeInfoVendor={storeInfoVendor}
+        onStoreSelect={handleStoreSelect}
+        onStoreHover={handleStoreHover}
+        selectedLotNumber={selectedLotNumber}
+        storeInfoVendor={isMobile && displayedAmenityId ? undefined : storeInfoVendor}
         storeInfoClassName={storeInfoClassName}
         themeStyle={themeStyle}
       />
@@ -106,11 +164,15 @@ function VendorMapContent({
         displayedBranchFloor={displayedBranchFloor}
         themeStyle={themeStyle}
         displayedFloor={displayedFloor}
+        floorAmenities={floorAmenities}
         floorVendors={floorVendors}
         mapVendors={mapVendors}
         isMobile={isMobile}
-        onStoreHover={(lotNumber) => hoverStore(lotNumber, displayedFloor)}
-        onMobileVendorSelect={selectMobileVendor}
+        onAmenityLeave={clearAmenity}
+        onAmenityHover={handleAmenityHover}
+        onMobileAmenitySelect={handleMobileAmenitySelect}
+        onStoreHover={(lotNumber) => handleStoreHover(lotNumber, displayedFloor)}
+        onMobileVendorSelect={handleMobileVendorSelect}
       />
     </section>
   )

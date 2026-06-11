@@ -38,3 +38,32 @@ export type LotDefinition = {
 }
 
 export type FloorLots = Record<number, LotDefinition>
+
+export type FloorMapOnlyLots = Record<string, LotDefinition>
+
+export const AMENITY_IDS = [
+  'book',
+  'bike',
+  'toilet',
+  'recycling',
+  'family',
+  'water',
+  'locker-room',
+  'music',
+  'meeting-room',
+  'diaper-changing',
+  'photobooth',
+  'plant',
+] as const
+
+export type AmenityId = (typeof AMENITY_IDS)[number]
+
+export type AmenityPin = LotLayout
+
+export type FloorAmenity = {
+  id: AmenityId
+  label: string
+  pins: AmenityPin[]
+}
+
+export type FloorAmenities = FloorAmenity[]

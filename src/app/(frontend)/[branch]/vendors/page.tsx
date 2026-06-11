@@ -47,6 +47,7 @@ export default async function VendorPage({ params }: Props) {
         floors={branch.floors}
         defaultMapTileColor={page.defaultMapTileColor}
         activeMapTileColor={page.activeMapTileColor}
+        pinColor={page.pinColor}
         mapVendors={mapVendors}
         branchTheme={{
           bgColor: branch.primaryColor,

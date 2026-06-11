@@ -1,10 +1,16 @@
-import type { MapVendor, VendorMapFloorId } from '@/constants/vendorMapData/index'
+import type {
+  AmenityId,
+  FloorAmenities,
+  MapVendor,
+  VendorMapFloorId,
+} from '@/constants/vendorMapData/index'
 import type { CSSProperties } from 'react'
 
 import { MarkdownContent } from '@/components/common/markdown-content'
 import type { VendorMapListItem } from '@/components/branch/vendors/types'
 import type { Branch } from '@/payload-types'
 
+import AmenityFloorList from './AmenityFloorList'
 import VendorFloorList from './VendorFloorList'
 
 type VendorMapInfoProps = {
@@ -12,9 +18,13 @@ type VendorMapInfoProps = {
   displayedBranchFloor: NonNullable<Branch['floors']>[number] | null
   themeStyle?: CSSProperties
   displayedFloor: VendorMapFloorId
+  floorAmenities: FloorAmenities
   floorVendors: MapVendor[]
   mapVendors: VendorMapListItem[]
   isMobile: boolean
+  onAmenityHover: (amenityId: AmenityId) => void
+  onAmenityLeave: () => void
+  onMobileAmenitySelect?: (amenityId: AmenityId) => void
   onStoreHover: (lotNumber: number) => void
   onMobileVendorSelect: (lotNumber: number) => void
 }
@@ -24,9 +34,13 @@ export default function VendorMapInfo({
   displayedBranchFloor,
   themeStyle,
   displayedFloor,
+  floorAmenities,
   floorVendors,
   mapVendors,
   isMobile,
+  onAmenityHover,
+  onAmenityLeave,
+  onMobileAmenitySelect,
   onStoreHover,
   onMobileVendorSelect,
 }: VendorMapInfoProps) {
@@ -52,13 +66,21 @@ export default function VendorMapInfo({
           ) : null}
         </div>
 
-        <div className="amenity-list">
-          <div className="list-ttl">
-            <h3 className="type-d-label type-m-body-m uppercase weight-medium letter-spacing-002 uppercase">
-              amenities
-            </h3>
+        {floorAmenities.length ? (
+          <div className="amenity-list" style={themeStyle}>
+            <div className="list-ttl">
+              <h3 className="type-d-label type-m-body-m uppercase weight-medium letter-spacing-002 uppercase">
+                amenities
+              </h3>
+            </div>
+            <AmenityFloorList
+              amenities={floorAmenities}
+              onAmenityMouseEnter={onAmenityHover}
+              onAmenityMouseLeave={onAmenityLeave}
+              onAmenityClick={isMobile ? onMobileAmenitySelect : undefined}
+            />
           </div>
-        </div>
+        ) : null}
 
         <div className="vendor-list" style={themeStyle}>
           <div className="list-ttl">

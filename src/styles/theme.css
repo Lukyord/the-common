@@ -3106,7 +3106,7 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
 }
 
 [data-section='vendor-map'] .map .floor-trigger:nth-child(4n + 1):before {
-  background-image: url('../../public/map/floor-bg-1.svg');
+  background-image: url('../../public/map/floor-bg-1.webp');
 }
 [data-section='vendor-map'] .map .floor-trigger:nth-child(4n + 2):before {
   background-image: url('../../public/map/floor-bg-2.webp');

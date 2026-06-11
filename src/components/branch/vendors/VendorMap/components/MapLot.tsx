@@ -6,7 +6,10 @@ import type { LotDefinition } from '@/constants/vendorMapData/index'
 import { getAspectRatioFromViewBox, getWidthFromViewBox } from '../lib/types'
 
 type MapLotProps = LotDefinition & {
-  lotNumber: number
+  lotNumber?: number
+  mapKey?: string
+  interactive?: boolean
+  isActive?: boolean
   defaultColor: string
   activeColor: string
   href?: string
@@ -18,6 +21,9 @@ type MapLotProps = LotDefinition & {
 
 export default function MapLot({
   lotNumber,
+  mapKey,
+  interactive = true,
+  isActive = false,
   defaultColor,
   activeColor,
   viewBox,
@@ -41,7 +47,14 @@ export default function MapLot({
     '--lot-active-color': activeColor,
   } as CSSProperties
 
-  const ariaLabel = label ? `${label}, lot ${lotNumber}` : `Lot ${lotNumber}`
+  const dataLot = mapKey ?? lotNumber
+  const ariaLabel = label
+    ? lotNumber
+      ? `${label}, lot ${lotNumber}`
+      : label
+    : lotNumber
+      ? `Lot ${lotNumber}`
+      : undefined
 
   const lotSvg = (
     <svg viewBox={viewBox} fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,12 +63,30 @@ export default function MapLot({
     </svg>
   )
 
+  const lotClassName = ['lot', !interactive && 'lot--map-only', isActive && 'is-active']
+    .filter(Boolean)
+    .join(' ')
+
+  if (!interactive) {
+    return (
+      <div
+        className={lotClassName}
+        data-lot={dataLot}
+        style={style}
+        aria-hidden={ariaLabel ? undefined : true}
+        aria-label={ariaLabel}
+      >
+        {lotSvg}
+      </div>
+    )
+  }
+
   if (href) {
     return (
       <Link
         href={href}
-        className="lot"
-        data-lot={lotNumber}
+        className={lotClassName}
+        data-lot={dataLot}
         style={style}
         onClick={onClick}
         onMouseEnter={onMouseEnter}
@@ -70,8 +101,8 @@ export default function MapLot({
   return (
     <button
       type="button"
-      className="lot"
-      data-lot={lotNumber}
+      className={lotClassName}
+      data-lot={dataLot}
       style={style}
       onClick={onClick}
       onMouseEnter={onMouseEnter}

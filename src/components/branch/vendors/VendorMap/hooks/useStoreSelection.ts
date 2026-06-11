@@ -97,7 +97,6 @@ export function useStoreSelection({
   }
 
   const clearStore = () => {
-    if (isMobile) return
     setHoveredStore(null)
   }
 
@@ -113,9 +112,14 @@ export function useStoreSelection({
     .filter(Boolean)
     .join(' ')
 
+  const selectedStore = hoveredStore ?? displayedStore
+  const selectedLotNumber =
+    selectedStore?.floor === displayedFloor ? selectedStore.lot : undefined
+
   return {
     storeInfoVendor,
     storeInfoClassName,
+    selectedLotNumber,
     selectStore,
     hoverStore,
     selectMobileVendor,
