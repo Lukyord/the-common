@@ -3169,8 +3169,15 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   transition: opacity var(--duration) var(--timing-function);
 }
 
+[data-section='vendor-map'] .map .store-info.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 [data-section='vendor-map'] .map .store-info.is-visible {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 

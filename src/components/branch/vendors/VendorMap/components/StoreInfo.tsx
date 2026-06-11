@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
 
-import RenderMedia from '@/components/common/media'
 import { HtmlContent } from '@/components/common/html-content'
 import type { VendorMapListItem } from '@/components/branch/vendors/types'
 
@@ -17,11 +16,17 @@ export default function StoreInfo({ vendor, className, style }: StoreInfoProps) 
       <Link href={vendor.link} className="link-overlay" aria-label={vendor.name}>
         &nbsp;
       </Link>
-      {vendor.media ? (
-        <div className="store-media">
-          <RenderMedia src={vendor.media.src} alt={vendor.media.alt} priority />
-        </div>
-      ) : null}
+      <div className="store-media">
+        <figure className="object-fit">
+          <img
+            src={vendor.media?.src ?? ''}
+            alt={vendor.media?.alt ?? ''}
+            loading="eager"
+            decoding="async"
+            hidden={!vendor.media}
+          />
+        </figure>
+      </div>
       <div className="store-content">
         <div className="content-header">
           <div className="counter type-d-body-l type-m-body-m weight-medium letter-spacing-002">

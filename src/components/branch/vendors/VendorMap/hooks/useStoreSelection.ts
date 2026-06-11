@@ -25,11 +25,15 @@ export function useStoreSelection({
   const [hoveredStore, setHoveredStore] = useState<StoreTarget | null>(null)
   const [displayedStore, setDisplayedStore] = useState<StoreTarget | null>(null)
   const [storeTransitionState, setStoreTransitionState] = useState<TransitionState>('idle')
+  const [persistedStoreInfoVendor, setPersistedStoreInfoVendor] = useState<
+    VendorMapListItem | undefined
+  >()
 
   useEffect(() => {
     setHoveredStore(null)
     setDisplayedStore(null)
     setStoreTransitionState('idle')
+    setPersistedStoreInfoVendor(undefined)
   }, [displayedFloor])
 
   useEffect(() => {
@@ -79,6 +83,12 @@ export function useStoreSelection({
     ? (displayedStoreVendor ?? defaultMobileStoreVendor)
     : displayedStoreVendor
   const isDefaultMobileStore = isMobile && !displayedStoreVendor && Boolean(defaultMobileStoreVendor)
+  const isStoreInfoHidden = !isMobile && !storeInfoVendor
+
+  useEffect(() => {
+    if (!storeInfoVendor) return
+    setPersistedStoreInfoVendor(storeInfoVendor)
+  }, [storeInfoVendor])
 
   const selectStore = (lotNumber: number, floor: VendorMapFloorId) => {
     const vendor = getVendorByLot(mapVendors, floor, lotNumber)
@@ -103,9 +113,19 @@ export function useStoreSelection({
   const storeInfoClassName = [
     'store-info',
     'map-plan-interactive',
-    storeInfoVendor && !isDefaultMobileStore && storeTransitionState === 'fading-out' && 'is-fading-out',
-    storeInfoVendor && !isDefaultMobileStore && storeTransitionState === 'fading-in' && 'is-fading-in',
-    storeInfoVendor &&
+    isStoreInfoHidden && 'is-hidden',
+    !isStoreInfoHidden &&
+      storeInfoVendor &&
+      !isDefaultMobileStore &&
+      storeTransitionState === 'fading-out' &&
+      'is-fading-out',
+    !isStoreInfoHidden &&
+      storeInfoVendor &&
+      !isDefaultMobileStore &&
+      storeTransitionState === 'fading-in' &&
+      'is-fading-in',
+    !isStoreInfoHidden &&
+      storeInfoVendor &&
       (isDefaultMobileStore || storeTransitionState === 'idle') &&
       'is-visible',
   ]
@@ -118,6 +138,7 @@ export function useStoreSelection({
 
   return {
     storeInfoVendor,
+    persistedStoreInfoVendor,
     storeInfoClassName,
     selectedLotNumber,
     selectStore,

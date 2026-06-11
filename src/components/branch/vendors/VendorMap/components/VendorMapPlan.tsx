@@ -43,6 +43,7 @@ type VendorMapPlanProps = {
   onStoreHover: (lotNumber: number, floor: VendorMapFloorId) => void
   selectedLotNumber?: number
   storeInfoVendor?: VendorMapListItem
+  persistedStoreInfoVendor?: VendorMapListItem
   storeInfoClassName: string
   themeStyle?: CSSProperties
 }
@@ -72,6 +73,7 @@ export default function VendorMapPlan({
   onStoreHover,
   selectedLotNumber,
   storeInfoVendor,
+  persistedStoreInfoVendor,
   storeInfoClassName,
   themeStyle,
 }: VendorMapPlanProps) {
@@ -144,8 +146,12 @@ export default function VendorMapPlan({
         ))}
       </div>
 
-      {storeInfoVendor ? (
-        <StoreInfo vendor={storeInfoVendor} className={storeInfoClassName} style={themeStyle} />
+      {persistedStoreInfoVendor ? (
+        <StoreInfo
+          vendor={storeInfoVendor ?? persistedStoreInfoVendor}
+          className={storeInfoClassName}
+          style={themeStyle}
+        />
       ) : null}
     </div>
   )

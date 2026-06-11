@@ -68,6 +68,7 @@ function VendorMapContent({
   const floorAmenities = getFloorAmenities(branchSlug, displayedFloor)
   const {
     storeInfoVendor,
+    persistedStoreInfoVendor,
     storeInfoClassName,
     selectedLotNumber,
     selectStore,
@@ -163,6 +164,9 @@ function VendorMapContent({
         onStoreHover={handleStoreHover}
         selectedLotNumber={selectedLotNumber}
         storeInfoVendor={isMobile && displayedAmenityId ? undefined : storeInfoVendor}
+        persistedStoreInfoVendor={
+          isMobile && displayedAmenityId ? undefined : persistedStoreInfoVendor
+        }
         storeInfoClassName={storeInfoClassName}
         themeStyle={themeStyle}
       />
