@@ -121,6 +121,21 @@ export const getBranchVendorPageBySlug = cache(
 )
 
 const BRANCH_VENDOR_LIMIT = 3
+const VENDOR_RELATED_LIMIT = 3
+
+function getVendorBranchId(branch: Vendor['branch']): number | null {
+  if (typeof branch === 'number') return branch
+  if (branch?.id) return branch.id
+  return null
+}
+
+function getVendorFirstCategoryId(category: Vendor['category']): number | null {
+  const firstCategory = category?.[0]
+  if (!firstCategory) return null
+  if (typeof firstCategory === 'number') return firstCategory
+  if (firstCategory.id) return firstCategory.id
+  return null
+}
 
 function getVendorCategoryTexts(category: Vendor['category']): string[] {
   if (!category?.length) return []
@@ -294,6 +309,52 @@ export const getBranchVendors = async (
     hasMore: hasNextPage,
   }
 }
+
+export const getVendorBySlug = cache(async (branchSlug: string, slug: string): Promise<Vendor> => {
+  const branch = await getBranchBySlug(branchSlug)
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'vendors',
+    where: { slug: { equals: slug } },
+    depth: 2,
+    limit: 1,
+    overrideAccess: false,
+  })
+
+  const vendor = docs[0]
+  if (!vendor || getVendorBranchId(vendor.branch) !== branch.id) notFound()
+
+  return vendor
+})
+
+export const getRelatedBranchVendorsByCategory = cache(
+  async (branch: Branch, vendor: Vendor): Promise<BranchLandingVendorCard[]> => {
+    const categoryId = getVendorFirstCategoryId(vendor.category)
+    if (!categoryId || !branch?.id) return []
+
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'vendors',
+      depth: 1,
+      limit: VENDOR_RELATED_LIMIT,
+      overrideAccess: false,
+      pagination: false,
+      sort: 'name',
+      where: {
+        and: [
+          { branch: { equals: branch.id } },
+          { category: { contains: categoryId } },
+          { id: { not_equals: vendor.id } },
+        ],
+      },
+    })
+
+    return docs.flatMap((item) => {
+      const card = mapVendorToBranchLandingCard(item)
+      return card ? [card] : []
+    })
+  },
+)
 
 export const getBranchLandingVendors = cache(
   async (branch: Branch): Promise<BranchLandingVendorCard[]> => {

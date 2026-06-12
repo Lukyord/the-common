@@ -27,6 +27,7 @@ export default function BranchWhatsOnSection({
       title={title}
       cards={cards}
       getCardKey={(card) => card.title}
+      slider={{ pagination: true }}
       renderCard={(card) => (
         <WhatsOnCard
           branchSlug={branchSlug}

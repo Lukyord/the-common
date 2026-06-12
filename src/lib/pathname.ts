@@ -1,4 +1,4 @@
-const FOOTER_HIDDEN_SECTIONS = new Set(['whats-on', 'vendors', 'blogs'])
+const FOOTER_HIDDEN_SECTIONS = new Set(['whats-on', 'blogs'])
 
 export function getSlugFromPathname(pathname: string): string {
   if (pathname === '/') return ''

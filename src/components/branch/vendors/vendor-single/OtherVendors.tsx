@@ -6,28 +6,21 @@ import type { ComponentProps } from 'react'
 
 type VendorCardProps = ComponentProps<typeof VendorCard>
 
-type BranchVendorsSectionProps = Omit<
+type OtherVendorsProps = Omit<
   CardSectionProps<VendorCardProps>,
   'sectionClassName' | 'scInnerClassName' | 'cta' | 'renderCard' | 'getCardKey'
 > & {
   branchSlug?: string | null
-  buttonColor?: string | null
 }
 
-export default function BranchVendorsSection({
-  title,
-  branchSlug,
-  buttonColor,
-  cards,
-}: BranchVendorsSectionProps) {
+export default function OtherVendors({ title, branchSlug, cards }: OtherVendorsProps) {
   return (
     <CardSection
-      sectionClassName="branch-landing-vendors"
+      sectionClassName="other-vendors"
       scInnerClassName="pc-t-100 pc-b-100 mb-t-75 mb-b-75"
       title={title}
       cards={cards}
       getCardKey={(card) => card.title}
-      slider={{ pagination: true }}
       renderCard={(card) => (
         <VendorCard
           branchSlug={branchSlug}
@@ -39,15 +32,6 @@ export default function BranchVendorsSection({
           link={card.link}
         />
       )}
-      cta={
-        branchSlug
-          ? {
-              label: 'VIEW VENDORS',
-              href: `/${branchSlug}/vendors`,
-              buttonColor: buttonColor ?? undefined,
-            }
-          : undefined
-      }
     />
   )
 }

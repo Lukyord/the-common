@@ -122,7 +122,7 @@ html.no-touchevents .banner-button:hover i {
 [data-card='vendor'] .card-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-3xs);
+  gap: var(--spacing-6xs) var(--spacing-3xs);
 }
 
 [data-card='vendor'] .tag {
@@ -3376,4 +3376,9 @@ html.no-touchevents
 [data-section='vendor-map'] .vendor-list__name--empty {
   opacity: 0.4;
   pointer-events: none;
+}
+
+/* PAGE: BRANCH VENDORS SINGLE */
+[data-section='card-section'].other-vendors {
+  background-color: var(--color-beige);
 }

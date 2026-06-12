@@ -11,10 +11,27 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
+export type CardSectionPaginationConfig = {
+  clickable?: boolean
+}
+
 export type CardSectionSliderConfig = {
   navigation?: boolean
-  pagination?: boolean | { clickable?: boolean }
+  pagination?: boolean | CardSectionPaginationConfig
   speed?: number
+}
+
+function resolveSliderPagination(pagination: CardSectionSliderConfig['pagination']) {
+  if (!pagination) {
+    return { enabled: false, options: false as const }
+  }
+
+  return {
+    enabled: true,
+    options: {
+      clickable: typeof pagination === 'object' ? (pagination.clickable ?? true) : true,
+    },
+  }
 }
 
 export type CardSectionProps<TCard> = {
@@ -48,8 +65,11 @@ export default function CardSection<TCard>({
   if (!title && cards.length === 0) return null
 
   const showNavigation = slider?.navigation === true
-  const showPagination = slider?.pagination === true
-  const modules = [...(showNavigation ? [Navigation] : []), ...(showPagination ? [Pagination] : [])]
+  const pagination = resolveSliderPagination(slider?.pagination)
+  const modules = [
+    ...(showNavigation ? [Navigation] : []),
+    ...(pagination.enabled ? [Pagination] : []),
+  ]
 
   return (
     <section data-section="card-section" className={sectionClassName} style={sectionStyle}>
@@ -87,16 +107,7 @@ export default function CardSection<TCard>({
                 modules={modules}
                 navigation={showNavigation}
                 speed={slider?.speed ?? 800}
-                pagination={
-                  showPagination
-                    ? {
-                        clickable:
-                          typeof slider?.pagination === 'object'
-                            ? (slider.pagination.clickable ?? true)
-                            : true,
-                      }
-                    : false
-                }
+                pagination={pagination.options}
                 slidesPerView="auto"
               >
                 {renderCard &&

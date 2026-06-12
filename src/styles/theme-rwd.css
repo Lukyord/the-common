@@ -922,4 +922,10 @@
   [data-section='vendor-map'] .vendor-list .card-container {
     --column: 1.65;
   }
+
+  /* PAGE: BRANCH VENDORS SINGLE */
+  [data-section='card-section'].other-vendors .card-container {
+    --column: 2;
+    --gap-x: var(--spacing-4xs);
+  }
 }
