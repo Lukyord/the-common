@@ -255,6 +255,7 @@ html.page-scrolling .header-location .location-panel ul {
   .header-logo {
     padding: var(--spacing-xs);
     min-width: unset;
+    width: 8.9rem;
   }
   .header-logo .logo-wrapper {
     height: 6.6rem;

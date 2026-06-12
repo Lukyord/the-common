@@ -138,7 +138,12 @@ function VendorMapContent({
   }
 
   return (
-    <section ref={sectionRef} data-section="vendor-map" onMouseLeave={handleSectionLeave}>
+    <section
+      className={`${branchSlug}-map`}
+      ref={sectionRef}
+      data-section="vendor-map"
+      onMouseLeave={handleSectionLeave}
+    >
       <VendorMapPlan
         viewportRef={viewportRef}
         stageRef={stageRef}

@@ -857,7 +857,7 @@
   }
 
   [data-section='vendor-map'] .map .map-plan {
-    top: 23%;
+    top: 28%;
     left: 0;
   }
 
@@ -870,10 +870,22 @@
     width: 4rem;
   }
 
+  [data-section='vendor-map'] .map .floor-trigger > p {
+    font-size: 1.8rem;
+  }
+
+  [data-section='vendor-map'].cloud-11-map .map .floor-trigger {
+    width: 8rem;
+    aspect-ratio: 1.9047619048;
+  }
+  [data-section='vendor-map'].cloud-11-map .map .floor-trigger > p {
+    font-size: 1.2rem;
+  }
+
   [data-section='vendor-map'] .map .store-info {
     left: var(--spacing-container);
     bottom: var(--spacing-2sm);
-    max-width: min(calc(100vw - var(--spacing-container) * 2), 34.7rem);
+    max-width: min(calc(100vw - var(--spacing-container) * 2), 47rem);
     min-height: 13.8rem;
   }
 
@@ -895,10 +907,11 @@
 
   [data-section='vendor-map'] .info {
     width: 100%;
-    padding: var(--spacing-2md) var(--spacing-container);
+    padding: 0 var(--spacing-container);
   }
 
   [data-section='vendor-map'] .info-inner {
+    padding: var(--spacing-2md) 0;
     gap: var(--spacing-md);
   }
 

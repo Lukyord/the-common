@@ -17,6 +17,7 @@ import MapLot from './MapLot'
 import MapPin from './MapPin'
 import MapPlanMedia from './MapPlanMedia'
 import StoreInfo from './StoreInfo'
+import { MarkdownContent } from '@/components/common/markdown-content'
 
 type VendorMapPlanProps = {
   viewportRef: RefObject<HTMLDivElement | null>
@@ -141,7 +142,12 @@ export default function VendorMapPlan({
             aria-pressed={selectedFloor === floor.id}
             onClick={() => onFloorSelect(floor.id)}
           >
-            <p className="type-d-body-l uppercase weight-medium letter-spacing-002">{floor.label}</p>
+            <MarkdownContent
+              as="p"
+              className="type-d-body-l uppercase weight-medium letter-spacing-002"
+            >
+              {floor.label}
+            </MarkdownContent>
           </button>
         ))}
       </div>
