@@ -59,9 +59,9 @@ export default function VendorMapInfo({
 
           {displayedBranchFloor?.description ? (
             <div className="info-desc">
-              <p className="type-d-text-link type-m-body-s letter-spacing-002">
+              <MarkdownContent as="p" className="type-d-text-link type-m-body-s letter-spacing-002">
                 {displayedBranchFloor.description}
-              </p>
+              </MarkdownContent>
             </div>
           ) : null}
         </div>

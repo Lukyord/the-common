@@ -71,28 +71,28 @@ export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig>
     floors: [
       {
         id: '1',
-        label: 'Ground Work',
+        label: '1',
         mapSrc: '/map/c11/1-gw/CL11-GW-outline.svg',
         mapAlt: 'Cloud 11 Ground Work Map Plan',
         vendors: Array.from({ length: 4 }, (_, index) => ({ lotNumber: index + 1 })),
       },
       {
         id: '2',
-        label: 'Play<br>Yard',
+        label: '2',
         mapSrc: '/map/c11/2-py/CL11-PY-outline.svg',
         mapAlt: 'Cloud 11 Play Yard Map Plan',
         vendors: Array.from({ length: 2 }, (_, index) => ({ lotNumber: index + 1 })),
       },
       {
         id: '3',
-        label: 'Commons Market',
+        label: '3',
         mapSrc: '/map/c11/3-mk/CL11-MK-outline.svg',
         mapAlt: 'Cloud 11 Commons Market Map Plan',
         vendors: Array.from({ length: 22 }, (_, index) => ({ lotNumber: index + 1 })),
       },
       {
         id: '4',
-        label: 'Grand Stand',
+        label: '4',
         mapSrc: '/map/c11/4-gs/CL11-GS-outline.svg',
         mapAlt: 'Cloud 11 Grand Stand Map Plan',
         vendors: Array.from({ length: 4 }, (_, index) => ({ lotNumber: index + 1 })),

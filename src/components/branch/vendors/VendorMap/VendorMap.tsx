@@ -163,6 +163,7 @@ function VendorMapContent({
         pinColor={resolvedPinColor}
         isMobile={isMobile}
         config={config}
+        floors={floors}
         selectedFloor={selectedFloor}
         onFloorSelect={selectFloor}
         onStoreSelect={handleStoreSelect}

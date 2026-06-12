@@ -11,7 +11,9 @@ import type { RefObject } from 'react'
 import type { CSSProperties } from 'react'
 
 import type { VendorMapListItem } from '@/components/branch/vendors/types'
+import type { Branch } from '@/payload-types'
 
+import { getBranchFloorById } from '../lib/shared'
 import { getVendorByLot } from '../lib/utils'
 import MapLot from './MapLot'
 import MapPin from './MapPin'
@@ -38,6 +40,7 @@ type VendorMapPlanProps = {
   pinColor: string
   isMobile: boolean
   config: VendorMapBranchConfig
+  floors?: Branch['floors']
   selectedFloor: VendorMapFloorId
   onFloorSelect: (floorId: VendorMapFloorId) => void
   onStoreSelect: (lotNumber: number, floor: VendorMapFloorId) => void
@@ -68,6 +71,7 @@ export default function VendorMapPlan({
   pinColor,
   isMobile,
   config,
+  floors,
   selectedFloor,
   onFloorSelect,
   onStoreSelect,
@@ -134,22 +138,27 @@ export default function VendorMapPlan({
       </div>
 
       <div className="floors-container map-plan-interactive">
-        {config.floors.map((floor) => (
-          <button
-            key={floor.id}
-            className={`floor-trigger${selectedFloor === floor.id ? ' is-active' : ''}`}
-            type="button"
-            aria-pressed={selectedFloor === floor.id}
-            onClick={() => onFloorSelect(floor.id)}
-          >
-            <MarkdownContent
-              as="p"
-              className="type-d-body-l uppercase weight-medium letter-spacing-002"
+        {config.floors.map((floor) => {
+          const branchFloor = getBranchFloorById(floors, floor.id)
+          const label = branchFloor?.text ?? floor.label
+
+          return (
+            <button
+              key={floor.id}
+              className={`floor-trigger${selectedFloor === floor.id ? ' is-active' : ''}`}
+              type="button"
+              aria-pressed={selectedFloor === floor.id}
+              onClick={() => onFloorSelect(floor.id)}
             >
-              {floor.label}
-            </MarkdownContent>
-          </button>
-        ))}
+              <MarkdownContent
+                as="p"
+                className="type-d-body-l uppercase weight-medium letter-spacing-002"
+              >
+                {label}
+              </MarkdownContent>
+            </button>
+          )
+        })}
       </div>
 
       {persistedStoreInfoVendor ? (
