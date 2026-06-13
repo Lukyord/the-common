@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import OtherVendors from '@/components/branch/vendors/vendor-single/OtherVendors'
+import VendorSingle from '@/components/branch/vendors/vendor-single/VendorSingle'
 import { generateMeta } from '@/lib/generateMeta'
 import {
   getBranchBySlug,
@@ -48,7 +49,11 @@ export default async function VendorSinglePage({ params }: Props) {
 
   return (
     <main id="main" className="vendors-single-page">
-      <section style={{ height: '100svh' }}></section>
+      <VendorSingle
+        vendor={vendor}
+        branch={branch}
+        backHref={`/${branchSlug}/vendors`}
+      />
 
       {relatedVendors.length > 0 && (
         <OtherVendors title="TAP INTO MORE" branchSlug={branch.slug} cards={relatedVendors} />

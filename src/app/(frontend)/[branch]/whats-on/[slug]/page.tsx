@@ -26,10 +26,12 @@ export default async function EventSinglePage({ params }: Props) {
   const event = await getWhatsOnBySlug(branchSlug, slug)
 
   return (
-    <WhatsOnSingle
-      event={event}
-      backHref={`/${branchSlug}/whats-on`}
-      getTagHref={(tag) => `/whats-on/filter?branch=${branchSlug}&tag=${tag}`}
-    />
+    <main id="main" className="whats-on-single-page">
+      <WhatsOnSingle
+        event={event}
+        backHref={`/${branchSlug}/whats-on`}
+        getTagHref={(tag) => `/whats-on/filter?branch=${branchSlug}&tag=${tag}`}
+      />
+    </main>
   )
 }

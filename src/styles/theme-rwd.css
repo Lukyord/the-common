@@ -30,6 +30,15 @@
     font-size: 2.2rem;
   }
 
+  .card-branch-dot {
+    width: 1.4rem;
+  }
+
+  /* VENDOR CARD */
+  [data-card='vendor'] .tag {
+    padding: var(--spacing-6xs) var(--spacing-5xs);
+  }
+
   /* HEADER ==================== */
 
   /* FOOTER ==================== */
@@ -82,9 +91,21 @@
 
   [data-section='vendors-list'] .tags-filter {
     gap: var(--spacing-5xs);
+    flex-wrap: nowrap;
+    width: 100vw;
+    margin-left: calc(var(--spacing-container) * -1);
+    padding-left: var(--spacing-container);
+    padding-right: var(--spacing-container);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   [data-section='vendors-list'] .tags-filter__tag {
+    flex-shrink: 0;
     padding: var(--spacing-5xs) var(--spacing-4xs);
     white-space: nowrap;
   }
@@ -815,19 +836,44 @@
     background-image: url('../../public/designs/checked-bg.webp');
   }
 
-  [data-section='whats-on-single'] .content-container {
+  :is([data-section='content-single'], [data-section='whats-on-single']) .back-wrapper {
+    position: absolute;
+    left: var(--spacing-container);
+    top: calc(var(--header-height) + var(--spacing-sm));
+    z-index: 2;
+    color: var(--color-beige);
+    font-size: 1.4rem;
+
+    .ic {
+      font-size: 1rem !important;
+    }
+  }
+
+  [data-section='whats-on-single'] .content-text .sc-header {
+    margin-top: 0;
+  }
+
+  [data-section='whats-on-single'] .content-text .sc-header .sc-ttl-tags {
+    gap: var(--spacing-2xs);
+  }
+
+  [data-section='whats-on-single'] .sc-tags .tag {
+    padding: var(--spacing-6xs) var(--spacing-5xs);
+  }
+
+  :is([data-section='content-single'], [data-section='whats-on-single']) .content-container {
     flex-direction: column-reverse;
   }
 
-  [data-section='whats-on-single'] .content-text {
+  :is([data-section='content-single'], [data-section='whats-on-single']) .content-text {
     width: 100%;
-    padding-top: var(--spacing-lg);
+    padding-top: var(--spacing-sm);
   }
 
-  [data-section='whats-on-single'] .content-gallery {
+  :is([data-section='content-single'], [data-section='whats-on-single']) .content-gallery {
     width: 100%;
     height: auto;
-    aspect-ratio: 0.7129277567;
+    aspect-ratio: 0.8029978587;
     padding-top: var(--header-height);
     position: static;
   }
@@ -840,10 +886,24 @@
     margin-top: var(--spacing-2lg);
   }
 
-  [data-section='whats-on-single'] .content-scroll {
+  :is([data-section='content-single'], [data-section='whats-on-single']) .content-scroll {
     height: auto;
     overflow-y: unset;
     -webkit-mask-box-image: unset;
+  }
+
+  [data-section='content-single'].vendor-single .vs-tags .amenity-list__items {
+    gap: var(--spacing-2xs) var(--spacing-2sm);
+  }
+
+  [data-section='content-single'].vendor-single .vs-contact.sc-info {
+    gap: var(--spacing-2xs);
+  }
+
+  :is([data-section='content-single'], [data-section='whats-on-single'])
+    .content-gallery
+    .swiper-pagination {
+    --swiper-pagination-bottom: var(--spacing-2sm);
   }
 
   /* PAGE: BRANCH VENDORS */
@@ -913,6 +973,8 @@
   [data-section='vendor-map'] .info-inner {
     padding: var(--spacing-2md) 0;
     gap: var(--spacing-md);
+    overflow: unset;
+    --mask-box-image-offset: 0;
   }
 
   [data-section='vendor-map'] .info-inner > * {
@@ -923,9 +985,30 @@
     --column: 1.65;
   }
 
+  [data-section='vendor-map'] .vendor-list__swiper {
+    overflow: visible;
+  }
+
   /* PAGE: BRANCH VENDORS SINGLE */
   [data-section='card-section'].other-vendors .card-container {
     --column: 2;
     --gap-x: var(--spacing-4xs);
+  }
+
+  [data-section='content-single'].vendor-single .vs-intro {
+    margin-top: 0;
+  }
+
+  [data-section='content-single'].vendor-single .content-scroll {
+    gap: var(--spacing-2sm);
+  }
+
+  [data-section='content-single'].vendor-single .vs-block:last-child {
+    padding-bottom: var(--spacing-sm);
+  }
+
+  [data-section='content-single'].vendor-single .vs-tags .amenity-list__items {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xs) var(--spacing-md);
   }
 }

@@ -36,7 +36,7 @@ export default function VendorCard({
       </div>
 
       <div className="card-ttl">
-        <h3 className="type-d-body-l type-m-title letter-spacing-002 weight-medium">{title}</h3>
+        <h3 className="type-d-body-l type-m-s letter-spacing-002 weight-medium">{title}</h3>
 
         <CardBranchDots branches={branches} />
       </div>
@@ -50,7 +50,7 @@ export default function VendorCard({
                 key={tag}
                 className="tag"
               >
-                <p className="type-d-body-xs type-m-body-s letter-spacing-002">{tag}</p>
+                <p className="type-d-body-xs type-m-body-xs letter-spacing-002">{tag}</p>
               </Link>
             ))}
           </div>

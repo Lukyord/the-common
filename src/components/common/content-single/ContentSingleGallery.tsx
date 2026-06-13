@@ -6,20 +6,17 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import RenderMedia from '@/components/common/media'
 
+import type { ContentSingleGalleryItem } from './types'
+
 import 'swiper/css'
 import 'swiper/css/pagination'
 
-type GalleryItem = {
-  src: string
-  alt: string
-}
-
-type WhatsOnSingleGalleryProps = {
-  items: GalleryItem[]
+type ContentSingleGalleryProps = {
+  items: ContentSingleGalleryItem[]
   bgColor?: string | null
 }
 
-export default function WhatsOnSingleGallery({ items, bgColor }: WhatsOnSingleGalleryProps) {
+export default function ContentSingleGallery({ items, bgColor }: ContentSingleGalleryProps) {
   if (!items.length) return null
 
   return (

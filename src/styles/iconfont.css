@@ -27,6 +27,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-phone:before {
+  content: '\e93b';
+}
 .ic-amen-bike:before {
   content: '\e926';
 }

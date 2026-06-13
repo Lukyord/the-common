@@ -1,5 +1,8 @@
+import { normalizeTelHref } from '@/lib/formatPhone'
+
 export function toTelHref(value?: string | null) {
-  return value ? `tel:${value.replace(/\s/g, '')}` : undefined
+  const href = value ? normalizeTelHref(value) : ''
+  return href ? `tel:${href}` : undefined
 }
 
 export function toExternalHref(value?: string | null) {

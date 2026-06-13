@@ -10,6 +10,27 @@ if (typeof window !== 'undefined') {
 
 const PENDING_CLASS = 'animate-on-scroll-pending'
 
+const SCROLLABLE_OVERFLOW = new Set(['auto', 'scroll', 'overlay'])
+
+function getScrollParent(element: HTMLElement): HTMLElement | undefined {
+  let parent = element.parentElement
+
+  while (parent) {
+    const { overflow, overflowY } = getComputedStyle(parent)
+
+    if (
+      (SCROLLABLE_OVERFLOW.has(overflowY) || SCROLLABLE_OVERFLOW.has(overflow)) &&
+      parent.scrollHeight > parent.clientHeight
+    ) {
+      return parent
+    }
+
+    parent = parent.parentElement
+  }
+
+  return undefined
+}
+
 type AnimateOnScrollProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
   'className' | 'onEnter' | 'onLeave'
@@ -101,8 +122,11 @@ export default function AnimateOnScroll({
       }
     }
 
+    const scroller = getScrollParent(element)
+
     const scrollTrigger = ScrollTrigger.create({
       trigger: element,
+      ...(scroller ? { scroller } : {}),
       start,
       toggleActions,
       once,
@@ -121,10 +145,16 @@ export default function AnimateOnScroll({
       },
     })
 
-    ScrollTrigger.refresh()
-    if (ScrollTrigger.isInViewport(element)) {
-      runShow()
+    const checkInitialVisibility = () => {
+      scrollTrigger.refresh()
+      if (scrollTrigger.progress > 0) {
+        runShow()
+      } else if (!scroller && ScrollTrigger.isInViewport(element)) {
+        runShow()
+      }
     }
+
+    checkInitialVisibility()
 
     return () => {
       scrollTrigger.kill()

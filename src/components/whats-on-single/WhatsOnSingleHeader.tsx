@@ -23,7 +23,7 @@ export default function WhatsOnSingleHeader({
         <AnimateOnScroll triggerClass="fadeIn" className="sc-ttl">
           <MarkdownContent
             as="h1"
-            className="type-d-title type-m-display letter-spacing-002 weight-medium"
+            className="type-d-title type-m-title letter-spacing-002 weight-medium"
           >
             {event.title}
           </MarkdownContent>
