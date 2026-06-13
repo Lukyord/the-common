@@ -4,12 +4,14 @@ import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import BackLink from '@/components/common/BackLink'
 
 import ContentSingleGallery from './ContentSingleGallery'
+import ContentSingleSocial from './ContentSingleSocial'
 import type { ContentSingleLayoutProps } from './types'
 
 export default function ContentSingleLayout({
   children,
   backHref,
   gallery,
+  socials,
   section = 'content-single',
   sectionClassName,
 }: ContentSingleLayoutProps) {
@@ -24,6 +26,8 @@ export default function ContentSingleLayout({
         </div>
 
         <AnimateOnScroll triggerClass="fadeIn" className="content-text">
+          {socials && <ContentSingleSocial links={socials} />}
+
           <div className="back-wrapper show-md">
             <BackLink fallbackHref={backHref} className="back">
               <i className="ic ic-arrow-left size-icon-2xs"></i>

@@ -11,24 +11,28 @@ const RE_TRIGGERS = [
     image: '/designs/re-1.webp',
     bg: '/designs/recycle.webp',
     alt: 'Recycle',
+    text: 'Reduce landfill waste at our Recycling Bins, Trash Lucky Station, and Clothing Recycling Station.',
   },
   {
     type: 'reuse',
     image: '/designs/re-2.webp',
     bg: '/designs/reuse.webp',
     alt: 'Reuse',
+    text: 'Bring your reusable cups and containers to our eateries. They’ll gladly add your favorite treats.',
   },
   {
     type: 'refill',
     image: '/designs/re-3.webp',
     bg: '/designs/refill.webp',
     alt: 'Refill',
+    text: 'Top up at our Water Stations. Donate 20 baht (or more) to our Common Compassion initiative.',
   },
   {
     type: 'redistribute',
     image: '/designs/re-4.webp',
     bg: '/designs/redistribute.webp',
     alt: 'Redistribute',
+    text: 'Each contribution to our Common Compassion program helps Bangkok’s underserved communities.',
   },
 ] as const
 
@@ -79,10 +83,17 @@ export const ReSection = () => {
               ))}
             </div>
             <div className="content-desc">
-              <MarkdownContent as="p" className="letter-spacing-002 type-d-body-m type-m-body-r">
-                Bring your reusable cups and containers to our eateries. They&apos;ll gladly add
-                your favorite treats.
-              </MarkdownContent>
+              {RE_TRIGGERS.map(({ type, text }) => (
+                <div
+                  key={type}
+                  className={`desc-slide ${activeType === type ? 'is-active' : ''}`}
+                  aria-hidden={activeType !== type}
+                >
+                  <MarkdownContent as="p" className="letter-spacing-002 type-d-body-m type-m-body-r">
+                    {text}
+                  </MarkdownContent>
+                </div>
+              ))}
             </div>
           </div>
         </div>

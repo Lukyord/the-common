@@ -27,6 +27,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-grab:before {
+  content: '\e93c';
+}
+.ic-copy:before {
+  content: '\e93f';
+}
 .ic-phone:before {
   content: '\e93b';
 }

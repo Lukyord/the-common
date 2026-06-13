@@ -1854,6 +1854,22 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
   transform: translate(var(--hover-offset), var(--hover-offset));
 }
 
+[data-section='about-re'] .content-desc {
+  padding-right: var(--spacing-container);
+  display: grid;
+}
+
+[data-section='about-re'] .desc-slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity var(--duration) var(--timing-function);
+  pointer-events: none;
+}
+
+[data-section='about-re'] .desc-slide.is-active {
+  opacity: 1;
+}
+
 /* Award Marquee */
 [data-section='awards'] .sc-ttl {
   margin-bottom: var(--spacing-xl);
@@ -2905,6 +2921,7 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   width: 50%;
   padding: 0 var(--spacing-container);
   padding-top: calc(var(--header-height) + var(--spacing-6xl));
+  position: relative;
 }
 
 :is([data-section='content-single'], [data-section='whats-on-single']) .content-gallery {
@@ -3415,6 +3432,38 @@ html.no-touchevents
 
 [data-section='content-single'].vendor-single .content-scroll .divider {
   border-bottom: 0.1rem solid rgba(var(--color-beige-rgb), 0.4);
+}
+
+[data-section='content-single'] .content-single-social {
+  display: flex;
+  gap: var(--spacing-sm);
+  position: absolute;
+  top: calc(var(--header-height) + var(--spacing-4xl));
+  right: var(--spacing-container);
+  transform: translateY(-100%);
+
+  .ic {
+    font-size: 2.4rem;
+  }
+
+  .padded-white {
+    width: 2.4rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-white);
+    color: var(--color-dark-brown);
+
+    &.grab .ic {
+      font-size: 0.8rem;
+    }
+
+    &.website .ic {
+      font-size: 1.2rem;
+    }
+  }
 }
 
 [data-section='content-single'].vendor-single .vs-block:last-child {

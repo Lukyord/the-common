@@ -7,6 +7,7 @@ import VendorSingleMoreAt from './VendorSingleMoreAt'
 import VendorSingleOpeningHours from './VendorSingleOpeningHours'
 import VendorSingleTags from './VendorSingleTags'
 import { resolveVendorGallery } from './resolveVendorGallery'
+import { resolveVendorSocials } from './resolveVendorSocials'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 type VendorSingleProps = {
@@ -22,6 +23,7 @@ export default function VendorSingle({ vendor, branch, backHref }: VendorSingleP
       sectionClassName="vendor-single"
       backHref={backHref}
       gallery={{ items: resolveVendorGallery(vendor) }}
+      socials={resolveVendorSocials(vendor.social)}
     >
       <VendorSingleIntro name={vendor.name} description={vendor.description} />
 
