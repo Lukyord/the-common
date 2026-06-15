@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react'
 
 import { HtmlContent } from '@/components/common/html-content'
 import type { VendorMapListItem } from '@/components/branch/vendors/types'
+import Image from 'next/image'
 
 type StoreInfoProps = {
   vendor: VendorMapListItem
@@ -18,7 +19,7 @@ export default function StoreInfo({ vendor, className, style }: StoreInfoProps) 
       </Link>
       <div className="store-media">
         <figure className="object-fit">
-          <img
+          <Image
             src={vendor.media?.src ?? ''}
             alt={vendor.media?.alt ?? ''}
             loading="eager"

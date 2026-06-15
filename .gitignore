@@ -42,6 +42,12 @@ next-env.d.ts
 
 /media
 
+/legacy-db
+
+/scripts/migration/events/reports/*
+!/scripts/migration/events/reports/.gitkeep
+/scripts/migration/events/cache/
+
 # Playwright
 node_modules/
 /test-results/

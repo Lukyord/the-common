@@ -59,7 +59,7 @@ ALTER TABLE contact DROP COLUMN contact_bg_mobile_id;
 Then restart dev and let push recreate the columns with FKs. If admin still errors with `table contact has no column named contact_bg_id`, run:
 
 ```bash
-pnpm exec wrangler d1 execute D1 --local --file scripts/d1-repair-contact-bg.sql
+pnpm exec wrangler d1 execute D1 --local --file scripts/db-repair/sql/contact-bg.sql
 ```
 
 No dev restart needed for that script — retry saving in admin.
@@ -87,7 +87,7 @@ It will:
 - finish `__new_vendors` → `vendors` only when that orphan table exists
 - otherwise drop a stuck `vendors_media_idx` so push can recreate it
 
-Do **not** run `scripts/d1-repair-branches-push.sql` via wrangler when `__new_branches` is already gone — that runs `DROP TABLE branches` and fails with `vendors.branch_id` NOT NULL.
+Do **not** run `scripts/db-repair/sql/branches-push.sql` via wrangler when `__new_branches` is already gone — that runs `DROP TABLE branches` and fails with `vendors.branch_id` NOT NULL.
 
 ### Example: removing `about.title` / `about.description` / about background uploads
 

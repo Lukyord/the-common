@@ -1,0 +1,2 @@
+DELETE FROM payload_locked_documents_rels;
+DELETE FROM payload_locked_documents;

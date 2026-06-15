@@ -1,8 +1,11 @@
 'use client'
 
 import type { ChangeEvent, MouseEvent } from 'react'
+import { useState } from 'react'
 import type { TextFieldClient } from 'payload'
-import { TextInput, useField, useFormFields } from '@payloadcms/ui'
+import { TextInput, useDocumentInfo, useField, useFormFields } from '@payloadcms/ui'
+
+import { getBranchIds, resolveBranchAwareSlug, slugify } from '@/lib/branchAwareSlug'
 
 type GenerateSlugFieldProps = {
   field: Omit<TextFieldClient, 'type'> & Partial<Pick<TextFieldClient, 'type'>>
@@ -10,45 +13,80 @@ type GenerateSlugFieldProps = {
   readOnly?: boolean
 }
 
-function slugify(input: string): string {
-  return input
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
+type SlugFieldCustom = {
+  sourceField?: string
+  branchField?: string
+}
+
+function getFieldCustom(field: GenerateSlugFieldProps['field']): SlugFieldCustom {
+  const custom = field.admin?.custom
+  if (!custom || typeof custom !== 'object') return {}
+  return custom as SlugFieldCustom
 }
 
 function getSourceFieldName(field: GenerateSlugFieldProps['field']): string {
-  const custom = field.admin?.custom as unknown
-  if (custom && typeof custom === 'object' && 'sourceField' in custom) {
-    const sourceField = (custom as { sourceField?: unknown }).sourceField
-    if (typeof sourceField === 'string' && sourceField.trim()) return sourceField
-  }
+  const { sourceField } = getFieldCustom(field)
+  if (typeof sourceField === 'string' && sourceField.trim()) return sourceField
   return 'name'
 }
 
+function getBranchFieldName(field: GenerateSlugFieldProps['field']): string | null {
+  const { branchField } = getFieldCustom(field)
+  if (branchField === '') return null
+  if (typeof branchField === 'string' && branchField.trim()) return branchField
+  return 'branch'
+}
+
 export function GenerateSlugField({ field, path, readOnly }: GenerateSlugFieldProps) {
+  const { collectionSlug: documentCollectionSlug, docConfig, id: currentDocumentId } =
+    useDocumentInfo()
+  const collectionSlug =
+    documentCollectionSlug ??
+    (docConfig && 'slug' in docConfig && typeof docConfig.slug === 'string'
+      ? docConfig.slug
+      : undefined)
   const { setValue, showError, value } = useField<string>({ path })
+  const [isGenerating, setIsGenerating] = useState(false)
   const isReadOnly = Boolean(readOnly || field.admin?.readOnly || field.admin?.disabled)
 
   const sourceFieldName = getSourceFieldName(field)
-  const sourceValue = useFormFields(([fields]) => fields?.[sourceFieldName]?.value as unknown)
+  const branchFieldName = getBranchFieldName(field)
+
+  const sourceText = useFormFields(([fields]) => fields?.[sourceFieldName]?.value)
+  const branchValue = useFormFields(([fields]) =>
+    branchFieldName ? fields?.[branchFieldName]?.value : undefined,
+  )
 
   const textValue = typeof value === 'string' ? value : ''
-  const sourceText = typeof sourceValue === 'string' ? sourceValue : ''
+  const sourceLabel = typeof sourceText === 'string' ? sourceText : ''
+  const branchIds = branchFieldName ? getBranchIds(branchValue) : []
+  const canGenerate = Boolean(sourceLabel) && !isGenerating
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
   }
 
-  const handleGenerate = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleGenerate = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    if (isReadOnly) return
+    if (isReadOnly || !sourceLabel) return
 
-    const next = slugify(sourceText)
-    if (next) setValue(next)
+    setIsGenerating(true)
+
+    try {
+      const next =
+        collectionSlug && branchFieldName && branchIds.length > 0
+          ? await resolveBranchAwareSlug({
+              sourceText: sourceLabel,
+              collectionSlug,
+              currentDocumentId,
+              branchValue,
+            })
+          : slugify(sourceLabel)
+
+      if (next) setValue(next)
+    } finally {
+      setIsGenerating(false)
+    }
   }
 
   const label = typeof field.label === 'string' ? field.label : field.name
@@ -58,12 +96,14 @@ export function GenerateSlugField({ field, path, readOnly }: GenerateSlugFieldPr
       AfterInput={
         <button
           className="btn btn--style-secondary btn--size-small"
-          disabled={isReadOnly || !sourceText}
-          onClick={handleGenerate}
+          disabled={isReadOnly || !canGenerate}
+          onClick={(event) => {
+            void handleGenerate(event)
+          }}
           style={{ marginBottom: 8, whiteSpace: 'nowrap' }}
           type="button"
         >
-          Generate
+          {isGenerating ? 'Generating…' : 'Generate'}
         </button>
       }
       className={field.admin?.className}
@@ -82,4 +122,3 @@ export function GenerateSlugField({ field, path, readOnly }: GenerateSlugFieldPr
     />
   )
 }
-

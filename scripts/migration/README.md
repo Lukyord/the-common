@@ -1,0 +1,120 @@
+# Legacy data migration
+
+Migrates JSON exports from `legacy-db/` into Payload collections.
+
+## Layout
+
+```
+scripts/migration/
+  lib/              # shared: CLI, paths, media upload, slug registry, rollback log
+  events/           # whats-on (events) — see events/migrate.ts
+  shops/            # vendors (planned)
+  blogs/            # blogs (planned)
+  zones/            # zones (planned)
+scripts/db-repair/  # local D1 repair SQL + repair-local.sh
+```
+
+Entry points at the migration root (`migrate-events.ts`, `rollback-events.ts`) are thin shims for `package.json` scripts.
+
+## Events (whats-on)
+
+See [events workflow](#events-whats-on) below. Commands:
+
+```bash
+pnpm migrate:events [--write] [--indexes N,...] [--assets-dir PATH]
+pnpm migrate:events:rollback [--write] [--indexes N,...]
+```
+
+---
+
+# Legacy events migration
+
+Migrates `legacy-db/the-commons-cloud.events.json` into Payload `whats-on`.
+
+**Default is dry-run.** Pass `--write` to upload media and create records in D1/R2.
+
+Each legacy index is processed independently: analyze → prepare media → upload → import → clean cache. If one index fails, fix the issue and resume from that index.
+
+## Rules
+
+- **Date window:** only events whose end date is within the last 5 years (>= cutoff)
+- **Media:** card image (`imagePath` → `coverImagePath` → `images[0]`) → `media`
+- **Gallery:** first 5 entries from `images[]` (skips paths already used as media, including different S3 URLs that resolve to the same image; single-image events with `imagePath` reuse the card media without a second upload)
+- **Images:** downloaded → converted to WebP locally → uploaded to R2 with `alt = event title`
+- **Bg Color:** dominant color extracted from card media → `bgColor` on whats-on
+- **Tags:** legacy flat categories mapped to CMS main/sub tags (see `events/config/legacy-tag-map.ts`)
+- **Date to be Archived:** set to the event's last day (parsed end date from `when`)
+
+## Prerequisites
+
+1. Local D1 running (via `pnpm dev` or existing `.wrangler/state`)
+2. `.env.local` (or `.env`) with `PAYLOAD_SECRET`
+3. Image source — either:
+   - `--assets-dir ./legacy-db/assets` (mirror S3 paths locally), or
+   - network access to legacy S3 (may require credentials; bucket is often private)
+
+## Usage
+
+```bash
+# Dry-run last 2 events
+pnpm migrate:events --indexes -2,-1 --assets-dir ./legacy-db/assets
+
+# Import last 2 events locally
+pnpm migrate:events --write --indexes -2,-1 --assets-dir ./legacy-db/assets
+
+# Import a single event (resume after failure)
+pnpm migrate:events --write --indexes 1236 --assets-dir ./legacy-db/assets
+```
+
+## CLI flags
+
+| Flag | Description |
+|------|-------------|
+| `--write` | Upload media and write to D1/R2 (default: dry-run) |
+| `--indexes LIST` | Comma-separated positions in the legacy JSON (0-based). Supports negatives, e.g. `-1` = last event |
+| `--limit N` | Process only the first N eligible events (after index selection) |
+| `--assets-dir PATH` | Local folder mirroring legacy S3 paths |
+| `--keep-cache` | Keep WebP files in `scripts/migration/events/cache/media/` after each index (default: clean up) |
+
+## Per-index workflow
+
+For each index the command:
+
+1. Checks eligibility and prints event details
+2. Converts images to WebP and extracts `bgColor`
+3. Uploads unique media to R2 (`--write` only)
+4. Creates the `whats-on` record (`--write` only)
+5. Removes that index's WebP cache files (unless `--keep-cache`)
+
+On failure, the pipeline stops immediately. Check `scripts/migration/events/reports/migration-progress.json` for the failed index and a suggested resume command.
+
+## Rollback
+
+Undo a previous `--write` migration. Default is dry-run; pass `--write` to delete records.
+
+```bash
+# Preview rollback of last migration
+pnpm migrate:events:rollback
+
+# Roll back specific legacy indexes
+pnpm migrate:events:rollback --write --indexes 1232,1233
+```
+
+Rollback uses `scripts/migration/events/reports/rollback-log.json` (written on each successful import). If that file is missing, it falls back to the last `events-import-preview.json` from a `--write` run.
+
+For each entry:
+- **created** — deletes the `whats-on` record, removes orphaned media, cleans manifest fingerprints
+- **branch_merged** — removes the merged branch from the existing record (does not delete the record)
+
+Entries are processed in reverse migration order (newest first).
+
+After rollback, re-running migration automatically clears stale media IDs from `media-manifest.json` before import. Stale references are also purged from the manifest when deleted media IDs are detected during upload.
+
+## Reports (gitignored)
+
+- `scripts/migration/events/reports/events-analysis.json` — batch summary
+- `scripts/migration/events/reports/events-mapped.json` — mapped payload preview
+- `scripts/migration/events/reports/media-manifest.json` — media IDs, colors, content hashes
+- `scripts/migration/events/reports/migration-progress.json` — completed/failed indexes
+- `scripts/migration/events/reports/rollback-log.json` — rollback targets (append-only)
+- `scripts/migration/events/cache/media/` — temporary WebP cache (cleaned per index)

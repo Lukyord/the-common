@@ -1,5 +1,5 @@
 -- Complete interrupted branches rebuild. Only run when __new_branches exists.
--- See scripts/db-repair-local.sh (or docs/local-drizzle-push-errors.md).
+-- See scripts/db-repair/repair-local.sh (or docs/local-drizzle-push-errors.md).
 
 PRAGMA foreign_keys=OFF;
 

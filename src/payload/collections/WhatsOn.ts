@@ -43,6 +43,15 @@ export const WhatsOn: CollectionConfig = {
   },
   fields: [
     {
+      name: 'branch',
+      type: 'relationship',
+      relationTo: 'branches',
+      hasMany: true,
+      required: true,
+      index: true,
+      maxDepth: 1,
+    },
+    {
       name: 'title',
       type: 'text',
       label: 'Title',
@@ -66,15 +75,6 @@ export const WhatsOn: CollectionConfig = {
           },
         },
       },
-    },
-    {
-      name: 'branch',
-      type: 'relationship',
-      relationTo: 'branches',
-      hasMany: true,
-      required: true,
-      index: true,
-      maxDepth: 1,
     },
     {
       name: 'branchLocations',

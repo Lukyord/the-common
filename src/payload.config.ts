@@ -32,7 +32,11 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 const realpath = (value: string) => (fs.existsSync(value) ? fs.realpathSync(value) : undefined)
 
-const isCLI = process.argv.some((value) => realpath(value).endsWith(path.join('payload', 'bin.js')))
+const isCLI = process.argv.some((value) => {
+  if (!value) return false
+  const resolved = realpath(value)
+  return resolved?.endsWith(path.join('payload', 'bin.js')) ?? false
+})
 const isProduction = process.env.NODE_ENV === 'production'
 const useLocalD1 = process.env.USE_LOCAL_D1 === 'true'
 
@@ -94,7 +98,7 @@ export default buildConfig({
   ],
   globals: [About, Contact, Homepage, PrivacyPolicy],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: process.env.PAYLOAD_SECRET || cloudflare.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

@@ -452,9 +452,9 @@ export interface Lifestyle {
  */
 export interface WhatsOn {
   id: number;
+  branch: (number | Branch)[];
   title: string;
   slug: string;
-  branch: (number | Branch)[];
   /**
    * Set the location for each selected branch.
    */
@@ -1242,9 +1242,9 @@ export interface VendorsSelect<T extends boolean = true> {
  * via the `definition` "whats-on_select".
  */
 export interface WhatsOnSelect<T extends boolean = true> {
+  branch?: T;
   title?: T;
   slug?: T;
-  branch?: T;
   branchLocations?:
     | T
     | {
