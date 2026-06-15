@@ -46,7 +46,7 @@ export const HeaderLocationMobile = ({ className, setIsMenuOpen, branches }: pro
             onClick={() => setIsOpen((open) => !open)}
           >
             <div className="current">
-              <p className="type-m-body-m letter-spacing-002 weight-medium uppercase">
+              <p className="type-m-body-m letter-spacing-002 weight-medium">
                 {currentBranch?.name ?? 'theCOMMONS'}
               </p>
             </div>
@@ -62,7 +62,7 @@ export const HeaderLocationMobile = ({ className, setIsMenuOpen, branches }: pro
                     <Link
                       href="/"
                       onClick={close}
-                      className="type-m-body-m letter-spacing-002 weight-medium uppercase"
+                      className="type-m-body-m letter-spacing-002 weight-medium"
                     >
                       theCOMMONS
                     </Link>

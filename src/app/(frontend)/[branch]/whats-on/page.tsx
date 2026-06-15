@@ -77,6 +77,10 @@ export default async function WhatsOnPage({ params }: Props) {
         sectionClassName="whats-on-club bg-checked"
         scInnerClassName="pc-t-100 pc-b-100 mb-t-75 mb-b-75"
         title={page.club?.title}
+        themeColor={{
+          bgColor: branch.bgColor,
+          color: branch.primaryColor,
+        }}
         cards={clubCards}
         cta={{
           label: 'ALL BRANCHES',

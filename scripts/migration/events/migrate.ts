@@ -10,6 +10,7 @@ async function main() {
   const options = parseMigrationCliArgs()
 
   console.log('Legacy events migration pipeline')
+  console.log(options.remote ? 'Target: production D1 + R2' : 'Target: local D1 + R2')
   console.log('================================')
 
   printPrerequisiteResults(

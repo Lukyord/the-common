@@ -7,6 +7,7 @@ import { saveMediaManifest, type MediaUploadManifest } from './eventsMedia.js'
 export function cleanupEventMediaCache(
   manifest: MediaUploadManifest,
   events: MappedLegacyEvent[],
+  remote = false,
 ): number {
   const legacyPaths = listUniqueMigrationImagePaths(events, manifest)
   let removed = 0
@@ -21,6 +22,6 @@ export function cleanupEventMediaCache(
     removed += 1
   }
 
-  saveMediaManifest(manifest)
+  saveMediaManifest(manifest, remote)
   return removed
 }

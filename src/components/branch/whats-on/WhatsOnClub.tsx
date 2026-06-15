@@ -5,13 +5,18 @@ import WhatsOnCard, {
   WhatsOnCardProps,
 } from '@/components/branch/components/whats-on-card/WhatsOnCard'
 
+type WhatsOnClubProps = CardSectionProps<WhatsOnCardProps> & {
+  themeColor?: WhatsOnCardProps['themeColor']
+}
+
 export default function WhatsOnClub({
   sectionClassName,
   scInnerClassName,
   title,
+  themeColor,
   cards,
   cta,
-}: CardSectionProps<WhatsOnCardProps>) {
+}: WhatsOnClubProps) {
   return (
     <CardSection
       scInnerClassName={scInnerClassName}
@@ -22,7 +27,7 @@ export default function WhatsOnClub({
       renderCard={(card) => (
         <WhatsOnCard
           branchSlug={card.branchSlug}
-          themeColor={card.themeColor}
+          themeColor={themeColor}
           {...card}
           backgroundColor="var(--color-dark-brown)"
         />

@@ -7,3 +7,4 @@ export const IMPORT_REPORT_PATH = path.join(REPORTS_DIR, 'events-import-preview.
 export const PROGRESS_REPORT_PATH = path.join(REPORTS_DIR, 'migration-progress.json')
 export const ROLLBACK_LOG_PATH = path.join(REPORTS_DIR, 'rollback-log.json')
 export const EVENTS_MAPPED_REPORT_PATH = path.join(REPORTS_DIR, 'events-mapped.json')
+export const MEDIA_MANIFEST_PROD_PATH = path.join(REPORTS_DIR, 'media-manifest.prod.json')

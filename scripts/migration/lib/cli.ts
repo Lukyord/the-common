@@ -4,6 +4,7 @@ export type MigrationCliOptions = {
   indexes: number[] | null
   localAssetsDir: string | null
   keepCache: boolean
+  remote: boolean
 }
 
 function parseIndexesArg(argv: string[]): number[] | null {
@@ -42,7 +43,20 @@ export function parseMigrationCliArgs(
     indexes: parseIndexesArg(argv),
     localAssetsDir,
     keepCache: argv.includes('--keep-cache'),
+    remote: argv.includes('--remote'),
   }
+}
+
+export function formatEventsMigrateCommand(
+  options: Pick<MigrationCliOptions, 'dryRun' | 'localAssetsDir' | 'remote'>,
+  extraArgs = '',
+): string {
+  const script = options.remote ? 'migrate:events:prod' : 'migrate:events'
+  const parts = [`pnpm ${script}`]
+  if (!options.dryRun) parts.push('--write')
+  if (extraArgs) parts.push(extraArgs)
+  if (options.localAssetsDir) parts.push(`--assets-dir ${options.localAssetsDir}`)
+  return parts.join(' ')
 }
 
 export function printDryRunBanner() {

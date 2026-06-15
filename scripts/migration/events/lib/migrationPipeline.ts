@@ -1,7 +1,8 @@
 import type { WhatsOn } from '@/payload-types'
 
+import { webpFilenameForLegacyPath } from '../../lib/media/convertImageToWebp.js'
 import type { MigrationCliOptions } from '../../lib/cli.js'
-import { printDryRunBanner } from '../../lib/cli.js'
+import { formatEventsMigrateCommand, printDryRunBanner } from '../../lib/cli.js'
 import { writeJsonReport } from '../../lib/fs.js'
 import { getMigrationCutoffDate, toIsoDate } from '../../lib/legacy.js'
 import { loadLegacyEvents } from './loadLegacyEvents.js'
@@ -10,6 +11,7 @@ import {
   ensureManifestImageCached,
   extractColorForLegacyPath,
   getDominantColorFromManifest,
+  getEventsManifestPath,
   getMediaIdFromManifest,
   getValidatedMediaIdFromManifest,
   loadMediaManifest,
@@ -30,6 +32,7 @@ import {
 import { resolveGalleryMediaIds } from './resolveGalleryMediaIds.js'
 import { appendRollbackLog } from './rollbackLog.js'
 import type { MappedLegacyEvent, MigrationAnalysis } from './types.js'
+import { retryTransient } from '../../lib/retryTransient.js'
 import { REPORTS_DIR } from '../config/constants.js'
 
 export type SingleEventMigrationResult = {
@@ -125,13 +128,22 @@ async function buildWhatsOnData(
   event: MappedLegacyEvent,
   branchIds: number[],
   manifest: MediaUploadManifest | null,
+  remote: boolean,
 ) {
   const { resolveMainTagId, resolveSubTagIds } = await import('../../lib/getPayloadLocal.js')
   const mainTagId = event.mainTag ? await resolveMainTagId(payload, event.mainTag) : null
   const subTagIds = event.subTags.length ? await resolveSubTagIds(payload, event.subTags) : []
 
+  const expectedFilename = event.mediaPath
+    ? webpFilenameForLegacyPath(event.mediaPath, event.slug)
+    : null
   const mediaId = manifest
-    ? await getValidatedMediaIdFromManifest(payload, manifest, event.mediaPath)
+    ? await getValidatedMediaIdFromManifest(
+        payload,
+        manifest,
+        event.mediaPath,
+        remote ? expectedFilename : null,
+      )
     : null
   const bgColor = manifest ? getDominantColorFromManifest(manifest, event.mediaPath) : null
   const galleryIds = await resolveGalleryMediaIds(payload, event, manifest, mediaId)
@@ -248,6 +260,35 @@ async function findAvailableSlug(
   return candidate
 }
 
+async function resolveImportSlug(
+  event: MappedLegacyEvent,
+  payload: import('payload').Payload,
+  manifest: MediaUploadManifest | null,
+): Promise<string> {
+  const reservedSlugs = new Set(Object.keys(manifest?.slugFingerprints ?? {}))
+  const slug = event.slug
+
+  const { docs: existingDocs } = await payload.find({
+    collection: 'whats-on',
+    where: { slug: { equals: slug } },
+    limit: 1,
+    pagination: false,
+    overrideAccess: true,
+  })
+
+  if (existingDocs[0]) {
+    const existing = existingDocs[0] as WhatsOn
+    const storedFingerprint = manifest?.slugFingerprints?.[existing.slug]
+    if (storedFingerprint && storedFingerprint === event.fingerprint) {
+      return slug
+    }
+
+    return findAvailableSlug(payload, event.slug, event.legacyId, reservedSlugs)
+  }
+
+  return findAvailableSlug(payload, event.slug, event.legacyId, reservedSlugs)
+}
+
 function getWhatsOnBranchIds(branch: unknown): number[] {
   if (!Array.isArray(branch)) return []
 
@@ -268,6 +309,7 @@ async function importSingleEvent(
   manifest: MediaUploadManifest | null,
   payload: import('payload').Payload,
   branchCache: Map<string, number | null>,
+  remote: boolean,
 ): Promise<{
   imported: boolean
   skippedExisting: boolean
@@ -292,26 +334,41 @@ async function importSingleEvent(
     }
   }
 
+  const slug = await resolveImportSlug(event, payload, manifest)
+
+  if (slug !== event.slug) {
+    console.log(`  slug: reassigned ${event.slug} -> ${slug}`)
+  }
+
   if (event.mediaPath && manifest) {
-    const mediaId = await getValidatedMediaIdFromManifest(payload, manifest, event.mediaPath)
+    const expectedFilename = webpFilenameForLegacyPath(event.mediaPath, slug)
+    const mediaId = await getValidatedMediaIdFromManifest(
+      payload,
+      manifest,
+      event.mediaPath,
+      remote ? expectedFilename : null,
+    )
     if (!mediaId) {
       return {
         imported: false,
         skippedExisting: false,
         branchMerged: false,
-        slug: event.slug,
+        slug,
         error: 'Missing media in manifest',
       }
     }
   }
 
+  const expectedCardFilename = webpFilenameForLegacyPath(event.mediaPath ?? '', slug)
   const ourMediaId = manifest
-    ? await getValidatedMediaIdFromManifest(payload, manifest, event.mediaPath)
+    ? await getValidatedMediaIdFromManifest(
+        payload,
+        manifest,
+        event.mediaPath,
+        remote ? expectedCardFilename : null,
+      )
     : null
   const ourGalleryIds = await resolveGalleryMediaIds(payload, event, manifest, ourMediaId)
-  const reservedSlugs = new Set(Object.keys(manifest?.slugFingerprints ?? {}))
-
-  let slug = event.slug
 
   const { docs: existingDocs } = await payload.find({
     collection: 'whats-on',
@@ -337,7 +394,7 @@ async function importSingleEvent(
 
         if (manifest) {
           recordSlugFingerprint(manifest, slug, event.fingerprint)
-          saveMediaManifest(manifest)
+          saveMediaManifest(manifest, remote)
         }
 
         return { imported: false, skippedExisting: false, branchMerged: true, slug }
@@ -345,17 +402,9 @@ async function importSingleEvent(
 
       return { imported: false, skippedExisting: true, branchMerged: false, slug }
     }
-
-    slug = await findAvailableSlug(payload, event.slug, event.legacyId, reservedSlugs)
-  } else {
-    slug = await findAvailableSlug(payload, event.slug, event.legacyId, reservedSlugs)
   }
 
-  if (slug !== event.slug) {
-    console.log(`  slug: reassigned ${event.slug} -> ${slug}`)
-  }
-
-  const data = await buildWhatsOnData(payload, { ...event, slug }, [branchId], manifest)
+  const data = await buildWhatsOnData(payload, { ...event, slug }, [branchId], manifest, remote)
 
   await payload.create({
     collection: 'whats-on',
@@ -365,7 +414,7 @@ async function importSingleEvent(
 
   if (manifest) {
     recordSlugFingerprint(manifest, slug, event.fingerprint)
-    saveMediaManifest(manifest)
+    saveMediaManifest(manifest, remote)
   }
 
   return { imported: true, skippedExisting: false, branchMerged: false, slug }
@@ -408,6 +457,14 @@ async function migrateSingleEventIndex(
     localAssetsDir: options.localAssetsDir ?? undefined,
   }
 
+  if (payload) {
+    const importSlug = await resolveImportSlug(event, payload, manifest)
+    if (importSlug !== event.slug) {
+      console.log(`  slug: resolved ${event.slug} -> ${importSlug}`)
+      event = { ...event, slug: importSlug }
+    }
+  }
+
   console.log(`  ${event.title}`)
   console.log(`  slug: ${event.slug}`)
   if (event.mediaPath) {
@@ -447,7 +504,7 @@ async function migrateSingleEventIndex(
     if (!meta) continue
     await ensureManifestImageCached(legacyPath, meta.alt, manifest, downloadOptions)
   }
-  saveMediaManifest(manifest)
+  saveMediaManifest(manifest, options.remote)
 
   const uploadPaths = listUniqueMigrationImagePaths([event], manifest)
   let mediaUploaded = 0
@@ -466,6 +523,8 @@ async function migrateSingleEventIndex(
       dryRun: options.dryRun,
       manifest,
       downloadOptions,
+      expectedFilename: webpFilenameForLegacyPath(legacyPath, meta.slug, meta.index),
+      strictMediaReuse: options.remote,
     })
 
     if (options.dryRun) continue
@@ -476,7 +535,7 @@ async function migrateSingleEventIndex(
     if (entry?.status === 'failed') mediaFailed += 1
   }
 
-  saveMediaManifest(manifest)
+  saveMediaManifest(manifest, options.remote)
 
   if (!options.dryRun) {
     console.log(`  media: ${mediaUploaded} uploaded, ${mediaCached} reused, ${mediaFailed} failed`)
@@ -496,7 +555,7 @@ async function migrateSingleEventIndex(
       throw new Error('Payload client is required when --write is set')
     }
 
-    const importResult = await importSingleEvent(event, manifest, payload, branchCache)
+    const importResult = await importSingleEvent(event, manifest, payload, branchCache, options.remote)
     if (importResult.error) {
       throw new Error(importResult.error)
     }
@@ -532,7 +591,7 @@ async function migrateSingleEventIndex(
 
   let cacheCleaned = 0
   if (!options.keepCache) {
-    cacheCleaned = cleanupEventMediaCache(manifest, [event])
+    cacheCleaned = cleanupEventMediaCache(manifest, [event], options.remote)
     if (cacheCleaned > 0) {
       console.log(`  cache: removed ${cacheCleaned} file(s)`)
     }
@@ -571,10 +630,14 @@ export async function runMigrationPipeline(options: MigrationCliOptions) {
 
   console.log(`\nProcessing ${indexes.length} index(es) one at a time: ${indexes.join(', ')}`)
 
-  const manifest: MediaUploadManifest = loadMediaManifest() ?? {
+  const manifest: MediaUploadManifest = loadMediaManifest(options.remote) ?? {
     generatedAt: new Date().toISOString(),
     dryRun: options.dryRun,
     entries: {},
+  }
+
+  if (options.remote) {
+    console.log(`Manifest: ${getEventsManifestPath(true)}`)
   }
 
   const payload = options.dryRun
@@ -585,7 +648,7 @@ export async function runMigrationPipeline(options: MigrationCliOptions) {
     const staleCount = await sanitizeMediaManifest(payload, manifest)
     if (staleCount > 0) {
       console.log(`Manifest: cleared ${staleCount} stale media reference(s)`)
-      saveMediaManifest(manifest)
+      saveMediaManifest(manifest, options.remote)
     }
   }
 
@@ -597,12 +660,9 @@ export async function runMigrationPipeline(options: MigrationCliOptions) {
     console.log(`\n=== Index ${legacyIndex} ===`)
 
     try {
-      const result = await migrateSingleEventIndex(
-        options,
-        legacyIndex,
-        manifest,
-        payload,
-        branchCache,
+      const result = await retryTransient(
+        () => migrateSingleEventIndex(options, legacyIndex, manifest, payload, branchCache),
+        { label: `Index ${legacyIndex}` },
       )
 
       if (result.skipped) {
@@ -636,7 +696,7 @@ export async function runMigrationPipeline(options: MigrationCliOptions) {
         })),
         failedIndex: legacyIndex,
         error: message,
-        resumeHint: `pnpm migrate:events${options.dryRun ? '' : ' --write'} --indexes ${legacyIndex}${options.localAssetsDir ? ` --assets-dir ${options.localAssetsDir}` : ''}`,
+        resumeHint: formatEventsMigrateCommand(options, `--indexes ${legacyIndex}`),
         status: 'failed',
       })
 

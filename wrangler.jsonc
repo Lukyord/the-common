@@ -35,7 +35,11 @@
   "r2_buckets": [
     {
       "binding": "R2",
-      "bucket_name": "the-common","preview_bucket_name": "the-common",
+      "bucket_name": "the-common",
+      "preview_bucket_name": "the-common",
+      // remote: true so production migration/scripts (NODE_ENV=production) upload to prod R2.
+      // Local dev uses local R2 because remoteBindings is off when NODE_ENV is not production.
+      "remote": true,
     },
     // Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
     // {

@@ -34,7 +34,10 @@ function hasLocalD1Database(): boolean {
     )
 }
 
-export type MigrationPrerequisiteOptions = Pick<MigrationCliOptions, 'dryRun' | 'localAssetsDir'> & {
+export type MigrationPrerequisiteOptions = Pick<
+  MigrationCliOptions,
+  'dryRun' | 'localAssetsDir' | 'remote'
+> & {
   legacyDataPath?: string
 }
 
@@ -52,7 +55,12 @@ export function checkMigrationPrerequisites(
     errors.push('PAYLOAD_SECRET is missing. Add it to .env.local or .env')
   }
 
-  if (!hasLocalD1Database()) {
+  if (options.remote) {
+    warnings.push('Remote mode — writes go to production D1 and R2 (wrangler remote bindings).')
+    if (!options.dryRun) {
+      warnings.push('Production import enabled. Double-check --indexes before continuing.')
+    }
+  } else if (!hasLocalD1Database()) {
     errors.push(
       'Local D1 database not found. Run `pnpm dev` once to initialize .wrangler/state, then retry.',
     )
@@ -93,7 +101,10 @@ export function printPrerequisiteResults(result: PrerequisiteCheck) {
   console.log('Prerequisites OK')
 }
 
-export function checkRollbackPrerequisites(dryRun: boolean): PrerequisiteCheck {
+export function checkRollbackPrerequisites(
+  dryRun: boolean,
+  remote = false,
+): PrerequisiteCheck {
   const errors: string[] = []
   const warnings: string[] = []
 
@@ -101,7 +112,12 @@ export function checkRollbackPrerequisites(dryRun: boolean): PrerequisiteCheck {
     errors.push('PAYLOAD_SECRET is missing. Add it to .env.local or .env')
   }
 
-  if (!hasLocalD1Database()) {
+  if (remote) {
+    warnings.push('Remote mode — rollbacks delete production D1/R2 records.')
+    if (!dryRun) {
+      warnings.push('Production rollback enabled. Double-check --indexes before continuing.')
+    }
+  } else if (!hasLocalD1Database()) {
     errors.push(
       'Local D1 database not found. Run `pnpm dev` once to initialize .wrangler/state, then retry.',
     )

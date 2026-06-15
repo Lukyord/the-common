@@ -4,8 +4,12 @@ import {
   MEDIA_MANIFEST_PATH,
   WEBP_QUALITY,
 } from '../config/constants.js'
-import type { MediaConvertContext, MediaDownloadOptions } from '../../lib/media/convertImageToWebp.js'
+import type {
+  MediaConvertContext,
+  MediaDownloadOptions,
+} from '../../lib/media/convertImageToWebp.js'
 import * as media from '../../lib/media/uploadLegacyMedia.js'
+import { MEDIA_MANIFEST_PROD_PATH } from './reportPaths.js'
 
 export type MediaUploadManifest = media.MediaUploadManifest
 export type MediaUploadManifestEntry = media.MediaUploadManifestEntry
@@ -16,18 +20,52 @@ export const eventsMediaContext: MediaConvertContext = {
   s3BaseUrl: LEGACY_S3_BASE_URL,
 }
 
-export const loadMediaManifest = () => media.loadMediaManifest(MEDIA_MANIFEST_PATH)
+export function getEventsManifestPath(remote: boolean): string {
+  return remote ? MEDIA_MANIFEST_PROD_PATH : MEDIA_MANIFEST_PATH
+}
 
-export const saveMediaManifest = (manifest: MediaUploadManifest) =>
-  media.saveMediaManifest(MEDIA_MANIFEST_PATH, manifest)
+export const loadMediaManifest = (remote = false) =>
+  media.loadMediaManifest(getEventsManifestPath(remote))
+
+export const saveMediaManifest = (manifest: MediaUploadManifest, remote = false) =>
+  media.saveMediaManifest(getEventsManifestPath(remote), manifest)
 
 export const recordSlugFingerprint = media.recordSlugFingerprint
 export const getDominantColorFromManifest = media.getDominantColorFromManifest
 export const getMediaIdFromManifest = media.getMediaIdFromManifest
 export const getContentHashFromManifest = media.getContentHashFromManifest
-export const getValidatedMediaIdFromManifest = media.getValidatedMediaIdFromManifest
 export const sanitizeMediaManifest = media.sanitizeMediaManifest
 export const purgeMediaIdsFromManifest = media.purgeMediaIdsFromManifest
+
+export async function getValidatedMediaIdFromManifest(
+  payload: Parameters<typeof media.getValidatedMediaIdFromManifest>[0],
+  manifest: MediaUploadManifest,
+  legacyPath: string | null,
+  expectedFilename?: string | null,
+) {
+  const mediaId = media.getMediaIdFromManifest(manifest, legacyPath)
+  if (!mediaId) return null
+
+  if (!(await media.mediaIdExists(payload, mediaId))) {
+    media.purgeMediaIdsFromManifest(manifest, new Set([mediaId]))
+    return null
+  }
+
+  if (expectedFilename) {
+    const doc = await payload.findByID({
+      collection: 'media',
+      id: mediaId,
+      overrideAccess: true,
+    })
+
+    if (doc.filename !== expectedFilename || !doc.url) {
+      media.purgeMediaIdsFromManifest(manifest, new Set([mediaId]))
+      return null
+    }
+  }
+
+  return mediaId
+}
 
 export async function ensureManifestImageCached(
   legacyPath: string,
@@ -46,7 +84,10 @@ export async function ensureManifestImageCached(
 
 export async function uploadLegacyMediaFile(
   payload: Parameters<typeof media.uploadLegacyMediaFile>[0],
-  args: Omit<Parameters<typeof media.uploadLegacyMediaFile>[1], 'mediaContext'>,
+  args: Omit<Parameters<typeof media.uploadLegacyMediaFile>[1], 'mediaContext'> & {
+    expectedFilename?: string
+    strictMediaReuse?: boolean
+  },
 ) {
   return media.uploadLegacyMediaFile(payload, { ...args, mediaContext: eventsMediaContext })
 }

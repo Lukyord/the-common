@@ -1,0 +1,490 @@
+{
+  "generatedAt": "2026-06-15T09:50:52.475Z",
+  "dryRun": false,
+  "totals": {
+    "sourceRows": 35,
+    "create": 4,
+    "skipExisting": 31
+  },
+  "rows": [
+    {
+      "rowNumber": 1,
+      "name": "Absolute",
+      "slug": "absolute-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 2, lot 3",
+      "warnings": []
+    },
+    {
+      "rowNumber": 2,
+      "name": "Adam n Eve",
+      "slug": "adam-n-eve-2",
+      "action": "create",
+      "warnings": [
+        "Could not parse lot number: Popup"
+      ],
+      "payload": {
+        "name": "Adam n Eve",
+        "slug": "adam-n-eve-2",
+        "branch": 1,
+        "floor": "1",
+        "category": [
+          13
+        ],
+        "openingHours": {
+          "root": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "detail": 0,
+                    "format": 0,
+                    "mode": "normal",
+                    "style": "",
+                    "text": "Mon - Thu 10:00am - 10:00pm",
+                    "type": "text",
+                    "version": 1
+                  }
+                ],
+                "direction": null,
+                "format": "",
+                "indent": 0,
+                "type": "paragraph",
+                "version": 1,
+                "textFormat": 0,
+                "textStyle": ""
+              },
+              {
+                "children": [
+                  {
+                    "detail": 0,
+                    "format": 0,
+                    "mode": "normal",
+                    "style": "",
+                    "text": "Fri - Sun 10:00am - 10:30pm",
+                    "type": "text",
+                    "version": 1
+                  }
+                ],
+                "direction": null,
+                "format": "",
+                "indent": 0,
+                "type": "paragraph",
+                "version": 1,
+                "textFormat": 0,
+                "textStyle": ""
+              }
+            ],
+            "direction": null,
+            "format": "",
+            "indent": 0,
+            "type": "root",
+            "version": 1
+          }
+        },
+        "tel": [
+          "+66972681096"
+        ],
+        "social": {
+          "instagram": "https://www.instagram.com/adamneve.froyo/"
+        }
+      }
+    },
+    {
+      "rowNumber": 3,
+      "name": "All Kinds",
+      "slug": "all-kinds-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 1, lot 6",
+      "warnings": []
+    },
+    {
+      "rowNumber": 4,
+      "name": "Baba Shuk",
+      "slug": "baba-shuk-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 8",
+      "warnings": []
+    },
+    {
+      "rowNumber": 5,
+      "name": "Bapsang",
+      "slug": "bapsang-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 20",
+      "warnings": []
+    },
+    {
+      "rowNumber": 6,
+      "name": "BAR NAAM",
+      "slug": "bar-naam-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 1, lot 3",
+      "warnings": []
+    },
+    {
+      "rowNumber": 7,
+      "name": "Bun Meat and Cheese",
+      "slug": "bun-meat-and-cheese-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 19",
+      "warnings": []
+    },
+    {
+      "rowNumber": 8,
+      "name": "Crackhouse",
+      "slug": "crackhouse-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 6",
+      "warnings": []
+    },
+    {
+      "rowNumber": 9,
+      "name": "Dolly Churro",
+      "slug": "dolly-churro-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 10",
+      "warnings": []
+    },
+    {
+      "rowNumber": 10,
+      "name": "Easy Buddy",
+      "slug": "easy-buddy-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 1, lot 1",
+      "warnings": []
+    },
+    {
+      "rowNumber": 11,
+      "name": "Esan Ping Ping",
+      "slug": "esan-ping-ping-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 5",
+      "warnings": []
+    },
+    {
+      "rowNumber": 12,
+      "name": "FOWLMOUTH",
+      "slug": "fowlmouth",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 6",
+      "warnings": []
+    },
+    {
+      "rowNumber": 13,
+      "name": "Guss Damn Good",
+      "slug": "guss-damn-good-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 11",
+      "warnings": []
+    },
+    {
+      "rowNumber": 14,
+      "name": "Gyuto Kome",
+      "slug": "gyuto-kome-2",
+      "action": "create",
+      "warnings": [],
+      "payload": {
+        "name": "Gyuto Kome",
+        "slug": "gyuto-kome-2",
+        "branch": 1,
+        "floor": "m",
+        "category": [
+          8
+        ],
+        "openingHours": {
+          "root": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "detail": 0,
+                    "format": 0,
+                    "mode": "normal",
+                    "style": "",
+                    "text": "Mon - Sun 10am - 9pm",
+                    "type": "text",
+                    "version": 1
+                  }
+                ],
+                "direction": null,
+                "format": "",
+                "indent": 0,
+                "type": "paragraph",
+                "version": 1,
+                "textFormat": 0,
+                "textStyle": ""
+              }
+            ],
+            "direction": null,
+            "format": "",
+            "indent": 0,
+            "type": "root",
+            "version": 1
+          }
+        },
+        "tel": [
+          "+66828525894"
+        ],
+        "social": {
+          "instagram": "https://www.instagram.com/gyutokome/"
+        }
+      }
+    },
+    {
+      "rowNumber": 15,
+      "name": "Hunter Poke",
+      "slug": "hunter-poke-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 3",
+      "warnings": []
+    },
+    {
+      "rowNumber": 16,
+      "name": "Inspired by Nuch",
+      "slug": "inspired-by-nuch-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 1, lot 10",
+      "warnings": []
+    },
+    {
+      "rowNumber": 17,
+      "name": "KOZURI",
+      "slug": "kozuri-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 1, lot 2",
+      "warnings": []
+    },
+    {
+      "rowNumber": 18,
+      "name": "Little Pea",
+      "slug": "little-pea-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 2, lot 1",
+      "warnings": []
+    },
+    {
+      "rowNumber": 19,
+      "name": "MONTY'S",
+      "slug": "monty-s-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 9",
+      "warnings": []
+    },
+    {
+      "rowNumber": 20,
+      "name": "MooFoo",
+      "slug": "moofoo-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 1, lot 5",
+      "warnings": []
+    },
+    {
+      "rowNumber": 21,
+      "name": "MoodActiv",
+      "slug": "moodactiv-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 1, lot 11",
+      "warnings": []
+    },
+    {
+      "rowNumber": 22,
+      "name": "PASH",
+      "slug": "pash-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 1, lot 9",
+      "warnings": []
+    },
+    {
+      "rowNumber": 23,
+      "name": "POPPA",
+      "slug": "poppa-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 1, lot 4",
+      "warnings": []
+    },
+    {
+      "rowNumber": 24,
+      "name": "Posh Polish Parlor",
+      "slug": "posh-polish-parlor-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 1, lot 7",
+      "warnings": []
+    },
+    {
+      "rowNumber": 25,
+      "name": "ROAST",
+      "slug": "roast-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 3, lot 1",
+      "warnings": []
+    },
+    {
+      "rowNumber": 26,
+      "name": "Roots",
+      "slug": "roots-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 1",
+      "warnings": []
+    },
+    {
+      "rowNumber": 27,
+      "name": "7SUNS",
+      "slug": "7suns-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 2",
+      "warnings": []
+    },
+    {
+      "rowNumber": 28,
+      "name": "Sourced",
+      "slug": "sourced-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 7",
+      "warnings": []
+    },
+    {
+      "rowNumber": 29,
+      "name": "THE SHOYU STAND",
+      "slug": "the-shoyu-stand-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 12",
+      "warnings": []
+    },
+    {
+      "rowNumber": 30,
+      "name": "The Barrel",
+      "slug": "the-barrel-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 1, lot 15",
+      "warnings": []
+    },
+    {
+      "rowNumber": 31,
+      "name": "TBC",
+      "slug": "tbc-2",
+      "action": "create",
+      "warnings": [],
+      "payload": {
+        "name": "TBC",
+        "slug": "tbc-2",
+        "branch": 1,
+        "floor": "m",
+        "category": [
+          14
+        ],
+        "openingHours": {
+          "root": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "detail": 0,
+                    "format": 0,
+                    "mode": "normal",
+                    "style": "",
+                    "text": "Mon - Sun 11am - 11pm",
+                    "type": "text",
+                    "version": 1
+                  }
+                ],
+                "direction": null,
+                "format": "",
+                "indent": 0,
+                "type": "paragraph",
+                "version": 1,
+                "textFormat": 0,
+                "textStyle": ""
+              }
+            ],
+            "direction": null,
+            "format": "",
+            "indent": 0,
+            "type": "root",
+            "version": 1
+          }
+        },
+        "tel": [
+          "+66847767666"
+        ],
+        "social": {
+          "facebook": "https://www.facebook.com/beercapbkk",
+          "instagram": "https://www.instagram.com/beercapbkk/"
+        }
+      }
+    },
+    {
+      "rowNumber": 32,
+      "name": "1923",
+      "slug": "1923-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor 1, lot 8",
+      "warnings": []
+    },
+    {
+      "rowNumber": 33,
+      "name": "The Lobster Lab",
+      "slug": "the-lobster-lab-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 14",
+      "warnings": []
+    },
+    {
+      "rowNumber": 34,
+      "name": "VIVI Tuscan Kitchen",
+      "slug": "vivi-tuscan-kitchen-2",
+      "action": "skip-existing",
+      "reason": "Vendor already exists at floor m, lot 18",
+      "warnings": []
+    },
+    {
+      "rowNumber": 35,
+      "name": "theCOMMONS Kitchen & Bar",
+      "slug": "thecommons-kitchen-bar-2",
+      "action": "create",
+      "warnings": [
+        "Could not parse lot number: theCOMMONS Kitchen & Bar"
+      ],
+      "payload": {
+        "name": "theCOMMONS Kitchen & Bar",
+        "slug": "thecommons-kitchen-bar-2",
+        "branch": 1,
+        "floor": "3",
+        "openingHours": {
+          "root": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "detail": 0,
+                    "format": 0,
+                    "mode": "normal",
+                    "style": "",
+                    "text": "Mon - Sun 8am-12am",
+                    "type": "text",
+                    "version": 1
+                  }
+                ],
+                "direction": null,
+                "format": "",
+                "indent": 0,
+                "type": "paragraph",
+                "version": 1,
+                "textFormat": 0,
+                "textStyle": ""
+              }
+            ],
+            "direction": null,
+            "format": "",
+            "indent": 0,
+            "type": "root",
+            "version": 1
+          }
+        },
+        "tel": [
+          "+66891522677"
+        ]
+      }
+    }
+  ]
+}

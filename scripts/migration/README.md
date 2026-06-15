@@ -23,6 +23,10 @@ See [events workflow](#events-whats-on) below. Commands:
 ```bash
 pnpm migrate:events [--write] [--indexes N,...] [--assets-dir PATH]
 pnpm migrate:events:rollback [--write] [--indexes N,...]
+
+# Production (remote D1 + R2 via wrangler)
+pnpm migrate:events:prod [--write] [--indexes N,...] [--assets-dir PATH]
+pnpm migrate:events:rollback:prod [--write] [--indexes N,...]
 ```
 
 ---
@@ -47,9 +51,10 @@ Each legacy index is processed independently: analyze → prepare media → uplo
 
 ## Prerequisites
 
-1. Local D1 running (via `pnpm dev` or existing `.wrangler/state`)
-2. `.env.local` (or `.env`) with `PAYLOAD_SECRET`
-3. Image source — either:
+1. **Local:** D1 running (via `pnpm dev` or existing `.wrangler/state`)
+2. **Production:** `wrangler login`, `PAYLOAD_SECRET` in `.env.local` / `.env`, prod branches + tags already in D1
+3. `.env.local` (or `.env`) with `PAYLOAD_SECRET`
+4. Image source — either:
    - `--assets-dir ./legacy-db/assets` (mirror S3 paths locally), or
    - network access to legacy S3 (may require credentials; bucket is often private)
 
@@ -66,15 +71,53 @@ pnpm migrate:events --write --indexes -2,-1 --assets-dir ./legacy-db/assets
 pnpm migrate:events --write --indexes 1236 --assets-dir ./legacy-db/assets
 ```
 
+## Production migration
+
+Uses remote D1 + R2 bindings (`NODE_ENV=production`, no local D1). **Always dry-run first.**
+
+```bash
+# Preview one event against prod (no writes)
+pnpm migrate:events:prod --indexes -1 --assets-dir ./legacy-db/assets
+
+# Import to prod — start small, then batch
+pnpm migrate:events:prod --write --indexes 1236 --assets-dir ./legacy-db/assets
+
+# Roll back a prod import
+pnpm migrate:events:rollback:prod --write --indexes 1236
+```
+
+Prod writes upload media to the production R2 bucket and create `whats-on` records in remote D1. Prod uses a **separate** manifest at `scripts/migration/events/reports/media-manifest.prod.json` (not the local one).
+
+### Images not showing after prod migration?
+
+You do **not** need a public R2 bucket. Payload serves files from R2 via `/api/media/file/...` on your site.
+
+If images are missing, the usual cause is reusing **local** `mediaId`s from `media-manifest.json` against prod D1 (IDs exist but point at the wrong files). Prod migration now uses `media-manifest.prod.json` and re-uploads when filenames do not match.
+
+**Fix affected events:**
+
+```bash
+# 1. Roll back bad prod imports (or delete in admin)
+pnpm migrate:events:rollback:prod --write --indexes 1236
+
+# 2. Re-import with assets available
+pnpm migrate:events:prod --write --indexes 1236 --assets-dir ./legacy-db/assets
+```
+
+**Verify in admin:** open the event → media field → preview should load. URL should look like `/api/media/file/your-slug.webp`.
+
+**Verify in R2 (optional):** Cloudflare dashboard → R2 → `the-common` bucket → objects named like `your-event-slug.webp` should exist after upload.
+
 ## CLI flags
 
-| Flag | Description |
-|------|-------------|
-| `--write` | Upload media and write to D1/R2 (default: dry-run) |
-| `--indexes LIST` | Comma-separated positions in the legacy JSON (0-based). Supports negatives, e.g. `-1` = last event |
-| `--limit N` | Process only the first N eligible events (after index selection) |
-| `--assets-dir PATH` | Local folder mirroring legacy S3 paths |
-| `--keep-cache` | Keep WebP files in `scripts/migration/events/cache/media/` after each index (default: clean up) |
+| Flag                | Description                                                                                        |
+| ------------------- | -------------------------------------------------------------------------------------------------- |
+| `--write`           | Upload media and write to D1/R2 (default: dry-run)                                                 |
+| `--indexes LIST`    | Comma-separated positions in the legacy JSON (0-based). Supports negatives, e.g. `-1` = last event |
+| `--limit N`         | Process only the first N eligible events (after index selection)                                   |
+| `--assets-dir PATH` | Local folder mirroring legacy S3 paths                                                             |
+| `--keep-cache`      | Keep WebP files in `scripts/migration/events/cache/media/` after each index (default: clean up)    |
+| `--remote`          | Set automatically by `migrate:events:prod` — use remote D1/R2                                      |
 
 ## Per-index workflow
 
@@ -103,6 +146,7 @@ pnpm migrate:events:rollback --write --indexes 1232,1233
 Rollback uses `scripts/migration/events/reports/rollback-log.json` (written on each successful import). If that file is missing, it falls back to the last `events-import-preview.json` from a `--write` run.
 
 For each entry:
+
 - **created** — deletes the `whats-on` record, removes orphaned media, cleans manifest fingerprints
 - **branch_merged** — removes the merged branch from the existing record (does not delete the record)
 

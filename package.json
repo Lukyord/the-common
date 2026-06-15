@@ -29,7 +29,11 @@
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test --config=playwright.config.ts",
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
     "migrate:events": "cross-env USE_LOCAL_D1=true NODE_OPTIONS=--no-deprecation tsx scripts/migration/migrate-events.ts",
-    "migrate:events:rollback": "cross-env USE_LOCAL_D1=true NODE_OPTIONS=--no-deprecation tsx scripts/migration/rollback-events.ts"
+    "migrate:events:prod": "cross-env NODE_ENV=production NODE_OPTIONS=--no-deprecation tsx scripts/migration/migrate-events.ts --remote",
+    "migrate:events:rollback": "cross-env USE_LOCAL_D1=true NODE_OPTIONS=--no-deprecation tsx scripts/migration/rollback-events.ts",
+    "migrate:events:rollback:prod": "cross-env NODE_ENV=production NODE_OPTIONS=--no-deprecation tsx scripts/migration/rollback-events.ts --remote",
+    "migrate:shops": "cross-env USE_LOCAL_D1=true NODE_OPTIONS=--no-deprecation tsx scripts/migration/migrate-shops.ts",
+    "migrate:shops:prod": "cross-env NODE_ENV=production NODE_OPTIONS=--no-deprecation tsx scripts/migration/migrate-shops.ts --remote"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.11.0",

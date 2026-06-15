@@ -37,8 +37,11 @@ const isCLI = process.argv.some((value) => {
   const resolved = realpath(value)
   return resolved?.endsWith(path.join('payload', 'bin.js')) ?? false
 })
+const isMigrationScript = process.argv.some((value) => value?.includes('scripts/migration/'))
 const isProduction = process.env.NODE_ENV === 'production'
 const useLocalD1 = process.env.USE_LOCAL_D1 === 'true'
+
+const useWranglerProxy = isCLI || isMigrationScript || !isProduction || useLocalD1
 
 const createLog =
   (level: string, fn: typeof console.log) => (objOrMsg: object | string, msg?: string) => {
@@ -60,10 +63,9 @@ const cloudflareLogger = {
   silent: () => {},
 } as unknown as PayloadLogger
 
-const cloudflare =
-  isCLI || !isProduction || useLocalD1
-    ? await getCloudflareContextFromWrangler()
-    : await getCloudflareContext({ async: true })
+const cloudflare = useWranglerProxy
+  ? await getCloudflareContextFromWrangler()
+  : await getCloudflareContext({ async: true })
 
 export default buildConfig({
   admin: {

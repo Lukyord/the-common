@@ -26,6 +26,22 @@ export default function WhatsOnSingleInfo({ date, time, branches }: WhatsOnSingl
         </>
       )}
 
+      {time && (
+        <>
+          <div className="info-item time">
+            <AnimateOnScroll triggerClass="fadeIn" className="item-ttl">
+              <p className="type-d-body-xs type-m-body-s letter-spacing-002">TIME</p>
+            </AnimateOnScroll>
+            <AnimateOnScroll triggerClass="fadeIn" className="item-content">
+              <p className="type-d-text-link type-m-body-s letter-spacing-002 weight-medium">
+                {time}
+              </p>
+            </AnimateOnScroll>
+          </div>
+          <div className="divider"></div>
+        </>
+      )}
+
       {branches.length > 0 && (
         <>
           <div className="info-item avialable-branches">
@@ -50,22 +66,6 @@ export default function WhatsOnSingleInfo({ date, time, branches }: WhatsOnSingl
                 </AnimateOnScroll>
               ))}
             </div>
-          </div>
-          <div className="divider"></div>
-        </>
-      )}
-
-      {time && (
-        <>
-          <div className="info-item time">
-            <AnimateOnScroll triggerClass="fadeIn" className="item-ttl">
-              <p className="type-d-body-xs type-m-body-s letter-spacing-002">TIME</p>
-            </AnimateOnScroll>
-            <AnimateOnScroll triggerClass="fadeIn" className="item-content">
-              <p className="type-d-text-link type-m-body-s letter-spacing-002 weight-medium">
-                {time}
-              </p>
-            </AnimateOnScroll>
           </div>
           <div className="divider"></div>
         </>

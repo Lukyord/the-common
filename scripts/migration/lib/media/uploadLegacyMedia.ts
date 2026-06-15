@@ -154,11 +154,17 @@ async function tryReuseDuplicateManifestEntry(
   duplicateEntry: MediaUploadManifestEntry,
   contentHash: string,
   webpPath?: string,
+  validate?: (mediaId: number) => Promise<boolean>,
 ): Promise<number | null> {
   const mediaId = duplicateEntry.mediaId
   if (!mediaId) return null
 
   if (payload && !(await mediaIdExists(payload, mediaId))) {
+    purgeMediaIdsFromManifest(manifest, new Set([mediaId]))
+    return null
+  }
+
+  if (validate && !(await validate(mediaId))) {
     purgeMediaIdsFromManifest(manifest, new Set([mediaId]))
     return null
   }
@@ -255,9 +261,40 @@ export async function uploadLegacyMediaFile(
     manifest: MediaUploadManifest
     mediaContext: MediaConvertContext
     downloadOptions?: MediaDownloadOptions
+    expectedFilename?: string
+    strictMediaReuse?: boolean
   },
 ): Promise<number | null> {
-  const { legacyPath, alt, slug, index, dryRun, manifest, mediaContext, downloadOptions } = args
+  const {
+    legacyPath,
+    alt,
+    slug,
+    index,
+    dryRun,
+    manifest,
+    mediaContext,
+    downloadOptions,
+    expectedFilename,
+    strictMediaReuse,
+  } = args
+
+  async function mediaMatchesMigration(mediaId: number): Promise<boolean> {
+    if (!payload || !strictMediaReuse || !expectedFilename) return true
+
+    try {
+      const doc = await payload.findByID({
+        collection: 'media',
+        id: mediaId,
+        overrideAccess: true,
+      })
+
+      return doc.filename === expectedFilename && Boolean(doc.url)
+    } catch {
+      return false
+    }
+  }
+
+  const reuseValidator = strictMediaReuse ? mediaMatchesMigration : undefined
 
   if (manifest.entries[legacyPath]?.mediaId) {
     getContentHashFromManifest(manifest, legacyPath)
@@ -265,7 +302,10 @@ export async function uploadLegacyMediaFile(
     const storedHash = manifest.entries[legacyPath]?.contentHash
     if (storedHash) {
       const duplicateEntry = findManifestEntryByContentHash(manifest, storedHash, legacyPath)
-      if (duplicateEntry?.mediaId && duplicateEntry.mediaId !== manifest.entries[legacyPath].mediaId) {
+      if (
+        duplicateEntry?.mediaId &&
+        duplicateEntry.mediaId !== manifest.entries[legacyPath].mediaId
+      ) {
         const reused = await tryReuseDuplicateManifestEntry(
           payload,
           manifest,
@@ -273,6 +313,8 @@ export async function uploadLegacyMediaFile(
           alt,
           duplicateEntry,
           storedHash,
+          undefined,
+          reuseValidator,
         )
         if (reused) return reused
       }
@@ -280,7 +322,10 @@ export async function uploadLegacyMediaFile(
 
     const existingMediaId = manifest.entries[legacyPath].mediaId!
     if (payload) {
-      if (await mediaIdExists(payload, existingMediaId)) {
+      if (
+        (await mediaIdExists(payload, existingMediaId)) &&
+        (await mediaMatchesMigration(existingMediaId))
+      ) {
         manifest.entries[legacyPath].status = 'cached'
         return existingMediaId
       }
@@ -303,6 +348,8 @@ export async function uploadLegacyMediaFile(
         alt,
         duplicateEntry,
         storedHash,
+        undefined,
+        reuseValidator,
       )
       if (reused) return reused
     }
@@ -346,6 +393,7 @@ export async function uploadLegacyMediaFile(
       duplicateEntry,
       contentHash,
       duplicateEntry.webpPath ?? converted.webpPath,
+      reuseValidator,
     )
 
     if (reused) {
