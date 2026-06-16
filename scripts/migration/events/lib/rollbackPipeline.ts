@@ -177,6 +177,7 @@ async function rollbackEntry(
   branchCache: Map<string, number | null>,
   manifest: MediaUploadManifest | null,
   dryRun: boolean,
+  remote: boolean,
 ): Promise<RollbackResult> {
   const { resolveBranchId } = await import('../../lib/getPayloadLocal.js')
 
@@ -282,7 +283,7 @@ async function rollbackEntry(
     if (manifest) {
       removeSlugFingerprint(manifest, entry.slug)
       purgeDeletedMediaFromManifest(manifest, deletedMediaIds)
-      saveMediaManifest(manifest, options.remote)
+      saveMediaManifest(manifest, remote)
     }
 
     removeFromProgress(entry.legacyIndex)
@@ -351,7 +352,7 @@ export async function runRollbackPipeline(options: MigrationCliOptions) {
       continue
     }
 
-    const result = await rollbackEntry(entry, payload, branchCache, manifest, false)
+    const result = await rollbackEntry(entry, payload, branchCache, manifest, false, options.remote)
     results.push(result)
 
     if (log) {

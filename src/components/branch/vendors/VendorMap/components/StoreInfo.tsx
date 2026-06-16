@@ -19,13 +19,14 @@ export default function StoreInfo({ vendor, className, style }: StoreInfoProps) 
       </Link>
       <div className="store-media">
         <figure className="object-fit">
-          <Image
-            src={vendor.media?.src ?? ''}
-            alt={vendor.media?.alt ?? ''}
-            loading="eager"
-            decoding="async"
-            hidden={!vendor.media}
-          />
+          {vendor.media?.src && (
+            <Image
+              src={vendor.media.src}
+              alt={vendor.media.alt ?? ''}
+              loading="eager"
+              decoding="async"
+            />
+          )}
         </figure>
       </div>
       <div className="store-content">

@@ -14,11 +14,7 @@ async function main() {
   console.log('==========================')
 
   printPrerequisiteResults(
-    checkMigrationPrerequisites({
-      dryRun: options.dryRun,
-      remote: options.remote,
-      legacyDataPath: THONGLOR_VENDORS_CSV_PATH,
-    }),
+    checkMigrationPrerequisites({ ...options, legacyDataPath: THONGLOR_VENDORS_CSV_PATH }),
   )
 
   await runShopsMigrationPipeline(options)
