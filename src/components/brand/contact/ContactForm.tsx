@@ -3,13 +3,14 @@ import RenderMedia from '@/components/common/media'
 import ContactFormFields from '@/components/brand/contact/ContactFormFields'
 import { toEmailHref, toTelHref } from '@/components/footer/footer-utils'
 import { resolveMedia } from '@/lib/resolveMedia'
-import type { Contact } from '@/payload-types'
+import type { Branch, Contact } from '@/payload-types'
 
 type ContactFormData = Pick<
   Contact,
   'contactBg' | 'contactBgMobile' | 'tel' | 'email' | 'contactSubject'
 > & {
   title?: string | null
+  branch?: number | Branch | null
 }
 import Link from 'next/link'
 
@@ -23,6 +24,7 @@ export type ContactFormProps = {
   email?: string | null
   subjects?: string[]
   priority?: boolean
+  branch?: Branch
 }
 
 export function toContactFormProps(data?: ContactFormData | null): ContactFormProps {
@@ -34,6 +36,7 @@ export function toContactFormProps(data?: ContactFormData | null): ContactFormPr
     email: data?.email ?? null,
     subjects: data?.contactSubject?.filter((item) => item.trim().length > 0) ?? [],
     priority: true,
+    branch: typeof data?.branch === 'object' ? data.branch : undefined,
   }
 }
 
@@ -45,6 +48,7 @@ export default function ContactForm({
   email,
   subjects = [],
   priority = false,
+  branch,
 }: ContactFormProps) {
   const telHref = toTelHref(tel)
   const emailHref = toEmailHref(email)
@@ -94,7 +98,7 @@ export default function ContactForm({
       </div>
 
       <div className="contact-form bg-dark-brown">
-        <ContactFormFields subjects={subjects} />
+        <ContactFormFields subjects={subjects} buttonColor={branch?.footerBg ?? undefined} />
       </div>
     </section>
   )

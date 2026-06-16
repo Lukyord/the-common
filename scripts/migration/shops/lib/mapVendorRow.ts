@@ -79,6 +79,12 @@ function mapOfferTextsToTagIds(offerTexts: string[]): string[] {
   return [...new Set(tagIds)]
 }
 
+export function getCanonicalVendorSlug(name: string, branchSlug: string): string {
+  const baseSlug = slugify(name)
+  if (!baseSlug) return `vendor-${branchSlug}`
+  return `${baseSlug}-${branchSlug}`
+}
+
 export function buildVendorSlug(
   name: string,
   branchSlug: string,
@@ -126,9 +132,10 @@ export function mapVendorRow(
     warnings.push(`Could not parse floor for branch: ${row.floorLabel}`)
   }
 
-  const lotNumber = parseLotNumber(row.lot)
-  if (row.lot && lotNumber == null) {
-    warnings.push(`Could not parse lot number: ${row.lot}`)
+  const lotText = row.lot?.trim() || null
+  const lotNumber = parseLotNumber(lotText)
+  if (lotText && lotNumber == null) {
+    warnings.push(`Could not parse lot number: ${lotText} (lot will be left empty)`)
   }
 
   const offerTexts = parseOfferTexts(row.offers)

@@ -8,7 +8,7 @@ import 'swiper/css/pagination'
 import RenderMedia from '@/components/common/media'
 import { lexicalToHtml } from '@/lib/lexicalToHtml'
 import { resolveMedia } from '@/lib/resolveMedia'
-import type { Homepage } from '@/payload-types'
+import type { Branch, Homepage } from '@/payload-types'
 import Link from 'next/link'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import AnimatedRichText from '@/components/common/AnimatedRichText'
@@ -17,6 +17,7 @@ import { MarkdownContent } from '@/components/common/markdown-content'
 
 type FullscreenSlideProps = {
   slides?: Homepage['membership']
+  branch?: Branch
 }
 
 function toSlides(items: NonNullable<Homepage['membership']>) {
@@ -30,7 +31,7 @@ function toSlides(items: NonNullable<Homepage['membership']>) {
   }))
 }
 
-export const FullscreenSlide = ({ slides: membershipSlides }: FullscreenSlideProps) => {
+export const FullscreenSlide = ({ slides: membershipSlides, branch }: FullscreenSlideProps) => {
   const slides = membershipSlides?.length ? toSlides(membershipSlides) : []
 
   if (slides.length === 0) return null
@@ -87,7 +88,16 @@ export const FullscreenSlide = ({ slides: membershipSlides }: FullscreenSlidePro
                       </div>
                       {slide.button?.text && slide.button?.link && (
                         <AnimateOnScroll triggerClass="fadeIn" className="item-cta">
-                          <Link href={slide.button.link} className="button-orange">
+                          <Link
+                            href={slide.button.link}
+                            className="button-template"
+                            style={
+                              {
+                                '--button-bg-color':
+                                  branch?.footerBg ?? 'var(--color-saladaeng-orange)',
+                              } as React.CSSProperties
+                            }
+                          >
                             <span>
                               <span>{slide.button.text}</span>
                             </span>

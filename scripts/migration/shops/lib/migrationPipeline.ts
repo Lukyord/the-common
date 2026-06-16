@@ -6,14 +6,14 @@ import { writeJsonReport } from '../../lib/fs.js'
 import { getMigrationPayload, resolveBranchId } from '../../lib/getPayloadLocal.js'
 import { htmlToLexicalContent } from '../../lib/htmlToLexicalContent.js'
 import type { BranchVendorConfig, ShopsMigrationOptions } from '../config/branches.js'
-import { mapVendorRow } from './mapVendorRow.js'
+import { getCanonicalVendorSlug, mapVendorRow } from './mapVendorRow.js'
 import { loadBranchVendorRows } from './parseVendorCsv.js'
 
 type ImportPreviewRow = {
   rowNumber: number
   name: string
   slug: string
-  action: 'create' | 'skip-existing' | 'update-description'
+  action: 'create' | 'skip-existing' | 'skip-existing-slug' | 'update-description' | 'create-failed'
   reason?: string
   warnings: string[]
   payload?: Record<string, unknown>
@@ -108,6 +108,20 @@ function vendorLocationKey(vendor: Pick<Vendor, 'floor' | 'lotNumber'>): string 
   return `${vendor.floor}:${vendor.lotNumber}`
 }
 
+function resolveLotNumberForMigration(
+  floorId: string | null,
+  lotNumber: number | null,
+  seenFloorLots: Set<string>,
+): number | null {
+  if (!floorId || lotNumber == null) return lotNumber
+
+  const floorLotKey = `${floorId}:${lotNumber}`
+  if (seenFloorLots.has(floorLotKey)) return null
+
+  seenFloorLots.add(floorLotKey)
+  return lotNumber
+}
+
 async function deleteBranchVendors(
   payload: Awaited<ReturnType<typeof getMigrationPayload>>,
   branchId: number,
@@ -200,24 +214,40 @@ export async function runShopsMigrationPipeline(
 
   const rows = loadBranchVendorRows(config)
   const usedSlugs = new Set(existingSlugs)
+  const seenFloorLots = new Set(existingLocations)
   const categoryCache = new Map<string, number | null>()
   const lifestyleCache = new Map<string, number | null>()
   const preview: ImportPreviewRow[] = []
 
   let created = 0
   let skippedExisting = 0
+  let skippedExistingSlug = 0
   let updatedDescription = 0
+  let failed = 0
 
   for (const row of rows) {
+    const canonicalSlug = getCanonicalVendorSlug(row.name, config.slug)
+    if (existingSlugs.has(canonicalSlug)) {
+      skippedExistingSlug += 1
+      preview.push({
+        rowNumber: row.rowNumber,
+        name: row.name,
+        slug: canonicalSlug,
+        action: 'skip-existing-slug',
+        reason: `Vendor already exists: ${canonicalSlug}`,
+        warnings: [],
+      })
+      continue
+    }
+
     const mapped = mapVendorRow(row, config, usedSlugs)
+    const lotNumber = resolveLotNumberForMigration(mapped.floorId, mapped.lotNumber, seenFloorLots)
     const warnings = [...mapped.warnings]
     const description = await plainTextToLexical(mapped.description)
     const openingHours = await plainTextToLexicalWithLineBreaks(mapped.openingHours)
 
     const locationKey =
-      mapped.floorId && mapped.lotNumber != null
-        ? `${mapped.floorId}:${mapped.lotNumber}`
-        : null
+      mapped.floorId && lotNumber != null ? `${mapped.floorId}:${lotNumber}` : null
 
     if (locationKey && existingLocations.has(locationKey)) {
       const existing = existingByLocation.get(locationKey)
@@ -254,7 +284,7 @@ export async function runShopsMigrationPipeline(
           name: mapped.name,
           slug: mapped.slug,
           action: 'skip-existing',
-          reason: `Vendor already exists at floor ${mapped.floorId}, lot ${mapped.lotNumber}`,
+          reason: `Vendor already exists at floor ${mapped.floorId}, lot ${lotNumber}`,
           warnings,
         })
       }
@@ -278,7 +308,7 @@ export async function runShopsMigrationPipeline(
       slug: mapped.slug,
       branch: branchId,
       ...(mapped.floorId ? { floor: mapped.floorId } : {}),
-      ...(mapped.lotNumber != null ? { lotNumber: mapped.lotNumber } : {}),
+      ...(lotNumber != null ? { lotNumber } : {}),
       ...(description ? { description } : {}),
       ...(categoryId ? { category: [categoryId] } : {}),
       ...(lifestyleId ? { lifestyles: [lifestyleId] } : {}),
@@ -292,24 +322,34 @@ export async function runShopsMigrationPipeline(
         : {}),
     }
 
-    preview.push({
+    const previewRow: ImportPreviewRow = {
       rowNumber: mapped.rowNumber,
       name: mapped.name,
       slug: mapped.slug,
       action: 'create',
       warnings,
       payload: data,
-    })
+    }
+    preview.push(previewRow)
 
     if (!options.dryRun) {
-      await payload.create({
-        collection: 'vendors',
-        data: data as never,
-        overrideAccess: true,
-      })
-      if (locationKey) existingLocations.add(locationKey)
-      created += 1
-      console.log(`Created: ${mapped.name} (${mapped.slug})`)
+      try {
+        await payload.create({
+          collection: 'vendors',
+          data: data as never,
+          overrideAccess: true,
+        })
+        if (locationKey) existingLocations.add(locationKey)
+        usedSlugs.add(mapped.slug)
+        created += 1
+        console.log(`Created: ${mapped.name} (${mapped.slug})`)
+      } catch (error) {
+        failed += 1
+        const message = error instanceof Error ? error.message : String(error)
+        previewRow.action = 'create-failed'
+        previewRow.reason = message
+        console.error(`Failed: ${mapped.name} (${mapped.slug}) — ${message}`)
+      }
     } else {
       created += 1
       console.log(`Would create: ${mapped.name} (${mapped.slug})`)
@@ -324,7 +364,9 @@ export async function runShopsMigrationPipeline(
       sourceRows: rows.length,
       create: created,
       skipExisting: skippedExisting,
+      skipExistingSlug: skippedExistingSlug,
       updateDescription: updatedDescription,
+      failed,
     },
     rows: preview,
   })
@@ -334,6 +376,8 @@ export async function runShopsMigrationPipeline(
   console.log(`Source rows:      ${rows.length}`)
   console.log(`Create:           ${created}`)
   console.log(`Update desc:      ${updatedDescription}`)
-  console.log(`Skip (existing):  ${skippedExisting}`)
+  console.log(`Skip (location):  ${skippedExisting}`)
+  console.log(`Skip (slug):      ${skippedExistingSlug}`)
+  console.log(`Failed:           ${failed}`)
   console.log(`Preview report:   ${config.importPreviewPath}`)
 }

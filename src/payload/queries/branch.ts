@@ -719,7 +719,7 @@ export const getWhatsOnBySlug = cache(
       content: item.content,
       buttonText: item.buttonText,
       buttonLink: item.buttonLink,
-      buttonColor: branch.bgColor?.trim() || null,
+      buttonColor: branch.footerColor?.trim() || null,
       bgColor: item.bgColor?.trim() || null,
       gallery: gallery.length ? gallery : fallbackMedia ? [fallbackMedia] : [],
       meta: item.meta,

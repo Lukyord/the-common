@@ -1,34 +1,115 @@
 {
-  "generatedAt": "2026-06-16T06:43:34.096Z",
+  "generatedAt": "2026-06-16T08:56:38.629Z",
   "branch": "thonglor",
   "dryRun": false,
   "totals": {
     "sourceRows": 35,
-    "create": 4,
+    "create": 1,
     "skipExisting": 0,
-    "updateDescription": 31
+    "skipExistingSlug": 34,
+    "updateDescription": 0,
+    "failed": 0
   },
   "rows": [
     {
       "rowNumber": 1,
       "name": "Absolute",
       "slug": "absolute-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: absolute-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 2,
       "name": "Adam n Eve",
-      "slug": "adam-n-eve-thonglor-3",
+      "slug": "adam-n-eve-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: adam-n-eve-thonglor",
+      "warnings": []
+    },
+    {
+      "rowNumber": 3,
+      "name": "All Kinds",
+      "slug": "all-kinds-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: all-kinds-thonglor",
+      "warnings": []
+    },
+    {
+      "rowNumber": 4,
+      "name": "Baba Shuk",
+      "slug": "baba-shuk-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: baba-shuk-thonglor",
+      "warnings": []
+    },
+    {
+      "rowNumber": 5,
+      "name": "Bapsang",
+      "slug": "bapsang-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: bapsang-thonglor",
+      "warnings": []
+    },
+    {
+      "rowNumber": 6,
+      "name": "BAR NAAM",
+      "slug": "bar-naam-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: bar-naam-thonglor",
+      "warnings": []
+    },
+    {
+      "rowNumber": 7,
+      "name": "Bun Meat and Cheese",
+      "slug": "bun-meat-and-cheese-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: bun-meat-and-cheese-thonglor",
+      "warnings": []
+    },
+    {
+      "rowNumber": 8,
+      "name": "Crackhouse",
+      "slug": "crackhouse-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: crackhouse-thonglor",
+      "warnings": []
+    },
+    {
+      "rowNumber": 9,
+      "name": "Dolly Churro",
+      "slug": "dolly-churro-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: dolly-churro-thonglor",
+      "warnings": []
+    },
+    {
+      "rowNumber": 10,
+      "name": "Easy Buddy",
+      "slug": "easy-buddy-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: easy-buddy-thonglor",
+      "warnings": []
+    },
+    {
+      "rowNumber": 11,
+      "name": "Esan Ping Ping",
+      "slug": "esan-ping-ping-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: esan-ping-ping-thonglor",
+      "warnings": []
+    },
+    {
+      "rowNumber": 12,
+      "name": "FOWLMOUTH",
+      "slug": "fowlmouth-thonglor",
       "action": "create",
-      "warnings": [
-        "Could not parse lot number: Popup"
-      ],
+      "warnings": [],
       "payload": {
-        "name": "Adam n Eve",
-        "slug": "adam-n-eve-thonglor-3",
+        "name": "FOWLMOUTH",
+        "slug": "fowlmouth-thonglor",
         "branch": 1,
-        "floor": "1",
+        "floor": "m",
         "description": {
           "root": {
             "children": [
@@ -39,7 +120,7 @@
                     "format": 0,
                     "mode": "normal",
                     "style": "",
-                    "text": "Let there be froyo! At Adam & Eve, indulging is innocent. This soft serve Greek yogurt proves that dessert isn’t a sin. Each heavenly swirl of fluffy frozen yogurt (froyo!) has 0% sugar, but 100% temptation. It’s a high protein, low calorie snack. Top yours with fruit, granola, or a divine drizzle of chocolate. You’ll find them at our Pop-Up Ground only until 10 Sept 2025.",
+                    "text": "Fowlmouth serves up anti-biotic & hormone-free chicken, brined in buttermilk and spices overnight before being fried to a perfect crisp. This “Nashville-style” Chicken is doused in a spicy cayenne pepper glaze available in various heat levels. Choose “Mild” if you can’t quite handle the spice, or see if you can survive the “DEATH” level. Don’t forget to complete the meal with a selection of gourmet side dishes like Pimento Mac & Cheese and Creamy Buttermilk Coleslaw.",
                     "type": "text",
                     "version": 1
                   }
@@ -60,8 +141,8 @@
             "version": 1
           }
         },
-        "category": [
-          12
+        "lifestyles": [
+          8
         ],
         "openingHours": {
           "root": {
@@ -73,7 +154,7 @@
                     "format": 0,
                     "mode": "normal",
                     "style": "",
-                    "text": "Mon - Thu 10:00am - 10:00pm",
+                    "text": "Mon-Thurs 9.30am - 11pm",
                     "type": "text",
                     "version": 1
                   },
@@ -86,7 +167,33 @@
                     "format": 0,
                     "mode": "normal",
                     "style": "",
-                    "text": "Fri - Sun 10:00am - 10:30pm",
+                    "text": "Fri 9.30am - 11.30pm",
+                    "type": "text",
+                    "version": 1
+                  },
+                  {
+                    "type": "linebreak",
+                    "version": 1
+                  },
+                  {
+                    "detail": 0,
+                    "format": 0,
+                    "mode": "normal",
+                    "style": "",
+                    "text": "Sat: 9am - 11.30pm",
+                    "type": "text",
+                    "version": 1
+                  },
+                  {
+                    "type": "linebreak",
+                    "version": 1
+                  },
+                  {
+                    "detail": 0,
+                    "format": 0,
+                    "mode": "normal",
+                    "style": "",
+                    "text": "Sun: 9am - 11.00pm",
                     "type": "text",
                     "version": 1
                   }
@@ -107,472 +214,195 @@
             "version": 1
           }
         },
-        "tel": [
-          "+66972681096"
-        ],
         "social": {
-          "instagram": "https://www.instagram.com/adamneve.froyo/"
+          "facebook": "https://www.facebook.com/fowlmouth.bkk/",
+          "instagram": "https://www.instagram.com/fowlmouth.bkk/"
         }
       }
-    },
-    {
-      "rowNumber": 3,
-      "name": "All Kinds",
-      "slug": "all-kinds-thonglor",
-      "action": "update-description",
-      "warnings": []
-    },
-    {
-      "rowNumber": 4,
-      "name": "Baba Shuk",
-      "slug": "baba-shuk-thonglor",
-      "action": "update-description",
-      "warnings": []
-    },
-    {
-      "rowNumber": 5,
-      "name": "Bapsang",
-      "slug": "bapsang-thonglor",
-      "action": "update-description",
-      "warnings": []
-    },
-    {
-      "rowNumber": 6,
-      "name": "BAR NAAM",
-      "slug": "bar-naam-thonglor",
-      "action": "update-description",
-      "warnings": []
-    },
-    {
-      "rowNumber": 7,
-      "name": "Bun Meat and Cheese",
-      "slug": "bun-meat-and-cheese-thonglor",
-      "action": "update-description",
-      "warnings": []
-    },
-    {
-      "rowNumber": 8,
-      "name": "Crackhouse",
-      "slug": "crackhouse-thonglor",
-      "action": "update-description",
-      "warnings": []
-    },
-    {
-      "rowNumber": 9,
-      "name": "Dolly Churro",
-      "slug": "dolly-churro-thonglor",
-      "action": "update-description",
-      "warnings": []
-    },
-    {
-      "rowNumber": 10,
-      "name": "Easy Buddy",
-      "slug": "easy-buddy-thonglor",
-      "action": "update-description",
-      "warnings": []
-    },
-    {
-      "rowNumber": 11,
-      "name": "Esan Ping Ping",
-      "slug": "esan-ping-ping-thonglor",
-      "action": "update-description",
-      "warnings": []
-    },
-    {
-      "rowNumber": 12,
-      "name": "FOWLMOUTH",
-      "slug": "crackhouse-thonglor",
-      "action": "update-description",
-      "warnings": []
     },
     {
       "rowNumber": 13,
       "name": "Guss Damn Good",
       "slug": "guss-damn-good-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: guss-damn-good-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 14,
       "name": "Gyuto Kome",
-      "slug": "gyuto-kome-thonglor-3",
-      "action": "create",
-      "warnings": [],
-      "payload": {
-        "name": "Gyuto Kome",
-        "slug": "gyuto-kome-thonglor-3",
-        "branch": 1,
-        "floor": "m",
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Translated as “Beef and Rice,” Gyuto Kome turns simple ingredients into something special. The heroes are meaty delights like their Signature Beef Donburi. If you’re feeling indulgent, upgrade to A5 Wagyu. The hits continue with curated set meals that bring Japanese comfort food to life.",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "category": [
-          7
-        ],
-        "openingHours": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Mon - Sun 10am - 9pm",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "tel": [
-          "+66828525894"
-        ],
-        "social": {
-          "instagram": "https://www.instagram.com/gyutokome/"
-        }
-      }
+      "slug": "gyuto-kome-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: gyuto-kome-thonglor",
+      "warnings": []
     },
     {
       "rowNumber": 15,
       "name": "Hunter Poke",
       "slug": "hunter-poke-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: hunter-poke-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 16,
       "name": "Inspired by Nuch",
       "slug": "inspired-by-nuch-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: inspired-by-nuch-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 17,
       "name": "KOZURI",
       "slug": "kozuri-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: kozuri-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 18,
       "name": "Little Pea",
       "slug": "little-pea-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: little-pea-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 19,
       "name": "MONTY'S",
       "slug": "monty-s-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: monty-s-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 20,
       "name": "MooFoo",
       "slug": "moofoo-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: moofoo-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 21,
       "name": "MoodActiv",
       "slug": "moodactiv-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: moodactiv-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 22,
       "name": "PASH",
       "slug": "pash-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: pash-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 23,
       "name": "POPPA",
       "slug": "poppa-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: poppa-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 24,
       "name": "Posh Polish Parlor",
       "slug": "posh-polish-parlor-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: posh-polish-parlor-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 25,
       "name": "ROAST",
       "slug": "roast-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: roast-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 26,
       "name": "Roots",
       "slug": "roots-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: roots-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 27,
       "name": "7SUNS",
       "slug": "7suns-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: 7suns-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 28,
       "name": "Sourced",
       "slug": "sourced-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: sourced-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 29,
       "name": "THE SHOYU STAND",
       "slug": "the-shoyu-stand-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: the-shoyu-stand-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 30,
       "name": "The Barrel",
       "slug": "the-barrel-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: the-barrel-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 31,
       "name": "TBC",
-      "slug": "tbc-thonglor-3",
-      "action": "create",
-      "warnings": [],
-      "payload": {
-        "name": "TBC",
-        "slug": "tbc-thonglor-3",
-        "branch": 1,
-        "floor": "m",
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "The team behind the success of BREW Beers & Ciders is proud to bring you The Beer Cap. Find amazing craft beer on tap and great bottles from all around the globe. The bar is creatively decorated with thousands of beer caps collected from BREW. There’s no such thing as a bad beer, but the ones that make it here are sure to stand out!",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "category": [
-          13
-        ],
-        "openingHours": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Mon - Sun 11am - 11pm",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "tel": [
-          "+66847767666"
-        ],
-        "social": {
-          "facebook": "https://www.facebook.com/beercapbkk",
-          "instagram": "https://www.instagram.com/beercapbkk/"
-        }
-      }
+      "slug": "tbc-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: tbc-thonglor",
+      "warnings": []
     },
     {
       "rowNumber": 32,
       "name": "1923",
       "slug": "1923-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: 1923-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 33,
       "name": "The Lobster Lab",
       "slug": "the-lobster-lab-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: the-lobster-lab-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 34,
       "name": "VIVI Tuscan Kitchen",
       "slug": "vivi-tuscan-kitchen-thonglor",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: vivi-tuscan-kitchen-thonglor",
       "warnings": []
     },
     {
       "rowNumber": 35,
       "name": "theCOMMONS Kitchen & Bar",
-      "slug": "thecommons-kitchen-bar-thonglor-3",
-      "action": "create",
-      "warnings": [
-        "Could not parse lot number: theCOMMONS Kitchen & Bar"
-      ],
-      "payload": {
-        "name": "theCOMMONS Kitchen & Bar",
-        "slug": "thecommons-kitchen-bar-thonglor-3",
-        "branch": 1,
-        "floor": "3",
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Gather in theCOMMONS kitchen to share your passion, learn something new, enjoy a special meal and connect with others in the community. To learn more, please send an email to: info@thecommonsbkk.com or call us at 089-152-2677",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "openingHours": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Mon - Sun 8am-12am",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "tel": [
-          "+66891522677"
-        ]
-      }
+      "slug": "thecommons-kitchen-bar-thonglor",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: thecommons-kitchen-bar-thonglor",
+      "warnings": []
     }
   ]
 }

@@ -17,6 +17,7 @@ import { resolveContactSubjects } from './contactFormSubjects'
 
 type ContactFormFieldsProps = {
   subjects: string[]
+  buttonColor?: string
 }
 
 function FieldError({ id, message }: { id: string; message?: string }) {
@@ -29,7 +30,7 @@ function FieldError({ id, message }: { id: string; message?: string }) {
   )
 }
 
-export default function ContactFormFields({ subjects }: ContactFormFieldsProps) {
+export default function ContactFormFields({ subjects, buttonColor }: ContactFormFieldsProps) {
   const resolvedSubjects = resolveContactSubjects(subjects)
   const formRef = useRef<HTMLFormElement>(null)
   const [errors, setErrors] = useState<Partial<Record<ContactFormFieldKey, string>>>({})
@@ -191,7 +192,11 @@ export default function ContactFormFields({ subjects }: ContactFormFieldsProps) 
             type="submit"
             className="button-template"
             disabled={isSubmitting}
-            style={{ '--button-bg-color': 'var(--color-saladaeng-orange)' } as React.CSSProperties}
+            style={
+              {
+                '--button-bg-color': buttonColor ?? 'var(--color-saladaeng-orange)',
+              } as React.CSSProperties
+            }
           >
             <span>
               <span>{isSubmitting ? 'SENDING…' : 'SUBMIT'}</span>

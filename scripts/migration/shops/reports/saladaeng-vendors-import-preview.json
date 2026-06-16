@@ -1,507 +1,207 @@
 {
-  "generatedAt": "2026-06-16T06:50:54.458Z",
+  "generatedAt": "2026-06-16T09:05:55.425Z",
   "branch": "saladaeng",
   "dryRun": false,
   "totals": {
     "sourceRows": 24,
-    "create": 4,
+    "create": 0,
     "skipExisting": 0,
-    "updateDescription": 20
+    "skipExistingSlug": 24,
+    "updateDescription": 0,
+    "failed": 0
   },
   "rows": [
     {
       "rowNumber": 36,
       "name": "Antico Fornaio",
       "slug": "antico-fornaio-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: antico-fornaio-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 37,
       "name": "Boon Tong Kee",
       "slug": "boon-tong-kee-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: boon-tong-kee-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 38,
       "name": "Bun Meat & Cheese",
       "slug": "bun-meat-cheese-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: bun-meat-cheese-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 39,
       "name": "CLOUD WINE",
       "slug": "cloud-wine-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: cloud-wine-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 40,
       "name": "Crackhouse",
       "slug": "crackhouse-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: crackhouse-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 41,
       "name": "FOWLMOUTH",
-      "slug": "fowlmouth-saladaeng-3",
-      "action": "create",
-      "warnings": [
-        "Could not parse floor for branch: Market (Fl. M)"
-      ],
-      "payload": {
-        "name": "FOWLMOUTH",
-        "slug": "fowlmouth-saladaeng-3",
-        "branch": 2,
-        "lotNumber": 7,
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Fowlmouth serves up anti-biotic & hormone-free chicken, brined in buttermilk and spices overnight before being fried to a perfect crisp. This Nashville-style chicken is doused in a spicy cayenne pepper glaze available in various heat levels. Choose “Mild” if you can’t quite handle the spice, or see if you can survive the “DEATH” level. Don't forget to complete the meal with a selection of gourmet side dishes like Pimento Mac & Cheese and Creamy Buttermilk Coleslaw.",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "openingHours": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Sun-Thu 11.30am-9.30pm,",
-                    "type": "text",
-                    "version": 1
-                  },
-                  {
-                    "type": "linebreak",
-                    "version": 1
-                  },
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Fri-Sat 11.30am-11.30pm",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "tel": [
-          "+66992127557"
-        ],
-        "social": {
-          "facebook": "https://www.facebook.com/FOWLMOUTH.theCOMMONS/",
-          "instagram": "https://www.instagram.com/fowlmouth.bkk/"
-        }
-      }
+      "slug": "fowlmouth-saladaeng",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: fowlmouth-saladaeng",
+      "warnings": []
     },
     {
       "rowNumber": 42,
       "name": "Guss Damn Good",
-      "slug": "guss-damn-good-saladaeng-3",
-      "action": "create",
-      "warnings": [
-        "Could not parse floor for branch: Market (Fl. M)"
-      ],
-      "payload": {
-        "name": "Guss Damn Good",
-        "slug": "guss-damn-good-saladaeng-3",
-        "branch": 2,
-        "lotNumber": 15,
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "An ice cream bar with a passion for bringing people together over crafted scoops, shakes and affogatos with an alcoholic kick.",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "category": [
-          12
-        ],
-        "openingHours": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Mon - Sun 12.30pm - 10pm",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "tel": [
-          "+66959921538"
-        ],
-        "social": {
-          "facebook": "https://web.facebook.com/GussDamnGoodShakeTheCommons/",
-          "instagram": "https://www.instagram.com/gussdamngood/"
-        }
-      }
+      "slug": "guss-damn-good-saladaeng",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: guss-damn-good-saladaeng",
+      "warnings": []
     },
     {
       "rowNumber": 43,
       "name": "Hungry Josh's",
       "slug": "hungry-josh-s-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: hungry-josh-s-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 44,
       "name": "Hunter Poke",
       "slug": "hunter-poke-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: hunter-poke-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 45,
       "name": "Ridar by MAW10",
       "slug": "ridar-by-maw10-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: ridar-by-maw10-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 46,
       "name": "Ong Tong",
       "slug": "ong-tong-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: ong-tong-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 47,
       "name": "Oo La Lab",
       "slug": "oo-la-lab-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: oo-la-lab-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 48,
       "name": "Paak",
       "slug": "paak-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: paak-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 49,
       "name": "POPPA",
       "slug": "poppa-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: poppa-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 50,
       "name": "QQ",
       "slug": "qq-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: qq-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 51,
       "name": "Roots",
       "slug": "roots-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: roots-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 52,
       "name": "Scarletta",
       "slug": "scarletta-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: scarletta-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 53,
       "name": "Soho Pizza",
       "slug": "soho-pizza-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: soho-pizza-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 54,
       "name": "Taproom",
       "slug": "taproom-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: taproom-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 55,
       "name": "The Barrel Sake Bar",
       "slug": "the-barrel-sake-bar-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: the-barrel-sake-bar-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 56,
       "name": "Toku Dessert",
       "slug": "toku-dessert-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: toku-dessert-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 57,
       "name": "Wild Clinic",
       "slug": "wild-clinic-saladaeng",
-      "action": "update-description",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: wild-clinic-saladaeng",
       "warnings": []
     },
     {
       "rowNumber": 58,
       "name": "cyu shabu",
-      "slug": "cyu-shabu-saladaeng-3",
-      "action": "create",
-      "warnings": [],
-      "payload": {
-        "name": "cyu shabu",
-        "slug": "cyu-shabu-saladaeng-3",
-        "branch": 2,
-        "floor": "1",
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Welcome to hot pot heaven. This stylish spot serves Japanese shabu sets with premium ingredients and quality care. Watch as marbled meats are expertly sliced before your eyes. The signature tonyu (soy milk) broth and tofu are must-tries. Settle in. You’ll remember it long after the last bite.",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "category": [
-          7
-        ],
-        "openingHours": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Mon - Sun 10am - 10pm",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "tel": [
-          "+66638569257"
-        ],
-        "social": {
-          "facebook": "https://www.facebook.com/cyushabu/",
-          "instagram": "https://www.instagram.com/cyushabu.bkk/"
-        }
-      }
+      "slug": "cyu-shabu-saladaeng",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: cyu-shabu-saladaeng",
+      "warnings": []
     },
     {
       "rowNumber": 59,
       "name": "cyu sushi and handroll",
-      "slug": "cyu-sushi-and-handroll-saladaeng-3",
-      "action": "create",
-      "warnings": [],
-      "payload": {
-        "name": "cyu sushi and handroll",
-        "slug": "cyu-sushi-and-handroll-saladaeng-3",
-        "branch": 2,
-        "floor": "1",
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "This charming sushi restaurant treats you right. Indulge in top notch sushi, sashimi, and handrolls piled with the freshest seafood. Their skillful chefs showcase everything from smoky unagi to sweet scallops, while handrolls are generously stuffed with favorites like fatty tuna. It’s so good, you’ll find an excuse to return.",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "category": [
-          7
-        ],
-        "openingHours": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Mon - Sun 10am - 10pm",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "tel": [
-          "+66638529363"
-        ],
-        "social": {
-          "facebook": "https://www.facebook.com/cyurollandsushibar/",
-          "instagram": "https://www.instagram.com/cyusushi.bkk/"
-        }
-      }
+      "slug": "cyu-sushi-and-handroll-saladaeng",
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: cyu-sushi-and-handroll-saladaeng",
+      "warnings": []
     }
   ]
 }

@@ -6,7 +6,7 @@ import ContactAccordionContainer, {
 } from '@/components/brand/contact/ContactAccordionContainer'
 import { FullscreenSlide } from '@/components/brand/homepage/FullscreenSlide'
 import { generateMeta } from '@/lib/generateMeta'
-import { getBranchContactPageBySlug } from '@/payload/queries/branch'
+import { getBranchBySlug, getBranchContactPageBySlug } from '@/payload/queries/branch'
 import { getHomepageMembershipData } from '@/payload/queries/home'
 
 export const dynamic = 'force-dynamic'
@@ -28,19 +28,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ContactPage({ params }: Props) {
-  const { branch } = await params
-  const [page, { membership }] = await Promise.all([
-    getBranchContactPageBySlug(branch),
+  const { branch: branchSlug } = await params
+  const [branch, page, { membership }] = await Promise.all([
+    getBranchBySlug(branchSlug),
+    getBranchContactPageBySlug(branchSlug),
     getHomepageMembershipData(),
   ])
 
   return (
     <main id="main" className="contact-page">
-      <ContactForm {...toContactFormProps(page)} />
+      <ContactForm {...toContactFormProps(page)} branch={branch} />
 
       <ContactAccordionContainer {...toContactAccordionProps(page)} />
 
-      <FullscreenSlide slides={membership} />
+      <FullscreenSlide slides={membership} branch={branch} />
     </main>
   )
 }

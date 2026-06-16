@@ -1,86 +1,14 @@
 {
-  "generatedAt": "2026-06-16T06:55:47.224Z",
+  "generatedAt": "2026-06-16T09:11:35.039Z",
   "branch": "saladaeng",
   "dryRun": false,
   "legacyShopsSource": "https://s3-ap-southeast-1.amazonaws.com/thecommonsbkk",
   "totals": {
-    "vendors": 32,
-    "updated": 32,
+    "vendors": 24,
+    "updated": 24,
     "skipped": 0
   },
   "rows": [
-    {
-      "vendorId": 85,
-      "name": "cyu sushi and handroll",
-      "slug": "cyu-sushi-and-handroll-saladaeng-3",
-      "action": "update",
-      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu sushi and handroll.webp",
-      "galleryCount": 5,
-      "warnings": []
-    },
-    {
-      "vendorId": 84,
-      "name": "cyu shabu",
-      "slug": "cyu-shabu-saladaeng-3",
-      "action": "update",
-      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu shabu.webp",
-      "galleryCount": 4,
-      "warnings": []
-    },
-    {
-      "vendorId": 83,
-      "name": "Guss Damn Good",
-      "slug": "guss-damn-good-saladaeng-3",
-      "action": "update",
-      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-guss damn good.webp",
-      "galleryCount": 2,
-      "warnings": []
-    },
-    {
-      "vendorId": 82,
-      "name": "FOWLMOUTH",
-      "slug": "fowlmouth-saladaeng-3",
-      "action": "update",
-      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-fowlmouth.webp",
-      "galleryCount": 1,
-      "warnings": []
-    },
-    {
-      "vendorId": 77,
-      "name": "cyu sushi and handroll",
-      "slug": "cyu-sushi-and-handroll-saladaeng-2",
-      "action": "update",
-      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu sushi and handroll.webp",
-      "galleryCount": 5,
-      "warnings": []
-    },
-    {
-      "vendorId": 76,
-      "name": "cyu shabu",
-      "slug": "cyu-shabu-saladaeng-2",
-      "action": "update",
-      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu shabu.webp",
-      "galleryCount": 4,
-      "warnings": []
-    },
-    {
-      "vendorId": 75,
-      "name": "Guss Damn Good",
-      "slug": "guss-damn-good-saladaeng-2",
-      "action": "update",
-      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-guss damn good.webp",
-      "galleryCount": 2,
-      "warnings": []
-    },
-    {
-      "vendorId": 74,
-      "name": "FOWLMOUTH",
-      "slug": "fowlmouth-saladaeng-2",
-      "action": "update",
-      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-fowlmouth.webp",
-      "galleryCount": 1,
-      "warnings": []
-    },
     {
       "vendorId": 58,
       "name": "cyu sushi and handroll",

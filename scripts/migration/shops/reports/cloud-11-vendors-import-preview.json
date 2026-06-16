@@ -1,568 +1,103 @@
 {
-  "generatedAt": "2026-06-16T04:57:35.477Z",
+  "generatedAt": "2026-06-16T09:12:04.354Z",
   "branch": "cloud-11",
-  "dryRun": true,
+  "dryRun": false,
   "totals": {
     "sourceRows": 28,
-    "create": 28,
+    "create": 17,
     "skipExisting": 0,
-    "updateDescription": 0
+    "skipExistingSlug": 11,
+    "updateDescription": 0,
+    "failed": 0
   },
   "rows": [
     {
       "rowNumber": 64,
       "name": "Bapsang",
       "slug": "bapsang-cloud-11",
-      "action": "create",
-      "warnings": [
-        "Category not found: Korean"
-      ],
-      "payload": {
-        "name": "Bapsang",
-        "slug": "bapsang-cloud-11",
-        "branch": 3,
-        "floor": "3",
-        "lotNumber": 13,
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Korean comfort food",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "lifestyles": [
-          7
-        ],
-        "social": {
-          "facebook": "https://web.facebook.com/Bapsang.bkk/",
-          "instagram": "https://www.instagram.com/bapsang.bkk/"
-        }
-      }
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: bapsang-cloud-11",
+      "warnings": []
     },
     {
       "rowNumber": 65,
       "name": "Bubblism (by 1923)",
       "slug": "bubblism-by-1923-cloud-11",
-      "action": "create",
-      "warnings": [],
-      "payload": {
-        "name": "Bubblism (by 1923)",
-        "slug": "bubblism-by-1923-cloud-11",
-        "branch": 3,
-        "floor": "3",
-        "lotNumber": 21,
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Highball and Soda drink",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "category": [
-          14
-        ],
-        "lifestyles": [
-          8
-        ]
-      }
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: bubblism-by-1923-cloud-11",
+      "warnings": []
     },
     {
       "rowNumber": 66,
       "name": "Butter & Co.",
       "slug": "butter-co-cloud-11",
-      "action": "create",
-      "warnings": [],
-      "payload": {
-        "name": "Butter & Co.",
-        "slug": "butter-co-cloud-11",
-        "branch": 3,
-        "floor": "3",
-        "lotNumber": 11,
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Homemade butter and bakery",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "category": [
-          12
-        ],
-        "lifestyles": [
-          7
-        ]
-      }
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: butter-co-cloud-11",
+      "warnings": []
     },
     {
       "rowNumber": 67,
       "name": "Clay Head Spa",
       "slug": "clay-head-spa-cloud-11",
-      "action": "create",
-      "warnings": [
-        "Category not found: Service"
-      ],
-      "payload": {
-        "name": "Clay Head Spa",
-        "slug": "clay-head-spa-cloud-11",
-        "branch": 3,
-        "floor": "2",
-        "lotNumber": 1,
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Spa & wellness",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "lifestyles": [
-          3
-        ],
-        "social": {
-          "instagram": "https://www.instagram.com/clay.headspa/"
-        }
-      }
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: clay-head-spa-cloud-11",
+      "warnings": []
     },
     {
       "rowNumber": 68,
       "name": "Crackhouse",
       "slug": "crackhouse-cloud-11",
-      "action": "create",
-      "warnings": [],
-      "payload": {
-        "name": "Crackhouse",
-        "slug": "crackhouse-cloud-11",
-        "branch": 3,
-        "floor": "3",
-        "lotNumber": 9,
-        "category": [
-          4
-        ],
-        "lifestyles": [
-          2
-        ],
-        "social": {
-          "facebook": "https://www.facebook.com/crackhouse.bkk/",
-          "instagram": "https://www.instagram.com/crackhouse.bkk/"
-        }
-      }
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: crackhouse-cloud-11",
+      "warnings": []
     },
     {
       "rowNumber": 69,
       "name": "Ded Dee",
       "slug": "ded-dee-cloud-11",
-      "action": "create",
-      "warnings": [
-        "Category not found: Thai"
-      ],
-      "payload": {
-        "name": "Ded Dee",
-        "slug": "ded-dee-cloud-11",
-        "branch": 3,
-        "floor": "3",
-        "lotNumber": 2,
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Beef Noodle Soup",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "lifestyles": [
-          7
-        ],
-        "social": {
-          "instagram": "https://www.instagram.com/deddee.noodle/"
-        }
-      }
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: ded-dee-cloud-11",
+      "warnings": []
     },
     {
       "rowNumber": 70,
       "name": "Don Gang",
       "slug": "don-gang-cloud-11",
-      "action": "create",
-      "warnings": [
-        "Category not found: Thai"
-      ],
-      "payload": {
-        "name": "Don Gang",
-        "slug": "don-gang-cloud-11",
-        "branch": 3,
-        "floor": "3",
-        "lotNumber": 8,
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Southern Thai cusine",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "lifestyles": [
-          7
-        ],
-        "social": {
-          "instagram": "https://www.instagram.com/dongang.bkk/",
-          "facebook": "https://www.facebook.com/profile.php?id=61579458658808&locale=th_TH"
-        }
-      }
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: don-gang-cloud-11",
+      "warnings": []
     },
     {
       "rowNumber": 71,
       "name": "Rin by Allkinds",
       "slug": "rin-by-allkinds-cloud-11",
-      "action": "create",
-      "warnings": [],
-      "payload": {
-        "name": "Rin by Allkinds",
-        "slug": "rin-by-allkinds-cloud-11",
-        "branch": 3,
-        "floor": "3",
-        "lotNumber": 17,
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Coffee & Thai crafted alcohol drinks",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "category": [
-          2
-        ],
-        "lifestyles": [
-          2
-        ]
-      }
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: rin-by-allkinds-cloud-11",
+      "warnings": []
     },
     {
       "rowNumber": 72,
       "name": "Everyday Thai Tea",
       "slug": "everyday-thai-tea-cloud-11",
-      "action": "create",
-      "warnings": [],
-      "payload": {
-        "name": "Everyday Thai Tea",
-        "slug": "everyday-thai-tea-cloud-11",
-        "branch": 3,
-        "floor": "3",
-        "lotNumber": 12,
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Thai Tea",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "category": [
-          3
-        ],
-        "lifestyles": [
-          2
-        ],
-        "social": {
-          "instagram": "https://www.instagram.com/everyday.thai.tea/",
-          "facebook": "https://www.facebook.com/everyday.thai.teaa?locale=th_TH"
-        }
-      }
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: everyday-thai-tea-cloud-11",
+      "warnings": []
     },
     {
       "rowNumber": 73,
       "name": "EZ Smash",
       "slug": "ez-smash-cloud-11",
-      "action": "create",
-      "warnings": [],
-      "payload": {
-        "name": "EZ Smash",
-        "slug": "ez-smash-cloud-11",
-        "branch": 3,
-        "floor": "3",
-        "lotNumber": 19,
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Smash burger from Amsterdam",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "category": [
-          5
-        ],
-        "lifestyles": [
-          2
-        ],
-        "social": {
-          "instagram": "https://www.instagram.com/ez_smash/"
-        }
-      }
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: ez-smash-cloud-11",
+      "warnings": []
     },
     {
       "rowNumber": 74,
       "name": "FOWLMOUTH",
       "slug": "fowlmouth-cloud-11",
-      "action": "create",
-      "warnings": [],
-      "payload": {
-        "name": "FOWLMOUTH",
-        "slug": "fowlmouth-cloud-11",
-        "branch": 3,
-        "floor": "3",
-        "lotNumber": 10,
-        "description": {
-          "root": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "detail": 0,
-                    "format": 0,
-                    "mode": "normal",
-                    "style": "",
-                    "text": "Nashville-style chicken",
-                    "type": "text",
-                    "version": 1
-                  }
-                ],
-                "direction": null,
-                "format": "",
-                "indent": 0,
-                "type": "paragraph",
-                "version": 1,
-                "textFormat": 0,
-                "textStyle": ""
-              }
-            ],
-            "direction": null,
-            "format": "",
-            "indent": 0,
-            "type": "root",
-            "version": 1
-          }
-        },
-        "category": [
-          3
-        ],
-        "lifestyles": [
-          8
-        ],
-        "social": {
-          "facebook": "https://www.facebook.com/FOWLMOUTH.theCOMMONS/",
-          "instagram": "https://www.instagram.com/fowlmouth.bkk/"
-        }
-      }
+      "action": "skip-existing-slug",
+      "reason": "Vendor already exists: fowlmouth-cloud-11",
+      "warnings": []
     },
     {
       "rowNumber": 75,

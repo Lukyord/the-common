@@ -85,7 +85,7 @@ export default async function WhatsOnPage({ params }: Props) {
         cta={{
           label: 'ALL BRANCHES',
           href: '/whats-on',
-          buttonColor: branch.bgColor ?? undefined,
+          buttonColor: branch.footerColor ?? undefined,
         }}
       />
 
