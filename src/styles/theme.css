@@ -3042,6 +3042,10 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   margin-top: var(--spacing-xl);
 }
 
+[data-section='whats-on-single'] .sc-content:last-child {
+  padding-bottom: var(--spacing-lg);
+}
+
 :is([data-section='content-single'], [data-section='whats-on-single']) .content-scroll {
   height: calc(100svh - var(--header-height) - var(--spacing-6xl) - 3rem);
   overflow-y: auto;
@@ -3227,6 +3231,14 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   width: 14.5rem;
   aspect-ratio: 1;
   overflow: hidden;
+}
+
+[data-section='vendor-map'] .map .store-info .store-media img {
+  transition: opacity var(--duration) var(--timing-function);
+}
+
+[data-section='vendor-map'] .map .store-info .store-media .object-fit.is-loading img {
+  opacity: 0;
 }
 
 [data-section='vendor-map'] .map .store-info .store-content {

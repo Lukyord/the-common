@@ -15,6 +15,11 @@ function preloadImages(urls: string[]) {
   }
 }
 
+export function preloadVendorMapImage(src: string | undefined) {
+  if (!src) return
+  preloadImages([src])
+}
+
 function collectFloorVendorImageUrls(
   mapVendors: VendorMapListItem[],
   floorId: VendorMapFloorId,

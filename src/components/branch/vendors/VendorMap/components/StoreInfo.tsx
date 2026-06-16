@@ -1,9 +1,11 @@
+'use client'
+
 import Link from 'next/link'
-import type { CSSProperties } from 'react'
+import Image from 'next/image'
+import { useEffect, useState, type CSSProperties } from 'react'
 
 import { HtmlContent } from '@/components/common/html-content'
 import type { VendorMapListItem } from '@/components/branch/vendors/types'
-import Image from 'next/image'
 
 type StoreInfoProps = {
   vendor: VendorMapListItem
@@ -12,6 +14,21 @@ type StoreInfoProps = {
 }
 
 export default function StoreInfo({ vendor, className, style }: StoreInfoProps) {
+  const imageSrc = vendor.media?.src
+  const [loadedImageSrc, setLoadedImageSrc] = useState<string | null>(null)
+  const isImageReady = !imageSrc || loadedImageSrc === imageSrc
+
+  useEffect(() => {
+    if (!imageSrc) {
+      setLoadedImageSrc(null)
+      return
+    }
+
+    const img = new window.Image()
+    img.src = imageSrc
+    setLoadedImageSrc(img.complete ? imageSrc : null)
+  }, [imageSrc])
+
   const rootClassName = [className, vendor.isMapOnlyLot && 'store-info--map-only']
     .filter(Boolean)
     .join(' ')
@@ -22,17 +39,19 @@ export default function StoreInfo({ vendor, className, style }: StoreInfoProps) 
         &nbsp;
       </Link>
       <div className="store-media">
-        <figure className="object-fit">
-          {vendor.media?.src && (
+        <figure className={['object-fit', !isImageReady && 'is-loading'].filter(Boolean).join(' ')}>
+          {imageSrc ? (
             <Image
-              src={vendor.media.src}
-              alt={vendor.media.alt ?? ''}
+              key={imageSrc}
+              src={imageSrc}
+              alt={vendor.media?.alt ?? ''}
               loading="eager"
               decoding="async"
               width={100}
               height={100}
+              onLoad={() => setLoadedImageSrc(imageSrc)}
             />
-          )}
+          ) : null}
         </figure>
       </div>
       <div className="store-content">

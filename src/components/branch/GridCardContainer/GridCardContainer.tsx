@@ -1,6 +1,7 @@
 'use client'
 
-import { useCallback, useMemo, useState } from 'react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import AnimatedDropdown from '@/components/common/AnimatedDropdown'
@@ -78,6 +79,16 @@ export default function GridCardContainer({
         : filteredCards,
     [cardVariant, filteredCards, showSort, sortOrder],
   )
+
+  const scrollLayoutKey = `${sortOrder}-${branchFilter}-${categoryFilter}`
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      ScrollTrigger.refresh()
+    })
+
+    return () => cancelAnimationFrame(frame)
+  }, [scrollLayoutKey, displayCards.length])
 
   const showFilters = showSort || showBranchFilter || showCategoryFilter || filterSlot
 
@@ -171,7 +182,7 @@ export default function GridCardContainer({
       {displayCards.length > 0 ? (
         <div className="card-container" data-card-layout={cardLayout}>
           {displayCards.map((card, index) => (
-            <div key={card.id} style={{ order: index }}>
+            <div key={`${card.id}-${scrollLayoutKey}`} style={{ order: index }}>
               {renderGridCard(card, cardVariant, cardContext)}
             </div>
           ))}

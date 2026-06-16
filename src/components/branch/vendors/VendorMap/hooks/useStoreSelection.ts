@@ -4,6 +4,7 @@ import type { VendorMapListItem } from '@/components/branch/vendors/types'
 import { useEffect, useMemo, useState, type RefObject } from 'react'
 
 import { FADE_IN_DURATION_MS, FADE_OUT_DURATION_MS } from '../lib/constants'
+import { preloadVendorMapImage } from './useVendorMapImagePreload'
 import { isSameStoreTarget, type StoreTarget, type TransitionState } from '../lib/shared'
 import {
   getFirstFloorVendorWithData,
@@ -154,11 +155,15 @@ export function useStoreSelection({
 
   const hoverStore = (lotNumber: number, floor: VendorMapFloorId) => {
     if (isMobile) return
+    preloadVendorMapImage(getVendorByLot(mapVendors, floor, lotNumber)?.media?.src)
     selectStore(lotNumber, floor)
   }
 
   const hoverMapOnlyLot = (mapKey: string, floor: VendorMapFloorId) => {
     if (isMobile) return
+    preloadVendorMapImage(
+      getMapOnlyLotStoreInfoItem(floorMapOnlyLots, mapKey, floor, branchSlug)?.media?.src,
+    )
     selectMapOnlyLot(mapKey, floor)
   }
 
