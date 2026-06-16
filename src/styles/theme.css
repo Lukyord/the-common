@@ -3237,10 +3237,13 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   flex-grow: 1;
 }
 
+[data-section='vendor-map'] .map .store-info--map-only .store-content {
+  gap: var(--spacing-6xs);
+}
+
 [data-section='vendor-map'] .map .store-info .content-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: var(--spacing-5xs);
 }
 
@@ -3257,6 +3260,10 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   transition:
     background-color var(--duration) var(--timing-function),
     color var(--duration) var(--timing-function);
+}
+
+[data-section='vendor-map'] .map .store-info .ic {
+  margin-top: var(--spacing-6xs);
 }
 
 html.no-touchevents [data-section='vendor-map'] .map .store-info:hover .ic {

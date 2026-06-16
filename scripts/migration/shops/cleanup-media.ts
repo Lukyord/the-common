@@ -1,8 +1,8 @@
 import { parseMigrationCliArgs, runMigrationScript } from '../lib/cli.js'
-import { runAllShopsMigration } from './lib/runAllShopsMigration.js'
+import { runVendorMediaCleanup } from './lib/cleanupVendorMedia.js'
 
 async function main() {
-  await runAllShopsMigration(parseMigrationCliArgs())
+  await runVendorMediaCleanup(parseMigrationCliArgs())
 }
 
 runMigrationScript(main)

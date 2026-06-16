@@ -20,7 +20,7 @@ export default function OtherVendors({ title, branchSlug, cards }: OtherVendorsP
       scInnerClassName="pc-t-100 pc-b-100 mb-t-75 mb-b-75"
       title={title}
       cards={cards}
-      getCardKey={(card) => card.title}
+      getCardKey={(card) => card.link ?? card.title}
       renderCard={(card) => (
         <VendorCard
           branchSlug={branchSlug}

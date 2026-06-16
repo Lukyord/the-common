@@ -1,24 +1,32 @@
-import type { MapVendor } from '@/constants/vendorMapData/index'
+import type { FloorMapOnlyLots, MapVendor } from '@/constants/vendorMapData/index'
 import type { VendorMapFloorId } from '@/constants/vendorMapData/index'
 import type { VendorMapListItem } from '@/components/branch/vendors/types'
-import { useEffect, useState, type RefObject } from 'react'
+import { useEffect, useMemo, useState, type RefObject } from 'react'
 
 import { FADE_IN_DURATION_MS, FADE_OUT_DURATION_MS } from '../lib/constants'
 import { isSameStoreTarget, type StoreTarget, type TransitionState } from '../lib/shared'
-import { getFirstFloorVendorWithData, getVendorByLot } from '../lib/utils'
+import {
+  getFirstFloorVendorWithData,
+  getMapOnlyLotStoreInfoItem,
+  getVendorByLot,
+} from '../lib/utils'
 
 type UseStoreSelectionOptions = {
+  branchSlug: string
   mapVendors: VendorMapListItem[]
   displayedFloor: VendorMapFloorId
   floorVendors: MapVendor[]
+  floorMapOnlyLots: FloorMapOnlyLots | null
   isMobile: boolean
   sectionRef: RefObject<HTMLElement | null>
 }
 
 export function useStoreSelection({
+  branchSlug,
   mapVendors,
   displayedFloor,
   floorVendors,
+  floorMapOnlyLots,
   isMobile,
   sectionRef,
 }: UseStoreSelectionOptions) {
@@ -71,9 +79,30 @@ export function useStoreSelection({
     return undefined
   }, [storeTransitionState, hoveredStore, displayedStore])
 
-  const displayedStoreVendor = displayedStore
-    ? getVendorByLot(mapVendors, displayedStore.floor, displayedStore.lot)
-    : undefined
+  const displayedStoreKey = displayedStore
+    ? displayedStore.mapKey
+      ? `${displayedStore.floor}:map:${displayedStore.mapKey}`
+      : `${displayedStore.floor}:lot:${displayedStore.lot}`
+    : null
+
+  const displayedStoreVendor = useMemo(() => {
+    if (!displayedStore) return undefined
+
+    if (displayedStore.mapKey) {
+      return getMapOnlyLotStoreInfoItem(
+        floorMapOnlyLots,
+        displayedStore.mapKey,
+        displayedStore.floor,
+        branchSlug,
+      )
+    }
+
+    if (displayedStore.lot != null) {
+      return getVendorByLot(mapVendors, displayedStore.floor, displayedStore.lot)
+    }
+
+    return undefined
+  }, [displayedStoreKey, branchSlug, floorMapOnlyLots, mapVendors])
   const defaultMobileStoreVendor = getFirstFloorVendorWithData(
     mapVendors,
     displayedFloor,
@@ -85,10 +114,31 @@ export function useStoreSelection({
   const isDefaultMobileStore = isMobile && !displayedStoreVendor && Boolean(defaultMobileStoreVendor)
   const isStoreInfoHidden = !isMobile && !storeInfoVendor
 
+  const storeInfoVendorKey = storeInfoVendor
+    ? `${storeInfoVendor.floor}:${storeInfoVendor.link}:${storeInfoVendor.name}`
+    : null
+
   useEffect(() => {
-    if (!storeInfoVendor) return
-    setPersistedStoreInfoVendor(storeInfoVendor)
-  }, [storeInfoVendor])
+    if (!storeInfoVendor) {
+      setPersistedStoreInfoVendor(undefined)
+      return
+    }
+
+    setPersistedStoreInfoVendor((current) => {
+      if (
+        current?.floor === storeInfoVendor.floor &&
+        current.link === storeInfoVendor.link &&
+        current.name === storeInfoVendor.name &&
+        current.lotNumber === storeInfoVendor.lotNumber &&
+        current.lotLabel === storeInfoVendor.lotLabel &&
+        current.openingHoursHtml === storeInfoVendor.openingHoursHtml
+      ) {
+        return current
+      }
+
+      return storeInfoVendor
+    })
+  }, [storeInfoVendorKey, storeInfoVendor])
 
   const selectStore = (lotNumber: number, floor: VendorMapFloorId) => {
     const vendor = getVendorByLot(mapVendors, floor, lotNumber)
@@ -96,13 +146,29 @@ export function useStoreSelection({
     setHoveredStore({ lot: lotNumber, floor })
   }
 
+  const selectMapOnlyLot = (mapKey: string, floor: VendorMapFloorId) => {
+    const vendor = getMapOnlyLotStoreInfoItem(floorMapOnlyLots, mapKey, floor, branchSlug)
+    if (!vendor?.name) return
+    setHoveredStore({ mapKey, floor })
+  }
+
   const hoverStore = (lotNumber: number, floor: VendorMapFloorId) => {
     if (isMobile) return
     selectStore(lotNumber, floor)
   }
 
+  const hoverMapOnlyLot = (mapKey: string, floor: VendorMapFloorId) => {
+    if (isMobile) return
+    selectMapOnlyLot(mapKey, floor)
+  }
+
   const selectMobileVendor = (lotNumber: number) => {
     selectStore(lotNumber, displayedFloor)
+    sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const selectMobileMapOnlyLot = (mapKey: string) => {
+    selectMapOnlyLot(mapKey, displayedFloor)
     sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
@@ -134,16 +200,26 @@ export function useStoreSelection({
 
   const selectedStore = hoveredStore ?? displayedStore
   const selectedLotNumber =
-    selectedStore?.floor === displayedFloor ? selectedStore.lot : undefined
+    selectedStore?.floor === displayedFloor && selectedStore.lot != null
+      ? selectedStore.lot
+      : undefined
+  const selectedMapKey =
+    selectedStore?.floor === displayedFloor && selectedStore.mapKey != null
+      ? selectedStore.mapKey
+      : undefined
 
   return {
     storeInfoVendor,
     persistedStoreInfoVendor,
     storeInfoClassName,
     selectedLotNumber,
+    selectedMapKey,
     selectStore,
     hoverStore,
+    selectMapOnlyLot,
+    hoverMapOnlyLot,
     selectMobileVendor,
+    selectMobileMapOnlyLot,
     clearStore,
   }
 }

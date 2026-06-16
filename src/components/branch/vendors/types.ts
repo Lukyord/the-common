@@ -30,6 +30,8 @@ export type VendorMapListItem = {
   name: string
   link: string
   tags: string[]
+  lotLabel?: string
+  isMapOnlyLot?: boolean
   media?: {
     src: string
     alt: string

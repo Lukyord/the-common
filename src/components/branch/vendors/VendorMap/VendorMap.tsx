@@ -66,19 +66,26 @@ function VendorMapContent({
 
   const floorVendors = getFloorVendors(branchSlug, displayedFloor)
   const floorAmenities = getFloorAmenities(branchSlug, displayedFloor)
+  const floorMapOnlyLots = getFloorMapOnlyLots(branchSlug, displayedFloor)
   const {
     storeInfoVendor,
     persistedStoreInfoVendor,
     storeInfoClassName,
     selectedLotNumber,
+    selectedMapKey,
     selectStore,
     hoverStore,
+    selectMapOnlyLot,
+    hoverMapOnlyLot,
     selectMobileVendor,
+    selectMobileMapOnlyLot,
     clearStore,
   } = useStoreSelection({
+    branchSlug,
     mapVendors,
     displayedFloor,
     floorVendors,
+    floorMapOnlyLots,
     isMobile,
     sectionRef,
   })
@@ -102,7 +109,6 @@ function VendorMapContent({
 
   const displayedFloorData = getVendorMapFloor(config, displayedFloor)
   const floorLots = getFloorLots(branchSlug, displayedFloor)
-  const floorMapOnlyLots = getFloorMapOnlyLots(branchSlug, displayedFloor)
   const displayedBranchFloor = getBranchFloorById(floors, displayedFloor)
 
   const handleStoreHover = (lotNumber: number, floor: VendorMapFloorId) => {
@@ -129,6 +135,16 @@ function VendorMapContent({
   const handleStoreSelect = (lotNumber: number, floor: VendorMapFloorId) => {
     clearAmenity()
     selectStore(lotNumber, floor)
+  }
+
+  const handleMapOnlyLotSelect = (mapKey: string, floor: VendorMapFloorId) => {
+    clearAmenity()
+    selectMapOnlyLot(mapKey, floor)
+  }
+
+  const handleMapOnlyLotHover = (mapKey: string, floor: VendorMapFloorId) => {
+    clearAmenity()
+    hoverMapOnlyLot(mapKey, floor)
   }
 
   const handleSectionLeave = () => {
@@ -168,7 +184,11 @@ function VendorMapContent({
         onFloorSelect={selectFloor}
         onStoreSelect={handleStoreSelect}
         onStoreHover={handleStoreHover}
+        onMapOnlyLotSelect={handleMapOnlyLotSelect}
+        onMapOnlyLotHover={handleMapOnlyLotHover}
         selectedLotNumber={selectedLotNumber}
+        selectedMapKey={selectedMapKey}
+        branchSlug={branchSlug}
         storeInfoVendor={isMobile && displayedAmenityId ? undefined : storeInfoVendor}
         persistedStoreInfoVendor={
           isMobile && displayedAmenityId ? undefined : persistedStoreInfoVendor

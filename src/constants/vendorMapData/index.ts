@@ -19,6 +19,8 @@ export type {
   FloorLots,
   FloorMapOnlyLots,
   LotDefinition,
+  MapOnlyLotDefinition,
+  MapOnlyLotStoreInfo,
   LotLayout,
   MapVendor,
   VendorMapBranchConfig,

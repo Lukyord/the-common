@@ -1,11 +1,12 @@
 import fs from 'fs'
 
-import { THONGLOR_VENDORS_CSV_PATH } from '../config/constants.js'
+import type { BranchVendorConfig } from '../config/branches.js'
 
-export type ThonglorVendorCsvRow = {
+export type VendorCsvRow = {
   rowNumber: number
   branchCode: string
   name: string
+  description: string | null
   mood: string | null
   category: string | null
   offers: string | null
@@ -14,6 +15,7 @@ export type ThonglorVendorCsvRow = {
   lot: string | null
   floorLabel: string | null
   links: string | null
+  note: string | null
 }
 
 const CSV_HEADERS = [
@@ -97,7 +99,7 @@ function isDataRow(record: Record<string, string>): boolean {
   return true
 }
 
-export function loadThonglorVendorRows(csvPath = THONGLOR_VENDORS_CSV_PATH): ThonglorVendorCsvRow[] {
+export function loadVendorRows(csvPath: string): VendorCsvRow[] {
   const content = fs.readFileSync(csvPath, 'utf8')
   const [headerRow, ...dataRows] = parseCsvRows(content)
 
@@ -112,13 +114,19 @@ export function loadThonglorVendorRows(csvPath = THONGLOR_VENDORS_CSV_PATH): Tho
       rowNumber: Number.parseInt(record['NO.'], 10),
       branchCode: record.BRANCH,
       name: record.NAME.replace(/\s+/g, ' ').trim(),
-      mood: record['IN THE MOOD FOR?'] || null,
-      category: record.CATEGORY || null,
-      offers: record['WHAT WE OFFER'] || null,
-      openingHours: record['OPENING HOURS'] || null,
-      tel: record.TEL || null,
-      lot: record['Lot No.'] || null,
-      floorLabel: record.FLOOR || null,
-      links: record.LINKS || null,
+      description: record.DESCRIPTION?.trim() || null,
+      mood: record['IN THE MOOD FOR?']?.trim() || null,
+      category: record.CATEGORY?.trim() || null,
+      offers: record['WHAT WE OFFER']?.trim() || null,
+      openingHours: record['OPENING HOURS']?.trim() || null,
+      tel: record.TEL?.trim() || null,
+      lot: record['Lot No.']?.trim() || null,
+      floorLabel: record.FLOOR?.trim() || null,
+      links: record.LINKS?.trim() || null,
+      note: record.NOTE?.trim() || null,
     }))
+}
+
+export function loadBranchVendorRows(config: BranchVendorConfig): VendorCsvRow[] {
+  return loadVendorRows(config.csvPath)
 }

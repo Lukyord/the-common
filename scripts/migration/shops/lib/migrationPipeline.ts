@@ -5,18 +5,22 @@ import { printDryRunBanner } from '../../lib/cli.js'
 import { writeJsonReport } from '../../lib/fs.js'
 import { getMigrationPayload, resolveBranchId } from '../../lib/getPayloadLocal.js'
 import { htmlToLexicalContent } from '../../lib/htmlToLexicalContent.js'
-import { IMPORT_PREVIEW_PATH } from '../config/constants.js'
-import { mapThonglorVendorRow } from './mapThonglorVendor.js'
-import { loadThonglorVendorRows } from './parseThonglorVendorsCsv.js'
+import type { BranchVendorConfig, ShopsMigrationOptions } from '../config/branches.js'
+import { mapVendorRow } from './mapVendorRow.js'
+import { loadBranchVendorRows } from './parseVendorCsv.js'
 
 type ImportPreviewRow = {
   rowNumber: number
   name: string
   slug: string
-  action: 'create' | 'skip-existing'
+  action: 'create' | 'skip-existing' | 'update-description'
   reason?: string
   warnings: string[]
   payload?: Record<string, unknown>
+}
+
+const CATEGORY_ALIASES: Record<string, string> = {
+  thai: 'thai cuisine',
 }
 
 function normalizeLookupText(value: string): string {
@@ -43,6 +47,17 @@ async function plainTextToLexical(text: string | null | undefined) {
   return htmlToLexicalContent(html)
 }
 
+async function plainTextToLexicalWithLineBreaks(text: string | null | undefined) {
+  if (!text?.trim()) return undefined
+
+  const html = `<p>${text
+    .split(/\r?\n/)
+    .map((line) => escapeHtml(line.trim()))
+    .join('<br>')}</p>`
+
+  return htmlToLexicalContent(html)
+}
+
 async function resolveCategoryId(
   payload: Awaited<ReturnType<typeof getMigrationPayload>>,
   categoryText: string | null,
@@ -51,7 +66,8 @@ async function resolveCategoryId(
   if (!categoryText) return null
 
   const key = normalizeLookupText(categoryText)
-  if (cache.has(key)) return cache.get(key) ?? null
+  const lookupKey = CATEGORY_ALIASES[key] ?? key
+  if (cache.has(lookupKey)) return cache.get(lookupKey) ?? null
 
   const { docs } = await payload.find({
     collection: 'vendor-categories',
@@ -60,8 +76,8 @@ async function resolveCategoryId(
     overrideAccess: true,
   })
 
-  const match = docs.find((doc) => normalizeLookupText(doc.text) === key)
-  cache.set(key, match?.id ?? null)
+  const match = docs.find((doc) => normalizeLookupText(doc.text) === lookupKey)
+  cache.set(lookupKey, match?.id ?? null)
   return match?.id ?? null
 }
 
@@ -92,17 +108,12 @@ function vendorLocationKey(vendor: Pick<Vendor, 'floor' | 'lotNumber'>): string 
   return `${vendor.floor}:${vendor.lotNumber}`
 }
 
-export async function runShopsMigrationPipeline(options: MigrationCliOptions) {
-  if (options.dryRun) printDryRunBanner()
-
-  const payload = await getMigrationPayload()
-  const branchId = await resolveBranchId(payload, 'thonglor')
-
-  if (!branchId) {
-    throw new Error('Thonglor branch not found in D1')
-  }
-
-  const existingVendors = await payload.find({
+async function deleteBranchVendors(
+  payload: Awaited<ReturnType<typeof getMigrationPayload>>,
+  branchId: number,
+  dryRun: boolean,
+) {
+  const { docs } = await payload.find({
     collection: 'vendors',
     where: { branch: { equals: branchId } },
     limit: 500,
@@ -110,6 +121,58 @@ export async function runShopsMigrationPipeline(options: MigrationCliOptions) {
     overrideAccess: true,
     depth: 0,
   })
+
+  for (const vendor of docs) {
+    if (dryRun) {
+      console.log(`Would delete: ${vendor.name} (${vendor.slug})`)
+      continue
+    }
+
+    await payload.delete({
+      collection: 'vendors',
+      id: vendor.id,
+      overrideAccess: true,
+    })
+    console.log(`Deleted: ${vendor.name} (${vendor.slug})`)
+  }
+
+  return docs.length
+}
+
+export async function runShopsMigrationPipeline(
+  options: MigrationCliOptions,
+  config: BranchVendorConfig,
+  shopsOptions: ShopsMigrationOptions,
+) {
+  if (options.dryRun) printDryRunBanner()
+
+  const payload = await getMigrationPayload()
+  const branchId = await resolveBranchId(payload, config.slug)
+
+  if (!branchId) {
+    throw new Error(`${config.slug} branch not found in D1`)
+  }
+
+  if (shopsOptions.replace) {
+    const deleted = await deleteBranchVendors(payload, branchId, options.dryRun)
+    console.log(
+      options.dryRun
+        ? `Would delete ${deleted} existing vendor(s) for ${config.slug}`
+        : `Deleted ${deleted} existing vendor(s) for ${config.slug}`,
+    )
+    console.log('')
+  }
+
+  const existingVendors = shopsOptions.replace
+    ? { docs: [] as Vendor[] }
+    : await payload.find({
+        collection: 'vendors',
+        where: { branch: { equals: branchId } },
+        limit: 500,
+        pagination: false,
+        overrideAccess: true,
+        depth: 0,
+      })
 
   const existingSlugs = new Set(
     (
@@ -129,7 +192,13 @@ export async function runShopsMigrationPipeline(options: MigrationCliOptions) {
       .filter((value): value is string => Boolean(value)),
   )
 
-  const rows = loadThonglorVendorRows()
+  const existingByLocation = new Map(
+    existingVendors.docs
+      .map((vendor) => [vendorLocationKey(vendor), vendor] as const)
+      .filter((entry): entry is [string, Vendor] => Boolean(entry[0])),
+  )
+
+  const rows = loadBranchVendorRows(config)
   const usedSlugs = new Set(existingSlugs)
   const categoryCache = new Map<string, number | null>()
   const lifestyleCache = new Map<string, number | null>()
@@ -137,10 +206,13 @@ export async function runShopsMigrationPipeline(options: MigrationCliOptions) {
 
   let created = 0
   let skippedExisting = 0
+  let updatedDescription = 0
 
   for (const row of rows) {
-    const mapped = mapThonglorVendorRow(row, usedSlugs)
+    const mapped = mapVendorRow(row, config, usedSlugs)
     const warnings = [...mapped.warnings]
+    const description = await plainTextToLexical(mapped.description)
+    const openingHours = await plainTextToLexicalWithLineBreaks(mapped.openingHours)
 
     const locationKey =
       mapped.floorId && mapped.lotNumber != null
@@ -148,15 +220,44 @@ export async function runShopsMigrationPipeline(options: MigrationCliOptions) {
         : null
 
     if (locationKey && existingLocations.has(locationKey)) {
-      skippedExisting += 1
-      preview.push({
-        rowNumber: mapped.rowNumber,
-        name: mapped.name,
-        slug: mapped.slug,
-        action: 'skip-existing',
-        reason: `Vendor already exists at floor ${mapped.floorId}, lot ${mapped.lotNumber}`,
-        warnings,
-      })
+      const existing = existingByLocation.get(locationKey)
+
+      if (existing && (description || openingHours)) {
+        updatedDescription += 1
+        preview.push({
+          rowNumber: mapped.rowNumber,
+          name: mapped.name,
+          slug: existing.slug,
+          action: 'update-description',
+          warnings,
+        })
+
+        const updateData: Record<string, unknown> = {}
+        if (description) updateData.description = description
+        if (openingHours) updateData.openingHours = openingHours
+
+        if (!options.dryRun) {
+          await payload.update({
+            collection: 'vendors',
+            id: existing.id,
+            data: updateData,
+            overrideAccess: true,
+          })
+          console.log(`Updated vendor: ${mapped.name} (${existing.slug})`)
+        } else {
+          console.log(`Would update vendor: ${mapped.name} (${existing.slug})`)
+        }
+      } else {
+        skippedExisting += 1
+        preview.push({
+          rowNumber: mapped.rowNumber,
+          name: mapped.name,
+          slug: mapped.slug,
+          action: 'skip-existing',
+          reason: `Vendor already exists at floor ${mapped.floorId}, lot ${mapped.lotNumber}`,
+          warnings,
+        })
+      }
       continue
     }
 
@@ -170,7 +271,6 @@ export async function runShopsMigrationPipeline(options: MigrationCliOptions) {
       warnings.push(`Lifestyle not found: ${mapped.mood}`)
     }
 
-    const openingHours = await plainTextToLexical(mapped.openingHours)
     const socialEntries = Object.entries(mapped.social).filter(([, value]) => Boolean(value))
 
     const data: Record<string, unknown> = {
@@ -179,6 +279,7 @@ export async function runShopsMigrationPipeline(options: MigrationCliOptions) {
       branch: branchId,
       ...(mapped.floorId ? { floor: mapped.floorId } : {}),
       ...(mapped.lotNumber != null ? { lotNumber: mapped.lotNumber } : {}),
+      ...(description ? { description } : {}),
       ...(categoryId ? { category: [categoryId] } : {}),
       ...(lifestyleId ? { lifestyles: [lifestyleId] } : {}),
       ...(mapped.tagIds.length ? { tags: mapped.tagIds } : {}),
@@ -215,20 +316,24 @@ export async function runShopsMigrationPipeline(options: MigrationCliOptions) {
     }
   }
 
-  writeJsonReport(IMPORT_PREVIEW_PATH, {
+  writeJsonReport(config.importPreviewPath, {
     generatedAt: new Date().toISOString(),
+    branch: config.slug,
     dryRun: options.dryRun,
     totals: {
       sourceRows: rows.length,
       create: created,
       skipExisting: skippedExisting,
+      updateDescription: updatedDescription,
     },
     rows: preview,
   })
 
   console.log('')
+  console.log(`Branch:           ${config.slug}`)
   console.log(`Source rows:      ${rows.length}`)
   console.log(`Create:           ${created}`)
+  console.log(`Update desc:      ${updatedDescription}`)
   console.log(`Skip (existing):  ${skippedExisting}`)
-  console.log(`Preview report:   ${IMPORT_PREVIEW_PATH}`)
+  console.log(`Preview report:   ${config.importPreviewPath}`)
 }

@@ -45,7 +45,11 @@ type VendorMapPlanProps = {
   onFloorSelect: (floorId: VendorMapFloorId) => void
   onStoreSelect: (lotNumber: number, floor: VendorMapFloorId) => void
   onStoreHover: (lotNumber: number, floor: VendorMapFloorId) => void
+  onMapOnlyLotSelect: (mapKey: string, floor: VendorMapFloorId) => void
+  onMapOnlyLotHover: (mapKey: string, floor: VendorMapFloorId) => void
   selectedLotNumber?: number
+  selectedMapKey?: string
+  branchSlug: string
   storeInfoVendor?: VendorMapListItem
   persistedStoreInfoVendor?: VendorMapListItem
   storeInfoClassName: string
@@ -76,7 +80,11 @@ export default function VendorMapPlan({
   onFloorSelect,
   onStoreSelect,
   onStoreHover,
+  onMapOnlyLotSelect,
+  onMapOnlyLotHover,
   selectedLotNumber,
+  selectedMapKey,
+  branchSlug,
   storeInfoVendor,
   persistedStoreInfoVendor,
   storeInfoClassName,
@@ -116,17 +124,33 @@ export default function VendorMapPlan({
           })}
 
         {floorMapOnlyLots &&
-          Object.entries(floorMapOnlyLots).map(([mapKey, lot]) => (
-            <MapLot
-              key={mapKey}
-              mapKey={mapKey}
-              interactive={false}
-              label={mapKey.charAt(0).toUpperCase() + mapKey.slice(1)}
-              defaultColor={defaultColor}
-              activeColor={activeColor}
-              {...lot}
-            />
-          ))}
+          Object.entries(floorMapOnlyLots).map(([mapKey, lot]) => {
+            const { storeInfo, ...lotShape } = lot
+            const isInteractive = Boolean(storeInfo?.name)
+            const spaceRentalLink = `/${branchSlug}/space-rental`
+
+            return (
+              <MapLot
+                key={mapKey}
+                mapKey={mapKey}
+                interactive={isInteractive}
+                label={storeInfo?.name ?? mapKey.charAt(0).toUpperCase() + mapKey.slice(1)}
+                href={isInteractive && !isMobile ? spaceRentalLink : undefined}
+                isActive={selectedMapKey === mapKey}
+                defaultColor={defaultColor}
+                activeColor={activeColor}
+                onClick={
+                  isInteractive && isMobile
+                    ? () => onMapOnlyLotSelect(mapKey, displayedFloor)
+                    : undefined
+                }
+                onMouseEnter={
+                  isInteractive ? () => onMapOnlyLotHover(mapKey, displayedFloor) : undefined
+                }
+                {...lotShape}
+              />
+            )
+          })}
 
         {displayedAmenity ? (
           <div className={amenityPinsClassName}>

@@ -1,0 +1,2385 @@
+{
+  "generatedAt": "2026-06-16T06:55:47.220Z",
+  "dryRun": false,
+  "entries": {
+    "cover:thonglor:thecommons-kitchen-bar-thonglor-3": {
+      "legacyPath": "cover:thonglor:thecommons-kitchen-bar-thonglor-3",
+      "mediaId": 613,
+      "alt": "theCOMMONS Kitchen & Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-kitchen & bar.webp",
+      "contentHash": "a9fe3ee3d240f4834471829165b0398c13635525e34cbd0e88ecb5ec97ab529e",
+      "status": "uploaded"
+    },
+    "shops/zCxwSUsDOeczaBRWC8xEhH6oDSfinRbBPy3NQYfQ74hGYGHlKtj6BlLr4Fq8duoZ.jpg": {
+      "legacyPath": "shops/zCxwSUsDOeczaBRWC8xEhH6oDSfinRbBPy3NQYfQ74hGYGHlKtj6BlLr4Fq8duoZ.jpg",
+      "mediaId": 650,
+      "alt": "theCOMMONS Kitchen & Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__zCxwSUsDOeczaBRWC8xEhH6oDSfinRbBPy3NQYfQ74hGYGHlKtj6BlLr4Fq8duoZ.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "0e33da29e46286d2a3b6a20db1623062871643d552c858b9092f35aca38ec90e",
+      "status": "uploaded"
+    },
+    "shops/t2IkWvBZ8NOIO4fKHsFHbQBCmwhwlAFQH6hl3N4VQzPis4JRVyP2NTtvG1dUZ441.jpg": {
+      "legacyPath": "shops/t2IkWvBZ8NOIO4fKHsFHbQBCmwhwlAFQH6hl3N4VQzPis4JRVyP2NTtvG1dUZ441.jpg",
+      "alt": "theCOMMONS Kitchen & Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__t2IkWvBZ8NOIO4fKHsFHbQBCmwhwlAFQH6hl3N4VQzPis4JRVyP2NTtvG1dUZ441.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "5ba82d198f254fb4815f965b01d44d0cb34681bdce30fe11976f883732c6568b",
+      "status": "color-only"
+    },
+    "shops/NuYklmiC5KJt5OU3T754iT5YOdoAg5v3a8wCCDedEwsGLD5NH0X8UOTybxDBEbVu.jpg": {
+      "legacyPath": "shops/NuYklmiC5KJt5OU3T754iT5YOdoAg5v3a8wCCDedEwsGLD5NH0X8UOTybxDBEbVu.jpg",
+      "alt": "theCOMMONS Kitchen & Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__NuYklmiC5KJt5OU3T754iT5YOdoAg5v3a8wCCDedEwsGLD5NH0X8UOTybxDBEbVu.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "8346bb0e5c8b171dab14d8bb8101c856145d164399ab0cd83bac6a1dc40aaeb1",
+      "status": "color-only"
+    },
+    "shops/yRjs5VI7b58ZgNd8JwdENpKmtm0zXMyORuGgvHzabf8aepipgFuhRqHEAADiXYfJ.jpg": {
+      "legacyPath": "shops/yRjs5VI7b58ZgNd8JwdENpKmtm0zXMyORuGgvHzabf8aepipgFuhRqHEAADiXYfJ.jpg",
+      "mediaId": 653,
+      "alt": "theCOMMONS Kitchen & Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__yRjs5VI7b58ZgNd8JwdENpKmtm0zXMyORuGgvHzabf8aepipgFuhRqHEAADiXYfJ.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "5ba82d198f254fb4815f965b01d44d0cb34681bdce30fe11976f883732c6568b",
+      "status": "uploaded"
+    },
+    "shops/3ckEZxN6YfCgzfOWg8SpV51tAuDMA9tIjIfQif7OjV8Q3Z72exCXGwaUWYsS4upD.jpg": {
+      "legacyPath": "shops/3ckEZxN6YfCgzfOWg8SpV51tAuDMA9tIjIfQif7OjV8Q3Z72exCXGwaUWYsS4upD.jpg",
+      "mediaId": 654,
+      "alt": "theCOMMONS Kitchen & Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__3ckEZxN6YfCgzfOWg8SpV51tAuDMA9tIjIfQif7OjV8Q3Z72exCXGwaUWYsS4upD.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "8346bb0e5c8b171dab14d8bb8101c856145d164399ab0cd83bac6a1dc40aaeb1",
+      "status": "uploaded"
+    },
+    "cover:thonglor:tbc-thonglor-3": {
+      "legacyPath": "cover:thonglor:tbc-thonglor-3",
+      "mediaId": 619,
+      "alt": "TBC",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-tbc.webp",
+      "contentHash": "14d11987969c0e56edeed8cffcedc5f3c6e1297ed2eb0c2b770d01b82395cbad",
+      "status": "uploaded"
+    },
+    "shops/qL8QLenYvWnmS5dZjy4qDaLrmnybijhcvWccdEE6KumW0CNv2DZ2Q8JDvT9snILV.jpg": {
+      "legacyPath": "shops/qL8QLenYvWnmS5dZjy4qDaLrmnybijhcvWccdEE6KumW0CNv2DZ2Q8JDvT9snILV.jpg",
+      "mediaId": 671,
+      "alt": "TBC",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__qL8QLenYvWnmS5dZjy4qDaLrmnybijhcvWccdEE6KumW0CNv2DZ2Q8JDvT9snILV.webp",
+      "dominantColor": "#202010",
+      "contentHash": "912a0d62f7180f23f40c8a9691f0f2b9d783a0df95bdfa80e33b576a50cd8561",
+      "status": "uploaded"
+    },
+    "shops/ziBJpQezxLccCuYeNLVXwhzxAGLKhvAmB4RUkVDsYVAp4thNUCr9OPO81bFSCuvk.jpg": {
+      "legacyPath": "shops/ziBJpQezxLccCuYeNLVXwhzxAGLKhvAmB4RUkVDsYVAp4thNUCr9OPO81bFSCuvk.jpg",
+      "mediaId": 672,
+      "alt": "TBC",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__ziBJpQezxLccCuYeNLVXwhzxAGLKhvAmB4RUkVDsYVAp4thNUCr9OPO81bFSCuvk.webp",
+      "dominantColor": "#202020",
+      "contentHash": "9e3cae7bd0c0da414dc5ec52f96ef612c2bc5fd089ba8851a6f51d73dfd89dbc",
+      "status": "uploaded"
+    },
+    "shops/U6k3LsxDaVlkudJBls9EEtKFNrgGjZqAzvFhnwS9oqvmhlRaMOFsWIuNxJ8t0VSP.jpg": {
+      "legacyPath": "shops/U6k3LsxDaVlkudJBls9EEtKFNrgGjZqAzvFhnwS9oqvmhlRaMOFsWIuNxJ8t0VSP.jpg",
+      "mediaId": 673,
+      "alt": "TBC",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__U6k3LsxDaVlkudJBls9EEtKFNrgGjZqAzvFhnwS9oqvmhlRaMOFsWIuNxJ8t0VSP.webp",
+      "dominantColor": "#100000",
+      "contentHash": "50bd42880ee4c2a7be3cdd4864436818fc27ccfc06ed971401b1906696efbc9f",
+      "status": "uploaded"
+    },
+    "cover:thonglor:gyuto-kome-thonglor-3": {
+      "legacyPath": "cover:thonglor:gyuto-kome-thonglor-3",
+      "mediaId": 623,
+      "alt": "Gyuto Kome",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-gyuto kome.webp",
+      "contentHash": "e7381a39d53560d72cc9bf14fe25f2dcf8423f3d8c2eba89a9042ca3ea11ab3d",
+      "status": "uploaded"
+    },
+    "shops/dlpui77p6Pj4kixKjHBA1duNJyfK2gq0dpufh3eEdlLRKSdS1up2qotZNMhMAfgQ_image.jpg": {
+      "legacyPath": "shops/dlpui77p6Pj4kixKjHBA1duNJyfK2gq0dpufh3eEdlLRKSdS1up2qotZNMhMAfgQ_image.jpg",
+      "mediaId": 746,
+      "alt": "Gyuto Kome",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__dlpui77p6Pj4kixKjHBA1duNJyfK2gq0dpufh3eEdlLRKSdS1up2qotZNMhMAfgQ_image.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "525e2c945bac5aa6a8849dc9b765eb8f6e964cebeadd266fccc2b95e3c9302bc",
+      "status": "uploaded"
+    },
+    "cover:thonglor:adam-n-eve-thonglor-3": {
+      "legacyPath": "cover:thonglor:adam-n-eve-thonglor-3",
+      "mediaId": 625,
+      "alt": "Adam n Eve",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-adam n eve.webp",
+      "contentHash": "b5aa94d6237eb6b29bc718291ca4feee45b223eb4769338ffb777df4204cfc4d",
+      "status": "uploaded"
+    },
+    "shops/VJqU5XU9vmT3E3Dr4F2V36SqfQOPgNN7d5EdalecE9NjnjQTnhG2ds3q0cbmCoTQ.jpg": {
+      "legacyPath": "shops/VJqU5XU9vmT3E3Dr4F2V36SqfQOPgNN7d5EdalecE9NjnjQTnhG2ds3q0cbmCoTQ.jpg",
+      "mediaId": 799,
+      "alt": "Adam n Eve",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__VJqU5XU9vmT3E3Dr4F2V36SqfQOPgNN7d5EdalecE9NjnjQTnhG2ds3q0cbmCoTQ.webp",
+      "dominantColor": "#E0D060",
+      "contentHash": "8d9351712e92e1a1d7f8ac33e435e78553c38677fa19cef5b6c5a364cc5dfbdb",
+      "status": "uploaded"
+    },
+    "shops/luGwWBGJL0KboNLbc5oETU70FzDkokNw0R2a7j7Us8jKXNsYIfIMvgZpo6RJw3YZ.jpg": {
+      "legacyPath": "shops/luGwWBGJL0KboNLbc5oETU70FzDkokNw0R2a7j7Us8jKXNsYIfIMvgZpo6RJw3YZ.jpg",
+      "mediaId": 800,
+      "alt": "Adam n Eve",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__luGwWBGJL0KboNLbc5oETU70FzDkokNw0R2a7j7Us8jKXNsYIfIMvgZpo6RJw3YZ.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "1b4f1ad91abffa1c4837249a6348893a4c7bc7f2f2e56939182a2baee75e92fd",
+      "status": "uploaded"
+    },
+    "shops/buEvgxk4iv0N15C3Z1Ak9NXl8fcs4DXXOggicXsvZ2SVHhcZs4r2IEVuwia2Nppm.jpg": {
+      "legacyPath": "shops/buEvgxk4iv0N15C3Z1Ak9NXl8fcs4DXXOggicXsvZ2SVHhcZs4r2IEVuwia2Nppm.jpg",
+      "mediaId": 801,
+      "alt": "Adam n Eve",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__buEvgxk4iv0N15C3Z1Ak9NXl8fcs4DXXOggicXsvZ2SVHhcZs4r2IEVuwia2Nppm.webp",
+      "dominantColor": "#D0D0D0",
+      "contentHash": "7097c8c7d5305a801c62182f4f9e813299b9268ff8c34ed6031da9b7a2f77f00",
+      "status": "uploaded"
+    },
+    "shops/ui3YCfgkcBcz1s36w0rY99HUyLCRY2wPK5LhdaE4Sf7b5zLPOfz9RrPSe63aw3e8.jpg": {
+      "legacyPath": "shops/ui3YCfgkcBcz1s36w0rY99HUyLCRY2wPK5LhdaE4Sf7b5zLPOfz9RrPSe63aw3e8.jpg",
+      "mediaId": 802,
+      "alt": "Adam n Eve",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__ui3YCfgkcBcz1s36w0rY99HUyLCRY2wPK5LhdaE4Sf7b5zLPOfz9RrPSe63aw3e8.webp",
+      "dominantColor": "#D0D0E0",
+      "contentHash": "fb6e9298e0845a4f1fee23b04f6dae07ffb98b2855ff61432ce921258d74cd80",
+      "status": "uploaded"
+    },
+    "shops/AV0lgBSn1W1URPOBZDiPxYKdgVvi7heGXN9CUpSEOWKlSovw1n0W5MYsus49jslK.jpg": {
+      "legacyPath": "shops/AV0lgBSn1W1URPOBZDiPxYKdgVvi7heGXN9CUpSEOWKlSovw1n0W5MYsus49jslK.jpg",
+      "mediaId": 803,
+      "alt": "Adam n Eve",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__AV0lgBSn1W1URPOBZDiPxYKdgVvi7heGXN9CUpSEOWKlSovw1n0W5MYsus49jslK.webp",
+      "dominantColor": "#D0C0C0",
+      "contentHash": "0946de357c14379a600836aaa7364a0796e79645d28bbba40bdc7c08432c3661",
+      "status": "uploaded"
+    },
+    "cover:thonglor:thecommons-kitchen-bar-thonglor-2": {
+      "legacyPath": "cover:thonglor:thecommons-kitchen-bar-thonglor-2",
+      "mediaId": 631,
+      "alt": "theCOMMONS Kitchen & Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-kitchen & bar.webp",
+      "contentHash": "a9fe3ee3d240f4834471829165b0398c13635525e34cbd0e88ecb5ec97ab529e",
+      "status": "uploaded"
+    },
+    "cover:thonglor:tbc-thonglor-2": {
+      "legacyPath": "cover:thonglor:tbc-thonglor-2",
+      "mediaId": 637,
+      "alt": "TBC",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-tbc.webp",
+      "contentHash": "14d11987969c0e56edeed8cffcedc5f3c6e1297ed2eb0c2b770d01b82395cbad",
+      "status": "uploaded"
+    },
+    "cover:thonglor:gyuto-kome-thonglor-2": {
+      "legacyPath": "cover:thonglor:gyuto-kome-thonglor-2",
+      "mediaId": 641,
+      "alt": "Gyuto Kome",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-gyuto kome.webp",
+      "contentHash": "e7381a39d53560d72cc9bf14fe25f2dcf8423f3d8c2eba89a9042ca3ea11ab3d",
+      "status": "uploaded"
+    },
+    "cover:thonglor:adam-n-eve-thonglor-2": {
+      "legacyPath": "cover:thonglor:adam-n-eve-thonglor-2",
+      "mediaId": 643,
+      "alt": "Adam n Eve",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-adam n eve.webp",
+      "contentHash": "b5aa94d6237eb6b29bc718291ca4feee45b223eb4769338ffb777df4204cfc4d",
+      "status": "uploaded"
+    },
+    "cover:thonglor:thecommons-kitchen-bar-thonglor": {
+      "legacyPath": "cover:thonglor:thecommons-kitchen-bar-thonglor",
+      "mediaId": 649,
+      "alt": "theCOMMONS Kitchen & Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-kitchen & bar.webp",
+      "contentHash": "a9fe3ee3d240f4834471829165b0398c13635525e34cbd0e88ecb5ec97ab529e",
+      "status": "uploaded"
+    },
+    "cover:thonglor:vivi-tuscan-kitchen-thonglor": {
+      "legacyPath": "cover:thonglor:vivi-tuscan-kitchen-thonglor",
+      "mediaId": 655,
+      "alt": "VIVI Tuscan Kitchen",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-vivi tuscan kitchen.webp",
+      "contentHash": "77655389c5ecacbc03e28067b66bb5c81ebf80cdcafa0ea38b8de936eb2b0128",
+      "status": "uploaded"
+    },
+    "shops/tPIlHfn0eCQgOKYElM7NgFijFUg7z9en22o89cQxvPZQ7R64RMB4bcsmFFZ1U9Lc.jpg": {
+      "legacyPath": "shops/tPIlHfn0eCQgOKYElM7NgFijFUg7z9en22o89cQxvPZQ7R64RMB4bcsmFFZ1U9Lc.jpg",
+      "mediaId": 656,
+      "alt": "VIVI Tuscan Kitchen",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__tPIlHfn0eCQgOKYElM7NgFijFUg7z9en22o89cQxvPZQ7R64RMB4bcsmFFZ1U9Lc.webp",
+      "dominantColor": "#E0F0F0",
+      "contentHash": "45418942ef91373057b67d5e5dde7a8414d209808091d06949430aa30d8f26c7",
+      "status": "uploaded"
+    },
+    "shops/RkFDNCXsKbpfVKa8Ej6ugJ1KTdD2XzZvLmIyljZv2Wnaf8A4mkcYBJw854Z15ovl.jpg": {
+      "legacyPath": "shops/RkFDNCXsKbpfVKa8Ej6ugJ1KTdD2XzZvLmIyljZv2Wnaf8A4mkcYBJw854Z15ovl.jpg",
+      "mediaId": 657,
+      "alt": "VIVI Tuscan Kitchen",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__RkFDNCXsKbpfVKa8Ej6ugJ1KTdD2XzZvLmIyljZv2Wnaf8A4mkcYBJw854Z15ovl.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "f288ccb9b139d976a955014e31f21c38d1d9621a83c3124ebeb9f2039971d1e8",
+      "status": "uploaded"
+    },
+    "shops/7jOccilIY0A3cma12Pzn15gPGYomCm7vaRaJHMJfHwnYPQFFZBnT2jOh2lt8OVpu.jpg": {
+      "legacyPath": "shops/7jOccilIY0A3cma12Pzn15gPGYomCm7vaRaJHMJfHwnYPQFFZBnT2jOh2lt8OVpu.jpg",
+      "mediaId": 658,
+      "alt": "VIVI Tuscan Kitchen",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__7jOccilIY0A3cma12Pzn15gPGYomCm7vaRaJHMJfHwnYPQFFZBnT2jOh2lt8OVpu.webp",
+      "dominantColor": "#605050",
+      "contentHash": "5abf0719bfd24c0dfa02d96ffc9a103f596d9873f6cf7d632b20df56c52bf9d8",
+      "status": "uploaded"
+    },
+    "shops/iJVy43M2PJUbfDdYT6mQzE6R856o1sHA6mdcThoWrWueKDxpE4XIf5APW1dBgNH9.jpg": {
+      "legacyPath": "shops/iJVy43M2PJUbfDdYT6mQzE6R856o1sHA6mdcThoWrWueKDxpE4XIf5APW1dBgNH9.jpg",
+      "mediaId": 659,
+      "alt": "VIVI Tuscan Kitchen",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__iJVy43M2PJUbfDdYT6mQzE6R856o1sHA6mdcThoWrWueKDxpE4XIf5APW1dBgNH9.webp",
+      "dominantColor": "#605050",
+      "contentHash": "340680b971ea7fc82a3bdde0aac3e88f367dba6dd7b4942b2ce4a990851c4008",
+      "status": "uploaded"
+    },
+    "cover:thonglor:the-lobster-lab-thonglor": {
+      "legacyPath": "cover:thonglor:the-lobster-lab-thonglor",
+      "mediaId": 660,
+      "alt": "The Lobster Lab",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-the lobster lab.webp",
+      "contentHash": "fdba9c3d54761f56bd25535fc5e7e4d54845f82cfa232577c1789eac4771ccdf",
+      "status": "uploaded"
+    },
+    "shops/o1BBhrzJLZayeVsXi8SawFUJefBFjOe9oQeD3YJNvdpXZypqtQ94bWdIjC5FUiOI.jpg": {
+      "legacyPath": "shops/o1BBhrzJLZayeVsXi8SawFUJefBFjOe9oQeD3YJNvdpXZypqtQ94bWdIjC5FUiOI.jpg",
+      "mediaId": 661,
+      "alt": "The Lobster Lab",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__o1BBhrzJLZayeVsXi8SawFUJefBFjOe9oQeD3YJNvdpXZypqtQ94bWdIjC5FUiOI.webp",
+      "dominantColor": "#E0F0F0",
+      "contentHash": "6dda6f0e6ec6830fd1dd926c512dd72b1ca4fef4e56853e5c70561189d1d68e0",
+      "status": "uploaded"
+    },
+    "shops/fQEuh82dTQZagXlL2jVw7NSC1rqs518jIXjZfxpnT8nKUGzd3eiFz5vOudZreJVa.jpg": {
+      "legacyPath": "shops/fQEuh82dTQZagXlL2jVw7NSC1rqs518jIXjZfxpnT8nKUGzd3eiFz5vOudZreJVa.jpg",
+      "mediaId": 662,
+      "alt": "The Lobster Lab",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__fQEuh82dTQZagXlL2jVw7NSC1rqs518jIXjZfxpnT8nKUGzd3eiFz5vOudZreJVa.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "58926b72b7653c7708393877e85e8c3797c7b5d596bf5330a6b9247fb6fcb17c",
+      "status": "uploaded"
+    },
+    "shops/33rmetB3XwNozKhPdbr5sGrgYfXAvTWuv9Skj6vwmGO0G8L229ufbHHiA2qPdfMB.jpg": {
+      "legacyPath": "shops/33rmetB3XwNozKhPdbr5sGrgYfXAvTWuv9Skj6vwmGO0G8L229ufbHHiA2qPdfMB.jpg",
+      "mediaId": 663,
+      "alt": "The Lobster Lab",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__33rmetB3XwNozKhPdbr5sGrgYfXAvTWuv9Skj6vwmGO0G8L229ufbHHiA2qPdfMB.webp",
+      "dominantColor": "#E0F0F0",
+      "contentHash": "17733710339e0fd72e854bcb3291a68fbb1f4bcbbaa8228c783e858eab3b7b87",
+      "status": "uploaded"
+    },
+    "cover:thonglor:1923-thonglor": {
+      "legacyPath": "cover:thonglor:1923-thonglor",
+      "mediaId": 664,
+      "alt": "1923",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-1923.webp",
+      "contentHash": "6557eb61b4a5075d69fc1e630b258f52aecd97b15755b664e2054003aadd82c1",
+      "status": "uploaded"
+    },
+    "shops/R94P87m9DzYTyqZgxFNY3dUttpN0jl4C5AS8UiJyzi5mW9ft3oXpjNLgjGPCfEyj.jpg": {
+      "legacyPath": "shops/R94P87m9DzYTyqZgxFNY3dUttpN0jl4C5AS8UiJyzi5mW9ft3oXpjNLgjGPCfEyj.jpg",
+      "mediaId": 665,
+      "alt": "1923",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__R94P87m9DzYTyqZgxFNY3dUttpN0jl4C5AS8UiJyzi5mW9ft3oXpjNLgjGPCfEyj.webp",
+      "dominantColor": "#000000",
+      "contentHash": "b1c25a98dd1b7ce7bb55f4e348638f7c459ef27758f8fa2cafc37be2015256ba",
+      "status": "uploaded"
+    },
+    "shops/PRQ1i71OzdZzfRPSxtrInkHA5WADzgwum5zKbisqPaB5LgW3vuSIcIXXSBA4jWDE.jpg": {
+      "legacyPath": "shops/PRQ1i71OzdZzfRPSxtrInkHA5WADzgwum5zKbisqPaB5LgW3vuSIcIXXSBA4jWDE.jpg",
+      "mediaId": 666,
+      "alt": "1923",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__PRQ1i71OzdZzfRPSxtrInkHA5WADzgwum5zKbisqPaB5LgW3vuSIcIXXSBA4jWDE.webp",
+      "dominantColor": "#000000",
+      "contentHash": "3e61f71773dcb0a626c940b6c11acf72c9bfeb0311987f61a7257e6d06f60bf0",
+      "status": "uploaded"
+    },
+    "shops/RxZAXy4YUUGUT0HCxKCW6RYqCSdFnbdWUYBAGAzVHhtsilSYqdB4qGK3U3z8Sw3d.jpg": {
+      "legacyPath": "shops/RxZAXy4YUUGUT0HCxKCW6RYqCSdFnbdWUYBAGAzVHhtsilSYqdB4qGK3U3z8Sw3d.jpg",
+      "mediaId": 667,
+      "alt": "1923",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__RxZAXy4YUUGUT0HCxKCW6RYqCSdFnbdWUYBAGAzVHhtsilSYqdB4qGK3U3z8Sw3d.webp",
+      "dominantColor": "#100000",
+      "contentHash": "5523ad83cd6a00620a90bb74d31aacae1379c7b27ce1f0d0a3a893f763a9ec26",
+      "status": "uploaded"
+    },
+    "shops/0BbL5S8MOmmC1zao65LmSo6SKaxm3KHFAcsd8azzsHuJEqiePGSAqCtKfycv0dMx.jpg": {
+      "legacyPath": "shops/0BbL5S8MOmmC1zao65LmSo6SKaxm3KHFAcsd8azzsHuJEqiePGSAqCtKfycv0dMx.jpg",
+      "mediaId": 668,
+      "alt": "1923",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__0BbL5S8MOmmC1zao65LmSo6SKaxm3KHFAcsd8azzsHuJEqiePGSAqCtKfycv0dMx.webp",
+      "dominantColor": "#100000",
+      "contentHash": "c750d426bbad359934237a847879aae671e9726bdf9cad480d8a41f307f28996",
+      "status": "uploaded"
+    },
+    "shops/5sQUERaoJpslEs0BodbMy4lM8TjsTQLLVDkWn48WpmSlgjVJ2zQnJbUKaJaqfhaK.jpg": {
+      "legacyPath": "shops/5sQUERaoJpslEs0BodbMy4lM8TjsTQLLVDkWn48WpmSlgjVJ2zQnJbUKaJaqfhaK.jpg",
+      "mediaId": 669,
+      "alt": "1923",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__5sQUERaoJpslEs0BodbMy4lM8TjsTQLLVDkWn48WpmSlgjVJ2zQnJbUKaJaqfhaK.webp",
+      "dominantColor": "#100000",
+      "contentHash": "49b7cedaa7714931b8b936ca98b73c1900366dc4063c62324f5c065a4cae6a44",
+      "status": "uploaded"
+    },
+    "cover:thonglor:tbc-thonglor": {
+      "legacyPath": "cover:thonglor:tbc-thonglor",
+      "mediaId": 670,
+      "alt": "TBC",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-tbc.webp",
+      "contentHash": "14d11987969c0e56edeed8cffcedc5f3c6e1297ed2eb0c2b770d01b82395cbad",
+      "status": "uploaded"
+    },
+    "cover:thonglor:the-barrel-thonglor": {
+      "legacyPath": "cover:thonglor:the-barrel-thonglor",
+      "mediaId": 674,
+      "alt": "The Barrel",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-the barrel.webp",
+      "contentHash": "fc31cde63cf22f4f80cb9d52e24eb9a82a2522871e452d83e7a6b54d1368bc79",
+      "status": "uploaded"
+    },
+    "shops/aQAI0g5DENAiAN24WWWCF1IPrXB2V48YNgl4aUu5pNqUZ6f8c04tsAOeiFlYsUff.jpg": {
+      "legacyPath": "shops/aQAI0g5DENAiAN24WWWCF1IPrXB2V48YNgl4aUu5pNqUZ6f8c04tsAOeiFlYsUff.jpg",
+      "mediaId": 675,
+      "alt": "The Barrel",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__aQAI0g5DENAiAN24WWWCF1IPrXB2V48YNgl4aUu5pNqUZ6f8c04tsAOeiFlYsUff.webp",
+      "dominantColor": "#B0A090",
+      "contentHash": "12a94c800f9e689adaa81e7df555d4130d7926ff14c069072c5dbc33003c2eb5",
+      "status": "uploaded"
+    },
+    "shops/SaGOZHs1MOGb8pV2ZHV3qDA7uDeOS8qndTiIB2RqdY09jp67nVc9uXbqmR2TvMr2.jpg": {
+      "legacyPath": "shops/SaGOZHs1MOGb8pV2ZHV3qDA7uDeOS8qndTiIB2RqdY09jp67nVc9uXbqmR2TvMr2.jpg",
+      "mediaId": 676,
+      "alt": "The Barrel",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__SaGOZHs1MOGb8pV2ZHV3qDA7uDeOS8qndTiIB2RqdY09jp67nVc9uXbqmR2TvMr2.webp",
+      "dominantColor": "#E0D0C0",
+      "contentHash": "80516a4abc36429b74e8421587f8006aaf29ec0a10387e6a27f6db5e54691f95",
+      "status": "uploaded"
+    },
+    "cover:thonglor:the-shoyu-stand-thonglor": {
+      "legacyPath": "cover:thonglor:the-shoyu-stand-thonglor",
+      "mediaId": 677,
+      "alt": "THE SHOYU STAND",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-the shoyu stand.webp",
+      "contentHash": "56ab78101b45e1fb042cae019bbb006a806701afe6742862ea82469a791bdfe5",
+      "status": "uploaded"
+    },
+    "shops/aFtaOLy0yMiqb9lwNNvePeN9X5JMgvGRNzczWOsEcsS95HwcdVx2kpU9Fe4zPnZz.jpg": {
+      "legacyPath": "shops/aFtaOLy0yMiqb9lwNNvePeN9X5JMgvGRNzczWOsEcsS95HwcdVx2kpU9Fe4zPnZz.jpg",
+      "mediaId": 678,
+      "alt": "THE SHOYU STAND",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__aFtaOLy0yMiqb9lwNNvePeN9X5JMgvGRNzczWOsEcsS95HwcdVx2kpU9Fe4zPnZz.webp",
+      "dominantColor": "#000000",
+      "contentHash": "3e23f94a6b4831757ad1cb65c0c19be5ffff45d7d101261b514f29eda250da73",
+      "status": "uploaded"
+    },
+    "shops/RkXYOh6ZgKjf5zOMNE7e0UhZ2peGVgx3GURbEPbXnltxCmYY9dZt2PQRG0thuuZS.jpg": {
+      "legacyPath": "shops/RkXYOh6ZgKjf5zOMNE7e0UhZ2peGVgx3GURbEPbXnltxCmYY9dZt2PQRG0thuuZS.jpg",
+      "mediaId": 679,
+      "alt": "THE SHOYU STAND",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__RkXYOh6ZgKjf5zOMNE7e0UhZ2peGVgx3GURbEPbXnltxCmYY9dZt2PQRG0thuuZS.webp",
+      "dominantColor": "#302010",
+      "contentHash": "005db0da5deee2c69c78f272728fa957dc13db4ce1cc08e2aca18c763cfcc8d8",
+      "status": "uploaded"
+    },
+    "cover:thonglor:sourced-thonglor": {
+      "legacyPath": "cover:thonglor:sourced-thonglor",
+      "mediaId": 680,
+      "alt": "Sourced",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-sourced.webp",
+      "contentHash": "c6aa58d9b4c1b3549bb17940bb35a06d7cee7036af95066eedd161e1cd313914",
+      "status": "uploaded"
+    },
+    "shops/lFzVJtoMlbGkIytawBFnTz7s1RN99yGBoMgny0WcNA9uGE6fUkOgtvTdg6Ed3zEz.jpg": {
+      "legacyPath": "shops/lFzVJtoMlbGkIytawBFnTz7s1RN99yGBoMgny0WcNA9uGE6fUkOgtvTdg6Ed3zEz.jpg",
+      "mediaId": 681,
+      "alt": "Sourced",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__lFzVJtoMlbGkIytawBFnTz7s1RN99yGBoMgny0WcNA9uGE6fUkOgtvTdg6Ed3zEz.webp",
+      "dominantColor": "#000000",
+      "contentHash": "3e5acb16928ffc790f416efa0e56a28234d0e74f7ec6be2cf3ca101a52606d67",
+      "status": "uploaded"
+    },
+    "shops/pg3aHnO86OvgEw3ziCR6PTJpPdiW8MBvTJjLmdcJslo6hUb2hKr1oDUNFTYJ0Jsf.jpg": {
+      "legacyPath": "shops/pg3aHnO86OvgEw3ziCR6PTJpPdiW8MBvTJjLmdcJslo6hUb2hKr1oDUNFTYJ0Jsf.jpg",
+      "mediaId": 682,
+      "alt": "Sourced",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__pg3aHnO86OvgEw3ziCR6PTJpPdiW8MBvTJjLmdcJslo6hUb2hKr1oDUNFTYJ0Jsf.webp",
+      "dominantColor": "#503020",
+      "contentHash": "68760b7580f7faf40d63fe4799ffe827513455ebfabcffd08cf00895149694d6",
+      "status": "uploaded"
+    },
+    "shops/is51LZHWauc8F6DB33hH9htBw94fY6jkfJMgQBC4djOuSXcY7TwDrJn0H4msEA03.jpg": {
+      "legacyPath": "shops/is51LZHWauc8F6DB33hH9htBw94fY6jkfJMgQBC4djOuSXcY7TwDrJn0H4msEA03.jpg",
+      "mediaId": 683,
+      "alt": "Sourced",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__is51LZHWauc8F6DB33hH9htBw94fY6jkfJMgQBC4djOuSXcY7TwDrJn0H4msEA03.webp",
+      "dominantColor": "#B0B0B0",
+      "contentHash": "e7a20e16e7c12e31a27e3f58aa1238d177a933b9238d390edc7f8e7cbca8f925",
+      "status": "uploaded"
+    },
+    "shops/oI4aqKg9ARReCG4plGape8erwHLkIEFmeqDezcfBuDPg780wpxr71uEHBam7ICpl.jpg": {
+      "legacyPath": "shops/oI4aqKg9ARReCG4plGape8erwHLkIEFmeqDezcfBuDPg780wpxr71uEHBam7ICpl.jpg",
+      "mediaId": 684,
+      "alt": "Sourced",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__oI4aqKg9ARReCG4plGape8erwHLkIEFmeqDezcfBuDPg780wpxr71uEHBam7ICpl.webp",
+      "dominantColor": "#603010",
+      "contentHash": "8f9e8562e6c3427a7c0fb518b03fd11563b097fba3af4fd5926735b5f490c2c1",
+      "status": "uploaded"
+    },
+    "shops/6VR0BkM3TngX7tpHiBVBLWEMyYpgcjFmUa0CTg4T2HKY1AdvRriSUPTpOjynpDns.jpg": {
+      "legacyPath": "shops/6VR0BkM3TngX7tpHiBVBLWEMyYpgcjFmUa0CTg4T2HKY1AdvRriSUPTpOjynpDns.jpg",
+      "mediaId": 685,
+      "alt": "Sourced",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__6VR0BkM3TngX7tpHiBVBLWEMyYpgcjFmUa0CTg4T2HKY1AdvRriSUPTpOjynpDns.webp",
+      "dominantColor": "#403020",
+      "contentHash": "f7929a3bf35819df4c421c4faf3a1b2931274c6a06507c8ba1956704387b60b8",
+      "status": "uploaded"
+    },
+    "cover:thonglor:7suns-thonglor": {
+      "legacyPath": "cover:thonglor:7suns-thonglor",
+      "mediaId": 686,
+      "alt": "7SUNS",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-7suns.webp",
+      "contentHash": "bd61b4b6ef06aa6c41cb40a0fe76165437a30b608d982cf76469cf9608c56dfe",
+      "status": "uploaded"
+    },
+    "shops/oliui9guYxGDFdc9OXZObHctTrij5bk8w0LZalAHXurzvx2P2xwzE2GQK9XhgdGU.jpg": {
+      "legacyPath": "shops/oliui9guYxGDFdc9OXZObHctTrij5bk8w0LZalAHXurzvx2P2xwzE2GQK9XhgdGU.jpg",
+      "mediaId": 687,
+      "alt": "7SUNS",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__oliui9guYxGDFdc9OXZObHctTrij5bk8w0LZalAHXurzvx2P2xwzE2GQK9XhgdGU.webp",
+      "dominantColor": "#80A030",
+      "contentHash": "937ccb1c249b7c31673d60ca46276ebcf4dbd53d994583662aceb9758c584a06",
+      "status": "uploaded"
+    },
+    "shops/tFeKghoNuZmFLj6j0GkupEXyZr43p5QM3HTCjDXfQ6www3jkooALLGmApyga5SLJ.jpg": {
+      "legacyPath": "shops/tFeKghoNuZmFLj6j0GkupEXyZr43p5QM3HTCjDXfQ6www3jkooALLGmApyga5SLJ.jpg",
+      "mediaId": 688,
+      "alt": "7SUNS",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__tFeKghoNuZmFLj6j0GkupEXyZr43p5QM3HTCjDXfQ6www3jkooALLGmApyga5SLJ.webp",
+      "dominantColor": "#000000",
+      "contentHash": "dd0d78c8b61b7cb772579fb62f27a111eefb713cdeff3de43e38d62cafde7a30",
+      "status": "uploaded"
+    },
+    "shops/3e1lIwtMmEEoyqHVRkYXLGZhcoonz3eoyak0bMivStXUnH0OznRRFOv2tEZxKj9T.jpg": {
+      "legacyPath": "shops/3e1lIwtMmEEoyqHVRkYXLGZhcoonz3eoyak0bMivStXUnH0OznRRFOv2tEZxKj9T.jpg",
+      "mediaId": 689,
+      "alt": "7SUNS",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__3e1lIwtMmEEoyqHVRkYXLGZhcoonz3eoyak0bMivStXUnH0OznRRFOv2tEZxKj9T.webp",
+      "dominantColor": "#303030",
+      "contentHash": "54d3781acde8e9753f96dd40daeb155ad9435825d5ade628362ae63e99e9ea0e",
+      "status": "uploaded"
+    },
+    "shops/rjqCtQfn0gejrjNqpWOxj7oykjzEQiY8Sm2BnfNEfiv9szQqFY26Ts3riJiZgjK8.jpg": {
+      "legacyPath": "shops/rjqCtQfn0gejrjNqpWOxj7oykjzEQiY8Sm2BnfNEfiv9szQqFY26Ts3riJiZgjK8.jpg",
+      "mediaId": 690,
+      "alt": "7SUNS",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__rjqCtQfn0gejrjNqpWOxj7oykjzEQiY8Sm2BnfNEfiv9szQqFY26Ts3riJiZgjK8.webp",
+      "dominantColor": "#303020",
+      "contentHash": "f7a72fd89a9587855942f61caee9bda574cdae2d1392a2ccaea665adbae6dde1",
+      "status": "uploaded"
+    },
+    "shops/4rDwE8rbnRYOO5Hg0HApEzi2X6GdWphFjLwNFKTTYRvUziBFgCfI80tb1C3SdECe.jpg": {
+      "legacyPath": "shops/4rDwE8rbnRYOO5Hg0HApEzi2X6GdWphFjLwNFKTTYRvUziBFgCfI80tb1C3SdECe.jpg",
+      "mediaId": 691,
+      "alt": "7SUNS",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__4rDwE8rbnRYOO5Hg0HApEzi2X6GdWphFjLwNFKTTYRvUziBFgCfI80tb1C3SdECe.webp",
+      "dominantColor": "#000000",
+      "contentHash": "eb173477f9198771e38ff536e8ffbf6656db74f0fa8625528a84a52f0534bbf5",
+      "status": "uploaded"
+    },
+    "cover:thonglor:roots-thonglor": {
+      "legacyPath": "cover:thonglor:roots-thonglor",
+      "mediaId": 692,
+      "alt": "Roots",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-roots.webp",
+      "contentHash": "8d5775a8f53bd4819167ff2d01632ead94b455973e6505e7a151e36cddd06d20",
+      "status": "uploaded"
+    },
+    "shops/VYXX36DZbjbJoaS8b1iyl3fVHqNSvV2Y7d4KQptC7C4O2sXSPwqcAWA1HCsUzfeO.jpg": {
+      "legacyPath": "shops/VYXX36DZbjbJoaS8b1iyl3fVHqNSvV2Y7d4KQptC7C4O2sXSPwqcAWA1HCsUzfeO.jpg",
+      "mediaId": 693,
+      "alt": "Roots",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__VYXX36DZbjbJoaS8b1iyl3fVHqNSvV2Y7d4KQptC7C4O2sXSPwqcAWA1HCsUzfeO.webp",
+      "dominantColor": "#100000",
+      "contentHash": "43551e2131e99c7a3c19e006d0c9e27971134b0716014fba8ff489ef5891663c",
+      "status": "uploaded"
+    },
+    "shops/72wpfQU7AeExcOV6MhL7UPMvKbuMiCRnpTXPaqtRQvKffQYclciGOmGscPcBAgY5.jpg": {
+      "legacyPath": "shops/72wpfQU7AeExcOV6MhL7UPMvKbuMiCRnpTXPaqtRQvKffQYclciGOmGscPcBAgY5.jpg",
+      "mediaId": 694,
+      "alt": "Roots",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__72wpfQU7AeExcOV6MhL7UPMvKbuMiCRnpTXPaqtRQvKffQYclciGOmGscPcBAgY5.webp",
+      "dominantColor": "#101010",
+      "contentHash": "fbbb430f701fb347c1de55e0f0b3833e4e93105d0668dca4e8e52129de62029d",
+      "status": "uploaded"
+    },
+    "shops/hM1enXH3FgrmawgxvVZVmJtvHU0MD1coJoXY9bnkfsT6I1fuZKEJkh3I38yQEhTI.jpg": {
+      "legacyPath": "shops/hM1enXH3FgrmawgxvVZVmJtvHU0MD1coJoXY9bnkfsT6I1fuZKEJkh3I38yQEhTI.jpg",
+      "mediaId": 695,
+      "alt": "Roots",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__hM1enXH3FgrmawgxvVZVmJtvHU0MD1coJoXY9bnkfsT6I1fuZKEJkh3I38yQEhTI.webp",
+      "dominantColor": "#000000",
+      "contentHash": "33fada989bf854b4b89540a3e597ec73d6a888eddb16e467bcfcf221d6418bed",
+      "status": "uploaded"
+    },
+    "cover:thonglor:roast-thonglor": {
+      "legacyPath": "cover:thonglor:roast-thonglor",
+      "mediaId": 696,
+      "alt": "ROAST",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-roast.webp",
+      "contentHash": "fd4d60f3a151a150ec2d65acf4e349e0b65fb7f6b8dd1a37b0ff2b355c271d84",
+      "status": "uploaded"
+    },
+    "shops/JnlDNIIpSyWSYMtiL10CPmtyYsJOUSdIC3ZFT0srjuPZtv5z5sU9dB0klEnR9yKs.jpg": {
+      "legacyPath": "shops/JnlDNIIpSyWSYMtiL10CPmtyYsJOUSdIC3ZFT0srjuPZtv5z5sU9dB0klEnR9yKs.jpg",
+      "mediaId": 697,
+      "alt": "ROAST",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__JnlDNIIpSyWSYMtiL10CPmtyYsJOUSdIC3ZFT0srjuPZtv5z5sU9dB0klEnR9yKs.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "6c309ee166b544ff494b60c5634ae709a8147014fba5bb34e09cd8cba69610b8",
+      "status": "uploaded"
+    },
+    "shops/TmwDRqXjL63ig9nkwLE4may21Bly2WzQ5lPpt80PyVxgB5fNzJO76glCfUT8kE0j.jpg": {
+      "legacyPath": "shops/TmwDRqXjL63ig9nkwLE4may21Bly2WzQ5lPpt80PyVxgB5fNzJO76glCfUT8kE0j.jpg",
+      "mediaId": 698,
+      "alt": "ROAST",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__TmwDRqXjL63ig9nkwLE4may21Bly2WzQ5lPpt80PyVxgB5fNzJO76glCfUT8kE0j.webp",
+      "dominantColor": "#804020",
+      "contentHash": "25f633954ed6a9df373b49de389ad11806c067f1593a94794cc23d1db4311bcc",
+      "status": "uploaded"
+    },
+    "shops/W7wpEgJmepRpKklPuVXwhWPl1VXOH4HrXKEI24g34bJ20hnrHXEL3CX3WVglwR9v.jpg": {
+      "legacyPath": "shops/W7wpEgJmepRpKklPuVXwhWPl1VXOH4HrXKEI24g34bJ20hnrHXEL3CX3WVglwR9v.jpg",
+      "mediaId": 699,
+      "alt": "ROAST",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__W7wpEgJmepRpKklPuVXwhWPl1VXOH4HrXKEI24g34bJ20hnrHXEL3CX3WVglwR9v.webp",
+      "dominantColor": "#804020",
+      "contentHash": "69c7b3a84a0b7b40179bc4e467e35eead3f01228065d82480de972df4b29bf90",
+      "status": "uploaded"
+    },
+    "shops/2j5RyOoxIapBnzKhoBXpnXN9Tg6V8DPT3hwHoMbSWeDp2rTVqOFHvrDGIzcgkD2g.jpg": {
+      "legacyPath": "shops/2j5RyOoxIapBnzKhoBXpnXN9Tg6V8DPT3hwHoMbSWeDp2rTVqOFHvrDGIzcgkD2g.jpg",
+      "mediaId": 700,
+      "alt": "ROAST",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__2j5RyOoxIapBnzKhoBXpnXN9Tg6V8DPT3hwHoMbSWeDp2rTVqOFHvrDGIzcgkD2g.webp",
+      "dominantColor": "#D0D0D0",
+      "contentHash": "ce6023ed0b8a509015f158b14ac00b607dc4b990b32c71786cb6ac5ae89ea23e",
+      "status": "uploaded"
+    },
+    "shops/lVEY1s27qd3rPy8nDoBYgzVhZmPKLoIexwHiOti5InMu83B3QV3V94v6WUW0nyp3.jpg": {
+      "legacyPath": "shops/lVEY1s27qd3rPy8nDoBYgzVhZmPKLoIexwHiOti5InMu83B3QV3V94v6WUW0nyp3.jpg",
+      "mediaId": 701,
+      "alt": "ROAST",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__lVEY1s27qd3rPy8nDoBYgzVhZmPKLoIexwHiOti5InMu83B3QV3V94v6WUW0nyp3.webp",
+      "dominantColor": "#D0D0D0",
+      "contentHash": "7aa97bc769dd22e44d8c954a41ba695e4d332444474123af943286298a11787f",
+      "status": "uploaded"
+    },
+    "cover:thonglor:posh-polish-parlor-thonglor": {
+      "legacyPath": "cover:thonglor:posh-polish-parlor-thonglor",
+      "mediaId": 702,
+      "alt": "Posh Polish Parlor",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-posh polish parlor.webp",
+      "contentHash": "bb90741d3bad73eda26921ebb20ebc4223f38eba4aa64475fca3ea5343b6be70",
+      "status": "uploaded"
+    },
+    "shops/PwoQRjQlqj3de5wqQSWmgGp2SyYUCmQTZxmGilgy988qjLjbOQV8tFDSL9QUwRWv.jpg": {
+      "legacyPath": "shops/PwoQRjQlqj3de5wqQSWmgGp2SyYUCmQTZxmGilgy988qjLjbOQV8tFDSL9QUwRWv.jpg",
+      "mediaId": 703,
+      "alt": "Posh Polish Parlor",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__PwoQRjQlqj3de5wqQSWmgGp2SyYUCmQTZxmGilgy988qjLjbOQV8tFDSL9QUwRWv.webp",
+      "dominantColor": "#605040",
+      "contentHash": "c37f5611eeb2bb46b7f40a8e6b52a6136c96f5157c45285e98677d7874517108",
+      "status": "uploaded"
+    },
+    "shops/OI4vleREKHtS081xpN43jzo1ptf0iGv0IoLzcQAwyOFIJGI9YD1Zzrz5O4CZpEV6.jpg": {
+      "legacyPath": "shops/OI4vleREKHtS081xpN43jzo1ptf0iGv0IoLzcQAwyOFIJGI9YD1Zzrz5O4CZpEV6.jpg",
+      "mediaId": 704,
+      "alt": "Posh Polish Parlor",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__OI4vleREKHtS081xpN43jzo1ptf0iGv0IoLzcQAwyOFIJGI9YD1Zzrz5O4CZpEV6.webp",
+      "dominantColor": "#703020",
+      "contentHash": "345e93f4407b2c8d0039df48477a54ca057c068585960563c5b2ca2c66a27b98",
+      "status": "uploaded"
+    },
+    "shops/BMDQmqierHo50PQ2N8FvzmXLqYaanLTsAjjBvs3QoINTKKaKztROsUCNfSkVaLxw.jpg": {
+      "legacyPath": "shops/BMDQmqierHo50PQ2N8FvzmXLqYaanLTsAjjBvs3QoINTKKaKztROsUCNfSkVaLxw.jpg",
+      "mediaId": 705,
+      "alt": "Posh Polish Parlor",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__BMDQmqierHo50PQ2N8FvzmXLqYaanLTsAjjBvs3QoINTKKaKztROsUCNfSkVaLxw.webp",
+      "dominantColor": "#F0B090",
+      "contentHash": "71e08df216f7329b0db5ea49d3785da341efe154bf6b600e6c44c8a85ab5d402",
+      "status": "uploaded"
+    },
+    "cover:thonglor:poppa-thonglor": {
+      "legacyPath": "cover:thonglor:poppa-thonglor",
+      "mediaId": 706,
+      "alt": "POPPA",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-poppa.webp",
+      "contentHash": "1dcf90d2bea15dd1b9a45ae9d2c49674a576c9647c0631fd9c3b424ee5362429",
+      "status": "uploaded"
+    },
+    "shops/aucJjPUFWMC0LtrHMDXVTgKSQIyToVgzS0OXgESyFnnw9iHmaDD6BPPnMyuAgBwR.jpg": {
+      "legacyPath": "shops/aucJjPUFWMC0LtrHMDXVTgKSQIyToVgzS0OXgESyFnnw9iHmaDD6BPPnMyuAgBwR.jpg",
+      "mediaId": 707,
+      "alt": "POPPA",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__aucJjPUFWMC0LtrHMDXVTgKSQIyToVgzS0OXgESyFnnw9iHmaDD6BPPnMyuAgBwR.webp",
+      "dominantColor": "#A05040",
+      "contentHash": "0cd054cc2f8f3ee99c5390bee97b98ddbfd94f19d34edcf40930059358bd76d1",
+      "status": "uploaded"
+    },
+    "shops/KfoOiToBb5nciw9iOErnjdCrPr1IIHn9qqrHTTYvZeODK398W2LbKk9osNHrB8Wg.jpg": {
+      "legacyPath": "shops/KfoOiToBb5nciw9iOErnjdCrPr1IIHn9qqrHTTYvZeODK398W2LbKk9osNHrB8Wg.jpg",
+      "mediaId": 708,
+      "alt": "POPPA",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__KfoOiToBb5nciw9iOErnjdCrPr1IIHn9qqrHTTYvZeODK398W2LbKk9osNHrB8Wg.webp",
+      "dominantColor": "#803020",
+      "contentHash": "ca18b224a6f35ad58a90113e64833b8fee870c7eae6bcd3ad124f2e996100c55",
+      "status": "uploaded"
+    },
+    "shops/BuNeF7MBIuc3ibmiqhAhPXrvTdJcYn8VRS789oV0ngmNZpN8BisuOgkhDYbn3mp3.jpg": {
+      "legacyPath": "shops/BuNeF7MBIuc3ibmiqhAhPXrvTdJcYn8VRS789oV0ngmNZpN8BisuOgkhDYbn3mp3.jpg",
+      "mediaId": 709,
+      "alt": "POPPA",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__BuNeF7MBIuc3ibmiqhAhPXrvTdJcYn8VRS789oV0ngmNZpN8BisuOgkhDYbn3mp3.webp",
+      "dominantColor": "#F0C070",
+      "contentHash": "dae199a3aedc23c07541846dd55981acd3d6f7a4df3c981389a7f1ad9754cc01",
+      "status": "uploaded"
+    },
+    "shops/dAPVXanvZE4gEnTZdMqMAxg6pVUsNbVEsdexUFcMkLRPjoZzCaZIaaVc9en5T4ta.jpg": {
+      "legacyPath": "shops/dAPVXanvZE4gEnTZdMqMAxg6pVUsNbVEsdexUFcMkLRPjoZzCaZIaaVc9en5T4ta.jpg",
+      "mediaId": 710,
+      "alt": "POPPA",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__dAPVXanvZE4gEnTZdMqMAxg6pVUsNbVEsdexUFcMkLRPjoZzCaZIaaVc9en5T4ta.webp",
+      "dominantColor": "#403020",
+      "contentHash": "37d194f473a5e8420f84e07ec173acbeb946fab9a102fd54e697dde63135adb4",
+      "status": "uploaded"
+    },
+    "cover:thonglor:pash-thonglor": {
+      "legacyPath": "cover:thonglor:pash-thonglor",
+      "mediaId": 711,
+      "alt": "PASH",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-pash.webp",
+      "contentHash": "1d4903cea3073360e43bd665a9f4e70cae4e21dd9a36996a5b1f47f3cc2149fc",
+      "status": "uploaded"
+    },
+    "shops/aEdngfAgUqAd8ONmIDOqHVuK0poupo89Qosd7rNUFXJJqEXxkRrJwxGxRaoPUzrO.jpg": {
+      "legacyPath": "shops/aEdngfAgUqAd8ONmIDOqHVuK0poupo89Qosd7rNUFXJJqEXxkRrJwxGxRaoPUzrO.jpg",
+      "mediaId": 712,
+      "alt": "PASH",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__aEdngfAgUqAd8ONmIDOqHVuK0poupo89Qosd7rNUFXJJqEXxkRrJwxGxRaoPUzrO.webp",
+      "dominantColor": "#C0B0B0",
+      "contentHash": "3214d6945d08b9d8c2e496d3a085c7f4f0c86d3410e02fa7f5803af8c5d3c3d5",
+      "status": "uploaded"
+    },
+    "shops/SERlKIgeGKSQqKISibvmA9AEmDFDIZurqKFlSuukO5EPvPocOiZc649SqdNivxPT.jpg": {
+      "legacyPath": "shops/SERlKIgeGKSQqKISibvmA9AEmDFDIZurqKFlSuukO5EPvPocOiZc649SqdNivxPT.jpg",
+      "mediaId": 713,
+      "alt": "PASH",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__SERlKIgeGKSQqKISibvmA9AEmDFDIZurqKFlSuukO5EPvPocOiZc649SqdNivxPT.webp",
+      "dominantColor": "#B0A080",
+      "contentHash": "afc4f82999015021fb68f2f445b28a87438571961e4a22e8ec07480d1bc6c8be",
+      "status": "uploaded"
+    },
+    "shops/NOtdmXdEW3W2aqvZQVFIirVGoRuIK6kWOvulBlNwXi0wqt0DsbyrS1rUK8RCaJUX.jpg": {
+      "legacyPath": "shops/NOtdmXdEW3W2aqvZQVFIirVGoRuIK6kWOvulBlNwXi0wqt0DsbyrS1rUK8RCaJUX.jpg",
+      "mediaId": 714,
+      "alt": "PASH",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__NOtdmXdEW3W2aqvZQVFIirVGoRuIK6kWOvulBlNwXi0wqt0DsbyrS1rUK8RCaJUX.webp",
+      "dominantColor": "#C0B0A0",
+      "contentHash": "293d935a8bd83c8292edc64565f76a35c9a58e84f6ff9b335a505ad0af0d941c",
+      "status": "uploaded"
+    },
+    "shops/Jce2ZAMhPC9vaf5ns5CHgLOK8GkotduOpT5pqL7z2zyVKr0VxuJPPgEN6IAYrCOQ.jpg": {
+      "legacyPath": "shops/Jce2ZAMhPC9vaf5ns5CHgLOK8GkotduOpT5pqL7z2zyVKr0VxuJPPgEN6IAYrCOQ.jpg",
+      "mediaId": 715,
+      "alt": "PASH",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__Jce2ZAMhPC9vaf5ns5CHgLOK8GkotduOpT5pqL7z2zyVKr0VxuJPPgEN6IAYrCOQ.webp",
+      "dominantColor": "#C0C0C0",
+      "contentHash": "f31fd4d741f2d7d203232174d2cdf8521700447960e6f8931f0550cde6b294ff",
+      "status": "uploaded"
+    },
+    "cover:thonglor:moodactiv-thonglor": {
+      "legacyPath": "cover:thonglor:moodactiv-thonglor",
+      "mediaId": 716,
+      "alt": "MoodActiv",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-moodactiv.webp",
+      "contentHash": "0d7969bc8f60272ae7536ec542c088cf880f918c9d02f95dceab1471ccfc3388",
+      "status": "uploaded"
+    },
+    "shops/4ncyPVHtPABJlIdxULIzlIeZZ19kFu8d9JsVxfiKjsfVB1DuhA9D3EO68ZZOYHv5_image.jpg": {
+      "legacyPath": "shops/4ncyPVHtPABJlIdxULIzlIeZZ19kFu8d9JsVxfiKjsfVB1DuhA9D3EO68ZZOYHv5_image.jpg",
+      "mediaId": 717,
+      "alt": "MoodActiv",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__4ncyPVHtPABJlIdxULIzlIeZZ19kFu8d9JsVxfiKjsfVB1DuhA9D3EO68ZZOYHv5_image.webp",
+      "dominantColor": "#101010",
+      "contentHash": "e7e865851b33fe3cef204a605557388cc2a6bb9cbc0e040a664e5108f7ce0161",
+      "status": "uploaded"
+    },
+    "cover:thonglor:moofoo-thonglor": {
+      "legacyPath": "cover:thonglor:moofoo-thonglor",
+      "mediaId": 718,
+      "alt": "MooFoo",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-moofoo.webp",
+      "contentHash": "f3e1c6fc5b9ee67e22724fb3b7e8b249579df263e62a39334562ff1932a6d4d4",
+      "status": "uploaded"
+    },
+    "shops/s5G21T3ZFPcDCPQAbdnrSv1970ssKjG4eLNmZ05UhIjmh2fTodm1v0PO2P32NfcV.jpg": {
+      "legacyPath": "shops/s5G21T3ZFPcDCPQAbdnrSv1970ssKjG4eLNmZ05UhIjmh2fTodm1v0PO2P32NfcV.jpg",
+      "mediaId": 719,
+      "alt": "MooFoo",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__s5G21T3ZFPcDCPQAbdnrSv1970ssKjG4eLNmZ05UhIjmh2fTodm1v0PO2P32NfcV.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "20dcf1106b5dac5ff405c6e70f2f72c368c24a6fd467b1c941784953f4b174a3",
+      "status": "uploaded"
+    },
+    "shops/rkZGMsmvbSr18vqYaEyqSfBJeCbGqgA6epAILJBF9tjMmNKoMChI07W2rRjnFXdu.jpg": {
+      "legacyPath": "shops/rkZGMsmvbSr18vqYaEyqSfBJeCbGqgA6epAILJBF9tjMmNKoMChI07W2rRjnFXdu.jpg",
+      "mediaId": 720,
+      "alt": "MooFoo",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__rkZGMsmvbSr18vqYaEyqSfBJeCbGqgA6epAILJBF9tjMmNKoMChI07W2rRjnFXdu.webp",
+      "dominantColor": "#300000",
+      "contentHash": "48b43b93553411abdc91bf1bb35acd4bc82602c062a8fefae9d4cd4bd00465de",
+      "status": "uploaded"
+    },
+    "shops/g6BKl1yHTGLJytTPtzPHVO3KprwEvUnYVkbsXJLPN8rdLx0O3uCdYiVOYnENUpIt.jpg": {
+      "legacyPath": "shops/g6BKl1yHTGLJytTPtzPHVO3KprwEvUnYVkbsXJLPN8rdLx0O3uCdYiVOYnENUpIt.jpg",
+      "mediaId": 721,
+      "alt": "MooFoo",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__g6BKl1yHTGLJytTPtzPHVO3KprwEvUnYVkbsXJLPN8rdLx0O3uCdYiVOYnENUpIt.webp",
+      "dominantColor": "#400000",
+      "contentHash": "16fb2b30f4ba01b753597fc17dd1bb1e574d504ddb951da01ecaf7065f6fa0d7",
+      "status": "uploaded"
+    },
+    "shops/t54uXtoxuU4VePPCJcTVrVYls1ya78MXXS5x2xgkNMjEyuWevZtNuTJZ0tZDHmK4.jpg": {
+      "legacyPath": "shops/t54uXtoxuU4VePPCJcTVrVYls1ya78MXXS5x2xgkNMjEyuWevZtNuTJZ0tZDHmK4.jpg",
+      "mediaId": 722,
+      "alt": "MooFoo",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__t54uXtoxuU4VePPCJcTVrVYls1ya78MXXS5x2xgkNMjEyuWevZtNuTJZ0tZDHmK4.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "1988a4534a32c11ab55c69f2088637d2b068de769a325b13afe25503376c6817",
+      "status": "uploaded"
+    },
+    "shops/7E5OeEgdPaFkuFGNdb6FrtmjFRavhWxBS5NTgaViDgZTaMtsHGRZvwMGLODhrwUc.jpg": {
+      "legacyPath": "shops/7E5OeEgdPaFkuFGNdb6FrtmjFRavhWxBS5NTgaViDgZTaMtsHGRZvwMGLODhrwUc.jpg",
+      "mediaId": 723,
+      "alt": "MooFoo",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__7E5OeEgdPaFkuFGNdb6FrtmjFRavhWxBS5NTgaViDgZTaMtsHGRZvwMGLODhrwUc.webp",
+      "dominantColor": "#400000",
+      "contentHash": "c7c2206eb35ea3f6c8fdbaf7dcfdc74a823bc3063aa4a336bfcb4d25ef9e73d8",
+      "status": "uploaded"
+    },
+    "cover:thonglor:monty-s-thonglor": {
+      "legacyPath": "cover:thonglor:monty-s-thonglor",
+      "mediaId": 724,
+      "alt": "MONTY'S",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-montys.webp",
+      "contentHash": "b7d55bc7ffced6a9a510fe61381486e6a13105cd7b428935864a9b148fd1c417",
+      "status": "uploaded"
+    },
+    "shops/g7t6IXQVxcSGjSJrCh2aDXtAChSnSVImgrESynilCfGOoDOTyBR0iM73znEecOpP.jpg": {
+      "legacyPath": "shops/g7t6IXQVxcSGjSJrCh2aDXtAChSnSVImgrESynilCfGOoDOTyBR0iM73znEecOpP.jpg",
+      "mediaId": 725,
+      "alt": "MONTY'S",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__g7t6IXQVxcSGjSJrCh2aDXtAChSnSVImgrESynilCfGOoDOTyBR0iM73znEecOpP.webp",
+      "dominantColor": "#502000",
+      "contentHash": "752a781ddc1afffd0a9163fa426a9d4a3333463e798cd4024bf037071a8bbf56",
+      "status": "uploaded"
+    },
+    "shops/eovGTr1EyfXyCIgrKHXuDgaCyQTlbCSl25Cv3O9Vd78cEnbPAx21Y6KgycVy1O6i.jpg": {
+      "legacyPath": "shops/eovGTr1EyfXyCIgrKHXuDgaCyQTlbCSl25Cv3O9Vd78cEnbPAx21Y6KgycVy1O6i.jpg",
+      "mediaId": 726,
+      "alt": "MONTY'S",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__eovGTr1EyfXyCIgrKHXuDgaCyQTlbCSl25Cv3O9Vd78cEnbPAx21Y6KgycVy1O6i.webp",
+      "dominantColor": "#B0B0B0",
+      "contentHash": "294d902c6d99a16a8baec4e85e786a66ed246d2264cc087a1af850e1a00a3143",
+      "status": "uploaded"
+    },
+    "shops/stU3INBFaFvsyWT01v7zIQTLTBn4HGLq1TMdUGjpECnRdZzX1ScGd421FOpw4pia.jpg": {
+      "legacyPath": "shops/stU3INBFaFvsyWT01v7zIQTLTBn4HGLq1TMdUGjpECnRdZzX1ScGd421FOpw4pia.jpg",
+      "mediaId": 727,
+      "alt": "MONTY'S",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__stU3INBFaFvsyWT01v7zIQTLTBn4HGLq1TMdUGjpECnRdZzX1ScGd421FOpw4pia.webp",
+      "dominantColor": "#C09060",
+      "contentHash": "5a1ac56dbe25d1905875942afadfa42b26e244d1ee499432f0a90bc4965484e7",
+      "status": "uploaded"
+    },
+    "shops/PjaQCuIUVb8LYVWNFL4d11OBGWqmYmTLNlzaQw0usoaxZiujhXULOR8tUklBTUip.jpg": {
+      "legacyPath": "shops/PjaQCuIUVb8LYVWNFL4d11OBGWqmYmTLNlzaQw0usoaxZiujhXULOR8tUklBTUip.jpg",
+      "mediaId": 728,
+      "alt": "MONTY'S",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__PjaQCuIUVb8LYVWNFL4d11OBGWqmYmTLNlzaQw0usoaxZiujhXULOR8tUklBTUip.webp",
+      "dominantColor": "#807070",
+      "contentHash": "bb5b6555fe473c3e41a3f293d3f6745a5738f55ac463852e699c6f61b24cb5ef",
+      "status": "uploaded"
+    },
+    "cover:thonglor:little-pea-thonglor": {
+      "legacyPath": "cover:thonglor:little-pea-thonglor",
+      "mediaId": 729,
+      "alt": "Little Pea",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-little pea.webp",
+      "contentHash": "9c4cd7af4a3ac27cb59040cda163fc894723d258863b59a5e8dda8b86cc6219a",
+      "status": "uploaded"
+    },
+    "shops/3lJ31ZIzvdXCo52EI0ozymTp4JfwnHNkA6AurEb3nhCkpIZsPLsjjADIyZHOVZIs.jpg": {
+      "legacyPath": "shops/3lJ31ZIzvdXCo52EI0ozymTp4JfwnHNkA6AurEb3nhCkpIZsPLsjjADIyZHOVZIs.jpg",
+      "mediaId": 730,
+      "alt": "Little Pea",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__3lJ31ZIzvdXCo52EI0ozymTp4JfwnHNkA6AurEb3nhCkpIZsPLsjjADIyZHOVZIs.webp",
+      "dominantColor": "#908080",
+      "contentHash": "325ae5dd4186dce93c9c15adb8cfabff57eca327e1002dc3ba6266176d431301",
+      "status": "uploaded"
+    },
+    "shops/Tqf8obfYRukbtkuoPCbcCCQIH9T98jIqpVIRqACr6nWiXlsNq5ZU0Fz6hLHVWsze.jpg": {
+      "legacyPath": "shops/Tqf8obfYRukbtkuoPCbcCCQIH9T98jIqpVIRqACr6nWiXlsNq5ZU0Fz6hLHVWsze.jpg",
+      "mediaId": 731,
+      "alt": "Little Pea",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__Tqf8obfYRukbtkuoPCbcCCQIH9T98jIqpVIRqACr6nWiXlsNq5ZU0Fz6hLHVWsze.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "a79b1381238c5096208265883c1da642e1a54499ed165a0bc61ae77fc91f45c6",
+      "status": "uploaded"
+    },
+    "shops/ymsDnyUS6wE4dZKXAsVFi4lVVApUgMjCPHcaWlOd9wNFxuoqajgRlZkisIgc1Cor.jpg": {
+      "legacyPath": "shops/ymsDnyUS6wE4dZKXAsVFi4lVVApUgMjCPHcaWlOd9wNFxuoqajgRlZkisIgc1Cor.jpg",
+      "mediaId": 732,
+      "alt": "Little Pea",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__ymsDnyUS6wE4dZKXAsVFi4lVVApUgMjCPHcaWlOd9wNFxuoqajgRlZkisIgc1Cor.webp",
+      "dominantColor": "#E0D0B0",
+      "contentHash": "4c0b5e53c9fe8d007e593e27476413a787f2e07cb350346be002a1c01a989b6c",
+      "status": "uploaded"
+    },
+    "shops/IdSxLg3QYFxlXhsOT2IjGHElufqViMm1tKTYtxyZtn5nq27PvV9BNk4K4YQFFq05.jpg": {
+      "legacyPath": "shops/IdSxLg3QYFxlXhsOT2IjGHElufqViMm1tKTYtxyZtn5nq27PvV9BNk4K4YQFFq05.jpg",
+      "mediaId": 733,
+      "alt": "Little Pea",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__IdSxLg3QYFxlXhsOT2IjGHElufqViMm1tKTYtxyZtn5nq27PvV9BNk4K4YQFFq05.webp",
+      "dominantColor": "#802030",
+      "contentHash": "3f337d1e3364443971b806ae7384b4ed079e4d91b7036090c0afc049f469ece8",
+      "status": "uploaded"
+    },
+    "shops/QLiTR0i5JKs1LBF36xqsab0MDTre3FA0DNLL5uRS5Io4vaMd8EpGYPBzrGHeOPWt.jpg": {
+      "legacyPath": "shops/QLiTR0i5JKs1LBF36xqsab0MDTre3FA0DNLL5uRS5Io4vaMd8EpGYPBzrGHeOPWt.jpg",
+      "mediaId": 734,
+      "alt": "Little Pea",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__QLiTR0i5JKs1LBF36xqsab0MDTre3FA0DNLL5uRS5Io4vaMd8EpGYPBzrGHeOPWt.webp",
+      "dominantColor": "#A09080",
+      "contentHash": "b2d2bcb1585883e9f36decd0402060f2dc486ddd49efd84bb77ebbc85c443b36",
+      "status": "uploaded"
+    },
+    "cover:thonglor:kozuri-thonglor": {
+      "legacyPath": "cover:thonglor:kozuri-thonglor",
+      "mediaId": 735,
+      "alt": "KOZURI",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-kozuri.webp",
+      "contentHash": "848b2deb8142cc737f42b7a42776af2e388d7f02f4286929796c10290f48e51a",
+      "status": "uploaded"
+    },
+    "shops/ex8gosKtQ0wE2XzA26J942zEHbcpb2kA7HTgmkAdTZaD52cL7llZGehGQ26z2mMD.jpg": {
+      "legacyPath": "shops/ex8gosKtQ0wE2XzA26J942zEHbcpb2kA7HTgmkAdTZaD52cL7llZGehGQ26z2mMD.jpg",
+      "mediaId": 736,
+      "alt": "KOZURI",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__ex8gosKtQ0wE2XzA26J942zEHbcpb2kA7HTgmkAdTZaD52cL7llZGehGQ26z2mMD.webp",
+      "dominantColor": "#101010",
+      "contentHash": "55a79a581da357e7766b1d0ab74a7c036b5e0a1c39e29a2c030324af5b3f292f",
+      "status": "uploaded"
+    },
+    "shops/BjsAbM8yAthkpyDlx9LK9wbLNkiWV5PI71ScOZfJFLwqqfuzdCER1lHT3JAoe4um.jpg": {
+      "legacyPath": "shops/BjsAbM8yAthkpyDlx9LK9wbLNkiWV5PI71ScOZfJFLwqqfuzdCER1lHT3JAoe4um.jpg",
+      "mediaId": 737,
+      "alt": "KOZURI",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__BjsAbM8yAthkpyDlx9LK9wbLNkiWV5PI71ScOZfJFLwqqfuzdCER1lHT3JAoe4um.webp",
+      "dominantColor": "#F0E0C0",
+      "contentHash": "915bb8c3af43ba2eea785cd1ae3589b69d086f0e96d7fedcda71b32d2a7c4d33",
+      "status": "uploaded"
+    },
+    "shops/K4iBe49XQFoNbCxaR3PMjVtCJUQ7kataV5AkxCHfeTOohWctGPJFAq5CELik2gjO.jpg": {
+      "legacyPath": "shops/K4iBe49XQFoNbCxaR3PMjVtCJUQ7kataV5AkxCHfeTOohWctGPJFAq5CELik2gjO.jpg",
+      "mediaId": 738,
+      "alt": "KOZURI",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__K4iBe49XQFoNbCxaR3PMjVtCJUQ7kataV5AkxCHfeTOohWctGPJFAq5CELik2gjO.webp",
+      "dominantColor": "#E0D0B0",
+      "contentHash": "aee995bc5232f205195d29b1f756758633feed80e707bb6480550f8670abc7a9",
+      "status": "uploaded"
+    },
+    "cover:thonglor:inspired-by-nuch-thonglor": {
+      "legacyPath": "cover:thonglor:inspired-by-nuch-thonglor",
+      "mediaId": 739,
+      "alt": "Inspired by Nuch",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-inspired by nuch.webp",
+      "contentHash": "266933449637e29e06abeaa9badd5a6d5f78f4d265c8155196f975d39cb0a7de",
+      "status": "uploaded"
+    },
+    "shops/cutGkFbe561W6hA79kVPJvNzrBHkFun05VFDwe1hTYWbapSuTD0vIH0howGxA8k1_image.jpg": {
+      "legacyPath": "shops/cutGkFbe561W6hA79kVPJvNzrBHkFun05VFDwe1hTYWbapSuTD0vIH0howGxA8k1_image.jpg",
+      "mediaId": 740,
+      "alt": "Inspired by Nuch",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__cutGkFbe561W6hA79kVPJvNzrBHkFun05VFDwe1hTYWbapSuTD0vIH0howGxA8k1_image.webp",
+      "dominantColor": "#E0D0D0",
+      "contentHash": "0640727355ccbbd9e443482221acf65c67046eedb6d6da43b2b6fe256022139e",
+      "status": "uploaded"
+    },
+    "cover:thonglor:hunter-poke-thonglor": {
+      "legacyPath": "cover:thonglor:hunter-poke-thonglor",
+      "mediaId": 741,
+      "alt": "Hunter Poke",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-hunter poke.webp",
+      "contentHash": "0e706358bd631e6ebb4ce3ddb388b50d455953cfe78e911576bedaf105dac2ce",
+      "status": "uploaded"
+    },
+    "shops/pdo9kwzIhGjTjdzIFOz13cyY67902c9vgUJntAeONcjYz4XLKYwhMBJLkBiJgbxL.jpg": {
+      "legacyPath": "shops/pdo9kwzIhGjTjdzIFOz13cyY67902c9vgUJntAeONcjYz4XLKYwhMBJLkBiJgbxL.jpg",
+      "mediaId": 742,
+      "alt": "Hunter Poke",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__pdo9kwzIhGjTjdzIFOz13cyY67902c9vgUJntAeONcjYz4XLKYwhMBJLkBiJgbxL.webp",
+      "dominantColor": "#C0B0A0",
+      "contentHash": "c5832e88bcfc9298f120058dbb88fbe09b12e2e7335dc4a5c0df2ac30f25cc4a",
+      "status": "uploaded"
+    },
+    "shops/1vnLjLWWjiNu4ch3Uvm2JCI7jb9tC1zmUmXsntxPpRtDBT5JYl0lQ6eYn3VqEqN5.jpg": {
+      "legacyPath": "shops/1vnLjLWWjiNu4ch3Uvm2JCI7jb9tC1zmUmXsntxPpRtDBT5JYl0lQ6eYn3VqEqN5.jpg",
+      "alt": "Hunter Poke",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__1vnLjLWWjiNu4ch3Uvm2JCI7jb9tC1zmUmXsntxPpRtDBT5JYl0lQ6eYn3VqEqN5.webp",
+      "dominantColor": "#200000",
+      "contentHash": "cb3d3b432f8bf49954ff2b38ce9a854c987e1df91881dbf68a22107bba646013",
+      "status": "color-only"
+    },
+    "shops/uz9p4CglDnTOnW7ZWuGGGJMz5130A3xIynTBvAvK5r3HjBKlqtITQEMNl33dIMNA.jpg": {
+      "legacyPath": "shops/uz9p4CglDnTOnW7ZWuGGGJMz5130A3xIynTBvAvK5r3HjBKlqtITQEMNl33dIMNA.jpg",
+      "mediaId": 744,
+      "alt": "Hunter Poke",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__uz9p4CglDnTOnW7ZWuGGGJMz5130A3xIynTBvAvK5r3HjBKlqtITQEMNl33dIMNA.webp",
+      "dominantColor": "#705040",
+      "contentHash": "0ef0c67b40826494eb35a14f8e94f350ff94ec4cc32ba6cdaef582fb7019e9c5",
+      "status": "uploaded"
+    },
+    "cover:thonglor:gyuto-kome-thonglor": {
+      "legacyPath": "cover:thonglor:gyuto-kome-thonglor",
+      "mediaId": 745,
+      "alt": "Gyuto Kome",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-gyuto kome.webp",
+      "contentHash": "e7381a39d53560d72cc9bf14fe25f2dcf8423f3d8c2eba89a9042ca3ea11ab3d",
+      "status": "uploaded"
+    },
+    "cover:thonglor:guss-damn-good-thonglor": {
+      "legacyPath": "cover:thonglor:guss-damn-good-thonglor",
+      "mediaId": 747,
+      "alt": "Guss Damn Good",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-guss damn good.webp",
+      "contentHash": "7a5ed5b77dd369fac60873eb8e80353e09051b045118bbd5c0f7cb0853c63be3",
+      "status": "uploaded"
+    },
+    "shops/KLVdijH4Zg4aEdZepNfI2Pl0TYI9UHkeVbZ5RsQl6rYsCxZGWEshAZzjWuvTLO3A.jpg": {
+      "legacyPath": "shops/KLVdijH4Zg4aEdZepNfI2Pl0TYI9UHkeVbZ5RsQl6rYsCxZGWEshAZzjWuvTLO3A.jpg",
+      "mediaId": 748,
+      "alt": "Guss Damn Good",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__KLVdijH4Zg4aEdZepNfI2Pl0TYI9UHkeVbZ5RsQl6rYsCxZGWEshAZzjWuvTLO3A.webp",
+      "dominantColor": "#000000",
+      "contentHash": "cadfa5350aab1e2effd57d18680ebc12b6d7ffbdcd9698bd932cbd0c50a50780",
+      "status": "uploaded"
+    },
+    "shops/KfvwYsP4psI44jpf6zRWmkKLPc9NeKFHCRI7pUpKXzbfncPFTPKuOtl4pRJE3QBh.jpg": {
+      "legacyPath": "shops/KfvwYsP4psI44jpf6zRWmkKLPc9NeKFHCRI7pUpKXzbfncPFTPKuOtl4pRJE3QBh.jpg",
+      "mediaId": 749,
+      "alt": "Guss Damn Good",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__KfvwYsP4psI44jpf6zRWmkKLPc9NeKFHCRI7pUpKXzbfncPFTPKuOtl4pRJE3QBh.webp",
+      "dominantColor": "#404040",
+      "contentHash": "3231f2a3bc6d38021b50c88170cda6aab9090edea8b0691ece1f8aea16064bc5",
+      "status": "uploaded"
+    },
+    "shops/hfeZ9EFyXzX9CeEOezXcVLgrVo9nYrYvQV1Ur4CQPEhFodakAER5NYWjXZDfyFJi.jpg": {
+      "legacyPath": "shops/hfeZ9EFyXzX9CeEOezXcVLgrVo9nYrYvQV1Ur4CQPEhFodakAER5NYWjXZDfyFJi.jpg",
+      "mediaId": 750,
+      "alt": "Guss Damn Good",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__hfeZ9EFyXzX9CeEOezXcVLgrVo9nYrYvQV1Ur4CQPEhFodakAER5NYWjXZDfyFJi.webp",
+      "dominantColor": "#404040",
+      "contentHash": "37137441629030942b364c875c651a4f979613f723da063a0613d32f4302ecb6",
+      "status": "uploaded"
+    },
+    "shops/OBmipBNM8H3hWjUrvdnpZKqRvoT5DOo0HqtAFW5jHwMTo1WwKRlzw5xU79AUj89l.jpg": {
+      "legacyPath": "shops/OBmipBNM8H3hWjUrvdnpZKqRvoT5DOo0HqtAFW5jHwMTo1WwKRlzw5xU79AUj89l.jpg",
+      "mediaId": 751,
+      "alt": "Guss Damn Good",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__OBmipBNM8H3hWjUrvdnpZKqRvoT5DOo0HqtAFW5jHwMTo1WwKRlzw5xU79AUj89l.webp",
+      "dominantColor": "#000000",
+      "contentHash": "f365a6860db9376870b793642e90ac5d98f1d5619ffd1b702e819429218a6d2c",
+      "status": "uploaded"
+    },
+    "cover:thonglor:esan-ping-ping-thonglor": {
+      "legacyPath": "cover:thonglor:esan-ping-ping-thonglor",
+      "mediaId": 752,
+      "alt": "Esan Ping Ping",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-esan ping ping.webp",
+      "contentHash": "d9eaafcdfdc062cea5b2a4c5bbfa75b10a62134a6385c788bceca0b4ed097768",
+      "status": "uploaded"
+    },
+    "shops/8Icv4tua2kilQof12emxDHD6G63jAtNkRw4gsXkecz41ZVRV3bLjTeTtPckvNVCq.jpg": {
+      "legacyPath": "shops/8Icv4tua2kilQof12emxDHD6G63jAtNkRw4gsXkecz41ZVRV3bLjTeTtPckvNVCq.jpg",
+      "mediaId": 753,
+      "alt": "Esan Ping Ping",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__8Icv4tua2kilQof12emxDHD6G63jAtNkRw4gsXkecz41ZVRV3bLjTeTtPckvNVCq.webp",
+      "dominantColor": "#705040",
+      "contentHash": "87df0679c31320794b282ba5509c01c37cc86e54517c224c23273e79a9feb872",
+      "status": "uploaded"
+    },
+    "shops/kKxfzlZbLtXTbl1JOWZ8oboVseizFlen5mSyMQuGsyuP2O1KutdEhUwRKTIBEUK2.jpg": {
+      "legacyPath": "shops/kKxfzlZbLtXTbl1JOWZ8oboVseizFlen5mSyMQuGsyuP2O1KutdEhUwRKTIBEUK2.jpg",
+      "mediaId": 754,
+      "alt": "Esan Ping Ping",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__kKxfzlZbLtXTbl1JOWZ8oboVseizFlen5mSyMQuGsyuP2O1KutdEhUwRKTIBEUK2.webp",
+      "dominantColor": "#302010",
+      "contentHash": "1f85f60945d6518c515bc65db6acb28e8de53f4fda003dcfc18d3cf16c060c2f",
+      "status": "uploaded"
+    },
+    "shops/7WD3f90JRS419c85WTiT7TidA4ZxwMIx5wXC5dkPQNR8gyJSJPsA3lgNwlXsizc0.jpg": {
+      "legacyPath": "shops/7WD3f90JRS419c85WTiT7TidA4ZxwMIx5wXC5dkPQNR8gyJSJPsA3lgNwlXsizc0.jpg",
+      "mediaId": 755,
+      "alt": "Esan Ping Ping",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__7WD3f90JRS419c85WTiT7TidA4ZxwMIx5wXC5dkPQNR8gyJSJPsA3lgNwlXsizc0.webp",
+      "dominantColor": "#405030",
+      "contentHash": "bd95bc952df79c7845a360ea10e1c9eca8b2c215956da758b1f97c9aa126d6e0",
+      "status": "uploaded"
+    },
+    "shops/q1Xpm3P6cRypMSyZmxdvUIWE1CfhLgh35SVmkRCFQoGE06MPCOlHIF8XYsiw0ux1.jpg": {
+      "legacyPath": "shops/q1Xpm3P6cRypMSyZmxdvUIWE1CfhLgh35SVmkRCFQoGE06MPCOlHIF8XYsiw0ux1.jpg",
+      "mediaId": 756,
+      "alt": "Esan Ping Ping",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__q1Xpm3P6cRypMSyZmxdvUIWE1CfhLgh35SVmkRCFQoGE06MPCOlHIF8XYsiw0ux1.webp",
+      "dominantColor": "#708040",
+      "contentHash": "3c4ace39f8feb0df56aee73a98c3bb89974a29f2c57c19033251c8c02eeba830",
+      "status": "uploaded"
+    },
+    "shops/EUUWQrAX3YhDUbUeBzmfRjE8j8UJoxmTGYEua5nyXHJaJjkS8409ZAnRB8ZUmtlL.jpg": {
+      "legacyPath": "shops/EUUWQrAX3YhDUbUeBzmfRjE8j8UJoxmTGYEua5nyXHJaJjkS8409ZAnRB8ZUmtlL.jpg",
+      "mediaId": 757,
+      "alt": "Esan Ping Ping",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__EUUWQrAX3YhDUbUeBzmfRjE8j8UJoxmTGYEua5nyXHJaJjkS8409ZAnRB8ZUmtlL.webp",
+      "dominantColor": "#406020",
+      "contentHash": "cdca72db2070a55d248e105237dd2dc4d1da6fd30b37330204b19f0e97c1b204",
+      "status": "uploaded"
+    },
+    "cover:thonglor:easy-buddy-thonglor": {
+      "legacyPath": "cover:thonglor:easy-buddy-thonglor",
+      "mediaId": 758,
+      "alt": "Easy Buddy",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-easy buddy.webp",
+      "contentHash": "b493a5926ea8351b06a5c1dc9dad5526eef0edb9db5aa7000d3413148b3a5e6b",
+      "status": "uploaded"
+    },
+    "shops/KiiUEbTSA31BjGYqssY2CramzcG7UTwieSQt2k8Pma3wPESDo4WABWM8IkofcuwT.jpg": {
+      "legacyPath": "shops/KiiUEbTSA31BjGYqssY2CramzcG7UTwieSQt2k8Pma3wPESDo4WABWM8IkofcuwT.jpg",
+      "mediaId": 759,
+      "alt": "Easy Buddy",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__KiiUEbTSA31BjGYqssY2CramzcG7UTwieSQt2k8Pma3wPESDo4WABWM8IkofcuwT.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "42132567989191e251941d83a4f3b3e83892163b3536237f4749ab23db0e4e53",
+      "status": "uploaded"
+    },
+    "shops/vUuLutj3ofQ48NmtnVziTlN5K9MvRKp8gl13cpC9KN2fsd5MnaL7wht7jyOwK0PY.jpg": {
+      "legacyPath": "shops/vUuLutj3ofQ48NmtnVziTlN5K9MvRKp8gl13cpC9KN2fsd5MnaL7wht7jyOwK0PY.jpg",
+      "mediaId": 760,
+      "alt": "Easy Buddy",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__vUuLutj3ofQ48NmtnVziTlN5K9MvRKp8gl13cpC9KN2fsd5MnaL7wht7jyOwK0PY.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "b4810c6c172c3cf7b70853419708afd31318561c38a0f911e47d7e2b498a0ec5",
+      "status": "uploaded"
+    },
+    "shops/UQPX5uBwDqoMZ9CStihbg2ZVBqlNEMa8cvG0NW08Mr3UqA7xa1WWEMhn1J7OjdWf.jpg": {
+      "legacyPath": "shops/UQPX5uBwDqoMZ9CStihbg2ZVBqlNEMa8cvG0NW08Mr3UqA7xa1WWEMhn1J7OjdWf.jpg",
+      "mediaId": 761,
+      "alt": "Easy Buddy",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__UQPX5uBwDqoMZ9CStihbg2ZVBqlNEMa8cvG0NW08Mr3UqA7xa1WWEMhn1J7OjdWf.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "498bbc8ee0458a980e7322e9105fa55794d04c3a10f681afa485a3db656efa6d",
+      "status": "uploaded"
+    },
+    "cover:thonglor:dolly-churro-thonglor": {
+      "legacyPath": "cover:thonglor:dolly-churro-thonglor",
+      "mediaId": 762,
+      "alt": "Dolly Churro",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-dolly churro.webp",
+      "contentHash": "93b574ce06b27d3144cf2f3418aa5f194c5266b342ad161ecf3a4a6415def8cc",
+      "status": "uploaded"
+    },
+    "shops/iU3neNmEZkyAw0apV31H45zpKYNS1G3je9pP6WNGO0RgtsiN2lfdrFpa9ipOFYrT.jpg": {
+      "legacyPath": "shops/iU3neNmEZkyAw0apV31H45zpKYNS1G3je9pP6WNGO0RgtsiN2lfdrFpa9ipOFYrT.jpg",
+      "mediaId": 763,
+      "alt": "Dolly Churro",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__iU3neNmEZkyAw0apV31H45zpKYNS1G3je9pP6WNGO0RgtsiN2lfdrFpa9ipOFYrT.webp",
+      "dominantColor": "#807070",
+      "contentHash": "bfa6295124b8cfd6b5b8305e56fb5d399e93010185807026030783978d4a966a",
+      "status": "uploaded"
+    },
+    "shops/Z9uDoDWGzDSvUmZTx6jv9w8VNeNNsVUJOaqNXasRESHoZq7zY5enHyjcq0hGADUO.jpg": {
+      "legacyPath": "shops/Z9uDoDWGzDSvUmZTx6jv9w8VNeNNsVUJOaqNXasRESHoZq7zY5enHyjcq0hGADUO.jpg",
+      "mediaId": 764,
+      "alt": "Dolly Churro",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__Z9uDoDWGzDSvUmZTx6jv9w8VNeNNsVUJOaqNXasRESHoZq7zY5enHyjcq0hGADUO.webp",
+      "dominantColor": "#000000",
+      "contentHash": "3c20b19d3a94b5f546ddf2487b85ae98bdbf8089295088db760a947b05564026",
+      "status": "uploaded"
+    },
+    "shops/pqE63fuqXgjmp3qHkcxvcBimpaYeLsiIRaPm9yG03ZS86PrKium5kA6nwPWaHx8P.jpg": {
+      "legacyPath": "shops/pqE63fuqXgjmp3qHkcxvcBimpaYeLsiIRaPm9yG03ZS86PrKium5kA6nwPWaHx8P.jpg",
+      "mediaId": 765,
+      "alt": "Dolly Churro",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__pqE63fuqXgjmp3qHkcxvcBimpaYeLsiIRaPm9yG03ZS86PrKium5kA6nwPWaHx8P.webp",
+      "dominantColor": "#F0B000",
+      "contentHash": "6d0a7741e1afed5b734b0734041c97b1cfd792aa0395e5c3ad5a6ad889f329a9",
+      "status": "uploaded"
+    },
+    "cover:thonglor:crackhouse-thonglor": {
+      "legacyPath": "cover:thonglor:crackhouse-thonglor",
+      "mediaId": 766,
+      "alt": "Crackhouse",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-crackhouse.webp",
+      "contentHash": "038847f126335c377b9c34177a5cf313bf1f608623bd52b8a06de1980e243953",
+      "status": "uploaded"
+    },
+    "shops/47IggRlO25lieBpOhRT7A2B1gr245Gys5pAsqcdKEj3COK0pF7NzKYgOy476IWFG.jpg": {
+      "legacyPath": "shops/47IggRlO25lieBpOhRT7A2B1gr245Gys5pAsqcdKEj3COK0pF7NzKYgOy476IWFG.jpg",
+      "mediaId": 767,
+      "alt": "Crackhouse",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__47IggRlO25lieBpOhRT7A2B1gr245Gys5pAsqcdKEj3COK0pF7NzKYgOy476IWFG.webp",
+      "dominantColor": "#E0D0D0",
+      "contentHash": "4cd429d7b3866a6d7aa65ae0df3ee7bf98508f94fb9d05d90bad60ad542b68c6",
+      "status": "uploaded"
+    },
+    "shops/hrbsSQQJCSxlq2k4wOCCYYFNiOVsbMRzXlcpJR1kT5ijZqMgZ9BXhuj4ZhZpROuJ.jpg": {
+      "legacyPath": "shops/hrbsSQQJCSxlq2k4wOCCYYFNiOVsbMRzXlcpJR1kT5ijZqMgZ9BXhuj4ZhZpROuJ.jpg",
+      "mediaId": 768,
+      "alt": "Crackhouse",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__hrbsSQQJCSxlq2k4wOCCYYFNiOVsbMRzXlcpJR1kT5ijZqMgZ9BXhuj4ZhZpROuJ.webp",
+      "dominantColor": "#D0C0C0",
+      "contentHash": "d93d9a35730f053f78ed8c009e38f3c27c8c9bfd1c08156084d2402aac46d789",
+      "status": "uploaded"
+    },
+    "shops/jG1wZHlBJ2CFuwpI3efw0tpLHglkcsehulfWbkYEV2fcs0QyVS0vbNL5gx1MJVMs.jpg": {
+      "legacyPath": "shops/jG1wZHlBJ2CFuwpI3efw0tpLHglkcsehulfWbkYEV2fcs0QyVS0vbNL5gx1MJVMs.jpg",
+      "mediaId": 769,
+      "alt": "Crackhouse",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__jG1wZHlBJ2CFuwpI3efw0tpLHglkcsehulfWbkYEV2fcs0QyVS0vbNL5gx1MJVMs.webp",
+      "dominantColor": "#C0C0C0",
+      "contentHash": "3801127a106480d2a1064744dd51cde63e0ac605097c9bea76093e5bf1fce03e",
+      "status": "uploaded"
+    },
+    "shops/mVhGOyKwe1u1szmbxzlHaKgQuYxYNo78HDfW1d6gNXaHlXF45VSXJOEXzcMd5Slq.jpg": {
+      "legacyPath": "shops/mVhGOyKwe1u1szmbxzlHaKgQuYxYNo78HDfW1d6gNXaHlXF45VSXJOEXzcMd5Slq.jpg",
+      "mediaId": 770,
+      "alt": "Crackhouse",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__mVhGOyKwe1u1szmbxzlHaKgQuYxYNo78HDfW1d6gNXaHlXF45VSXJOEXzcMd5Slq.webp",
+      "dominantColor": "#D0C0B0",
+      "contentHash": "8ef48ec19a2f3287c9240be89bbe0b75d8855d5bc5cebfb9565d85b2c605c01e",
+      "status": "uploaded"
+    },
+    "shops/LuhOvvdmAWxIYxup46JFKtSUzKL5WkBfBIwaitbJoiqdNwYu53UbkEvd2eG0DQSg.jpg": {
+      "legacyPath": "shops/LuhOvvdmAWxIYxup46JFKtSUzKL5WkBfBIwaitbJoiqdNwYu53UbkEvd2eG0DQSg.jpg",
+      "mediaId": 771,
+      "alt": "Crackhouse",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__LuhOvvdmAWxIYxup46JFKtSUzKL5WkBfBIwaitbJoiqdNwYu53UbkEvd2eG0DQSg.webp",
+      "dominantColor": "#E0D000",
+      "contentHash": "382a9faa75d85d7b9e88a3d5ceb469c2e75e8b2dcab9e2bedca7584a69507e3d",
+      "status": "uploaded"
+    },
+    "cover:thonglor:bun-meat-and-cheese-thonglor": {
+      "legacyPath": "cover:thonglor:bun-meat-and-cheese-thonglor",
+      "mediaId": 772,
+      "alt": "Bun Meat and Cheese",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-bun meat and cheese.webp",
+      "contentHash": "8bf317caa055558ece3e4b7a57e841891d2380ccf16bba88d06a02e14bcfe385",
+      "status": "uploaded"
+    },
+    "shops/QplxF7aoPyUS6pyS7dcyvHrz9FTG2qAsIb3WaUQJohoMPPmWNCOPafARZSsWbnhr.jpg": {
+      "legacyPath": "shops/QplxF7aoPyUS6pyS7dcyvHrz9FTG2qAsIb3WaUQJohoMPPmWNCOPafARZSsWbnhr.jpg",
+      "mediaId": 773,
+      "alt": "Bun Meat and Cheese",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__QplxF7aoPyUS6pyS7dcyvHrz9FTG2qAsIb3WaUQJohoMPPmWNCOPafARZSsWbnhr.webp",
+      "dominantColor": "#202020",
+      "contentHash": "a4a1b8dc348e026100154a7fdeca71845477aef075da2235d01f798888f0da3d",
+      "status": "uploaded"
+    },
+    "shops/5XjsMohnt5ueINE6vea1r5ZEXkRDrA5DABnjBDwTQVqzDlAlCQvIpkvvpDtVq75b.jpg": {
+      "legacyPath": "shops/5XjsMohnt5ueINE6vea1r5ZEXkRDrA5DABnjBDwTQVqzDlAlCQvIpkvvpDtVq75b.jpg",
+      "mediaId": 774,
+      "alt": "Bun Meat and Cheese",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__5XjsMohnt5ueINE6vea1r5ZEXkRDrA5DABnjBDwTQVqzDlAlCQvIpkvvpDtVq75b.webp",
+      "dominantColor": "#303030",
+      "contentHash": "f6232e6c70b0709ed78fdb565b58bb34c18db85275790ef2324ddba4753887cc",
+      "status": "uploaded"
+    },
+    "shops/UHcXi2aSCr1C9dSBsgXbinKssvaFh2BWZJmk8Pg6nlMB6onqmfkCuSoqiZT1tSTp.jpg": {
+      "legacyPath": "shops/UHcXi2aSCr1C9dSBsgXbinKssvaFh2BWZJmk8Pg6nlMB6onqmfkCuSoqiZT1tSTp.jpg",
+      "mediaId": 775,
+      "alt": "Bun Meat and Cheese",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__UHcXi2aSCr1C9dSBsgXbinKssvaFh2BWZJmk8Pg6nlMB6onqmfkCuSoqiZT1tSTp.webp",
+      "dominantColor": "#202020",
+      "contentHash": "a766f3161b41f09c05e5b73fb8ea8061d576e5d8c6c8ef43942bbed3afbb6d4f",
+      "status": "uploaded"
+    },
+    "shops/xbYBTzJ7g6QciQLJeaE2Bn4kmx07Pwl3yA1POGnS8Sreh7dkcNuhVWgmez615ZWu.jpg": {
+      "legacyPath": "shops/xbYBTzJ7g6QciQLJeaE2Bn4kmx07Pwl3yA1POGnS8Sreh7dkcNuhVWgmez615ZWu.jpg",
+      "mediaId": 776,
+      "alt": "Bun Meat and Cheese",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__xbYBTzJ7g6QciQLJeaE2Bn4kmx07Pwl3yA1POGnS8Sreh7dkcNuhVWgmez615ZWu.webp",
+      "dominantColor": "#303030",
+      "contentHash": "07a905acada2e24c2563fbecf8175e58bca83489b80e20dde05adb74bc959d4e",
+      "status": "uploaded"
+    },
+    "cover:thonglor:bar-naam-thonglor": {
+      "legacyPath": "cover:thonglor:bar-naam-thonglor",
+      "mediaId": 777,
+      "alt": "BAR NAAM",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-bar naam.webp",
+      "contentHash": "1af387ebd3d8132fdac8f766490b27112e4e1377bd4676e50d27698b6d26c2d4",
+      "status": "uploaded"
+    },
+    "shops/Hg7aAxQaFnTqW1QYsc4657nBeK0ydGZYoLWKCBoZZNi9LbMf6N45kwjAehPwuxPx.jpg": {
+      "legacyPath": "shops/Hg7aAxQaFnTqW1QYsc4657nBeK0ydGZYoLWKCBoZZNi9LbMf6N45kwjAehPwuxPx.jpg",
+      "mediaId": 778,
+      "alt": "BAR NAAM",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__Hg7aAxQaFnTqW1QYsc4657nBeK0ydGZYoLWKCBoZZNi9LbMf6N45kwjAehPwuxPx.webp",
+      "dominantColor": "#F0F0E0",
+      "contentHash": "923f56e6ea6d0a4bf002fdd1278978206c5efa607415099c77f53ffb7849c8e0",
+      "status": "uploaded"
+    },
+    "shops/5T5u3ptAvsScfOygyV1Lh49swluaBRUEFRyqsqUWcp6DLbWofmWe48XVAtjaU6je.jpg": {
+      "legacyPath": "shops/5T5u3ptAvsScfOygyV1Lh49swluaBRUEFRyqsqUWcp6DLbWofmWe48XVAtjaU6je.jpg",
+      "mediaId": 779,
+      "alt": "BAR NAAM",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__5T5u3ptAvsScfOygyV1Lh49swluaBRUEFRyqsqUWcp6DLbWofmWe48XVAtjaU6je.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "015c3cb72fe65ef197aa7c1f5ca5f1b19affbf3a95a0b6538b42f60d965f77f9",
+      "status": "uploaded"
+    },
+    "shops/aLMV4GV1iaminkknPF8RfBXLK3CiqVyh9Ay9kIISuR7Fu3S9mCveyKWb2ncJlyhC.jpg": {
+      "legacyPath": "shops/aLMV4GV1iaminkknPF8RfBXLK3CiqVyh9Ay9kIISuR7Fu3S9mCveyKWb2ncJlyhC.jpg",
+      "mediaId": 780,
+      "alt": "BAR NAAM",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__aLMV4GV1iaminkknPF8RfBXLK3CiqVyh9Ay9kIISuR7Fu3S9mCveyKWb2ncJlyhC.webp",
+      "dominantColor": "#000000",
+      "contentHash": "05581161f8d110cbd7aceac0f56b0ed971d9b7b23f15aafef84fd521b22728e6",
+      "status": "uploaded"
+    },
+    "cover:thonglor:bapsang-thonglor": {
+      "legacyPath": "cover:thonglor:bapsang-thonglor",
+      "mediaId": 781,
+      "alt": "Bapsang",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-bapsang.webp",
+      "contentHash": "8841749ce0cc50efe470487268c01999ed1dc8bc341d33bf982ff9654a8a64de",
+      "status": "uploaded"
+    },
+    "shops/h2VyMxqEMQjiPMHynB0EWTtcg9X4PBk77beBYfK8XESjpByModyUcA5TuamCjKcY.jpg": {
+      "legacyPath": "shops/h2VyMxqEMQjiPMHynB0EWTtcg9X4PBk77beBYfK8XESjpByModyUcA5TuamCjKcY.jpg",
+      "mediaId": 782,
+      "alt": "Bapsang",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__h2VyMxqEMQjiPMHynB0EWTtcg9X4PBk77beBYfK8XESjpByModyUcA5TuamCjKcY.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "0f69667d62a9ec498416673eb178e97d2a77c6f7d4ba621accbc70f320fcfc42",
+      "status": "uploaded"
+    },
+    "shops/DPJQXsVlbyQkXGbU9Ejcuso4avLsq48vXAgWUUIZdL4BAyEAVvmcijMRickCUfyq.jpg": {
+      "legacyPath": "shops/DPJQXsVlbyQkXGbU9Ejcuso4avLsq48vXAgWUUIZdL4BAyEAVvmcijMRickCUfyq.jpg",
+      "mediaId": 783,
+      "alt": "Bapsang",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__DPJQXsVlbyQkXGbU9Ejcuso4avLsq48vXAgWUUIZdL4BAyEAVvmcijMRickCUfyq.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "35156379d4fc1355c05b626d57cc151c085971536a928eeb13c4d0aa95b98e19",
+      "status": "uploaded"
+    },
+    "shops/nxVNsJxVCJDXfej95QZEHx5IxABhZ58j5J1UgEOoek4yjGTegiAdBpLtxJyWejQ1.jpg": {
+      "legacyPath": "shops/nxVNsJxVCJDXfej95QZEHx5IxABhZ58j5J1UgEOoek4yjGTegiAdBpLtxJyWejQ1.jpg",
+      "mediaId": 784,
+      "alt": "Bapsang",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__nxVNsJxVCJDXfej95QZEHx5IxABhZ58j5J1UgEOoek4yjGTegiAdBpLtxJyWejQ1.webp",
+      "dominantColor": "#B0B0A0",
+      "contentHash": "abb38ccc930a23b85fa63d66c27519f3282e173e665924c58ba50d9a8b5b1e14",
+      "status": "uploaded"
+    },
+    "shops/7PkwTpMEiYkmHH0OTOXdbtZESYM1uxILSXzmypbN8t95aG7G1OZJqaxJpKoKmq7w.jpg": {
+      "legacyPath": "shops/7PkwTpMEiYkmHH0OTOXdbtZESYM1uxILSXzmypbN8t95aG7G1OZJqaxJpKoKmq7w.jpg",
+      "mediaId": 785,
+      "alt": "Bapsang",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__7PkwTpMEiYkmHH0OTOXdbtZESYM1uxILSXzmypbN8t95aG7G1OZJqaxJpKoKmq7w.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "796140a1e83058499cbfaaeb0a31f1b1c5847acea32283cf8ec5092401910750",
+      "status": "uploaded"
+    },
+    "cover:thonglor:baba-shuk-thonglor": {
+      "legacyPath": "cover:thonglor:baba-shuk-thonglor",
+      "mediaId": 786,
+      "alt": "Baba Shuk",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-baba shuk.webp",
+      "contentHash": "078f63c9fd8aeca49201f614118830097b03edd9b6784b474133fa117d8ae394",
+      "status": "uploaded"
+    },
+    "shops/i80EBF4RGpUn49HVILfUdTcw0gz9sJVqw5IaoECk2F97jGsNRrLBTC544eAzPiAI.jpg": {
+      "legacyPath": "shops/i80EBF4RGpUn49HVILfUdTcw0gz9sJVqw5IaoECk2F97jGsNRrLBTC544eAzPiAI.jpg",
+      "mediaId": 787,
+      "alt": "Baba Shuk",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__i80EBF4RGpUn49HVILfUdTcw0gz9sJVqw5IaoECk2F97jGsNRrLBTC544eAzPiAI.webp",
+      "dominantColor": "#202020",
+      "contentHash": "5252fbc6ab99ccc98c0236ab0b1366ef947475e8d834181f595e603360b2dbc9",
+      "status": "uploaded"
+    },
+    "shops/pP5pYh9n6ioAcgSr6Fk3LO0xLKoWvKRbgBva76tidBomQ8B5gunmw5HcQdicgjZh.jpg": {
+      "legacyPath": "shops/pP5pYh9n6ioAcgSr6Fk3LO0xLKoWvKRbgBva76tidBomQ8B5gunmw5HcQdicgjZh.jpg",
+      "mediaId": 788,
+      "alt": "Baba Shuk",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__pP5pYh9n6ioAcgSr6Fk3LO0xLKoWvKRbgBva76tidBomQ8B5gunmw5HcQdicgjZh.webp",
+      "dominantColor": "#B0A090",
+      "contentHash": "6d2ba7306f74f67907031f2540750a307463c69c5f9256813bb9826063ca2b29",
+      "status": "uploaded"
+    },
+    "shops/V9YitBdk9i5KD6BQ0yS7mqXfliFH67zNTTLxD8hunU73VmclxhetKXBZk8QQO9F5.jpg": {
+      "legacyPath": "shops/V9YitBdk9i5KD6BQ0yS7mqXfliFH67zNTTLxD8hunU73VmclxhetKXBZk8QQO9F5.jpg",
+      "mediaId": 789,
+      "alt": "Baba Shuk",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__V9YitBdk9i5KD6BQ0yS7mqXfliFH67zNTTLxD8hunU73VmclxhetKXBZk8QQO9F5.webp",
+      "dominantColor": "#C0A080",
+      "contentHash": "42af7196aad1196b0c2cfcd45ff5a0871351d7bcd05781fc66873647263115da",
+      "status": "uploaded"
+    },
+    "shops/HabBvOOvB4xacpZYLn8HpPpnW0FmWJKU93vgrA9G9r9K67KSkIqLjQ6fAHsQfLGN.jpg": {
+      "legacyPath": "shops/HabBvOOvB4xacpZYLn8HpPpnW0FmWJKU93vgrA9G9r9K67KSkIqLjQ6fAHsQfLGN.jpg",
+      "mediaId": 790,
+      "alt": "Baba Shuk",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__HabBvOOvB4xacpZYLn8HpPpnW0FmWJKU93vgrA9G9r9K67KSkIqLjQ6fAHsQfLGN.webp",
+      "dominantColor": "#B09060",
+      "contentHash": "1e51794d994d6827a8f8a34e877845aefe3e90d58ddc258ea957f43b9019a995",
+      "status": "uploaded"
+    },
+    "shops/RUhVREzbE3KCkYhD8j4jEG99ek703tu6NpLsXgwFuevjS4LpPoYSwQVMjPSOvnJF.jpg": {
+      "legacyPath": "shops/RUhVREzbE3KCkYhD8j4jEG99ek703tu6NpLsXgwFuevjS4LpPoYSwQVMjPSOvnJF.jpg",
+      "mediaId": 791,
+      "alt": "Baba Shuk",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__RUhVREzbE3KCkYhD8j4jEG99ek703tu6NpLsXgwFuevjS4LpPoYSwQVMjPSOvnJF.webp",
+      "dominantColor": "#D0A060",
+      "contentHash": "9860340b25d6ec2d6e81c1a2398412a6e1e6b31f9a83559cdc1f2c172c3fa20f",
+      "status": "uploaded"
+    },
+    "cover:thonglor:all-kinds-thonglor": {
+      "legacyPath": "cover:thonglor:all-kinds-thonglor",
+      "mediaId": 792,
+      "alt": "All Kinds",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-all kinds.webp",
+      "contentHash": "838bba25ff4c9c595df9b151e5be470bc87515845f0423092303139170694d7e",
+      "status": "uploaded"
+    },
+    "shops/Z5C7t2hpg65vB1FMoLUYUzAWxrBVdHBFsGfWmKB1iIdHa9OG0RO4E5CYyB3LUp8W.jpg": {
+      "legacyPath": "shops/Z5C7t2hpg65vB1FMoLUYUzAWxrBVdHBFsGfWmKB1iIdHa9OG0RO4E5CYyB3LUp8W.jpg",
+      "mediaId": 793,
+      "alt": "All Kinds",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__Z5C7t2hpg65vB1FMoLUYUzAWxrBVdHBFsGfWmKB1iIdHa9OG0RO4E5CYyB3LUp8W.webp",
+      "dominantColor": "#E0D0C0",
+      "contentHash": "94b1819d236ee39680b42f6435795ca795f2139bd138bf6f8a2d1edc8470ec98",
+      "status": "uploaded"
+    },
+    "shops/G0jue2FhxJxNCFxTpMy0UVPKMc5ZA7Fc6GJ7QW4nXIUUkl60FDdfReh3bTcKmZ8J.jpg": {
+      "legacyPath": "shops/G0jue2FhxJxNCFxTpMy0UVPKMc5ZA7Fc6GJ7QW4nXIUUkl60FDdfReh3bTcKmZ8J.jpg",
+      "mediaId": 794,
+      "alt": "All Kinds",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__G0jue2FhxJxNCFxTpMy0UVPKMc5ZA7Fc6GJ7QW4nXIUUkl60FDdfReh3bTcKmZ8J.webp",
+      "dominantColor": "#201000",
+      "contentHash": "fee37d8d8d877742fb44ad1f5a1175f967080a79110bbea70b3ed04f437e29ef",
+      "status": "uploaded"
+    },
+    "shops/iJGO3Vn3dQZcJ8jYIn5rbl7mqDJ59TcGg90zbSLC2jcnRliRkFKFmOh9PRNIQFh5.jpg": {
+      "legacyPath": "shops/iJGO3Vn3dQZcJ8jYIn5rbl7mqDJ59TcGg90zbSLC2jcnRliRkFKFmOh9PRNIQFh5.jpg",
+      "mediaId": 795,
+      "alt": "All Kinds",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__iJGO3Vn3dQZcJ8jYIn5rbl7mqDJ59TcGg90zbSLC2jcnRliRkFKFmOh9PRNIQFh5.webp",
+      "dominantColor": "#705030",
+      "contentHash": "c00dc63d9a6fd7a82c7335cb0a474de2b9e1ca07521a41cf420e7e12218819e9",
+      "status": "uploaded"
+    },
+    "shops/k6kUwN87LQJFNQ51YrL88QTwrtl2yVvZlBimhdAHrS3s8XtJznfuBqaDgAfbCkFk.jpg": {
+      "legacyPath": "shops/k6kUwN87LQJFNQ51YrL88QTwrtl2yVvZlBimhdAHrS3s8XtJznfuBqaDgAfbCkFk.jpg",
+      "mediaId": 796,
+      "alt": "All Kinds",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__k6kUwN87LQJFNQ51YrL88QTwrtl2yVvZlBimhdAHrS3s8XtJznfuBqaDgAfbCkFk.webp",
+      "dominantColor": "#E0D0B0",
+      "contentHash": "7fdb3c4d1931fa9bcbb0b405a573841ba13e73c85e3175da619a35c37038b3a9",
+      "status": "uploaded"
+    },
+    "shops/KHE1crLmzENrTfZ3n0iKkumK3fjWoGlg3afVQc6dA8BlB3AXSlvkwJcOKS1T23N0.jpg": {
+      "legacyPath": "shops/KHE1crLmzENrTfZ3n0iKkumK3fjWoGlg3afVQc6dA8BlB3AXSlvkwJcOKS1T23N0.jpg",
+      "mediaId": 797,
+      "alt": "All Kinds",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__KHE1crLmzENrTfZ3n0iKkumK3fjWoGlg3afVQc6dA8BlB3AXSlvkwJcOKS1T23N0.webp",
+      "dominantColor": "#D0D0D0",
+      "contentHash": "e6c4b3ca337fe6bb0e0d4ec365584174183bde1e63a42b16de94388b104157e1",
+      "status": "uploaded"
+    },
+    "cover:thonglor:adam-n-eve-thonglor": {
+      "legacyPath": "cover:thonglor:adam-n-eve-thonglor",
+      "mediaId": 798,
+      "alt": "Adam n Eve",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-adam n eve.webp",
+      "contentHash": "b5aa94d6237eb6b29bc718291ca4feee45b223eb4769338ffb777df4204cfc4d",
+      "status": "uploaded"
+    },
+    "cover:thonglor:absolute-thonglor": {
+      "legacyPath": "cover:thonglor:absolute-thonglor",
+      "mediaId": 804,
+      "alt": "Absolute",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-thonglor/tl-vendor-absolute.webp",
+      "contentHash": "e8deb001b06c46281e2c962723aff1b3d5d13f0f4c1d5de4911397116df9fe7f",
+      "status": "uploaded"
+    },
+    "shops/tHKhGhDUn3omikVaOd9CC41I9brxkJrG4yABVtp7c4bu5bnSZaKd6cc03BvGu8dj.jpg": {
+      "legacyPath": "shops/tHKhGhDUn3omikVaOd9CC41I9brxkJrG4yABVtp7c4bu5bnSZaKd6cc03BvGu8dj.jpg",
+      "mediaId": 805,
+      "alt": "Absolute",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__tHKhGhDUn3omikVaOd9CC41I9brxkJrG4yABVtp7c4bu5bnSZaKd6cc03BvGu8dj.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "5bd50ba0d7331cfd1acfc6c2df882e06564431ff7ae3d2bb109fb767cb4be9da",
+      "status": "uploaded"
+    },
+    "shops/NWjuqTaFbi4CztYJKFSKc9EiMJuHFgdUtZ8i0VuH4FVeFufVn75ZYzMq5Qt0ZmNj.jpg": {
+      "legacyPath": "shops/NWjuqTaFbi4CztYJKFSKc9EiMJuHFgdUtZ8i0VuH4FVeFufVn75ZYzMq5Qt0ZmNj.jpg",
+      "mediaId": 806,
+      "alt": "Absolute",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__NWjuqTaFbi4CztYJKFSKc9EiMJuHFgdUtZ8i0VuH4FVeFufVn75ZYzMq5Qt0ZmNj.webp",
+      "dominantColor": "#D0D0D0",
+      "contentHash": "dd0a0b566a7e9413412a00e77be4416aa2046576382881951efba9b26c2f4422",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:cyu-sushi-and-handroll-saladaeng-3": {
+      "legacyPath": "cover:saladaeng:cyu-sushi-and-handroll-saladaeng-3",
+      "mediaId": 807,
+      "alt": "cyu sushi and handroll",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu sushi and handroll.webp",
+      "contentHash": "c1b895ea2fc9ee6c2c4576b34f0adb9a32ff94f615057d729b582519f01e9c65",
+      "status": "uploaded"
+    },
+    "shops/C4Z5OtdyRBJWUY0rFiamLLuTx5ZC23fKUcWrQNU7DvtuM9qU1P9GKskD7KQ8kwM7.jpg": {
+      "legacyPath": "shops/C4Z5OtdyRBJWUY0rFiamLLuTx5ZC23fKUcWrQNU7DvtuM9qU1P9GKskD7KQ8kwM7.jpg",
+      "alt": "cyu sushi and handroll",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__C4Z5OtdyRBJWUY0rFiamLLuTx5ZC23fKUcWrQNU7DvtuM9qU1P9GKskD7KQ8kwM7.webp",
+      "dominantColor": "#C08040",
+      "contentHash": "ba262c6534a68dc718f0091ba20725ff462b6fff9ed9db1e006171f7e87c64cc",
+      "status": "color-only"
+    },
+    "shops/yx7VpNUxX7HaMxL7ptBOAhxsADCLszIkaRVoZlXKI0jKBeQCDGYyzLZWGcj2FyWh.jpg": {
+      "legacyPath": "shops/yx7VpNUxX7HaMxL7ptBOAhxsADCLszIkaRVoZlXKI0jKBeQCDGYyzLZWGcj2FyWh.jpg",
+      "mediaId": 841,
+      "alt": "cyu sushi and handroll",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__yx7VpNUxX7HaMxL7ptBOAhxsADCLszIkaRVoZlXKI0jKBeQCDGYyzLZWGcj2FyWh.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "b1742b76e4626e738c2d50cae73169b18994530de2de714e29bc2d85991e7764",
+      "status": "uploaded"
+    },
+    "shops/KCyJbnGfs4Ks9u9KOqqQNfCmflBS6ex9Nq2ZuQTpue61oCC22rKkGaOYG3C7RXvL.jpg": {
+      "legacyPath": "shops/KCyJbnGfs4Ks9u9KOqqQNfCmflBS6ex9Nq2ZuQTpue61oCC22rKkGaOYG3C7RXvL.jpg",
+      "mediaId": 842,
+      "alt": "cyu sushi and handroll",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__KCyJbnGfs4Ks9u9KOqqQNfCmflBS6ex9Nq2ZuQTpue61oCC22rKkGaOYG3C7RXvL.webp",
+      "dominantColor": "#E0A060",
+      "contentHash": "4ec6db078dfd07c036f051904af1b8dd6d3dfa79e40c43d55f56d66a12186ed1",
+      "status": "uploaded"
+    },
+    "shops/Na1KzXXQulRTEpjNXpJLL68ezBDizt1dpHlkt7uIfNN6y7BWUUpEJa664FoaJZw2.jpg": {
+      "legacyPath": "shops/Na1KzXXQulRTEpjNXpJLL68ezBDizt1dpHlkt7uIfNN6y7BWUUpEJa664FoaJZw2.jpg",
+      "mediaId": 843,
+      "alt": "cyu sushi and handroll",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__Na1KzXXQulRTEpjNXpJLL68ezBDizt1dpHlkt7uIfNN6y7BWUUpEJa664FoaJZw2.webp",
+      "dominantColor": "#100000",
+      "contentHash": "e2d2439aad1d3296d33bf0974a4dbcbf6dd9fc41a3bbb60a8f2b9bad52c1855a",
+      "status": "uploaded"
+    },
+    "shops/XQUtsB9owKugNgMJsbT4sLBT7GAtKMtyQOJn4MnSp1ffNaaic3cNPPnf1xdICBaW.jpg": {
+      "legacyPath": "shops/XQUtsB9owKugNgMJsbT4sLBT7GAtKMtyQOJn4MnSp1ffNaaic3cNPPnf1xdICBaW.jpg",
+      "mediaId": 844,
+      "alt": "cyu sushi and handroll",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__XQUtsB9owKugNgMJsbT4sLBT7GAtKMtyQOJn4MnSp1ffNaaic3cNPPnf1xdICBaW.webp",
+      "dominantColor": "#C08040",
+      "contentHash": "ba262c6534a68dc718f0091ba20725ff462b6fff9ed9db1e006171f7e87c64cc",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:cyu-shabu-saladaeng-3": {
+      "legacyPath": "cover:saladaeng:cyu-shabu-saladaeng-3",
+      "mediaId": 813,
+      "alt": "cyu shabu",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu shabu.webp",
+      "contentHash": "1001afc83beab2411f1e580d98697af6d1fe3896e12651a357b7d413fdced79f",
+      "status": "uploaded"
+    },
+    "shops/MhycATM5nF5gUsxLpRZGi75iC1i6JiQehlt27eO4ZqXn7T7vWvb4XaHSbJRCnSz4.jpg": {
+      "legacyPath": "shops/MhycATM5nF5gUsxLpRZGi75iC1i6JiQehlt27eO4ZqXn7T7vWvb4XaHSbJRCnSz4.jpg",
+      "mediaId": 846,
+      "alt": "cyu shabu",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__MhycATM5nF5gUsxLpRZGi75iC1i6JiQehlt27eO4ZqXn7T7vWvb4XaHSbJRCnSz4.webp",
+      "dominantColor": "#502000",
+      "contentHash": "075f95c50302ef23cb77ec7abce83fddd7e8bed0b96981f843ec7dce88fe378f",
+      "status": "uploaded"
+    },
+    "shops/zQKhDIDe5quRgNewrTGjhgen82SogOiSHQnrj5Jd7hmm1YV3DwDdbkhoyeZnWYaW.jpg": {
+      "legacyPath": "shops/zQKhDIDe5quRgNewrTGjhgen82SogOiSHQnrj5Jd7hmm1YV3DwDdbkhoyeZnWYaW.jpg",
+      "mediaId": 847,
+      "alt": "cyu shabu",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__zQKhDIDe5quRgNewrTGjhgen82SogOiSHQnrj5Jd7hmm1YV3DwDdbkhoyeZnWYaW.webp",
+      "dominantColor": "#E0E0D0",
+      "contentHash": "4aa340399387f99fbdd8e3ec46df57c8c2d189aad2dd37c641177130ad9228ac",
+      "status": "uploaded"
+    },
+    "shops/JmYlFAr66IkMKEouta6gYJR5DiuTrKU0QvNlyHdDFDkYXP1p1PtiK0wygwYslJTT.jpg": {
+      "legacyPath": "shops/JmYlFAr66IkMKEouta6gYJR5DiuTrKU0QvNlyHdDFDkYXP1p1PtiK0wygwYslJTT.jpg",
+      "mediaId": 848,
+      "alt": "cyu shabu",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__JmYlFAr66IkMKEouta6gYJR5DiuTrKU0QvNlyHdDFDkYXP1p1PtiK0wygwYslJTT.webp",
+      "dominantColor": "#D0C0A0",
+      "contentHash": "429e6824d21545ef1186160168c51e8b59cd99d2b20291bd6369f673d5eb9254",
+      "status": "uploaded"
+    },
+    "shops/3h5SY4qUTAbZPGlGdhh77ojW8xyxf8oCik9yWUN0IOxnio1Sk0XXAURXYuAXW3fs.jpg": {
+      "legacyPath": "shops/3h5SY4qUTAbZPGlGdhh77ojW8xyxf8oCik9yWUN0IOxnio1Sk0XXAURXYuAXW3fs.jpg",
+      "mediaId": 849,
+      "alt": "cyu shabu",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__3h5SY4qUTAbZPGlGdhh77ojW8xyxf8oCik9yWUN0IOxnio1Sk0XXAURXYuAXW3fs.webp",
+      "dominantColor": "#706050",
+      "contentHash": "1819900ecb13dffa004fc34f98737aadc046acc781d38a086692302c7f9ed427",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:guss-damn-good-saladaeng-3": {
+      "legacyPath": "cover:saladaeng:guss-damn-good-saladaeng-3",
+      "mediaId": 818,
+      "alt": "Guss Damn Good",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-guss damn good.webp",
+      "contentHash": "c3c3ea01c49e68656b59dfacf51e1b31bd342ef7747b598914512bda62699787",
+      "status": "uploaded"
+    },
+    "shops/lW5aBan1wfF8fAqCIUxAijA02KRI7exZUh776o7e1npuqjK46WOh7OXW1VseSnNW.jpg": {
+      "legacyPath": "shops/lW5aBan1wfF8fAqCIUxAijA02KRI7exZUh776o7e1npuqjK46WOh7OXW1VseSnNW.jpg",
+      "mediaId": 908,
+      "alt": "Guss Damn Good",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__lW5aBan1wfF8fAqCIUxAijA02KRI7exZUh776o7e1npuqjK46WOh7OXW1VseSnNW.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "26f00dea95e01c4fa43fdae0a02b780d972bfb9d85aaf0e07b08fb839481666a",
+      "status": "uploaded"
+    },
+    "shops/jBMoENQOqdhYSOP99XwHHWycEl3HdYtSWtqbIglLek4BSvDv2NMIyO3epfVx73Lf.jpg": {
+      "legacyPath": "shops/jBMoENQOqdhYSOP99XwHHWycEl3HdYtSWtqbIglLek4BSvDv2NMIyO3epfVx73Lf.jpg",
+      "mediaId": 909,
+      "alt": "Guss Damn Good",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__jBMoENQOqdhYSOP99XwHHWycEl3HdYtSWtqbIglLek4BSvDv2NMIyO3epfVx73Lf.webp",
+      "dominantColor": "#D0D0D0",
+      "contentHash": "091c9141ca839e5713ac0ad759cd3304b37460a89f53dceff7164094531a2865",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:fowlmouth-saladaeng-3": {
+      "legacyPath": "cover:saladaeng:fowlmouth-saladaeng-3",
+      "mediaId": 821,
+      "alt": "FOWLMOUTH",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-fowlmouth.webp",
+      "contentHash": "6774f9ae61b7398b548ce9a4d93ce50fc1759dca601950be41911fc914001a0a",
+      "status": "uploaded"
+    },
+    "shops/GwWsu2XOXyQ7CGWnlIzIb1g9wK2LrG72tuXVUaxvBNThvpqM8bDhN0omZV41RAxQ_image.jpg": {
+      "legacyPath": "shops/GwWsu2XOXyQ7CGWnlIzIb1g9wK2LrG72tuXVUaxvBNThvpqM8bDhN0omZV41RAxQ_image.jpg",
+      "mediaId": 911,
+      "alt": "FOWLMOUTH",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__GwWsu2XOXyQ7CGWnlIzIb1g9wK2LrG72tuXVUaxvBNThvpqM8bDhN0omZV41RAxQ_image.webp",
+      "dominantColor": "#200000",
+      "contentHash": "128ea02ab3e9abf4fd99b948710d5375145e33cb99c738f2a0599adda6714c59",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:cyu-sushi-and-handroll-saladaeng-2": {
+      "legacyPath": "cover:saladaeng:cyu-sushi-and-handroll-saladaeng-2",
+      "mediaId": 823,
+      "alt": "cyu sushi and handroll",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu sushi and handroll.webp",
+      "contentHash": "c1b895ea2fc9ee6c2c4576b34f0adb9a32ff94f615057d729b582519f01e9c65",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:cyu-shabu-saladaeng-2": {
+      "legacyPath": "cover:saladaeng:cyu-shabu-saladaeng-2",
+      "mediaId": 829,
+      "alt": "cyu shabu",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu shabu.webp",
+      "contentHash": "1001afc83beab2411f1e580d98697af6d1fe3896e12651a357b7d413fdced79f",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:guss-damn-good-saladaeng-2": {
+      "legacyPath": "cover:saladaeng:guss-damn-good-saladaeng-2",
+      "mediaId": 834,
+      "alt": "Guss Damn Good",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-guss damn good.webp",
+      "contentHash": "c3c3ea01c49e68656b59dfacf51e1b31bd342ef7747b598914512bda62699787",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:fowlmouth-saladaeng-2": {
+      "legacyPath": "cover:saladaeng:fowlmouth-saladaeng-2",
+      "mediaId": 837,
+      "alt": "FOWLMOUTH",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-fowlmouth.webp",
+      "contentHash": "6774f9ae61b7398b548ce9a4d93ce50fc1759dca601950be41911fc914001a0a",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:cyu-sushi-and-handroll-saladaeng": {
+      "legacyPath": "cover:saladaeng:cyu-sushi-and-handroll-saladaeng",
+      "mediaId": 839,
+      "alt": "cyu sushi and handroll",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu sushi and handroll.webp",
+      "contentHash": "c1b895ea2fc9ee6c2c4576b34f0adb9a32ff94f615057d729b582519f01e9c65",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:cyu-shabu-saladaeng": {
+      "legacyPath": "cover:saladaeng:cyu-shabu-saladaeng",
+      "mediaId": 845,
+      "alt": "cyu shabu",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu shabu.webp",
+      "contentHash": "1001afc83beab2411f1e580d98697af6d1fe3896e12651a357b7d413fdced79f",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:wild-clinic-saladaeng": {
+      "legacyPath": "cover:saladaeng:wild-clinic-saladaeng",
+      "mediaId": 850,
+      "alt": "Wild Clinic",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-wild clinic.webp",
+      "contentHash": "ddb775cd5f1ce88b828a1251ebf12c1ddc5deadab54833a37bd2f66d6f2b295b",
+      "status": "uploaded"
+    },
+    "shops/JqOCKIFExEHFINNs7GJG22tSIZAGpN0VovGD3i2lrOLIyLiUUdOlINpv91UpKnuS_image.jpg": {
+      "legacyPath": "shops/JqOCKIFExEHFINNs7GJG22tSIZAGpN0VovGD3i2lrOLIyLiUUdOlINpv91UpKnuS_image.jpg",
+      "mediaId": 851,
+      "alt": "Wild Clinic",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__JqOCKIFExEHFINNs7GJG22tSIZAGpN0VovGD3i2lrOLIyLiUUdOlINpv91UpKnuS_image.webp",
+      "dominantColor": "#E0A080",
+      "contentHash": "a2b2709a50e37f0371e520db8c30e1fce7fa71f928e86ede02a4bd0d2fa60cd0",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:toku-dessert-saladaeng": {
+      "legacyPath": "cover:saladaeng:toku-dessert-saladaeng",
+      "mediaId": 852,
+      "alt": "Toku Dessert",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-toku dessert.webp",
+      "contentHash": "d1b8742692bee40d47e3f1e6815f00681ac8b6ad68845ce4536be745af4a8c60",
+      "status": "uploaded"
+    },
+    "shops/uRoFaaURaBCSiYsGdqsSxPxsdvDa0xBtj3ZicH2PcQbFOimRbBU1uxj4MXRyKH2K.jpg": {
+      "legacyPath": "shops/uRoFaaURaBCSiYsGdqsSxPxsdvDa0xBtj3ZicH2PcQbFOimRbBU1uxj4MXRyKH2K.jpg",
+      "mediaId": 853,
+      "alt": "Toku Dessert",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__uRoFaaURaBCSiYsGdqsSxPxsdvDa0xBtj3ZicH2PcQbFOimRbBU1uxj4MXRyKH2K.webp",
+      "dominantColor": "#101010",
+      "contentHash": "0c1a7c5ff34390153b89960d4a4e2fbbea46d0502c2de04114169463175d6151",
+      "status": "uploaded"
+    },
+    "shops/aw35qK1TX0aY3CQuhV5L4AyPuGGNUT2oWKgv93rdnfTkH1cnJAPt0kKFY5Al2nA0.jpg": {
+      "legacyPath": "shops/aw35qK1TX0aY3CQuhV5L4AyPuGGNUT2oWKgv93rdnfTkH1cnJAPt0kKFY5Al2nA0.jpg",
+      "mediaId": 854,
+      "alt": "Toku Dessert",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__aw35qK1TX0aY3CQuhV5L4AyPuGGNUT2oWKgv93rdnfTkH1cnJAPt0kKFY5Al2nA0.webp",
+      "dominantColor": "#101010",
+      "contentHash": "295557f781afaef569f8ca2290dc8006be494531e6c4f112f0454a47b691a88c",
+      "status": "uploaded"
+    },
+    "shops/kFtXtk0EwLaWzr34S0pd6He9YIPmWqwYSrDOemXfKUmydTVoN8AabXo0tJWfFPog.jpg": {
+      "legacyPath": "shops/kFtXtk0EwLaWzr34S0pd6He9YIPmWqwYSrDOemXfKUmydTVoN8AabXo0tJWfFPog.jpg",
+      "mediaId": 855,
+      "alt": "Toku Dessert",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__kFtXtk0EwLaWzr34S0pd6He9YIPmWqwYSrDOemXfKUmydTVoN8AabXo0tJWfFPog.webp",
+      "dominantColor": "#302010",
+      "contentHash": "29324c4f6001c198b8a073adee841d22e06edce4591b79f5ae9c69f755b5975a",
+      "status": "uploaded"
+    },
+    "shops/eHgvGQwRExQ0Xki4BfrQPNuhwGSfIDUBaaQqje1pPdMhvCzxRejntdqFfbkkW5Dk.jpg": {
+      "legacyPath": "shops/eHgvGQwRExQ0Xki4BfrQPNuhwGSfIDUBaaQqje1pPdMhvCzxRejntdqFfbkkW5Dk.jpg",
+      "mediaId": 856,
+      "alt": "Toku Dessert",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__eHgvGQwRExQ0Xki4BfrQPNuhwGSfIDUBaaQqje1pPdMhvCzxRejntdqFfbkkW5Dk.webp",
+      "dominantColor": "#E0D0D0",
+      "contentHash": "c98c9956d914df6dec38859482f623c6cccb3ad97df4fd762a670faf2a239ab3",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:the-barrel-sake-bar-saladaeng": {
+      "legacyPath": "cover:saladaeng:the-barrel-sake-bar-saladaeng",
+      "mediaId": 857,
+      "alt": "The Barrel Sake Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-the barrel sake bar.webp",
+      "contentHash": "f107be3abebad215532d69c4d08654d3cdaeb8435c344a67b2f259910672fd9e",
+      "status": "uploaded"
+    },
+    "shops/bcDhuBgCAR6JgjE4tDCy1H4NOzSCt67b8rNmO9wehzaiaMQ3QimL9zaiVE64hfzy.jpg": {
+      "legacyPath": "shops/bcDhuBgCAR6JgjE4tDCy1H4NOzSCt67b8rNmO9wehzaiaMQ3QimL9zaiVE64hfzy.jpg",
+      "mediaId": 858,
+      "alt": "The Barrel Sake Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__bcDhuBgCAR6JgjE4tDCy1H4NOzSCt67b8rNmO9wehzaiaMQ3QimL9zaiVE64hfzy.webp",
+      "dominantColor": "#F0D0A0",
+      "contentHash": "f9daab1b7cfc1270e1aa68a0e617b5ef34b4b97dc44a552401a0461deb39457f",
+      "status": "uploaded"
+    },
+    "shops/xMTSuQNxAupUF4kkURpJdgUUSXp2LcytMCy5u1PHVbztHPEnDU1Q5BsVKEgMBMyc.jpg": {
+      "legacyPath": "shops/xMTSuQNxAupUF4kkURpJdgUUSXp2LcytMCy5u1PHVbztHPEnDU1Q5BsVKEgMBMyc.jpg",
+      "mediaId": 859,
+      "alt": "The Barrel Sake Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__xMTSuQNxAupUF4kkURpJdgUUSXp2LcytMCy5u1PHVbztHPEnDU1Q5BsVKEgMBMyc.webp",
+      "dominantColor": "#202010",
+      "contentHash": "ca0c8138a785231083447ea00975d36f9aa44389a1fb51f6428c531f411611ac",
+      "status": "uploaded"
+    },
+    "shops/BpzlIIQ74aEiL6G9NA91dYUqep4SWpqvVP2kLqYLftkT5AwJ7p1e36279VvzIOJt.jpg": {
+      "legacyPath": "shops/BpzlIIQ74aEiL6G9NA91dYUqep4SWpqvVP2kLqYLftkT5AwJ7p1e36279VvzIOJt.jpg",
+      "mediaId": 860,
+      "alt": "The Barrel Sake Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__BpzlIIQ74aEiL6G9NA91dYUqep4SWpqvVP2kLqYLftkT5AwJ7p1e36279VvzIOJt.webp",
+      "dominantColor": "#C0D0D0",
+      "contentHash": "44912ea86ebb245c34f9dbee2fc24b7621dca6819e6d8a813579661c3e7e7533",
+      "status": "uploaded"
+    },
+    "shops/KQCRJpAI6GdShE1Iy0sfYXdyCAuV7bPZlDM9toFEPZw8drfEajZQfF7s0SOaOB4H.jpg": {
+      "legacyPath": "shops/KQCRJpAI6GdShE1Iy0sfYXdyCAuV7bPZlDM9toFEPZw8drfEajZQfF7s0SOaOB4H.jpg",
+      "mediaId": 861,
+      "alt": "The Barrel Sake Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__KQCRJpAI6GdShE1Iy0sfYXdyCAuV7bPZlDM9toFEPZw8drfEajZQfF7s0SOaOB4H.webp",
+      "dominantColor": "#A0B0C0",
+      "contentHash": "fca9bb20d1b17dd216b4b4969d6d47ad6e69d13b05e30e494f3fcb67cc27a9c2",
+      "status": "uploaded"
+    },
+    "shops/cwGdZTo4hRQJ82ABtsMvWDXdtBKSG4aTpdjz4CnPROWbgERbVCjQGA8mvBLSIaXn.jpg": {
+      "legacyPath": "shops/cwGdZTo4hRQJ82ABtsMvWDXdtBKSG4aTpdjz4CnPROWbgERbVCjQGA8mvBLSIaXn.jpg",
+      "mediaId": 862,
+      "alt": "The Barrel Sake Bar",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__cwGdZTo4hRQJ82ABtsMvWDXdtBKSG4aTpdjz4CnPROWbgERbVCjQGA8mvBLSIaXn.webp",
+      "dominantColor": "#101010",
+      "contentHash": "83c1af744eb00678b64e97ccc3c37503b11712ac91fa973991143e01d602eba7",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:taproom-saladaeng": {
+      "legacyPath": "cover:saladaeng:taproom-saladaeng",
+      "mediaId": 863,
+      "alt": "Taproom",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-taproom.webp",
+      "contentHash": "fb3a5cd8032a77deaa656c174773314b82347108cd5cba272971ca5125d4ddd6",
+      "status": "uploaded"
+    },
+    "shops/IPcnXOifnCqC8dj6AZddD6Og9qB5PIOX9294mf5HTHaTxMfO0p7RJtxd83nsAnwU.jpg": {
+      "legacyPath": "shops/IPcnXOifnCqC8dj6AZddD6Og9qB5PIOX9294mf5HTHaTxMfO0p7RJtxd83nsAnwU.jpg",
+      "mediaId": 864,
+      "alt": "Taproom",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__IPcnXOifnCqC8dj6AZddD6Og9qB5PIOX9294mf5HTHaTxMfO0p7RJtxd83nsAnwU.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "1c7f4f7df9783ffcb97c90a029b08855a3afbef8d35608049200c5b89ce7fb75",
+      "status": "uploaded"
+    },
+    "shops/ofdAeIoxNIFIS2XYztUq2Z6RiYKglD3dmaq3FI6pLCsG9oxEnwZtSUdIkVwjZfkl.jpg": {
+      "legacyPath": "shops/ofdAeIoxNIFIS2XYztUq2Z6RiYKglD3dmaq3FI6pLCsG9oxEnwZtSUdIkVwjZfkl.jpg",
+      "mediaId": 865,
+      "alt": "Taproom",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__ofdAeIoxNIFIS2XYztUq2Z6RiYKglD3dmaq3FI6pLCsG9oxEnwZtSUdIkVwjZfkl.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "d5a950c60a6733151f9a9e04a1e2032b9cd672abe7096ec12e04d2e7951ecad1",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:soho-pizza-saladaeng": {
+      "legacyPath": "cover:saladaeng:soho-pizza-saladaeng",
+      "mediaId": 866,
+      "alt": "Soho Pizza",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-soho pizza.webp",
+      "contentHash": "9471827445d04ea266b656d6601a4fa516da3840d43a222daae945c8089dc718",
+      "status": "uploaded"
+    },
+    "shops/XnfvMhpSvpV5ODnj8kz5cyse2ZUXOjHkXhKeJgHuYBMd6q9sbpiVgc6FtqMxlPe0.jpg": {
+      "legacyPath": "shops/XnfvMhpSvpV5ODnj8kz5cyse2ZUXOjHkXhKeJgHuYBMd6q9sbpiVgc6FtqMxlPe0.jpg",
+      "mediaId": 867,
+      "alt": "Soho Pizza",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__XnfvMhpSvpV5ODnj8kz5cyse2ZUXOjHkXhKeJgHuYBMd6q9sbpiVgc6FtqMxlPe0.webp",
+      "dominantColor": "#D0E0E0",
+      "contentHash": "ac1ec4d2c2725ef63dd825d38c38227ce1df1ebe667567ddd4d3a5c2eb05ff34",
+      "status": "uploaded"
+    },
+    "shops/1tY0c9IYSQHUfVrcJCB0JI4aOhqt2cyHm9AbLAAekjcrCFuLoUazz4oaLCs9Yb8Y.jpg": {
+      "legacyPath": "shops/1tY0c9IYSQHUfVrcJCB0JI4aOhqt2cyHm9AbLAAekjcrCFuLoUazz4oaLCs9Yb8Y.jpg",
+      "mediaId": 868,
+      "alt": "Soho Pizza",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__1tY0c9IYSQHUfVrcJCB0JI4aOhqt2cyHm9AbLAAekjcrCFuLoUazz4oaLCs9Yb8Y.webp",
+      "dominantColor": "#102020",
+      "contentHash": "c1a77df81347ba119580d90fccf871175ae517c2cc1ce442f1e8f70b8da0f4e8",
+      "status": "uploaded"
+    },
+    "shops/lv5A55AEXdglEaumpq9kVA4H0UfYVAel13geFKH2vdCGUqKqo55x9oEJvOExD0Xt.jpg": {
+      "legacyPath": "shops/lv5A55AEXdglEaumpq9kVA4H0UfYVAel13geFKH2vdCGUqKqo55x9oEJvOExD0Xt.jpg",
+      "mediaId": 869,
+      "alt": "Soho Pizza",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__lv5A55AEXdglEaumpq9kVA4H0UfYVAel13geFKH2vdCGUqKqo55x9oEJvOExD0Xt.webp",
+      "dominantColor": "#A0C0E0",
+      "contentHash": "721ecc1c624637a37a4316421cf91cd63bb6c2de76d39aef6033744c16be9ace",
+      "status": "uploaded"
+    },
+    "shops/zPdkDCEGIAChZu8MymqoFfU7ZauTF44FeicsVpxz0XNmahocuff08Pm0Uidk5w9p.jpg": {
+      "legacyPath": "shops/zPdkDCEGIAChZu8MymqoFfU7ZauTF44FeicsVpxz0XNmahocuff08Pm0Uidk5w9p.jpg",
+      "mediaId": 870,
+      "alt": "Soho Pizza",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__zPdkDCEGIAChZu8MymqoFfU7ZauTF44FeicsVpxz0XNmahocuff08Pm0Uidk5w9p.webp",
+      "dominantColor": "#A06030",
+      "contentHash": "22cdc19dc8606dce94b0abc54f1a56aba01066d473512c24d25858a20c2c226d",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:scarletta-saladaeng": {
+      "legacyPath": "cover:saladaeng:scarletta-saladaeng",
+      "mediaId": 871,
+      "alt": "Scarletta",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-scarletta.webp",
+      "contentHash": "0c23409f76f346619c3f13b8c5bc3a334bebfa698ab6c0de753d996a5af436d8",
+      "status": "uploaded"
+    },
+    "shops/KTGXCMsRKvqrIBgKsx0S4hoCg9PWZfIt493CY9BPN4F4X1e1pbw3NjwMIJTyVOXC_image.jpg": {
+      "legacyPath": "shops/KTGXCMsRKvqrIBgKsx0S4hoCg9PWZfIt493CY9BPN4F4X1e1pbw3NjwMIJTyVOXC_image.jpg",
+      "mediaId": 872,
+      "alt": "Scarletta",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__KTGXCMsRKvqrIBgKsx0S4hoCg9PWZfIt493CY9BPN4F4X1e1pbw3NjwMIJTyVOXC_image.webp",
+      "dominantColor": "#000000",
+      "contentHash": "be8f7047afac045922ad48160d27f4d4e728cda93a09fc8d3e947fcaa2b1e4db",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:roots-saladaeng": {
+      "legacyPath": "cover:saladaeng:roots-saladaeng",
+      "mediaId": 873,
+      "alt": "Roots",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-roots.webp",
+      "contentHash": "c5117f8d98d5a21e2be21673b2d28eeaaa482ddffa6867f5039b9c348c82b55f",
+      "status": "uploaded"
+    },
+    "shops/24JxxpKV8RiEnbXeswIBLJ21Mza8sl6y0bHsRDKBg7O8HIVCZ4687LIxQd9VTQr6.jpg": {
+      "legacyPath": "shops/24JxxpKV8RiEnbXeswIBLJ21Mza8sl6y0bHsRDKBg7O8HIVCZ4687LIxQd9VTQr6.jpg",
+      "mediaId": 874,
+      "alt": "Roots",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__24JxxpKV8RiEnbXeswIBLJ21Mza8sl6y0bHsRDKBg7O8HIVCZ4687LIxQd9VTQr6.webp",
+      "dominantColor": "#804020",
+      "contentHash": "31eead0de470bed1126a02f0c2f06c89c975d1c85353e1e1019bc328f3743632",
+      "status": "uploaded"
+    },
+    "shops/va73TLz0RpbjibxJfVPfUn5OqsqRjx9JX5eyJB38PQMCYdaslA8RPd1Tz6nOsnZW.jpg": {
+      "legacyPath": "shops/va73TLz0RpbjibxJfVPfUn5OqsqRjx9JX5eyJB38PQMCYdaslA8RPd1Tz6nOsnZW.jpg",
+      "mediaId": 875,
+      "alt": "Roots",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__va73TLz0RpbjibxJfVPfUn5OqsqRjx9JX5eyJB38PQMCYdaslA8RPd1Tz6nOsnZW.webp",
+      "dominantColor": "#503020",
+      "contentHash": "c968a428efe1960d90e5204a4be8614bef838b23391c7e2ee3a62de33ad76fce",
+      "status": "uploaded"
+    },
+    "shops/0AC1EZkXGh18ZK4bvKyJoVjiCV0WdfaRaUrj4wXIOuVJxgpl3ZhIqKdXQ8T7Und2.jpg": {
+      "legacyPath": "shops/0AC1EZkXGh18ZK4bvKyJoVjiCV0WdfaRaUrj4wXIOuVJxgpl3ZhIqKdXQ8T7Und2.jpg",
+      "mediaId": 876,
+      "alt": "Roots",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__0AC1EZkXGh18ZK4bvKyJoVjiCV0WdfaRaUrj4wXIOuVJxgpl3ZhIqKdXQ8T7Und2.webp",
+      "dominantColor": "#503020",
+      "contentHash": "00ebf3cf510364a9c8ea23e818efccd22d0fdfd9cb2c8ef8dfd52c8477403297",
+      "status": "uploaded"
+    },
+    "shops/3lJHHq90PpXP4YePSoPggzagXNLqre4qghpJyJe3BM4wQ8nP8DPVk5TcUz24h5F1.jpg": {
+      "legacyPath": "shops/3lJHHq90PpXP4YePSoPggzagXNLqre4qghpJyJe3BM4wQ8nP8DPVk5TcUz24h5F1.jpg",
+      "mediaId": 877,
+      "alt": "Roots",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__3lJHHq90PpXP4YePSoPggzagXNLqre4qghpJyJe3BM4wQ8nP8DPVk5TcUz24h5F1.webp",
+      "dominantColor": "#D0B090",
+      "contentHash": "dcfeb15e1a5ae77e743e66e613c94e6f5c76fbdb403cd7a117792fc229aa02b1",
+      "status": "uploaded"
+    },
+    "shops/HTIXfjx9jwLcUIKyazI8tX9pPQTgm2BsstcgF7xrPTmzCRifaoduTmWzmj8hW5Lo.jpg": {
+      "legacyPath": "shops/HTIXfjx9jwLcUIKyazI8tX9pPQTgm2BsstcgF7xrPTmzCRifaoduTmWzmj8hW5Lo.jpg",
+      "mediaId": 878,
+      "alt": "Roots",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__HTIXfjx9jwLcUIKyazI8tX9pPQTgm2BsstcgF7xrPTmzCRifaoduTmWzmj8hW5Lo.webp",
+      "dominantColor": "#909090",
+      "contentHash": "88d3fb9af38b1775f93a249447723eacf883096dea3d5aeabf2e4942ba7d654f",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:qq-saladaeng": {
+      "legacyPath": "cover:saladaeng:qq-saladaeng",
+      "mediaId": 879,
+      "alt": "QQ",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-qq.webp",
+      "contentHash": "36bdbe79a1e5611f53e1f319b266128b475d85b97cc2d2235625ebb99125e24e",
+      "status": "uploaded"
+    },
+    "shops/0ULXo6fOiSy5Ftso3HKPEeAQYxjto1sJgF7fgEyKDjo5pfkoxRqZcihj37Itl6a2.jpg": {
+      "legacyPath": "shops/0ULXo6fOiSy5Ftso3HKPEeAQYxjto1sJgF7fgEyKDjo5pfkoxRqZcihj37Itl6a2.jpg",
+      "mediaId": 880,
+      "alt": "QQ",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__0ULXo6fOiSy5Ftso3HKPEeAQYxjto1sJgF7fgEyKDjo5pfkoxRqZcihj37Itl6a2.webp",
+      "dominantColor": "#F0E090",
+      "contentHash": "2193e223e9acc01366fecff192e798b78c6dae194c706465675300cb2c039223",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:poppa-saladaeng": {
+      "legacyPath": "cover:saladaeng:poppa-saladaeng",
+      "mediaId": 881,
+      "alt": "POPPA",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-poppa.webp",
+      "contentHash": "d0783380527466f9bc210a999b11fca69300aa795a78e2bcf1839d060fbae3f4",
+      "status": "uploaded"
+    },
+    "shops/tmjBiYae4puZr2RkzQcSm8AxeBiRvIt0J09S74o8jX4mcNuwFx6ysiIFEUooQ8VW.jpg": {
+      "legacyPath": "shops/tmjBiYae4puZr2RkzQcSm8AxeBiRvIt0J09S74o8jX4mcNuwFx6ysiIFEUooQ8VW.jpg",
+      "mediaId": 882,
+      "alt": "POPPA",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__tmjBiYae4puZr2RkzQcSm8AxeBiRvIt0J09S74o8jX4mcNuwFx6ysiIFEUooQ8VW.webp",
+      "dominantColor": "#303020",
+      "contentHash": "d666cddb15fda70cfe9f8638016023eb96d811c52a3f014682a418f29344c008",
+      "status": "uploaded"
+    },
+    "shops/rFmmQlIFGxWRweutetNaAZIjKKmXzCHfaaEFND72xDUx5WeK8Ba5vt9RCa5heejy.jpg": {
+      "legacyPath": "shops/rFmmQlIFGxWRweutetNaAZIjKKmXzCHfaaEFND72xDUx5WeK8Ba5vt9RCa5heejy.jpg",
+      "mediaId": 883,
+      "alt": "POPPA",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__rFmmQlIFGxWRweutetNaAZIjKKmXzCHfaaEFND72xDUx5WeK8Ba5vt9RCa5heejy.webp",
+      "dominantColor": "#402010",
+      "contentHash": "049880a2e579084f19e0bd8f6cae971ea83e196b066b415b543633131cdc2b67",
+      "status": "uploaded"
+    },
+    "shops/dafV1uqJfa637Gj8MfIbvEovVjke6CjR6T8YigZthBZS14eCu7jQnXSYSBPa4CNl.jpg": {
+      "legacyPath": "shops/dafV1uqJfa637Gj8MfIbvEovVjke6CjR6T8YigZthBZS14eCu7jQnXSYSBPa4CNl.jpg",
+      "mediaId": 884,
+      "alt": "POPPA",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__dafV1uqJfa637Gj8MfIbvEovVjke6CjR6T8YigZthBZS14eCu7jQnXSYSBPa4CNl.webp",
+      "dominantColor": "#302010",
+      "contentHash": "6f7ff6b8ef3a2e88a8fe7f0bb33e45a6a5032b8cb2958d5e3c4bda614995a1f2",
+      "status": "uploaded"
+    },
+    "shops/DfJqH8WzNYeEp6DBd1iQGUfThSEF8XuqDccF0k2hb2Qvxftr6CS5fHjXJ2AKu2WP.jpg": {
+      "legacyPath": "shops/DfJqH8WzNYeEp6DBd1iQGUfThSEF8XuqDccF0k2hb2Qvxftr6CS5fHjXJ2AKu2WP.jpg",
+      "mediaId": 885,
+      "alt": "POPPA",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__DfJqH8WzNYeEp6DBd1iQGUfThSEF8XuqDccF0k2hb2Qvxftr6CS5fHjXJ2AKu2WP.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "6f22db59cf4455467213672c8163c6d21378f2dd9120cc77b039628a748e02b6",
+      "status": "uploaded"
+    },
+    "shops/lAYTYur2Z57Nxp6HKD7lRNUMPUmjLjvIe1nGl01RhbaEPEjeDdj4flKY3e74pvqW.jpg": {
+      "legacyPath": "shops/lAYTYur2Z57Nxp6HKD7lRNUMPUmjLjvIe1nGl01RhbaEPEjeDdj4flKY3e74pvqW.jpg",
+      "mediaId": 886,
+      "alt": "POPPA",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__lAYTYur2Z57Nxp6HKD7lRNUMPUmjLjvIe1nGl01RhbaEPEjeDdj4flKY3e74pvqW.webp",
+      "dominantColor": "#000000",
+      "contentHash": "4d7b99b9853df228f391ee7c35e4e86711bfd51b272e6ed54ac89c0fbba4ee88",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:paak-saladaeng": {
+      "legacyPath": "cover:saladaeng:paak-saladaeng",
+      "mediaId": 887,
+      "alt": "Paak",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-paak.webp",
+      "contentHash": "e83edd1489156aa91516bf9acea0a689dc54d81efab249fb24727f1c48427a93",
+      "status": "uploaded"
+    },
+    "shops/clFyUDq3c8wrVFPPrplbwFgI6urSJleP7UfyfijCyNIWpi6LWX2taRqivDw5MNU5.jpg": {
+      "legacyPath": "shops/clFyUDq3c8wrVFPPrplbwFgI6urSJleP7UfyfijCyNIWpi6LWX2taRqivDw5MNU5.jpg",
+      "mediaId": 888,
+      "alt": "Paak",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__clFyUDq3c8wrVFPPrplbwFgI6urSJleP7UfyfijCyNIWpi6LWX2taRqivDw5MNU5.webp",
+      "dominantColor": "#202030",
+      "contentHash": "a76811fe21325816843a745bdcf716d6bc6221c6530d381db4802e6891c7a9b5",
+      "status": "uploaded"
+    },
+    "shops/KWlVDLFQveNdcJqqnEqPSmLl6gJjjhapyYKTXdNLhsYB0fc8GCXeJV6RdSN2eYYj.jpg": {
+      "legacyPath": "shops/KWlVDLFQveNdcJqqnEqPSmLl6gJjjhapyYKTXdNLhsYB0fc8GCXeJV6RdSN2eYYj.jpg",
+      "mediaId": 889,
+      "alt": "Paak",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__KWlVDLFQveNdcJqqnEqPSmLl6gJjjhapyYKTXdNLhsYB0fc8GCXeJV6RdSN2eYYj.webp",
+      "dominantColor": "#202030",
+      "contentHash": "8b9fafcc91d1938c570615b98df35cdee60d9c01e225e2817aa2cc9418362d3c",
+      "status": "uploaded"
+    },
+    "shops/44iFzPuPXnKQRy7AJu5ZjMt4hm52AAQyvk7lJlsnLO446U3dJNXRoBLatk301A9n.jpg": {
+      "legacyPath": "shops/44iFzPuPXnKQRy7AJu5ZjMt4hm52AAQyvk7lJlsnLO446U3dJNXRoBLatk301A9n.jpg",
+      "mediaId": 890,
+      "alt": "Paak",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__44iFzPuPXnKQRy7AJu5ZjMt4hm52AAQyvk7lJlsnLO446U3dJNXRoBLatk301A9n.webp",
+      "dominantColor": "#101020",
+      "contentHash": "5f4b8955572d291681e6558b31564a16f6ac176805433f74b4e6341b2a66e5d3",
+      "status": "uploaded"
+    },
+    "shops/OmHgZFHHPXmjAxF486voLq9hRxO50PQEIubEkW31eTSt02Grc4PdA9LS9JMB3mkr.jpg": {
+      "legacyPath": "shops/OmHgZFHHPXmjAxF486voLq9hRxO50PQEIubEkW31eTSt02Grc4PdA9LS9JMB3mkr.jpg",
+      "mediaId": 891,
+      "alt": "Paak",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__OmHgZFHHPXmjAxF486voLq9hRxO50PQEIubEkW31eTSt02Grc4PdA9LS9JMB3mkr.webp",
+      "dominantColor": "#101010",
+      "contentHash": "23af1b1ae1c9e065507ea5c7b12dfc0ae1b1074d802efde5b4c3af14e30e1f78",
+      "status": "uploaded"
+    },
+    "shops/lAvb4klNrKWt3HuEKZgyBijIWU4EiuZnuzkWtOkZBjv8i3tG43jf442UTnd0ODMi.jpg": {
+      "legacyPath": "shops/lAvb4klNrKWt3HuEKZgyBijIWU4EiuZnuzkWtOkZBjv8i3tG43jf442UTnd0ODMi.jpg",
+      "mediaId": 892,
+      "alt": "Paak",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__lAvb4klNrKWt3HuEKZgyBijIWU4EiuZnuzkWtOkZBjv8i3tG43jf442UTnd0ODMi.webp",
+      "dominantColor": "#202030",
+      "contentHash": "767fe88f70fc084303ca4fe2b1d617bbbe034806a2441d6b38579867e04dc95c",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:oo-la-lab-saladaeng": {
+      "legacyPath": "cover:saladaeng:oo-la-lab-saladaeng",
+      "mediaId": 893,
+      "alt": "Oo La Lab",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-oo la lab.webp",
+      "contentHash": "c0072fffc131907ee37fc10fbaf475abf28cc16411ec449b3282d53809506e17",
+      "status": "uploaded"
+    },
+    "shops/8cJtjHV3TZ5q5X3S3ADhajHaen9g3wrJtvs8uHhbwC8fUh2bHSYIq7p7F4dizkGe.jpg": {
+      "legacyPath": "shops/8cJtjHV3TZ5q5X3S3ADhajHaen9g3wrJtvs8uHhbwC8fUh2bHSYIq7p7F4dizkGe.jpg",
+      "mediaId": 894,
+      "alt": "Oo La Lab",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__8cJtjHV3TZ5q5X3S3ADhajHaen9g3wrJtvs8uHhbwC8fUh2bHSYIq7p7F4dizkGe.webp",
+      "dominantColor": "#000000",
+      "contentHash": "c184642db8e98b2ffd4e63689b4deb2656cedeafb7cae35fa2882f21e48694a8",
+      "status": "uploaded"
+    },
+    "shops/3mkztHv4dZFllZbrJqwYNRluyZ9oUzH6DNK1U7yioE7jngcQ9UvqkMKz7GgEqqUJ.jpg": {
+      "legacyPath": "shops/3mkztHv4dZFllZbrJqwYNRluyZ9oUzH6DNK1U7yioE7jngcQ9UvqkMKz7GgEqqUJ.jpg",
+      "mediaId": 895,
+      "alt": "Oo La Lab",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__3mkztHv4dZFllZbrJqwYNRluyZ9oUzH6DNK1U7yioE7jngcQ9UvqkMKz7GgEqqUJ.webp",
+      "dominantColor": "#000000",
+      "contentHash": "28f4942c975a8b10d1add1b0382f5c05b9972a2b0e20e395fc159d23504c1df3",
+      "status": "uploaded"
+    },
+    "shops/kbgJ8Zee0pZac09hDZk9CWhZmaP7IdGLJQ4poFXPy55OGD3ILvScMreXQiAovCEr.jpg": {
+      "legacyPath": "shops/kbgJ8Zee0pZac09hDZk9CWhZmaP7IdGLJQ4poFXPy55OGD3ILvScMreXQiAovCEr.jpg",
+      "mediaId": 896,
+      "alt": "Oo La Lab",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__kbgJ8Zee0pZac09hDZk9CWhZmaP7IdGLJQ4poFXPy55OGD3ILvScMreXQiAovCEr.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "ce5319327587d1253574e4714cb980905301238859bf73459b8417d400561166",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:ong-tong-saladaeng": {
+      "legacyPath": "cover:saladaeng:ong-tong-saladaeng",
+      "mediaId": 897,
+      "alt": "Ong Tong",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-ong tong.webp",
+      "contentHash": "43d6e5de6db890b5012f57d0c6711a26fd87514096c10ecb1f2787401f34e93d",
+      "status": "uploaded"
+    },
+    "shops/wTofWHlY70zsKhT7dP3hS3jLKaH62EioZjgxv30xYmKEIDoCVQ8zmA0OnVtLK1wM_image.jpg": {
+      "legacyPath": "shops/wTofWHlY70zsKhT7dP3hS3jLKaH62EioZjgxv30xYmKEIDoCVQ8zmA0OnVtLK1wM_image.jpg",
+      "mediaId": 898,
+      "alt": "Ong Tong",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__wTofWHlY70zsKhT7dP3hS3jLKaH62EioZjgxv30xYmKEIDoCVQ8zmA0OnVtLK1wM_image.webp",
+      "dominantColor": "#603010",
+      "contentHash": "43952a3ef70a4c5a5e265ba3837153cb0fc30a52da9b99486c0ae8f0f3fce106",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:ridar-by-maw10-saladaeng": {
+      "legacyPath": "cover:saladaeng:ridar-by-maw10-saladaeng",
+      "mediaId": 899,
+      "alt": "Ridar by MAW10",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-ridar by maw10.webp",
+      "contentHash": "15e3ab283ce5ceaf3809ba0ff2680636570a3c2763ed8273201d517d6f5b7f6b",
+      "status": "uploaded"
+    },
+    "shops/toBp1g7iZDzHA05otroIK260DllqLpp8bcVthKizjZE4topNlo23h8TbmZaoovnP_image.jpg": {
+      "legacyPath": "shops/toBp1g7iZDzHA05otroIK260DllqLpp8bcVthKizjZE4topNlo23h8TbmZaoovnP_image.jpg",
+      "mediaId": 900,
+      "alt": "Ridar by MAW10",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__toBp1g7iZDzHA05otroIK260DllqLpp8bcVthKizjZE4topNlo23h8TbmZaoovnP_image.webp",
+      "dominantColor": "#101010",
+      "contentHash": "28aa19f5faf218f1412516bb38a2e0da88da5d76aefd1123c5793f14a7cc3c6a",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:hunter-poke-saladaeng": {
+      "legacyPath": "cover:saladaeng:hunter-poke-saladaeng",
+      "mediaId": 901,
+      "alt": "Hunter Poke",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-hunter poke.webp",
+      "contentHash": "4f97d1c90af44712cc20be27990b3fb53aeabda846760dfa2fe27ea6d5a34360",
+      "status": "uploaded"
+    },
+    "shops/BrZ2JQtsPfnLU05SSws0ktrhvqI93ZSRYuKtiSYvTVfIk2itz3ynNnvGzcVYUIf8.jpg": {
+      "legacyPath": "shops/BrZ2JQtsPfnLU05SSws0ktrhvqI93ZSRYuKtiSYvTVfIk2itz3ynNnvGzcVYUIf8.jpg",
+      "mediaId": 902,
+      "alt": "Hunter Poke",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__BrZ2JQtsPfnLU05SSws0ktrhvqI93ZSRYuKtiSYvTVfIk2itz3ynNnvGzcVYUIf8.webp",
+      "dominantColor": "#E0E0E0",
+      "contentHash": "967b5b3bcbd8a3c3a6efb0e8a1fd74393a62827e0bf46cf9c359f24ba9869ce0",
+      "status": "uploaded"
+    },
+    "shops/eFrWzZV5zl0fHwvJudC2cDuvSwUzVoE8YcFWncs990lUoRDsojAZqSDRz9RgNxDc.jpg": {
+      "legacyPath": "shops/eFrWzZV5zl0fHwvJudC2cDuvSwUzVoE8YcFWncs990lUoRDsojAZqSDRz9RgNxDc.jpg",
+      "mediaId": 903,
+      "alt": "Hunter Poke",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__eFrWzZV5zl0fHwvJudC2cDuvSwUzVoE8YcFWncs990lUoRDsojAZqSDRz9RgNxDc.webp",
+      "dominantColor": "#200000",
+      "contentHash": "cb3d3b432f8bf49954ff2b38ce9a854c987e1df91881dbf68a22107bba646013",
+      "status": "uploaded"
+    },
+    "shops/AHWVqiuGsxd5IPEEhjzMThCJaXO9wdqdcFmBeCNIVmxC7MhRaBIUHC0QBZZtWa3c.jpg": {
+      "legacyPath": "shops/AHWVqiuGsxd5IPEEhjzMThCJaXO9wdqdcFmBeCNIVmxC7MhRaBIUHC0QBZZtWa3c.jpg",
+      "mediaId": 904,
+      "alt": "Hunter Poke",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__AHWVqiuGsxd5IPEEhjzMThCJaXO9wdqdcFmBeCNIVmxC7MhRaBIUHC0QBZZtWa3c.webp",
+      "dominantColor": "#100000",
+      "contentHash": "01383f6d00a391c6d10b4a85a9a5d0e272b42ef9d9c6bbd41286b5fcc8d86950",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:hungry-josh-s-saladaeng": {
+      "legacyPath": "cover:saladaeng:hungry-josh-s-saladaeng",
+      "mediaId": 905,
+      "alt": "Hungry Josh's",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-hungry joshs.webp",
+      "contentHash": "56e04fe7978e1cc8086eff8b8693d55d1f6f98a1a6aae626959ae5886a1bac42",
+      "status": "uploaded"
+    },
+    "shops/l5PMD5JpyFcS3ZDsvSNpwUILe7zUU9QxlTzI7OOaf8GOFs5wgIxjHO9NBkZ4KJzY_image.jpg": {
+      "legacyPath": "shops/l5PMD5JpyFcS3ZDsvSNpwUILe7zUU9QxlTzI7OOaf8GOFs5wgIxjHO9NBkZ4KJzY_image.jpg",
+      "mediaId": 906,
+      "alt": "Hungry Josh's",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__l5PMD5JpyFcS3ZDsvSNpwUILe7zUU9QxlTzI7OOaf8GOFs5wgIxjHO9NBkZ4KJzY_image.webp",
+      "dominantColor": "#F00000",
+      "contentHash": "bf5782991b7950109935ec9d441feed72bf53a9ed1e37c126fde065c1f487723",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:guss-damn-good-saladaeng": {
+      "legacyPath": "cover:saladaeng:guss-damn-good-saladaeng",
+      "mediaId": 907,
+      "alt": "Guss Damn Good",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-guss damn good.webp",
+      "contentHash": "c3c3ea01c49e68656b59dfacf51e1b31bd342ef7747b598914512bda62699787",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:fowlmouth-saladaeng": {
+      "legacyPath": "cover:saladaeng:fowlmouth-saladaeng",
+      "mediaId": 910,
+      "alt": "FOWLMOUTH",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-fowlmouth.webp",
+      "contentHash": "6774f9ae61b7398b548ce9a4d93ce50fc1759dca601950be41911fc914001a0a",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:crackhouse-saladaeng": {
+      "legacyPath": "cover:saladaeng:crackhouse-saladaeng",
+      "mediaId": 912,
+      "alt": "Crackhouse",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-crackhouse.webp",
+      "contentHash": "84c91b27ff0f57a92543a5bf1b5ce7a9702b5dcf8876deaaede509cac6332560",
+      "status": "uploaded"
+    },
+    "shops/1FiI2fiNsasgcNuYVxIAwhR9YjJnhxQlFjHe382pr7VyUCAS40RObVvBo7QakeA0.jpg": {
+      "legacyPath": "shops/1FiI2fiNsasgcNuYVxIAwhR9YjJnhxQlFjHe382pr7VyUCAS40RObVvBo7QakeA0.jpg",
+      "mediaId": 913,
+      "alt": "Crackhouse",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__1FiI2fiNsasgcNuYVxIAwhR9YjJnhxQlFjHe382pr7VyUCAS40RObVvBo7QakeA0.webp",
+      "dominantColor": "#D0E0E0",
+      "contentHash": "153e7b9965bcac7e017db548dc881711b859de039da8dea0dda3be10c6c5330d",
+      "status": "uploaded"
+    },
+    "shops/tDD4IGr8MraKM0gPJCWYjWZUWrVq7kwWdC3ciZUSiGBMsyGK7GrS4TrAwR9ShZMP.jpg": {
+      "legacyPath": "shops/tDD4IGr8MraKM0gPJCWYjWZUWrVq7kwWdC3ciZUSiGBMsyGK7GrS4TrAwR9ShZMP.jpg",
+      "mediaId": 914,
+      "alt": "Crackhouse",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__tDD4IGr8MraKM0gPJCWYjWZUWrVq7kwWdC3ciZUSiGBMsyGK7GrS4TrAwR9ShZMP.webp",
+      "dominantColor": "#C0A060",
+      "contentHash": "4488eedbba5fed5846aa74b6037177b6d144fe95a7742dc40f79e029e06f388d",
+      "status": "uploaded"
+    },
+    "shops/ZwPpkftuzZhVHVz0tu1shB8WtdjrcONTbP9BxaeTD988vV5xEVDP3IDnPGC42L2X.jpg": {
+      "legacyPath": "shops/ZwPpkftuzZhVHVz0tu1shB8WtdjrcONTbP9BxaeTD988vV5xEVDP3IDnPGC42L2X.jpg",
+      "mediaId": 915,
+      "alt": "Crackhouse",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__ZwPpkftuzZhVHVz0tu1shB8WtdjrcONTbP9BxaeTD988vV5xEVDP3IDnPGC42L2X.webp",
+      "dominantColor": "#C0B090",
+      "contentHash": "b66db97ce24c972ceb5b6e45f6796980c7c3473aa326e0aba771aabcb07b488d",
+      "status": "uploaded"
+    },
+    "shops/VKGZ4azw94R0pB5l60ZJjRHZY1SgVhyHu60XwQ6s9tx8a89TqqCqYcyQXfgrhewL.jpg": {
+      "legacyPath": "shops/VKGZ4azw94R0pB5l60ZJjRHZY1SgVhyHu60XwQ6s9tx8a89TqqCqYcyQXfgrhewL.jpg",
+      "mediaId": 916,
+      "alt": "Crackhouse",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__VKGZ4azw94R0pB5l60ZJjRHZY1SgVhyHu60XwQ6s9tx8a89TqqCqYcyQXfgrhewL.webp",
+      "dominantColor": "#D0C0A0",
+      "contentHash": "5b84e8c316835a7e276c528a367dadf76463a1561d84841afeaf6e9d7065c521",
+      "status": "uploaded"
+    },
+    "shops/niyLmt4Jzgb0WVxeeH7XGUUkzgFMTKMsPjHM76Xm4OGYariWbSF2UQpqnCuEawr7.jpg": {
+      "legacyPath": "shops/niyLmt4Jzgb0WVxeeH7XGUUkzgFMTKMsPjHM76Xm4OGYariWbSF2UQpqnCuEawr7.jpg",
+      "mediaId": 917,
+      "alt": "Crackhouse",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__niyLmt4Jzgb0WVxeeH7XGUUkzgFMTKMsPjHM76Xm4OGYariWbSF2UQpqnCuEawr7.webp",
+      "dominantColor": "#E0C070",
+      "contentHash": "e8d4af988d9c221719de738057bf4552c19ffd8a17291a0af62efef936999b15",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:cloud-wine-saladaeng": {
+      "legacyPath": "cover:saladaeng:cloud-wine-saladaeng",
+      "mediaId": 918,
+      "alt": "CLOUD WINE",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cloud wine.webp",
+      "contentHash": "c1a74d103be7632287ca3db594840e028568268304963000d67826547d285f71",
+      "status": "uploaded"
+    },
+    "shops/ktQPlJs6Rzde2du6NfkWYqHz0ZfhfPc82qQBDlJDSbUlg3zKj8NnMMv7TN2ZX1uj.jpg": {
+      "legacyPath": "shops/ktQPlJs6Rzde2du6NfkWYqHz0ZfhfPc82qQBDlJDSbUlg3zKj8NnMMv7TN2ZX1uj.jpg",
+      "mediaId": 919,
+      "alt": "CLOUD WINE",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__ktQPlJs6Rzde2du6NfkWYqHz0ZfhfPc82qQBDlJDSbUlg3zKj8NnMMv7TN2ZX1uj.webp",
+      "dominantColor": "#201000",
+      "contentHash": "0b9a07ca8739170d182d44b7befd3b16d954bd1457ebfc8ebdf420bc0f74654c",
+      "status": "uploaded"
+    },
+    "shops/kZ54TeWnj259fkPp1ps7k8Y5LzAAL8Mhkou1E49uzi9Ob4Fm6UrlEUYPbw7ViF74.jpg": {
+      "legacyPath": "shops/kZ54TeWnj259fkPp1ps7k8Y5LzAAL8Mhkou1E49uzi9Ob4Fm6UrlEUYPbw7ViF74.jpg",
+      "mediaId": 920,
+      "alt": "CLOUD WINE",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__kZ54TeWnj259fkPp1ps7k8Y5LzAAL8Mhkou1E49uzi9Ob4Fm6UrlEUYPbw7ViF74.webp",
+      "dominantColor": "#000000",
+      "contentHash": "8cef0590f42a191cc7a50a717c9acdcbe2b6e95aed59c174346669d8221f6d3b",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:bun-meat-cheese-saladaeng": {
+      "legacyPath": "cover:saladaeng:bun-meat-cheese-saladaeng",
+      "mediaId": 921,
+      "alt": "Bun Meat & Cheese",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-bun meat and cheese.webp",
+      "contentHash": "62d43863a28a467cd9ee308194d8487d7cde5f9367b58b2b48ce1dc9f21ea27a",
+      "status": "uploaded"
+    },
+    "shops/gNk94lgf58Xw4MAj2KSNHJOA2QsTs9NCvJm1H9tpCVX3WZ5Omr5mlb1kZfWVcNhd.jpg": {
+      "legacyPath": "shops/gNk94lgf58Xw4MAj2KSNHJOA2QsTs9NCvJm1H9tpCVX3WZ5Omr5mlb1kZfWVcNhd.jpg",
+      "mediaId": 922,
+      "alt": "Bun Meat & Cheese",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__gNk94lgf58Xw4MAj2KSNHJOA2QsTs9NCvJm1H9tpCVX3WZ5Omr5mlb1kZfWVcNhd.webp",
+      "dominantColor": "#000000",
+      "contentHash": "a30bceb60d639136c4d6a179f73018b750b02e6069d367eb6d9f5ad8dd890c42",
+      "status": "uploaded"
+    },
+    "shops/zw2asMMAj2e4vc57bQzLRKpln5Z5AyC2xtC1dcvYY3EjAYnH6Z1wJ3xd26TLeo7H.jpg": {
+      "legacyPath": "shops/zw2asMMAj2e4vc57bQzLRKpln5Z5AyC2xtC1dcvYY3EjAYnH6Z1wJ3xd26TLeo7H.jpg",
+      "mediaId": 923,
+      "alt": "Bun Meat & Cheese",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__zw2asMMAj2e4vc57bQzLRKpln5Z5AyC2xtC1dcvYY3EjAYnH6Z1wJ3xd26TLeo7H.webp",
+      "dominantColor": "#000000",
+      "contentHash": "bc99506fce6a9a50753c8906c027bed6e82a945463bdb48738371279e34e58b5",
+      "status": "uploaded"
+    },
+    "shops/6Q6SxBbxrIfjyIujaMWfncU7KuNJupMHqb3HlA8zdOjhYg9wVp44PYUo6OmtERlQ.jpg": {
+      "legacyPath": "shops/6Q6SxBbxrIfjyIujaMWfncU7KuNJupMHqb3HlA8zdOjhYg9wVp44PYUo6OmtERlQ.jpg",
+      "mediaId": 924,
+      "alt": "Bun Meat & Cheese",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__6Q6SxBbxrIfjyIujaMWfncU7KuNJupMHqb3HlA8zdOjhYg9wVp44PYUo6OmtERlQ.webp",
+      "dominantColor": "#000000",
+      "contentHash": "ee2d8fef462bf81374b62523718f3050053eeb6515e696c499f5a6b3e66fb5b7",
+      "status": "uploaded"
+    },
+    "shops/TvPHhUeLQjZlqA3cEh0xuQRVP6B0fqLu88hBVevI5XHA5S9qZ3YQM6JRh4if4KTB.jpg": {
+      "legacyPath": "shops/TvPHhUeLQjZlqA3cEh0xuQRVP6B0fqLu88hBVevI5XHA5S9qZ3YQM6JRh4if4KTB.jpg",
+      "mediaId": 925,
+      "alt": "Bun Meat & Cheese",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__TvPHhUeLQjZlqA3cEh0xuQRVP6B0fqLu88hBVevI5XHA5S9qZ3YQM6JRh4if4KTB.webp",
+      "dominantColor": "#000000",
+      "contentHash": "726c319c37a4e76feec1421c4f4e45e3e991dd4d0391ed87708aa123e25fd8f5",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:boon-tong-kee-saladaeng": {
+      "legacyPath": "cover:saladaeng:boon-tong-kee-saladaeng",
+      "mediaId": 926,
+      "alt": "Boon Tong Kee",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-boon tong kee.webp",
+      "contentHash": "ebcfb0691c06dd174d9b207d19414702d124c9ee8d1f94b40e53e5e6f74e897f",
+      "status": "uploaded"
+    },
+    "shops/yrSIvoSJJmGyXUS5l7vk7trwgySqB3CDZsrGvYQTnzORtQXcgBZ7drzdaCUm3mUk.jpg": {
+      "legacyPath": "shops/yrSIvoSJJmGyXUS5l7vk7trwgySqB3CDZsrGvYQTnzORtQXcgBZ7drzdaCUm3mUk.jpg",
+      "mediaId": 927,
+      "alt": "Boon Tong Kee",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__yrSIvoSJJmGyXUS5l7vk7trwgySqB3CDZsrGvYQTnzORtQXcgBZ7drzdaCUm3mUk.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "7fe0e7bfd9bd75537f04a240d9333259f4a5a17b9aba68102f4b7ab5ce07407c",
+      "status": "uploaded"
+    },
+    "shops/Xh0GuEQSfwF3u2BK1uQ54epr3lqnNHhZf7NNyvTZNN9CrtwGIdv18QgaAqcGIqC8.jpg": {
+      "legacyPath": "shops/Xh0GuEQSfwF3u2BK1uQ54epr3lqnNHhZf7NNyvTZNN9CrtwGIdv18QgaAqcGIqC8.jpg",
+      "mediaId": 928,
+      "alt": "Boon Tong Kee",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__Xh0GuEQSfwF3u2BK1uQ54epr3lqnNHhZf7NNyvTZNN9CrtwGIdv18QgaAqcGIqC8.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "c35a4e58d01bd9f2749bb9e595658204f8fe3190e4b9beb67bc0688b733e85d1",
+      "status": "uploaded"
+    },
+    "shops/xWQD28NdCmQSbJU1XiHrh7v2cS8oXqfPpuW4FbJ2ePuvFt9Y1OFAHuUOLEKdnQDP.jpg": {
+      "legacyPath": "shops/xWQD28NdCmQSbJU1XiHrh7v2cS8oXqfPpuW4FbJ2ePuvFt9Y1OFAHuUOLEKdnQDP.jpg",
+      "mediaId": 929,
+      "alt": "Boon Tong Kee",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__xWQD28NdCmQSbJU1XiHrh7v2cS8oXqfPpuW4FbJ2ePuvFt9Y1OFAHuUOLEKdnQDP.webp",
+      "dominantColor": "#F0F0F0",
+      "contentHash": "efaa68c22b106bb9b9eedf3a236f871e688c59cd0dad20c82e4f71d4e2e43a6d",
+      "status": "uploaded"
+    },
+    "shops/6IUu5Bh1X6u8mhzUU3OjfjnTJ6V9SLyFuiU4bjjqOzB8a2qhAgFbkUw0MxTenKsZ.jpg": {
+      "legacyPath": "shops/6IUu5Bh1X6u8mhzUU3OjfjnTJ6V9SLyFuiU4bjjqOzB8a2qhAgFbkUw0MxTenKsZ.jpg",
+      "mediaId": 930,
+      "alt": "Boon Tong Kee",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__6IUu5Bh1X6u8mhzUU3OjfjnTJ6V9SLyFuiU4bjjqOzB8a2qhAgFbkUw0MxTenKsZ.webp",
+      "dominantColor": "#E0C0B0",
+      "contentHash": "9d616c7e513e82384f98bf5e133c532c38df25b4659acdfe580d0d7f92190e69",
+      "status": "uploaded"
+    },
+    "shops/YolDxG2k0iC2uwFoSy4GUjewfNyle2zWZOyU7PwPGIhlDevznDpHvmUfwCT73JaR.jpg": {
+      "legacyPath": "shops/YolDxG2k0iC2uwFoSy4GUjewfNyle2zWZOyU7PwPGIhlDevznDpHvmUfwCT73JaR.jpg",
+      "mediaId": 931,
+      "alt": "Boon Tong Kee",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__YolDxG2k0iC2uwFoSy4GUjewfNyle2zWZOyU7PwPGIhlDevznDpHvmUfwCT73JaR.webp",
+      "dominantColor": "#E0D0B0",
+      "contentHash": "d508810e65b442aeebfa4fc174ca29cfe0acdff226f19972e749488f7346c530",
+      "status": "uploaded"
+    },
+    "cover:saladaeng:antico-fornaio-saladaeng": {
+      "legacyPath": "cover:saladaeng:antico-fornaio-saladaeng",
+      "mediaId": 932,
+      "alt": "Antico Fornaio",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-antico fornaio.webp",
+      "contentHash": "68d0ba3f26fa202c1645f17c62c092abe9255ea7c7d37affad250cc70c0cba1b",
+      "status": "uploaded"
+    },
+    "shops/k8GVMnYnWtcP5u2EfbFv0mUjUfjLrus7covFp7IuTSwY6tBPLxHoq5383oqRanpk.jpg": {
+      "legacyPath": "shops/k8GVMnYnWtcP5u2EfbFv0mUjUfjLrus7covFp7IuTSwY6tBPLxHoq5383oqRanpk.jpg",
+      "mediaId": 933,
+      "alt": "Antico Fornaio",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__k8GVMnYnWtcP5u2EfbFv0mUjUfjLrus7covFp7IuTSwY6tBPLxHoq5383oqRanpk.webp",
+      "dominantColor": "#F0E0D0",
+      "contentHash": "db3b014ed3865587dc68aab54c66363b5e40e75ba0106676a6aeb8af1943181f",
+      "status": "uploaded"
+    },
+    "shops/FtrzoKPRoGGiyjgJxxrvtjjKRoKbcItPaIiUg1d5TwbJaicpTYg3e02RZXANgome.jpg": {
+      "legacyPath": "shops/FtrzoKPRoGGiyjgJxxrvtjjKRoKbcItPaIiUg1d5TwbJaicpTYg3e02RZXANgome.jpg",
+      "mediaId": 934,
+      "alt": "Antico Fornaio",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__FtrzoKPRoGGiyjgJxxrvtjjKRoKbcItPaIiUg1d5TwbJaicpTYg3e02RZXANgome.webp",
+      "dominantColor": "#F0E0E0",
+      "contentHash": "e760a690b509d29208d52b6d25d8d367cdd5a927c8cc00e20a8fba671c765421",
+      "status": "uploaded"
+    },
+    "shops/LKSqXMwV5aFopz6EJNRcC2CB1ZVTYbaISoz99hY15cSoIuyzZCEFFoTehiSYOQOm.jpg": {
+      "legacyPath": "shops/LKSqXMwV5aFopz6EJNRcC2CB1ZVTYbaISoz99hY15cSoIuyzZCEFFoTehiSYOQOm.jpg",
+      "mediaId": 935,
+      "alt": "Antico Fornaio",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__LKSqXMwV5aFopz6EJNRcC2CB1ZVTYbaISoz99hY15cSoIuyzZCEFFoTehiSYOQOm.webp",
+      "dominantColor": "#F0E0D0",
+      "contentHash": "314c565250748d1993187d40edc230aca1cce1674e190c18c8c7b0cdc787563f",
+      "status": "uploaded"
+    },
+    "shops/n15lWKmcDAioOuIw7YAToOUoruqXscLE7Ew53yqxBTV26ReTlioGMfcb8yuTRUir.jpg": {
+      "legacyPath": "shops/n15lWKmcDAioOuIw7YAToOUoruqXscLE7Ew53yqxBTV26ReTlioGMfcb8yuTRUir.jpg",
+      "mediaId": 936,
+      "alt": "Antico Fornaio",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__n15lWKmcDAioOuIw7YAToOUoruqXscLE7Ew53yqxBTV26ReTlioGMfcb8yuTRUir.webp",
+      "dominantColor": "#F0E0E0",
+      "contentHash": "39e04f022ee81f6922ae46ed31c0bd8ffa18d6c6665d7066e5d50e7a1b5a7c78",
+      "status": "uploaded"
+    },
+    "shops/YlvH9OMmnJOQb3rR8xm0oaYbztaUoglh0gYcwgpVlk9vSM9rQhEa92QOijZ3kwbL.jpg": {
+      "legacyPath": "shops/YlvH9OMmnJOQb3rR8xm0oaYbztaUoglh0gYcwgpVlk9vSM9rQhEa92QOijZ3kwbL.jpg",
+      "mediaId": 937,
+      "alt": "Antico Fornaio",
+      "webpPath": "/Users/kongtup/Documents/Dev/freelance/the-common/scripts/migration/shops/cache/media/shops__YlvH9OMmnJOQb3rR8xm0oaYbztaUoglh0gYcwgpVlk9vSM9rQhEa92QOijZ3kwbL.webp",
+      "dominantColor": "#301000",
+      "contentHash": "026b6b0b1e74951ae6338d0f0779ab31ce1263aec4ddb65e0b71a214e2215c2d",
+      "status": "uploaded"
+    }
+  }
+}

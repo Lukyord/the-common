@@ -1,16 +1,17 @@
 import { VENDOR_TAGS } from '@/constants/vendorTags'
 import { slugify } from '@/lib/branchAwareSlug'
 
-import { BRANCH_CODE_TO_SLUG } from '../config/constants.js'
+import type { BranchVendorConfig } from '../config/branches.js'
 import { normalizeTelList } from './normalizeTel.js'
 import { parseSocialLinks } from './parseSocialLinks.js'
-import type { ThonglorVendorCsvRow } from './parseThonglorVendorsCsv.js'
+import type { VendorCsvRow } from './parseVendorCsv.js'
 
-export type MappedThonglorVendor = {
+export type MappedVendor = {
   rowNumber: number
   branchSlug: string
   name: string
   slug: string
+  description: string | null
   mood: string | null
   categoryText: string | null
   offerTexts: string[]
@@ -23,15 +24,6 @@ export type MappedThonglorVendor = {
   warnings: string[]
 }
 
-const FLOOR_LABEL_TO_ID: Record<string, string> = {
-  'village (fl. 1)': '1',
-  'market (fl. m)': 'm',
-  'play yard (fl.2)': '2',
-  'play yard (fl. 2)': '2',
-  'top yard (fl.3)': '3',
-  'top yard (fl. 3)': '3',
-}
-
 const OFFER_TEXT_TO_TAG_ID = new Map(
   VENDOR_TAGS.map((tag) => [tag.text.toLowerCase(), tag.id]),
 )
@@ -40,14 +32,21 @@ function normalizeLabel(value: string): string {
   return value.trim().replace(/\s+/g, ' ').toLowerCase()
 }
 
-export function parseFloorId(floorLabel: string | null): string | null {
+export function parseFloorId(
+  floorLabel: string | null,
+  config: BranchVendorConfig,
+): string | null {
   if (!floorLabel?.trim()) return null
 
   const normalized = normalizeLabel(floorLabel)
-  if (FLOOR_LABEL_TO_ID[normalized]) return FLOOR_LABEL_TO_ID[normalized]
+  const mapped = config.floorLabelToId[normalized]
+  if (mapped && config.allowedFloorIds.includes(mapped)) return mapped
 
   const match = normalized.match(/fl\.?\s*([m123])/i)
-  return match?.[1]?.toLowerCase() ?? null
+  const floorId = match?.[1]?.toLowerCase() ?? null
+  if (!floorId || !config.allowedFloorIds.includes(floorId)) return null
+
+  return floorId
 }
 
 export function parseLotNumber(lot: string | null): number | null {
@@ -80,39 +79,51 @@ function mapOfferTextsToTagIds(offerTexts: string[]): string[] {
   return [...new Set(tagIds)]
 }
 
-export function buildVendorSlug(name: string, usedSlugs: Set<string>): string {
+export function buildVendorSlug(
+  name: string,
+  branchSlug: string,
+  usedSlugs: Set<string>,
+): string {
   const baseSlug = slugify(name)
-  if (!baseSlug) return `vendor-${Date.now()}`
+  if (!baseSlug) {
+    const fallback = `vendor-${branchSlug}`
+    if (!usedSlugs.has(fallback)) {
+      usedSlugs.add(fallback)
+      return fallback
+    }
+    return `${fallback}-${Date.now()}`
+  }
 
-  if (!usedSlugs.has(baseSlug)) {
-    usedSlugs.add(baseSlug)
-    return baseSlug
+  let candidate = `${baseSlug}-${branchSlug}`
+  if (!usedSlugs.has(candidate)) {
+    usedSlugs.add(candidate)
+    return candidate
   }
 
   let index = 2
-  while (usedSlugs.has(`${baseSlug}-${index}`)) {
+  while (usedSlugs.has(`${baseSlug}-${branchSlug}-${index}`)) {
     index += 1
   }
 
-  const slug = `${baseSlug}-${index}`
+  const slug = `${baseSlug}-${branchSlug}-${index}`
   usedSlugs.add(slug)
   return slug
 }
 
-export function mapThonglorVendorRow(
-  row: ThonglorVendorCsvRow,
+export function mapVendorRow(
+  row: VendorCsvRow,
+  config: BranchVendorConfig,
   usedSlugs: Set<string>,
-): MappedThonglorVendor {
+): MappedVendor {
   const warnings: string[] = []
-  const branchSlug = BRANCH_CODE_TO_SLUG[row.branchCode]
 
-  if (!branchSlug) {
-    warnings.push(`Unknown branch code: ${row.branchCode}`)
+  if (row.branchCode !== config.branchCode) {
+    warnings.push(`Unexpected branch code: ${row.branchCode}`)
   }
 
-  const floorId = parseFloorId(row.floorLabel)
+  const floorId = parseFloorId(row.floorLabel, config)
   if (row.floorLabel && !floorId) {
-    warnings.push(`Could not parse floor: ${row.floorLabel}`)
+    warnings.push(`Could not parse floor for branch: ${row.floorLabel}`)
   }
 
   const lotNumber = parseLotNumber(row.lot)
@@ -131,11 +142,12 @@ export function mapThonglorVendorRow(
 
   return {
     rowNumber: row.rowNumber,
-    branchSlug: branchSlug ?? 'thonglor',
+    branchSlug: config.slug,
     name: row.name,
-    slug: buildVendorSlug(row.name, usedSlugs),
+    slug: buildVendorSlug(row.name, config.slug, usedSlugs),
+    description: row.description?.trim() || null,
     mood: row.mood?.trim() || null,
-    categoryText: row.category?.trim().replace(/\s+/g, ' ') || null,
+    categoryText: row.category?.replace(/\s+/g, ' ').trim() || null,
     offerTexts,
     tagIds,
     openingHours: row.openingHours?.trim() || null,

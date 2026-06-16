@@ -1,4 +1,4 @@
-import type { MapVendor } from '@/constants/vendorMapData/index'
+import type { FloorMapOnlyLots, MapVendor } from '@/constants/vendorMapData/index'
 import type { VendorMapListItem } from '@/components/branch/vendors/types'
 
 function vendorHasStoreData(vendor: VendorMapListItem | undefined): vendor is VendorMapListItem {
@@ -57,4 +57,26 @@ export function getFirstFloorVendorWithData(
   }
 
   return undefined
+}
+
+export function getMapOnlyLotStoreInfoItem(
+  floorMapOnlyLots: FloorMapOnlyLots | null,
+  mapKey: string,
+  floorId: string,
+  branchSlug: string,
+): VendorMapListItem | undefined {
+  const storeInfo = floorMapOnlyLots?.[mapKey]?.storeInfo
+  if (!storeInfo?.name) return undefined
+
+  return {
+    lotNumber: 0,
+    floor: floorId,
+    name: storeInfo.name,
+    link: `/${branchSlug}/space-rental`,
+    tags: [],
+    lotLabel: storeInfo.lotLabel,
+    isMapOnlyLot: true,
+    media: storeInfo.media,
+    openingHoursHtml: storeInfo.openingHoursHtml,
+  }
 }

@@ -37,9 +37,23 @@ export type LotDefinition = {
   layout?: LotLayout
 }
 
+export type MapOnlyLotStoreInfo = {
+  name: string
+  openingHoursHtml?: string
+  media?: {
+    src: string
+    alt: string
+  }
+  lotLabel?: string
+}
+
+export type MapOnlyLotDefinition = LotDefinition & {
+  storeInfo?: MapOnlyLotStoreInfo
+}
+
 export type FloorLots = Record<number, LotDefinition>
 
-export type FloorMapOnlyLots = Record<string, LotDefinition>
+export type FloorMapOnlyLots = Record<string, MapOnlyLotDefinition>
 
 export const AMENITY_IDS = [
   'book',

@@ -957,6 +957,10 @@
     width: 13.3rem;
   }
 
+  [data-section='vendor-map'] .map .store-info--map-only .store-content {
+    gap: var(--spacing-6xs);
+  }
+
   [data-section='vendor-map'] .map .store-info .store-content {
     gap: var(--spacing-2xs);
   }

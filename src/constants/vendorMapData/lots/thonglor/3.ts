@@ -24,5 +24,13 @@ export const thonglor3FloorMapOnlyLots: FloorMapOnlyLots = {
       top: '18%',
       left: '21.76%',
     },
+    storeInfo: {
+      name: 'theCOMMONS Kitchen & Bar',
+      openingHoursHtml: 'View Detail',
+      media: {
+        src: '/designs/tl-vendor-kitchen-and-bar.webp',
+        alt: 'theCOMMONS Kitchen & Bar',
+      },
+    },
   },
 }

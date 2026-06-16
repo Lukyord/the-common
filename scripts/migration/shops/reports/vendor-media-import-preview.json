@@ -1,0 +1,301 @@
+{
+  "generatedAt": "2026-06-16T06:55:47.224Z",
+  "branch": "saladaeng",
+  "dryRun": false,
+  "legacyShopsSource": "https://s3-ap-southeast-1.amazonaws.com/thecommonsbkk",
+  "totals": {
+    "vendors": 32,
+    "updated": 32,
+    "skipped": 0
+  },
+  "rows": [
+    {
+      "vendorId": 85,
+      "name": "cyu sushi and handroll",
+      "slug": "cyu-sushi-and-handroll-saladaeng-3",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu sushi and handroll.webp",
+      "galleryCount": 5,
+      "warnings": []
+    },
+    {
+      "vendorId": 84,
+      "name": "cyu shabu",
+      "slug": "cyu-shabu-saladaeng-3",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu shabu.webp",
+      "galleryCount": 4,
+      "warnings": []
+    },
+    {
+      "vendorId": 83,
+      "name": "Guss Damn Good",
+      "slug": "guss-damn-good-saladaeng-3",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-guss damn good.webp",
+      "galleryCount": 2,
+      "warnings": []
+    },
+    {
+      "vendorId": 82,
+      "name": "FOWLMOUTH",
+      "slug": "fowlmouth-saladaeng-3",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-fowlmouth.webp",
+      "galleryCount": 1,
+      "warnings": []
+    },
+    {
+      "vendorId": 77,
+      "name": "cyu sushi and handroll",
+      "slug": "cyu-sushi-and-handroll-saladaeng-2",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu sushi and handroll.webp",
+      "galleryCount": 5,
+      "warnings": []
+    },
+    {
+      "vendorId": 76,
+      "name": "cyu shabu",
+      "slug": "cyu-shabu-saladaeng-2",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu shabu.webp",
+      "galleryCount": 4,
+      "warnings": []
+    },
+    {
+      "vendorId": 75,
+      "name": "Guss Damn Good",
+      "slug": "guss-damn-good-saladaeng-2",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-guss damn good.webp",
+      "galleryCount": 2,
+      "warnings": []
+    },
+    {
+      "vendorId": 74,
+      "name": "FOWLMOUTH",
+      "slug": "fowlmouth-saladaeng-2",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-fowlmouth.webp",
+      "galleryCount": 1,
+      "warnings": []
+    },
+    {
+      "vendorId": 58,
+      "name": "cyu sushi and handroll",
+      "slug": "cyu-sushi-and-handroll-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu sushi and handroll.webp",
+      "galleryCount": 5,
+      "warnings": []
+    },
+    {
+      "vendorId": 57,
+      "name": "cyu shabu",
+      "slug": "cyu-shabu-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cyu shabu.webp",
+      "galleryCount": 4,
+      "warnings": []
+    },
+    {
+      "vendorId": 56,
+      "name": "Wild Clinic",
+      "slug": "wild-clinic-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-wild clinic.webp",
+      "galleryCount": 1,
+      "warnings": []
+    },
+    {
+      "vendorId": 55,
+      "name": "Toku Dessert",
+      "slug": "toku-dessert-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-toku dessert.webp",
+      "galleryCount": 4,
+      "warnings": []
+    },
+    {
+      "vendorId": 54,
+      "name": "The Barrel Sake Bar",
+      "slug": "the-barrel-sake-bar-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-the barrel sake bar.webp",
+      "galleryCount": 5,
+      "warnings": []
+    },
+    {
+      "vendorId": 53,
+      "name": "Taproom",
+      "slug": "taproom-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-taproom.webp",
+      "galleryCount": 2,
+      "warnings": []
+    },
+    {
+      "vendorId": 52,
+      "name": "Soho Pizza",
+      "slug": "soho-pizza-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-soho pizza.webp",
+      "galleryCount": 4,
+      "warnings": []
+    },
+    {
+      "vendorId": 51,
+      "name": "Scarletta",
+      "slug": "scarletta-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-scarletta.webp",
+      "galleryCount": 1,
+      "warnings": []
+    },
+    {
+      "vendorId": 50,
+      "name": "Roots",
+      "slug": "roots-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-roots.webp",
+      "galleryCount": 5,
+      "warnings": []
+    },
+    {
+      "vendorId": 49,
+      "name": "QQ",
+      "slug": "qq-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-qq.webp",
+      "galleryCount": 1,
+      "warnings": []
+    },
+    {
+      "vendorId": 48,
+      "name": "POPPA",
+      "slug": "poppa-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-poppa.webp",
+      "galleryCount": 5,
+      "warnings": []
+    },
+    {
+      "vendorId": 47,
+      "name": "Paak",
+      "slug": "paak-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-paak.webp",
+      "galleryCount": 5,
+      "warnings": []
+    },
+    {
+      "vendorId": 46,
+      "name": "Oo La Lab",
+      "slug": "oo-la-lab-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-oo la lab.webp",
+      "galleryCount": 3,
+      "warnings": []
+    },
+    {
+      "vendorId": 45,
+      "name": "Ong Tong",
+      "slug": "ong-tong-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-ong tong.webp",
+      "galleryCount": 1,
+      "warnings": []
+    },
+    {
+      "vendorId": 44,
+      "name": "Ridar by MAW10",
+      "slug": "ridar-by-maw10-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-ridar by maw10.webp",
+      "galleryCount": 1,
+      "warnings": []
+    },
+    {
+      "vendorId": 43,
+      "name": "Hunter Poke",
+      "slug": "hunter-poke-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-hunter poke.webp",
+      "galleryCount": 3,
+      "warnings": []
+    },
+    {
+      "vendorId": 42,
+      "name": "Hungry Josh's",
+      "slug": "hungry-josh-s-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-hungry joshs.webp",
+      "galleryCount": 1,
+      "warnings": []
+    },
+    {
+      "vendorId": 41,
+      "name": "Guss Damn Good",
+      "slug": "guss-damn-good-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-guss damn good.webp",
+      "galleryCount": 2,
+      "warnings": []
+    },
+    {
+      "vendorId": 40,
+      "name": "FOWLMOUTH",
+      "slug": "fowlmouth-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-fowlmouth.webp",
+      "galleryCount": 1,
+      "warnings": []
+    },
+    {
+      "vendorId": 39,
+      "name": "Crackhouse",
+      "slug": "crackhouse-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-crackhouse.webp",
+      "galleryCount": 5,
+      "warnings": []
+    },
+    {
+      "vendorId": 38,
+      "name": "CLOUD WINE",
+      "slug": "cloud-wine-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-cloud wine.webp",
+      "galleryCount": 2,
+      "warnings": []
+    },
+    {
+      "vendorId": 37,
+      "name": "Bun Meat & Cheese",
+      "slug": "bun-meat-cheese-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-bun meat and cheese.webp",
+      "galleryCount": 4,
+      "warnings": []
+    },
+    {
+      "vendorId": 36,
+      "name": "Boon Tong Kee",
+      "slug": "boon-tong-kee-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-boon tong kee.webp",
+      "galleryCount": 5,
+      "warnings": []
+    },
+    {
+      "vendorId": 35,
+      "name": "Antico Fornaio",
+      "slug": "antico-fornaio-saladaeng",
+      "action": "update",
+      "coverFile": "/Users/kongtup/Documents/Dev/freelance/the-common/legacy-db/vendor-cover-saladaeng/sd-vendor-antico fornaio.webp",
+      "galleryCount": 5,
+      "warnings": []
+    }
+  ]
+}

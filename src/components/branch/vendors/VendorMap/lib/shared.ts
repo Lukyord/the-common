@@ -5,8 +5,9 @@ import type { Branch } from '@/payload-types'
 export type TransitionState = 'idle' | 'fading-out' | 'fading-in'
 
 export type StoreTarget = {
-  lot: number
   floor: VendorMapFloorId
+  lot?: number
+  mapKey?: string
 }
 
 export type VendorMapProps = {
@@ -23,7 +24,9 @@ export type VendorMapProps = {
 }
 
 export function isSameStoreTarget(a: StoreTarget | null, b: StoreTarget | null) {
-  return a?.lot === b?.lot && a?.floor === b?.floor
+  if (a?.floor !== b?.floor) return false
+  if (a?.mapKey != null || b?.mapKey != null) return a?.mapKey === b?.mapKey
+  return a?.lot === b?.lot
 }
 
 export function withTransitionClassName(base: string, transitionState: TransitionState, extra?: string) {
