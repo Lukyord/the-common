@@ -1,0 +1,39 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-container);
+  background-color: rgba(var(--color-dark-brown-rgb), 0.4);
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.modal__content {
+  position: relative;
+  width: 100%;
+  max-width: 42rem;
+  max-height: calc(100dvh - var(--spacing-container) * 2);
+  overflow: auto;
+  cursor: default;
+}
+
+.modal__close {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  display: flex;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 3rem;
+  transition: opacity var(--duration) var(--timing-function);
+}
+
+html.no-touchevents .modal__close:hover {
+  opacity: 0.5;
+}

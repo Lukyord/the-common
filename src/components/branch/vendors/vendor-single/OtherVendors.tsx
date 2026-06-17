@@ -1,7 +1,7 @@
 'use client'
 
 import CardSection, { CardSectionProps } from '@/components/branch/CardSection'
-import VendorCard from '@/components/branch/components/VendorCard'
+import VendorCard from '@/components/branch/components/vendor-card/VendorCard'
 import type { ComponentProps } from 'react'
 
 type VendorCardProps = ComponentProps<typeof VendorCard>

@@ -5,6 +5,8 @@ import type {
   BranchLandingVendorCard,
   BranchVendorCard,
   LifestyleOption,
+  MultiBranchVendorBranch,
+  MultiBranchVendorInfo,
   VendorMapListItem,
 } from '@/components/branch/vendors/types'
 
@@ -12,6 +14,8 @@ export type {
   BranchLandingVendorCard,
   BranchVendorCard,
   LifestyleOption,
+  MultiBranchVendorBranch,
+  MultiBranchVendorInfo,
   VendorMapListItem,
 } from '@/components/branch/vendors/types'
 export { BRANCH_VENDORS_PAGE_SIZE } from '@/components/branch/vendors/types'
@@ -39,6 +43,7 @@ import { resolveMedia } from '@/lib/resolveMedia'
 import type {
   Branch,
   BranchContactPage,
+  BranchSpaceRentalPage,
   BranchVendorPage,
   BranchWhatsOnPage,
   Vendor,
@@ -116,6 +121,24 @@ export const getBranchVendorPageBySlug = cache(
     const payload = await getPayloadClient()
     const { docs } = await payload.find({
       collection: 'branch-vendor-pages',
+      where: { branch: { equals: branch.id } },
+      depth: 1,
+      limit: 1,
+    })
+
+    const page = docs[0]
+    if (!page) notFound()
+
+    return page
+  },
+)
+
+export const getBranchSpaceRentalPageBySlug = cache(
+  async (branchSlug: string): Promise<BranchSpaceRentalPage> => {
+    const branch = await getBranchBySlug(branchSlug)
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'branch-space-rental-pages',
       where: { branch: { equals: branch.id } },
       depth: 1,
       limit: 1,
@@ -316,6 +339,150 @@ export const getBranchVendors = async (
     cards,
     hasMore: hasNextPage,
   }
+}
+
+function getVendorBranchSlug(vendor: Vendor): string | null {
+  const branch = typeof vendor.branch === 'object' ? vendor.branch : null
+  return branch?.slug ?? null
+}
+
+function resolveVendorMedia(vendor: Vendor, fallbackName: string) {
+  const media = resolveMedia(vendor.media)
+  if (!media?.src) return null
+
+  return {
+    src: media.src,
+    alt: media.alt || fallbackName,
+  }
+}
+
+export const getMultiBranchVendorLookup = cache(
+  async (): Promise<Record<string, MultiBranchVendorInfo>> => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'vendors',
+      depth: 2,
+      limit: 500,
+      overrideAccess: false,
+      pagination: false,
+      sort: 'name',
+    })
+
+    const vendorsByName = new Map<string, Vendor[]>()
+
+    for (const vendor of docs) {
+      const name = vendor.name.trim()
+      if (!name) continue
+
+      const vendors = vendorsByName.get(name) ?? []
+      vendors.push(vendor)
+      vendorsByName.set(name, vendors)
+    }
+
+    const lookup: Record<string, MultiBranchVendorInfo> = {}
+
+    for (const [name, vendors] of vendorsByName) {
+      const seenBranchSlugs = new Set<string>()
+      const branches: MultiBranchVendorBranch[] = []
+
+      for (const vendor of vendors) {
+        for (const branch of normalizeCardBranches(vendor.branch)) {
+          if (seenBranchSlugs.has(branch.slug)) continue
+
+          seenBranchSlugs.add(branch.slug)
+          branches.push({
+            ...branch,
+            link: `/${branch.slug}/vendors/${vendor.slug}`,
+          })
+        }
+      }
+
+      if (branches.length < 2) continue
+
+      branches.sort((a, b) => a.slug.localeCompare(b.slug))
+
+      const firstBranchSlug = branches[0].slug
+      const firstBranchVendor =
+        vendors.find((vendor) => getVendorBranchSlug(vendor) === firstBranchSlug) ?? vendors[0]
+      const media =
+        resolveVendorMedia(firstBranchVendor, name) ??
+        vendors.flatMap((vendor) => {
+          const resolved = resolveVendorMedia(vendor, name)
+          return resolved ? [resolved] : []
+        })[0]
+
+      if (!media) continue
+
+      lookup[name] = { branches, media }
+    }
+
+    return lookup
+  },
+)
+
+export function dedupeMultiBranchVendorCards(
+  cards: BranchLandingVendorCard[],
+  multiBranchVendorsByName: Record<string, MultiBranchVendorInfo>,
+): BranchLandingVendorCard[] {
+  const result: BranchLandingVendorCard[] = []
+  const multiBranchCardsByTitle = new Map<string, BranchLandingVendorCard>()
+
+  for (const card of cards) {
+    if (!multiBranchVendorsByName[card.title]) {
+      result.push(card)
+      continue
+    }
+
+    const existing = multiBranchCardsByTitle.get(card.title)
+    if (!existing) {
+      multiBranchCardsByTitle.set(card.title, { ...card, tags: [...card.tags] })
+      continue
+    }
+
+    existing.tags = [...new Set([...existing.tags, ...card.tags])]
+  }
+
+  return [...result, ...multiBranchCardsByTitle.values()]
+}
+
+export function resolveInitialVendorCategoryFilter(
+  cards: BranchLandingVendorCard[],
+  categoryText: string | undefined | null,
+  resolvedFromCms: { text: string } | null,
+): string | null {
+  if (resolvedFromCms?.text) return resolvedFromCms.text
+
+  const trimmed = categoryText?.trim()
+  if (!trimmed) return null
+
+  const normalized = trimmed.toLowerCase()
+  for (const card of cards) {
+    const match = card.tags.find((tag) => tag.toLowerCase() === normalized)
+    if (match) return match
+  }
+
+  return trimmed
+}
+
+export function resolveInitialWhatsOnTagFilter(
+  cards: BranchLandingWhatsOnCard[],
+  tagText: string | undefined | null,
+  resolvedFromCms: { text: string } | null,
+): string | null {
+  if (resolvedFromCms?.text) return resolvedFromCms.text
+
+  const trimmed = tagText?.trim()
+  if (!trimmed) return null
+
+  const normalized = trimmed.toLowerCase()
+  for (const card of cards) {
+    if (card.mainTag?.toLowerCase() === normalized) return card.mainTag
+
+    const subMatch = card.subTags.find((tag) => tag.toLowerCase() === normalized)
+    if (subMatch) return subMatch
+  }
+
+  return trimmed
 }
 
 export const getVendorBySlug = cache(async (branchSlug: string, slug: string): Promise<Vendor> => {
@@ -729,11 +896,329 @@ export const getBranchWhatsOnLatest = cache(
   },
 )
 
+type ResolvedWhatsOnTag = {
+  id: number
+  text: string
+  type: 'main' | 'sub'
+}
+
+function normalizeWhatsOnTagText(value: string) {
+  return value.trim().toLowerCase()
+}
+
+async function findWhatsOnTagByText(
+  collection: 'whats-on-main-tags' | 'whats-on-sub-tags',
+  tagText: string,
+  type: ResolvedWhatsOnTag['type'],
+): Promise<ResolvedWhatsOnTag | null> {
+  const payload = await getPayloadClient()
+  const trimmed = tagText.trim()
+  if (!trimmed) return null
+
+  const { docs: exactDocs } = await payload.find({
+    collection,
+    where: { text: { equals: trimmed } },
+    limit: 1,
+  })
+
+  const exactMatch = exactDocs[0]
+  if (exactMatch?.text) {
+    return { id: exactMatch.id, text: exactMatch.text, type }
+  }
+
+  const { docs } = await payload.find({
+    collection,
+    limit: 200,
+    pagination: false,
+  })
+
+  const normalized = normalizeWhatsOnTagText(trimmed)
+  const match = docs.find((doc) => doc.text && normalizeWhatsOnTagText(doc.text) === normalized)
+  if (!match?.text) return null
+
+  return { id: match.id, text: match.text, type }
+}
+
+export const resolveWhatsOnTagByText = cache(
+  async (tagText: string): Promise<ResolvedWhatsOnTag | null> => {
+    const mainTag = await findWhatsOnTagByText('whats-on-main-tags', tagText, 'main')
+    if (mainTag) return mainTag
+
+    return findWhatsOnTagByText('whats-on-sub-tags', tagText, 'sub')
+  },
+)
+
+export const getBranchWhatsOnForFilter = cache(
+  async (branch: Branch): Promise<BranchLandingWhatsOnCard[]> => {
+    if (!branch?.id || !branch.slug) return []
+
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'whats-on',
+      depth: 1,
+      limit: 500,
+      overrideAccess: false,
+      pagination: false,
+      sort: '-createdAt',
+      where: {
+        and: [
+          {
+            branch: {
+              contains: branch.id,
+            },
+          },
+          getActiveWhatsOnWhere(),
+        ],
+      },
+    })
+
+    return docs.flatMap((item) => {
+      if (isWhatsOnArchived(item)) return []
+      const card = mapWhatsOnToBranchLandingCard(item, branch.slug)
+      return card ? [card] : []
+    })
+  },
+)
+
+export const getGlobalWhatsOnForFilter = cache(async (): Promise<BranchLandingWhatsOnCard[]> => {
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'whats-on',
+    depth: 1,
+    limit: 500,
+    overrideAccess: false,
+    pagination: false,
+    sort: '-createdAt',
+    where: getActiveWhatsOnWhere(),
+  })
+
+  const cards = new Map<number, BranchLandingWhatsOnCard>()
+
+  for (const item of docs) {
+    if (isWhatsOnArchived(item)) continue
+
+    const branches = normalizeCardBranches(item.branch)
+    const branchSlug = branches[0]?.slug
+    if (!branchSlug) continue
+
+    const card = mapWhatsOnToBranchLandingCard(item, branchSlug)
+    if (card) cards.set(card.id, card)
+  }
+
+  return [...cards.values()]
+})
+
+type ResolvedVendorCategory = {
+  id: number
+  text: string
+}
+
+async function findVendorCategoryByText(categoryText: string): Promise<ResolvedVendorCategory | null> {
+  const payload = await getPayloadClient()
+  const trimmed = categoryText.trim()
+  if (!trimmed) return null
+
+  const { docs: exactDocs } = await payload.find({
+    collection: 'vendor-categories',
+    where: { text: { equals: trimmed } },
+    limit: 1,
+  })
+
+  const exactMatch = exactDocs[0]
+  if (exactMatch?.text) {
+    return { id: exactMatch.id, text: exactMatch.text }
+  }
+
+  const { docs } = await payload.find({
+    collection: 'vendor-categories',
+    limit: 200,
+    pagination: false,
+  })
+
+  const normalized = normalizeWhatsOnTagText(trimmed)
+  const match = docs.find((doc) => doc.text && normalizeWhatsOnTagText(doc.text) === normalized)
+  if (!match?.text) return null
+
+  return { id: match.id, text: match.text }
+}
+
+export const resolveVendorCategoryByText = cache(
+  async (categoryText: string): Promise<ResolvedVendorCategory | null> => {
+    return findVendorCategoryByText(categoryText)
+  },
+)
+
+export const getBranchVendorsForFilter = cache(
+  async (branch: Branch): Promise<BranchLandingVendorCard[]> => {
+    if (!branch?.id) return []
+
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'vendors',
+      depth: 2,
+      limit: 500,
+      overrideAccess: false,
+      pagination: false,
+      sort: 'name',
+      where: {
+        branch: {
+          equals: branch.id,
+        },
+      },
+    })
+
+    return docs.flatMap((vendor) => {
+      const card = mapVendorToBranchLandingCard(vendor)
+      return card ? [card] : []
+    })
+  },
+)
+
+export const getGlobalVendorsForFilter = cache(async (): Promise<BranchLandingVendorCard[]> => {
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'vendors',
+    depth: 2,
+    limit: 500,
+    overrideAccess: false,
+    pagination: false,
+    sort: 'name',
+  })
+
+  return docs.flatMap((vendor) => {
+    const card = mapVendorToBranchLandingCard(vendor)
+    return card ? [card] : []
+  })
+})
+
 export const GRID_CARD_PAGE_SIZE = 12
 
 export type GridCardPageResult<T extends { id: number }> = {
   cards: T[]
   hasMore: boolean
+}
+
+export type GridCardPageFilters = {
+  category?: string
+  branch?: string
+}
+
+const GRID_CARD_FILTER_ALL_VALUE = 'all'
+
+function hasActiveGridCardPageFilters(filters?: GridCardPageFilters) {
+  return Boolean(
+    (filters?.category && filters.category !== GRID_CARD_FILTER_ALL_VALUE) ||
+      (filters?.branch && filters.branch !== GRID_CARD_FILTER_ALL_VALUE),
+  )
+}
+
+function filterWhatsOnCardsForPage(
+  cards: BranchLandingWhatsOnCard[],
+  filters?: GridCardPageFilters,
+): BranchLandingWhatsOnCard[] {
+  let result = cards
+
+  if (filters?.branch && filters.branch !== GRID_CARD_FILTER_ALL_VALUE) {
+    result = result.filter((card) => card.branches.some((branch) => branch.slug === filters.branch))
+  }
+
+  if (filters?.category && filters.category !== GRID_CARD_FILTER_ALL_VALUE) {
+    const normalizedCategory = filters.category.toLowerCase()
+    result = result.filter((card) => {
+      const mainTagMatches = card.mainTag?.toLowerCase() === normalizedCategory
+      const subTagMatches = card.subTags.some((tag) => tag.toLowerCase() === normalizedCategory)
+
+      return mainTagMatches || subTagMatches
+    })
+  }
+
+  return result
+}
+
+function filterVendorCardsForPage(
+  cards: BranchLandingVendorCard[],
+  filters?: GridCardPageFilters,
+): BranchLandingVendorCard[] {
+  let result = cards
+
+  if (filters?.branch && filters.branch !== GRID_CARD_FILTER_ALL_VALUE) {
+    result = result.filter((card) => card.branches.some((branch) => branch.slug === filters.branch))
+  }
+
+  if (filters?.category && filters.category !== GRID_CARD_FILTER_ALL_VALUE) {
+    const normalizedCategory = filters.category.toLowerCase()
+    result = result.filter((card) =>
+      card.tags.some((tag) => tag.toLowerCase() === normalizedCategory),
+    )
+  }
+
+  return result
+}
+
+export const getGlobalWhatsOnForFilterPage = async (
+  page = 1,
+  limit = GRID_CARD_PAGE_SIZE,
+  filters?: GridCardPageFilters,
+): Promise<GridCardPageResult<BranchLandingWhatsOnCard>> => {
+  if (hasActiveGridCardPageFilters(filters)) {
+    const allCards = await getGlobalWhatsOnForFilter()
+    const filtered = filterWhatsOnCardsForPage(allCards, filters)
+    const start = (page - 1) * limit
+    const cards = filtered.slice(start, start + limit)
+
+    return {
+      cards,
+      hasMore: start + limit < filtered.length,
+    }
+  }
+
+  const payload = await getPayloadClient()
+  const { docs, hasNextPage } = await payload.find({
+    collection: 'whats-on',
+    depth: 1,
+    page,
+    limit,
+    overrideAccess: false,
+    pagination: true,
+    sort: '-createdAt',
+    where: getActiveWhatsOnWhere(),
+  })
+
+  const cards = docs.flatMap((item) => {
+    if (isWhatsOnArchived(item)) return []
+
+    const branches = normalizeCardBranches(item.branch)
+    const branchSlug = branches[0]?.slug
+    if (!branchSlug) return []
+
+    const card = mapWhatsOnToBranchLandingCard(item, branchSlug)
+    return card ? [card] : []
+  })
+
+  return {
+    cards,
+    hasMore: hasNextPage,
+  }
+}
+
+export const getGlobalVendorsForFilterPage = async (
+  page = 1,
+  limit = GRID_CARD_PAGE_SIZE,
+  filters?: GridCardPageFilters,
+): Promise<GridCardPageResult<BranchLandingVendorCard>> => {
+  const [multiBranchVendorsByName, allCards] = await Promise.all([
+    getMultiBranchVendorLookup(),
+    getGlobalVendorsForFilter(),
+  ])
+  const deduped = dedupeMultiBranchVendorCards(allCards, multiBranchVendorsByName)
+  const filtered = filterVendorCardsForPage(deduped, filters)
+  const start = (page - 1) * limit
+  const cards = filtered.slice(start, start + limit)
+
+  return {
+    cards,
+    hasMore: start + limit < filtered.length,
+  }
 }
 
 export type WhatsOnSingleBranch = {
@@ -833,6 +1318,37 @@ export const getWhatsOnBySlug = cache(
     }
   },
 )
+
+export const getGlobalWhatsOnArchived = async (
+  page = 1,
+  limit = GRID_CARD_PAGE_SIZE,
+): Promise<GridCardPageResult<BranchLandingWhatsOnCard>> => {
+  const payload = await getPayloadClient()
+  const { docs, hasNextPage } = await payload.find({
+    collection: 'whats-on',
+    depth: 1,
+    page,
+    limit,
+    overrideAccess: false,
+    pagination: true,
+    sort: '-dateToBeArchived',
+    where: getArchivedWhatsOnWhere(),
+  })
+
+  const cards = docs.flatMap((item) => {
+    const branches = normalizeCardBranches(item.branch)
+    const branchSlug = branches[0]?.slug
+    if (!branchSlug) return []
+
+    const card = mapWhatsOnToBranchLandingCard(item, branchSlug)
+    return card ? [card] : []
+  })
+
+  return {
+    cards,
+    hasMore: hasNextPage,
+  }
+}
 
 export const getBranchWhatsOnArchived = async (
   branch: Branch,

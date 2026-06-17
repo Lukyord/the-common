@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 
 import type { BranchLandingVendorCard, BranchLandingWhatsOnCard } from '@/payload/queries/branch'
+import type { MultiBranchVendorInfo } from '@/components/branch/vendors/types'
 
 export type GridCardItem = {
   id: number
@@ -9,6 +10,12 @@ export type GridCardItem = {
 export type GridCardVariant = 'whats-on' | 'vendor'
 
 export type GridCardSortOrder = 'oldest-newest' | 'newest-oldest'
+
+export type GridCardUrlFilterParams = {
+  categoryParam: string
+  branchParam?: string
+  sortParam?: string
+}
 
 export type GridCardContext = {
   branchSlug: string
@@ -34,6 +41,8 @@ type GridCardContainerBaseProps = {
   showSort?: boolean
   showBranchFilter?: boolean
   showCategoryFilter?: boolean
+  initialCategoryFilter?: string
+  syncFiltersToUrl?: GridCardUrlFilterParams
   filterSlot?: ReactNode
   hasMore?: boolean
   loadMoreUrl?: string
@@ -42,14 +51,17 @@ type GridCardContainerBaseProps = {
   emptyMessage?: string
   cardLayout?: 'grid' | 'grid-minmax'
   cardContext: GridCardContext
+  multiBranchVendorsByName?: Record<string, MultiBranchVendorInfo>
 }
 
 export type GridCardContainerProps =
   | (GridCardContainerBaseProps & {
       cardVariant: 'whats-on'
       cards: BranchLandingWhatsOnCard[]
+      filterOptionCards?: BranchLandingWhatsOnCard[]
     })
   | (GridCardContainerBaseProps & {
       cardVariant: 'vendor'
       cards: BranchLandingVendorCard[]
+      filterOptionCards?: BranchLandingVendorCard[]
     })

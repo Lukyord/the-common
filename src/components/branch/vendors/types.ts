@@ -19,6 +19,18 @@ export type BranchVendorCard = BranchLandingVendorCard & {
   lifestyleIds: number[]
 }
 
+export type MultiBranchVendorBranch = CardBranchDotItem & {
+  link: string
+}
+
+export type MultiBranchVendorInfo = {
+  branches: MultiBranchVendorBranch[]
+  media: {
+    src: string
+    alt: string
+  }
+}
+
 export type LifestyleOption = {
   id: number
   text: string

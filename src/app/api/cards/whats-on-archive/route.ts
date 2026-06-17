@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server'
 
-import { getBranchBySlug, getBranchWhatsOnArchived, GRID_CARD_PAGE_SIZE } from '@/payload/queries/branch'
+import {
+  getBranchBySlug,
+  getBranchWhatsOnArchived,
+  getGlobalWhatsOnArchived,
+  GRID_CARD_PAGE_SIZE,
+} from '@/payload/queries/branch'
 
 export const dynamic = 'force-dynamic'
 
@@ -11,7 +16,8 @@ export async function GET(request: Request) {
   const limit = Math.max(1, Number(searchParams.get('limit') ?? GRID_CARD_PAGE_SIZE))
 
   if (!branchSlug) {
-    return NextResponse.json({ error: 'Branch is required' }, { status: 400 })
+    const result = await getGlobalWhatsOnArchived(page, limit)
+    return NextResponse.json(result)
   }
 
   try {

@@ -2,10 +2,15 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 
-import VendorCard from '@/components/branch/components/VendorCard'
+import VendorCard from '@/components/branch/components/vendor-card/VendorCard'
+import VendorCardMultipleBranch from '@/components/branch/components/vendor-card/VendorCardMultipleBranch'
 import MoodFilterTag from '@/components/branch/vendors/MoodFiltertag'
 import { branchHeaderThemeStyle } from '@/lib/branchTheme'
-import type { BranchVendorCard, LifestyleOption } from '@/components/branch/vendors/types'
+import type {
+  BranchVendorCard,
+  LifestyleOption,
+  MultiBranchVendorInfo,
+} from '@/components/branch/vendors/types'
 
 const MOOD_FILTER_ALL = 'all' as const
 
@@ -27,6 +32,7 @@ type VendorsListSectionProps = {
   lifestyles: LifestyleOption[]
   cards: BranchVendorCard[]
   hasMore: boolean
+  multiBranchVendorsByName?: Record<string, MultiBranchVendorInfo>
   loadMoreUrl: string
   title?: string | null
   emptyMessage?: string
@@ -58,6 +64,7 @@ export default function VendorsListSection({
   lifestyles,
   cards: initialCards,
   hasMore: initialHasMore,
+  multiBranchVendorsByName = {},
   loadMoreUrl,
   title = "I'M LOOKING FOR...",
   emptyMessage = 'No vendors found.',
@@ -188,9 +195,24 @@ export default function VendorsListSection({
 
           {cards.length > 0 ? (
             <div className="card-container" data-card-layout="grid">
-              {cards.map((vendor) => (
-                <VendorCard key={vendor.id} branchSlug={branchSlug} {...vendor} />
-              ))}
+              {cards.map((vendor) => {
+                const multiBranch = multiBranchVendorsByName[vendor.title]
+
+                if (multiBranch) {
+                  return (
+                    <VendorCardMultipleBranch
+                      key={vendor.id}
+                      branchSlug={branchSlug}
+                      branches={multiBranch.branches}
+                      media={multiBranch.media}
+                      title={vendor.title}
+                      tags={vendor.tags}
+                    />
+                  )
+                }
+
+                return <VendorCard key={vendor.id} branchSlug={branchSlug} {...vendor} />
+              })}
             </div>
           ) : (
             <p className="vendors-empty type-d-body-m type-m-body-s letter-spacing-002">

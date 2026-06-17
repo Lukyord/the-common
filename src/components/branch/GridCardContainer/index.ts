@@ -6,5 +6,6 @@ export type {
   GridCardItem,
   GridCardLoadMoreResult,
   GridCardSortOrder,
+  GridCardUrlFilterParams,
   GridCardVariant,
 } from './types'

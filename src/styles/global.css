@@ -1552,6 +1552,9 @@ html.no-touchevents .custom-select__option:hover,
   margin: 0;
   padding: var(--spacing-5xs) 0;
   list-style: none;
+  max-height: 35rem;
+  overflow-y: auto;
+  background-color: rgba(var(--color-dark-brown-rgb), 0.05);
 }
 
 .animated-dropdown__option {

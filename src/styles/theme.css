@@ -244,6 +244,16 @@ html.no-touchevents [data-card='whats-on']:hover .whats-on-card-tip {
   background-color: var(--bg-color, var(--color-dark-brown));
   color: var(--color, var(--color-beige));
   padding: var(--spacing-6xs) var(--spacing-4xs);
+  max-width: calc(100% - var(--spacing-2xs) * 2);
+
+  & > * {
+    line-clamp: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 [data-card='whats-on'] .card-header {
@@ -433,6 +443,8 @@ html.no-touchevents [data-section='delivery-cta'] .media-cta .lineman:hover {
   justify-content: space-between;
   align-items: center;
   gap: var(--spacing-2xs);
+  position: relative;
+  z-index: 50;
 }
 
 .grid-card-contianer .sc-filter-sortby {
@@ -467,6 +479,11 @@ html.no-touchevents [data-section='delivery-cta'] .media-cta .lineman:hover {
   --gap-y: var(--spacing-xl);
   grid-auto-flow: row;
   margin-bottom: var(--spacing-4xl);
+}
+
+.grid-card-contianer .grid-card-empty {
+  text-align: center;
+  padding: var(--spacing-8xl) 0;
 }
 
 .grid-card-contianer .grid-card-see-more {
@@ -3855,4 +3872,11 @@ html.no-touchevents
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-4xs);
+}
+
+/* PAGE: VENDORS FILTER */
+.vendors-filter-page .grid-card-contianer .card-container {
+  --column: 3;
+  --gap-x: var(--spacing-sm);
+  --gap-y: var(--spacing-sm);
 }

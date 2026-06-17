@@ -1,10 +1,12 @@
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { GridCardContainer } from '@/components/branch/GridCardContainer'
+import { generateMeta } from '@/lib/generateMeta'
 import {
   getBranchBySlug,
   getBranchWhatsOnArchived,
   getBranchWhatsOnPageBySlug,
 } from '@/payload/queries/branch'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import React, { type CSSProperties } from 'react'
 
@@ -12,6 +14,19 @@ export const dynamic = 'force-dynamic'
 
 type Props = {
   params: Promise<{ branch: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { branch } = await params
+  const page = await getBranchWhatsOnPageBySlug(branch)
+  const branchName = typeof page.branch === 'object' ? page.branch.name : null
+
+  return generateMeta({
+    fallbackTitle: branchName ? `Event Archive | ${branchName}` : 'Event Archive',
+    fallbackDescription: branchName
+      ? `Event Archive at ${branchName}`
+      : 'Event Archive at The Common',
+  })
 }
 
 export default async function ArchivePage({ params }: Props) {

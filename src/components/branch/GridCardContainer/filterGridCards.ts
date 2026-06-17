@@ -116,10 +116,34 @@ export function filterGridCardsByCategory(
   if (category === GRID_CARD_FILTER_ALL) return cards
 
   if (variant === 'whats-on') {
-    return (cards as BranchLandingWhatsOnCard[]).filter(
-      (card) => card.mainTag === category || card.subTags.includes(category),
-    )
+    const normalizedCategory = category.toLowerCase()
+
+    return (cards as BranchLandingWhatsOnCard[]).filter((card) => {
+      const mainTagMatches = card.mainTag?.toLowerCase() === normalizedCategory
+      const subTagMatches = card.subTags.some((tag) => tag.toLowerCase() === normalizedCategory)
+
+      return mainTagMatches || subTagMatches
+    })
   }
 
-  return (cards as BranchLandingVendorCard[]).filter((card) => card.tags.includes(category))
+  return (cards as BranchLandingVendorCard[]).filter((card) =>
+    card.tags.some((tag) => tag.toLowerCase() === category.toLowerCase()),
+  )
+}
+
+export function resolveFilterValueFromUrl(
+  value: string | null | undefined,
+  options: GridCardFilterOption[],
+  fallback = GRID_CARD_FILTER_ALL,
+): string {
+  if (!value || value === fallback) return fallback
+
+  const exactMatch = options.find((option) => option.value === value)
+  if (exactMatch) return exactMatch.value
+
+  const normalized = value.toLowerCase()
+  const insensitiveMatch = options.find((option) => option.value.toLowerCase() === normalized)
+  if (insensitiveMatch) return insensitiveMatch.value
+
+  return value
 }

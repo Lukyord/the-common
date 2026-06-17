@@ -93,7 +93,10 @@ export default function WhatsOnCard({
       </div>
       <div className="card-tags">
         {mainTag && (
-          <Link href={`/whats-on/filter?branch=${branchSlug}&tag=${mainTag}`} className="tag main">
+          <Link
+            href={`/whats-on/filter?tag=${encodeURIComponent(mainTag)}`}
+            className="tag main"
+          >
             <p className="type-d-body-xs type-m-caption letter-spacing-002">{mainTag}</p>
           </Link>
         )}
@@ -101,7 +104,7 @@ export default function WhatsOnCard({
           subTags.map((tag) => (
             <Link
               key={tag}
-              href={`/whats-on/filter?branch=${branchSlug}&tag=${tag}`}
+              href={`/whats-on/filter?tag=${encodeURIComponent(tag)}`}
               className="tag sub"
             >
               <p className="type-d-body-xs type-m-caption letter-spacing-002">{tag}</p>

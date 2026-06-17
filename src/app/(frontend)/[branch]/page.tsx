@@ -1,8 +1,10 @@
+import { generateMeta } from '@/lib/generateMeta'
 import {
   getBranchBySlug,
   getBranchLandingVendors,
   getBranchLandingWhatsOn,
 } from '@/payload/queries/branch'
+import type { Metadata } from 'next'
 import { getHomepageMottoData } from '@/payload/queries/home'
 import { resolveMedia } from '@/lib/resolveMedia'
 import RenderMedia from '@/components/common/media'
@@ -18,6 +20,17 @@ export const dynamic = 'force-dynamic'
 
 type Props = {
   params: Promise<{ branch: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { branch: slug } = await params
+  const branch = await getBranchBySlug(slug)
+
+  return generateMeta({
+    meta: branch.meta,
+    fallbackTitle: branch.hero?.title || branch.name,
+    fallbackDescription: branch.name ? `${branch.name} | The Common` : 'The Common',
+  })
 }
 
 export default async function BranchPage({ params }: Props) {
@@ -43,7 +56,7 @@ export default async function BranchPage({ params }: Props) {
             />
           </div>
         )}
-        <div className="sc-inner pc-t-100 pc-b-75 mb-t-100 mb-b-100">
+        <div className="sc-inner pc-t-100 pc-b-75 mb-t-100 mb-b-75">
           <div className="container">
             <AnimateOnScroll delay={300} triggerClass="fadeIn" className="sc-ttl">
               <MarkdownContent

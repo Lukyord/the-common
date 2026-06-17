@@ -260,6 +260,9 @@ html.page-scrolling .header-location .location-panel ul {
   .header-logo .logo-wrapper {
     height: 6.6rem;
   }
+  .header-logo .logo-wrapper.logo-wrapper--branch {
+    height: 5.4rem;
+  }
 
   /* Header Cta */
   .header-cta {

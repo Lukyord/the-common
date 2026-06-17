@@ -9,6 +9,7 @@ import {
   getBranchVendorPageBySlug,
   getBranchVendors,
   getLifestyles,
+  getMultiBranchVendorLookup,
 } from '@/payload/queries/branch'
 import VendorMap from '@/components/branch/vendors/VendorMap/VendorMap'
 
@@ -33,11 +34,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function VendorPage({ params }: Props) {
   const { branch: branchSlug } = await params
   const branch = await getBranchBySlug(branchSlug)
-  const [lifestyles, vendorResult, page, mapVendors] = await Promise.all([
+  const [lifestyles, vendorResult, page, mapVendors, multiBranchVendorsByName] = await Promise.all([
     getLifestyles(),
     getBranchVendors(branch),
     getBranchVendorPageBySlug(branchSlug),
     getBranchMapVendors(branch),
+    getMultiBranchVendorLookup(),
   ])
 
   return (
@@ -66,6 +68,7 @@ export default async function VendorPage({ params }: Props) {
         lifestyles={lifestyles}
         cards={vendorResult.cards}
         hasMore={vendorResult.hasMore}
+        multiBranchVendorsByName={multiBranchVendorsByName}
         loadMoreUrl="/api/cards/vendors"
       />
 

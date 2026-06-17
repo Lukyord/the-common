@@ -30,7 +30,7 @@ export default async function EventSinglePage({ params }: Props) {
       <WhatsOnSingle
         event={event}
         backHref={`/${branchSlug}/whats-on`}
-        getTagHref={(tag) => `/whats-on/filter?branch=${branchSlug}&tag=${tag}`}
+        getTagHref={(tag) => `/whats-on/filter?tag=${encodeURIComponent(tag)}`}
       />
     </main>
   )

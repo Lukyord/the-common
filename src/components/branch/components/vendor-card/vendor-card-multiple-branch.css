@@ -1,0 +1,54 @@
+.vendor-branch-modal {
+  padding: var(--spacing-sm);
+  background-color: var(--color-dark-brown);
+}
+
+[data-card='vendor'] > button.link-overlay {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.vendor-branch-modal__title {
+  margin: 0 0 var(--spacing-sm);
+  padding-right: var(--spacing-lg);
+}
+
+.vendor-branch-modal__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.vendor-branch-modal__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  position: relative;
+  padding: var(--spacing-3xs) 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+html.no-touchevents .vendor-branch-modal__item:hover .ic {
+  transform: translate(0.2rem, -0.2rem);
+}
+
+.vendor-branch-modal__dot {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.vendor-branch-modal__name {
+  flex-grow: 1;
+}
+
+.vendor-branch-modal__item .ic {
+  flex-shrink: 0;
+  transition: transform var(--duration) var(--timing-function);
+}

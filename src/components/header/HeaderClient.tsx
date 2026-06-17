@@ -53,7 +53,10 @@ export function HeaderClient({ branches }: HeaderClientProps) {
     >
       <div className="header-nav">
         <div className="header-logo">
-          <Logo color={currentBranch?.primaryColor ?? undefined} />
+          <Logo
+            branchSlug={currentBranch?.slug}
+            color={currentBranch?.primaryColor ?? undefined}
+          />
         </div>
 
         <nav className="header-menu">

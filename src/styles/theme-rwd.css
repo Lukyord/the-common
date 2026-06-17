@@ -31,7 +31,7 @@
   }
 
   .card-branch-dot {
-    width: 2.4rem;
+    width: 1.4rem;
   }
 
   /* VENDOR CARD */
@@ -888,6 +888,17 @@
     width: 26.5129682997%;
   }
 
+  [data-card='whats-on'].horizontal .highlight {
+    top: var(--spacing-6xs);
+    left: var(--spacing-6xs);
+    padding: 0.2rem 0.3rem;
+    max-width: calc(100% - var(--spacing-6xs) * 2);
+
+    & > * {
+      font-size: 0.8rem !important;
+    }
+  }
+
   [data-card='whats-on'].horizontal .card-body {
     max-width: unset;
   }
@@ -1126,5 +1137,12 @@
   [data-section='content-single'].vendor-single .vs-tags .amenity-list__items {
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-2xs) var(--spacing-md);
+  }
+
+  /* PAGE: VENDORS FILTER */
+  .vendors-filter-page .grid-card-contianer .card-container {
+    --column: 2;
+    --gap-x: var(--spacing-4xs);
+    --gap-y: var(--spacing-md);
   }
 }

@@ -46,7 +46,7 @@ export default function VendorCard({
           <div className="card-tags">
             {tags.map((tag) => (
               <Link
-                href={`/vendors/filter?branch=${branchSlug}&category=${tag}`}
+                href={`/vendors/filter?category=${encodeURIComponent(tag)}`}
                 key={tag}
                 className="tag"
               >

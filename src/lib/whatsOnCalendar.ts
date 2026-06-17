@@ -6,7 +6,7 @@ import {
   type WhatsOnEventSchedule,
 } from '@/lib/whatsOnEventSchedule'
 
-export const WHATS_ON_CALENDAR_PAGE_SIZE = 3
+export const WHATS_ON_CALENDAR_PAGE_SIZE = 6
 export const WHATS_ON_CALENDAR_MONTH_COUNT = 6
 
 const MONTH_NAMES = [
