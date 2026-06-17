@@ -1707,6 +1707,13 @@ export interface WhatsOnPage {
     title?: string | null;
     mainTag?: (number | null) | WhatsOnMainTag;
   };
+  allEventsAndWorkshops?: {
+    title?: string | null;
+    description?: string | null;
+    mainTag?: (number | WhatsOnMainTag)[] | null;
+    background?: string | null;
+    eventArchiveBackground?: string | null;
+  };
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -1982,6 +1989,15 @@ export interface WhatsOnPageSelect<T extends boolean = true> {
     | {
         title?: T;
         mainTag?: T;
+      };
+  allEventsAndWorkshops?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        mainTag?: T;
+        background?: T;
+        eventArchiveBackground?: T;
       };
   meta?:
     | T

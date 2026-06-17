@@ -31,7 +31,7 @@
   }
 
   .card-branch-dot {
-    width: 1.4rem;
+    width: 2.4rem;
   }
 
   /* VENDOR CARD */
@@ -866,6 +866,63 @@
   .whats-on-latest-empty {
     text-wrap: balance;
     padding: var(--spacing-xl) 0;
+  }
+
+  [data-section='whats-on-calendar'] .sc-header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  [data-section='whats-on-calendar'] .accordion .card-container {
+    --column: 1;
+    --gap-y: var(--spacing-sm);
+  }
+  [data-section='whats-on-calendar'] .accordion .entry-title {
+    --size: 1.6rem;
+    --stroke-width: 0.2rem;
+    --padding-y: var(--spacing-sm);
+  }
+
+  [data-card='whats-on'].horizontal .card-media {
+    width: 26.5129682997%;
+  }
+
+  [data-card='whats-on'].horizontal .card-body {
+    max-width: unset;
+  }
+
+  [data-card='whats-on'].horizontal .card-body {
+    min-width: 0;
+  }
+
+  [data-card='whats-on'].horizontal .card-ttl {
+    display: block;
+    min-width: 0;
+    text-wrap: wrap;
+  }
+
+  [data-card='whats-on'].horizontal .card-ttl h3,
+  [data-card='whats-on'].horizontal .card-date-time {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  [data-card='whats-on'].horizontal .card-tags,
+  [data-card='whats-on'].horizontal .card-header {
+    margin-bottom: var(--spacing-2xs);
+  }
+
+  [data-section='whats-on-calendar'] .grid-card-see-more {
+    margin-top: var(--spacing-2sm);
+  }
+  [data-section='whats-on-calendar'] .accordion .entry-panel-inner {
+    padding-bottom: var(--spacing-lg);
   }
 
   /* Whats On Others */

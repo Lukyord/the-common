@@ -216,6 +216,10 @@
   color: var(--color-cloud-11-pink) !important;
   --rgb: var(--color-cloud-11-pink-rgb);
 }
+.c-dark-brown {
+  color: var(--color-dark-brown) !important;
+  --rgb: var(--color-dark-brown-rgb);
+}
 
 /* RESET ==================== */
 *,

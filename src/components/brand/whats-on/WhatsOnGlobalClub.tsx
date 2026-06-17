@@ -2,7 +2,9 @@
 
 import { useMemo, useRef, useState, type CSSProperties } from 'react'
 
-import WhatsOnCard from '@/components/branch/components/whats-on-card/WhatsOnCard'
+import WhatsOnCard, {
+  type WhatsOnCardProps,
+} from '@/components/branch/components/whats-on-card/WhatsOnCard'
 import MoodFilterTag from '@/components/branch/vendors/MoodFiltertag'
 import {
   filterGridCardsByBranches,
@@ -27,6 +29,20 @@ type BranchFilter = typeof GRID_CARD_FILTER_ALL | string[]
 
 function isBranchSelected(filter: BranchFilter, branchSlug: string) {
   return filter !== GRID_CARD_FILTER_ALL && filter.includes(branchSlug)
+}
+
+function getCardThemeColor(
+  branches: BranchLandingWhatsOnCard['branches'],
+): WhatsOnCardProps['themeColor'] | undefined {
+  if (branches.length !== 1) return undefined
+
+  const [branch] = branches
+  if (!branch?.bgColor || !branch?.primaryColor) return undefined
+
+  return {
+    bgColor: branch.bgColor,
+    color: branch.primaryColor,
+  }
 }
 
 type WhatsOnGlobalClubProps = {
@@ -156,6 +172,7 @@ export default function WhatsOnGlobalClub({
                     <WhatsOnCard
                       branchSlug={card.branches[0]?.slug}
                       {...card}
+                      themeColor={getCardThemeColor(card.branches)}
                       backgroundColor="var(--color-dark-brown)"
                     />
                   </SwiperSlide>

@@ -9,6 +9,8 @@ function toCardBranchDotItem(branch: number | Branch | null | undefined): CardBr
     slug: branch.slug,
     name: branch.name,
     bgColor: branch.bgColor ?? null,
+    primaryColor: branch.primaryColor ?? null,
+    footerBgColor: branch.footerBg ?? null,
   }
 }
 

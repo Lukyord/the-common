@@ -10,6 +10,7 @@ import {
 import WhatsOnCardTip from './WhatsOnCardTip'
 
 export type WhatsOnCardProps = {
+  className?: string
   branchSlug?: string | null
   branches?: CardBranchDotItem[]
   backgroundColor?: string | null
@@ -31,6 +32,7 @@ export type WhatsOnCardProps = {
 }
 
 export default function WhatsOnCard({
+  className,
   branchSlug,
   branches = [],
   backgroundColor,
@@ -48,7 +50,7 @@ export default function WhatsOnCard({
     <AnimateOnScroll
       triggerClass="fadeIn"
       data-card="whats-on"
-      className="card"
+      className={`card ${className}`}
       style={
         { '--bg-color': themeColor?.bgColor, '--color': themeColor?.color } as React.CSSProperties
       }

@@ -79,6 +79,37 @@ export const WhatsOnPage: GlobalConfig = {
                 ],
               },
             ]),
+            section('All Events and Workshops', [
+              {
+                name: 'allEventsAndWorkshops',
+                type: 'group',
+                label: 'All Events and Workshops',
+                admin: {
+                  hideGutter: true,
+                },
+                fields: [
+                  {
+                    name: 'title',
+                    type: 'text',
+                    label: 'Title',
+                  },
+                  {
+                    name: 'description',
+                    type: 'text',
+                    label: 'Description',
+                  },
+                  {
+                    name: 'mainTag',
+                    type: 'relationship',
+                    relationTo: 'whats-on-main-tags',
+                    label: 'Main Tag',
+                    hasMany: true,
+                  },
+                  colorPickerField('background', 'Background'),
+                  colorPickerField('eventArchiveBackground', 'Event Archive Background'),
+                ],
+              },
+            ]),
           ],
         },
       ],

@@ -42,7 +42,7 @@ export default function ContactAccordion({ items }: ContactAccordionProps) {
   if (!items.length) return null
 
   return (
-    <AccordionContainer>
+    <AccordionContainer toggle>
       {items.map((item) => (
         <AccordionItem
           key={item.id}

@@ -26,6 +26,14 @@ import {
   getArchivedWhatsOnWhere,
   isWhatsOnArchived,
 } from '@/lib/whatsOnArchive'
+import {
+  buildNextCalendarMonths,
+  cardOverlapsMonth,
+  paginateCalendarCards,
+  sortCardsByEarliestDateInMonth,
+  WHATS_ON_CALENDAR_PAGE_SIZE,
+  type CalendarMonthDefinition,
+} from '@/lib/whatsOnCalendar'
 import { lexicalToHtml } from '@/lib/lexicalToHtml'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type {
@@ -592,7 +600,14 @@ export const getBranchWhatsOnByMainTag = cache(
 
 export const getGlobalWhatsOnByMainTag = cache(
   async (mainTagId: number): Promise<BranchLandingWhatsOnCard[]> => {
-    if (!mainTagId) return []
+    return getGlobalWhatsOnByMainTags([mainTagId])
+  },
+)
+
+export const getGlobalWhatsOnByMainTags = cache(
+  async (mainTagIds: number[]): Promise<BranchLandingWhatsOnCard[]> => {
+    const uniqueIds = [...new Set(mainTagIds.filter((id) => Number.isFinite(id) && id > 0))]
+    if (!uniqueIds.length) return []
 
     const payload = await getPayloadClient()
     const { docs } = await payload.find({
@@ -606,7 +621,7 @@ export const getGlobalWhatsOnByMainTag = cache(
         and: [
           {
             mainTag: {
-              equals: mainTagId,
+              in: uniqueIds,
             },
           },
           getActiveWhatsOnWhere(),
@@ -614,16 +629,71 @@ export const getGlobalWhatsOnByMainTag = cache(
       },
     })
 
-    return docs.flatMap((item) => {
-      if (isWhatsOnArchived(item)) return []
+    const cards = new Map<number, BranchLandingWhatsOnCard>()
+
+    for (const item of docs) {
+      if (isWhatsOnArchived(item)) continue
 
       const branches = normalizeCardBranches(item.branch)
       const branchSlug = branches[0]?.slug
-      if (!branchSlug) return []
+      if (!branchSlug) continue
 
       const card = mapWhatsOnToBranchLandingCard(item, branchSlug)
-      return card ? [card] : []
-    })
+      if (card) cards.set(card.id, card)
+    }
+
+    return [...cards.values()]
+  },
+)
+
+export type WhatsOnCalendarMonth = CalendarMonthDefinition & {
+  cards: BranchLandingWhatsOnCard[]
+  hasMore: boolean
+}
+
+export const getGlobalWhatsOnCalendarMonth = cache(
+  async (
+    mainTagIds: number[],
+    year: number,
+    month: number,
+    page = 1,
+    limit = WHATS_ON_CALENDAR_PAGE_SIZE,
+  ): Promise<GridCardPageResult<BranchLandingWhatsOnCard>> => {
+    const allCards = await getGlobalWhatsOnByMainTags(mainTagIds)
+    const monthCards = sortCardsByEarliestDateInMonth(
+      allCards.filter((card) => cardOverlapsMonth(card, year, month)),
+      year,
+      month,
+    )
+
+    return paginateCalendarCards(monthCards, page, limit)
+  },
+)
+
+export const getGlobalWhatsOnCalendarMonths = cache(
+  async (mainTagIds: number[]): Promise<WhatsOnCalendarMonth[]> => {
+    const months = buildNextCalendarMonths()
+
+    return Promise.all(
+      months.map(async ({ id, title, year, month }) => {
+        const { cards, hasMore } = await getGlobalWhatsOnCalendarMonth(
+          mainTagIds,
+          year,
+          month,
+          1,
+          WHATS_ON_CALENDAR_PAGE_SIZE,
+        )
+
+        return {
+          id,
+          title,
+          year,
+          month,
+          cards,
+          hasMore,
+        }
+      }),
+    )
   },
 )
 

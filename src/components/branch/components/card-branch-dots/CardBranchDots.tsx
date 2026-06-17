@@ -58,12 +58,12 @@ export default function CardBranchDots({ branches }: CardBranchDotsProps) {
 
   return (
     <span className="card-branch-dots" aria-hidden>
-      {branches.map((branch) => (
+      {[...branches].reverse().map((branch) => (
         <span
           key={branch.slug}
           className="card-branch-dot"
           data-branch={branch.slug}
-          style={{ backgroundColor: branch.bgColor ?? undefined }}
+          style={{ backgroundColor: branch.footerBgColor ?? undefined }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
