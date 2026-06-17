@@ -606,6 +606,8 @@ html.no-touchevents a:hover {
 }
 
 .fadeEntry {
+  opacity: 0;
+  transform: translateY(10rem);
   animation-name: fadeEntry;
   animation-duration: var(--duration-x3);
   animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);

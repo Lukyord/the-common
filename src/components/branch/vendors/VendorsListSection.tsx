@@ -172,6 +172,7 @@ export default function VendorsListSection({
                 label="ALL"
                 isActive={moodFilter === MOOD_FILTER_ALL}
                 onClick={selectAll}
+                showClose={false}
               />
 
               {displayLifestyles.map(({ id, text }) => (

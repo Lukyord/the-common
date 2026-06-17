@@ -116,12 +116,14 @@ export interface Config {
     contact: Contact;
     homepage: Homepage;
     'privacy-policy': PrivacyPolicy;
+    'whats-on-page': WhatsOnPage;
   };
   globalsSelect: {
     about: AboutSelect<false> | AboutSelect<true>;
     contact: ContactSelect<false> | ContactSelect<true>;
     homepage: HomepageSelect<false> | HomepageSelect<true>;
     'privacy-policy': PrivacyPolicySelect<false> | PrivacyPolicySelect<true>;
+    'whats-on-page': WhatsOnPageSelect<false> | WhatsOnPageSelect<true>;
   };
   locale: null;
   widgets: {
@@ -1692,6 +1694,32 @@ export interface PrivacyPolicy {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whats-on-page".
+ */
+export interface WhatsOnPage {
+  id: number;
+  hero?: {
+    backgroundMedia?: (number | null) | Media;
+    mobileBackgroundMedia?: (number | null) | Media;
+    title?: string | null;
+  };
+  club?: {
+    title?: string | null;
+    mainTag?: (number | null) | WhatsOnMainTag;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
@@ -1926,6 +1954,35 @@ export interface HomepageSelect<T extends boolean = true> {
 export interface PrivacyPolicySelect<T extends boolean = true> {
   title?: T;
   richText?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whats-on-page_select".
+ */
+export interface WhatsOnPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        backgroundMedia?: T;
+        mobileBackgroundMedia?: T;
+        title?: T;
+      };
+  club?:
+    | T
+    | {
+        title?: T;
+        mainTag?: T;
+      };
   meta?:
     | T
     | {

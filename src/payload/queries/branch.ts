@@ -590,6 +590,43 @@ export const getBranchWhatsOnByMainTag = cache(
   },
 )
 
+export const getGlobalWhatsOnByMainTag = cache(
+  async (mainTagId: number): Promise<BranchLandingWhatsOnCard[]> => {
+    if (!mainTagId) return []
+
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'whats-on',
+      depth: 1,
+      limit: 200,
+      overrideAccess: false,
+      pagination: false,
+      sort: '-createdAt',
+      where: {
+        and: [
+          {
+            mainTag: {
+              equals: mainTagId,
+            },
+          },
+          getActiveWhatsOnWhere(),
+        ],
+      },
+    })
+
+    return docs.flatMap((item) => {
+      if (isWhatsOnArchived(item)) return []
+
+      const branches = normalizeCardBranches(item.branch)
+      const branchSlug = branches[0]?.slug
+      if (!branchSlug) return []
+
+      const card = mapWhatsOnToBranchLandingCard(item, branchSlug)
+      return card ? [card] : []
+    })
+  },
+)
+
 export const getBranchWhatsOnLatest = cache(
   async (branch: Branch): Promise<BranchLandingWhatsOnCard[]> => {
     if (!branch?.id || !branch.slug) return []

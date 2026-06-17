@@ -97,6 +97,17 @@ export function filterGridCardsByBranch(cards: GridCard[], branchSlug: string): 
   return cards.filter((card) => card.branches.some((branch) => branch.slug === branchSlug))
 }
 
+export function filterGridCardsByBranches(
+  cards: GridCard[],
+  branchFilter: typeof GRID_CARD_FILTER_ALL | string[],
+): GridCard[] {
+  if (branchFilter === GRID_CARD_FILTER_ALL) return cards
+
+  return cards.filter((card) =>
+    card.branches.some((branch) => branchFilter.includes(branch.slug)),
+  )
+}
+
 export function filterGridCardsByCategory(
   cards: GridCard[],
   category: string,

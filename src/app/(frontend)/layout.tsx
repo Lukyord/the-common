@@ -16,6 +16,7 @@ import LenisProvider from '@/components/LenisProvider'
 import { Header } from '@/components/header/Header'
 import { Footer } from '@/components/footer/Footer'
 import ClientInit from '@/components/ClientInit'
+import CookieConsent from '@/components/cookie-consent/CookieConsent'
 import ToasterProvider from '@/components/ToasterProvider'
 
 export const metadata: Metadata = {
@@ -45,15 +46,17 @@ export default function RootLayout({ children }: Props) {
       <SafariProvider>
         <LenisProvider>
           <body>
-            <div id="page">
-              <Theme />
-              <ClientInit />
-              <ToasterProvider />
+            <CookieConsent>
+              <div id="page">
+                <Theme />
+                <ClientInit />
+                <ToasterProvider />
 
-              <Header />
-              {children}
-              <Footer />
-            </div>
+                <Header />
+                {children}
+                <Footer />
+              </div>
+            </CookieConsent>
           </body>
         </LenisProvider>
       </SafariProvider>

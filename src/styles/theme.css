@@ -1,5 +1,52 @@
 /* COMPONENT */
 /* DEFAULT ==================== */
+/* COOKIE CONSENT ==================== */
+.cookie-consent {
+  position: fixed;
+  z-index: 90;
+  bottom: min(var(--spacing-sm), var(--spacing-container));
+  left: min(var(--spacing-sm), var(--spacing-container));
+  width: 100%;
+  max-width: min(78.5rem, calc(100% - var(--spacing-container) * 2));
+  background-color: var(--color-beige);
+  animation-delay: var(--duration-x2);
+}
+
+.cookie-consent__inner {
+  padding: var(--spacing-2sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4xs);
+}
+
+.cookie-consent__body {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-end;
+}
+
+.cookie-consent__body a {
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.cookie-consent__body .cookie-consent__accept {
+  flex-shrink: 0;
+}
+
+@media (max-width: 991px) {
+  .cookie-consent__inner {
+    padding: var(--spacing-2xs) var(--spacing-xs);
+  }
+
+  .cookie-consent__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+}
+
 /* Button Banner */
 .banner-button {
   min-height: 11rem;
@@ -2871,10 +2918,121 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
 }
 
 /* Whats On Club */
-.whats-on-club {
+.bg-checked {
   background-image: url('../../public/designs/checked-bg.webp');
   background-size: contain;
   background-repeat: repeat;
+}
+
+[data-section='whats-on-global-club'] .sc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+[data-section='whats-on-global-club'] .sc-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-shrink: 0;
+}
+
+[data-section='whats-on-global-club'] .sc-nav .swiper-button-prev,
+[data-section='whats-on-global-club'] .sc-nav .swiper-button-next {
+  position: static;
+  margin: 0;
+  transform: none;
+  width: 2.4rem;
+  height: auto;
+  aspect-ratio: 0.6666666667;
+}
+
+[data-section='whats-on-global-club'] .sc-nav [class*='swiper-button-']:before {
+  width: auto;
+  aspect-ratio: unset;
+  margin: 0;
+  font-size: 1.7rem;
+  color: var(--color-dark-brown);
+  font-family: 'iconfont';
+}
+
+[data-section='whats-on-global-club'] .sc-nav .swiper-button-prev::before {
+  content: '\e90d';
+}
+
+[data-section='whats-on-global-club'] .sc-nav .swiper-button-next::before {
+  content: '\e90e';
+}
+
+[data-section='whats-on-global-club'] .tags-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2xs);
+  margin-bottom: var(--spacing-lg);
+}
+
+[data-section='whats-on-global-club'] .tags-filter__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4xs) var(--spacing-xs);
+  background-color: transparent;
+  color: var(--color-dark-brown);
+  border: 0.1rem solid var(--color-dark-brown);
+  transition: var(--duration) var(--timing-function);
+}
+
+html.no-touchevents [data-section='whats-on-global-club'] .tags-filter__tag:not(.is-active):hover {
+  opacity: 0.75;
+}
+
+[data-section='whats-on-global-club'] .tags-filter__tag.is-active {
+  background-color: var(--color-dark-brown);
+  color: var(--color-beige);
+}
+
+[data-section='whats-on-global-club'] .tags-filter__close {
+  --icon-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    width var(--duration) var(--timing-function),
+    opacity var(--duration) var(--timing-function),
+    margin var(--duration) var(--timing-function);
+}
+
+[data-section='whats-on-global-club'] .tags-filter__close .ic {
+  font-size: var(--icon-size);
+}
+
+[data-section='whats-on-global-club'] .tags-filter__tag.is-active .tags-filter__close {
+  width: var(--icon-size);
+  opacity: 1;
+  margin-left: var(--spacing-xs);
+}
+
+[data-section='whats-on-global-club'] .whats-on-global-club-empty {
+  text-align: center;
+  color: var(--color-dark-brown);
+}
+
+[data-section='whats-on-global-club'] .card-container {
+  --column: 3.6;
+  --gap-x: var(--spacing-sm);
+}
+
+[data-section='whats-on-global-club'] .card-container .swiper {
+  overflow: visible;
+}
+
+[data-section='whats-on-global-club'] .swiper-pagination {
+  display: none;
 }
 
 /* Whats On Others */

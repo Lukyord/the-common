@@ -4,9 +4,15 @@ type MoodFilterTagProps = {
   label: string
   isActive: boolean
   onClick: () => void
+  showClose?: boolean
 }
 
-export default function MoodFilterTag({ label, isActive, onClick }: MoodFilterTagProps) {
+export default function MoodFilterTag({
+  label,
+  isActive,
+  onClick,
+  showClose = true,
+}: MoodFilterTagProps) {
   return (
     <button
       type="button"
@@ -17,9 +23,11 @@ export default function MoodFilterTag({ label, isActive, onClick }: MoodFilterTa
       <span className="tags-filter__text type-d-body-l uppercase type-m-body-s letter-spacing-002 weight-medium">
         {label}
       </span>
-      <span className="tags-filter__close" aria-hidden={!isActive}>
-        <i className="ic ic-close-bold" />
-      </span>
+      {showClose && (
+        <span className="tags-filter__close" aria-hidden={!isActive}>
+          <i className="ic ic-close-bold" />
+        </span>
+      )}
     </button>
   )
 }
