@@ -80,12 +80,6 @@ export function useStoreSelection({
     return undefined
   }, [storeTransitionState, hoveredStore, displayedStore])
 
-  const displayedStoreKey = displayedStore
-    ? displayedStore.mapKey
-      ? `${displayedStore.floor}:map:${displayedStore.mapKey}`
-      : `${displayedStore.floor}:lot:${displayedStore.lot}`
-    : null
-
   const displayedStoreVendor = useMemo(() => {
     if (!displayedStore) return undefined
 
@@ -103,7 +97,7 @@ export function useStoreSelection({
     }
 
     return undefined
-  }, [displayedStoreKey, branchSlug, floorMapOnlyLots, mapVendors])
+  }, [displayedStore, branchSlug, floorMapOnlyLots, mapVendors])
   const defaultMobileStoreVendor = getFirstFloorVendorWithData(
     mapVendors,
     displayedFloor,

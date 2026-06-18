@@ -103,9 +103,7 @@ export function filterGridCardsByBranches(
 ): GridCard[] {
   if (branchFilter === GRID_CARD_FILTER_ALL) return cards
 
-  return cards.filter((card) =>
-    card.branches.some((branch) => branchFilter.includes(branch.slug)),
-  )
+  return cards.filter((card) => card.branches.some((branch) => branchFilter.includes(branch.slug)))
 }
 
 export function filterGridCardsByCategory(

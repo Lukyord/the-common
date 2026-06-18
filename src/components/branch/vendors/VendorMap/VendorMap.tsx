@@ -78,7 +78,7 @@ function VendorMapContent({
     selectMapOnlyLot,
     hoverMapOnlyLot,
     selectMobileVendor,
-    selectMobileMapOnlyLot,
+    selectMobileMapOnlyLot: _selectMobileMapOnlyLot,
     clearStore,
   } = useStoreSelection({
     branchSlug,

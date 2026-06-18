@@ -1610,6 +1610,7 @@ export interface Homepage {
     titleLineOne?: string | null;
     titleLineTwo?: string | null;
     preSentence?: string | null;
+    preSentenceMobile?: string | null;
     lifestyles?: (number | Lifestyle)[] | null;
   };
   membership?:
@@ -1915,6 +1916,7 @@ export interface HomepageSelect<T extends boolean = true> {
         titleLineOne?: T;
         titleLineTwo?: T;
         preSentence?: T;
+        preSentenceMobile?: T;
         lifestyles?: T;
       };
   membership?:

@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useRef, useState, type CSSProperties } from 'react'
+import { useMemo, useRef, useState } from 'react'
 
 import WhatsOnCard, {
   type WhatsOnCardProps,
@@ -60,7 +60,7 @@ export default function WhatsOnGlobalClub({
   title,
   cards = [],
   branches,
-  filterTheme,
+  filterTheme: _filterTheme,
   emptyMessage = 'No club events found.',
 }: WhatsOnGlobalClubProps) {
   const [branchFilter, setBranchFilter] = useState<BranchFilter>(GRID_CARD_FILTER_ALL)

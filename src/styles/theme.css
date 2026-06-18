@@ -297,7 +297,6 @@ html.no-touchevents .swiper-slide:has(.card-branch-dots):hover {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateY(-50%);
   font-size: 1.2rem;
   padding: 0.2rem var(--spacing-4xs);
   background-color: var(--color-dark-brown);
@@ -1526,7 +1525,7 @@ html.no-touchevents .location-selector__item:hover .branch-shape {
   display: block;
   height: 0.2rem;
   margin-top: 0.8rem;
-  background-color: currentColor;
+  background-color: var(--color-cloud-11-pink);
   transition: width var(--transition-duration) cubic-bezier(0.16, 1, 0.3, 1);
 }
 

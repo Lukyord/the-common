@@ -15,6 +15,7 @@
   --rgb: var(--color);
   --hover-rgb: var(--color);
   transition: transform var(--duration) var(--timing-function);
+  pointer-events: none;
 }
 
 .header-nav {
@@ -47,6 +48,7 @@
   height: 8.9rem;
   aspect-ratio: 0.887640449;
   transition: var(--duration-x2) cubic-bezier(0.5, 1, 0.89, 1);
+  pointer-events: auto;
 }
 .header-logo .logo-wrapper .logo {
   width: 100%;
@@ -76,6 +78,7 @@ html.no-touchevents #header a:hover {
   padding: var(--spacing-3xs) var(--spacing-sm);
   background-color: var(--bg-color);
   transition: var(--duration-x2) var(--timing-function);
+  pointer-events: auto;
 }
 .header-menu .menu a {
   display: inline-block;
@@ -103,6 +106,7 @@ html.no-touchevents #header a:hover {
   background-color: var(--bg-color);
   transition: var(--duration-x2) var(--timing-function);
   position: relative;
+  pointer-events: auto;
 }
 
 .header-location .location-trigger {
@@ -177,6 +181,10 @@ html.page-scrolling .header-location .location-panel ul {
 
 .header-location .location-panel ul a.is-current::before {
   width: 100%;
+}
+
+.header-menu-ctrl {
+  pointer-events: auto;
 }
 
 @media (min-width: 992px) {

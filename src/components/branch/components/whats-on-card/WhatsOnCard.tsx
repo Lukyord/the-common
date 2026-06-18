@@ -33,7 +33,7 @@ export type WhatsOnCardProps = {
 
 export default function WhatsOnCard({
   className,
-  branchSlug,
+  branchSlug: _branchSlug,
   branches = [],
   backgroundColor,
   themeColor,

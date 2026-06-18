@@ -27,7 +27,7 @@ type VendorCardMultipleBranchProps = {
 }
 
 export default function VendorCardMultipleBranch({
-  branchSlug,
+  branchSlug: _branchSlug,
   branches = [],
   media,
   title,
@@ -90,16 +90,21 @@ export default function VendorCardMultipleBranch({
 
           <h2
             id={titleId}
-            className="vendor-branch-modal__title type-d-body-l type-m-title letter-spacing-002 weight-medium"
+            className="vendor-branch-modal__title type-d-title type-m-title letter-spacing-002 weight-medium"
           >
             PICK VENDOR LOCATION
           </h2>
 
           <ul className="vendor-branch-modal__list">
-            {branches.map((branch) => (
+            {[...branches].reverse().map((branch) => (
               <li key={branch.slug}>
-                <Link href={branch.link} className="vendor-branch-modal__item" onClick={closeModal}>
-                  <span className="vendor-branch-modal__name type-d-label type-m-body-s letter-spacing-002 weight-medium">
+                <Link
+                  href={branch.link}
+                  className="vendor-branch-modal__item"
+                  data-branch={branch.slug}
+                  onClick={closeModal}
+                >
+                  <span className="vendor-branch-modal__name type-d-body-l type-m-title letter-spacing-002 weight-medium uppercase">
                     {branch.name}
                   </span>
                   <i className="ic ic-arrow-square-top-right size-icon-3xs" aria-hidden />

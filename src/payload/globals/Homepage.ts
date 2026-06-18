@@ -289,6 +289,11 @@ export const Homepage: GlobalConfig = {
                     label: 'Pre Sentence',
                   },
                   {
+                    name: 'preSentenceMobile',
+                    type: 'text',
+                    label: 'Pre Sentence Mobile',
+                  },
+                  {
                     name: 'lifestyles',
                     type: 'relationship',
                     relationTo: 'lifestyle',

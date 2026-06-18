@@ -5,6 +5,8 @@ import { createPortal } from 'react-dom'
 
 import './modal.css'
 
+const MODAL_TRANSITION_MS = 300
+
 type ModalProps = {
   open: boolean
   onClose: () => void
@@ -24,14 +26,34 @@ export default function Modal({
   labelledBy,
   describedBy,
 }: ModalProps) {
-  const [mounted, setMounted] = useState(false)
+  const [portalReady, setPortalReady] = useState(false)
+  const [shouldRender, setShouldRender] = useState(false)
+  const [isActive, setIsActive] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
+    setPortalReady(true)
   }, [])
 
   useEffect(() => {
-    if (!open) return
+    if (!portalReady) return
+
+    if (open) {
+      setShouldRender(true)
+      const frame = window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => setIsActive(true))
+      })
+
+      return () => window.cancelAnimationFrame(frame)
+    }
+
+    setIsActive(false)
+    const timer = window.setTimeout(() => setShouldRender(false), MODAL_TRANSITION_MS)
+
+    return () => window.clearTimeout(timer)
+  }, [open, portalReady])
+
+  useEffect(() => {
+    if (!isActive) return
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose()
@@ -42,13 +64,13 @@ export default function Modal({
     return () => {
       document.removeEventListener('keydown', handleEscape)
     }
-  }, [open, onClose])
+  }, [isActive, onClose])
 
-  if (!mounted || !open) return null
+  if (!portalReady || !shouldRender) return null
 
   return createPortal(
     <div
-      className={`modal ${className}`.trim()}
+      className={`modal ${isActive ? 'is-active' : ''} ${className}`.trim()}
       role="dialog"
       aria-modal="true"
       aria-labelledby={labelledBy}

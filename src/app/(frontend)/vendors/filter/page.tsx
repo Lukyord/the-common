@@ -76,8 +76,7 @@ export default async function VendorFilterPage({ searchParams }: Props) {
     GRID_CARD_FILTER_ALL
 
   const filterResult = await getGlobalVendorsForFilterPage(1, undefined, {
-    category:
-      initialCategoryFilter !== GRID_CARD_FILTER_ALL ? initialCategoryFilter : undefined,
+    category: initialCategoryFilter !== GRID_CARD_FILTER_ALL ? initialCategoryFilter : undefined,
     branch: branchSlug,
   })
 

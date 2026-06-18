@@ -1554,6 +1554,7 @@ html.no-touchevents .custom-select__option:hover,
   list-style: none;
   max-height: 35rem;
   overflow-y: auto;
+  overscroll-behavior: contain;
   background-color: rgba(var(--color-dark-brown-rgb), 0.05);
 }
 

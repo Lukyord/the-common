@@ -21,7 +21,7 @@ type VendorCardProps = {
 }
 
 export default function VendorCard({
-  branchSlug,
+  branchSlug: _branchSlug,
   branches = [],
   media,
   title,

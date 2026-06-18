@@ -40,7 +40,7 @@ export const MoodCard = ({
       <div key={`title-${contentKey}`} className="card-ttl fadeIn">
         <MarkdownContent
           as="h3"
-          className="type-d-title weight-medium type-m-title letter-spacing-002 uppercase"
+          className="type-d-title weight-medium type-m-headliner-m letter-spacing-002 uppercase"
         >
           {title}
         </MarkdownContent>
@@ -56,7 +56,9 @@ export const MoodCard = ({
             } as CSSProperties
           }
         >
-          <p className="type-d-body-m uppercase letter-spacing-002 weight-medium">{branch.name}</p>
+          <p className="type-d-body-m type-m-title uppercase letter-spacing-002 weight-medium">
+            {branch.name}
+          </p>
         </div>
       )}
     </div>

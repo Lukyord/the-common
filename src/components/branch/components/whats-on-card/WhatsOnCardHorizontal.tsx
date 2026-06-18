@@ -7,8 +7,6 @@ import {
   CardBranchDots,
   type CardBranchDotItem,
 } from '@/components/branch/components/card-branch-dots'
-import WhatsOnCardTip from './WhatsOnCardTip'
-
 export type WhatsOnCardHorizontalProps = {
   className?: string
   branchSlug?: string | null
@@ -33,9 +31,9 @@ export type WhatsOnCardHorizontalProps = {
 
 export default function WhatsOnCardHorizontal({
   className,
-  branchSlug,
+  branchSlug: _branchSlug,
   branches = [],
-  backgroundColor,
+  backgroundColor: _backgroundColor,
   themeColor,
   media,
   title,
