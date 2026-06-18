@@ -29,8 +29,8 @@ import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea
 import { MetaImageComponent as MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { GenerateSlugField as GenerateSlugField_7cd396f038e673f003ca0d5ff9f07cf5 } from '@/components/payload/generate-slug-field'
-import { BranchFloorSelectField as BranchFloorSelectField_b54d6bb26f852822af4336b3ef9d70a3 } from '@/components/payload/branch-floor-select-field'
 import { WhatsOnBranchLocationsField as WhatsOnBranchLocationsField_402643039b63c6d6f8e2dd8234eda163 } from '@/components/payload/whats-on-branch-locations-field'
+import { BranchFloorSelectField as BranchFloorSelectField_b54d6bb26f852822af4336b3ef9d70a3 } from '@/components/payload/branch-floor-select-field'
 import { AdminIcon as AdminIcon_86ed45bc22bd1edbd6d5422354bc6d58 } from '@/components/payload/admin-graphics'
 import { default as default_86ed45bc22bd1edbd6d5422354bc6d58 } from '@/components/payload/admin-graphics'
 import { R2ClientUploadHandler as R2ClientUploadHandler_85cc02ed84006fcc91d3aff39dda669d } from '@payloadcms/storage-r2/client'
@@ -68,8 +68,8 @@ export const importMap = {
   "@payloadcms/plugin-seo/client#MetaImageComponent": MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@/components/payload/generate-slug-field#GenerateSlugField": GenerateSlugField_7cd396f038e673f003ca0d5ff9f07cf5,
-  "@/components/payload/branch-floor-select-field#BranchFloorSelectField": BranchFloorSelectField_b54d6bb26f852822af4336b3ef9d70a3,
   "@/components/payload/whats-on-branch-locations-field#WhatsOnBranchLocationsField": WhatsOnBranchLocationsField_402643039b63c6d6f8e2dd8234eda163,
+  "@/components/payload/branch-floor-select-field#BranchFloorSelectField": BranchFloorSelectField_b54d6bb26f852822af4336b3ef9d70a3,
   "@/components/payload/admin-graphics#AdminIcon": AdminIcon_86ed45bc22bd1edbd6d5422354bc6d58,
   "@/components/payload/admin-graphics#default": default_86ed45bc22bd1edbd6d5422354bc6d58,
   "@payloadcms/storage-r2/client#R2ClientUploadHandler": R2ClientUploadHandler_85cc02ed84006fcc91d3aff39dda669d,

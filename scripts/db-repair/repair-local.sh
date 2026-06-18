@@ -107,4 +107,22 @@ else
   fi
 fi
 
+if has_table '__new_blogs'; then
+  echo "Found __new_blogs — drop it manually or reset local D1."
+else
+  if has_table 'blogs' && sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='blogs_slug_idx';" | grep -q 1; then
+    echo "Dropping blogs indexes so drizzle push can recreate them…"
+    sqlite3 "${DB}" < "${SQL_DIR}/blogs-push-idx.sql"
+  fi
+fi
+
+if has_table '__new_blogs_rels'; then
+  echo "Found __new_blogs_rels — drop it manually or reset local D1."
+else
+  if has_table 'blogs_rels' && sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='blogs_rels_order_idx';" | grep -q 1; then
+    echo "Repairing blogs_rels indexes so drizzle push can finish…"
+    sqlite3 "${DB}" < "${SQL_DIR}/blogs-rels-idx.sql"
+  fi
+fi
+
 echo "Done. Restart: pnpm run dev"

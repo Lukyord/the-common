@@ -40,7 +40,7 @@ export default function ContentSingleLayout({
           </div>
         </AnimateOnScroll>
 
-        {gallery && <ContentSingleGallery items={gallery.items} bgColor={gallery.bgColor} />}
+        {gallery ? <ContentSingleGallery items={gallery.items} bgColor={gallery.bgColor} /> : null}
       </div>
     </section>
   )

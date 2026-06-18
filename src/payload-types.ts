@@ -113,6 +113,7 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     about: About;
+    'blog-page': BlogPage;
     contact: Contact;
     homepage: Homepage;
     'privacy-policy': PrivacyPolicy;
@@ -120,6 +121,7 @@ export interface Config {
   };
   globalsSelect: {
     about: AboutSelect<false> | AboutSelect<true>;
+    'blog-page': BlogPageSelect<false> | BlogPageSelect<true>;
     contact: ContactSelect<false> | ContactSelect<true>;
     homepage: HomepageSelect<false> | HomepageSelect<true>;
     'privacy-policy': PrivacyPolicySelect<false> | PrivacyPolicySelect<true>;
@@ -757,8 +759,41 @@ export interface BranchWhatsOnPage {
  */
 export interface Blog {
   id: number;
+  branch?: (number | Branch)[] | null;
   title: string;
   slug: string;
+  /**
+   * Set the location for each selected branch.
+   */
+  branchLocations?: {
+    thonglor?: string | null;
+    saladaeng?: string | null;
+    cloud11?: string | null;
+  };
+  publishedDate?: string | null;
+  dateToBeArchived?: string | null;
+  /**
+   * Recommended aspect ratio: 4 / 5
+   */
+  media?: (number | null) | Media;
+  gallery?: (number | Media)[] | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -1184,8 +1219,23 @@ export interface BranchWhatsOnPagesSelect<T extends boolean = true> {
  * via the `definition` "blogs_select".
  */
 export interface BlogsSelect<T extends boolean = true> {
+  branch?: T;
   title?: T;
   slug?: T;
+  branchLocations?:
+    | T
+    | {
+        thonglor?: T;
+        saladaeng?: T;
+        cloud11?: T;
+      };
+  publishedDate?: T;
+  dateToBeArchived?: T;
+  media?: T;
+  gallery?: T;
+  content?: T;
+  buttonText?: T;
+  buttonLink?: T;
   meta?:
     | T
     | {
@@ -1435,6 +1485,28 @@ export interface About {
           id?: string | null;
         }[]
       | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-page".
+ */
+export interface BlogPage {
+  id: number;
+  hero?: {
+    backgroundMedia?: (number | null) | Media;
+    mobileBackgroundMedia?: (number | null) | Media;
+    title?: string | null;
   };
   meta?: {
     title?: string | null;
@@ -1774,6 +1846,29 @@ export interface AboutSelect<T extends boolean = true> {
               media?: T;
               id?: T;
             };
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-page_select".
+ */
+export interface BlogPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        backgroundMedia?: T;
+        mobileBackgroundMedia?: T;
+        title?: T;
       };
   meta?:
     | T

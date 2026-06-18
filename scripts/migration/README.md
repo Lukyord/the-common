@@ -9,7 +9,7 @@ scripts/migration/
   lib/              # shared: CLI, paths, media upload, slug registry, rollback log
   events/           # whats-on (events) — see events/migrate.ts
   shops/            # vendors (planned)
-  blogs/            # blogs (planned)
+  blogs/            # blogs — see blogs/migrate.ts
   zones/            # zones (planned)
 scripts/db-repair/  # local D1 repair SQL + repair-local.sh
 ```
@@ -31,7 +31,42 @@ pnpm migrate:events:rollback:prod [--write] [--indexes N,...]
 
 ---
 
-# Legacy events migration
+## Blogs
+
+Migrates `legacy-db/the-commons-cloud.blogs.json` into Payload `blogs`.
+
+**Default is dry-run.** Pass `--write` to upload media and create records in D1/R2.
+
+Only blogs whose `publishedDate` (from legacy `date`) falls within the last 5 years are imported.
+
+```bash
+# Dry-run first 2 blogs
+pnpm migrate:blogs --indexes 0,1 --assets-dir ./legacy-db/assets
+
+# Import locally
+pnpm migrate:blogs --write --indexes 0,1 --assets-dir ./legacy-db/assets
+
+# Production
+pnpm migrate:blogs:prod --write --indexes 0 --assets-dir ./legacy-db/assets
+```
+
+### Field mapping
+
+| Legacy | Payload |
+|--------|---------|
+| `title` | `title` |
+| `slug` | `slug` (deduped when duplicated across branches) |
+| `branch` | `branch` (relationship, if present) |
+| `date` | `publishedDate` |
+| `images[0]` | `media` |
+| `images[]` | `gallery` (first item reuses `media` without re-upload; max 5) |
+| `content` | `content` (HTML → Lexical) |
+
+`branchLocations`, `dateToBeArchived`, `buttonText`, and `buttonLink` are left empty.
+
+Images are converted to WebP before upload (same pipeline as events).
+
+---
 
 Migrates `legacy-db/the-commons-cloud.events.json` into Payload `whats-on`.
 

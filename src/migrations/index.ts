@@ -44,6 +44,7 @@ import * as migration_20260610_054900 from './20260610_054900';
 import * as migration_20260610_081621 from './20260610_081621';
 import * as migration_20260617_093640 from './20260617_093640';
 import * as migration_20260618_081430_moode_presentence_mobile from './20260618_081430_moode_presentence_mobile';
+import * as migration_20260618_112218_blog from './20260618_112218_blog';
 
 export const migrations = [
   {
@@ -274,6 +275,11 @@ export const migrations = [
   {
     up: migration_20260618_081430_moode_presentence_mobile.up,
     down: migration_20260618_081430_moode_presentence_mobile.down,
-    name: '20260618_081430_moode_presentence_mobile'
+    name: '20260618_081430_moode_presentence_mobile',
+  },
+  {
+    up: migration_20260618_112218_blog.up,
+    down: migration_20260618_112218_blog.down,
+    name: '20260618_112218_blog'
   },
 ];

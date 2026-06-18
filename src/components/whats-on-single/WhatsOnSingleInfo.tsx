@@ -4,12 +4,34 @@ import type { WhatsOnSingleBranch } from '@/payload/queries/branch'
 type WhatsOnSingleInfoProps = {
   date?: string | null
   time?: string | null
+  publishedDate?: string | null
   branches: WhatsOnSingleBranch[]
 }
 
-export default function WhatsOnSingleInfo({ date, time, branches }: WhatsOnSingleInfoProps) {
+export default function WhatsOnSingleInfo({
+  date,
+  time,
+  publishedDate,
+  branches,
+}: WhatsOnSingleInfoProps) {
   return (
     <div className="sc-info">
+      {publishedDate && (
+        <>
+          <div className="info-item date">
+            <AnimateOnScroll triggerClass="fadeIn" className="item-ttl">
+              <p className="type-d-body-xs type-m-body-s letter-spacing-002">PUBLISHED DATE</p>
+            </AnimateOnScroll>
+            <AnimateOnScroll triggerClass="fadeIn" className="item-content">
+              <p className="type-d-text-link type-m-body-s letter-spacing-002 weight-medium">
+                {publishedDate}
+              </p>
+            </AnimateOnScroll>
+          </div>
+          <div className="divider"></div>
+        </>
+      )}
+
       {date && (
         <>
           <div className="info-item date">

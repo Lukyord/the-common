@@ -5,6 +5,11 @@ export type ContentSingleGalleryItem = {
   alt: string
 }
 
+export type ContentSingleGalleryConfig = {
+  items: ContentSingleGalleryItem[]
+  bgColor?: string | null
+}
+
 export type ContentSingleSocialLink = {
   key: string
   href: string
@@ -16,10 +21,7 @@ export type ContentSingleSocialLink = {
 export type ContentSingleLayoutProps = {
   children?: ReactNode
   backHref: string
-  gallery?: {
-    items: ContentSingleGalleryItem[]
-    bgColor?: string | null
-  }
+  gallery?: ContentSingleGalleryConfig
   socials?: ContentSingleSocialLink[]
   section?: string
   sectionClassName?: string

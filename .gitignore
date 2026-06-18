@@ -48,6 +48,10 @@ next-env.d.ts
 !/scripts/migration/events/reports/.gitkeep
 /scripts/migration/events/cache/
 
+/scripts/migration/blogs/reports/*
+!/scripts/migration/blogs/reports/.gitkeep
+/scripts/migration/blogs/cache/
+
 # Playwright
 node_modules/
 /test-results/

@@ -59,6 +59,18 @@ export function formatEventsMigrateCommand(
   return parts.join(' ')
 }
 
+export function formatBlogsMigrateCommand(
+  options: Pick<MigrationCliOptions, 'dryRun' | 'localAssetsDir' | 'remote'>,
+  extraArgs = '',
+): string {
+  const script = options.remote ? 'migrate:blogs:prod' : 'migrate:blogs'
+  const parts = [`pnpm ${script}`]
+  if (!options.dryRun) parts.push('--write')
+  if (extraArgs) parts.push(extraArgs)
+  if (options.localAssetsDir) parts.push(`--assets-dir ${options.localAssetsDir}`)
+  return parts.join(' ')
+}
+
 export function printDryRunBanner() {
   console.log('DRY RUN — no database writes. Pass --write to import.')
 }

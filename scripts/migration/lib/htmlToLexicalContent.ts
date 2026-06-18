@@ -3,6 +3,8 @@ import { JSDOM } from 'jsdom'
 import type { SanitizedConfig } from 'payload'
 
 import type { WhatsOn } from '@/payload-types'
+import { normalizeLegacyHtml } from './normalizeLegacyHtml.js'
+import { sanitizeLexicalContent } from './sanitizeLexicalContent.js'
 
 const editorConfigStub = {
   i18n: { translations: {} },
@@ -30,9 +32,13 @@ export async function htmlToLexicalContent(
 ): Promise<WhatsOn['content'] | null> {
   if (!html?.trim()) return null
 
-  return convertHTMLToLexical({
+  const normalizedHtml = normalizeLegacyHtml(html)
+
+  const lexical = convertHTMLToLexical({
     editorConfig: await getEditorConfig(),
-    html,
+    html: normalizedHtml,
     JSDOM,
   }) as WhatsOn['content']
+
+  return sanitizeLexicalContent(lexical)
 }

@@ -1027,13 +1027,18 @@
   }
 
   /* PAGE: BRANCH WHATS SINGLE */
-  [data-section='whats-on-single'] {
+  :is([data-section='whats-on-single'], [data-section='blog-single']) {
     height: auto;
     background-size: 300%;
     background-image: url('../../public/designs/checked-bg.webp');
   }
 
-  :is([data-section='content-single'], [data-section='whats-on-single']) .back-wrapper {
+  :is(
+      [data-section='content-single'],
+      [data-section='whats-on-single'],
+      [data-section='blog-single']
+    )
+    .back-wrapper {
     position: absolute;
     left: var(--spacing-container);
     top: calc(var(--header-height) + var(--spacing-sm));
@@ -1046,11 +1051,14 @@
     }
   }
 
-  [data-section='whats-on-single'] .content-text .sc-header {
+  :is([data-section='whats-on-single'], [data-section='blog-single']) .content-text .sc-header {
     margin-top: 0;
   }
 
-  [data-section='whats-on-single'] .content-text .sc-header .sc-ttl-tags {
+  :is([data-section='whats-on-single'], [data-section='blog-single'])
+    .content-text
+    .sc-header
+    .sc-ttl-tags {
     gap: var(--spacing-2xs);
   }
 
@@ -1058,16 +1066,31 @@
     padding: var(--spacing-6xs) var(--spacing-5xs);
   }
 
-  :is([data-section='content-single'], [data-section='whats-on-single']) .content-container {
+  :is(
+      [data-section='content-single'],
+      [data-section='whats-on-single'],
+      [data-section='blog-single']
+    )
+    .content-container {
     flex-direction: column-reverse;
   }
 
-  :is([data-section='content-single'], [data-section='whats-on-single']) .content-text {
+  :is(
+      [data-section='content-single'],
+      [data-section='whats-on-single'],
+      [data-section='blog-single']
+    )
+    .content-text {
     width: 100%;
     padding-top: var(--spacing-sm);
   }
 
-  :is([data-section='content-single'], [data-section='whats-on-single']) .content-gallery {
+  :is(
+      [data-section='content-single'],
+      [data-section='whats-on-single'],
+      [data-section='blog-single']
+    )
+    .content-gallery {
     width: 100%;
     height: auto;
     aspect-ratio: 0.8029978587;
@@ -1075,15 +1098,20 @@
     position: static;
   }
 
-  [data-section='whats-on-single'] .sc-info {
+  :is([data-section='whats-on-single'], [data-section='blog-single']) .sc-info {
     gap: var(--spacing-2xs);
   }
 
-  [data-section='whats-on-single'] .sc-content {
+  :is([data-section='whats-on-single'], [data-section='blog-single']) .sc-content {
     margin-top: var(--spacing-2lg);
   }
 
-  :is([data-section='content-single'], [data-section='whats-on-single']) .content-scroll {
+  :is(
+      [data-section='content-single'],
+      [data-section='whats-on-single'],
+      [data-section='blog-single']
+    )
+    .content-scroll {
     height: auto;
     overflow-y: unset;
     -webkit-mask-box-image: unset;
@@ -1097,7 +1125,11 @@
     gap: var(--spacing-2xs);
   }
 
-  :is([data-section='content-single'], [data-section='whats-on-single'])
+  :is(
+      [data-section='content-single'],
+      [data-section='whats-on-single'],
+      [data-section='blog-single']
+    )
     .content-gallery
     .swiper-pagination {
     --swiper-pagination-bottom: var(--spacing-2sm);

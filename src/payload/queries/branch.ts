@@ -1013,7 +1013,9 @@ type ResolvedVendorCategory = {
   text: string
 }
 
-async function findVendorCategoryByText(categoryText: string): Promise<ResolvedVendorCategory | null> {
+async function findVendorCategoryByText(
+  categoryText: string,
+): Promise<ResolvedVendorCategory | null> {
   const payload = await getPayloadClient()
   const trimmed = categoryText.trim()
   if (!trimmed) return null
@@ -1108,7 +1110,7 @@ const GRID_CARD_FILTER_ALL_VALUE = 'all'
 function hasActiveGridCardPageFilters(filters?: GridCardPageFilters) {
   return Boolean(
     (filters?.category && filters.category !== GRID_CARD_FILTER_ALL_VALUE) ||
-      (filters?.branch && filters.branch !== GRID_CARD_FILTER_ALL_VALUE),
+    (filters?.branch && filters.branch !== GRID_CARD_FILTER_ALL_VALUE),
   )
 }
 
