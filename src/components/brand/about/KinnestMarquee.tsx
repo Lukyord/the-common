@@ -74,7 +74,7 @@ export default function KinnestMarquee({ items, kinnestLink }: KinnestMarqueePro
 
         <AnimateOnScroll triggerClass="fadeIn" className="text">
           <div className="text-desc">
-            <p className="type-d-body-l type-m-title letter-spacing-002">
+            <p className="type-d-body-l type-m-body-r  letter-spacing-002">
               A member of Kinnest Group
             </p>
           </div>
