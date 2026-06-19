@@ -6,6 +6,8 @@ import { ReactLenis, type LenisRef } from 'lenis/react'
 import type { PropsWithChildren } from 'react'
 import { useEffect, useRef } from 'react'
 
+import ScrollRestoration from '@/components/ScrollRestoration'
+
 const SCROLL_SHAPE_TRACK = '[data-section="scroll-shape"] .content-wrapper'
 
 /** Shift+wheel reports on deltaY; remap so allowNestedScroll treats it as horizontal. */
@@ -50,6 +52,7 @@ export default function LenisProvider({ children }: PropsWithChildren) {
       options={{ autoRaf: false, allowNestedScroll: true, virtualScroll }}
       ref={lenisRef}
     >
+      <ScrollRestoration />
       {children}
     </ReactLenis>
   )

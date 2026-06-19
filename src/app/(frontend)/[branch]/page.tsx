@@ -45,7 +45,7 @@ export default async function BranchPage({ params }: Props) {
 
   return (
     <main id="main" className="branch-page">
-      <section data-section="page-hero" className="bg-dark-brown marquee-offset">
+      <section data-section="page-hero" data-branch-slug={branch?.slug}>
         {heroBackground?.src && (
           <div className="cover">
             <RenderMedia

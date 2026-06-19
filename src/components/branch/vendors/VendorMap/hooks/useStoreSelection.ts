@@ -4,6 +4,7 @@ import type { VendorMapListItem } from '@/components/branch/vendors/types'
 import { useEffect, useMemo, useState, type RefObject } from 'react'
 
 import { FADE_IN_DURATION_MS, FADE_OUT_DURATION_MS } from '../lib/constants'
+import { scrollToElement } from '@/utils/functions/scrollTo'
 import { preloadVendorMapImage } from './useVendorMapImagePreload'
 import { isSameStoreTarget, type StoreTarget, type TransitionState } from '../lib/shared'
 import {
@@ -163,12 +164,12 @@ export function useStoreSelection({
 
   const selectMobileVendor = (lotNumber: number) => {
     selectStore(lotNumber, displayedFloor)
-    sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    sectionRef.current && scrollToElement(sectionRef.current)
   }
 
   const selectMobileMapOnlyLot = (mapKey: string) => {
     selectMapOnlyLot(mapKey, displayedFloor)
-    sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    sectionRef.current && scrollToElement(sectionRef.current)
   }
 
   const clearStore = () => {

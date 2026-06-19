@@ -7,6 +7,8 @@ declare global {
         updateMatchHeight?: () => void
     }
 }
+import { scrollToY } from '@/utils/functions/scrollTo'
+
 import { TabContext, type TabContextValue } from './tab-context'
 import { registerTabContainer, unregisterTabContainer, tabContainers } from './use-tab-control'
 
@@ -17,31 +19,6 @@ type TabContainerProps = PropsWithChildren<{
     containerId?: string
     updateUrlHash?: boolean
 }>
-
-function smoothScrollTo(targetY: number, duration: number) {
-    const startY = window.scrollY
-    const distance = targetY - startY
-    let startTime: number | null = null
-
-    function easeOutExpo(t: number) {
-        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t)
-    }
-
-    function animation(currentTime: number) {
-        if (startTime === null) startTime = currentTime
-        const timeElapsed = currentTime - startTime
-        const progress = Math.min(timeElapsed / duration, 1)
-        const ease = easeOutExpo(progress)
-
-        window.scrollTo(0, startY + distance * ease)
-
-        if (timeElapsed < duration) {
-            requestAnimationFrame(animation)
-        }
-    }
-
-    requestAnimationFrame(animation)
-}
 
 export function TabContainer({
     children,
@@ -93,7 +70,7 @@ export function TabContainer({
                 const headerHeightValue = headerHeight ? headerHeight.offsetHeight : 0
                 const tabContainerRect = containerRef.current!.getBoundingClientRect()
                 const scrollTop = tabContainerRect.top + window.scrollY - headerHeightValue + 1
-                smoothScrollTo(scrollTop, 800)
+                scrollToY(scrollTop)
             }, 250)
 
             return () => clearTimeout(timeoutId)

@@ -3,6 +3,7 @@ import type { VendorMapFloorId } from '@/constants/vendorMapData/index'
 import { useEffect, useState, type RefObject } from 'react'
 
 import { FADE_IN_DURATION_MS, FADE_OUT_DURATION_MS } from '../lib/constants'
+import { scrollToElement } from '@/utils/functions/scrollTo'
 import type { TransitionState } from '../lib/shared'
 
 type UseAmenitySelectionOptions = {
@@ -72,7 +73,7 @@ export function useAmenitySelection({
 
   const selectMobileAmenity = (amenityId: AmenityId) => {
     setHoveredAmenityId(amenityId)
-    sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    sectionRef.current && scrollToElement(sectionRef.current)
   }
 
   const amenityPinsClassName = [

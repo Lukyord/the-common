@@ -926,7 +926,11 @@ html.no-touchevents .announcement-close:hover {
   min-height: calc(100lvh - var(--gap-section) * 2);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+[data-section='scroll-shape'] .container:after {
+  content: '';
 }
 
 [data-section='scroll-shape'] .sc-ttl {
@@ -2351,6 +2355,11 @@ html.no-touchevents [data-section='contact-re-series'] .hand-flower:hover {
 
 [data-section='about-section'] .words {
   position: relative;
+  --width-offset: 2.5%;
+  position: relative;
+  width: calc(100 + var(--width-offset));
+  margin-left: calc(-1 * var(--width-offset));
+  transform: translateY(7.5%);
 }
 
 [data-section='about-section'] .about-word-trigger {

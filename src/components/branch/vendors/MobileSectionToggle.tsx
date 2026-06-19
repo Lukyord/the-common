@@ -11,6 +11,7 @@ import {
 } from 'react'
 
 import { useIsMobile } from '@/components/branch/vendors/VendorMap/hooks/useIsMobile'
+import { scrollToY } from '@/utils/functions/scrollTo'
 
 type SectionProps = {
   label: string
@@ -73,7 +74,7 @@ function MobileSectionToggle({ children, theme }: MobileSectionToggleProps) {
       const containerTop = containerRef.current?.getBoundingClientRect().top ?? 0
       const scrollTop = Math.max(0, containerTop + window.scrollY - headerHeight)
 
-      window.scrollTo({ top: scrollTop, behavior: 'smooth' })
+      scrollToY(scrollTop)
     })
   }, [])
 

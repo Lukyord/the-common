@@ -47,7 +47,7 @@ export const HeaderLocationMobile = ({ className, setIsMenuOpen, branches }: pro
           >
             <div className="current">
               <p className="type-m-body-m letter-spacing-002 weight-medium">
-                {currentBranch?.name ?? 'theCOMMONS'}
+                {currentBranch?.name.toUpperCase() ?? 'theCOMMONS'}
               </p>
             </div>
 
@@ -75,7 +75,7 @@ export const HeaderLocationMobile = ({ className, setIsMenuOpen, branches }: pro
                       onClick={close}
                       className="type-m-body-m letter-spacing-002 weight-medium uppercase"
                     >
-                      {branch.name}
+                      {branch.name.toUpperCase()}
                     </Link>
                   </li>
                 ))}

@@ -885,6 +885,13 @@
     aspect-ratio: 0.8484320557;
     margin-right: calc(-1.5 * var(--spacing-container));
     margin-top: -70vw;
+    z-index: 10;
+    transform: translateY(7.5%);
+  }
+
+  [data-section='about-section'] .words.branch-cloud-11 {
+    width: 77.133333%;
+    margin-right: calc(-1 * var(--spacing-container));
   }
 
   [data-section='about-section'] .about-word-trigger {

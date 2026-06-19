@@ -33,7 +33,7 @@ export const HeaderLocation = ({ className, branches }: props) => {
       >
         {/* ${currentBranch ? 'type-d-label' : 'type-d-body-xs'} */}
         <p className={`type-d-body-xs letter-spacing-003 uppercase weight-medium`}>
-          {currentBranch ? currentBranch.name : 'PICK LOCATION'}
+          {currentBranch ? currentBranch.name.toUpperCase() : 'PICK LOCATION'}
         </p>
 
         <i className="ic ic-chevron-down size-icon-3xs"></i>
@@ -58,7 +58,7 @@ export const HeaderLocation = ({ className, branches }: props) => {
                   onClick={close}
                   className={`type-d-body-xs letter-spacing-003 weight-medium underline-hover ${currentBranch === branch ? 'is-current' : ''}`}
                 >
-                  {branch.name}
+                  {branch.name.toUpperCase()}
                 </Link>
               </li>
             ))}
