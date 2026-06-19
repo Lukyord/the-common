@@ -1200,9 +1200,9 @@ html.no-touchevents .location-selector__item:hover .branch-shape {
   .text-slide
   .swiper
   .swiper-pagination-bullets.swiper-pagination-horizontal {
-  max-width: calc(var(--container-max-width) / 2);
+  /* max-width: calc(var(--container-max-width) / 2);
   left: auto;
-  right: 0;
+  right: 0; */
 }
 
 [data-section='flexible'] .slide-item {
@@ -1213,8 +1213,10 @@ html.no-touchevents .location-selector__item:hover .branch-shape {
 
 [data-section='flexible'] .text-slide .slide-item-inner {
   height: 100%;
-  max-width: calc(var(--container-max-width) / 2);
-  margin-left: auto;
+  /* max-width: calc(var(--container-max-width) / 2);
+  margin-left: auto; */
+  max-width: 62rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2147,6 +2149,8 @@ html.no-touchevents [data-section='kinnest-marquee'] .kinnest-cta:hover .ic {
 
 [data-section='contact'] .contact-form form {
   width: 100%;
+  max-width: 62rem;
+  margin: 0 auto;
 }
 
 [data-section='contact'] .contact-form .form-submit {
