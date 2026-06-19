@@ -11,6 +11,7 @@ import {
   getValidatedMediaIdFromManifest,
   loadMediaManifest,
   recordSlugFingerprint,
+  recordContentFingerprint,
   sanitizeMediaManifest,
   saveMediaManifest,
   uploadLegacyMediaFile,
@@ -25,6 +26,8 @@ import {
   PROGRESS_REPORT_PATH,
 } from './reportPaths.js'
 import { resolveBlogGalleryMediaIds } from './resolveGalleryMediaIds.js'
+import { getBlogBranchIds, resolveBlogImport } from './resolveBlogImport.js'
+import { appendRollbackLog } from './rollbackLog.js'
 import type { MappedLegacyBlog, MigrationAnalysis } from './types.js'
 import { retryTransient } from '../../lib/retryTransient.js'
 import { getMigrationCutoffDate, toIsoDate } from '../../lib/legacy.js'
@@ -74,6 +77,7 @@ export function runAnalyzeStep(options: MigrationCliOptions): AnalyzeStepResult 
       withMediaPath: eligible.filter((blog) => blog.mediaPath).length,
       withGallery: eligible.filter((blog) => blog.galleryPaths.length > 0).length,
       duplicateSlugsResolved: eligible.filter((blog) => blog.slug !== blog.legacySlug).length,
+      branchMergeCandidates: eligible.filter((blog) => blog.mergeBranch).length,
       unknownBranch: eligible.filter((blog) =>
         blog.warnings.some((warning) => warning.startsWith('Unknown branch')),
       ).length,
@@ -139,133 +143,13 @@ async function buildBlogData(
   }
 }
 
-function getBlogMediaId(media: unknown): number | null {
-  if (typeof media === 'number') return media
-  if (media && typeof media === 'object' && 'id' in media) {
-    const id = (media as { id?: unknown }).id
-    return typeof id === 'number' ? id : null
-  }
-  return null
-}
-
-function getBlogGalleryIds(gallery: unknown): number[] {
-  if (!Array.isArray(gallery)) return []
-
-  return gallery
-    .map((entry) => {
-      if (typeof entry === 'number') return entry
-      if (entry && typeof entry === 'object' && 'id' in entry) {
-        const id = (entry as { id?: unknown }).id
-        return typeof id === 'number' ? id : null
-      }
-      return null
-    })
-    .filter((id): id is number => typeof id === 'number')
-}
-
-function existingMatchesBlog(
+function recordBlogManifestFingerprints(
+  manifest: MediaUploadManifest,
+  slug: string,
   blog: MappedLegacyBlog,
-  existing: Blog,
-  manifest: MediaUploadManifest | null,
-  ourMediaId: number | null,
-  ourGalleryIds: number[],
-): boolean {
-  const storedFingerprint = manifest?.slugFingerprints?.[existing.slug]
-  if (storedFingerprint) {
-    return storedFingerprint === blog.fingerprint
-  }
-
-  const existingMediaId = getBlogMediaId(existing.media)
-  if (existingMediaId !== ourMediaId) return false
-
-  const existingGalleryIds = getBlogGalleryIds(existing.gallery)
-  if (JSON.stringify(existingGalleryIds) !== JSON.stringify(ourGalleryIds)) {
-    return false
-  }
-
-  return (blog.publishedDate ?? null) === (existing.publishedDate ?? null)
-}
-
-async function findAvailableSlug(
-  payload: import('payload').Payload,
-  baseSlug: string,
-  legacyId: string,
-  reservedSlugs: Set<string>,
-): Promise<string> {
-  const usedSlugs = new Set(reservedSlugs)
-
-  async function isSlugTaken(slug: string): Promise<boolean> {
-    if (usedSlugs.has(slug)) return true
-
-    const { docs } = await payload.find({
-      collection: 'blogs',
-      where: { slug: { equals: slug } },
-      limit: 1,
-      pagination: false,
-      overrideAccess: true,
-    })
-
-    return docs.length > 0
-  }
-
-  if (!(await isSlugTaken(baseSlug))) {
-    usedSlugs.add(baseSlug)
-    return baseSlug
-  }
-
-  let candidate = `${baseSlug}-${legacyId.slice(-6)}`
-  let index = 2
-
-  while (await isSlugTaken(candidate)) {
-    candidate = `${baseSlug}-${legacyId.slice(-6)}-${index}`
-    index += 1
-  }
-
-  usedSlugs.add(candidate)
-  return candidate
-}
-
-async function resolveImportSlug(
-  blog: MappedLegacyBlog,
-  payload: import('payload').Payload,
-  manifest: MediaUploadManifest | null,
-): Promise<string> {
-  const reservedSlugs = new Set(Object.keys(manifest?.slugFingerprints ?? {}))
-
-  const { docs: existingDocs } = await payload.find({
-    collection: 'blogs',
-    where: { slug: { equals: blog.slug } },
-    limit: 1,
-    pagination: false,
-    overrideAccess: true,
-  })
-
-  if (existingDocs[0]) {
-    const existing = existingDocs[0] as Blog
-    const storedFingerprint = manifest?.slugFingerprints?.[existing.slug]
-    if (storedFingerprint && storedFingerprint === blog.fingerprint) {
-      return blog.slug
-    }
-
-    return findAvailableSlug(payload, blog.slug, blog.legacyId, reservedSlugs)
-  }
-
-  return findAvailableSlug(payload, blog.slug, blog.legacyId, reservedSlugs)
-}
-
-function getBlogBranchIds(branch: unknown): number[] {
-  if (!Array.isArray(branch)) return []
-
-  return branch
-    .map((entry) => {
-      if (typeof entry === 'number') return entry
-      if (entry && typeof entry === 'object' && 'id' in entry) {
-        const id = (entry as { id?: unknown }).id
-        return typeof id === 'number' ? id : null
-      }
-      return null
-    })
-    .filter((id): id is number => typeof id === 'number')
+) {
+  recordSlugFingerprint(manifest, slug, blog.fingerprint)
+  recordContentFingerprint(manifest, slug, blog.contentFingerprint)
 }
 
 async function importSingleBlog(
@@ -274,6 +158,7 @@ async function importSingleBlog(
   payload: import('payload').Payload,
   branchCache: Map<string, number | null>,
   remote: boolean,
+  importResolution: { slug: string; mergeIntoId: number | null },
 ): Promise<{
   imported: boolean
   skippedExisting: boolean
@@ -294,16 +179,46 @@ async function importSingleBlog(
         imported: false,
         skippedExisting: false,
         branchMerged: false,
-        slug: blog.slug,
+        slug: importResolution.slug,
         error: `Branch not found: ${blog.branchSlug}`,
       }
     }
   }
 
-  const slug = await resolveImportSlug(blog, payload, manifest)
+  const slug = importResolution.slug
 
-  if (slug !== blog.slug) {
-    console.log(`  slug: reassigned ${blog.slug} -> ${slug}`)
+  if (importResolution.mergeIntoId) {
+    const existing = (await payload.findByID({
+      collection: 'blogs',
+      id: importResolution.mergeIntoId,
+      overrideAccess: true,
+      depth: 0,
+    })) as Blog
+
+    const existingBranchIds = getBlogBranchIds(existing.branch)
+
+    if (branchId && !existingBranchIds.includes(branchId)) {
+      await payload.update({
+        collection: 'blogs',
+        id: existing.id,
+        data: { branch: [...existingBranchIds, branchId] },
+        overrideAccess: true,
+      })
+
+      if (manifest) {
+        recordBlogManifestFingerprints(manifest, slug, blog)
+        saveMediaManifest(manifest, remote)
+      }
+
+      return { imported: false, skippedExisting: false, branchMerged: true, slug }
+    }
+
+    if (manifest) {
+      recordBlogManifestFingerprints(manifest, slug, blog)
+      saveMediaManifest(manifest, remote)
+    }
+
+    return { imported: false, skippedExisting: true, branchMerged: false, slug }
   }
 
   if (blog.mediaPath && manifest) {
@@ -315,58 +230,14 @@ async function importSingleBlog(
       remote ? expectedFilename : null,
     )
     if (!mediaId) {
+      const entry = manifest.entries[blog.mediaPath]
       return {
         imported: false,
         skippedExisting: false,
         branchMerged: false,
         slug,
-        error: 'Missing media in manifest',
+        error: `Missing media in manifest (expected ${expectedFilename}, manifest status: ${entry?.status ?? 'none'})`,
       }
-    }
-  }
-
-  const expectedCardFilename = webpFilenameForLegacyPath(blog.mediaPath ?? '', slug)
-  const ourMediaId = manifest
-    ? await getValidatedMediaIdFromManifest(
-        payload,
-        manifest,
-        blog.mediaPath,
-        remote ? expectedCardFilename : null,
-      )
-    : null
-  const ourGalleryIds = await resolveBlogGalleryMediaIds(payload, blog, manifest, ourMediaId)
-
-  const { docs: existingDocs } = await payload.find({
-    collection: 'blogs',
-    where: { slug: { equals: slug } },
-    limit: 1,
-    pagination: false,
-    overrideAccess: true,
-  })
-
-  if (existingDocs[0]) {
-    const existing = existingDocs[0] as Blog
-    const existingBranchIds = getBlogBranchIds(existing.branch)
-    const matches = existingMatchesBlog(blog, existing, manifest, ourMediaId, ourGalleryIds)
-
-    if (matches) {
-      if (branchId && !existingBranchIds.includes(branchId)) {
-        await payload.update({
-          collection: 'blogs',
-          id: existing.id,
-          data: { branch: [...existingBranchIds, branchId] },
-          overrideAccess: true,
-        })
-
-        if (manifest) {
-          recordSlugFingerprint(manifest, slug, blog.fingerprint)
-          saveMediaManifest(manifest, remote)
-        }
-
-        return { imported: false, skippedExisting: false, branchMerged: true, slug }
-      }
-
-      return { imported: false, skippedExisting: true, branchMerged: false, slug }
     }
   }
 
@@ -400,7 +271,7 @@ async function importSingleBlog(
   }
 
   if (manifest) {
-    recordSlugFingerprint(manifest, slug, blog.fingerprint)
+    recordBlogManifestFingerprints(manifest, slug, blog)
     saveMediaManifest(manifest, remote)
   }
 
@@ -444,11 +315,16 @@ async function migrateSingleBlogIndex(
     localAssetsDir: options.localAssetsDir ?? undefined,
   }
 
+  let importResolution: { slug: string; mergeIntoId: number | null } | null = null
+
   if (payload) {
-    const importSlug = await resolveImportSlug(blog, payload, manifest)
-    if (importSlug !== blog.slug) {
-      console.log(`  slug: resolved ${blog.slug} -> ${importSlug}`)
-      blog = { ...blog, slug: importSlug }
+    importResolution = await resolveBlogImport(blog, payload, manifest)
+    if (importResolution.slug !== blog.slug) {
+      console.log(`  slug: resolved ${blog.slug} -> ${importResolution.slug}`)
+      blog = { ...blog, slug: importResolution.slug }
+    }
+    if (importResolution.mergeIntoId) {
+      console.log(`  merge: add branch to existing blog #${importResolution.mergeIntoId}`)
     }
   }
 
@@ -467,62 +343,67 @@ async function migrateSingleBlogIndex(
     console.log(`  gallery: ${blog.galleryPaths.length} image(s)`)
   }
 
-  const pathToMeta = new Map<string, { alt: string; slug: string; index?: number }>()
-  if (blog.mediaPath) {
-    pathToMeta.set(blog.mediaPath, { alt: blog.title, slug: blog.slug })
-  }
-  blog.galleryPaths.forEach((legacyPath, index) => {
-    if (!pathToMeta.has(legacyPath)) {
-      pathToMeta.set(legacyPath, { alt: blog.title, slug: blog.slug, index })
-    }
-  })
-
-  const cachePaths = listUniqueMigrationImagePaths([blog])
-  for (const legacyPath of cachePaths) {
-    const meta = pathToMeta.get(legacyPath)
-    if (!meta) continue
-    await ensureManifestImageCached(legacyPath, meta.alt, manifest, downloadOptions)
-  }
-  saveMediaManifest(manifest, options.remote)
-
-  const uploadPaths = listUniqueMigrationImagePaths([blog], manifest)
   let mediaUploaded = 0
   let mediaCached = 0
   let mediaFailed = 0
 
-  for (const legacyPath of uploadPaths) {
-    const meta = pathToMeta.get(legacyPath)
-    if (!meta) continue
-
-    await uploadLegacyMediaFile(payload, {
-      legacyPath,
-      alt: meta.alt,
-      slug: meta.slug,
-      index: meta.index,
-      dryRun: options.dryRun,
-      manifest,
-      downloadOptions,
-      expectedFilename: webpFilenameForLegacyPath(legacyPath, meta.slug, meta.index),
-      strictMediaReuse: options.remote,
+  if (importResolution?.mergeIntoId) {
+    console.log('  media: skipped (branch merge)')
+  } else {
+    const pathToMeta = new Map<string, { alt: string; slug: string; index?: number }>()
+    if (blog.mediaPath) {
+      pathToMeta.set(blog.mediaPath, { alt: blog.title, slug: blog.slug })
+    }
+    blog.galleryPaths.forEach((legacyPath, index) => {
+      if (!pathToMeta.has(legacyPath)) {
+        pathToMeta.set(legacyPath, { alt: blog.title, slug: blog.slug, index })
+      }
     })
 
-    if (options.dryRun) continue
-
-    const entry = manifest.entries[legacyPath]
-    if (entry?.status === 'uploaded') mediaUploaded += 1
-    if (entry?.status === 'cached') mediaCached += 1
-    if (entry?.status === 'failed') mediaFailed += 1
-  }
-
-  saveMediaManifest(manifest, options.remote)
-
-  if (!options.dryRun) {
-    console.log(`  media: ${mediaUploaded} uploaded, ${mediaCached} reused, ${mediaFailed} failed`)
-    if (mediaFailed > 0) {
-      throw new Error(`Media import failed for ${mediaFailed} image(s)`)
+    const cachePaths = listUniqueMigrationImagePaths([blog])
+    for (const legacyPath of cachePaths) {
+      const meta = pathToMeta.get(legacyPath)
+      if (!meta) continue
+      await ensureManifestImageCached(legacyPath, meta.alt, manifest, downloadOptions)
     }
-  } else {
-    console.log(`  media: ${uploadPaths.length} unique image(s) prepared`)
+    saveMediaManifest(manifest, options.remote)
+
+    const uploadPaths = listUniqueMigrationImagePaths([blog], manifest)
+
+    for (const legacyPath of uploadPaths) {
+      const meta = pathToMeta.get(legacyPath)
+      if (!meta) continue
+
+      await uploadLegacyMediaFile(payload, {
+        legacyPath,
+        alt: meta.alt,
+        slug: meta.slug,
+        index: meta.index,
+        dryRun: options.dryRun,
+        manifest,
+        downloadOptions,
+        expectedFilename: webpFilenameForLegacyPath(legacyPath, meta.slug, meta.index),
+        strictMediaReuse: options.remote,
+      })
+
+      if (options.dryRun) continue
+
+      const entry = manifest.entries[legacyPath]
+      if (entry?.status === 'uploaded') mediaUploaded += 1
+      if (entry?.status === 'cached') mediaCached += 1
+      if (entry?.status === 'failed') mediaFailed += 1
+    }
+
+    saveMediaManifest(manifest, options.remote)
+
+    if (!options.dryRun) {
+      console.log(`  media: ${mediaUploaded} uploaded, ${mediaCached} reused, ${mediaFailed} failed`)
+      if (mediaFailed > 0) {
+        throw new Error(`Media import failed for ${mediaFailed} image(s)`)
+      }
+    } else {
+      console.log(`  media: ${uploadPaths.length} unique image(s) prepared`)
+    }
   }
 
   let imported = false
@@ -534,7 +415,14 @@ async function migrateSingleBlogIndex(
       throw new Error('Payload client is required when --write is set')
     }
 
-    const importResult = await importSingleBlog(blog, manifest, payload, branchCache, options.remote)
+    const importResult = await importSingleBlog(
+      blog,
+      manifest,
+      payload,
+      branchCache,
+      options.remote,
+      importResolution ?? { slug: blog.slug, mergeIntoId: null },
+    )
     if (importResult.error) {
       throw new Error(importResult.error)
     }
@@ -552,6 +440,17 @@ async function migrateSingleBlogIndex(
       console.log('  blog: already exists (skipped)')
     } else if (imported) {
       console.log('  blog: created')
+    }
+
+    if (imported || branchMerged) {
+      appendRollbackLog({
+        legacyIndex,
+        legacyId: blog.legacyId,
+        slug: blog.slug,
+        branchSlug: blog.branchSlug ?? '',
+        action: branchMerged ? 'branch_merged' : 'created',
+        mediaLegacyPaths: listUniqueMigrationImagePaths([blog], manifest),
+      })
     }
   } else {
     console.log('  blog: dry-run preview OK')

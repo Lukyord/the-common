@@ -7,6 +7,14 @@ function normalizeContent(html: string | null): string {
   return html.replace(/\s+/g, ' ').trim()
 }
 
+export function getBlogContentFingerprint(contentHtml: string | null): string {
+  const payload = JSON.stringify({
+    content: normalizeContent(contentHtml),
+  })
+
+  return crypto.createHash('sha256').update(payload).digest('hex').slice(0, 16)
+}
+
 export function getBlogFingerprint(
   blog: Pick<MappedLegacyBlog, 'contentHtml' | 'mediaPath' | 'galleryPaths'>,
 ): string {

@@ -55,7 +55,7 @@ pnpm migrate:blogs:prod --write --indexes 0 --assets-dir ./legacy-db/assets
 | Legacy | Payload |
 |--------|---------|
 | `title` | `title` |
-| `slug` | `slug` (deduped when duplicated across branches) |
+| `slug` | `slug` (shared when same title+content across branches; `{slug}-{branch}` when same title, different content) |
 | `branch` | `branch` (relationship, if present) |
 | `date` | `publishedDate` |
 | `images[0]` | `media` |
@@ -65,6 +65,35 @@ pnpm migrate:blogs:prod --write --indexes 0 --assets-dir ./legacy-db/assets
 `branchLocations`, `dateToBeArchived`, `buttonText`, and `buttonLink` are left empty.
 
 Images are converted to WebP before upload (same pipeline as events).
+
+**Duplicate titles:**
+
+- Same title + same content + different branch → one blog, branches merged
+- Same title + different content → slug becomes `{legacy-slug}-{branch}` (e.g. `april-live-music-saladaeng`)
+
+### Rollback
+
+Default is dry-run; pass `--write` to delete records.
+
+```bash
+# Preview rollback locally
+pnpm migrate:blogs:rollback
+
+# Roll back specific indexes locally
+pnpm migrate:blogs:rollback --write --indexes 182,183
+
+# Production rollback
+pnpm migrate:blogs:rollback:prod --write --indexes 182,183
+```
+
+Uses `scripts/migration/blogs/reports/rollback-log.json` (written on each successful import). If missing, falls back to the last `blogs-import-preview.json` from a `--write` run.
+
+For each entry:
+
+- **created** — deletes the `blogs` record, removes orphaned media, cleans manifest fingerprints
+- **branch_merged** — removes the merged branch from the existing record (does not delete the record)
+
+Prod uses `media-manifest.prod.json` (local uses `media-manifest.json`).
 
 ---
 

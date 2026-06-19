@@ -1,6 +1,6 @@
 import type { MigrationCliOptions } from '../../lib/cli.js'
 import { getMigrationCutoffDate } from '../../lib/legacy.js'
-import { createLegacySlugRegistry } from '../../lib/slugRegistry.js'
+import { createBlogSlugRegistry } from './blogSlugRegistry.js'
 import { getEligibleBlogs, mapLegacyBlog } from './mapLegacyBlog.js'
 import { loadLegacyBlogs, selectLegacyBlogsByIndexes } from './loadLegacyBlogs.js'
 import type { MappedLegacyBlog } from './types.js'
@@ -41,7 +41,7 @@ export function getMigrationBlogBatch(
     ? selectLegacyBlogsByIndexes(legacyBlogs, options.indexes)
     : legacyBlogs.map((blog, legacyIndex) => ({ blog, legacyIndex }))
 
-  const slugRegistry = createLegacySlugRegistry()
+  const slugRegistry = createBlogSlugRegistry()
   const mapped = indexedBlogs.map(({ blog, legacyIndex }) => ({
     ...mapLegacyBlog(blog, slugRegistry, cutoff),
     legacyIndex,

@@ -310,6 +310,7 @@ async function importSingleEvent(
   payload: import('payload').Payload,
   branchCache: Map<string, number | null>,
   remote: boolean,
+  resolvedSlug?: string,
 ): Promise<{
   imported: boolean
   skippedExisting: boolean
@@ -334,9 +335,9 @@ async function importSingleEvent(
     }
   }
 
-  const slug = await resolveImportSlug(event, payload, manifest)
+  const slug = resolvedSlug ?? (await resolveImportSlug(event, payload, manifest))
 
-  if (slug !== event.slug) {
+  if (!resolvedSlug && slug !== event.slug) {
     console.log(`  slug: reassigned ${event.slug} -> ${slug}`)
   }
 
@@ -555,7 +556,14 @@ async function migrateSingleEventIndex(
       throw new Error('Payload client is required when --write is set')
     }
 
-    const importResult = await importSingleEvent(event, manifest, payload, branchCache, options.remote)
+    const importResult = await importSingleEvent(
+      event,
+      manifest,
+      payload,
+      branchCache,
+      options.remote,
+      event.slug,
+    )
     if (importResult.error) {
       throw new Error(importResult.error)
     }

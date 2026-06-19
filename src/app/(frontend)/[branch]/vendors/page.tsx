@@ -11,6 +11,7 @@ import {
   getLifestyles,
   getMultiBranchVendorLookup,
 } from '@/payload/queries/branch'
+import MobileSectionToggle from '@/components/branch/vendors/MobileSectionToggle'
 import VendorMap from '@/components/branch/vendors/VendorMap/VendorMap'
 
 export const dynamic = 'force-dynamic'
@@ -44,33 +45,39 @@ export default async function VendorPage({ params }: Props) {
 
   return (
     <main id="main" className="vendors-page">
-      <VendorMap
-        branchSlug={branch.slug}
-        floors={branch.floors}
-        defaultMapTileColor={page.defaultMapTileColor}
-        activeMapTileColor={page.activeMapTileColor}
-        pinColor={page.pinColor}
-        mapVendors={mapVendors}
-        branchTheme={{
-          bgColor: branch.primaryColor,
-          primaryColor: branch.bgColor,
-        }}
-      />
+      <MobileSectionToggle theme={{ bgColor: branch.primaryColor, color: branch.bgColor }}>
+        <MobileSectionToggle.Section label="FLOOR PLAN">
+          <VendorMap
+            branchSlug={branch.slug}
+            floors={branch.floors}
+            defaultMapTileColor={page.defaultMapTileColor}
+            activeMapTileColor={page.activeMapTileColor}
+            pinColor={page.pinColor}
+            mapVendors={mapVendors}
+            branchTheme={{
+              bgColor: branch.primaryColor,
+              primaryColor: branch.bgColor,
+            }}
+          />
+        </MobileSectionToggle.Section>
 
-      <VendorsListSection
-        sectionClassName="bg-beige"
-        scInnerClassName="pc-t-100 pc-b-150 mb-t-75 mb-b-75"
-        branchSlug={branch.slug}
-        branchTheme={{
-          bgColor: branch.bgColor,
-          primaryColor: branch.primaryColor,
-        }}
-        lifestyles={lifestyles}
-        cards={vendorResult.cards}
-        hasMore={vendorResult.hasMore}
-        multiBranchVendorsByName={multiBranchVendorsByName}
-        loadMoreUrl="/api/cards/vendors"
-      />
+        <MobileSectionToggle.Section label="VENDORS">
+          <VendorsListSection
+            sectionClassName="bg-beige"
+            scInnerClassName="pc-t-100 pc-b-150 mb-t-75 mb-b-25"
+            branchSlug={branch.slug}
+            branchTheme={{
+              bgColor: branch.bgColor,
+              primaryColor: branch.primaryColor,
+            }}
+            lifestyles={lifestyles}
+            cards={vendorResult.cards}
+            hasMore={vendorResult.hasMore}
+            multiBranchVendorsByName={multiBranchVendorsByName}
+            loadMoreUrl="/api/cards/vendors"
+          />
+        </MobileSectionToggle.Section>
+      </MobileSectionToggle>
 
       <DeliveryCtaSection data={page} />
     </main>

@@ -16,12 +16,14 @@ export type MappedLegacyBlog = {
   title: string
   slug: string
   fingerprint: string
+  contentFingerprint: string
   branchSlug: string | null
   publishedDate: string | null
   contentHtml: string | null
   mediaPath: string | null
   galleryPaths: string[]
   galleryReuseMedia: boolean
+  mergeBranch: boolean
   warnings: string[]
   skippedReason: string | null
 }
@@ -40,6 +42,7 @@ export type MigrationAnalysis = {
     withMediaPath: number
     withGallery: number
     duplicateSlugsResolved: number
+    branchMergeCandidates: number
     unknownBranch: number
   }
   warnings: string[]

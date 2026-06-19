@@ -28,6 +28,7 @@ export type MediaUploadManifest = {
   dryRun: boolean
   entries: Record<string, MediaUploadManifestEntry>
   slugFingerprints?: Record<string, string>
+  contentFingerprints?: Record<string, string>
 }
 
 function reuseCachedWebpEntry(
@@ -179,6 +180,22 @@ async function tryReuseDuplicateManifestEntry(
     status: 'cached',
   }
   return mediaId
+}
+
+export function recordContentFingerprint(
+  manifest: MediaUploadManifest,
+  slug: string,
+  contentFingerprint: string,
+): void {
+  manifest.contentFingerprints = manifest.contentFingerprints ?? {}
+  manifest.contentFingerprints[slug] = contentFingerprint
+}
+
+export function getContentFingerprintFromManifest(
+  manifest: MediaUploadManifest,
+  slug: string,
+): string | null {
+  return manifest.contentFingerprints?.[slug] ?? null
 }
 
 export function recordSlugFingerprint(
@@ -466,11 +483,35 @@ export async function getValidatedMediaIdFromManifest(
   payload: Payload,
   manifest: MediaUploadManifest,
   legacyPath: string | null,
+  expectedFilename?: string | null,
 ): Promise<number | null> {
   const mediaId = getMediaIdFromManifest(manifest, legacyPath)
   if (!mediaId) return null
 
-  if (await mediaIdExists(payload, mediaId)) {
+  if (!(await mediaIdExists(payload, mediaId))) {
+    purgeMediaIdsFromManifest(manifest, new Set([mediaId]))
+    return null
+  }
+
+  if (!expectedFilename) return mediaId
+
+  const doc = await payload.findByID({
+    collection: 'media',
+    id: mediaId,
+    overrideAccess: true,
+  })
+
+  if (!doc.filename) {
+    purgeMediaIdsFromManifest(manifest, new Set([mediaId]))
+    return null
+  }
+
+  if (doc.filename === expectedFilename) {
+    return mediaId
+  }
+
+  const entry = legacyPath ? manifest.entries[legacyPath] : undefined
+  if (entry?.status === 'uploaded' && entry.mediaId === mediaId) {
     return mediaId
   }
 

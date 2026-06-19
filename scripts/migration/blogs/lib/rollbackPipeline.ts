@@ -1,0 +1,395 @@
+import fs from 'fs'
+
+import type { Blog } from '@/payload-types'
+
+import type { MigrationCliOptions } from '../../lib/cli.js'
+import { writeJsonReport } from '../../lib/fs.js'
+import {
+  loadMediaManifest,
+  purgeMediaIdsFromManifest,
+  saveMediaManifest,
+  type MediaUploadManifest,
+} from './blogsMedia.js'
+import { listUniqueMigrationImagePaths } from './legacyImages.js'
+import { getMigrationBlogBatch } from './migrationBatch.js'
+import { IMPORT_REPORT_PATH, PROGRESS_REPORT_PATH } from './reportPaths.js'
+import {
+  getPendingRollbackEntries,
+  loadRollbackLog,
+  saveRollbackLog,
+  type RollbackLogEntry,
+} from './rollbackLog.js'
+
+export type RollbackResult = {
+  legacyIndex: number
+  slug: string
+  action: 'deleted' | 'branch_removed' | 'skipped'
+  reason?: string
+}
+
+type ImportReportBlog = {
+  legacyIndex?: number
+  slug?: string
+  imported?: boolean
+  branchMerged?: boolean
+}
+
+type ImportReport = {
+  dryRun: boolean
+  generatedAt?: string
+  blogs: ImportReportBlog[]
+}
+
+function getBlogBranchIds(branch: unknown): number[] {
+  if (!Array.isArray(branch)) return []
+
+  return branch
+    .map((entry) => {
+      if (typeof entry === 'number') return entry
+      if (entry && typeof entry === 'object' && 'id' in entry) {
+        const id = (entry as { id?: unknown }).id
+        return typeof id === 'number' ? id : null
+      }
+      return null
+    })
+    .filter((id): id is number => typeof id === 'number')
+}
+
+function getBlogMediaId(media: unknown): number | null {
+  if (typeof media === 'number') return media
+  if (media && typeof media === 'object' && 'id' in media) {
+    const id = (media as { id?: unknown }).id
+    return typeof id === 'number' ? id : null
+  }
+  return null
+}
+
+function getBlogGalleryIds(gallery: unknown): number[] {
+  if (!Array.isArray(gallery)) return []
+
+  return gallery
+    .map((entry) => {
+      if (typeof entry === 'number') return entry
+      if (entry && typeof entry === 'object' && 'id' in entry) {
+        const id = (entry as { id?: unknown }).id
+        return typeof id === 'number' ? id : null
+      }
+      return null
+    })
+    .filter((id): id is number => typeof id === 'number')
+}
+
+function collectMediaIds(doc: Blog): number[] {
+  const ids = new Set<number>()
+  const mediaId = getBlogMediaId(doc.media)
+  if (mediaId) ids.add(mediaId)
+  for (const id of getBlogGalleryIds(doc.gallery)) {
+    ids.add(id)
+  }
+  return [...ids]
+}
+
+async function isMediaStillReferenced(
+  payload: import('payload').Payload,
+  mediaId: number,
+): Promise<boolean> {
+  const { docs: byMedia } = await payload.find({
+    collection: 'blogs',
+    where: { media: { equals: mediaId } },
+    limit: 1,
+    pagination: false,
+    overrideAccess: true,
+  })
+
+  if (byMedia.length) return true
+
+  const { docs } = await payload.find({
+    collection: 'blogs',
+    limit: 500,
+    pagination: false,
+    overrideAccess: true,
+    depth: 0,
+  })
+
+  return docs.some((doc) => getBlogGalleryIds(doc.gallery).includes(mediaId))
+}
+
+function removeSlugFingerprint(manifest: MediaUploadManifest, slug: string) {
+  if (!manifest.slugFingerprints?.[slug]) return
+  delete manifest.slugFingerprints[slug]
+}
+
+function purgeDeletedMediaFromManifest(
+  manifest: MediaUploadManifest,
+  deletedMediaIds: Set<number>,
+) {
+  if (deletedMediaIds.size > 0) {
+    purgeMediaIdsFromManifest(manifest, deletedMediaIds)
+  }
+}
+
+function removeFromProgress(legacyIndex: number) {
+  if (!fs.existsSync(PROGRESS_REPORT_PATH)) return
+
+  const progress = JSON.parse(fs.readFileSync(PROGRESS_REPORT_PATH, 'utf8')) as {
+    completedIndexes?: number[]
+  }
+
+  if (!progress.completedIndexes?.includes(legacyIndex)) return
+
+  progress.completedIndexes = progress.completedIndexes.filter((index) => index !== legacyIndex)
+  writeJsonReport(PROGRESS_REPORT_PATH, progress)
+}
+
+function loadImportReportFallback(): RollbackLogEntry[] {
+  if (!fs.existsSync(IMPORT_REPORT_PATH)) return []
+
+  const report = JSON.parse(fs.readFileSync(IMPORT_REPORT_PATH, 'utf8')) as ImportReport
+  if (report.dryRun) return []
+
+  const entries: RollbackLogEntry[] = []
+
+  for (const blog of report.blogs ?? []) {
+    if (!blog.legacyIndex || !blog.slug) continue
+    if (!blog.imported && !blog.branchMerged) continue
+
+    const { mapped } = getMigrationBlogBatch({ indexes: [blog.legacyIndex] })
+    const mappedBlog = mapped[0]
+    if (!mappedBlog) continue
+
+    entries.push({
+      legacyIndex: blog.legacyIndex,
+      legacyId: mappedBlog.legacyId,
+      slug: blog.slug,
+      branchSlug: mappedBlog.branchSlug ?? '',
+      action: blog.branchMerged ? 'branch_merged' : 'created',
+      mediaLegacyPaths: listUniqueMigrationImagePaths([mappedBlog]),
+      migratedAt: report.generatedAt ?? new Date().toISOString(),
+    })
+  }
+
+  return [...entries].reverse()
+}
+
+async function rollbackEntry(
+  entry: RollbackLogEntry,
+  payload: import('payload').Payload,
+  branchCache: Map<string, number | null>,
+  manifest: MediaUploadManifest | null,
+  dryRun: boolean,
+  remote: boolean,
+): Promise<RollbackResult> {
+  const { resolveBranchId } = await import('../../lib/getPayloadLocal.js')
+
+  const { docs } = await payload.find({
+    collection: 'blogs',
+    where: { slug: { equals: entry.slug } },
+    limit: 1,
+    pagination: false,
+    overrideAccess: true,
+    depth: 0,
+  })
+
+  const doc = docs[0] as Blog | undefined
+  if (!doc) {
+    return {
+      legacyIndex: entry.legacyIndex,
+      slug: entry.slug,
+      action: 'skipped',
+      reason: 'Record not found',
+    }
+  }
+
+  if (entry.action === 'branch_merged') {
+    if (!entry.branchSlug) {
+      return {
+        legacyIndex: entry.legacyIndex,
+        slug: entry.slug,
+        action: 'skipped',
+        reason: 'No branch on rollback entry',
+      }
+    }
+
+    if (!branchCache.has(entry.branchSlug)) {
+      branchCache.set(entry.branchSlug, await resolveBranchId(payload, entry.branchSlug))
+    }
+
+    const branchId = branchCache.get(entry.branchSlug)
+    if (!branchId) {
+      return {
+        legacyIndex: entry.legacyIndex,
+        slug: entry.slug,
+        action: 'skipped',
+        reason: `Branch not found: ${entry.branchSlug}`,
+      }
+    }
+
+    const branchIds = getBlogBranchIds(doc.branch)
+    if (!branchIds.includes(branchId)) {
+      return {
+        legacyIndex: entry.legacyIndex,
+        slug: entry.slug,
+        action: 'skipped',
+        reason: 'Branch not on record',
+      }
+    }
+
+    const remaining = branchIds.filter((id) => id !== branchId)
+    if (remaining.length === 0) {
+      return {
+        legacyIndex: entry.legacyIndex,
+        slug: entry.slug,
+        action: 'skipped',
+        reason: 'Cannot remove last branch from record',
+      }
+    }
+
+    console.log(`  remove branch ${entry.branchSlug} from ${entry.slug}`)
+
+    if (!dryRun) {
+      await payload.update({
+        collection: 'blogs',
+        id: doc.id,
+        data: { branch: remaining },
+        overrideAccess: true,
+      })
+    }
+
+    return { legacyIndex: entry.legacyIndex, slug: entry.slug, action: 'branch_removed' }
+  }
+
+  const mediaIds = collectMediaIds(doc)
+  console.log(`  delete blog: ${entry.slug}`)
+  if (mediaIds.length) {
+    console.log(`  media candidates: ${mediaIds.join(', ')}`)
+  }
+
+  if (!dryRun) {
+    await payload.delete({
+      collection: 'blogs',
+      id: doc.id,
+      overrideAccess: true,
+    })
+
+    const deletedMediaIds = new Set<number>()
+
+    for (const mediaId of mediaIds) {
+      const stillReferenced = await isMediaStillReferenced(payload, mediaId)
+      if (stillReferenced) {
+        console.log(`  keep media ${mediaId} (still referenced)`)
+        continue
+      }
+
+      await payload.delete({
+        collection: 'media',
+        id: mediaId,
+        overrideAccess: true,
+      })
+      deletedMediaIds.add(mediaId)
+      console.log(`  deleted media ${mediaId}`)
+    }
+
+    if (manifest) {
+      removeSlugFingerprint(manifest, entry.slug)
+      purgeDeletedMediaFromManifest(manifest, deletedMediaIds)
+      for (const legacyPath of entry.mediaLegacyPaths) {
+        delete manifest.entries[legacyPath]
+      }
+      saveMediaManifest(manifest, remote)
+    }
+
+    removeFromProgress(entry.legacyIndex)
+  }
+
+  return { legacyIndex: entry.legacyIndex, slug: entry.slug, action: 'deleted' }
+}
+
+export async function runRollbackPipeline(options: MigrationCliOptions) {
+  if (options.dryRun) {
+    console.log('DRY RUN — no deletions. Pass --write to rollback.')
+  } else {
+    console.log('ROLLBACK — deleting migrated records. Pass without --write for preview only.')
+  }
+
+  const log = loadRollbackLog()
+  let entries: RollbackLogEntry[] = log ? getPendingRollbackEntries(log, options.indexes) : []
+
+  if (!entries.length) {
+    entries = loadImportReportFallback()
+    if (options.indexes) {
+      const indexSet = new Set(options.indexes)
+      entries = entries.filter((entry) => indexSet.has(entry.legacyIndex))
+    }
+  }
+
+  if (!entries.length) {
+    const logExists = Boolean(log?.entries.length)
+    const hint = logExists
+      ? 'All log entries may already be rolled back, or --indexes did not match.'
+      : 'Run `pnpm migrate:blogs --write` first to create rollback-log.json.'
+
+    throw new Error(`No rollback entries found. ${hint}`)
+  }
+
+  console.log(`\nRolling back ${entries.length} entr${entries.length === 1 ? 'y' : 'ies'}:`)
+  for (const entry of entries) {
+    const branchLabel = entry.branchSlug || 'no branch'
+    console.log(`  [${entry.legacyIndex}] ${entry.action} ${entry.slug} (${branchLabel})`)
+  }
+
+  const payload = options.dryRun
+    ? null
+    : await import('../../lib/getPayloadLocal.js').then((m) => m.getMigrationPayload())
+
+  const manifest = loadMediaManifest(options.remote)
+  const branchCache = new Map<string, number | null>()
+  const results: RollbackResult[] = []
+
+  for (const entry of entries) {
+    console.log(`\n=== Index ${entry.legacyIndex} ===`)
+
+    if (options.dryRun || !payload) {
+      if (entry.action === 'branch_merged') {
+        console.log(`  would remove branch ${entry.branchSlug} from ${entry.slug}`)
+        results.push({
+          legacyIndex: entry.legacyIndex,
+          slug: entry.slug,
+          action: 'branch_removed',
+        })
+      } else {
+        console.log(`  would delete blog: ${entry.slug}`)
+        results.push({ legacyIndex: entry.legacyIndex, slug: entry.slug, action: 'deleted' })
+      }
+      continue
+    }
+
+    const result = await rollbackEntry(entry, payload, branchCache, manifest, false, options.remote)
+    results.push(result)
+
+    if (log) {
+      const target = log.entries.find(
+        (item: RollbackLogEntry) =>
+          item.legacyIndex === entry.legacyIndex &&
+          item.slug === entry.slug &&
+          item.action === entry.action &&
+          !item.rolledBackAt,
+      )
+      if (target) {
+        target.rolledBackAt = new Date().toISOString()
+      }
+    }
+  }
+
+  if (log && !options.dryRun) {
+    saveRollbackLog(log)
+  }
+
+  const deleted = results.filter((item) => item.action === 'deleted').length
+  const branchRemoved = results.filter((item) => item.action === 'branch_removed').length
+  const skipped = results.filter((item) => item.action === 'skipped').length
+
+  console.log('\nRollback complete')
+  console.log(`Deleted:        ${deleted}`)
+  console.log(`Branch removed: ${branchRemoved}`)
+  console.log(`Skipped:        ${skipped}`)
+}

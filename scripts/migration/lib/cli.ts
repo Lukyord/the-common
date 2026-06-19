@@ -9,15 +9,24 @@ export type MigrationCliOptions = {
 
 function parseIndexesArg(argv: string[]): number[] | null {
   const flagIndex = argv.indexOf('--indexes')
-  if (flagIndex < 0 || !argv[flagIndex + 1]) return null
+  if (flagIndex < 0) return null
 
-  const indexes = argv[flagIndex + 1]
+  const values: string[] = []
+  for (let i = flagIndex + 1; i < argv.length; i++) {
+    if (argv[i].startsWith('--')) break
+    values.push(argv[i])
+  }
+
+  if (!values.length) return null
+
+  const indexes = values
+    .join(',')
     .split(',')
     .map((value) => Number.parseInt(value.trim(), 10))
     .filter((value) => Number.isFinite(value))
 
   if (!indexes.length) {
-    throw new Error(`Invalid --indexes value: ${argv[flagIndex + 1]}`)
+    throw new Error(`Invalid --indexes value: ${values.join(' ')}`)
   }
 
   return indexes
@@ -68,6 +77,17 @@ export function formatBlogsMigrateCommand(
   if (!options.dryRun) parts.push('--write')
   if (extraArgs) parts.push(extraArgs)
   if (options.localAssetsDir) parts.push(`--assets-dir ${options.localAssetsDir}`)
+  return parts.join(' ')
+}
+
+export function formatBlogsRollbackCommand(
+  options: Pick<MigrationCliOptions, 'dryRun' | 'remote'>,
+  extraArgs = '',
+): string {
+  const script = options.remote ? 'migrate:blogs:rollback:prod' : 'migrate:blogs:rollback'
+  const parts = [`pnpm ${script}`]
+  if (!options.dryRun) parts.push('--write')
+  if (extraArgs) parts.push(extraArgs)
   return parts.join(' ')
 }
 

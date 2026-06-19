@@ -3271,6 +3271,7 @@ html.no-touchevents [data-section='whats-on-global-club'] .tags-filter__tag:not(
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr;
   gap: var(--spacing-xs);
+  min-height: 10rem;
 }
 
 :is([data-section='whats-on-single'], [data-section='blog-single']) .sc-info .info-item {

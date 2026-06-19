@@ -31,39 +31,14 @@ export const saveMediaManifest = (manifest: MediaUploadManifest, remote = false)
   media.saveMediaManifest(getBlogsManifestPath(remote), manifest)
 
 export const recordSlugFingerprint = media.recordSlugFingerprint
+export const recordContentFingerprint = media.recordContentFingerprint
+export const getContentFingerprintFromManifest = media.getContentFingerprintFromManifest
 export const getMediaIdFromManifest = media.getMediaIdFromManifest
 export const getContentHashFromManifest = media.getContentHashFromManifest
 export const sanitizeMediaManifest = media.sanitizeMediaManifest
+export const purgeMediaIdsFromManifest = media.purgeMediaIdsFromManifest
 
-export async function getValidatedMediaIdFromManifest(
-  payload: Parameters<typeof media.getValidatedMediaIdFromManifest>[0],
-  manifest: MediaUploadManifest,
-  legacyPath: string | null,
-  expectedFilename?: string | null,
-) {
-  const mediaId = media.getMediaIdFromManifest(manifest, legacyPath)
-  if (!mediaId) return null
-
-  if (!(await media.mediaIdExists(payload, mediaId))) {
-    media.purgeMediaIdsFromManifest(manifest, new Set([mediaId]))
-    return null
-  }
-
-  if (expectedFilename) {
-    const doc = await payload.findByID({
-      collection: 'media',
-      id: mediaId,
-      overrideAccess: true,
-    })
-
-    if (doc.filename !== expectedFilename || !doc.url) {
-      media.purgeMediaIdsFromManifest(manifest, new Set([mediaId]))
-      return null
-    }
-  }
-
-  return mediaId
-}
+export const getValidatedMediaIdFromManifest = media.getValidatedMediaIdFromManifest
 
 export async function ensureManifestImageCached(
   legacyPath: string,
