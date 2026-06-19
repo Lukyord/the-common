@@ -2775,18 +2775,7 @@ html.no-touchevents [data-section='vibe'] .media-trigger-btn:not(.is-active):hov
   transform-style: preserve-3d;
 }
 
-@keyframes fadeEntryCard {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.whats-on-landing-card-enter.animate.fadeEntry {
-  animation-name: fadeEntryCard;
+.whats-on-landing-card-enter.animate {
   animation-delay: var(--entry-delay, 0s);
   animation-fill-mode: both;
 }

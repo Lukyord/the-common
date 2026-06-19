@@ -63,7 +63,7 @@ export function WhatsOnLandingCard({
       <AnimateOnScroll
         triggerClass="fadeEntry"
         className="whats-on-landing-card-enter"
-        style={{ '--entry-delay': `${index * 0.1}s` } as CSSProperties}
+        style={{ '--entry-delay': `${index * 0.12}s` } as CSSProperties}
       >
         <div className={`whats-on-landing-card-inner${isFlipped ? ' is-flipped' : ''}`}>
           <div
