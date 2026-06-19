@@ -663,7 +663,7 @@
   [data-section='about-re'] .re-trigger[data-type='recycle'] {
     width: 32vw;
     left: unset;
-    top: unset;
+    top: 3%;
   }
   [data-section='about-re'] .re-trigger[data-type='reuse'] {
     width: 37.3333333333vw;

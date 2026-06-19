@@ -544,7 +544,7 @@ html.no-touchevents [data-section='vendors-list'] .tags-filter__tag:not(.is-acti
 }
 
 [data-section='vendors-list'] .tags-filter__close {
-  --icon-size: 2rem;
+  --icon-size: 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1234,6 +1234,13 @@ html.no-touchevents .location-selector__item:hover .branch-shape {
 [data-section='fullscreen-slide'] .container {
   --mask-box-image-offset: var(--spacing-container);
   -webkit-mask-box-image: -webkit-linear-gradient(
+    0deg,
+    transparent 0%,
+    white var(--mask-box-image-offset),
+    white calc(100% - var(--mask-box-image-offset)),
+    transparent 100%
+  );
+  mask-image: -webkit-linear-gradient(
     0deg,
     transparent 0%,
     white var(--mask-box-image-offset),
@@ -3205,6 +3212,13 @@ html.no-touchevents [data-section='whats-on-global-club'] .tags-filter__tag:not(
   height: 100svh;
   position: relative;
   padding-top: var(--header-height);
+}
+
+:is([data-section='whats-on-single'], [data-section='blog-single']) .content-text {
+  width: 58%;
+}
+:is([data-section='whats-on-single'], [data-section='blog-single']) .content-gallery {
+  width: 42%;
 }
 
 :is([data-section='content-single'], [data-section='whats-on-single'], [data-section='blog-single'])

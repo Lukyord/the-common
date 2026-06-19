@@ -254,6 +254,23 @@ html.page-scrolling .header-location .location-panel ul {
     --header-height-start: 6rem;
   }
 
+  html.page-scrolling #header {
+    --header-height-start: 5rem;
+  }
+
+  html.page-scrolling:not(.header-menu-enabled) .header-logo {
+    opacity: 0;
+    margin-top: 2rem;
+  }
+  html.page-scrolling:not(.header-menu-enabled) .header-logo .logo-wrapper {
+    height: 3rem;
+  }
+
+  html.page-scrolling .header-cta {
+    flex-grow: 0;
+    padding: 0 var(--spacing-2xs);
+  }
+
   .header-nav > * {
     position: relative;
     z-index: 2;
@@ -279,9 +296,13 @@ html.page-scrolling .header-location .location-panel ul {
     align-items: center;
     justify-content: flex-end;
     gap: var(--spacing-sm);
-    padding-right: var(--spacing-container);
+    padding: 0 var(--spacing-container);
     background-color: var(--bg-color);
     flex-grow: 1;
+  }
+
+  .header--branch .header-cta {
+    width: auto;
   }
 
   .header-location-mobile {

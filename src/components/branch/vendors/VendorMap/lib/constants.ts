@@ -1,6 +1,8 @@
 export const FADE_OUT_DURATION_MS = 100
 export const FADE_IN_DURATION_MS = 200
 
+export const MAP_START_SCALE = 0.9
+
 export const FALLBACK_DEFAULT_MAP_TILE_COLOR = '#CFEAE0'
 export const FALLBACK_ACTIVE_MAP_TILE_COLOR = '#15E8BF'
 export const FALLBACK_PIN_COLOR = '#15E8BF'

@@ -46,7 +46,6 @@ export const FullscreenSlide = ({ slides: membershipSlides, branch }: Fullscreen
           <div className="swiper-container">
             <Swiper
               autoplay={{ delay: 10000 }}
-              autoHeight
               loop
               modules={[Pagination, Autoplay]}
               observer

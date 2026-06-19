@@ -1,6 +1,8 @@
 import { useEffect, useRef, type RefObject } from 'react'
 import Panzoom from '@panzoom/panzoom'
 
+import { MAP_START_SCALE } from '../lib/constants'
+
 const SCROLL_END_DELAY_MS = 150
 
 function canPageScroll(deltaY: number): boolean {
@@ -20,6 +22,7 @@ function isPinchZoom(event: WheelEvent): boolean {
 type UseMapPanZoomOptions = {
   maxScale?: number
   minScale?: number
+  startScale?: number
 }
 
 export function useMapPanZoom(
@@ -36,8 +39,9 @@ export function useMapPanZoom(
 
     const panzoom = Panzoom(stage, {
       canvas: true,
+      startScale: options?.startScale ?? MAP_START_SCALE,
       maxScale: options?.maxScale ?? 4,
-      minScale: options?.minScale ?? 1,
+      minScale: options?.minScale ?? MAP_START_SCALE,
       excludeClass: 'map-plan-interactive',
     })
 
@@ -85,7 +89,7 @@ export function useMapPanZoom(
       panzoom.destroy()
       panzoomRef.current = null
     }
-  }, [viewportRef, stageRef, options?.maxScale, options?.minScale])
+  }, [viewportRef, stageRef, options?.maxScale, options?.minScale, options?.startScale])
 
   return panzoomRef
 }
