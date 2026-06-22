@@ -7,7 +7,7 @@ export function getAmenityIconClass(id: AmenityId) {
 export const AMENITY_LABELS: Record<AmenityId, string> = {
   book: 'Book',
   bike: 'Bike parking',
-  toilet: 'Toilet',
+  toilet: 'Restrooms',
   recycling: 'Recycling',
   family: 'Family room',
   water: 'Water station',
@@ -17,4 +17,6 @@ export const AMENITY_LABELS: Record<AmenityId, string> = {
   'diaper-changing': 'Diaper changing',
   photobooth: 'Photobooth',
   plant: 'Plant corner',
+  'pet-toilet': 'Pet toilet',
+  'pet-wash': 'Pet wash Station',
 }

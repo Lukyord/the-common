@@ -71,6 +71,7 @@
 }
 
 .map-pin {
+  z-index: 50;
   position: absolute;
   width: 2.3rem;
   pointer-events: none;
@@ -85,8 +86,8 @@
 }
 
 [data-section='vendor-map'] .amenity-list__items {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   gap: var(--spacing-2xs) var(--spacing-lg);
 }
 

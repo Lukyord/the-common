@@ -926,11 +926,7 @@ html.no-touchevents .announcement-close:hover {
   min-height: calc(100lvh - var(--gap-section) * 2);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-}
-
-[data-section='scroll-shape'] .container:after {
-  content: '';
+  justify-content: center;
 }
 
 [data-section='scroll-shape'] .sc-ttl {
@@ -942,8 +938,8 @@ html.no-touchevents .announcement-close:hover {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  padding-left: calc(var(--spacing-container) + var(--scroll-shape-edge));
-  padding-right: calc(var(--spacing-container) + var(--scroll-shape-edge));
+  /* padding-left: calc(var(--spacing-container) + var(--scroll-shape-edge));
+  padding-right: calc(var(--spacing-container) + var(--scroll-shape-edge)); */
   overflow-x: auto;
   overscroll-behavior-x: contain;
   overflow-y: hidden;
@@ -964,6 +960,9 @@ html.no-touchevents .announcement-close:hover {
   width: max-content;
   gap: var(--spacing-xs);
   min-height: max-content;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 [data-card='hexagon-1'] {
@@ -3868,8 +3867,9 @@ html.no-touchevents
 [data-section='content-single'].vendor-single .vs-contact .item-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 var(--spacing-4xs);
+  gap: var(--spacing-6xs) var(--spacing-4xs);
   align-items: center;
+  height: fit-content;
 }
 
 [data-section='content-single'].vendor-single .vs-contact .item-ttl {
@@ -3883,15 +3883,32 @@ html.no-touchevents
   flex-shrink: 0;
 }
 
+[data-section='content-single'].vendor-single .vs-contact .tel .item-content {
+  margin-top: var(--spacing-6xs);
+}
+
 [data-section='content-single'].vendor-single .vs-contact .item-value {
   display: flex;
   align-items: center;
-  min-height: 3rem;
 }
 
 [data-section='content-single'].vendor-single .vs-contact a {
   color: inherit;
   text-decoration: none;
+}
+
+[data-section='content-single'].vendor-single .item-dots {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6xs);
+}
+
+[data-section='content-single'].vendor-single .branch-dot {
+  width: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background-color: var(--color);
 }
 
 [data-section='content-single'].vendor-single .vs-contact .lot-number {

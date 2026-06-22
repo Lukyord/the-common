@@ -68,6 +68,8 @@ export const AMENITY_IDS = [
   'diaper-changing',
   'photobooth',
   'plant',
+  'pet-toilet',
+  'pet-wash',
 ] as const
 
 export type AmenityId = (typeof AMENITY_IDS)[number]

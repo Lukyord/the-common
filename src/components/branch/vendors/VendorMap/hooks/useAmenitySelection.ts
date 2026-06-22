@@ -18,7 +18,7 @@ export function useAmenitySelection({
   sectionRef,
 }: UseAmenitySelectionOptions) {
   const [hoveredAmenityId, setHoveredAmenityId] = useState<AmenityId | null>(null)
-  const [displayedAmenityId, setDisplayedAmenityId] = useState<AmenityId | null>(null)
+  const [displayedAmenityId, setDisplayedAmenityId] = useState<AmenityId | null>()
   const [amenityTransitionState, setAmenityTransitionState] = useState<TransitionState>('idle')
 
   useEffect(() => {
@@ -52,9 +52,7 @@ export function useAmenitySelection({
 
     if (amenityTransitionState === 'fading-in') {
       const timeout = window.setTimeout(() => {
-        setAmenityTransitionState(
-          hoveredAmenityId !== displayedAmenityId ? 'fading-out' : 'idle',
-        )
+        setAmenityTransitionState(hoveredAmenityId !== displayedAmenityId ? 'fading-out' : 'idle')
       }, FADE_IN_DURATION_MS)
       return () => window.clearTimeout(timeout)
     }

@@ -3,12 +3,14 @@ import { branchHeaderThemeStyle } from '@/lib/branchTheme'
 import { formatPhoneDisplay, normalizeTelHref } from '@/lib/formatPhone'
 import type { Branch, Vendor } from '@/payload-types'
 import Link from 'next/link'
+import { CardBranchDots } from '../../components/card-branch-dots'
 
 type VendorSingleContactProps = {
   tel?: Vendor['tel']
   floor?: Vendor['floor']
   lotNumber?: Vendor['lotNumber']
   floors?: Branch['floors']
+  branch: Branch
   branchTheme?: {
     bgColor?: string | null
     primaryColor?: string | null
@@ -26,6 +28,7 @@ export default function VendorSingleContact({
   floor,
   lotNumber,
   floors,
+  branch,
   branchTheme,
 }: VendorSingleContactProps) {
   const phoneNumbers = tel?.filter(Boolean) ?? []
@@ -59,18 +62,24 @@ export default function VendorSingleContact({
       )}
 
       {(lot || floorTitle) && (
-        <AnimateOnScroll triggerClass="fadeIn" className="ilot-floor">
+        <AnimateOnScroll triggerClass="fadeIn" className="lot-floor">
           <div className="item-content" style={themeStyle}>
+            <span className="branch-dot"></span>
+
             {lot && (
               <span className="lot-number type-d-body-xs type-m-body-s letter-spacing-002">
                 {lot}
               </span>
             )}
+
             {floorTitle && (
-              <p className="location type-d-text-link type-m-body-s letter-spacing-002 weight-medium">
-                {floorTitle}
-              </p>
+              <span className="location type-d-text-link type-m-body-s letter-spacing-002 weight-medium">
+                {floorTitle},{' '}
+              </span>
             )}
+            <span className="branch-name type-d-text-link type-m-body-s letter-spacing-002 weight-medium uppercase">
+              {branch.name}
+            </span>
           </div>
         </AnimateOnScroll>
       )}

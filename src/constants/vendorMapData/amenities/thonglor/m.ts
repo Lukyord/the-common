@@ -4,15 +4,17 @@ export const thonglorMFloorAmenities: FloorAmenities = [
   {
     id: 'toilet',
     label: 'Toilet',
-    pins: [
-      { top: '35%', left: '25%' },
-      { top: '62%', left: '48%' },
-    ],
+    pins: [{ top: '35%', left: '25%' }],
   },
   {
     id: 'water',
-    label: 'Water station',
+    label: 'Water Station',
     pins: [{ top: '40%', left: '55%' }],
+  },
+  {
+    id: 'music',
+    label: 'DJ/Live Music',
+    pins: [{ top: '28%', left: '70%' }],
   },
   {
     id: 'recycling',
@@ -22,6 +24,11 @@ export const thonglorMFloorAmenities: FloorAmenities = [
   {
     id: 'bike',
     label: 'Bike parking',
+    pins: [{ top: '75%', left: '15%' }],
+  },
+  {
+    id: 'pet-toilet',
+    label: 'Pet toilet',
     pins: [{ top: '75%', left: '15%' }],
   },
 ]

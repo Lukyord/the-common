@@ -40,6 +40,7 @@ export default function VendorSingle({ vendor, branch, backHref }: VendorSingleP
       </AnimateOnScroll>
 
       <VendorSingleContact
+        branch={branch}
         tel={vendor.tel}
         floor={vendor.floor}
         lotNumber={vendor.lotNumber}

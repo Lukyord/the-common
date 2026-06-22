@@ -1132,6 +1132,37 @@
     gap: var(--spacing-2xs);
   }
 
+  [data-section='content-single'].vendor-single .vs-contact .lot-floor .item-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--spacing-5xs) var(--spacing-4xs);
+  }
+
+  [data-section='content-single'].vendor-single .branch-dot,
+  [data-section='content-single'].vendor-single .vs-contact .lot-number {
+    width: 2.8rem;
+  }
+
+  [data-section='content-single'].vendor-single .vs-contact .lot-floor .item-location {
+    margin-top: var(--spacing-6xs);
+  }
+
+  [data-section='content-single'].vendor-single .vs-contact .lot-number {
+    order: 1;
+  }
+
+  [data-section='content-single'].vendor-single .vs-contact .location {
+    order: 2;
+  }
+
+  [data-section='content-single'].vendor-single .vs-contact .branch-dot {
+    order: 3;
+  }
+
+  [data-section='content-single'].vendor-single .vs-contact .branch-name {
+    order: 4;
+  }
+
   :is(
       [data-section='content-single'],
       [data-section='whats-on-single'],
