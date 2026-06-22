@@ -40,6 +40,7 @@ import {
 } from '@/lib/whatsOnCalendar'
 import { lexicalToHtml } from '@/lib/lexicalToHtml'
 import { resolveMedia } from '@/lib/resolveMedia'
+import { getVendorDetailHref } from '@/lib/vendorDetailLink'
 import type {
   Branch,
   BranchContactPage,
@@ -192,18 +193,21 @@ function getVendorFloorTitle(vendor: Vendor, branch: Branch | null): string {
   return floor?.title?.trim() || ''
 }
 
-function mapVendorToBranchLandingCard(vendor: Vendor): BranchLandingVendorCard | null {
+function mapVendorToBranchLandingCard(
+  vendor: Vendor,
+  linkFormat: 'branch' | 'brand' = 'branch',
+): BranchLandingVendorCard | null {
   const media = resolveMedia(vendor.media)
   const branch = typeof vendor.branch === 'object' ? vendor.branch : null
 
-  if (!media?.src || !branch?.slug) return null
+  if (!media?.src || !branch?.slug || !vendor.slug) return null
 
   const tags = getVendorCategoryTexts(vendor.category)
 
   return {
     id: vendor.id,
     title: vendor.name,
-    link: `/${branch.slug}/vendors/${vendor.slug}`,
+    link: getVendorDetailHref(vendor.slug, linkFormat, branch.slug),
     media: {
       src: media.src,
       alt: media.alt || vendor.name,
@@ -626,6 +630,22 @@ export function resolveInitialWhatsOnTagFilter(
   return trimmed
 }
 
+export const getGlobalVendorBySlug = cache(async (slug: string): Promise<Vendor> => {
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'vendors',
+    where: { slug: { equals: slug } },
+    depth: 2,
+    limit: 1,
+    overrideAccess: false,
+  })
+
+  const vendor = docs[0]
+  if (!vendor || !getVendorBranchSlug(vendor)) notFound()
+
+  return vendor
+})
+
 export const getVendorBySlug = cache(async (branchSlug: string, slug: string): Promise<Vendor> => {
   const branch = await getBranchBySlug(branchSlug)
   const payload = await getPayloadClient()
@@ -644,7 +664,11 @@ export const getVendorBySlug = cache(async (branchSlug: string, slug: string): P
 })
 
 export const getRelatedBranchVendorsByCategory = cache(
-  async (branch: Branch, vendor: Vendor): Promise<BranchLandingVendorCard[]> => {
+  async (
+    branch: Branch,
+    vendor: Vendor,
+    linkFormat: 'branch' | 'brand' = 'branch',
+  ): Promise<BranchLandingVendorCard[]> => {
     const categoryId = getVendorFirstCategoryId(vendor.category)
     if (!categoryId || !branch?.id) return []
 
@@ -666,7 +690,7 @@ export const getRelatedBranchVendorsByCategory = cache(
     })
 
     return docs.flatMap((item) => {
-      const card = mapVendorToBranchLandingCard(item)
+      const card = mapVendorToBranchLandingCard(item, linkFormat)
       return card ? [card] : []
     })
   },

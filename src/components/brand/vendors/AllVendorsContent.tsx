@@ -480,6 +480,7 @@ export default function AllVendorsContent({
                 isLoading={isTagLoading}
                 isFilterLoading={isTagFilterLoading}
                 multiBranchVendorsByName={multiBranchVendorsByName}
+                vendorLinkFormat="brand"
                 onLoadMore={handleTagLoadMore}
               />
             </div>
@@ -502,6 +503,7 @@ export default function AllVendorsContent({
               isLoading={isSearchLoading}
               isFilterLoading={isSearchFilterLoading}
               multiBranchVendorsByName={multiBranchVendorsByName}
+              vendorLinkFormat="brand"
               onLoadMore={handleSearchLoadMore}
             />
           </div>

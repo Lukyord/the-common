@@ -1,12 +1,23 @@
 'use client'
 
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type ReactNode } from 'react'
 
 import VendorCard from '@/components/branch/components/vendor-card/VendorCard'
 import VendorCardMultipleBranch from '@/components/branch/components/vendor-card/VendorCardMultipleBranch'
 import type { BranchVendorCard, MultiBranchVendorInfo } from '@/components/branch/vendors/types'
-import { MarkdownContent } from '@/components/common/markdown-content'
+import { toBrandVendorDetailHref } from '@/lib/vendorDetailLink'
+
+const DEFAULT_EMPTY_MESSAGE = (
+  <>
+    We&apos;re having trouble tracking down
+    <br className="hidden-device-md" />
+    {' '}
+    spots you&apos;re looking for.
+    <br />
+    Please try searching again.
+  </>
+)
 
 type VendorsResultsGridProps = {
   branchSlug: string
@@ -15,8 +26,9 @@ type VendorsResultsGridProps = {
   isLoading: boolean
   isFilterLoading?: boolean
   multiBranchVendorsByName?: Record<string, MultiBranchVendorInfo>
-  emptyMessage?: string
+  emptyMessage?: ReactNode
   seeMoreLabel?: string
+  vendorLinkFormat?: 'branch' | 'brand'
   onLoadMore: () => void
 }
 
@@ -27,8 +39,9 @@ export default function VendorsResultsGrid({
   isLoading,
   isFilterLoading = false,
   multiBranchVendorsByName = {},
-  emptyMessage = "We're having trouble tracking down<br className='hidden-device-md'> spots you're looking for.<br>Please try searching again.",
+  emptyMessage = DEFAULT_EMPTY_MESSAGE,
   seeMoreLabel = 'SEE MORE',
+  vendorLinkFormat = 'branch',
   onLoadMore,
 }: VendorsResultsGridProps) {
   const previousCardCountRef = useRef(cards.length)
@@ -45,8 +58,6 @@ export default function VendorsResultsGrid({
     return () => cancelAnimationFrame(frame)
   }, [cards.length])
 
-  const showEmptyState = cards.length === 0
-
   return (
     <>
       {cards.length > 0 ? (
@@ -57,13 +68,23 @@ export default function VendorsResultsGrid({
         >
           {cards.map((vendor) => {
             const multiBranch = multiBranchVendorsByName[vendor.title]
+            const vendorLink =
+              vendorLinkFormat === 'brand' ? toBrandVendorDetailHref(vendor.link) : vendor.link
 
             if (multiBranch) {
+              const branches =
+                vendorLinkFormat === 'brand'
+                  ? multiBranch.branches.map((branch) => ({
+                      ...branch,
+                      link: toBrandVendorDetailHref(branch.link),
+                    }))
+                  : multiBranch.branches
+
               return (
                 <VendorCardMultipleBranch
                   key={vendor.id}
                   branchSlug={branchSlug}
-                  branches={multiBranch.branches}
+                  branches={branches}
                   media={multiBranch.media}
                   title={vendor.title}
                   tags={vendor.tags}
@@ -71,17 +92,18 @@ export default function VendorsResultsGrid({
               )
             }
 
-            return <VendorCard key={vendor.id} branchSlug={branchSlug} {...vendor} />
+            return (
+              <VendorCard key={vendor.id} branchSlug={branchSlug} {...vendor} link={vendorLink} />
+            )
           })}
         </div>
       ) : (
-        <MarkdownContent
-          as="p"
+        <p
           className={`vendors-empty type-d-title type-m-body-s letter-spacing-002 weight-medium${isFilterLoading ? ' is-filter-loading' : ''}`}
           aria-busy={isFilterLoading}
         >
           {emptyMessage}
-        </MarkdownContent>
+        </p>
       )}
 
       {hasMore ? (
