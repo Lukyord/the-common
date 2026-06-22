@@ -1,5 +1,7 @@
 import type { CollectionConfig, Field } from 'payload'
 
+import { updatePageSaveButtonCollection } from '@/payload/shared/updatePageSaveButton'
+
 function section(label: string, fields: Field[]): Field {
   return {
     type: 'collapsible',
@@ -22,6 +24,7 @@ export const BranchContactPages: CollectionConfig = {
     defaultColumns: ['branch', 'title'],
     group: 'Branches',
     description: 'Contact page per branch.',
+    ...updatePageSaveButtonCollection,
   },
   access: {
     read: () => true,

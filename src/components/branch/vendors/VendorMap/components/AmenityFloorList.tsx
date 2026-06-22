@@ -3,6 +3,7 @@ import { getAmenityIconClass } from '@/constants/vendorMapData/index'
 import type { AmenityId } from '@/constants/vendorMapData/index'
 
 type AmenityFloorListProps = {
+  pinColor: string
   amenities: FloorAmenities
   onAmenityMouseEnter?: (amenityId: AmenityId) => void
   onAmenityMouseLeave?: () => void
@@ -10,6 +11,7 @@ type AmenityFloorListProps = {
 }
 
 export default function AmenityFloorList({
+  pinColor,
   amenities,
   onAmenityMouseEnter,
   onAmenityMouseLeave,
@@ -25,10 +27,7 @@ export default function AmenityFloorList({
         return (
           <li
             key={amenity.id}
-            className={[
-              'amenity-list__item',
-              isSelectable && 'amenity-list__item--selectable',
-            ]
+            className={['amenity-list__item', isSelectable && 'amenity-list__item--selectable']
               .filter(Boolean)
               .join(' ')}
             onMouseEnter={() => {
@@ -40,6 +39,11 @@ export default function AmenityFloorList({
             onClick={() => {
               if (isSelectable) onAmenityClick(amenity.id)
             }}
+            style={
+              {
+                '--pin-color': pinColor,
+              } as React.CSSProperties
+            }
           >
             <span className="amenity-list__icon">
               <i className={`ic ${getAmenityIconClass(amenity.id)}`} aria-hidden />

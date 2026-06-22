@@ -1,5 +1,6 @@
 import type { CollectionConfig, Validate } from 'payload'
 import { vendorTagSelectOptions } from '@/constants/vendorTags'
+import { updatePageSaveButtonCollection } from '@/payload/shared/updatePageSaveButton'
 
 const validateVendorFloor: Validate<
   string | null | undefined,
@@ -49,6 +50,7 @@ export const Vendors: CollectionConfig = {
     useAsTitle: 'name',
     defaultColumns: ['name', 'branch', 'floor', 'lotNumber'],
     group: 'Branches',
+    ...updatePageSaveButtonCollection,
   },
   access: {
     read: () => true,

@@ -1,5 +1,7 @@
 import type { CollectionConfig, Field } from 'payload'
 
+import { updatePageSaveButtonCollection } from '@/payload/shared/updatePageSaveButton'
+
 const colorPickerField = (name: string, label: string): Field => ({
   name,
   type: 'text',
@@ -36,6 +38,7 @@ export const BranchWhatsOnPages: CollectionConfig = {
     defaultColumns: ['title', 'branch'],
     group: 'Branches',
     description: "What's On page per branch.",
+    ...updatePageSaveButtonCollection,
   },
   access: {
     read: () => true,

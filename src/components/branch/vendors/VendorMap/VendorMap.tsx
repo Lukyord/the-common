@@ -197,6 +197,7 @@ function VendorMapContent({
         themeStyle={themeStyle}
       />
       <VendorMapInfo
+        pinColor={pinColor}
         infoInnerClassName={infoInnerClassName}
         displayedBranchFloor={displayedBranchFloor}
         themeStyle={themeStyle}

@@ -14,6 +14,7 @@ import AmenityFloorList from './AmenityFloorList'
 import VendorFloorList from './VendorFloorList'
 
 type VendorMapInfoProps = {
+  pinColor: string
   infoInnerClassName: string
   displayedBranchFloor: NonNullable<Branch['floors']>[number] | null
   themeStyle?: CSSProperties
@@ -30,6 +31,7 @@ type VendorMapInfoProps = {
 }
 
 export default function VendorMapInfo({
+  pinColor,
   infoInnerClassName,
   displayedBranchFloor,
   themeStyle,
@@ -74,6 +76,7 @@ export default function VendorMapInfo({
               </h3>
             </div>
             <AmenityFloorList
+              pinColor={pinColor}
               amenities={floorAmenities}
               onAmenityMouseEnter={onAmenityHover}
               onAmenityMouseLeave={onAmenityLeave}

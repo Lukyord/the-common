@@ -27,6 +27,84 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-calendar:before {
+  content: '\e947';
+}
+.ic-clock:before {
+  content: '\e953';
+}
+.ic-coffee-machine:before {
+  content: '\e95d';
+}
+.ic-microwave:before {
+  content: '\e948';
+}
+.ic-utensil:before {
+  content: '\e949';
+}
+.ic-mixer:before {
+  content: '\e94b';
+}
+.ic-bakery:before {
+  content: '\e94c';
+}
+.ic-wifi:before {
+  content: '\e94d';
+}
+.ic-tv:before {
+  content: '\e94e';
+}
+.ic-microphone:before {
+  content: '\e94f';
+}
+.ic-white-board:before {
+  content: '\e950';
+}
+.ic-parking:before {
+  content: '\e951';
+}
+.ic-ac:before {
+  content: '\e952';
+}
+.ic-fans:before {
+  content: '\e954';
+}
+.ic-mats:before {
+  content: '\e955';
+}
+.ic-foldable-table:before {
+  content: '\e956';
+}
+.ic-stool:before {
+  content: '\e957';
+}
+.ic-camping-chair:before {
+  content: '\e959';
+}
+.ic-power-outlet:before {
+  content: '\e95a';
+}
+.ic-bluetooth-speaker:before {
+  content: '\e95b';
+}
+.ic-sound-proof-panel:before {
+  content: '\e95c';
+}
+.ic-amen-pet-toilet:before {
+  content: '\e941';
+}
+.ic-amen-pet-wash:before {
+  content: '\e944';
+}
+.ic-fridge:before {
+  content: '\e945';
+}
+.ic-oven:before {
+  content: '\e946';
+}
+.ic-download:before {
+  content: '\e940';
+}
 .ic-grab:before {
   content: '\e93c';
 }

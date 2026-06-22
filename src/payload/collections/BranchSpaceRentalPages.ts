@@ -1,5 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
+import { updatePageSaveButtonCollection } from '@/payload/shared/updatePageSaveButton'
+
 export const BranchSpaceRentalPages: CollectionConfig = {
   slug: 'branch-space-rental-pages',
   labels: {
@@ -11,6 +13,7 @@ export const BranchSpaceRentalPages: CollectionConfig = {
     defaultColumns: ['title', 'branch'],
     group: 'Branches',
     description: 'Space rental page per branch.',
+    ...updatePageSaveButtonCollection,
   },
   access: {
     read: () => true,

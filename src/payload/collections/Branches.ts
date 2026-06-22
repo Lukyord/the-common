@@ -7,6 +7,7 @@ import {
 } from '@/constants/branchAboutWords'
 import { getActiveWhatsOnWhere } from '@/lib/whatsOnArchive'
 import { syncBranchAboutWordGroups } from '@/payload/hooks/syncBranchAboutWordGroups'
+import { updatePageSaveButtonCollection } from '@/payload/shared/updatePageSaveButton'
 
 const colorPickerField = (name: string, label: string): Field => ({
   name,
@@ -105,6 +106,7 @@ export const Branches: CollectionConfig = {
     defaultColumns: ['name', 'slug'],
     group: 'Branches',
     description: 'Branch identity and landing page content.',
+    ...updatePageSaveButtonCollection,
   },
   access: {
     read: () => true,

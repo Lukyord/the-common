@@ -1,8 +1,11 @@
 import type { Field, GlobalConfig } from 'payload'
 
+import { updatePageSaveButtonGlobal } from '@/payload/shared/updatePageSaveButton'
+
 export const BlogPage: GlobalConfig = {
   slug: 'blog-page',
   label: 'Blog Page',
+  admin: updatePageSaveButtonGlobal,
   access: {
     read: () => true,
   },

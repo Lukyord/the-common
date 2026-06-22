@@ -135,6 +135,10 @@
   &.ic-amen-plant {
     font-size: 2.1rem;
   }
+
+  &.ic-amen-diaper-changing {
+    font-size: 2rem;
+  }
   &.ic-amen-family {
     font-size: 1.9rem;
   }
@@ -146,13 +150,13 @@
 }
 
 html.no-touchevents [data-section='vendor-map'] .amenity-list__item:hover .amenity-list__icon {
-  color: var(--color);
+  color: var(--pin-color);
   border-color: #482e2c;
   background-color: #482e2c;
 }
 
 html.no-touchevents [data-section='vendor-map'] .amenity-list__item:hover .amenity-list__name {
-  color: var(--color);
+  color: var(--pin-color);
 }
 
 @media (max-width: 991px) {

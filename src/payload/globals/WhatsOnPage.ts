@@ -1,5 +1,7 @@
 import type { Field, GlobalConfig } from 'payload'
 
+import { updatePageSaveButtonGlobal } from '@/payload/shared/updatePageSaveButton'
+
 const colorPickerField = (name: string, label: string): Field => ({
   name,
   type: 'text',
@@ -17,6 +19,7 @@ const colorPickerField = (name: string, label: string): Field => ({
 export const WhatsOnPage: GlobalConfig = {
   slug: 'whats-on-page',
   label: "What's On Page",
+  admin: updatePageSaveButtonGlobal,
   access: {
     read: () => true,
   },

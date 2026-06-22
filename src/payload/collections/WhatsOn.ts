@@ -2,6 +2,7 @@ import type { CollectionConfig, Field, Validate } from 'payload'
 
 import { WHATS_ON_BRANCH_LOCATION_FIELDS } from '@/constants/whatsOnBranchLocations'
 import { syncWhatsOnDateFromSchedule } from '@/payload/hooks/whatsOnEventSchedule'
+import { updatePageSaveButtonCollection } from '@/payload/shared/updatePageSaveButton'
 
 const validateSubTags: Validate = (value) => {
   if (!value) return true
@@ -34,6 +35,7 @@ export const WhatsOn: CollectionConfig = {
     defaultColumns: ['title', 'slug', 'branch', 'dateToBeArchived'],
     group: 'Branches',
     description: 'Activities and listings shown on each branch.',
+    ...updatePageSaveButtonCollection,
   },
   access: {
     read: () => true,

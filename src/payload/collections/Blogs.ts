@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { WHATS_ON_BRANCH_LOCATION_FIELDS } from '@/constants/whatsOnBranchLocations'
+import { updatePageSaveButtonCollection } from '@/payload/shared/updatePageSaveButton'
 
 export const Blogs: CollectionConfig = {
   slug: 'blogs',
@@ -11,6 +12,7 @@ export const Blogs: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'branch', 'publishedDate', 'dateToBeArchived'],
+    ...updatePageSaveButtonCollection,
   },
   access: {
     read: () => true,
