@@ -521,7 +521,7 @@ html.no-touchevents [data-section='whats-on-calendar'] .grid-card-see-more:hover
 [data-section='vendors-list'] .tags-filter {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-2xs);
+  gap: var(--spacing-4xs) var(--spacing-2xs);
 }
 
 [data-section='vendors-list'] .tags-filter__tag {
@@ -573,10 +573,25 @@ html.no-touchevents [data-section='vendors-list'] .tags-filter__tag:not(.is-acti
   --gap-y: var(--spacing-sm);
 }
 
+[data-section='vendors-list'] .card-container.is-filter-loading {
+  opacity: 0.65;
+  pointer-events: none;
+  transition: opacity var(--duration) var(--timing-function);
+}
+
+[data-section='vendors-list'] .vendors-empty.is-filter-loading {
+  opacity: 0.65;
+  transition: opacity var(--duration) var(--timing-function);
+}
+
+.vendors-results-shell.is-height-transitioning {
+  overflow: hidden;
+}
+
 [data-section='vendors-list'] .vendors-empty {
   text-align: center;
-  padding-top: var(--spacing-2lg);
-  padding-bottom: var(--spacing-2lg);
+  padding-top: var(--spacing-6xl);
+  padding-bottom: var(--spacing-6xl);
 }
 
 [data-section='vendors-list'] .vendors-see-more {
@@ -3953,4 +3968,129 @@ html.no-touchevents
 /* Blogs List */
 [data-section='blogs-list'] .grid-card-contianer .card-container {
   margin-bottom: 0;
+}
+
+/* PAGE: VENDORS */
+[data-section='all-vendors'] .sc-header {
+  display: grid;
+  grid-template-columns: 1fr 57.05882352941%;
+  gap: var(--spacing-3xl);
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+[data-section='all-vendors'] .branch-filter {
+  aspect-ratio: 2.4871794872;
+  width: 100%;
+  position: relative;
+}
+
+[data-section='all-vendors'] .branch-filter__item {
+  position: absolute;
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  transition: var(--duration) var(--timing-function);
+}
+
+.branch-filter__item--all {
+  aspect-ratio: 1;
+  width: 25.5154639175%;
+  left: 1.03092783505%;
+  bottom: 9.2948717949%;
+  rotate: -10deg;
+  z-index: 2;
+}
+.branch-filter__item--cloud-11 {
+  aspect-ratio: 1.1530612245;
+  width: 29.1237113402%;
+  left: 21.3917525773%;
+  bottom: 31.08974358974%;
+  rotate: 11deg;
+}
+.branch-filter__item--thonglor {
+  aspect-ratio: 1.2432748538;
+  width: 27.3195876289%;
+  left: 46.005154639175%;
+  bottom: 9.2948717949%;
+  rotate: -7.26deg;
+  z-index: 2;
+}
+.branch-filter__item--saladaeng {
+  aspect-ratio: 2.3862903226;
+  width: 38.01546391753%;
+  left: 60.6958762887%;
+  bottom: 35.5769230769%;
+  rotate: 9.92deg;
+}
+
+[data-section='all-vendors'] .branch-filter__image {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: opacity var(--duration) var(--timing-function);
+  transform-origin: center;
+}
+
+[data-section='all-vendors'] .branch-button-image {
+  object-fit: contain;
+  transition:
+    opacity var(--duration) var(--timing-function),
+    transform var(--duration) var(--timing-function);
+}
+
+[data-section='all-vendors'] .branch-button-image.active {
+  opacity: 0;
+}
+
+html.no-touchevents .branch-filter__item:hover .branch-button-image.active,
+.branch-filter__item.is-active .branch-button-image.active {
+  opacity: 1;
+}
+
+html.no-touchevents .branch-filter__item.branch-filter__item--all:hover,
+.branch-filter__item.branch-filter__item--all.is-active {
+  rotate: -9.08deg;
+  transform: translate(-0.6rem, -1rem);
+}
+html.no-touchevents .branch-filter__item.branch-filter__item--cloud-11:hover,
+.branch-filter__item.branch-filter__item--cloud-11.is-active {
+  rotate: 6.76deg;
+  transform: translate(-0.6rem, -1rem);
+}
+html.no-touchevents .branch-filter__item.branch-filter__item--thonglor:hover,
+.branch-filter__item.branch-filter__item--thonglor.is-active {
+  rotate: -1.19deg;
+  transform: translate(-1rem, -0.9rem);
+}
+html.no-touchevents .branch-filter__item.branch-filter__item--saladaeng:hover,
+.branch-filter__item.branch-filter__item--saladaeng.is-active {
+  rotate: 7deg;
+  transform: translate(0.2rem, 0.6rem);
+}
+
+html.no-touchevents [data-section='all-vendors'] .branch-filter__item:hover,
+[data-section='all-vendors'] .branch-filter__item.is-active {
+  z-index: 3;
+}
+
+[data-section='all-vendors'] .tags-filter-wrapper {
+  margin-bottom: var(--spacing-lg);
+}
+
+[data-section='all-vendors'] [data-section='vendors-list'] .tags-filter__tag {
+  background-color: transparent;
+  color: var(--color-dark-brown);
+  border: 0.1rem solid var(--color-dark-brown);
+}
+
+[data-section='all-vendors'] [data-section='vendors-list'] .tags-filter__tag.is-active {
+  background-color: var(--color-dark-brown);
+  color: var(--color-beige);
+}
+
+[data-section='all-vendors'] form input {
+  color: var(--color-dark-brown);
 }

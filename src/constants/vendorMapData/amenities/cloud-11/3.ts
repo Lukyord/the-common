@@ -4,10 +4,7 @@ export const cloud113FloorAmenities: FloorAmenities = [
   {
     id: 'toilet',
     label: 'Restrooms',
-    pins: [
-      { top: '25%', left: '69%' },
-      { top: '43%', left: '48%' },
-    ],
+    pins: [{ top: '25%', left: '69%' }],
   },
   {
     id: 'water',

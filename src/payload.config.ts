@@ -28,6 +28,7 @@ import { Contact } from './payload/globals/Contact'
 import { Homepage } from './payload/globals/Homepage'
 import { PrivacyPolicy } from './payload/globals/PrivacyPolicy'
 import { BlogPage } from './payload/globals/BlogPage'
+import { VendorsPage } from './payload/globals/VendorsPage'
 import { WhatsOnPage } from './payload/globals/WhatsOnPage'
 
 const filename = fileURLToPath(import.meta.url)
@@ -100,7 +101,7 @@ export default buildConfig({
     WhatsOnMainTags,
     WhatsOnSubTags,
   ],
-  globals: [About, BlogPage, Contact, Homepage, PrivacyPolicy, WhatsOnPage],
+  globals: [About, BlogPage, Contact, Homepage, PrivacyPolicy, VendorsPage, WhatsOnPage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || cloudflare.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -116,6 +117,7 @@ export default buildConfig({
         Contact.slug,
         Homepage.slug,
         PrivacyPolicy.slug,
+        VendorsPage.slug,
         WhatsOnPage.slug,
       ],
       collections: [

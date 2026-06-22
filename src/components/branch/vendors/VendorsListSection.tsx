@@ -1,5 +1,6 @@
 'use client'
 
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 
 import VendorCard from '@/components/branch/components/vendor-card/VendorCard'
@@ -84,6 +85,14 @@ export default function VendorsListSection({
     () => (isMobile ? sortLifestylesForWrap(lifestyles) : lifestyles),
     [isMobile, lifestyles],
   )
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      ScrollTrigger.refresh()
+    })
+
+    return () => cancelAnimationFrame(frame)
+  }, [cards.length])
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 991px)')

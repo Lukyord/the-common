@@ -182,8 +182,8 @@
 
   [data-section='vendors-list'] .vendors-empty {
     text-align: center;
-    padding-top: var(--spacing-md);
-    padding-bottom: var(--spacing-md);
+    padding-top: var(--spacing-2lg);
+    padding-bottom: var(--spacing-2lg);
   }
 
   [data-section='vendors-list'] .vendors-see-more {

@@ -117,6 +117,7 @@ export interface Config {
     contact: Contact;
     homepage: Homepage;
     'privacy-policy': PrivacyPolicy;
+    'vendors-page': VendorsPage;
     'whats-on-page': WhatsOnPage;
   };
   globalsSelect: {
@@ -125,6 +126,7 @@ export interface Config {
     contact: ContactSelect<false> | ContactSelect<true>;
     homepage: HomepageSelect<false> | HomepageSelect<true>;
     'privacy-policy': PrivacyPolicySelect<false> | PrivacyPolicySelect<true>;
+    'vendors-page': VendorsPageSelect<false> | VendorsPageSelect<true>;
     'whats-on-page': WhatsOnPageSelect<false> | WhatsOnPageSelect<true>;
   };
   locale: null;
@@ -1767,6 +1769,24 @@ export interface PrivacyPolicy {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vendors-page".
+ */
+export interface VendorsPage {
+  id: number;
+  title?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "whats-on-page".
  */
 export interface WhatsOnPage {
@@ -2058,6 +2078,23 @@ export interface HomepageSelect<T extends boolean = true> {
 export interface PrivacyPolicySelect<T extends boolean = true> {
   title?: T;
   richText?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vendors-page_select".
+ */
+export interface VendorsPageSelect<T extends boolean = true> {
+  title?: T;
   meta?:
     | T
     | {

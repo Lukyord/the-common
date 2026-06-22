@@ -341,6 +341,116 @@ export const getBranchVendors = async (
   }
 }
 
+async function findVendorCategoryIdsByText(query: string): Promise<number[]> {
+  const trimmed = query.trim()
+  if (!trimmed) return []
+
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'vendor-categories',
+    where: {
+      text: {
+        contains: trimmed,
+      },
+    },
+    limit: 100,
+    overrideAccess: false,
+    pagination: false,
+  })
+
+  return docs.map((category) => category.id)
+}
+
+function buildVendorTextSearchWhere(query: string, categoryIds: number[]) {
+  const orConditions: Record<string, unknown>[] = [
+    {
+      name: {
+        contains: query,
+      },
+    },
+  ]
+
+  for (const categoryId of categoryIds) {
+    orConditions.push({
+      category: {
+        contains: categoryId,
+      },
+    })
+  }
+
+  return { or: orConditions }
+}
+
+async function resolveVendorBranchIdBySlug(branchSlug?: string): Promise<number | null> {
+  const trimmed = branchSlug?.trim()
+  if (!trimmed || trimmed === 'all') return null
+
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'branches',
+    where: { slug: { equals: trimmed } },
+    limit: 1,
+    depth: 0,
+    overrideAccess: false,
+  })
+
+  return docs[0]?.id ?? null
+}
+
+function buildVendorSearchWhere(query: string, categoryIds: number[], branchId?: number | null) {
+  const textWhere = buildVendorTextSearchWhere(query, categoryIds)
+  if (!branchId) return textWhere
+
+  return {
+    and: [
+      textWhere,
+      {
+        branch: {
+          equals: branchId,
+        },
+      },
+    ],
+  }
+}
+
+export const searchVendorsByText = async (
+  query: string,
+  page = 1,
+  limit = BRANCH_VENDORS_PAGE_SIZE,
+  branchSlug?: string,
+): Promise<GridCardPageResult<BranchVendorCard>> => {
+  const trimmed = query.trim()
+  if (!trimmed) {
+    return { cards: [], hasMore: false }
+  }
+
+  const payload = await getPayloadClient()
+  const [categoryIds, branchId] = await Promise.all([
+    findVendorCategoryIdsByText(trimmed),
+    resolveVendorBranchIdBySlug(branchSlug),
+  ])
+  const { docs, hasNextPage } = await payload.find({
+    collection: 'vendors',
+    depth: 2,
+    page,
+    limit,
+    overrideAccess: false,
+    pagination: true,
+    sort: 'name',
+    where: buildVendorSearchWhere(trimmed, categoryIds, branchId),
+  })
+
+  const cards = docs.flatMap((vendor) => {
+    const card = mapVendorToBranchVendorCard(vendor)
+    return card ? [card] : []
+  })
+
+  return {
+    cards,
+    hasMore: hasNextPage,
+  }
+}
+
 function getVendorBranchSlug(vendor: Vendor): string | null {
   const branch = typeof vendor.branch === 'object' ? vendor.branch : null
   return branch?.slug ?? null
@@ -1220,6 +1330,51 @@ export const getGlobalVendorsForFilterPage = async (
   return {
     cards,
     hasMore: start + limit < filtered.length,
+  }
+}
+
+function buildLifestyleVendorsWhere(lifestyleIds?: number[]) {
+  if (!lifestyleIds?.length) return undefined
+
+  return {
+    or: lifestyleIds.map((id) => ({
+      lifestyles: {
+        contains: id,
+      },
+    })),
+  }
+}
+
+export const getAllBranchVendorsForPage = async (
+  page = 1,
+  limit = BRANCH_VENDORS_PAGE_SIZE,
+  lifestyleIds?: number[],
+): Promise<GridCardPageResult<BranchLandingVendorCard>> => {
+  const payload = await getPayloadClient()
+  const lifestyleWhere = buildLifestyleVendorsWhere(lifestyleIds)
+
+  const { docs } = await payload.find({
+    collection: 'vendors',
+    depth: 2,
+    limit: 500,
+    overrideAccess: false,
+    pagination: false,
+    sort: 'name',
+    ...(lifestyleWhere ? { where: lifestyleWhere } : {}),
+  })
+
+  const multiBranchVendorsByName = await getMultiBranchVendorLookup()
+  const allCards = docs.flatMap((vendor) => {
+    const card = mapVendorToBranchLandingCard(vendor)
+    return card ? [card] : []
+  })
+  const deduped = dedupeMultiBranchVendorCards(allCards, multiBranchVendorsByName)
+  const start = (page - 1) * limit
+  const cards = deduped.slice(start, start + limit)
+
+  return {
+    cards,
+    hasMore: start + limit < deduped.length,
   }
 }
 
