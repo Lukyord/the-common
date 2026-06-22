@@ -27,7 +27,7 @@ export default function VendorsResultsGrid({
   isLoading,
   isFilterLoading = false,
   multiBranchVendorsByName = {},
-  emptyMessage = "We're having trouble tracking down spots you're looking for.<br>Please try searching again.",
+  emptyMessage = "We're having trouble tracking down<br className='hidden-device-md'> spots you're looking for.<br>Please try searching again.",
   seeMoreLabel = 'SEE MORE',
   onLoadMore,
 }: VendorsResultsGridProps) {

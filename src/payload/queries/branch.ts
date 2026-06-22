@@ -319,25 +319,26 @@ export const getBranchVendors = async (
   }
 
   const payload = await getPayloadClient()
-  const { docs, hasNextPage } = await payload.find({
+  const { docs } = await payload.find({
     collection: 'vendors',
     depth: 2,
-    page,
-    limit,
+    limit: 500,
     overrideAccess: false,
-    pagination: true,
+    pagination: false,
     sort: 'name',
     where: buildBranchVendorsWhere(branch.id, lifestyleIds),
   })
 
-  const cards = docs.flatMap((vendor) => {
+  const allCards = docs.flatMap((vendor) => {
     const card = mapVendorToBranchVendorCard(vendor)
     return card ? [card] : []
   })
+  const start = (page - 1) * limit
+  const cards = allCards.slice(start, start + limit)
 
   return {
     cards,
-    hasMore: hasNextPage,
+    hasMore: start + limit < allCards.length,
   }
 }
 
@@ -429,6 +430,36 @@ export const searchVendorsByText = async (
     findVendorCategoryIdsByText(trimmed),
     resolveVendorBranchIdBySlug(branchSlug),
   ])
+  const where = buildVendorSearchWhere(trimmed, categoryIds, branchId)
+
+  if (!branchId) {
+    const [multiBranchVendorsByName, { docs }] = await Promise.all([
+      getMultiBranchVendorLookup(),
+      payload.find({
+        collection: 'vendors',
+        depth: 2,
+        limit: 500,
+        overrideAccess: false,
+        pagination: false,
+        sort: 'name',
+        where,
+      }),
+    ])
+
+    const allCards = docs.flatMap((vendor) => {
+      const card = mapVendorToBranchVendorCard(vendor)
+      return card ? [card] : []
+    })
+    const deduped = dedupeMultiBranchVendorCards(allCards, multiBranchVendorsByName)
+    const start = (page - 1) * limit
+    const cards = deduped.slice(start, start + limit) as BranchVendorCard[]
+
+    return {
+      cards,
+      hasMore: start + limit < deduped.length,
+    }
+  }
+
   const { docs, hasNextPage } = await payload.find({
     collection: 'vendors',
     depth: 2,
@@ -437,7 +468,7 @@ export const searchVendorsByText = async (
     overrideAccess: false,
     pagination: true,
     sort: 'name',
-    where: buildVendorSearchWhere(trimmed, categoryIds, branchId),
+    where,
   })
 
   const cards = docs.flatMap((vendor) => {

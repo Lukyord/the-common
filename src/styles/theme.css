@@ -3979,6 +3979,57 @@ html.no-touchevents
   margin-bottom: var(--spacing-md);
 }
 
+[data-section='all-vendors'] .sc-header .search {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+[data-section='all-vendors'] .search-form {
+  position: relative;
+}
+
+[data-section='all-vendors'] .search-form__input {
+  width: 100%;
+  padding-top: 0;
+  padding-right: var(--spacing-lg);
+  color: var(--color-dark-brown);
+  height: 5.3rem;
+  border-bottom: 3px solid rgba(var(--color-dark-brown-rgb), 0.4);
+}
+
+[data-section='all-vendors'] .search-form__input::-webkit-search-decoration,
+[data-section='all-vendors'] .search-form__input::-webkit-search-cancel-button,
+[data-section='all-vendors'] .search-form__input::-webkit-search-results-button,
+[data-section='all-vendors'] .search-form__input::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+[data-section='all-vendors'] .search-form__action {
+  position: absolute;
+  right: 0;
+  top: 0.65rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-dark-brown);
+  cursor: pointer;
+  font-size: 2.8rem;
+}
+
+[data-section='all-vendors'] .search-text {
+  margin-bottom: var(--spacing-md);
+}
+
+[data-section='all-vendors'] .result-label {
+  margin-bottom: var(--spacing-sm);
+}
+
 [data-section='all-vendors'] .branch-filter {
   aspect-ratio: 2.4871794872;
   width: 100%;
@@ -4053,7 +4104,7 @@ html.no-touchevents .branch-filter__item:hover .branch-button-image.active,
 html.no-touchevents .branch-filter__item.branch-filter__item--all:hover,
 .branch-filter__item.branch-filter__item--all.is-active {
   rotate: -9.08deg;
-  transform: translate(-0.6rem, -1rem);
+  transform: translate(0.6rem, -1rem);
 }
 html.no-touchevents .branch-filter__item.branch-filter__item--cloud-11:hover,
 .branch-filter__item.branch-filter__item--cloud-11.is-active {
@@ -4089,8 +4140,4 @@ html.no-touchevents [data-section='all-vendors'] .branch-filter__item:hover,
 [data-section='all-vendors'] [data-section='vendors-list'] .tags-filter__tag.is-active {
   background-color: var(--color-dark-brown);
   color: var(--color-beige);
-}
-
-[data-section='all-vendors'] form input {
-  color: var(--color-dark-brown);
 }

@@ -1324,4 +1324,38 @@
     background-color: var(--color);
     color: var(--color-dark-brown);
   }
+
+  /* PAGE: VENDORS */
+  [data-section='all-vendors'] .sc-header {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  [data-section='all-vendors'] .sc-header .search {
+    gap: var(--spacing-2sm);
+  }
+
+  [data-section='all-vendors'] .search-form__action {
+    top: 0.45rem;
+    font-size: 1.7rem;
+  }
+
+  [data-section='all-vendors'] .search-form__input {
+    height: 3.8rem;
+    padding-right: var(--spacing-2sm);
+  }
+
+  [data-section='all-vendors'] .branch-filter {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  [data-section='all-vendors'] [data-section='vendors-list'] {
+    padding-top: 0;
+    margin-bottom: var(--spacing-sm);
+  }
+  [data-section='all-vendors'] .result-label {
+    margin-bottom: var(--spacing-2xs);
+  }
 }

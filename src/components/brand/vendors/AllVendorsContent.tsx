@@ -205,7 +205,9 @@ export default function AllVendorsContent({
         if (fetchId !== tagFetchIdRef.current) return
 
         if (!append) {
-          tagTransitionStartHeightRef.current = captureResultsShellHeight(tagResultsShellRef.current)
+          tagTransitionStartHeightRef.current = captureResultsShellHeight(
+            tagResultsShellRef.current,
+          )
         }
 
         setDisplayTagCards((current) => {
@@ -369,7 +371,7 @@ export default function AllVendorsContent({
         <div className="search">
           {titleNode}
 
-          <form action="" onSubmit={handleSearchSubmit}>
+          <form action="" onSubmit={handleSearchSubmit} className="search-form">
             <label htmlFor="all-vendors-search" className="visually-hidden">
               Search vendors
             </label>
@@ -381,7 +383,22 @@ export default function AllVendorsContent({
               onChange={(event) => setSearchQuery(event.target.value)}
               placeholder="Find your vendor soulmate"
               autoComplete="off"
+              className="search-form__input type-d-title type-m-title weight-medium letter-spacing-002"
             />
+            {searchQuery ? (
+              <button
+                type="button"
+                className="search-form__action"
+                onClick={() => setSearchQuery('')}
+                aria-label="Clear search"
+              >
+                <i className="ic ic-close-bold" aria-hidden />
+              </button>
+            ) : (
+              <span className="search-form__action" aria-hidden>
+                <i className="ic ic-search" />
+              </span>
+            )}
           </form>
         </div>
 
@@ -427,6 +444,11 @@ export default function AllVendorsContent({
         {!showSearchResults ? (
           <>
             <div className="tags-filter-wrapper" data-section="vendors-list">
+              <div className="result-label">
+                <p className="type-d-header type-m-headliner-m letter-spacing-002 weight-medium">
+                  I’M LOOKING FOR...
+                </p>
+              </div>
               <div className="tags-filter">
                 <MoodFilterTag
                   label="ALL"
@@ -468,6 +490,11 @@ export default function AllVendorsContent({
             className="search-result-wrapper vendors-results-shell"
             data-section="vendors-list"
           >
+            <div className="search-text">
+              <p className="type-d-header type-m-headliner-m letter-spacing-002 weight-medium">
+                {committedSearchQuery} <span>({searchCards.length})</span>
+              </p>
+            </div>
             <VendorsResultsGrid
               branchSlug={branchSlug}
               cards={searchCards}

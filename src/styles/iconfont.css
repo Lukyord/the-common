@@ -27,6 +27,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-search:before {
+  content: '\e95e';
+}
 .ic-calendar:before {
   content: '\e947';
 }
