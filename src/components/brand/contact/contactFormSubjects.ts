@@ -1,6 +1,6 @@
 export const FALLBACK_CONTACT_SUBJECTS = [
   'Lost & Found',
-  'Space Rental',
+  'Venue Rental',
   'Business Interest',
   'Brand Collaboration',
   'General Inquiry',

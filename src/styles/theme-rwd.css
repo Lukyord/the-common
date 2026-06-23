@@ -1092,6 +1092,15 @@
     padding-top: var(--spacing-sm);
   }
 
+  [data-section='content-single'] .content-text {
+    padding-top: var(--spacing-3xl);
+  }
+
+  [data-section='content-single'] .content-single-social {
+    transform: unset;
+    top: var(--spacing-2sm);
+  }
+
   :is(
       [data-section='content-single'],
       [data-section='whats-on-single'],
@@ -1357,5 +1366,20 @@
   }
   [data-section='all-vendors'] .result-label {
     margin-bottom: var(--spacing-2xs);
+  }
+
+  /* PAGE: VENUE RENTAL */
+  [data-section='venue-rental-landing'] .venue-rental-tabs {
+    top: calc(var(--header-height) + var(--spacing-sm));
+    gap: var(--spacing-2xs);
+  }
+
+  [data-section='venue-rental-landing'] .venue-rental-panel__content {
+    padding-top: calc(var(--header-height) + var(--spacing-4xl));
+    padding-bottom: calc(var(--spacing-3xl) + var(--spacing-md));
+  }
+
+  [data-section='venue-rental-landing'] .venue-rental-gallery .swiper-pagination {
+    bottom: var(--spacing-xl);
   }
 }

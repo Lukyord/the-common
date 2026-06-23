@@ -16,7 +16,7 @@ const BRAND_HEADER_NAV_ITEMS = [
   { href: '/whats-on', label: "WHAT'S ON" },
   { href: '/vendors', label: 'VENDORS' },
   { href: '/blogs', label: 'BLOG' },
-  { href: '/space-rental', label: 'SPACE RENTAL' },
+  { href: '/venue-rental', label: 'VENUE RENTAL' },
   { href: '/about', label: 'ABOUT' },
   { href: '/contact', label: 'CONTACT' },
 ] as const
@@ -24,7 +24,7 @@ const BRAND_HEADER_NAV_ITEMS = [
 const BRANCH_HEADER_NAV_SEGMENTS = [
   { segment: 'whats-on', label: "WHAT'S ON" },
   { segment: 'vendors', label: 'VENDORS' },
-  { segment: 'space-rental', label: 'SPACE RENTAL' },
+  { segment: 'venue-rental', label: 'VENUE RENTAL' },
   { segment: 'contact', label: 'CONTACT' },
 ] as const
 
@@ -53,10 +53,7 @@ export function HeaderClient({ branches }: HeaderClientProps) {
     >
       <div className="header-nav">
         <div className="header-logo">
-          <Logo
-            branchSlug={currentBranch?.slug}
-            color={currentBranch?.primaryColor ?? undefined}
-          />
+          <Logo branchSlug={currentBranch?.slug} color={currentBranch?.primaryColor ?? undefined} />
         </div>
 
         <nav className="header-menu">

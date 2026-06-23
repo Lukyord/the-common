@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import BlogSingle from '@/components/blog-single/BlogSingle'
+import BlogSingle from '@/components/brand/blog-single/BlogSingle'
 import { generateMeta } from '@/lib/generateMeta'
 import { getBlogBySlug } from '@/payload/queries/blogs'
 

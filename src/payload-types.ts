@@ -71,7 +71,7 @@ export interface Config {
     media: Media;
     branches: Branch;
     'branch-contact-pages': BranchContactPage;
-    'branch-space-rental-pages': BranchSpaceRentalPage;
+    'branch-venue-rental-pages': BranchVenueRentalPage;
     'branch-vendor-pages': BranchVendorPage;
     'branch-whats-on-pages': BranchWhatsOnPage;
     blogs: Blog;
@@ -92,7 +92,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     branches: BranchesSelect<false> | BranchesSelect<true>;
     'branch-contact-pages': BranchContactPagesSelect<false> | BranchContactPagesSelect<true>;
-    'branch-space-rental-pages': BranchSpaceRentalPagesSelect<false> | BranchSpaceRentalPagesSelect<true>;
+    'branch-venue-rental-pages': BranchVenueRentalPagesSelect<false> | BranchVenueRentalPagesSelect<true>;
     'branch-vendor-pages': BranchVendorPagesSelect<false> | BranchVendorPagesSelect<true>;
     'branch-whats-on-pages': BranchWhatsOnPagesSelect<false> | BranchWhatsOnPagesSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
@@ -117,6 +117,7 @@ export interface Config {
     contact: Contact;
     homepage: Homepage;
     'privacy-policy': PrivacyPolicy;
+    'venue-rental-page': VenueRentalPage;
     'vendors-page': VendorsPage;
     'whats-on-page': WhatsOnPage;
   };
@@ -126,6 +127,7 @@ export interface Config {
     contact: ContactSelect<false> | ContactSelect<true>;
     homepage: HomepageSelect<false> | HomepageSelect<true>;
     'privacy-policy': PrivacyPolicySelect<false> | PrivacyPolicySelect<true>;
+    'venue-rental-page': VenueRentalPageSelect<false> | VenueRentalPageSelect<true>;
     'vendors-page': VendorsPageSelect<false> | VendorsPageSelect<true>;
     'whats-on-page': WhatsOnPageSelect<false> | WhatsOnPageSelect<true>;
   };
@@ -638,12 +640,12 @@ export interface BranchContactPage {
   createdAt: string;
 }
 /**
- * Space rental page per branch.
+ * Venue rental page per branch.
  *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "branch-space-rental-pages".
+ * via the `definition` "branch-venue-rental-pages".
  */
-export interface BranchSpaceRentalPage {
+export interface BranchVenueRentalPage {
   id: number;
   title: string;
   branch: number | Branch;
@@ -848,8 +850,8 @@ export interface PayloadLockedDocument {
         value: number | BranchContactPage;
       } | null)
     | ({
-        relationTo: 'branch-space-rental-pages';
-        value: number | BranchSpaceRentalPage;
+        relationTo: 'branch-venue-rental-pages';
+        value: number | BranchVenueRentalPage;
       } | null)
     | ({
         relationTo: 'branch-vendor-pages';
@@ -1114,9 +1116,9 @@ export interface BranchContactPagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "branch-space-rental-pages_select".
+ * via the `definition` "branch-venue-rental-pages_select".
  */
-export interface BranchSpaceRentalPagesSelect<T extends boolean = true> {
+export interface BranchVenueRentalPagesSelect<T extends boolean = true> {
   title?: T;
   branch?: T;
   meta?:
@@ -1769,6 +1771,41 @@ export interface PrivacyPolicy {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "venue-rental-page".
+ */
+export interface VenueRentalPage {
+  id: number;
+  /**
+   * One group per branch (3 total).
+   */
+  branchGroups?:
+    | {
+        branch: number | Branch;
+        mediaGallery?: (number | Media)[] | null;
+        bgColor?: string | null;
+        textColor?: string | null;
+        buttonColor?: string | null;
+        title?: string | null;
+        cta?: {
+          text?: string | null;
+          desc?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "vendors-page".
  */
 export interface VendorsPage {
@@ -2078,6 +2115,39 @@ export interface HomepageSelect<T extends boolean = true> {
 export interface PrivacyPolicySelect<T extends boolean = true> {
   title?: T;
   richText?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "venue-rental-page_select".
+ */
+export interface VenueRentalPageSelect<T extends boolean = true> {
+  branchGroups?:
+    | T
+    | {
+        branch?: T;
+        mediaGallery?: T;
+        bgColor?: T;
+        textColor?: T;
+        buttonColor?: T;
+        title?: T;
+        cta?:
+          | T
+          | {
+              text?: T;
+              desc?: T;
+            };
+        id?: T;
+      };
   meta?:
     | T
     | {

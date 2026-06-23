@@ -3,16 +3,16 @@ import type { CollectionConfig } from 'payload'
 import { updatePageSaveButtonCollection } from '@/payload/shared/updatePageSaveButton'
 
 export const BranchSpaceRentalPages: CollectionConfig = {
-  slug: 'branch-space-rental-pages',
+  slug: 'branch-venue-rental-pages',
   labels: {
-    singular: 'Branch Space Rental Page',
-    plural: 'Branch Space Rental Pages',
+    singular: 'Branch Venue Rental Page',
+    plural: 'Branch Venue Rental Pages',
   },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'branch'],
     group: 'Branches',
-    description: 'Space rental page per branch.',
+    description: 'Venue rental page per branch.',
     ...updatePageSaveButtonCollection,
   },
   access: {

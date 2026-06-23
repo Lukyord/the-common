@@ -1,4 +1,4 @@
-const FOOTER_HIDDEN_SECTIONS = new Set(['whats-on', 'blogs'])
+const FOOTER_HIDDEN_SECTIONS = new Set(['whats-on', 'blogs', 'venue-rental'])
 
 export function getSlugFromPathname(pathname: string): string {
   if (pathname === '/') return ''
@@ -12,6 +12,8 @@ export function isBranchPathname(pathname: string, branchSlugs: ReadonlySet<stri
 
 export function isFooterHiddenPathname(pathname: string): boolean {
   const segments = pathname.split('/').filter(Boolean)
+  if (segments[0] === 'venue-rental') return true
+
   if (segments.length < 2) return false
 
   const section = segments[segments.length - 2]

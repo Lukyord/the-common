@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState, type PropsWithChildren } from 'react'
+import { useCallback, useEffect, useId, useRef, useState, type PropsWithChildren } from 'react'
 
 declare global {
     interface Window {
@@ -29,10 +29,11 @@ export function TabContainer({
     updateUrlHash = true,
 }: TabContainerProps) {
     const containerRef = useRef<HTMLDivElement>(null)
+    const generatedId = useId()
     const [activeTab, setActiveTabState] = useState<string | null>(defaultActiveTab || null)
     const activeTabRef = useRef(activeTab)
     activeTabRef.current = activeTab
-    const id = containerId || `tab-container-${Math.random().toString(36).substring(2, 11)}`
+    const id = containerId ?? generatedId
 
     // Handle hash-based tab activation
     useEffect(() => {

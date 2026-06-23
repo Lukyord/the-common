@@ -17,13 +17,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return generateMeta({
     meta: page.meta,
-    fallbackTitle: page.title || (branchName ? `Space Rental | ${branchName}` : 'Space Rental'),
+    fallbackTitle: page.title || (branchName ? `Venue Rental | ${branchName}` : 'Venue Rental'),
     fallbackDescription: branchName
-      ? `Space Rental at ${branchName}`
-      : 'Space Rental at The Common',
+      ? `Venue Rental at ${branchName}`
+      : 'Venue Rental at The Common',
   })
 }
 
-export default function SpaceRentalPage() {
-  return <div>Space Rental Page</div>
+export default function VenueRentalPage() {
+  return <div>Venue Rental Page</div>
 }
