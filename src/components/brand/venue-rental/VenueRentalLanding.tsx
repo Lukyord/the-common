@@ -1,12 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import type { CSSProperties } from 'react'
+import { useState, type CSSProperties } from 'react'
 
 import { TabContainer, TabContent, TabContents, TabItem, TabLink } from '@/components/common/tab'
 import { MarkdownContent } from '@/components/common/markdown-content'
 
 import VenueRentalGallery from './VenueRentalGallery'
+import VenueRentalBookingModal from './VenueRentalBookingModal'
 import type { VenueRentalBranchGroup } from './types'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
@@ -15,6 +16,7 @@ type VenueRentalLandingProps = {
 }
 
 function VenueRentalPanel({ group }: { group: VenueRentalBranchGroup }) {
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
   const panelStyle = {
     '--venue-rental-text-color': group.textColor ?? undefined,
     '--venue-rental-bg-color': group.bgColor ?? undefined,
@@ -60,32 +62,40 @@ function VenueRentalPanel({ group }: { group: VenueRentalBranchGroup }) {
             </MarkdownContent>
           ) : null}
 
-          <div className="venue-list info-item">
-            <div className="item-ttl">
-              <h3 className="type-d-body-xs type-m-body-s letter-spacing-002">SPACE FOR RENTAL</h3>
+          {group.venues.length > 0 ? (
+            <div className="venue-list info-item">
+              <div className="info-item__inner">
+                <div className="item-ttl">
+                  <h3 className="type-d-body-xs type-m-body-s letter-spacing-002">
+                    SPACE FOR RENTAL
+                  </h3>
+                </div>
+                <div className="item-content">
+                  <p className="type-d-body-s type-m-title letter-spacing-002 weight-medium">
+                    {group.venues.join(', ')}
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="item-content">
-              <p className="type-d-body-s type-m-title letter-spacing-002 weight-medium">
-                Indoor, Outdoor, Indoor & Outdoor
-              </p>
-            </div>
-          </div>
+          ) : null}
           <div className="available-time info-item">
-            <div className="item-ttl">
-              <h3 className="type-d-body-xs type-m-body-s letter-spacing-002">AVAILABLE TIME</h3>
-            </div>
-            <div className="item-content">
-              <p className="letter-spacing-002">
-                <span className="weight-medium type-d-text-link type-m-body-m">Everyday </span>
-                <span className="type-d-body-m type-m-title">08:00 am – Midnight</span>
-              </p>
+            <div className="info-item__inner">
+              <div className="item-ttl">
+                <h3 className="type-d-body-xs type-m-body-s letter-spacing-002">AVAILABLE TIME</h3>
+              </div>
+              <div className="item-content">
+                <p className="letter-spacing-002">
+                  <span className="weight-medium type-d-text-link type-m-body-m">Everyday </span>
+                  <span className="type-d-body-m type-m-title">08:00 am – Midnight</span>
+                </p>
+              </div>
             </div>
           </div>
 
           {group.cta?.text ? (
             <div className="venue-rental-panel__cta">
-              <Link
-                href="/contact"
+              <button
+                type="button"
                 className={[
                   'button-template',
                   group.buttonWhiteTextOnHover && 'c-white-hover',
@@ -94,15 +104,25 @@ function VenueRentalPanel({ group }: { group: VenueRentalBranchGroup }) {
                   .filter(Boolean)
                   .join(' ')}
                 style={{ '--button-bg-color': group.buttonColor } as CSSProperties}
+                onClick={() => setIsBookingModalOpen(true)}
               >
                 <span>
                   <span>{group.cta.text}</span>
                 </span>
-              </Link>
+              </button>
             </div>
           ) : null}
         </AnimateOnScroll>
       </div>
+
+      <VenueRentalBookingModal
+        open={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        formTitle={`${group.branchName} Venue Rental`}
+        showBackMobile={true}
+        formAreaOptions={group.formAreaOptions}
+        bookingCta={group.bookingCta}
+      />
     </div>
   )
 }

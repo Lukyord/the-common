@@ -26,6 +26,66 @@ export function syncFormControlsFilled(root: ParentNode | Element = document): v
     });
 }
 
+export function bindFormControls(root: ParentNode | Element): () => void {
+    const fieldFocusHandlers = new Map<Element, () => void>();
+    root.querySelectorAll(".field").forEach((field) => {
+        const handler = () => {
+            const siblings = field.parentElement
+                ? Array.from(field.parentElement.children)
+                : [];
+            siblings.forEach((el) => el.classList.remove("focusin"));
+            field.classList.add("focusin");
+        };
+        field.addEventListener("focusin", handler);
+        fieldFocusHandlers.set(field, handler);
+    });
+
+    const formElements = root.querySelectorAll(FORM_CONTROL_SELECTOR);
+    const controlHandlers = new Map<
+        Element,
+        {
+            focusin: () => void;
+            focusout: () => void;
+            input: () => void;
+            change: () => void;
+        }
+    >();
+
+    formElements.forEach((el) => {
+        const control = el as FormControlElement;
+        const focusin = () => {
+            const inputWrap = el.closest(".input");
+            if (inputWrap) inputWrap.classList.add("filled");
+        };
+        const focusout = () => syncFilled(control);
+        const input = () => syncFilled(control);
+        const change = () => syncFilled(control);
+
+        el.addEventListener("focusin", focusin);
+        el.addEventListener("focusout", focusout);
+        el.addEventListener("input", input);
+        el.addEventListener("change", change);
+        controlHandlers.set(el, { focusin, focusout, input, change });
+    });
+
+    const filledTimeout = window.setTimeout(() => {
+        formElements.forEach((el) => syncFilled(el as FormControlElement));
+    }, 100);
+
+    return () => {
+        fieldFocusHandlers.forEach((handler, field) => {
+            field.removeEventListener("focusin", handler);
+        });
+        controlHandlers.forEach(({ focusin, focusout, input, change }, el) => {
+            el.removeEventListener("focusin", focusin);
+            el.removeEventListener("focusout", focusout);
+            el.removeEventListener("input", input);
+            el.removeEventListener("change", change);
+        });
+        window.clearTimeout(filledTimeout);
+    };
+}
+
 export function useFormInit() {
     const pathname = usePathname();
 
@@ -36,46 +96,7 @@ export function useFormInit() {
 
         document.addEventListener("invalid", onInvalid, true);
 
-        const fieldFocusHandlers = new Map<Element, () => void>();
-        document.querySelectorAll(".field").forEach((field) => {
-            const handler = () => {
-                const siblings = field.parentElement
-                    ? Array.from(field.parentElement.children)
-                    : [];
-                siblings.forEach((el) => el.classList.remove("focusin"));
-                field.classList.add("focusin");
-            };
-            field.addEventListener("focusin", handler);
-            fieldFocusHandlers.set(field, handler);
-        });
-
-        const formElements = document.querySelectorAll(FORM_CONTROL_SELECTOR);
-        const controlHandlers = new Map<
-            Element,
-            {
-                focusin: () => void;
-                focusout: () => void;
-                input: () => void;
-                change: () => void;
-            }
-        >();
-
-        formElements.forEach((el) => {
-            const control = el as FormControlElement;
-            const focusin = () => {
-                const inputWrap = el.closest(".input");
-                if (inputWrap) inputWrap.classList.add("filled");
-            };
-            const focusout = () => syncFilled(control);
-            const input = () => syncFilled(control);
-            const change = () => syncFilled(control);
-
-            el.addEventListener("focusin", focusin);
-            el.addEventListener("focusout", focusout);
-            el.addEventListener("input", input);
-            el.addEventListener("change", change);
-            controlHandlers.set(el, { focusin, focusout, input, change });
-        });
+        const unbindFormControls = bindFormControls(document);
 
         const updateCtaWidths = () => {
             document.querySelectorAll(".input").forEach((input) => {
@@ -92,10 +113,6 @@ export function useFormInit() {
         updateCtaWidths();
         window.addEventListener("resize", updateCtaWidths);
 
-        const filledTimeout = window.setTimeout(() => {
-            formElements.forEach((el) => syncFilled(el as FormControlElement));
-        }, 100);
-
         if (!document.documentElement.classList.contains("is-device")) {
             document.querySelectorAll(".date-device").forEach((dateInput) => {
                 dateInput.setAttribute("type", "text");
@@ -111,17 +128,8 @@ export function useFormInit() {
 
         return () => {
             document.removeEventListener("invalid", onInvalid, true);
-            fieldFocusHandlers.forEach((handler, field) => {
-                field.removeEventListener("focusin", handler);
-            });
-            controlHandlers.forEach(({ focusin, focusout, input, change }, el) => {
-                el.removeEventListener("focusin", focusin);
-                el.removeEventListener("focusout", focusout);
-                el.removeEventListener("input", input);
-                el.removeEventListener("change", change);
-            });
+            unbindFormControls();
             window.removeEventListener("resize", updateCtaWidths);
-            window.clearTimeout(filledTimeout);
         };
     }, [pathname]);
 }

@@ -697,7 +697,12 @@ export interface BranchVenueRentalPage {
   };
   venues?:
     | {
+        /**
+         * If enabled, the venue will be shown on the page.
+         */
+        show?: boolean | null;
         title?: string | null;
+        formOptionName?: string | null;
         buttonBgColor?: string | null;
         buttonTextColor?: string | null;
         mediaGallery?: (number | Media)[] | null;
@@ -864,6 +869,7 @@ export interface BranchVenueRentalPage {
     title?: string | null;
     description?: string | null;
     backgroundColor?: string | null;
+    textColor?: string | null;
     cnt?: {
       title?: string | null;
       /**
@@ -891,6 +897,7 @@ export interface BranchVenueRentalPage {
     title?: string | null;
     description?: string | null;
     backgroundColor?: string | null;
+    textColor?: string | null;
     cnt?: {
       title?: string | null;
       /**
@@ -1418,7 +1425,9 @@ export interface BranchVenueRentalPagesSelect<T extends boolean = true> {
   venues?:
     | T
     | {
+        show?: T;
         title?: T;
+        formOptionName?: T;
         buttonBgColor?: T;
         buttonTextColor?: T;
         mediaGallery?: T;
@@ -1483,6 +1492,7 @@ export interface BranchVenueRentalPagesSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         backgroundColor?: T;
+        textColor?: T;
         cnt?:
           | T
           | {
@@ -1508,6 +1518,7 @@ export interface BranchVenueRentalPagesSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         backgroundColor?: T;
+        textColor?: T;
         cnt?:
           | T
           | {

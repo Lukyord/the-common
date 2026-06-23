@@ -4239,6 +4239,10 @@ html.no-touchevents [data-section='all-vendors'] .branch-filter__item:hover,
   padding: var(--spacing-container);
 }
 
+[data-section='venue-rental-landing'] .venue-rental-panel__info .info-item__inner {
+  min-height: 0;
+}
+
 [data-section='venue-rental-landing'] .venue-rental-panel__header {
   display: flex;
   flex-direction: column;
@@ -4297,6 +4301,12 @@ html.no-touchevents [data-section='venue-rental-landing'] .venue-rental-panel__l
   padding-top: var(--spacing-sm);
 }
 
+[data-section='venue-rental-landing'] .venue-rental-panel__info .info-item .info-item__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5xs);
+}
+
 /* Empty State */
 [data-section='venue-rental-landing'] .venue-rental-empty {
   min-height: calc(100svh - var(--header-height));
@@ -4312,4 +4322,114 @@ html.no-touchevents [data-section='venue-rental-landing'] .venue-rental-panel__l
 
 .venue-rental-empty .container [class*='button-'] {
   margin-top: var(--spacing-md);
+}
+
+/* VENUE FORM */
+.venue-rental-modal .modal__content {
+  max-width: min(72rem, 100vw - var(--spacing-container) * 2);
+  max-height: min(63rem, calc(100dvh - var(--spacing-container) * 2));
+}
+
+.venue-rental-modal .modal__close {
+  position: absolute;
+  top: var(--spacing-2sm);
+  right: var(--spacing-container);
+
+  .ic {
+    font-size: 3rem;
+  }
+}
+
+.venue-form {
+  background-color: var(--color-beige);
+  padding: 0 var(--spacing-container);
+  --input-color: rgba(var(--color-dark-brown-rgb), 0.6);
+  --input-color-active: rgba(var(--color-dark-brown-rgb), 1);
+}
+
+.venue-form-inner {
+  padding: var(--spacing-2xl) 0;
+}
+
+.venue-form .form-ttl {
+  margin-bottom: var(--spacing-md);
+}
+
+.venue-form *:is(input, textarea, select) {
+  border-bottom: 1px solid rgba(var(--color-dark-brown-rgb), 0.4);
+}
+
+.venue-form .field--select .field-label {
+  margin-bottom: var(--spacing-2xs);
+}
+
+.venue-area-select {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2xs);
+}
+
+.venue-area-select__option {
+  display: block;
+}
+
+.venue-area-select__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.venue-area-select__button {
+  --color: var(--color-beige);
+  --bg-color: var(--color-dark-brown);
+  --check-size: 2rem;
+  --offset-check: 0.3rem;
+  --padding-y: var(--spacing-4xs);
+  --padding-x: var(--spacing-3xs);
+  display: block;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+  background-color: var(--bg-color);
+  color: var(--color);
+  padding: var(--padding-y) var(--padding-x);
+  padding-left: calc(var(--check-size) + var(--padding-y) * 2);
+  position: relative;
+  transition: var(--duration) var(--timing-function);
+}
+
+.venue-area-select__button:before {
+  content: '';
+  width: var(--check-size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 0.1rem solid var(--color);
+  position: absolute;
+  left: var(--padding-y);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.venue-area-select__button:after {
+  content: '';
+  width: calc(var(--check-size) - var(--offset-check) * 2);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--color);
+  position: absolute;
+  left: calc(var(--padding-y) + var(--offset-check));
+  top: 50%;
+  transform: translateY(-50%) scale(0.65);
+  opacity: 0;
+  transition: var(--duration) var(--timing-function) 0.075s;
+}
+
+.venue-area-select__input:checked + .venue-area-select__button {
+  --bg-color: var(--venue-area-selected-bg);
+  --color: var(--venue-area-selected-text);
+}
+
+.venue-area-select__input:checked + .venue-area-select__button:after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
 }

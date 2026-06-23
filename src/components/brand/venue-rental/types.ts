@@ -1,4 +1,7 @@
 import type { ContentSingleGalleryItem } from '@/components/common/content-single/types'
+import type { BranchVenueRentalPage } from '@/payload-types'
+
+export type VenueRentalBookingCta = NonNullable<BranchVenueRentalPage['bookingCta']>
 
 export type VenueRentalBranchGroup = {
   tabId: string
@@ -15,4 +18,7 @@ export type VenueRentalBranchGroup = {
     text?: string | null
     desc?: string | null
   }
+  bookingCta?: VenueRentalBookingCta | null
+  venues: string[]
+  formAreaOptions: string[]
 }

@@ -20,8 +20,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function VenueRentalPage() {
-  const { venueRentalPage } = await getVenueRentalPagePayloadData()
-  const groups = toVenueRentalBranchGroups(venueRentalPage?.branchGroups)
+  const { venueRentalPage, branchVenueRentalPages } = await getVenueRentalPagePayloadData()
+  const groups = toVenueRentalBranchGroups(
+    venueRentalPage?.branchGroups,
+    branchVenueRentalPages,
+  )
 
   if (groups.length === 0) {
     return <VenueRentalEmptyState />

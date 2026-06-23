@@ -213,6 +213,7 @@ function rateSectionField(name: string, label: string): Field {
         label: 'Description',
       },
       colorPickerField('backgroundColor', 'Background Color'),
+      colorPickerField('textColor', 'Text Color'),
       {
         name: 'cnt',
         type: 'group',
@@ -228,9 +229,23 @@ function rateSectionField(name: string, label: string): Field {
 
 const venueFields: Field[] = [
   {
+    name: 'show',
+    type: 'checkbox',
+    label: 'Show',
+    defaultValue: true,
+    admin: {
+      description: 'If enabled, the venue will be shown on the page.',
+    },
+  },
+  {
     name: 'title',
     type: 'text',
     label: 'Title',
+  },
+  {
+    name: 'formOptionName',
+    type: 'text',
+    label: 'Form Option Name',
   },
   colorPickerField('buttonBgColor', 'Button Background Color'),
   colorPickerField('buttonTextColor', 'Button Text Color'),

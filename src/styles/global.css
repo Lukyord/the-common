@@ -1332,7 +1332,7 @@ textarea {
 }
 
 .input.filled :is(input, textarea, select) {
-  border-color: var(--color-beige);
+  border-color: var(--input-color-active);
 }
 
 .label.anim {

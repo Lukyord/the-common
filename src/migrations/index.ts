@@ -47,6 +47,7 @@ import * as migration_20260618_081430_moode_presentence_mobile from './20260618_
 import * as migration_20260618_112218_blog from './20260618_112218_blog';
 import * as migration_20260623_045224_brand_space_rental_page from './20260623_045224_brand_space_rental_page';
 import * as migration_20260623_085014_branch_space_rental_collection from './20260623_085014_branch_space_rental_collection';
+import * as migration_20260623_131710 from './20260623_131710';
 
 export const migrations = [
   {
@@ -292,6 +293,11 @@ export const migrations = [
   {
     up: migration_20260623_085014_branch_space_rental_collection.up,
     down: migration_20260623_085014_branch_space_rental_collection.down,
-    name: '20260623_085014_branch_space_rental_collection'
+    name: '20260623_085014_branch_space_rental_collection',
+  },
+  {
+    up: migration_20260623_131710.up,
+    down: migration_20260623_131710.down,
+    name: '20260623_131710'
   },
 ];

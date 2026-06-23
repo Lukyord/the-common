@@ -15,6 +15,49 @@
   .location-selector__label {
     pointer-events: none;
   }
+
+  /* PAGE: VENUE RENTAL */
+  html.no-touchevents [data-section='venue-rental-landing'] .venue-rental-panel__content {
+    transition: gap var(--duration) var(--timing-function);
+  }
+
+  html.no-touchevents [data-section='venue-rental-landing'] .venue-rental-panel__info {
+    transition: padding var(--duration) var(--timing-function);
+  }
+
+  html.no-touchevents [data-section='venue-rental-landing'] .venue-rental-panel__info .info-item {
+    display: grid;
+    grid-template-rows: 0fr;
+    padding-top: 0;
+    transition:
+      grid-template-rows var(--duration) var(--timing-function),
+      padding-top var(--duration) var(--timing-function);
+  }
+
+  html.no-touchevents
+    [data-section='venue-rental-landing']
+    .venue-rental-panel__info
+    .info-item__inner {
+    overflow: hidden;
+  }
+
+  html.no-touchevents
+    [data-section='venue-rental-landing']
+    .venue-rental-panel__content
+    .venue-rental-panel__info:hover
+    .info-item {
+    grid-template-rows: 1fr;
+    padding-top: var(--spacing-sm);
+  }
+
+  html.no-touchevents
+    [data-section='venue-rental-landing']
+    .venue-rental-panel__content
+    .venue-rental-panel__info:hover
+    .expand-icon
+    .ic {
+    transform: rotate(180deg);
+  }
 }
 
 /* MEDIA QUERIES:MAX ==================== */
