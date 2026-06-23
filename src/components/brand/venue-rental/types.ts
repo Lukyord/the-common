@@ -8,6 +8,8 @@ export type VenueRentalBranchGroup = {
   bgColor?: string | null
   textColor?: string | null
   buttonColor?: string | null
+  buttonWhiteTextOnHover?: boolean | null
+  buttonDarkBrownTextOnHover?: boolean | null
   title?: string | null
   cta?: {
     text?: string | null

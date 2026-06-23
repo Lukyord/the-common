@@ -46,6 +46,7 @@ import * as migration_20260617_093640 from './20260617_093640';
 import * as migration_20260618_081430_moode_presentence_mobile from './20260618_081430_moode_presentence_mobile';
 import * as migration_20260618_112218_blog from './20260618_112218_blog';
 import * as migration_20260623_045224_brand_space_rental_page from './20260623_045224_brand_space_rental_page';
+import * as migration_20260623_085014_branch_space_rental_collection from './20260623_085014_branch_space_rental_collection';
 
 export const migrations = [
   {
@@ -286,6 +287,11 @@ export const migrations = [
   {
     up: migration_20260623_045224_brand_space_rental_page.up,
     down: migration_20260623_045224_brand_space_rental_page.down,
-    name: '20260623_045224_brand_space_rental_page'
+    name: '20260623_045224_brand_space_rental_page',
+  },
+  {
+    up: migration_20260623_085014_branch_space_rental_collection.up,
+    down: migration_20260623_085014_branch_space_rental_collection.down,
+    name: '20260623_085014_branch_space_rental_collection'
   },
 ];

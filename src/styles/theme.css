@@ -4293,6 +4293,10 @@ html.no-touchevents [data-section='venue-rental-landing'] .venue-rental-panel__l
   text-align: center;
 }
 
+[data-section='venue-rental-landing'] .venue-rental-panel__info .info-item {
+  padding-top: var(--spacing-sm);
+}
+
 /* Empty State */
 [data-section='venue-rental-landing'] .venue-rental-empty {
   min-height: calc(100svh - var(--header-height));

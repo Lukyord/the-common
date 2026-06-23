@@ -33,6 +33,8 @@ export function toVenueRentalBranchGroups(
         bgColor: group.bgColor,
         textColor: group.textColor,
         buttonColor: group.buttonColor,
+        buttonWhiteTextOnHover: group.buttonWhiteTextOnHover,
+        buttonDarkBrownTextOnHover: group.buttonDarkBrownTextOnHover,
         title: group.title,
         cta: group.cta,
       }

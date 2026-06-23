@@ -29,6 +29,8 @@ import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea
 import { MetaImageComponent as MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { UpdatePageSaveButton as UpdatePageSaveButton_02847912316338713ea3ce7604a2a437 } from '@/components/payload/update-page-save-button'
+import { ExclusiveCheckboxField as ExclusiveCheckboxField_cd842430921eb7a61b2caf27f8c6e601 } from '@/components/payload/exclusive-checkbox-field'
+import { RateTableColumnCellsField as RateTableColumnCellsField_07ce59688a77e115acff4f6787b54d8e } from '@/components/payload/rate-table-column-cells-field'
 import { GenerateSlugField as GenerateSlugField_7cd396f038e673f003ca0d5ff9f07cf5 } from '@/components/payload/generate-slug-field'
 import { WhatsOnBranchLocationsField as WhatsOnBranchLocationsField_402643039b63c6d6f8e2dd8234eda163 } from '@/components/payload/whats-on-branch-locations-field'
 import { BranchFloorSelectField as BranchFloorSelectField_b54d6bb26f852822af4336b3ef9d70a3 } from '@/components/payload/branch-floor-select-field'
@@ -69,6 +71,8 @@ export const importMap = {
   "@payloadcms/plugin-seo/client#MetaImageComponent": MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@/components/payload/update-page-save-button#UpdatePageSaveButton": UpdatePageSaveButton_02847912316338713ea3ce7604a2a437,
+  "@/components/payload/exclusive-checkbox-field#ExclusiveCheckboxField": ExclusiveCheckboxField_cd842430921eb7a61b2caf27f8c6e601,
+  "@/components/payload/rate-table-column-cells-field#RateTableColumnCellsField": RateTableColumnCellsField_07ce59688a77e115acff4f6787b54d8e,
   "@/components/payload/generate-slug-field#GenerateSlugField": GenerateSlugField_7cd396f038e673f003ca0d5ff9f07cf5,
   "@/components/payload/whats-on-branch-locations-field#WhatsOnBranchLocationsField": WhatsOnBranchLocationsField_402643039b63c6d6f8e2dd8234eda163,
   "@/components/payload/branch-floor-select-field#BranchFloorSelectField": BranchFloorSelectField_b54d6bb26f852822af4336b3ef9d70a3,

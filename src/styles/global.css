@@ -731,6 +731,12 @@ html.no-touchevents [class*='button-']:hover {
 html.no-touchevents [class*='button-'].c-beige-hover:hover > span > span {
   color: var(--color-beige);
 }
+html.no-touchevents [class*='button-'].c-white-hover:hover > span > span {
+  color: var(--color-white);
+}
+html.no-touchevents [class*='button-'].c-dark-brown-hover:hover > span > span {
+  color: var(--color-dark-brown);
+}
 
 html.no-touchevents [class*='button-']:hover > span:after {
   width: 100%;

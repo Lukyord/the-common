@@ -36,7 +36,11 @@ else
   fi
 fi
 
-if has_table '__new_payload_locked_documents_rels'; then
+if has_table 'branch_venue_rental_pages' \
+  && sqlite3 "${DB}" "SELECT 1 FROM pragma_table_info('payload_locked_documents_rels') WHERE name='branch_space_rental_pages_id';" | grep -q 1; then
+  echo "Renaming branch_space_rental_pages_id → branch_venue_rental_pages_id…"
+  sqlite3 "${DB}" < "${SQL_DIR}/branch-venue-rental-rename.sql"
+elif has_table '__new_payload_locked_documents_rels'; then
   echo "Found __new_payload_locked_documents_rels — drop it manually or reset local D1."
 else
   if sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='payload_locked_documents_rels_order_idx';" | grep -q 1; then

@@ -1,0 +1,16 @@
+.rate-table-column-cells-field__row {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--theme-elevation-150);
+}
+
+.rate-table-column-cells-field__row:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.rate-table-column-cells-field__label {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}

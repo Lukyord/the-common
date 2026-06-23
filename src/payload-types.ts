@@ -647,8 +647,273 @@ export interface BranchContactPage {
  */
 export interface BranchVenueRentalPage {
   id: number;
-  title: string;
   branch: number | Branch;
+  branchName?: string | null;
+  bookingCta?: {
+    type?: ('form' | 'linkout') | null;
+    formSelectedButtonBgColor?: string | null;
+    formSelectedButtonTextColor?: string | null;
+    formSubmitButtonBgColor?: string | null;
+    /**
+     * If enabled, the form submit button text will be white on hover. Cannot be selected with dark brown hover text.
+     */
+    formSubmitWhiteTextOnHover?: boolean | null;
+    /**
+     * If enabled, the form submit button text will be dark brown on hover. Cannot be selected with white hover text.
+     */
+    formSubmitDarkBrownTextOnHover?: boolean | null;
+    linkoutDescription?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    linkoutButtonBgColor?: string | null;
+    linkoutButtonText?: string | null;
+    linkoutButtonLink?: string | null;
+    /**
+     * If enabled, the button text will be white on hover.
+     */
+    linkoutButtonWhiteTextOnHover?: boolean | null;
+  };
+  title: string;
+  landingMedia?: {
+    desktop?: (number | null) | Media;
+    mobile?: (number | null) | Media;
+  };
+  venuePackage?: {
+    type?: ('pdf' | 'link') | null;
+    pdf?: (number | null) | Media;
+    link?: string | null;
+  };
+  venues?:
+    | {
+        title?: string | null;
+        buttonBgColor?: string | null;
+        buttonTextColor?: string | null;
+        mediaGallery?: (number | Media)[] | null;
+        amenitiesDescription?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        venueDescription?:
+          | {
+              content?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: any;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              id?: string | null;
+            }[]
+          | null;
+        information?: {
+          area?: string | null;
+          numberOfPeople?: string | null;
+        };
+        venueAmenities?:
+          | {
+              icon?:
+                | (
+                    | 'wifi'
+                    | 'tv'
+                    | 'microphone'
+                    | 'white-board'
+                    | 'bluetooth-speaker'
+                    | 'sound-proof-panel'
+                    | 'ac'
+                    | 'fans'
+                    | 'power-outlet'
+                    | 'parking'
+                    | 'coffee-machine'
+                    | 'microwave'
+                    | 'utensil'
+                    | 'mixer'
+                    | 'bakery'
+                    | 'fridge'
+                    | 'oven'
+                    | 'mats'
+                    | 'foldable-table'
+                    | 'stool'
+                    | 'camping-chair'
+                    | 'calendar'
+                    | 'clock'
+                    | 'phone'
+                  )
+                | null;
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        otherAmenities?:
+          | {
+              icon?:
+                | (
+                    | 'wifi'
+                    | 'tv'
+                    | 'microphone'
+                    | 'white-board'
+                    | 'bluetooth-speaker'
+                    | 'sound-proof-panel'
+                    | 'ac'
+                    | 'fans'
+                    | 'power-outlet'
+                    | 'parking'
+                    | 'coffee-machine'
+                    | 'microwave'
+                    | 'utensil'
+                    | 'mixer'
+                    | 'bakery'
+                    | 'fridge'
+                    | 'oven'
+                    | 'mats'
+                    | 'foldable-table'
+                    | 'stool'
+                    | 'camping-chair'
+                    | 'calendar'
+                    | 'clock'
+                    | 'phone'
+                  )
+                | null;
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        additionalFee?:
+          | {
+              icon?:
+                | (
+                    | 'wifi'
+                    | 'tv'
+                    | 'microphone'
+                    | 'white-board'
+                    | 'bluetooth-speaker'
+                    | 'sound-proof-panel'
+                    | 'ac'
+                    | 'fans'
+                    | 'power-outlet'
+                    | 'parking'
+                    | 'coffee-machine'
+                    | 'microwave'
+                    | 'utensil'
+                    | 'mixer'
+                    | 'bakery'
+                    | 'fridge'
+                    | 'oven'
+                    | 'mats'
+                    | 'foldable-table'
+                    | 'stool'
+                    | 'camping-chair'
+                    | 'calendar'
+                    | 'clock'
+                    | 'phone'
+                  )
+                | null;
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        staffFee?: {
+          title?: string | null;
+          info?:
+            | {
+                title?: string | null;
+                description?: string | null;
+                id?: string | null;
+              }[]
+            | null;
+        };
+        cta?: {
+          ctaText?: string | null;
+          ctaLink?: string | null;
+          buttonBgColor?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  rate?: {
+    title?: string | null;
+    description?: string | null;
+    backgroundColor?: string | null;
+    cnt?: {
+      title?: string | null;
+      /**
+       * Row labels. Each column below gets one cell per row label, in the same order.
+       */
+      rows?: string[] | null;
+      cols?:
+        | {
+            title?: string | null;
+            /**
+             * Cells are generated automatically from row labels above.
+             */
+            cells?:
+              | {
+                  value?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+          }[]
+        | null;
+    };
+  };
+  promo?: {
+    title?: string | null;
+    description?: string | null;
+    backgroundColor?: string | null;
+    cnt?: {
+      title?: string | null;
+      /**
+       * Row labels. Each column below gets one cell per row label, in the same order.
+       */
+      rows?: string[] | null;
+      cols?:
+        | {
+            title?: string | null;
+            /**
+             * Cells are generated automatically from row labels above.
+             */
+            cells?:
+              | {
+                  value?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+          }[]
+        | null;
+    };
+  };
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -1119,8 +1384,149 @@ export interface BranchContactPagesSelect<T extends boolean = true> {
  * via the `definition` "branch-venue-rental-pages_select".
  */
 export interface BranchVenueRentalPagesSelect<T extends boolean = true> {
-  title?: T;
   branch?: T;
+  branchName?: T;
+  bookingCta?:
+    | T
+    | {
+        type?: T;
+        formSelectedButtonBgColor?: T;
+        formSelectedButtonTextColor?: T;
+        formSubmitButtonBgColor?: T;
+        formSubmitWhiteTextOnHover?: T;
+        formSubmitDarkBrownTextOnHover?: T;
+        linkoutDescription?: T;
+        linkoutButtonBgColor?: T;
+        linkoutButtonText?: T;
+        linkoutButtonLink?: T;
+        linkoutButtonWhiteTextOnHover?: T;
+      };
+  title?: T;
+  landingMedia?:
+    | T
+    | {
+        desktop?: T;
+        mobile?: T;
+      };
+  venuePackage?:
+    | T
+    | {
+        type?: T;
+        pdf?: T;
+        link?: T;
+      };
+  venues?:
+    | T
+    | {
+        title?: T;
+        buttonBgColor?: T;
+        buttonTextColor?: T;
+        mediaGallery?: T;
+        amenitiesDescription?: T;
+        venueDescription?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+            };
+        information?:
+          | T
+          | {
+              area?: T;
+              numberOfPeople?: T;
+            };
+        venueAmenities?:
+          | T
+          | {
+              icon?: T;
+              text?: T;
+              id?: T;
+            };
+        otherAmenities?:
+          | T
+          | {
+              icon?: T;
+              text?: T;
+              id?: T;
+            };
+        additionalFee?:
+          | T
+          | {
+              icon?: T;
+              text?: T;
+              id?: T;
+            };
+        staffFee?:
+          | T
+          | {
+              title?: T;
+              info?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+            };
+        cta?:
+          | T
+          | {
+              ctaText?: T;
+              ctaLink?: T;
+              buttonBgColor?: T;
+            };
+        id?: T;
+      };
+  rate?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        backgroundColor?: T;
+        cnt?:
+          | T
+          | {
+              title?: T;
+              rows?: T;
+              cols?:
+                | T
+                | {
+                    title?: T;
+                    cells?:
+                      | T
+                      | {
+                          value?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+            };
+      };
+  promo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        backgroundColor?: T;
+        cnt?:
+          | T
+          | {
+              title?: T;
+              rows?: T;
+              cols?:
+                | T
+                | {
+                    title?: T;
+                    cells?:
+                      | T
+                      | {
+                          value?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+            };
+      };
   meta?:
     | T
     | {
@@ -1785,6 +2191,14 @@ export interface VenueRentalPage {
         bgColor?: string | null;
         textColor?: string | null;
         buttonColor?: string | null;
+        /**
+         * If enabled, the button text will be white on hover. Cannot be selected with dark brown hover text.
+         */
+        buttonWhiteTextOnHover?: boolean | null;
+        /**
+         * If enabled, the button text will be dark brown on hover. Cannot be selected with white hover text.
+         */
+        buttonDarkBrownTextOnHover?: boolean | null;
         title?: string | null;
         cta?: {
           text?: string | null;
@@ -2139,6 +2553,8 @@ export interface VenueRentalPageSelect<T extends boolean = true> {
         bgColor?: T;
         textColor?: T;
         buttonColor?: T;
+        buttonWhiteTextOnHover?: T;
+        buttonDarkBrownTextOnHover?: T;
         title?: T;
         cta?:
           | T

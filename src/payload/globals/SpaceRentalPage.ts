@@ -1,5 +1,6 @@
 import type { Field, GlobalConfig } from 'payload'
 
+import { exclusiveCheckboxField } from '@/payload/shared/exclusiveCheckboxField'
 import { updatePageSaveButtonGlobal } from '@/payload/shared/updatePageSaveButton'
 
 const colorPickerField = (name: string, label: string): Field => ({
@@ -34,6 +35,18 @@ const branchGroupFields: Field[] = [
   colorPickerField('bgColor', 'Background Color'),
   colorPickerField('textColor', 'Text Color'),
   colorPickerField('buttonColor', 'Button Color'),
+  exclusiveCheckboxField(
+    'buttonWhiteTextOnHover',
+    'Button White Text on Hover',
+    'buttonDarkBrownTextOnHover',
+    'If enabled, the button text will be white on hover. Cannot be selected with dark brown hover text.',
+  ),
+  exclusiveCheckboxField(
+    'buttonDarkBrownTextOnHover',
+    'Button Dark Brown Text on Hover',
+    'buttonWhiteTextOnHover',
+    'If enabled, the button text will be dark brown on hover. Cannot be selected with white hover text.',
+  ),
   {
     name: 'title',
     type: 'text',

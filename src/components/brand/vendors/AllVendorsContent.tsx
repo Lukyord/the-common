@@ -25,6 +25,7 @@ import {
   captureResultsShellHeight,
 } from '@/lib/animateResultsShellHeight'
 import Image from 'next/image'
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 const MOOD_FILTER_ALL = 'all' as const
 const TAG_LOAD_MORE_URL = '/api/cards/vendors'
@@ -359,38 +360,40 @@ export default function AllVendorsContent({
         <div className="search">
           {titleNode}
 
-          <form action="" onSubmit={handleSearchSubmit} className="search-form">
-            <label htmlFor="all-vendors-search" className="visually-hidden">
-              Search vendors
-            </label>
-            <input
-              id="all-vendors-search"
-              type="search"
-              name="q"
-              value={searchQuery}
-              onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="Find your vendor soulmate"
-              autoComplete="off"
-              className="search-form__input type-d-title type-m-title weight-medium letter-spacing-002"
-            />
-            {searchQuery ? (
-              <button
-                type="button"
-                className="search-form__action"
-                onClick={() => setSearchQuery('')}
-                aria-label="Clear search"
-              >
-                <i className="ic ic-close-bold" aria-hidden />
-              </button>
-            ) : (
-              <span className="search-form__action" aria-hidden>
-                <i className="ic ic-search" />
-              </span>
-            )}
-          </form>
+          <AnimateOnScroll delay={100} triggerClass="fadeIn">
+            <form action="" onSubmit={handleSearchSubmit} className="search-form">
+              <label htmlFor="all-vendors-search" className="visually-hidden">
+                Search vendors
+              </label>
+              <input
+                id="all-vendors-search"
+                type="search"
+                name="q"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Find your vendor soulmate"
+                autoComplete="off"
+                className="search-form__input type-d-title type-m-title weight-medium letter-spacing-002"
+              />
+              {searchQuery ? (
+                <button
+                  type="button"
+                  className="search-form__action"
+                  onClick={() => setSearchQuery('')}
+                  aria-label="Clear search"
+                >
+                  <i className="ic ic-close-bold" aria-hidden />
+                </button>
+              ) : (
+                <span className="search-form__action" aria-hidden>
+                  <i className="ic ic-search" />
+                </span>
+              )}
+            </form>
+          </AnimateOnScroll>
         </div>
 
-        <div className="branch-filter">
+        <AnimateOnScroll delay={200} triggerClass="fadeIn" className="branch-filter">
           {branchFilterItems.map((branch) => {
             const shapes = getBranchFilterShape(branch.slug)
             if (!shapes) return null
@@ -425,13 +428,18 @@ export default function AllVendorsContent({
               </button>
             )
           })}
-        </div>
+        </AnimateOnScroll>
       </div>
 
       <div className="result">
         {!showSearchResults ? (
           <>
-            <div className="tags-filter-wrapper" data-section="vendors-list">
+            <AnimateOnScroll
+              triggerClass="fadeIn"
+              delay={300}
+              className="tags-filter-wrapper"
+              data-section="vendors-list"
+            >
               <div className="result-label">
                 <p className="type-d-header type-m-headliner-m letter-spacing-002 weight-medium">
                   I’M LOOKING FOR...
@@ -454,7 +462,7 @@ export default function AllVendorsContent({
                   />
                 ))}
               </div>
-            </div>
+            </AnimateOnScroll>
 
             <div
               ref={tagResultsShellRef}

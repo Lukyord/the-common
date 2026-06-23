@@ -7,13 +7,12 @@ import VendorCard from '@/components/branch/components/vendor-card/VendorCard'
 import VendorCardMultipleBranch from '@/components/branch/components/vendor-card/VendorCardMultipleBranch'
 import type { BranchVendorCard, MultiBranchVendorInfo } from '@/components/branch/vendors/types'
 import { toBrandVendorDetailHref } from '@/lib/vendorDetailLink'
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 const DEFAULT_EMPTY_MESSAGE = (
   <>
     We&apos;re having trouble tracking down
-    <br className="hidden-device-md" />
-    {' '}
-    spots you&apos;re looking for.
+    <br className="hidden-device-md" /> spots you&apos;re looking for.
     <br />
     Please try searching again.
   </>
@@ -107,7 +106,7 @@ export default function VendorsResultsGrid({
       )}
 
       {hasMore ? (
-        <div className="vendors-see-more">
+        <AnimateOnScroll triggerClass="fadeIn" className="vendors-see-more">
           <button
             type="button"
             className="see-more-button type-d-body-l type-m-title weight-medium letter-spacing-002"
@@ -119,7 +118,7 @@ export default function VendorsResultsGrid({
               <span>{isLoading || isFilterLoading ? 'LOADING...' : seeMoreLabel}</span>
             </span>
           </button>
-        </div>
+        </AnimateOnScroll>
       ) : null}
     </>
   )

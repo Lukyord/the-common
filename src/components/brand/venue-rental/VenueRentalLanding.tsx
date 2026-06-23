@@ -8,6 +8,7 @@ import { MarkdownContent } from '@/components/common/markdown-content'
 
 import VenueRentalGallery from './VenueRentalGallery'
 import type { VenueRentalBranchGroup } from './types'
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 type VenueRentalLandingProps = {
   groups: VenueRentalBranchGroup[]
@@ -26,23 +27,27 @@ function VenueRentalPanel({ group }: { group: VenueRentalBranchGroup }) {
       <div className="venue-rental-panel__content" style={panelStyle}>
         <div className="venue-rental-panel__header">
           {group.title ? (
-            <MarkdownContent
-              as="h1"
-              className="venue-rental-panel__title type-d-display type-m-display weight-medium letter-spacing-002"
-            >
-              {group.title}
-            </MarkdownContent>
+            <AnimateOnScroll triggerClass="fadeIn" className="venue-rental-panel__title">
+              <MarkdownContent
+                as="h1"
+                className="type-d-display type-m-display weight-medium letter-spacing-002"
+              >
+                {group.title}
+              </MarkdownContent>
+            </AnimateOnScroll>
           ) : null}
 
-          <Link href={`/${group.branchSlug}/venue-rental`} className="venue-rental-panel__link">
-            <span className="type-d-body-l type-m-body-m weight-medium letter-spacing-002 uppercase">
-              BRANCH RENTAL DETAIL
-            </span>
-            <i className="ic ic-arrow-square-top-right"></i>
-          </Link>
+          <AnimateOnScroll triggerClass="fadeIn" delay={100}>
+            <Link href={`/${group.branchSlug}/venue-rental`} className="venue-rental-panel__link">
+              <span className="type-d-body-l type-m-body-m weight-medium letter-spacing-002 uppercase">
+                BRANCH RENTAL DETAIL
+              </span>
+              <i className="ic ic-arrow-square-top-right"></i>
+            </Link>
+          </AnimateOnScroll>
         </div>
 
-        <div className="venue-rental-panel__info">
+        <AnimateOnScroll triggerClass="fadeIn" delay={200} className="venue-rental-panel__info">
           <div className="expand-icon">
             <i className="ic ic-chevron-up size-icon-3xs"></i>
           </div>
@@ -55,11 +60,39 @@ function VenueRentalPanel({ group }: { group: VenueRentalBranchGroup }) {
             </MarkdownContent>
           ) : null}
 
+          <div className="venue-list info-item">
+            <div className="item-ttl">
+              <h3 className="type-d-body-xs type-m-body-s letter-spacing-002">SPACE FOR RENTAL</h3>
+            </div>
+            <div className="item-content">
+              <p className="type-d-body-s type-m-title letter-spacing-002 weight-medium">
+                Indoor, Outdoor, Indoor & Outdoor
+              </p>
+            </div>
+          </div>
+          <div className="available-time info-item">
+            <div className="item-ttl">
+              <h3 className="type-d-body-xs type-m-body-s letter-spacing-002">AVAILABLE TIME</h3>
+            </div>
+            <div className="item-content">
+              <p className="letter-spacing-002">
+                <span className="weight-medium type-d-text-link type-m-body-m">Everyday </span>
+                <span className="type-d-body-m type-m-title">08:00 am – Midnight</span>
+              </p>
+            </div>
+          </div>
+
           {group.cta?.text ? (
             <div className="venue-rental-panel__cta">
               <Link
                 href="/contact"
-                className="button-template"
+                className={[
+                  'button-template',
+                  group.buttonWhiteTextOnHover && 'c-white-hover',
+                  group.buttonDarkBrownTextOnHover && 'c-dark-brown-hover',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
                 style={{ '--button-bg-color': group.buttonColor } as CSSProperties}
               >
                 <span>
@@ -68,7 +101,7 @@ function VenueRentalPanel({ group }: { group: VenueRentalBranchGroup }) {
               </Link>
             </div>
           ) : null}
-        </div>
+        </AnimateOnScroll>
       </div>
     </div>
   )
@@ -83,7 +116,12 @@ export default function VenueRentalLanding({ groups }: VenueRentalLandingProps) 
       defaultActiveTab={defaultActiveTab}
       className="venue-rental-tabs-container"
     >
-      <nav className="venue-rental-tabs" aria-label="Venue rental branches">
+      <AnimateOnScroll
+        triggerClass="fadeIn"
+        delay={400}
+        className="venue-rental-tabs"
+        aria-label="Venue rental branches"
+      >
         {groups.map((group) => {
           const panelStyle = {
             '--venue-rental-text-color': group.textColor ?? undefined,
@@ -102,7 +140,7 @@ export default function VenueRentalLanding({ groups }: VenueRentalLandingProps) 
             </TabItem>
           )
         })}
-      </nav>
+      </AnimateOnScroll>
 
       <TabContents className="venue-rental-tab-contents">
         {groups.map((group) => (
