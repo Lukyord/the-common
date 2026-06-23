@@ -7,7 +7,6 @@ import {
   useMemo,
   useRef,
   useState,
-  type CSSProperties,
   type FormEvent,
   type ReactNode,
 } from 'react'
@@ -21,7 +20,6 @@ import type {
 } from '@/components/branch/vendors/types'
 import { BRANCH_VENDORS_PAGE_SIZE } from '@/components/branch/vendors/types'
 import { ALL_BRANCH_FILTER_SLUG, getBranchFilterShape } from '@/constants/branchFilterShapes'
-import { branchHeaderThemeStyle } from '@/lib/branchTheme'
 import {
   animateResultsShellHeight,
   captureResultsShellHeight,
@@ -112,16 +110,6 @@ export default function AllVendorsContent({
   const searchResultsShellRef = useRef<HTMLDivElement>(null)
   const tagTransitionStartHeightRef = useRef<number | null>(null)
   const searchTransitionStartHeightRef = useRef<number | null>(null)
-
-  const selectedBranch = useMemo(
-    () => branches.find((branch) => branch.slug === committedBranchSlug) ?? branches[0],
-    [committedBranchSlug, branches],
-  )
-
-  const themeStyle = branchHeaderThemeStyle({
-    bgColor: selectedBranch?.bgColor,
-    primaryColor: selectedBranch?.primaryColor,
-  })
 
   const displayLifestyles = useMemo(
     () => (isMobile ? sortLifestylesForWrap(lifestyles) : lifestyles),

@@ -3,7 +3,6 @@ import { branchHeaderThemeStyle } from '@/lib/branchTheme'
 import { formatPhoneDisplay, normalizeTelHref } from '@/lib/formatPhone'
 import type { Branch, Vendor } from '@/payload-types'
 import Link from 'next/link'
-import { CardBranchDots } from '../../components/card-branch-dots'
 
 type VendorSingleContactProps = {
   tel?: Vendor['tel']

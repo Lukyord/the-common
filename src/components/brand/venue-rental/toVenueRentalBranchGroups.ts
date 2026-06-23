@@ -4,9 +4,7 @@ import type { Media, VenueRentalPage } from '@/payload-types'
 
 import type { VenueRentalBranchGroup } from './types'
 
-function resolveGalleryItems(
-  mediaGallery?: (number | Media)[] | null,
-): ContentSingleGalleryItem[] {
+function resolveGalleryItems(mediaGallery?: (number | Media)[] | null): ContentSingleGalleryItem[] {
   if (!mediaGallery?.length) return []
 
   return mediaGallery
@@ -39,5 +37,5 @@ export function toVenueRentalBranchGroups(
         cta: group.cta,
       }
     })
-    .filter((group): group is VenueRentalBranchGroup => Boolean(group))
+    .filter((group): group is NonNullable<typeof group> => Boolean(group))
 }

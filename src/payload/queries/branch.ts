@@ -44,7 +44,7 @@ import { getVendorDetailHref } from '@/lib/vendorDetailLink'
 import type {
   Branch,
   BranchContactPage,
-  BranchSpaceRentalPage,
+  BranchVenueRentalPage,
   BranchVendorPage,
   BranchWhatsOnPage,
   Vendor,
@@ -135,11 +135,11 @@ export const getBranchVendorPageBySlug = cache(
 )
 
 export const getBranchSpaceRentalPageBySlug = cache(
-  async (branchSlug: string): Promise<BranchSpaceRentalPage> => {
+  async (branchSlug: string): Promise<BranchVenueRentalPage> => {
     const branch = await getBranchBySlug(branchSlug)
     const payload = await getPayloadClient()
     const { docs } = await payload.find({
-      collection: 'branch-space-rental-pages',
+      collection: 'branch-venue-rental-pages',
       where: { branch: { equals: branch.id } },
       depth: 1,
       limit: 1,

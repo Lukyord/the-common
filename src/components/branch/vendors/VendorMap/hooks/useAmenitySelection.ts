@@ -71,7 +71,7 @@ export function useAmenitySelection({
 
   const selectMobileAmenity = (amenityId: AmenityId) => {
     setHoveredAmenityId(amenityId)
-    sectionRef.current && scrollToElement(sectionRef.current)
+    if (sectionRef.current) scrollToElement(sectionRef.current)
   }
 
   const amenityPinsClassName = [

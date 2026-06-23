@@ -164,12 +164,12 @@ export function useStoreSelection({
 
   const selectMobileVendor = (lotNumber: number) => {
     selectStore(lotNumber, displayedFloor)
-    sectionRef.current && scrollToElement(sectionRef.current)
+    if (sectionRef.current) scrollToElement(sectionRef.current)
   }
 
   const selectMobileMapOnlyLot = (mapKey: string) => {
     selectMapOnlyLot(mapKey, displayedFloor)
-    sectionRef.current && scrollToElement(sectionRef.current)
+    if (sectionRef.current) scrollToElement(sectionRef.current)
   }
 
   const clearStore = () => {
