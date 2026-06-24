@@ -34,7 +34,9 @@ export default function VenueRentalBookingModal({
   return (
     <Modal open={open} onClose={onClose} className="venue-rental-modal">
       <button type="button" onClick={onClose} aria-label="Close" className="modal__close">
-        <i className="ic ic-close-bold"></i>
+        <i className="ic ic-close-bold show-md"></i>
+        <i className="ic ic-arrow-left hidden-device-md"></i>
+        <span className="hidden-device-md weight-medium">BACK</span>
       </button>
 
       {ctaType === 'linkout' ? (

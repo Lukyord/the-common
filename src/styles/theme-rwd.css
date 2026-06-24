@@ -1522,4 +1522,37 @@
   [data-section='venue-rental-landing'] .venue-rental-panel__cta {
     margin-top: var(--spacing-lg);
   }
+
+  .modal.venue-rental-modal {
+    padding: 0;
+    z-index: 99;
+  }
+
+  .venue-rental-modal .modal__content {
+    max-width: 100%;
+    max-height: 100dvh;
+    width: 100%;
+    height: 100dvh;
+  }
+
+  .venue-booking-success {
+    height: 100dvh;
+  }
+
+  .venue-rental-modal .modal__close {
+    right: auto;
+    left: var(--spacing-container);
+    top: calc(var(--header-height) + var(--spacing-2lg));
+    font-size: 1.6rem;
+    align-items: center;
+    gap: var(--spacing-4xs);
+
+    .ic {
+      font-size: 1.2rem;
+    }
+  }
+
+  .venue-form-inner {
+    padding-top: calc(var(--header-height) + var(--spacing-5xl));
+  }
 }

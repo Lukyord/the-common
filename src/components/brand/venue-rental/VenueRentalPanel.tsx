@@ -5,6 +5,7 @@ import { useState, type CSSProperties } from 'react'
 
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { MarkdownContent } from '@/components/common/markdown-content'
+import { scrollToTop } from '@/utils/functions/scrollTo'
 
 import VenueRentalBookingModal from './booking/VenueRentalBookingModal'
 import VenueRentalGallery from './VenueRentalGallery'
@@ -20,6 +21,13 @@ export default function VenueRentalPanel({ group }: VenueRentalPanelProps) {
     '--venue-rental-text-color': group.textColor ?? undefined,
     '--venue-rental-bg-color': group.bgColor ?? undefined,
   } as CSSProperties
+
+  const openBookingModal = () => {
+    if (window.matchMedia('(max-width: 991px)').matches) {
+      scrollToTop({ immediate: true })
+    }
+    setIsBookingModalOpen(true)
+  }
 
   return (
     <div className="venue-rental-panel" style={panelStyle}>
@@ -116,7 +124,7 @@ export default function VenueRentalPanel({ group }: VenueRentalPanelProps) {
                   .filter(Boolean)
                   .join(' ')}
                 style={{ '--button-bg-color': group.buttonColor } as CSSProperties}
-                onClick={() => setIsBookingModalOpen(true)}
+                onClick={openBookingModal}
               >
                 <span>
                   <span>{group.cta.text}</span>
