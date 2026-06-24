@@ -1,7 +1,11 @@
 import { Resend } from 'resend'
 
 import type { ContactFormValues } from '@/components/brand/contact/contactFormSchema'
-import { escapeHtml } from '@/lib/email/escapeHtml'
+import {
+  buildInquiryEmailHtml,
+  buildInquiryEmailText,
+  type InquiryEmailField,
+} from '@/lib/email/inquiryEmailTemplate'
 
 export type SendContactInquiryParams = {
   values: ContactFormValues
@@ -19,23 +23,25 @@ function getResendClient(): Resend | null {
   return new Resend(apiKey)
 }
 
-function buildInquiryLines(values: ContactFormValues): string[] {
-  const lines = [
-    `Name: ${values.name}`,
-    `Email: ${values.email}`,
+function buildInquiryContent(values: ContactFormValues) {
+  const fields: InquiryEmailField[] = [
+    { label: 'Name', value: values.name },
+    { label: 'Email', value: values.email, href: `mailto:${values.email}` },
   ]
 
   if (values.phone.trim()) {
-    lines.push(`Phone: ${values.phone}`)
+    fields.push({ label: 'Phone', value: values.phone, href: `tel:${values.phone.replace(/\s/g, '')}` })
   }
 
   if (values.subject.trim()) {
-    lines.push(`Subject: ${values.subject}`)
+    fields.push({ label: 'Subject', value: values.subject })
   }
 
-  lines.push('', 'Message:', values.message)
-
-  return lines
+  return {
+    heading: 'Contact Inquiry',
+    fields,
+    section: { label: 'Message', value: values.message },
+  }
 }
 
 export async function sendContactInquiry({
@@ -49,10 +55,9 @@ export async function sendContactInquiry({
   }
 
   const subjectLabel = values.subject.trim() || 'General inquiry'
-  const text = buildInquiryLines(values).join('\n')
-  const html = buildInquiryLines(values)
-    .map((line) => (line === '' ? '<br />' : `<p>${escapeHtml(line)}</p>`))
-    .join('')
+  const content = buildInquiryContent(values)
+  const text = buildInquiryEmailText(content)
+  const html = buildInquiryEmailHtml(content)
 
   const { error } = await resend.emails.send({
     from,

@@ -1321,7 +1321,7 @@ select:-webkit-autofill:focus {
 }
 
 textarea {
-  --height: calc(var(--input-height) * 2);
+  --height: calc(var(--input-height) * 3);
   resize: none;
   display: block;
   overflow: auto;
@@ -1445,6 +1445,7 @@ textarea {
   grid-template-rows: 0fr;
   transition: grid-template-rows var(--duration) var(--timing-function);
   pointer-events: none;
+  max-height: 25rem;
 }
 
 .custom-select__panel[data-open='true'] {
@@ -1453,10 +1454,16 @@ textarea {
 }
 
 .custom-select__panel-inner {
-  overflow: hidden;
   min-height: 0;
   background-color: var(--custom-select-panel-bg, var(--color-beige));
   border-top: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .custom-select__panel ul {

@@ -18,19 +18,11 @@ type VenueRentalGalleryProps = {
 
 export default function VenueRentalGallery({ items, bgColor }: VenueRentalGalleryProps) {
   if (!items.length) {
-    return (
-      <div
-        className="venue-rental-gallery venue-rental-gallery--empty"
-        style={{ backgroundColor: bgColor ?? undefined } as CSSProperties}
-      />
-    )
+    return null
   }
 
   return (
-    <div
-      className="venue-rental-gallery"
-      style={{ backgroundColor: bgColor ?? undefined } as CSSProperties}
-    >
+    <div className="venue-rental-gallery dark-bg">
       <Swiper
         modules={[Pagination, Autoplay, EffectFade]}
         pagination={{ clickable: true }}

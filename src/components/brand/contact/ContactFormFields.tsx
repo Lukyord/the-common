@@ -175,7 +175,7 @@ export default function ContactFormFields({ subjects, buttonColor }: ContactForm
         <AnimateOnScroll triggerClass="fadeIn" className="field">
           <div className="input" data-has-error={errors.message ? '' : undefined}>
             <label className="label anim fixed" htmlFor="contact-message">
-              <span>Message</span>
+              <span>Write your inquiry here</span>
             </label>
             <textarea
               id="contact-message"

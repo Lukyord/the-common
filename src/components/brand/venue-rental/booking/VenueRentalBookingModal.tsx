@@ -1,16 +1,18 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 import { Modal } from '@/components/common/modal'
 
-import type { VenueRentalBookingCta } from './types'
-import VenueRentalLinkoutContent from './VenueRentalLinkoutContent'
+import type { VenueRentalBookingCta } from '../types'
 import VenueRentalBookingForm from './VenueRentalBookingForm'
+import VenueRentalBookingSuccess from './VenueRentalBookingSuccess'
+import VenueRentalLinkoutContent from './VenueRentalLinkoutContent'
 
 type VenueRentalBookingModalProps = {
   open: boolean
   onClose: () => void
   formTitle: string
-  showBackMobile: boolean
   formAreaOptions: string[]
   bookingCta?: VenueRentalBookingCta | null
 }
@@ -19,11 +21,15 @@ export default function VenueRentalBookingModal({
   open,
   onClose,
   formTitle,
-  showBackMobile,
   formAreaOptions,
   bookingCta,
 }: VenueRentalBookingModalProps) {
   const ctaType = bookingCta?.type ?? 'form'
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  useEffect(() => {
+    if (!open) setTimeout(() => setIsSubmitted(false), 300)
+  }, [open])
 
   return (
     <Modal open={open} onClose={onClose} className="venue-rental-modal">
@@ -33,12 +39,14 @@ export default function VenueRentalBookingModal({
 
       {ctaType === 'linkout' ? (
         <VenueRentalLinkoutContent bookingCta={bookingCta ?? { type: 'linkout' }} />
+      ) : isSubmitted ? (
+        <VenueRentalBookingSuccess bookingCta={bookingCta} />
       ) : (
         <VenueRentalBookingForm
           title={formTitle}
-          showBackMobile={showBackMobile}
           formAreaOptions={formAreaOptions}
           bookingCta={bookingCta}
+          onSubmitSuccess={() => setIsSubmitted(true)}
         />
       )}
     </Modal>

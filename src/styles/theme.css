@@ -4237,6 +4237,11 @@ html.no-touchevents [data-section='all-vendors'] .branch-filter__item:hover,
   align-items: flex-end;
   gap: var(--spacing-3xs);
   padding: var(--spacing-container);
+  pointer-events: none;
+}
+
+[data-section='venue-rental-landing'] .venue-rental-panel__content > * {
+  pointer-events: auto;
 }
 
 [data-section='venue-rental-landing'] .venue-rental-panel__info .info-item__inner {
@@ -4341,6 +4346,9 @@ html.no-touchevents [data-section='venue-rental-landing'] .venue-rental-panel__l
 }
 
 .venue-form {
+  background-image: url('../../public/designs/checked-bg.webp');
+  background-repeat: repeat;
+  background-size: 150rem;
   background-color: var(--color-beige);
   padding: 0 var(--spacing-container);
   --input-color: rgba(var(--color-dark-brown-rgb), 0.6);
@@ -4360,7 +4368,177 @@ html.no-touchevents [data-section='venue-rental-landing'] .venue-rental-panel__l
 }
 
 .venue-form .field--select .field-label {
-  margin-bottom: var(--spacing-2xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+.venue-form .field--reservation {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.venue-form .field-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.venue-form .field--half {
+  flex: 1 1 calc(50% - var(--spacing-md) / 2);
+  min-width: min(100%, 20rem);
+}
+
+.venue-form .input--date input {
+  position: relative;
+  padding-right: calc(var(--spacing-md) + 2rem);
+  cursor: pointer;
+}
+
+.venue-form .input--date:not(.filled) input {
+  color: transparent;
+}
+
+.venue-form .input--date:not(.filled) input::-webkit-datetime-edit,
+.venue-form .input--date:not(.filled) input::-webkit-datetime-edit-fields-wrapper {
+  opacity: 0;
+}
+
+.venue-form .input--date.filled input {
+  color: var(--input-color-active);
+}
+
+.venue-form .input--date.filled input::-webkit-datetime-edit,
+.venue-form .input--date.filled input::-webkit-datetime-edit-fields-wrapper {
+  opacity: 1;
+}
+
+.venue-form .input--date .ic-calendar,
+.venue-form .venue-time-select__icon .ic {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  height: var(--input-height);
+  pointer-events: none;
+  color: var(--input-color);
+  font-size: 2rem;
+}
+
+.venue-form .input--date.filled .ic-calendar,
+.venue-form .venue-time-select.filled .venue-time-select__icon {
+  color: var(--input-color-active);
+}
+
+.venue-form .input--date input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.venue-form .field--half .venue-time-select__control {
+  position: relative;
+}
+
+.venue-form .venue-time-select__control {
+  border-bottom: 1px solid rgba(var(--color-dark-brown-rgb), 0.4);
+  transition: border-color var(--duration) var(--timing-function);
+}
+
+.venue-form .venue-time-select.filled .venue-time-select__control {
+  border-color: var(--input-color-active);
+}
+
+.venue-form .venue-time-select__trigger {
+  background: none;
+  border: none;
+  width: 100%;
+  height: var(--input-height);
+  padding-top: var(--spacing-2xs);
+  padding-right: calc(var(--spacing-md) + 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4xs);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--input-font-size);
+  line-height: normal;
+  color: var(--input-color);
+  cursor: pointer;
+  text-align: left;
+}
+
+.venue-form .venue-time-select.filled .venue-time-select__trigger {
+  color: var(--input-color-active);
+}
+
+.venue-form .venue-time-select__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.venue-form .venue-time-select__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows var(--duration) var(--timing-function);
+}
+
+.venue-form .venue-time-select.is-open .venue-time-select__panel {
+  grid-template-rows: 1fr;
+}
+
+.venue-form .venue-time-select__panel-inner {
+  overflow: hidden;
+  min-height: 0;
+  max-height: 15rem;
+}
+
+.venue-form .venue-time-select.is-open .venue-time-select__panel-inner {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.venue-form .venue-time-select.is-open .venue-time-select__panel-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.venue-form .venue-time-select__panel ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.venue-form .venue-time-select__option {
+  width: 100%;
+  padding: var(--spacing-6xs) 0;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--input-font-size);
+  line-height: normal;
+  text-align: left;
+  color: var(--input-color);
+  cursor: pointer;
+  transition: color var(--duration) var(--timing-function);
+}
+
+.venue-form .venue-time-select__option[aria-selected='true'] {
+  color: var(--input-color-active);
+}
+
+html.no-touchevents .venue-form .venue-time-select__option:hover {
+  color: var(--input-color-active);
 }
 
 .venue-area-select {
@@ -4432,4 +4610,22 @@ html.no-touchevents [data-section='venue-rental-landing'] .venue-rental-panel__l
 .venue-area-select__input:checked + .venue-area-select__button:after {
   opacity: 1;
   transform: translateY(-50%) scale(1);
+}
+
+.venue-form .form-submit {
+  margin-left: auto;
+}
+
+.field--reservation .field-label {
+  margin-bottom: var(--spacing-2sm);
+}
+
+.venue-booking-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  text-align: center;
+  justify-content: center;
+  height: 40rem;
 }
