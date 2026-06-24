@@ -11,14 +11,30 @@ type VenueRentalLinkoutContentProps = {
 
 export default function VenueRentalLinkoutContent({ bookingCta }: VenueRentalLinkoutContentProps) {
   return (
-    <div>
-      {bookingCta.linkoutDescription && (
-        <LexicalToHTML data={bookingCta.linkoutDescription as SerializedEditorState} />
-      )}
+    <div className="venue-form">
+      <div className="venue-form-inner venue-booking-success">
+        <div className="venue-booking-success__message venue-booking-success__message type-d-body-l type-m-headliner-m weight-medium letter-spacing-002">
+          {bookingCta.linkoutDescription && (
+            <LexicalToHTML data={bookingCta.linkoutDescription as SerializedEditorState} />
+          )}
+        </div>
 
-      {bookingCta.linkoutButtonText && bookingCta.linkoutButtonLink && (
-        <Link href={bookingCta.linkoutButtonLink}>{bookingCta.linkoutButtonText}</Link>
-      )}
+        {bookingCta.linkoutButtonText && bookingCta.linkoutButtonLink && (
+          <Link
+            href={bookingCta.linkoutButtonLink}
+            className="button-template"
+            style={
+              {
+                '--button-bg-color': bookingCta.linkoutButtonBgColor,
+              } as React.CSSProperties
+            }
+          >
+            <span>
+              <span>{bookingCta.linkoutButtonText}</span>
+            </span>
+          </Link>
+        )}
+      </div>
     </div>
   )
 }

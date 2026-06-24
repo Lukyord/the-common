@@ -3,13 +3,29 @@
 import type { CSSProperties } from 'react'
 
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
-import { TabContainer, TabContent, TabContents, TabItem, TabLink } from '@/components/common/tab'
+import { TabContainer, TabContent, TabContents, TabItem, TabLink, useTabContext } from '@/components/common/tab'
 
 import VenueRentalPanel from './VenueRentalPanel'
 import type { VenueRentalBranchGroup } from './types'
+import { useVenueRentalPanelMinHeight } from './useVenueRentalPanelMinHeight'
 
 type VenueRentalLandingProps = {
   groups: VenueRentalBranchGroup[]
+}
+
+function VenueRentalTabContents({ groups }: { groups: VenueRentalBranchGroup[] }) {
+  const { activeTab } = useTabContext()
+  const tabContentsRef = useVenueRentalPanelMinHeight(activeTab)
+
+  return (
+    <TabContents ref={tabContentsRef} className="venue-rental-tab-contents">
+      {groups.map((group) => (
+        <TabContent key={group.tabId} tabId={group.tabId}>
+          <VenueRentalPanel group={group} />
+        </TabContent>
+      ))}
+    </TabContents>
+  )
 }
 
 export default function VenueRentalLanding({ groups }: VenueRentalLandingProps) {
@@ -47,13 +63,7 @@ export default function VenueRentalLanding({ groups }: VenueRentalLandingProps) 
         })}
       </AnimateOnScroll>
 
-      <TabContents className="venue-rental-tab-contents">
-        {groups.map((group) => (
-          <TabContent key={group.tabId} tabId={group.tabId}>
-            <VenueRentalPanel group={group} />
-          </TabContent>
-        ))}
-      </TabContents>
+      <VenueRentalTabContents groups={groups} />
     </TabContainer>
   )
 }

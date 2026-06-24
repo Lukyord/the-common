@@ -4232,9 +4232,12 @@ html.no-touchevents [data-section='all-vendors'] .branch-filter__item:hover,
   position: absolute;
   inset: 0;
   z-index: 10;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  grid-auto-flow: column;
   align-items: flex-end;
+  align-content: flex-end;
   gap: var(--spacing-3xs);
   padding: var(--spacing-container);
   pointer-events: none;
@@ -4258,6 +4261,7 @@ html.no-touchevents [data-section='all-vendors'] .branch-filter__item:hover,
 [data-section='venue-rental-landing'] .venue-rental-panel__title {
   max-width: 40rem;
   color: var(--color-white);
+  height: fit-content;
 }
 
 [data-section='venue-rental-landing'] .venue-rental-panel__link {
@@ -4283,7 +4287,10 @@ html.no-touchevents [data-section='venue-rental-landing'] .venue-rental-panel__l
 }
 
 [data-section='venue-rental-landing'] .venue-rental-panel__info {
+  grid-column: 2;
+  grid-row: span 2;
   max-width: 56.1rem;
+  height: fit-content;
   padding: var(--spacing-xs) var(--spacing-xs) var(--spacing-sm);
   color: var(--venue-rental-text-color, var(--color-dark-brown));
   background-color: var(--venue-rental-bg-color, var(--color-beige));

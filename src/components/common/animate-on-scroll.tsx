@@ -31,6 +31,10 @@ function getScrollParent(element: HTMLElement): HTMLElement | undefined {
   return undefined
 }
 
+function isMeasurable(element: HTMLElement) {
+  return element.offsetHeight > 0
+}
+
 type AnimateOnScrollProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
   'className' | 'onEnter' | 'onLeave'
@@ -113,6 +117,7 @@ export default function AnimateOnScroll({
 
     const runShow = () => {
       if (once && hasShownRef.current) return
+      if (!isMeasurable(element)) return
       hasShownRef.current = true
 
       if (delay) {
@@ -147,6 +152,7 @@ export default function AnimateOnScroll({
 
     const checkInitialVisibility = () => {
       scrollTrigger.refresh()
+      if (!isMeasurable(element)) return
       if (scrollTrigger.progress > 0) {
         runShow()
       } else if (!scroller && ScrollTrigger.isInViewport(element)) {
@@ -154,9 +160,13 @@ export default function AnimateOnScroll({
       }
     }
 
+    const onRefresh = () => checkInitialVisibility()
+
     checkInitialVisibility()
+    ScrollTrigger.addEventListener('refresh', onRefresh)
 
     return () => {
+      ScrollTrigger.removeEventListener('refresh', onRefresh)
       scrollTrigger.kill()
     }
   }, [triggerClass, start, toggleActions, once, delay, onEnter, onLeave, onEnterBack, onLeaveBack])

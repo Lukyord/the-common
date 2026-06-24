@@ -1,16 +1,23 @@
 'use client'
 
 import { useCallback, useEffect, useId, useRef, useState, type PropsWithChildren } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+import { scrollToY } from '@/utils/functions/scrollTo'
+
+import { TabContext, type TabContextValue } from './tab-context'
+import { registerTabContainer, unregisterTabContainer, tabContainers } from './use-tab-control'
 
 declare global {
     interface Window {
         updateMatchHeight?: () => void
     }
 }
-import { scrollToY } from '@/utils/functions/scrollTo'
 
-import { TabContext, type TabContextValue } from './tab-context'
-import { registerTabContainer, unregisterTabContainer, tabContainers } from './use-tab-control'
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger)
+}
 
 type TabContainerProps = PropsWithChildren<{
     defaultActiveTab?: string
@@ -112,6 +119,16 @@ export function TabContainer({
             container.subscribers.forEach((subscriber) => subscriber(activeTab))
         }
     }, [id, activeTab])
+
+    useEffect(() => {
+        if (!activeTab) return
+
+        const frame = requestAnimationFrame(() => {
+            ScrollTrigger.refresh()
+        })
+
+        return () => cancelAnimationFrame(frame)
+    }, [activeTab])
 
     const contextValue: TabContextValue = {
         activeTab,

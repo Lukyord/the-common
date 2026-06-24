@@ -26,30 +26,32 @@ export default function VenueRentalPanel({ group }: VenueRentalPanelProps) {
       <VenueRentalGallery items={group.galleryItems} bgColor={group.bgColor} />
 
       <div className="venue-rental-panel__content" style={panelStyle}>
-        <div className="venue-rental-panel__header">
-          {group.title && (
-            <AnimateOnScroll triggerClass="fadeIn" className="venue-rental-panel__title">
-              <MarkdownContent
-                as="h1"
-                className="type-d-display type-m-display weight-medium letter-spacing-002"
-              >
-                {group.title}
-              </MarkdownContent>
-            </AnimateOnScroll>
-          )}
-
-          <AnimateOnScroll triggerClass="fadeIn" delay={100}>
-            <Link href={`/${group.branchSlug}/venue-rental`} className="venue-rental-panel__link">
-              <span className="type-d-body-l type-m-body-m weight-medium letter-spacing-002 uppercase">
-                BRANCH RENTAL DETAIL
-              </span>
-              <i className="ic ic-arrow-square-top-right"></i>
-            </Link>
+        {group.title && (
+          <AnimateOnScroll triggerClass="fadeIn" className="venue-rental-panel__title">
+            <MarkdownContent
+              as="h1"
+              className="type-d-display type-m-display weight-medium letter-spacing-002"
+            >
+              {group.title}
+            </MarkdownContent>
           </AnimateOnScroll>
-        </div>
+        )}
+
+        <AnimateOnScroll
+          triggerClass="fadeIn"
+          delay={100}
+          className="venue-rental-panel__link-container"
+        >
+          <Link href={`/${group.branchSlug}/venue-rental`} className="venue-rental-panel__link">
+            <span className="type-d-body-l type-m-body-m weight-medium letter-spacing-002 uppercase">
+              BRANCH RENTAL DETAIL
+            </span>
+            <i className="ic ic-arrow-square-top-right"></i>
+          </Link>
+        </AnimateOnScroll>
 
         <AnimateOnScroll triggerClass="fadeIn" delay={200} className="venue-rental-panel__info">
-          <div className="expand-icon">
+          <div className="expand-icon show-md">
             <i className="ic ic-chevron-up size-icon-3xs"></i>
           </div>
 
@@ -70,11 +72,20 @@ export default function VenueRentalPanel({ group }: VenueRentalPanelProps) {
                     SPACE FOR RENTAL
                   </h3>
                 </div>
-                <div className="item-content">
+                <div className="item-content show-md">
                   <p className="type-d-body-s type-m-title letter-spacing-002 weight-medium">
                     {group.venues.join(', ')}
                   </p>
                 </div>
+                <ul className="item-content hidden-device-md">
+                  {group.venues.map((venue) => (
+                    <li key={venue}>
+                      <span className="type-d-body-s type-m-title letter-spacing-002 weight-medium">
+                        {venue}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           )}
