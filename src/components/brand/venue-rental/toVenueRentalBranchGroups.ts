@@ -11,7 +11,7 @@ function getBranchId(branch: VenueRentalBranchVenuePage['branch']): number | nul
   return null
 }
 
-function getVenueFormOptionNames(page?: VenueRentalBranchVenuePage | null): string[] {
+export function getVenueFormOptionNames(page?: VenueRentalBranchVenuePage | null): string[] {
   if (!page?.venues?.length) return []
 
   return page.venues

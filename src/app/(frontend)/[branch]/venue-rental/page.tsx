@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
-import React from 'react'
 
+import BranchVenueRentalBookingSection from '@/components/brand/venue-rental/booking/BranchVenueRentalBookingSection'
+import BranchVenueRentalHeader, {
+  toBranchVenueRentalHeaderProps,
+} from '@/components/brand/venue-rental/BranchVenueRentalHeader'
+import { getVenueFormOptionNames } from '@/components/brand/venue-rental/toVenueRentalBranchGroups'
 import { generateMeta } from '@/lib/generateMeta'
 import { getBranchSpaceRentalPageBySlug } from '@/payload/queries/branch'
 
@@ -24,6 +28,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-export default function VenueRentalPage() {
-  return <div>Venue Rental Page</div>
+export default async function VenueRentalPage({ params }: Props) {
+  const { branch } = await params
+  const page = await getBranchSpaceRentalPageBySlug(branch)
+  const branchName =
+    (typeof page.branch === 'object' ? page.branch.name : null) ?? page.branchName ?? null
+  const formAreaOptions = getVenueFormOptionNames(page)
+
+  const headerProps = toBranchVenueRentalHeaderProps({
+    title: page.title,
+    branchName,
+    landingMedia: page.landingMedia,
+    venuePackage: page.venuePackage,
+  })
+
+  return (
+    <main className="branch-venue-rental-page">
+      <section data-section="branch-venue-rental-landing">
+        <div className="sc-header">
+          <BranchVenueRentalHeader {...headerProps} />
+        </div>
+        <div className="sc-content">
+          <BranchVenueRentalBookingSection
+            formTitle="VENUE RENTAL"
+            formAreaOptions={formAreaOptions}
+            bookingCta={page.bookingCta}
+          />
+        </div>
+      </section>
+    </main>
+  )
 }

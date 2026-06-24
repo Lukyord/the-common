@@ -81,6 +81,7 @@ export default function Modal({
       <div
         className={`modal__content ${contentClassName}`.trim()}
         onClick={(event) => event.stopPropagation()}
+        data-lenis-prevent
       >
         {children}
       </div>
