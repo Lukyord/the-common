@@ -4368,6 +4368,8 @@ html.no-touchevents [data-section='venue-rental-landing'] .venue-rental-panel__l
   padding: var(--spacing-2xl) 0;
   min-width: 0;
   overflow-x: clip;
+  max-width: 62rem;
+  margin: 0 auto;
 }
 
 .venue-form .form-ttl {

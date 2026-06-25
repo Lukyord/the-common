@@ -23,9 +23,10 @@ export default function VenueRentalTimeSelect({
   const labelId = `${id}-label`
   const rootRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-  const resolvedDefault = defaultValue || options[0] || ''
-  const [value, setValue] = useState(resolvedDefault)
+  const emptyValue = defaultValue ?? ''
+  const [value, setValue] = useState(emptyValue)
   const [isOpen, setIsOpen] = useState(false)
+  const selectableOptions = value ? options.filter((option) => option !== value) : options
 
   const syncFilled = (nextValue: string, open: boolean) => {
     const inputWrap = rootRef.current
@@ -34,9 +35,11 @@ export default function VenueRentalTimeSelect({
   }
 
   useEffect(() => {
-    setValue(resolvedDefault)
-    syncFilled(resolvedDefault, false)
-  }, [resolvedDefault])
+    setValue((current) => {
+      if (current && options.includes(current)) return current
+      return emptyValue
+    })
+  }, [emptyValue, options])
 
   useEffect(() => {
     syncFilled(value, isOpen)
@@ -47,14 +50,14 @@ export default function VenueRentalTimeSelect({
     if (!form) return
 
     const handleReset = () => {
-      setValue(resolvedDefault)
+      setValue(emptyValue)
       setIsOpen(false)
-      syncFilled(resolvedDefault, false)
+      syncFilled(emptyValue, false)
     }
 
     form.addEventListener('reset', handleReset)
     return () => form.removeEventListener('reset', handleReset)
-  }, [resolvedDefault])
+  }, [emptyValue])
 
   useEffect(() => {
     if (!isOpen) return
@@ -132,7 +135,7 @@ export default function VenueRentalTimeSelect({
         <div className="venue-time-select__panel" data-open={isOpen}>
           <div className="venue-time-select__panel-inner">
             <ul id={listboxId} role="listbox" aria-label={label}>
-              {options.map((option) => (
+              {selectableOptions.map((option) => (
                 <li key={option} role="presentation">
                   <button
                     type="button"

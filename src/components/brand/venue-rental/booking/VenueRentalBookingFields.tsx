@@ -104,7 +104,6 @@ export default function VenueRentalBookingFields({
                 name="reservation-start-time"
                 label="Starting time"
                 options={startTimeOptions}
-                defaultValue={startTimeOptions[0]}
               />
               <FormFieldError
                 id={errorId('reservationStartTime')}
