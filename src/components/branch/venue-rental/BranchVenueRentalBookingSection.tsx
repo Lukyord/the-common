@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 
-import type { VenueRentalBookingCta } from '../types'
-import VenueRentalBookingForm from './VenueRentalBookingForm'
-import VenueRentalBookingSuccess from './VenueRentalBookingSuccess'
-import VenueRentalLinkoutContent from './VenueRentalLinkoutContent'
+import type { VenueRentalBookingCta } from '@/components/brand/venue-rental/types'
+import VenueRentalBookingForm from '@/components/brand/venue-rental/booking/VenueRentalBookingForm'
+import VenueRentalBookingSuccess from '@/components/brand/venue-rental/booking/VenueRentalBookingSuccess'
+import VenueRentalLinkoutContent from '@/components/brand/venue-rental/booking/VenueRentalLinkoutContent'
 
 type BranchVenueRentalBookingSectionProps = {
   formTitle: string

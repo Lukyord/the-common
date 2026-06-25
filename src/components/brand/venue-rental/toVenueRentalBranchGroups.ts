@@ -1,4 +1,5 @@
 import type { ContentSingleGalleryItem } from '@/components/common/content-single/types'
+import { getVenueFormOptionNames } from '@/components/branch/venue-rental/getVenueFormOptionNames'
 import { resolveMedia } from '@/lib/resolveMedia'
 import type { Media, VenueRentalPage } from '@/payload-types'
 import type { VenueRentalBranchVenuePage } from '@/payload/queries/venue-rental-page'
@@ -9,15 +10,6 @@ function getBranchId(branch: VenueRentalBranchVenuePage['branch']): number | nul
   if (typeof branch === 'number') return branch
   if (branch?.id) return branch.id
   return null
-}
-
-export function getVenueFormOptionNames(page?: VenueRentalBranchVenuePage | null): string[] {
-  if (!page?.venues?.length) return []
-
-  return page.venues
-    .filter((venue) => venue.show !== false)
-    .map((venue) => venue.formOptionName?.trim())
-    .filter((name): name is string => Boolean(name))
 }
 
 function getVenueTitles(page?: VenueRentalBranchVenuePage | null): string[] {

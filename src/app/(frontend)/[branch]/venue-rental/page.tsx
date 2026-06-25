@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
 
-import BranchVenueRentalBookingSection from '@/components/brand/venue-rental/booking/BranchVenueRentalBookingSection'
+import BranchVenueRentalBookingSection from '@/components/branch/venue-rental/BranchVenueRentalBookingSection'
+import BranchVenueRentalColContent, {
+  toBranchVenueRentalColContentProps,
+} from '@/components/branch/venue-rental/BranchVenueRentalColContent'
 import BranchVenueRentalHeader, {
   toBranchVenueRentalHeaderProps,
-} from '@/components/brand/venue-rental/BranchVenueRentalHeader'
-import { getVenueFormOptionNames } from '@/components/brand/venue-rental/toVenueRentalBranchGroups'
+} from '@/components/branch/venue-rental/BranchVenueRentalHeader'
+import { getVenueFormOptionNames } from '@/components/branch/venue-rental/getVenueFormOptionNames'
 import { generateMeta } from '@/lib/generateMeta'
 import { getBranchSpaceRentalPageBySlug } from '@/payload/queries/branch'
 
@@ -41,6 +44,8 @@ export default async function VenueRentalPage({ params }: Props) {
     landingMedia: page.landingMedia,
     venuePackage: page.venuePackage,
   })
+  const rateSectionProps = toBranchVenueRentalColContentProps(page.rate)
+  const promoSectionProps = toBranchVenueRentalColContentProps(page.promo)
 
   return (
     <main className="branch-venue-rental-page">
@@ -56,6 +61,9 @@ export default async function VenueRentalPage({ params }: Props) {
           />
         </div>
       </section>
+
+      {rateSectionProps && <BranchVenueRentalColContent {...rateSectionProps} />}
+      {promoSectionProps && <BranchVenueRentalColContent {...promoSectionProps} />}
     </main>
   )
 }

@@ -4737,3 +4737,52 @@ html.no-touchevents
 [data-section='branch-venue-rental-landing'] .sc-content .venue-form-inner {
   padding: 0;
 }
+
+/* COL CONTENT */
+[data-section='col-content'] {
+  color: var(--col-content-text-color, var(--color-dark-brown));
+  background-color: var(--col-content-bg-color, var(--color-beige));
+}
+
+[data-section='col-content'] .container {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-container);
+}
+
+[data-section='col-content'] .sc-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-3xs);
+  width: 43.4558823529%;
+}
+
+[data-section='col-content'] .venue-rental-rate-table {
+  width: max(47.7941176471%, 65rem);
+  flex-shrink: 0;
+}
+
+[data-section='col-content'] .venue-rental-rate-table table {
+  table-layout: fixed;
+}
+
+[data-section='col-content'] .venue-rental-rate-table th,
+[data-section='col-content'] .venue-rental-rate-table td {
+  vertical-align: top;
+  text-align: left;
+  text-wrap: balance;
+  padding-right: var(--spacing-xs);
+}
+
+[data-section='col-content'] .venue-rental-rate-table th {
+  padding-bottom: var(--spacing-3xs);
+}
+
+[data-section='col-content'] .venue-rental-rate-table tr:not(:last-child) > * {
+  padding-bottom: var(--spacing-3xs);
+}
+
+[data-section='col-content'] .venue-rental-rate-table tbody tr:last-child > th {
+  padding-bottom: 0;
+}
