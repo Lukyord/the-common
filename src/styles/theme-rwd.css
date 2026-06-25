@@ -1598,6 +1598,14 @@
     padding: var(--spacing-sm) var(--spacing-container);
   }
 
+  [data-section='branch-venue-rental-landing'] .sc-content .venue-form-inner.venue-booking-success {
+    gap: var(--spacing-md);
+
+    .venue-booking-success__title {
+      margin-bottom: 0;
+    }
+  }
+
   /* COL CONTENT */
   [data-section='col-content'] .container {
     flex-direction: column;
@@ -1646,5 +1654,79 @@
 
   [data-section='col-content'] .venue-rental-rate-table thead th:first-child {
     z-index: 2;
+  }
+
+  /* VENUE INFO */
+  [data-section='venue-info'] .venue-info-tabs {
+    position: absolute;
+    top: calc((100vw / 0.7129277567) + var(--spacing-lg));
+    left: 0;
+    padding: 0 var(--spacing-container);
+    max-width: unset;
+    flex-wrap: nowrap;
+    width: 100vw;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  [data-section='venue-info'] .venue-info-gallery__media {
+    aspect-ratio: 0.7129277567;
+  }
+
+  [data-section='venue-info'] .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: var(--spacing-2sm);
+  }
+
+  [data-section='venue-info'] .venue-info-panel__bottom {
+    padding-top: 10.6rem;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2lg);
+    padding-bottom: var(--spacing-lg);
+  }
+
+  /* LEFT */
+  [data-section='venue-info'] .venue-info-panel__left {
+    gap: var(--spacing-md);
+  }
+
+  [data-section='venue-info'] .venue-info-panel__venue-description-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2sm);
+  }
+
+  /* RIGHT */
+  [data-section='venue-info'] .venue-info-panel__right {
+    gap: var(--spacing-md);
+  }
+
+  [data-section='venue-info'] .venue-info-panel__block-divider .items-container {
+    grid-template-columns: auto auto 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  [data-section='venue-info'] .venue-info-panel__block-divider .block-desc {
+    min-height: unset;
+    min-width: unset;
+
+    &:last-child {
+      grid-column: span 3;
+    }
+  }
+
+  /* ICON GRID */
+  [data-section='venue-info'] .venue-info-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xs) var(--spacing-2sm);
+  }
+
+  [data-section='venue-info'] .venue-info-panel__block .block-desc-table {
+    grid-template-columns: auto 1fr;
   }
 }

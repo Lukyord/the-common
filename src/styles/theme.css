@@ -4732,10 +4732,22 @@ html.no-touchevents
 [data-section='branch-venue-rental-landing'] .sc-content .venue-form {
   padding-top: calc(var(--header-height) + var(--spacing-xl));
   padding-bottom: var(--spacing-xl);
+  height: 100%;
 }
 
 [data-section='branch-venue-rental-landing'] .sc-content .venue-form-inner {
   padding: 0;
+}
+
+[data-section='branch-venue-rental-landing'] .sc-content .venue-form-inner.venue-booking-success {
+  height: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+
+  .venue-booking-success__title {
+    margin-bottom: var(--spacing-4xl);
+  }
 }
 
 /* COL CONTENT */
@@ -4785,4 +4797,147 @@ html.no-touchevents
 
 [data-section='col-content'] .venue-rental-rate-table tbody tr:last-child > th {
   padding-bottom: 0;
+}
+
+/* VENUE INFO */
+[data-section='venue-info'] .venue-info-tabs-container {
+  position: relative;
+}
+
+[data-section='venue-info'] .venue-info-tabs {
+  position: absolute;
+  top: var(--spacing-2sm);
+  left: var(--spacing-container);
+  max-width: min(calc(100% - var(--spacing-container) * 2), 76rem);
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4xs);
+}
+
+[data-section='venue-info'] .venue-info-tabs__link {
+  flex-shrink: 0;
+  text-wrap: nowrap;
+  display: block;
+  padding: var(--spacing-4xs) var(--spacing-2xs);
+  color: var(--venue-info-tab-color, var(--color-dark-brown));
+  background-color: var(--venue-info-tab-bg, var(--color-beige));
+  background-image: url('../../public/designs/zig-zag-opacity.webp');
+  background-repeat: no-repeat;
+  background-size: 25rem;
+  background-position: center;
+  opacity: 0.56;
+  transition: opacity var(--duration) var(--timing-function);
+}
+
+html.no-touchevents [data-section='venue-info'] .venue-info-tabs__link:hover {
+  opacity: 0.8;
+}
+
+[data-section='venue-info'] .venue-info-tabs__item.active .venue-info-tabs__link {
+  opacity: 1;
+}
+
+[data-section='venue-info'] .venue-info-gallery__media {
+  width: 100%;
+  aspect-ratio: 2.1176470588;
+}
+
+[data-section='venue-info'] .swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: var(--spacing-lg);
+  mix-blend-mode: difference;
+}
+
+[data-section='venue-info'] .venue-info-panel__bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--spacing-container) * 2);
+  color: var(--color-beige);
+  padding-top: var(--spacing-container);
+  padding-bottom: var(--spacing-4xl);
+}
+
+/* LEFT */
+[data-section='venue-info'] .venue-info-panel__left {
+  display: flex;
+  flex-direction: column;
+  gap: 26rem;
+}
+
+[data-section='venue-info'] .venue-info-panel__block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+[data-section='venue-info'] .venue-info-panel__venue-description-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-2lg);
+}
+
+/* RIGHT */
+[data-section='venue-info'] .venue-info-panel__right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+[data-section='venue-info'] .venue-info-panel__block-divider .block-ttl {
+  margin-bottom: var(--spacing-sm);
+}
+
+[data-section='venue-info'] .venue-info-panel__block-divider .items-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto 1fr;
+  gap: var(--spacing-sm);
+}
+
+[data-section='venue-info'] .venue-info-panel__block-divider .block-desc {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6xs);
+  min-width: 13rem;
+  min-height: 7rem;
+}
+
+[data-section='venue-info'] .venue-info-panel__block-divider .divider {
+  width: 0.1rem;
+  background-color: rgba(var(--color-beige-rgb), 0.4);
+}
+
+/* ICON GRID */
+[data-section='venue-info'] .venue-info-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-2sm) var(--spacing-sm);
+}
+
+[data-section='venue-info'] .venue-info-icon-grid__item {
+  display: flex;
+  gap: var(--spacing-3xs);
+}
+
+[data-section='venue-info'] .venue-info-icon-grid__item .icon {
+  width: 3.2rem;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.8rem;
+  background-color: #c4bca833;
+  border-radius: 0.533rem;
+  aspect-ratio: 1;
+}
+
+[data-section='venue-info'] .venue-info-icon-grid__item .text {
+  margin-top: var(--spacing-5xs);
+}
+
+[data-section='venue-info'] .venue-info-panel__block .block-desc-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3xs) var(--spacing-md);
+  max-width: max(69.5723684211%, 42.3rem);
 }

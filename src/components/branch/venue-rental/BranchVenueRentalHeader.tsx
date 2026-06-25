@@ -100,37 +100,36 @@ export default function BranchVenueRentalHeader({
         </AnimateOnScroll>
       )}
 
-      <AnimateOnScroll
-        triggerClass="fadeEntry"
-        delay={500}
-        className="branch-venue-rental-header__content"
-      >
-        <div className="branch-venue-rental-header__title">
+      <div className="branch-venue-rental-header__content">
+        <AnimateOnScroll
+          triggerClass="fadeEntry"
+          delay={400}
+          className="branch-venue-rental-header__title"
+        >
           <MarkdownContent
             as="h1"
             className="type-d-display type-m-display weight-medium letter-spacing-002 uppercase"
           >
             {title}
           </MarkdownContent>
-        </div>
+        </AnimateOnScroll>
 
         {packageHref && (
-          <Link
-            href={packageHref}
-            className="branch-venue-rental-header__package"
-            {...(packageDownload ? { download: true } : {})}
-            {...(packageExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-          >
-            <span className="type-d-body-l type-m-body-m weight-medium letter-spacing-002 uppercase">
-              VENUE PACKAGE
-            </span>
-            <i
-              className={`ic ${packageExternal ? 'ic-arrow-square-top-right' : 'ic-download'}`}
-              aria-hidden
-            />
-          </Link>
+          <AnimateOnScroll triggerClass="fadeEntry" delay={500}>
+            <Link
+              href={packageHref}
+              className="branch-venue-rental-header__package"
+              {...(packageDownload ? { download: true } : {})}
+              {...(packageExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            >
+              <span className="type-d-body-l type-m-body-m weight-medium letter-spacing-002 uppercase">
+                VENUE PACKAGE
+              </span>
+              <i className={`ic ic-download`} aria-hidden />
+            </Link>
+          </AnimateOnScroll>
         )}
-      </AnimateOnScroll>
+      </div>
     </div>
   )
 }

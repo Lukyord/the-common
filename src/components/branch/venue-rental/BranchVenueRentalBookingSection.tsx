@@ -22,7 +22,12 @@ export default function BranchVenueRentalBookingSection({
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   if (ctaType === 'linkout') {
-    return <VenueRentalLinkoutContent bookingCta={bookingCta ?? { type: 'linkout' }} />
+    return (
+      <VenueRentalLinkoutContent
+        title="VENUE RENTAL"
+        bookingCta={bookingCta ?? { type: 'linkout' }}
+      />
+    )
   }
 
   if (isSubmitted) {

@@ -6,6 +6,7 @@ import type { VenueRentalBookingCta } from '../types'
 import VenueRentalBookingFields from './VenueRentalBookingFields'
 import VenueRentalSubmitButton from './VenueRentalSubmitButton'
 import { useVenueRentalBookingForm } from './useVenueRentalBookingForm'
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 type VenueRentalBookingFormProps = {
   title?: string
@@ -38,12 +39,14 @@ export default function VenueRentalBookingForm({
     <div className="venue-form">
       <div className="venue-form-inner">
         {title && (
-          <MarkdownContent
-            as="h2"
-            className="form-ttl type-d-body-l type-m-title weight-medium letter-spacing-002 uppercase"
-          >
-            {title}
-          </MarkdownContent>
+          <AnimateOnScroll triggerClass="fadeIn">
+            <MarkdownContent
+              as="h2"
+              className="form-ttl type-d-body-l type-m-title weight-medium letter-spacing-002 uppercase"
+            >
+              {title}
+            </MarkdownContent>
+          </AnimateOnScroll>
         )}
 
         <form ref={formRef} action="" onSubmit={handleSubmit} noValidate>

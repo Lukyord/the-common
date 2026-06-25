@@ -67,16 +67,17 @@ function VenueRentalRateTable({
   if (!rows.length || !cols.length) return null
 
   return (
-    <AnimateOnScroll triggerClass="fadeIn" className="venue-rental-rate-table">
+    <div className="venue-rental-rate-table">
       <table>
         <thead>
-          <tr>
+          <AnimateOnScroll as="tr" triggerClass="fadeIn" className="fadeIn">
             <th
               scope="col"
               className="type-d-body-s type-m-body-r letter-spacing-002 weight-medium uppercase"
             >
               {tableTitle}
             </th>
+
             {cols.map((col, index) => (
               <th
                 key={`${col.title}-${index}`}
@@ -86,11 +87,16 @@ function VenueRentalRateTable({
                 {col.title}
               </th>
             ))}
-          </tr>
+          </AnimateOnScroll>
         </thead>
         <tbody>
           {rows.map((rowLabel, rowIndex) => (
-            <tr key={`${rowLabel}-${rowIndex}`}>
+            <AnimateOnScroll
+              key={`${rowLabel}-${rowIndex}`}
+              as="tr"
+              triggerClass="fadeIn"
+              className="fadeIn"
+            >
               <th scope="row" className="type-d-body-s type-m-body-s letter-spacing-002">
                 {rowLabel}
               </th>
@@ -102,11 +108,11 @@ function VenueRentalRateTable({
                   {col.cells[rowIndex] ?? ''}
                 </td>
               ))}
-            </tr>
+            </AnimateOnScroll>
           ))}
         </tbody>
       </table>
-    </AnimateOnScroll>
+    </div>
   )
 }
 

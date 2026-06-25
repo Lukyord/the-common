@@ -1,3 +1,4 @@
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import type { VenueRentalBookingCta } from '../types'
 import { getVenueRentalSubmitButtonProps } from './venueRentalFormUtils'
 
@@ -13,12 +14,17 @@ export default function VenueRentalSubmitButton({
   const buttonProps = getVenueRentalSubmitButtonProps(bookingCta)
 
   return (
-    <div className="form-submit">
-      <button type="submit" className={buttonProps.className} disabled={isSubmitting} style={buttonProps.style}>
+    <AnimateOnScroll triggerClass="fadeIn" className="form-submit">
+      <button
+        type="submit"
+        className={buttonProps.className}
+        disabled={isSubmitting}
+        style={buttonProps.style}
+      >
         <span>
           <span>{isSubmitting ? 'SENDING…' : 'SUBMIT'}</span>
         </span>
       </button>
-    </div>
+    </AnimateOnScroll>
   )
 }

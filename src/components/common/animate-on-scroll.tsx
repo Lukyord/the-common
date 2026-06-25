@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useEffect, useState, ReactNode } from 'react'
+import React, { useRef, useEffect, useState, type ElementType, type ReactNode } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -36,9 +36,10 @@ function isMeasurable(element: HTMLElement) {
 }
 
 type AnimateOnScrollProps = Omit<
-  React.HTMLAttributes<HTMLDivElement>,
+  React.HTMLAttributes<HTMLElement>,
   'className' | 'onEnter' | 'onLeave'
 > & {
+  as?: ElementType
   children: ReactNode
   className?: string
   triggerClass?: string | string[]
@@ -53,6 +54,7 @@ type AnimateOnScrollProps = Omit<
 }
 
 export default function AnimateOnScroll({
+  as: Component = 'div',
   children,
   className = '',
   triggerClass = 'fadeIn',
@@ -66,7 +68,7 @@ export default function AnimateOnScroll({
   onLeaveBack,
   ...rest
 }: AnimateOnScrollProps) {
-  const elementRef = useRef<HTMLDivElement>(null)
+  const elementRef = useRef<HTMLElement>(null)
   const hasShownRef = useRef(false)
   const [isRevealed, setIsRevealed] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -182,8 +184,8 @@ export default function AnimateOnScroll({
     .join(' ')
 
   return (
-    <div ref={elementRef} className={rootClassName} {...rest}>
+    <Component ref={elementRef} className={rootClassName} {...rest}>
       {children}
-    </div>
+    </Component>
   )
 }

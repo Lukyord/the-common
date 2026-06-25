@@ -1,3 +1,4 @@
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import FormFieldError from './FormFieldError'
 
 type FormTextFieldProps = {
@@ -29,7 +30,7 @@ export default function FormTextField({
   }
 
   return (
-    <div className="field">
+    <AnimateOnScroll triggerClass="fadeIn" className="field">
       <div className="input" data-has-error={error ? '' : undefined}>
         <label htmlFor={id} className="label anim fixed">
           <span>{label}</span>
@@ -43,6 +44,6 @@ export default function FormTextField({
 
         <FormFieldError id={errorId} message={error} />
       </div>
-    </div>
+    </AnimateOnScroll>
   )
 }

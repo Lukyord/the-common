@@ -9,6 +9,7 @@ import VenueRentalTimeSelect from './VenueRentalTimeSelect'
 import type { VenueRentalBookingFormFieldKey } from './venueRentalBookingFormSchema'
 import { getVenueAreaSelectStyle, venueRentalFieldErrorId } from './venueRentalFormUtils'
 import { VENUE_RENTAL_BOOKING_TIME_OPTIONS } from './venueRentalTimeSlots'
+import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
 type VenueRentalBookingFieldsProps = {
   formAreaOptions: string[]
@@ -84,33 +85,35 @@ export default function VenueRentalBookingFields({
         onOptionChange={onBookingTimeChange}
       />
 
-      <fieldset className="field field--reservation">
-        <legend className="field-label type-d-body-s type-m-body-m letter-spacing-002 weight-medium">
-          Reservation (8:00AM - Midnight)
-        </legend>
+      <AnimateOnScroll triggerClass="fadeIn">
+        <fieldset className="field field--reservation">
+          <legend className="field-label type-d-body-s type-m-body-m letter-spacing-002 weight-medium">
+            Reservation (8:00AM - Midnight)
+          </legend>
 
-        <div className="field-row">
-          <VenueRentalDateField
-            error={errors.reservationDate}
-            errorId={errorId('reservationDate')}
-          />
+          <div className="field-row">
+            <VenueRentalDateField
+              error={errors.reservationDate}
+              errorId={errorId('reservationDate')}
+            />
 
-          <div className="field field--half">
-            <VenueRentalTimeSelect
-              key={bookingDurationHours}
-              id="venue-rental-start-time"
-              name="reservation-start-time"
-              label="Starting time"
-              options={startTimeOptions}
-              defaultValue={startTimeOptions[0]}
-            />
-            <FormFieldError
-              id={errorId('reservationStartTime')}
-              message={errors.reservationStartTime}
-            />
+            <div className="field field--half">
+              <VenueRentalTimeSelect
+                key={bookingDurationHours}
+                id="venue-rental-start-time"
+                name="reservation-start-time"
+                label="Starting time"
+                options={startTimeOptions}
+                defaultValue={startTimeOptions[0]}
+              />
+              <FormFieldError
+                id={errorId('reservationStartTime')}
+                message={errors.reservationStartTime}
+              />
+            </div>
           </div>
-        </div>
-      </fieldset>
+        </fieldset>
+      </AnimateOnScroll>
 
       <FormTextField
         id="venue-rental-inquiry"

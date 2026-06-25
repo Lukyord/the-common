@@ -7,7 +7,9 @@ import BranchVenueRentalColContent, {
 import BranchVenueRentalHeader, {
   toBranchVenueRentalHeaderProps,
 } from '@/components/branch/venue-rental/BranchVenueRentalHeader'
+import BranchVenueRentalVenueInfoSection from '@/components/branch/venue-rental/BranchVenueRentalVenueInfoSection'
 import { getVenueFormOptionNames } from '@/components/branch/venue-rental/getVenueFormOptionNames'
+import { toBranchVenueRentalVenueInfoProps } from '@/components/branch/venue-rental/toBranchVenueRentalVenueInfoProps'
 import { generateMeta } from '@/lib/generateMeta'
 import { getBranchSpaceRentalPageBySlug } from '@/payload/queries/branch'
 
@@ -46,6 +48,7 @@ export default async function VenueRentalPage({ params }: Props) {
   })
   const rateSectionProps = toBranchVenueRentalColContentProps(page.rate)
   const promoSectionProps = toBranchVenueRentalColContentProps(page.promo)
+  const venueInfoItems = toBranchVenueRentalVenueInfoProps(page)
 
   return (
     <main className="branch-venue-rental-page">
@@ -63,6 +66,13 @@ export default async function VenueRentalPage({ params }: Props) {
       </section>
 
       {rateSectionProps && <BranchVenueRentalColContent {...rateSectionProps} />}
+
+      {venueInfoItems.length > 0 && (
+        <section data-section="venue-info">
+          <BranchVenueRentalVenueInfoSection venues={venueInfoItems} />
+        </section>
+      )}
+
       {promoSectionProps && <BranchVenueRentalColContent {...promoSectionProps} />}
     </main>
   )
