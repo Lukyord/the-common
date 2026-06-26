@@ -17,10 +17,21 @@ type VenueRentalPanelProps = {
 
 export default function VenueRentalPanel({ group }: VenueRentalPanelProps) {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
+  const linkoutLink =
+    group.bookingCta?.type === 'linkout' ? group.bookingCta.linkoutButtonLink : null
+  const isLinkoutCta = Boolean(linkoutLink)
   const panelStyle = {
     '--venue-rental-text-color': group.textColor ?? undefined,
     '--venue-rental-bg-color': group.bgColor ?? undefined,
   } as CSSProperties
+  const ctaButtonClassName = [
+    'button-template',
+    group.buttonWhiteTextOnHover && 'c-white-hover',
+    group.buttonDarkBrownTextOnHover && 'c-dark-brown-hover',
+  ]
+    .filter(Boolean)
+    .join(' ')
+  const ctaButtonStyle = { '--button-bg-color': group.buttonColor } as CSSProperties
 
   const openBookingModal = () => {
     if (window.matchMedia('(max-width: 991px)').matches) {
@@ -104,9 +115,8 @@ export default function VenueRentalPanel({ group }: VenueRentalPanelProps) {
                 <h3 className="type-d-body-xs type-m-body-s letter-spacing-002">AVAILABLE TIME</h3>
               </div>
               <div className="item-content">
-                <p className="letter-spacing-002">
-                  <span className="weight-medium type-d-text-link type-m-body-m">Everyday </span>
-                  <span className="type-d-body-m type-m-title">08:00 am – Midnight</span>
+                <p className="type-d-body-s type-m-title letter-spacing-002 weight-medium">
+                  Everyday 08:00 am – Midnight
                 </p>
               </div>
             </div>
@@ -114,34 +124,44 @@ export default function VenueRentalPanel({ group }: VenueRentalPanelProps) {
 
           {group.cta?.text && (
             <div className="venue-rental-panel__cta">
-              <button
-                type="button"
-                className={[
-                  'button-template',
-                  group.buttonWhiteTextOnHover && 'c-white-hover',
-                  group.buttonDarkBrownTextOnHover && 'c-dark-brown-hover',
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
-                style={{ '--button-bg-color': group.buttonColor } as CSSProperties}
-                onClick={openBookingModal}
-              >
-                <span>
-                  <span>{group.cta.text}</span>
-                </span>
-              </button>
+              {isLinkoutCta && linkoutLink ? (
+                <Link
+                  href={linkoutLink}
+                  className={ctaButtonClassName}
+                  style={ctaButtonStyle}
+                  target={linkoutLink.startsWith('http') ? '_blank' : undefined}
+                  rel={linkoutLink.startsWith('http') ? 'noopener noreferrer' : undefined}
+                >
+                  <span>
+                    <span>{group.cta.text}</span>
+                  </span>
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  className={ctaButtonClassName}
+                  style={ctaButtonStyle}
+                  onClick={openBookingModal}
+                >
+                  <span>
+                    <span>{group.cta.text}</span>
+                  </span>
+                </button>
+              )}
             </div>
           )}
         </AnimateOnScroll>
       </div>
 
-      <VenueRentalBookingModal
-        open={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-        formTitle={`${group.branchName} Venue Rental`}
-        formAreaOptions={group.formAreaOptions}
-        bookingCta={group.bookingCta}
-      />
+      {!isLinkoutCta && (
+        <VenueRentalBookingModal
+          open={isBookingModalOpen}
+          onClose={() => setIsBookingModalOpen(false)}
+          formTitle={`${group.branchName} Venue Rental`}
+          formAreaOptions={group.formAreaOptions}
+          bookingCta={group.bookingCta}
+        />
+      )}
     </div>
   )
 }

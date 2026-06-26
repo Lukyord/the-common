@@ -7,7 +7,6 @@ import { Modal } from '@/components/common/modal'
 import type { VenueRentalBookingCta } from '../types'
 import VenueRentalBookingForm from './VenueRentalBookingForm'
 import VenueRentalBookingSuccess from './VenueRentalBookingSuccess'
-import VenueRentalLinkoutContent from './VenueRentalLinkoutContent'
 
 type VenueRentalBookingModalProps = {
   open: boolean
@@ -24,7 +23,6 @@ export default function VenueRentalBookingModal({
   formAreaOptions,
   bookingCta,
 }: VenueRentalBookingModalProps) {
-  const ctaType = bookingCta?.type ?? 'form'
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   useEffect(() => {
@@ -39,9 +37,7 @@ export default function VenueRentalBookingModal({
         <span className="hidden-device-md weight-medium">BACK</span>
       </button>
 
-      {ctaType === 'linkout' ? (
-        <VenueRentalLinkoutContent bookingCta={bookingCta ?? { type: 'linkout' }} />
-      ) : isSubmitted ? (
+      {isSubmitted ? (
         <VenueRentalBookingSuccess bookingCta={bookingCta} />
       ) : (
         <VenueRentalBookingForm

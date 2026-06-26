@@ -26,9 +26,9 @@ export default function ContentSingleLayout({
         </div>
 
         <AnimateOnScroll triggerClass="fadeIn" className="content-text">
-          {socials && <ContentSingleSocial links={socials} />}
-
           <div className="back-wrapper show-md">
+            {socials && <ContentSingleSocial links={socials} />}
+
             <BackLink fallbackHref={backHref} className="back">
               <i className="ic ic-arrow-left size-icon-2xs"></i>
               <p className="letter-spacing-002 weight-medium">BACK</p>

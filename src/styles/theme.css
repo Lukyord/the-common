@@ -3394,6 +3394,7 @@ html.no-touchevents [data-section='whats-on-global-club'] .tags-filter__tag:not(
   .back-wrapper {
   max-width: 65.6rem;
   margin: 0 auto;
+  position: relative;
 }
 
 :is([data-section='content-single'], [data-section='whats-on-single'], [data-section='blog-single'])
@@ -3822,9 +3823,8 @@ html.no-touchevents
   display: flex;
   gap: var(--spacing-sm);
   position: absolute;
-  top: calc(var(--header-height) + var(--spacing-4xl));
-  right: var(--spacing-container);
-  transform: translateY(-100%);
+  bottom: calc(100% + var(--spacing-lg));
+  right: 0;
 
   .ic {
     font-size: 2.4rem;
@@ -4325,7 +4325,7 @@ html.no-touchevents [data-section='venue-rental-landing'] .venue-rental-panel__l
   grid-row: span 2;
   max-width: 56.1rem;
   height: fit-content;
-  padding: var(--spacing-xs) var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-sm);
   color: var(--venue-rental-text-color, var(--color-dark-brown));
   background-color: var(--venue-rental-bg-color, var(--color-beige));
 }
