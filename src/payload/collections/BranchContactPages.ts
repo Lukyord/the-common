@@ -146,6 +146,31 @@ export const BranchContactPages: CollectionConfig = {
         type: 'text',
         label: 'Tel',
       },
+      {
+        name: 'social',
+        type: 'group',
+        label: 'Social',
+        admin: {
+          hideGutter: true,
+        },
+        fields: [
+          {
+            name: 'instagram',
+            type: 'text',
+            label: 'Instagram',
+          },
+          {
+            name: 'facebook',
+            type: 'text',
+            label: 'Facebook',
+          },
+          {
+            name: 'line',
+            type: 'text',
+            label: 'Line',
+          },
+        ],
+      },
     ]),
   ],
 }

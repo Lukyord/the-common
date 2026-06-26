@@ -2,8 +2,8 @@ import './footer.css'
 
 import { lexicalToHtml } from '@/lib/lexicalToHtml'
 import { resolveMedia } from '@/lib/resolveMedia'
-import type { Branch } from '@/payload-types'
-import { getBranches } from '@/payload/queries/branch'
+import type { Branch, BranchContactPage } from '@/payload-types'
+import { getBranchContactPages, getBranches } from '@/payload/queries/branch'
 import { getContactPayloadData } from '@/payload/queries/contact'
 import { FooterClient } from './FooterClient'
 import type { FooterBranchInfoSection, FooterBranchItem, FooterContact } from './footer-types'
@@ -18,17 +18,40 @@ const BRANCH_INFO_SECTIONS = [
 }>
 
 export async function Footer() {
-  const [{ contact }, branches] = await Promise.all([getContactPayloadData(), getBranches()])
+  const [{ contact }, branches, branchContactPages] = await Promise.all([
+    getContactPayloadData(),
+    getBranches(),
+    getBranchContactPages(),
+  ])
+
+  const contactPagesByBranchId = new Map(
+    branchContactPages.map((page) => {
+      const branchId = typeof page.branch === 'number' ? page.branch : page.branch.id
+      return [branchId, page] as const
+    }),
+  )
 
   return (
     <FooterClient
-      branches={branches.map(toFooterBranchItem)}
+      branches={branches.map((branch) =>
+        toFooterBranchItem(branch, contactPagesByBranchId.get(branch.id)),
+      )}
       contact={toFooterContact(contact)}
     />
   )
 }
 
-function toFooterBranchItem(branch: Branch): FooterBranchItem {
+function toFooterSocial(social?: BranchContactPage['social'] | null) {
+  if (!social) return null
+
+  return {
+    instagram: social.instagram ?? null,
+    facebook: social.facebook ?? null,
+    line: social.line ?? null,
+  }
+}
+
+function toFooterBranchItem(branch: Branch, contactPage?: BranchContactPage): FooterBranchItem {
   const logo = resolveMedia(branch.logo)
 
   return {
@@ -45,6 +68,7 @@ function toFooterBranchItem(branch: Branch): FooterBranchItem {
 
       return [{ title, field, html } satisfies FooterBranchInfoSection]
     }),
+    social: toFooterSocial(contactPage?.social),
   }
 }
 

@@ -4,6 +4,12 @@ export type FooterBranchInfoSection = {
   html: string
 }
 
+export type FooterSocial = {
+  instagram: string | null
+  facebook: string | null
+  line: string | null
+}
+
 export type FooterBranchItem = {
   id: number
   slug: string
@@ -13,12 +19,10 @@ export type FooterBranchItem = {
   footerColor: string | null
   logo: { src: string; alt: string } | null
   infoSections: FooterBranchInfoSection[]
+  social: FooterSocial | null
 }
 
-export type FooterContact = {
+export type FooterContact = FooterSocial & {
   email: string | null
   kinnestGroup: string | null
-  instagram: string | null
-  facebook: string | null
-  line: string | null
 }

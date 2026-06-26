@@ -6,9 +6,10 @@ import { toExternalHref } from './footer-utils'
 
 type FooterRightProps = {
   contact: FooterContact
+  faqHref: string
 }
 
-export function FooterRight({ contact }: FooterRightProps) {
+export function FooterRight({ contact, faqHref }: FooterRightProps) {
   const kinnestHref = toExternalHref(contact.kinnestGroup)
   const instagramHref = toExternalHref(contact.instagram)
   const facebookHref = toExternalHref(contact.facebook)
@@ -23,21 +24,21 @@ export function FooterRight({ contact }: FooterRightProps) {
             <ul className="social">
               {instagramHref && (
                 <li>
-                  <Link href={instagramHref}>
+                  <Link href={instagramHref} target="_blank" rel="noopener noreferrer">
                     <i className="ic ic-instagram size-icon-lg"></i>
                   </Link>
                 </li>
               )}
               {facebookHref && (
                 <li>
-                  <Link href={facebookHref}>
+                  <Link href={facebookHref} target="_blank" rel="noopener noreferrer">
                     <i className="ic ic-facebook size-icon-lg"></i>
                   </Link>
                 </li>
               )}
               {lineHref && (
                 <li className="line">
-                  <Link href={lineHref}>
+                  <Link href={lineHref} target="_blank" rel="noopener noreferrer">
                     <i className="ic ic-line size-icon-sm"></i>
                   </Link>
                 </li>
@@ -50,6 +51,8 @@ export function FooterRight({ contact }: FooterRightProps) {
           <AnimateOnScroll triggerClass="fadeIn">
             <Link
               href={kinnestHref}
+              target="_blank"
+              rel="noopener noreferrer"
               className="underline-hover type-d-text-link type-m-body-r letter-spacing-003"
             >
               A Member of Kinnest Group
@@ -68,7 +71,7 @@ export function FooterRight({ contact }: FooterRightProps) {
 
         <AnimateOnScroll triggerClass="fadeIn">
           <Link
-            href=""
+            href={faqHref}
             className="underline-hover type-d-text-link type-m-body-r letter-spacing-003"
           >
             FAQs

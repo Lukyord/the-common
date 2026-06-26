@@ -98,6 +98,19 @@ export const getBranchWhatsOnPageBySlug = cache(
   },
 )
 
+export const getBranchContactPages = cache(async (): Promise<BranchContactPage[]> => {
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'branch-contact-pages',
+    depth: 1,
+    limit: 100,
+    overrideAccess: false,
+    pagination: false,
+  })
+
+  return docs
+})
+
 export const getBranchContactPageBySlug = cache(
   async (branchSlug: string): Promise<BranchContactPage> => {
     const branch = await getBranchBySlug(branchSlug)

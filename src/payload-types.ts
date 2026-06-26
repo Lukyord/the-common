@@ -628,6 +628,11 @@ export interface BranchContactPage {
     | null;
   email?: string | null;
   tel?: string | null;
+  social?: {
+    instagram?: string | null;
+    facebook?: string | null;
+    line?: string | null;
+  };
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -1376,6 +1381,13 @@ export interface BranchContactPagesSelect<T extends boolean = true> {
       };
   email?: T;
   tel?: T;
+  social?:
+    | T
+    | {
+        instagram?: T;
+        facebook?: T;
+        line?: T;
+      };
   meta?:
     | T
     | {

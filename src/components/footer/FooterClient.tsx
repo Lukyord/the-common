@@ -8,6 +8,7 @@ import { FooterLeft } from './FooterLeft'
 import { FooterMiddle } from './FooterMiddle'
 import { FooterRight } from './FooterRight'
 import type { FooterBranchItem, FooterContact } from './footer-types'
+import { mergeFooterSocials } from './footer-utils'
 
 type FooterClientProps = {
   branches: FooterBranchItem[]
@@ -26,6 +27,10 @@ export function FooterClient({ branches, contact }: FooterClientProps) {
   const footerBranches = currentBranch
     ? branches.filter((branch) => branch.id !== currentBranch.id)
     : branches
+  const footerContact: FooterContact = currentBranch
+    ? { ...contact, ...mergeFooterSocials(contact, currentBranch.social) }
+    : contact
+  const faqHref = currentBranch ? `/${currentBranch.slug}/contact` : '/contact'
 
   return (
     <footer
@@ -36,7 +41,7 @@ export function FooterClient({ branches, contact }: FooterClientProps) {
       <div className="footer-nav">
         <FooterLeft currentBranch={currentBranch} branches={footerBranches} contact={contact} />
         {currentBranch && <FooterMiddle branch={currentBranch} />}
-        <FooterRight contact={contact} />
+        <FooterRight contact={footerContact} faqHref={faqHref} />
       </div>
     </footer>
   )
