@@ -50,7 +50,7 @@ export function WhatsOnLandingCard({
           left: x,
           top: y,
           zIndex,
-          '--card-rotation': `${rotation}deg`,
+          '--card-rotation': `${isFlipped ? 0 : rotation}deg`,
         } as CSSProperties
       }
       onPointerDown={onPointerDown}

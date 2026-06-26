@@ -87,7 +87,7 @@ export default function WhatsOnLatest({
                   ariaLabel="Select timeframe"
                   options={timeframeOptions.map((option) => ({
                     value: option.id,
-                    label: option.label,
+                    label: option.label.toUpperCase(),
                   }))}
                   value={selectedTimeframe}
                   onChange={(value) => setSelectedTimeframe(value as WhatsOnTimeframeId)}

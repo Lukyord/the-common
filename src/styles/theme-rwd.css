@@ -656,7 +656,14 @@
 
   /* About Re */
   [data-section='about-re'] .sc-header {
+    flex-direction: column;
+    gap: var(--spacing-md);
     margin-bottom: var(--spacing-2lg);
+
+    .sc-header-desc {
+      width: 100%;
+      gap: var(--spacing-5xs);
+    }
   }
 
   [data-section='about-re'] .sc-header .sc-ttl-logo {
@@ -680,8 +687,11 @@
   }
 
   [data-section='about-re'] .trigger-wrapper {
+    margin-top: 0;
     grid-row: 1;
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
     aspect-ratio: unset;
     height: max(41.3333333333vw, 15.5rem);
     display: flex;
@@ -727,13 +737,13 @@
     left: unset;
     top: unset;
     margin-top: 3.7706666667vw;
-    margin-right: 31.4666666667vw;
+    margin-right: 15.4666666667vw;
     margin-left: 2vw;
   }
 
   [data-section='about-re'] .content-desc {
-    padding: 0 var(--spacing-container);
     margin-top: var(--spacing-3xs);
+    padding-right: 0;
   }
 
   /* Award Marquee */

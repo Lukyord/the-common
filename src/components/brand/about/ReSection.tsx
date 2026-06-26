@@ -49,6 +49,21 @@ export const ReSection = () => {
             <AnimateOnScroll triggerClass="fadeIn" className="sc-ttl-logo">
               <RenderMedia src="/designs/re-series-logo.webp" alt="RE Series Logo" />
             </AnimateOnScroll>
+
+            <div className="sc-header-desc">
+              <AnimateOnScroll triggerClass="fadeIn" className="fadeIn">
+                <h3 className="type-d-header type-m-title weight-medium letter-spacing-002">
+                  Small Acts. Meaningful Impact.
+                </h3>
+              </AnimateOnScroll>
+
+              <AnimateOnScroll triggerClass="fadeIn" className="fadeIn">
+                <p className="type-d-body-m type-m-body-r letter-spacing-002">
+                  Discover easy ways to REUSE, RECYCLE, REFILL & REDISTRIBUTE resources at
+                  theCOMMONS.
+                </p>
+              </AnimateOnScroll>
+            </div>
           </div>
 
           <div className="content">
@@ -89,7 +104,10 @@ export const ReSection = () => {
                   className={`desc-slide ${activeType === type ? 'is-active' : ''}`}
                   aria-hidden={activeType !== type}
                 >
-                  <MarkdownContent as="p" className="letter-spacing-002 type-d-body-m type-m-body-r">
+                  <MarkdownContent
+                    as="p"
+                    className="letter-spacing-002 type-d-body-m type-m-body-r"
+                  >
                     {text}
                   </MarkdownContent>
                 </div>

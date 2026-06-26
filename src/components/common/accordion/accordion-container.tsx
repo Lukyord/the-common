@@ -2,14 +2,22 @@
 
 import { useCallback, useEffect, useRef, useState, type PropsWithChildren } from 'react'
 import { onWindowResize } from '@/utils/utils'
+import { scrollToElement } from '@/utils/functions/scrollTo'
 import { AccordionContext, type AccordionContextValue } from './accordion-context'
 
 type AccordionContainerProps = PropsWithChildren<{
   toggle?: boolean
   triggerFirst?: boolean
+  scrollToTop?: boolean
   className?: string
   defaultActiveItems?: string[]
 }>
+
+const ACCORDION_OPEN_TRANSITION_MS = 550
+
+function getHeaderOffset(): number {
+  return document.getElementById('header')?.offsetHeight ?? 0
+}
 
 function measurePanel(panel: HTMLDivElement) {
   const inner = panel.querySelector<HTMLElement>('.entry-panel-inner')
@@ -30,11 +38,26 @@ export function AccordionContainer({
   children,
   toggle = false,
   triggerFirst = false,
+  scrollToTop = false,
   className = '',
   defaultActiveItems = [],
 }: AccordionContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const prevActiveItemsRef = useRef<Set<string>>(new Set())
+  const userInteractedRef = useRef(false)
   const [activeItems, setActiveItems] = useState<Set<string>>(new Set(defaultActiveItems))
+
+  const scrollOpenedItemIntoView = useCallback((itemId: string) => {
+    if (!containerRef.current) return
+
+    const item = containerRef.current.querySelector<HTMLElement>(
+      `.accordion[data-item-id="${itemId}"]`,
+    )
+
+    if (!item) return
+
+    scrollToElement(item, { offset: -(getHeaderOffset() - 1), duration: 2 })
+  }, [])
 
   const setPanelHeights = useCallback(() => {
     if (!containerRef.current) return
@@ -91,12 +114,39 @@ export function AccordionContainer({
     }
   }, [triggerFirst])
 
+  useEffect(() => {
+    if (!scrollToTop || !userInteractedRef.current) {
+      prevActiveItemsRef.current = activeItems
+      return
+    }
+
+    const prev = prevActiveItemsRef.current
+    const openedItemId = [...activeItems].find((itemId) => !prev.has(itemId))
+    prevActiveItemsRef.current = activeItems
+
+    if (!openedItemId) {
+      userInteractedRef.current = false
+      return
+    }
+
+    userInteractedRef.current = false
+
+    const timeoutId = window.setTimeout(() => {
+      scrollOpenedItemIntoView(openedItemId)
+    }, ACCORDION_OPEN_TRANSITION_MS)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [activeItems, scrollToTop, scrollOpenedItemIntoView])
+
   const handleToggle = (itemId: string) => {
+    userInteractedRef.current = true
+
     setActiveItems((prev) => {
       const newSet = new Set(prev)
 
       if (toggle) {
         if (newSet.has(itemId)) {
+          userInteractedRef.current = false
           return newSet
         }
 
@@ -116,7 +166,7 @@ export function AccordionContainer({
   const isActive = (itemId: string) => activeItems.has(itemId)
 
   const containerClasses =
-    `accordion-container ${toggle ? 'toggle' : ''} ${triggerFirst ? 'trigger-first' : ''} ${className}`.trim()
+    `accordion-container ${toggle ? 'toggle' : ''} ${triggerFirst ? 'trigger-first' : ''} ${scrollToTop ? 'scrolltop' : ''} ${className}`.trim()
 
   const contextValue: AccordionContextValue = {
     activeItems,

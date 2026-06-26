@@ -570,7 +570,7 @@ html.no-touchevents [data-section='vendors-list'] .tags-filter__tag:not(.is-acti
 [data-section='vendors-list'] .card-container {
   --column: 3;
   --gap-x: var(--spacing-sm);
-  --gap-y: var(--spacing-sm);
+  --gap-y: var(--spacing-lg);
 }
 
 [data-section='vendors-list'] .card-container.is-filter-loading {
@@ -1760,19 +1760,14 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 
 [data-section='info-template'] .text-content .text-content-inner {
   height: 100%;
-  max-width: calc(var(--container-max-width) / 2);
-  margin-right: auto;
+  max-width: 62rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: var(--spacing-2sm);
   padding: var(--spacing-container);
   padding-right: var(--spacing-xl);
-}
-
-[data-section='info-template'].reverse .text-content .text-content-inner {
-  margin-right: unset;
-  margin-left: auto;
 }
 
 [data-section='info-template'] .entry-content {
@@ -1788,8 +1783,16 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 
 [data-section='about-re'] .sc-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   gap: var(--spacing-sm);
+
+  .sc-header-desc {
+    width: 50%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2sm);
+  }
 }
 
 [data-section='about-re'] .sc-header .sc-desc {
@@ -1799,12 +1802,13 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 [data-section='about-re'] .sc-header .sc-ttl-logo {
   aspect-ratio: 7.04347826087;
   width: 32.4rem;
+  height: fit-content;
 }
 
 [data-section='about-re'] .content {
-  width: 100vw;
+  /* width: 100vw;
   margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw); */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
@@ -1821,8 +1825,8 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 }
 
 [data-section='about-re'] .media-container .media {
-  width: 79.166666667%;
-  height: 83.584131327%;
+  width: 83.8235294118%;
+  height: 88.2947976879%;
 }
 
 [data-section='about-re'] .media-container .clip-hexagon-2 {
@@ -1842,6 +1846,7 @@ html.no-touchevents [data-section='mood'] .mood-selector__panel li button:hover 
 }
 
 [data-section='about-re'] .trigger-wrapper {
+  margin-top: var(--spacing-2sm);
   width: 89.2%;
   aspect-ratio: 1.202247191;
   position: relative;

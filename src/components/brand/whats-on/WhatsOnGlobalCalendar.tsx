@@ -163,7 +163,7 @@ export default function WhatsOnGlobalCalendar({
           )}
 
           {months.length > 0 && (
-            <AccordionContainer triggerFirst toggle>
+            <AccordionContainer triggerFirst toggle scrollToTop>
               {months.map((month) => (
                 <AccordionItem key={month.id} itemId={month.id}>
                   <AnimateOnScroll triggerClass="fadeIn">

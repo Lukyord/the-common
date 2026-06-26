@@ -1,10 +1,14 @@
-import Link from 'next/link'
-import { CSSProperties } from 'react'
-
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import { getBranches } from '@/payload/queries/branch'
+
+import NotFoundCta from './NotFoundCta'
 import RenderMedia from './media'
 
-export default function NotFoundContent() {
+export default async function NotFoundContent() {
+  const branches = (await getBranches()).map((branch) => ({
+    slug: branch.slug,
+    footerBg: branch.footerBg ?? null,
+  }))
   return (
     <main id="main" className="not-found-page">
       <section
@@ -33,17 +37,7 @@ export default function NotFoundContent() {
                 </p>
               </AnimateOnScroll>
             </div>
-            <AnimateOnScroll triggerClass="fadeIn" className="sc-cta" delay={600}>
-              <Link
-                href="/"
-                className="button-template"
-                style={{ '--button-bg-color': 'var(--color-saladaeng-orange)' } as CSSProperties}
-              >
-                <span>
-                  <span>BACK TO HOME</span>
-                </span>
-              </Link>
-            </AnimateOnScroll>
+            <NotFoundCta branches={branches} />
           </div>
         </div>
       </section>
