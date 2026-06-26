@@ -1,9 +1,16 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState, type PropsWithChildren } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
 import { onWindowResize } from '@/utils/utils'
 import { scrollToElement } from '@/utils/functions/scrollTo'
 import { AccordionContext, type AccordionContextValue } from './accordion-context'
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 type AccordionContainerProps = PropsWithChildren<{
   toggle?: boolean
@@ -98,8 +105,19 @@ export function AccordionContainer({
   }, [children, setPanelHeights])
 
   useEffect(() => {
-    const frameId = requestAnimationFrame(setPanelHeights)
-    return () => cancelAnimationFrame(frameId)
+    const frameId = requestAnimationFrame(() => {
+      setPanelHeights()
+      ScrollTrigger.refresh()
+    })
+
+    const timeoutId = window.setTimeout(() => {
+      ScrollTrigger.refresh()
+    }, ACCORDION_OPEN_TRANSITION_MS)
+
+    return () => {
+      cancelAnimationFrame(frameId)
+      window.clearTimeout(timeoutId)
+    }
   }, [activeItems, setPanelHeights])
 
   useEffect(() => {
