@@ -68,6 +68,7 @@
 
 .banner-button .ic {
   font-size: 2.8rem;
+  transition: transform var(--duration-x5) var(--ease-out-elastic);
 }
 
 html.no-touchevents .banner-button:hover {
@@ -75,7 +76,7 @@ html.no-touchevents .banner-button:hover {
 }
 
 html.no-touchevents .banner-button:hover i {
-  transform: translateX(var(--spacing-2xs));
+  transform: translateX(calc(var(--spacing-xs) * -1));
 }
 
 /* CLIP */

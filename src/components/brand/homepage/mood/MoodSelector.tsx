@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 
 import type { MoodVendorPoolItem } from '@/components/brand/homepage/mood/mapMoodVendorCard'
 import {
@@ -10,6 +10,7 @@ import {
 import type { HomeLifestyle } from '@/payload/queries/home'
 
 const SHOWCASE_INTERVAL_MS = 2000
+const TRACK_TRANSITION_MS = 700
 
 type MoodSelectorProps = {
   lifestyles: HomeLifestyle[]
@@ -33,6 +34,8 @@ export const MoodSelector = ({
   const dropdownRef = useRef<HTMLDivElement>(null)
   const currentRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
+  const trackIndexRef = useRef(0)
+  const isResettingRef = useRef(false)
   const [currentWidth, setCurrentWidth] = useState<number | null>(null)
   const [underlineWidth, setUnderlineWidth] = useState<number | null>(null)
   const [itemHeight, setItemHeight] = useState<number | null>(null)
@@ -56,9 +59,32 @@ export const MoodSelector = ({
 
   const displayText = lifestyles[measureIndex]?.text
 
+  const resetTrackToStart = useCallback(() => {
+    const track = trackRef.current
+    if (!track || isResettingRef.current) return
+
+    isResettingRef.current = true
+    track.classList.add('is-resetting')
+    trackIndexRef.current = 0
+    setTrackIndex(0)
+    setShowcaseIndex(0)
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        track.classList.remove('is-resetting')
+        isResettingRef.current = false
+      })
+    })
+  }, [])
+
+  useEffect(() => {
+    trackIndexRef.current = trackIndex
+  }, [trackIndex])
+
   useEffect(() => {
     setShowcaseIndex(0)
     setTrackIndex(0)
+    trackIndexRef.current = 0
   }, [lifestyles])
 
   useLayoutEffect(() => {
@@ -92,21 +118,56 @@ export const MoodSelector = ({
 
     const handleTransitionEnd = (event: TransitionEvent) => {
       if (event.target !== track || event.propertyName !== 'transform') return
-      if (trackIndex !== cloneIndex) return
+      if (trackIndexRef.current !== cloneIndex) return
 
-      track.classList.add('is-resetting')
-      setTrackIndex(0)
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          track.classList.remove('is-resetting')
-        })
-      })
+      resetTrackToStart()
     }
 
     track.addEventListener('transitionend', handleTransitionEnd)
     return () => track.removeEventListener('transitionend', handleTransitionEnd)
-  }, [isLooping, trackIndex, cloneIndex])
+  }, [isLooping, cloneIndex, resetTrackToStart])
+
+  useEffect(() => {
+    if (!isLooping || trackIndex !== cloneIndex) return
+
+    const timeoutId = window.setTimeout(() => {
+      if (trackIndexRef.current === cloneIndex) {
+        resetTrackToStart()
+      }
+    }, TRACK_TRANSITION_MS)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [isLooping, trackIndex, cloneIndex, resetTrackToStart])
+
+  useEffect(() => {
+    if (!isLooping) return
+
+    const recoverStuckTrack = () => {
+      if (trackIndexRef.current >= lifestyles.length) {
+        resetTrackToStart()
+      }
+    }
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        recoverStuckTrack()
+      }
+    }
+
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) {
+        recoverStuckTrack()
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    window.addEventListener('pageshow', handlePageShow)
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      window.removeEventListener('pageshow', handlePageShow)
+    }
+  }, [isLooping, lifestyles.length, resetTrackToStart])
 
   useEffect(() => {
     if (hasSelection || isOpen || lifestyles.length <= 1) return
@@ -124,6 +185,11 @@ export const MoodSelector = ({
       }
 
       setTrackIndex((prev) => {
+        if (prev >= cloneIndex) {
+          setShowcaseIndex(0)
+          return 0
+        }
+
         const lastIndex = lifestyles.length - 1
 
         if (prev === lastIndex) {

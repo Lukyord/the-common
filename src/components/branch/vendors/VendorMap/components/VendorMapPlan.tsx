@@ -159,6 +159,8 @@ export default function VendorMapPlan({
             ))}
           </div>
         ) : null}
+
+        {/* <MapPin key={`test-0`} layout={{ top: '25%', left: '69%' }} color={pinColor} /> */}
       </div>
 
       <div className="floors-container map-plan-interactive">
