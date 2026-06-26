@@ -4,14 +4,27 @@ import {
   Children,
   isValidElement,
   useCallback,
+  useEffect,
   useRef,
   useState,
   type ReactElement,
   type ReactNode,
 } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import { useIsMobile } from '@/components/branch/vendors/VendorMap/hooks/useIsMobile'
-import { scrollToY } from '@/utils/functions/scrollTo'
+import { SCROLL_DURATION, scrollToY } from '@/utils/functions/scrollTo'
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
+
+const REFRESH_AFTER_SCROLL_MS = Math.round(SCROLL_DURATION * 1000) + 100
+
+function refreshScrollTriggers() {
+  ScrollTrigger.refresh()
+}
 
 type SectionProps = {
   label: string
@@ -75,8 +88,19 @@ function MobileSectionToggle({ children, theme }: MobileSectionToggleProps) {
       const scrollTop = Math.max(0, containerTop + window.scrollY - headerHeight)
 
       scrollToY(scrollTop)
+
+      requestAnimationFrame(refreshScrollTriggers)
+      window.setTimeout(refreshScrollTriggers, REFRESH_AFTER_SCROLL_MS)
     })
   }, [])
+
+  useEffect(() => {
+    if (!isMobile) return
+
+    const frame = requestAnimationFrame(refreshScrollTriggers)
+
+    return () => cancelAnimationFrame(frame)
+  }, [activeIndex, isMobile])
 
   if (!isMobile) {
     return <>{sections.map((section) => section.content)}</>

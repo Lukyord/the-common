@@ -3,11 +3,10 @@
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { useEffect, useRef, useState } from 'react'
 import { BingoStamp } from './BingoStamp'
-import { DragCursor } from './DragCursor'
+import { TextCursor, useTextCursor } from '@/components/common/text-cursor'
 import { toGridItems } from './toGridItems'
 import type { BingoProps } from './types'
 import { useBingoDrag } from './useBingoDrag'
-import { useDragCursor } from './useDragCursor'
 import Image from 'next/image'
 
 const CONGRATS_VISIBLE_MS = 2000
@@ -16,11 +15,11 @@ export const Bingo = ({ data }: BingoProps) => {
   const sectionRef = useRef<HTMLElement>(null)
   const playfieldRef = useRef<HTMLDivElement>(null)
   const gridItems = toGridItems(data?.grid)
-  const dragCursor = useDragCursor()
+  const textCursor = useTextCursor()
   const bingo = useBingoDrag(sectionRef, playfieldRef, {
-    onPointerMove: dragCursor.updatePosition,
+    onPointerMove: textCursor.updatePosition,
   })
-  const showDragCursor = dragCursor.isActive && !bingo.isDragging
+  const showTextCursor = textCursor.isActive && !bingo.isDragging
   const [showCongrats, setShowCongrats] = useState(false)
 
   useEffect(() => {
@@ -38,9 +37,11 @@ export const Bingo = ({ data }: BingoProps) => {
     <section
       ref={sectionRef}
       data-section="bingo"
-      {...dragCursor.getSectionProps(bingo.isDragging)}
+      {...textCursor.getSectionProps(bingo.isDragging)}
     >
-      {showDragCursor && <DragCursor x={dragCursor.position.x} y={dragCursor.position.y} />}
+      {showTextCursor && (
+        <TextCursor x={textCursor.position.x} y={textCursor.position.y} label="Drag!" />
+      )}
       <div className="sc-inner">
         <div className="container">
           <div className="bingo-interactive" ref={playfieldRef}>

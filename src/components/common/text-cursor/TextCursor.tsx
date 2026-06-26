@@ -1,15 +1,16 @@
 import { createPortal } from 'react-dom'
 
-type DragCursorProps = {
+type TextCursorProps = {
   x: number
   y: number
+  label: string
 }
 
-export function DragCursor({ x, y }: DragCursorProps) {
+export function TextCursor({ x, y, label }: TextCursorProps) {
   return createPortal(
     <div
       aria-hidden
-      className="bingo-cursor"
+      className="text-cursor"
       style={{
         position: 'fixed',
         left: x,
@@ -18,7 +19,7 @@ export function DragCursor({ x, y }: DragCursorProps) {
         zIndex: 9999,
       }}
     >
-      Drag!
+      {label}
     </div>,
     document.body,
   )

@@ -1,6 +1,6 @@
 import { useCallback, useState, type MouseEvent } from 'react'
 
-export function useDragCursor() {
+export function useTextCursor() {
   const [isActive, setIsActive] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
 

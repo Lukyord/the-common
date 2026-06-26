@@ -8,11 +8,17 @@ import { useWhatsOnLandingCards } from './useWhatsOnLandingCards'
 
 type WhatsOnLandingCardsProps = {
   cards: WhatsOnLandingCardData[]
+  onDraggingChange?: (isDragging: boolean) => void
 }
 
-export default function WhatsOnLandingCards({ cards }: WhatsOnLandingCardsProps) {
+export default function WhatsOnLandingCards({
+  cards,
+  onDraggingChange,
+}: WhatsOnLandingCardsProps) {
   const playfieldRef = useRef<HTMLDivElement>(null)
-  const interaction = useWhatsOnLandingCards(cards.length, playfieldRef)
+  const interaction = useWhatsOnLandingCards(cards.length, playfieldRef, {
+    onDraggingChange,
+  })
 
   if (cards.length === 0) return null
 

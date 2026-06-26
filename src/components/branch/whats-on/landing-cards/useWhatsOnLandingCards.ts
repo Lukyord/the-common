@@ -1,5 +1,6 @@
 import {
   useCallback,
+  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -28,7 +29,11 @@ type DragSession = {
 export function useWhatsOnLandingCards(
   cardCount: number,
   playfieldRef: RefObject<HTMLElement | null>,
+  options?: {
+    onDraggingChange?: (isDragging: boolean) => void
+  },
 ) {
+  const onDraggingChange = options?.onDraggingChange
   const [fanAnchor, setFanAnchor] = useState<FanAnchor>(WHATS_ON_FAN_ANCHOR.pc)
   const [cardStates, setCardStates] = useState<CardState[]>([])
   const [cardZIndex, setCardZIndex] = useState<Partial<Record<number, number>>>({})
@@ -286,9 +291,15 @@ export function useWhatsOnLandingCards(
     [cardStates],
   )
 
+  const isDragging = dragSession?.hasMoved ?? false
+
+  useEffect(() => {
+    onDraggingChange?.(isDragging)
+  }, [isDragging, onDraggingChange])
+
   return {
     layoutsReady,
-    isDragging: dragSession?.hasMoved ?? false,
+    isDragging,
     draggingCardIndex: dragSession?.hasMoved ? dragSession.cardIndex : null,
     getCardLayout,
     getCardZIndex,

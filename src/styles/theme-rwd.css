@@ -508,6 +508,7 @@
   }
 
   /* BINGO */
+  .text-cursor,
   .bingo-cursor {
     display: none;
   }
@@ -1163,7 +1164,7 @@
     width: 100%;
     height: auto;
     aspect-ratio: 0.8029978587;
-    padding-top: var(--header-height);
+    padding-top: 0;
     position: static;
   }
 
@@ -1304,6 +1305,8 @@
   }
 
   [data-section='vendor-map'] .info-inner {
+    max-width: unset;
+    width: 100%;
     padding: var(--spacing-2md) 0;
     gap: var(--spacing-md);
     overflow: unset;
@@ -1314,8 +1317,10 @@
     gap: var(--spacing-2xs);
   }
 
-  [data-section='vendor-map'] .vendor-list .card-container {
-    --column: 1.65;
+  @media (max-width: 575px) {
+    [data-section='vendor-map'] .vendor-list .card-container {
+      --column: 1.65;
+    }
   }
 
   [data-section='vendor-map'] .vendor-list__swiper {
@@ -1419,6 +1424,21 @@
   }
   [data-section='all-vendors'] .result-label {
     margin-bottom: var(--spacing-2xs);
+  }
+
+  /* Delivery CTA */
+  [data-section='delivery-cta'] .container {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: flex-start;
+  }
+
+  [data-section='delivery-cta'] .text-content {
+    max-width: 72.04610951009%;
+  }
+
+  [data-section='delivery-cta'] .media-cta {
+    width: 100%;
   }
 
   /* PAGE: VENUE RENTAL */
@@ -1669,7 +1689,7 @@
   /* VENUE INFO */
   [data-section='venue-info'] .venue-info-tabs {
     position: absolute;
-    top: calc((100vw / 0.7129277567) + var(--spacing-lg));
+    top: calc((100vw / 2.1176470588) + var(--spacing-lg));
     left: 0;
     padding: 0 var(--spacing-container);
     max-width: unset;
@@ -1685,12 +1705,8 @@
     }
   }
 
-  [data-section='venue-info'] .venue-info-gallery__media {
-    aspect-ratio: 0.7129277567;
-  }
-
   [data-section='venue-info'] .swiper-pagination-bullets.swiper-pagination-horizontal {
-    bottom: var(--spacing-2sm);
+    bottom: var(--spacing-4xs);
   }
 
   [data-section='venue-info'] .venue-info-panel__bottom {

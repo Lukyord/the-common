@@ -73,7 +73,7 @@ function VenueRentalRateTable({
           <AnimateOnScroll as="tr" triggerClass="fadeIn" className="fadeIn">
             <th
               scope="col"
-              className="type-d-body-s type-m-body-r letter-spacing-002 weight-medium uppercase"
+              className="type-d-body-s type-m-body-r letter-spacing-002 weight-medium"
             >
               {tableTitle}
             </th>
@@ -82,7 +82,7 @@ function VenueRentalRateTable({
               <th
                 key={`${col.title}-${index}`}
                 scope="col"
-                className="type-d-body-s type-m-body-r letter-spacing-002 weight-medium uppercase"
+                className="type-d-body-s type-m-body-r letter-spacing-002 weight-medium"
               >
                 {col.title}
               </th>
