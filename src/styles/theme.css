@@ -807,7 +807,7 @@ html.no-touchevents .announcement-close:hover {
   rotate: -6.8deg;
 } */
 
-[data-section='homepage-about'] .sticky-note:nth-child(1) {
+/* [data-section='homepage-about'] .sticky-note:nth-child(1) {
   bottom: var(--spacing-lg);
   left: 0;
   z-index: 1;
@@ -823,6 +823,28 @@ html.no-touchevents .announcement-close:hover {
 [data-section='homepage-about'] .sticky-note:nth-child(3) {
   right: 0;
   bottom: 0;
+  z-index: 3;
+  rotate: 11.48deg;
+} */
+
+[data-section='homepage-about'] .sticky-note:nth-child(1) {
+  left: 0;
+  top: 10%;
+  transform: rotate(-6deg);
+  z-index: 1;
+}
+
+[data-section='homepage-about'] .sticky-note:nth-child(2) {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+[data-section='homepage-about'] .sticky-note:nth-child(3) {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 3;
   rotate: 11.48deg;
 }
@@ -3166,6 +3188,7 @@ html.no-touchevents [data-section='whats-on-global-club'] .tags-filter__tag:not(
   gap: var(--spacing-2sm);
   padding-bottom: var(--spacing-md);
   border-bottom: 1px solid #e8e4db66;
+  height: 100%;
 }
 
 [data-section='whats-on-calendar']

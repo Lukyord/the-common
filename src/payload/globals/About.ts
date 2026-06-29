@@ -54,7 +54,7 @@ export const About: GlobalConfig = {
                   {
                     name: 'hexCode',
                     type: 'text',
-                    label: 'Hex Code',
+                    label: 'Background Color',
                     admin: {
                       components: {
                         Field: {
