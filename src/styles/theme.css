@@ -766,7 +766,7 @@ html.no-touchevents .announcement-close:hover {
 
 [data-section='homepage-about'] .sticky-notes-wrapper {
   aspect-ratio: 1.6459375422;
-  width: 71.6176470588%;
+  width: 68.5294117647%;
   margin: 0 auto;
   position: relative;
 }
@@ -842,7 +842,7 @@ html.no-touchevents .announcement-close:hover {
 }
 
 [data-section='homepage-about'] .sticky-note:nth-child(3) {
-  right: 0;
+  right: var(--spacing-xs);
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
@@ -882,7 +882,7 @@ html.no-touchevents .announcement-close:hover {
 
 [data-section='homepage-about'] .sticky-note[data-shape='heart'] {
   aspect-ratio: 1.301136364;
-  width: 45.8rem;
+  width: 42.9184549356%;
   color: var(--text-color);
   padding: var(--spacing-2lg);
   background-image: url('../../public/designs/smile-heart.webp');
