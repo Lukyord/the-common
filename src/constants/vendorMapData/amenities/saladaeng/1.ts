@@ -2,11 +2,6 @@ import type { FloorAmenities } from '../../types'
 
 export const saladaeng1FloorAmenities: FloorAmenities = [
   {
-    id: 'recycling',
-    label: 'Recycling',
-    pins: [{ top: '22%', left: '39%' }],
-  },
-  {
     id: 'toilet',
     label: 'Restrooms',
     pins: [{ top: '51%', left: '24%' }],

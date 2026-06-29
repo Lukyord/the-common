@@ -46,7 +46,7 @@ export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig>
         label: '1',
         mapSrc: '/map/sl/1f/SD-1F-outline.svg',
         mapAlt: 'Saladaeng Floor 1 Map Plan',
-        vendors: Array.from({ length: 5 }, (_, index) => ({ lotNumber: index + 1 })),
+        vendors: Array.from({ length: 4 }, (_, index) => ({ lotNumber: index + 1 })),
       },
       {
         id: '2',
@@ -60,7 +60,7 @@ export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig>
         label: '3',
         mapSrc: '/map/sl/3f/SD-3F-outline.svg',
         mapAlt: 'Saladaeng Floor 3 Map Plan',
-        vendors: Array.from({ length: 5 }, (_, index) => ({ lotNumber: index + 1 })),
+        vendors: Array.from({ length: 2 }, (_, index) => ({ lotNumber: index + 1 })),
       },
     ],
   },
