@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import WhatsOnSingle from '@/components/whats-on-single/WhatsOnSingle'
 import { generateMeta } from '@/lib/generateMeta'
 import { getWhatsOnBySlug } from '@/payload/queries/branch'
+import { getBranchBySlug } from '@/payload/queries/branch'
 
 export const dynamic = 'force-dynamic'
 
@@ -23,7 +24,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function EventSinglePage({ params }: Props) {
   const { branch: branchSlug, slug } = await params
-  const event = await getWhatsOnBySlug(branchSlug, slug)
+  const [branch, event] = await Promise.all([
+    getBranchBySlug(branchSlug),
+    getWhatsOnBySlug(branchSlug, slug),
+  ])
 
   return (
     <main id="main" className="whats-on-single-page">
@@ -31,6 +35,7 @@ export default async function EventSinglePage({ params }: Props) {
         event={event}
         backHref={`/${branchSlug}/whats-on`}
         getTagHref={(tag) => `/whats-on/filter?tag=${encodeURIComponent(tag)}`}
+        branchFooterBgColor={branch.footerBg}
       />
     </main>
   )

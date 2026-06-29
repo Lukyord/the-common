@@ -4,4 +4,5 @@ export type WhatsOnSingleProps = {
   event: WhatsOnSingleData
   backHref: string
   getTagHref: (tag: string) => string
+  branchFooterBgColor: string
 }

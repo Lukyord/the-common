@@ -10,7 +10,12 @@ import { isWhatsOnArchived } from '@/lib/whatsOnArchive'
 import WhatsOnSingleHeader from './WhatsOnSingleHeader'
 import type { WhatsOnSingleProps } from './types'
 
-export default function WhatsOnSingle({ event, backHref, getTagHref }: WhatsOnSingleProps) {
+export default function WhatsOnSingle({
+  event,
+  backHref,
+  getTagHref,
+  branchFooterBgColor,
+}: WhatsOnSingleProps) {
   const showInfo = !isWhatsOnArchived(event)
 
   return (
@@ -32,7 +37,7 @@ export default function WhatsOnSingle({ event, backHref, getTagHref }: WhatsOnSi
           <Link
             href={event.buttonLink}
             className="button-template"
-            style={{ '--button-bg-color': event.buttonColor } as CSSProperties}
+            style={{ '--button-bg-color': branchFooterBgColor } as CSSProperties}
           >
             <span>
               <span>{event.buttonText}</span>

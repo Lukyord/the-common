@@ -126,7 +126,7 @@ export const WhatsOn: CollectionConfig = {
       hasMany: true,
       maxRows: 5,
     },
-    colorPickerField('bgColor', 'Bg Color'),
+    colorPickerField('bgColor', 'Background Color'),
     {
       name: 'eventSchedule',
       type: 'group',
