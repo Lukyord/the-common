@@ -63,12 +63,12 @@ const branchGroupFields: Field[] = [
       {
         name: 'text',
         type: 'text',
-        label: 'Text',
+        label: 'CTA Text',
       },
       {
         name: 'desc',
         type: 'textarea',
-        label: 'Description',
+        label: 'CTA Description',
       },
     ],
   },

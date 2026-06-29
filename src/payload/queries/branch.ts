@@ -166,6 +166,7 @@ export const getBranchSpaceRentalPageBySlug = cache(
 )
 
 const BRANCH_VENDOR_LIMIT = 3
+const BRANCH_VENDOR_FETCH_LIMIT = 12
 const VENDOR_RELATED_LIMIT = 3
 
 function getVendorBranchId(branch: Vendor['branch']): number | null {
@@ -204,6 +205,20 @@ function getVendorFloorTitle(vendor: Vendor, branch: Branch | null): string {
 
   const floor = branch.floors.find((item) => item.floorId === vendor.floor)
   return floor?.title?.trim() || ''
+}
+
+function takeValidLandingVendorCards(vendors: Vendor[], limit: number): BranchLandingVendorCard[] {
+  const cards: BranchLandingVendorCard[] = []
+
+  for (const vendor of vendors) {
+    const card = mapVendorToBranchLandingCard(vendor)
+    if (!card) continue
+
+    cards.push(card)
+    if (cards.length >= limit) break
+  }
+
+  return cards
 }
 
 function mapVendorToBranchLandingCard(
@@ -751,7 +766,7 @@ export const getBranchLandingVendors = cache(
         : await payload.find({
             collection: 'vendors',
             depth: 1,
-            limit: BRANCH_VENDOR_LIMIT,
+            limit: BRANCH_VENDOR_FETCH_LIMIT,
             overrideAccess: false,
             pagination: false,
             sort: '-createdAt',
@@ -767,10 +782,7 @@ export const getBranchLandingVendors = cache(
         ? [...query.docs].sort((a, b) => highlightIds.indexOf(a.id) - highlightIds.indexOf(b.id))
         : query.docs
 
-    return docs.flatMap((vendor) => {
-      const card = mapVendorToBranchLandingCard(vendor)
-      return card ? [card] : []
-    })
+    return takeValidLandingVendorCards(docs, BRANCH_VENDOR_LIMIT)
   },
 )
 
