@@ -34,7 +34,7 @@ const LOCATIONS: Location[] = [
     href: '/cloud-11',
     name: 'Cloud 11',
     accentColor: 'var(--color-cloud-11-pink)',
-    captions: ['Opening Soon'],
+    captions: ['OPENING HOURS', '8am - 12am'],
   },
 ]
 
