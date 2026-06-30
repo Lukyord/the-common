@@ -421,6 +421,22 @@ html.no-touchevents [data-section='delivery-cta'] .media-cta .lineman:hover {
   transform: translate(var(--hover-offset), var(--hover-offset-neg));
 }
 
+[data-section='delivery-cta'] .media-cta.only-grab {
+  .bag {
+    left: auto;
+    right: 10.9311740891%;
+  }
+
+  .grab {
+    bottom: 18.26625387%;
+    left: 10.7962213225%;
+  }
+}
+
+html.no-touchevents [data-section='delivery-cta'] .media-cta.only-grab .grab:hover {
+  transform: translate(var(--hover-offset), var(--hover-offset-neg));
+}
+
 /* GRID CARD CONTIANER ==================== */
 .grid-card-contianer {
   display: flex;

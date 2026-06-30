@@ -44,23 +44,39 @@ export default function DeliveryCtaSection({ data }: DeliveryCtaSectionProps) {
               </div>
             )}
           </div>
-          <div className="media-cta">
-            <div className="bag">
-              <RenderMedia src="/designs/paper-bag.webp" alt="Paper Bag" />
+          {data.grabLink && data.linemanLink && (
+            <div className="media-cta">
+              <div className="bag">
+                <RenderMedia src="/designs/paper-bag.webp" alt="Paper Bag" />
+              </div>
+              <div className="grab">
+                <Link href={data.grabLink ?? ''} className="link-overlay">
+                  &nbsp;
+                </Link>
+                <RenderMedia src="/designs/grab.webp" alt="Grab" />
+              </div>
+              <div className="lineman">
+                <Link href={data.linemanLink ?? ''} className="link-overlay">
+                  &nbsp;
+                </Link>
+                <RenderMedia src="/designs/lineman.webp" alt="Lineman" />
+              </div>
             </div>
-            <div className="grab">
-              <Link href={data.grabLink ?? ''} className="link-overlay">
-                &nbsp;
-              </Link>
-              <RenderMedia src="/designs/grab.webp" alt="Grab" />
+          )}
+
+          {data.grabLink && (
+            <div className="media-cta only-grab">
+              <div className="bag">
+                <RenderMedia src="/designs/paper-bag.webp" alt="Paper Bag" />
+              </div>
+              <div className="grab">
+                <Link href={data.grabLink ?? ''} className="link-overlay">
+                  &nbsp;
+                </Link>
+                <RenderMedia src="/designs/grab.webp" alt="Grab" />
+              </div>
             </div>
-            <div className="lineman">
-              <Link href={data.linemanLink ?? ''} className="link-overlay">
-                &nbsp;
-              </Link>
-              <RenderMedia src="/designs/lineman.webp" alt="Lineman" />
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
