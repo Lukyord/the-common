@@ -4777,7 +4777,10 @@ html.no-touchevents
 }
 
 [data-section='branch-venue-rental-landing'] .sc-content {
-  height: 100%;
+  height: 100vh;
+}
+
+[data-section='branch-venue-rental-landing'] .sc-content .venue-form {
   overflow-y: auto;
   overscroll-behavior: auto;
   scrollbar-width: none;
@@ -4794,7 +4797,7 @@ html.no-touchevents
 }
 
 [data-section='branch-venue-rental-landing'] .sc-content .venue-form-inner {
-  padding: 0;
+  padding-top: 0;
 }
 
 [data-section='branch-venue-rental-landing'] .sc-content .venue-form-inner.venue-booking-success {

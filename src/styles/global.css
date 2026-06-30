@@ -1093,6 +1093,10 @@ section.header-margin {
   width: 100%;
 }
 
+.swiper .swiper-button-lock {
+  display: none !important;
+}
+
 .swiper .swiper-button-prev,
 .swiper .swiper-button-next {
   display: block;

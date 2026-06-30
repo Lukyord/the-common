@@ -1,6 +1,5 @@
 'use client'
 
-import type { CSSProperties } from 'react'
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -10,6 +9,7 @@ import type { ContentSingleGalleryItem } from '@/components/common/content-singl
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/effect-fade'
+import type { CSSProperties } from 'react'
 
 type VenueRentalGalleryProps = {
   items: ContentSingleGalleryItem[]
@@ -42,7 +42,10 @@ export default function VenueRentalGallery({ items, bgColor }: VenueRentalGaller
       >
         {items.map((item, index) => (
           <SwiperSlide key={`${item.src}-${index}`}>
-            <div className="gallery-media">
+            <div
+              className="gallery-media"
+              style={{ backgroundColor: bgColor ?? undefined } as CSSProperties}
+            >
               <RenderMedia src={item.src} alt={item.alt} />
             </div>
           </SwiperSlide>

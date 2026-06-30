@@ -1609,9 +1609,17 @@
     aspect-ratio: 0.7129277567;
   }
 
+  [data-section='branch-venue-rental-landing'] .sc-content {
+    height: auto;
+  }
+
   [data-section='branch-venue-rental-landing'] .sc-content .venue-form {
     padding-top: var(--spacing-2lg);
     padding-bottom: var(--spacing-2lg);
+  }
+
+  [data-section='branch-venue-rental-landing'] .sc-content .venue-form-inner {
+    padding-bottom: 0;
   }
 
   [data-section='branch-venue-rental-landing'] .branch-venue-rental-header__package {

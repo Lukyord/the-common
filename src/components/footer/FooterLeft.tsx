@@ -50,7 +50,11 @@ export function FooterLeft({ currentBranch, branches, contact }: FooterLeftProps
 
               {branch.logo?.src && (
                 <div className="branch-media">
-                  <RenderMedia src={branch.logo.src} alt={branch.logo.alt || branch.name} />
+                  <RenderMedia
+                    fetchPriority="high"
+                    src={branch.logo.src}
+                    alt={branch.logo.alt || branch.name}
+                  />
                 </div>
               )}
               <div className="branch-name">

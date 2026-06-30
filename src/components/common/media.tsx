@@ -10,6 +10,7 @@ type MediaProps = {
   alt?: string
   className?: string
   priority?: boolean
+  fetchPriority?: 'high' | 'low' | 'auto'
 }
 
 type VideoElementWithDataset = HTMLVideoElement & {
@@ -34,6 +35,7 @@ export default function RenderMedia({
   alt = '',
   className = '',
   priority = false,
+  fetchPriority,
 }: MediaProps) {
   const videoRef = useRef<VideoElementWithDataset>(null)
 
@@ -68,6 +70,7 @@ export default function RenderMedia({
   const isVideoMobile = isVideo(mobileSrc)
 
   const baseClasses = `object-fit ${className}`.trim()
+  const imageProps = { priority, fetchPriority, width: 100, height: 100 }
 
   // Case 1: Both are images - use Next.js Image with responsive display
   if (isImageDesktop && isImageMobile) {
@@ -75,11 +78,11 @@ export default function RenderMedia({
       <>
         {/* Desktop version */}
         <figure className={`${baseClasses} show-md`}>
-          <Image src={src} alt={alt} priority={priority} width={100} height={100} />
+          <Image src={src} alt={alt} {...imageProps} />
         </figure>
         {/* Mobile version */}
         <figure className={`${baseClasses} hidden-device-md`}>
-          <Image src={mobileSrc} alt={alt} priority={priority} width={100} height={100} />
+          <Image src={mobileSrc} alt={alt} {...imageProps} />
         </figure>
       </>
     )
@@ -113,7 +116,7 @@ export default function RenderMedia({
         {isVideoDesktop ? (
           <video playsInline autoPlay muted loop preload="auto" src={src} />
         ) : (
-          <Image src={src} alt={alt} priority={priority} width={100} height={100} />
+          <Image src={src} alt={alt} {...imageProps} />
         )}
       </figure>
 
@@ -122,7 +125,7 @@ export default function RenderMedia({
         {isVideoMobile ? (
           <video playsInline autoPlay muted loop preload="auto" src={mobileSrc} />
         ) : (
-          <Image src={mobileSrc} alt={alt} priority={priority} width={100} height={100} />
+          <Image src={mobileSrc} alt={alt} {...imageProps} />
         )}
       </figure>
     </>
