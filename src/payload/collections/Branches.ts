@@ -177,7 +177,7 @@ export const Branches: CollectionConfig = {
             },
             colorPickerField('primaryColor', 'Primary Color'),
             colorPickerField('bgColor', 'Background Color'),
-            colorPickerField('footerBg', 'Footer BG'),
+            colorPickerField('footerBg', 'Footer Background Color'),
             colorPickerField('footerColor', 'Footer Color'),
             {
               name: 'findUs',

@@ -60,7 +60,7 @@ export const Vendors: CollectionConfig = {
       name: 'media',
       type: 'upload',
       relationTo: 'media',
-      label: 'Media',
+      label: 'Card Media',
       admin: {
         className: 'upload-field--aspect-1',
         description: 'Recommended aspect ratio: 1',

@@ -9,14 +9,12 @@ import type { ContentSingleGalleryItem } from '@/components/common/content-singl
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/effect-fade'
-import type { CSSProperties } from 'react'
 
 type VenueRentalGalleryProps = {
   items: ContentSingleGalleryItem[]
-  bgColor?: string | null
 }
 
-export default function VenueRentalGallery({ items, bgColor }: VenueRentalGalleryProps) {
+export default function VenueRentalGallery({ items }: VenueRentalGalleryProps) {
   if (!items.length) {
     return null
   }
@@ -42,10 +40,7 @@ export default function VenueRentalGallery({ items, bgColor }: VenueRentalGaller
       >
         {items.map((item, index) => (
           <SwiperSlide key={`${item.src}-${index}`}>
-            <div
-              className="gallery-media"
-              style={{ backgroundColor: bgColor ?? undefined } as CSSProperties}
-            >
+            <div className="gallery-media">
               <RenderMedia src={item.src} alt={item.alt} />
             </div>
           </SwiperSlide>

@@ -42,7 +42,7 @@ export default function VenueRentalPanel({ group }: VenueRentalPanelProps) {
 
   return (
     <div className="venue-rental-panel" style={panelStyle}>
-      <VenueRentalGallery items={group.galleryItems} bgColor={group.bgColor} />
+      <VenueRentalGallery items={group.galleryItems} />
 
       <div className="venue-rental-panel__content" style={panelStyle}>
         {group.title && (
