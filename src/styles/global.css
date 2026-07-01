@@ -1098,7 +1098,9 @@ section.header-margin {
 }
 
 .swiper .swiper-button-prev,
-.swiper .swiper-button-next {
+.swiper-button-prev,
+.swiper .swiper-button-next,
+.swiper-button-next {
   display: block;
   margin-top: 0;
   --swiper-navigation-size: 2.4rem;
@@ -1122,10 +1124,12 @@ section.header-margin {
   }
 }
 
-.swiper .swiper-button-prev:after {
+.swiper .swiper-button-prev:after,
+.swiper-button-prev:after {
   content: '\e90d';
 }
-.swiper .swiper-button-next:after {
+.swiper .swiper-button-next:after,
+.swiper-button-next:after {
   content: '\e90e';
 }
 

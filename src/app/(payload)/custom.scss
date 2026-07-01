@@ -13,6 +13,14 @@
   }
 }
 
+.upload-field--aspect-0-8 {
+  .file-field__thumbnail img,
+  .upload-relationship-details__image img {
+    aspect-ratio: 0.8;
+    object-fit: cover;
+  }
+}
+
 .admin-theme-logo__img--dark {
   display: none;
 }

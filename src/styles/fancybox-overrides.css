@@ -1,0 +1,113 @@
+/* Load after @fancyapps/ui/dist/fancybox/fancybox.css */
+.fancybox__container .fancybox__carousel {
+  --f-arrow-gap: var(--spacing-md);
+}
+
+.fancybox__slide.has-close-btn {
+  padding-top: 0;
+}
+
+.f-button {
+  --f-button-width: 3rem;
+  --f-button-height: 3rem;
+  --f-button-svg-width: 100%;
+  --f-button-svg-height: 100%;
+  --f-button-bg: transparent;
+  --f-button-hover-bg: transparent;
+
+  @media (max-width: 991px) {
+    --f-button-width: 1.8rem;
+    --f-button-height: 1.8rem;
+    --f-close-button-width: 1.8rem;
+    --f-close-button-height: 1.8rem;
+  }
+}
+
+.f-button.is-arrow {
+  --f-button-width: 2.4rem;
+  --f-button-height: 3.6rem;
+  --f-arrow-width: var(--f-button-width);
+  --f-arrow-height: var(--f-button-height);
+  --f-button-bg: transparent;
+  --f-button-hover-bg: transparent;
+}
+
+.f-panzoom__wrapper {
+  max-width: 92.5333333333% !important;
+  max-height: 82.8193832599% !important;
+
+  @media (max-width: 991px) {
+    max-height: 61.5714285714% !important;
+  }
+}
+
+.fancybox__carousel > .f-button.is-arrow:before {
+  inset: -1rem;
+}
+
+.is-horizontal .f-button.is-arrow.is-prev,
+.is-horizontal .f-button.is-arrow.is-next {
+  inset: unset;
+  top: auto;
+  bottom: 6.6079295154%;
+  transform: translateY(100%);
+
+  svg {
+    display: none;
+  }
+
+  &:after {
+    content: '';
+    font-family: 'iconfont';
+    font-size: 1.8rem;
+    color: var(--color-white);
+  }
+
+  @media (max-width: 991px) {
+    bottom: calc(18% - var(--f-button-height) / 2);
+  }
+}
+
+.is-horizontal.is-ltr .f-button.is-arrow.is-prev {
+  left: calc(50% - var(--f-arrow-width) - var(--f-arrow-gap) / 2);
+
+  &:after {
+    content: '\e90d';
+  }
+}
+
+.is-horizontal.is-ltr .f-button.is-arrow.is-next {
+  right: calc(50% - var(--f-arrow-width) - var(--f-arrow-gap) / 2);
+
+  &:after {
+    content: '\e90e';
+  }
+}
+
+.f-panzoom__wrapper > .f-button.is-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 20;
+  margin: 0;
+  transform: translate(calc(100% + var(--spacing-3xs)), calc(-100% - var(--spacing-3xs)));
+
+  svg {
+    display: none;
+  }
+
+  &:after {
+    content: '\e94a';
+    font-family: 'iconfont';
+    font-size: var(--f-button-width);
+    color: var(--color-white);
+  }
+
+  @media (max-width: 991px) {
+    transform: translate(0, calc(-100% - var(--spacing-3xs)));
+  }
+}
+
+.fancybox__slide:not(.is-selected) .f-button.is-close-button {
+  display: none;
+}

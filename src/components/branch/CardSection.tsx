@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import type { CSSProperties, ReactNode } from 'react'
+import { useRef, type CSSProperties, type ReactNode } from 'react'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { MarkdownContent } from '@/components/common/markdown-content'
 import { Navigation, Pagination } from 'swiper/modules'
@@ -62,6 +62,9 @@ export default function CardSection<TCard>({
   renderCard,
   getCardKey,
 }: CardSectionProps<TCard>) {
+  const prevRef = useRef<HTMLButtonElement>(null)
+  const nextRef = useRef<HTMLButtonElement>(null)
+
   if (!title && cards.length === 0) return null
 
   const showNavigation = slider?.navigation === true
@@ -86,6 +89,22 @@ export default function CardSection<TCard>({
                 </MarkdownContent>
               </AnimateOnScroll>
             )}
+            {showNavigation && cards.length > 0 && (
+              <div className="sc-nav">
+                <button
+                  ref={prevRef}
+                  type="button"
+                  className="swiper-button-prev"
+                  aria-label="Previous slide"
+                />
+                <button
+                  ref={nextRef}
+                  type="button"
+                  className="swiper-button-next"
+                  aria-label="Next slide"
+                />
+              </div>
+            )}
             {cta?.label && cta?.href && (
               <AnimateOnScroll triggerClass="fadeIn" className="sc-cta">
                 <Link
@@ -105,7 +124,26 @@ export default function CardSection<TCard>({
             <div className="card-container" data-card-layout="slider">
               <Swiper
                 modules={modules}
-                navigation={showNavigation}
+                navigation={
+                  showNavigation
+                    ? {
+                        prevEl: prevRef.current,
+                        nextEl: nextRef.current,
+                      }
+                    : false
+                }
+                onBeforeInit={(swiper) => {
+                  if (typeof swiper.params.navigation === 'object' && swiper.params.navigation) {
+                    swiper.params.navigation.prevEl = prevRef.current
+                    swiper.params.navigation.nextEl = nextRef.current
+                  }
+                }}
+                onInit={(swiper) => {
+                  if (showNavigation) {
+                    swiper.navigation.init()
+                    swiper.navigation.update()
+                  }
+                }}
                 speed={slider?.speed ?? 800}
                 pagination={pagination.options}
                 slidesPerView="auto"

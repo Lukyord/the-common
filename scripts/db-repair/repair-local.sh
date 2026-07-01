@@ -76,6 +76,15 @@ else
   fi
 fi
 
+if has_table '__new_branch_whats_on_pages_rels'; then
+  echo "Found __new_branch_whats_on_pages_rels — drop it manually or reset local D1."
+else
+  if has_table 'branch_whats_on_pages_rels' && sqlite3 "${DB}" "SELECT 1 FROM sqlite_master WHERE type='index' AND name='branch_whats_on_pages_rels_order_idx';" | grep -q 1; then
+    echo "Repairing branch_whats_on_pages_rels indexes so drizzle push can finish…"
+    sqlite3 "${DB}" < "${SQL_DIR}/branch-whats-on-pages-rels-idx.sql"
+  fi
+fi
+
 if has_table '__new_branch_contact_pages'; then
   echo "Found __new_branch_contact_pages — drop it manually or reset local D1."
 else

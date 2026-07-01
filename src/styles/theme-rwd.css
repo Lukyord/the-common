@@ -241,8 +241,8 @@
   }
 
   [data-section='card-section'] .card-container {
-    --column: 1;
-    --gap-x: var(--spacing-container);
+    --column: 2;
+    --gap-x: var(--spacing-4xs);
   }
 
   /* PAGE ==================== */
@@ -996,6 +996,7 @@
   /* What's On Latest */
   .whats-on-latest {
     min-height: calc(100svh - var(--header-height));
+    min-height: unset;
   }
 
   .whats-on-latest-empty {
@@ -1064,6 +1065,16 @@
     margin-bottom: var(--spacing-2xs);
   }
 
+  [data-card='whats-on'] .card-header {
+    margin-bottom: var(--spacing-2xs);
+  }
+
+  [data-card='whats-on-image'] .icon {
+    bottom: var(--spacing-2xs);
+    right: var(--spacing-2xs);
+    font-size: 2rem;
+  }
+
   [data-section='whats-on-calendar'] .grid-card-see-more {
     margin-top: var(--spacing-2sm);
   }
@@ -1071,16 +1082,17 @@
     padding-bottom: var(--spacing-lg);
   }
 
-  /* Whats On Others */
-  .whats-on-others .card-container {
-    --column: 1.2;
+  /* Whats On Daily Live Music */
+  .whats-on-daily-live-music .card-container {
+    --column: 2;
+    --gap-x: var(--spacing-4xs);
   }
 
-  .whats-on-others .swiper .swiper-button-next,
-  .whats-on-others .swiper .swiper-button-prev {
+  [data-section='card-section'] .sc-nav {
     display: none;
   }
 
+  /* Whats On Others */
   .grid-card-contianer .card-container {
     --column: 2;
     --gap-x: var(--spacing-4xs);

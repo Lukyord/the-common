@@ -643,6 +643,30 @@ html.no-touchevents [data-section='vendors-list'] .see-more-button:hover,
   margin-bottom: var(--spacing-lg);
 }
 
+[data-section='card-section'] .sc-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-shrink: 0;
+}
+
+[data-section='card-section'] .sc-nav .swiper-button-prev,
+[data-section='card-section'] .sc-nav .swiper-button-next {
+  position: relative;
+  margin: 0;
+  transform: none;
+  width: 2.4rem;
+  height: auto;
+  aspect-ratio: 0.6666666667;
+}
+
+[data-section='card-section'] .sc-nav [class*='swiper-button-']:after {
+  width: auto;
+  aspect-ratio: unset;
+  margin: 0;
+  font-size: 1.7rem;
+}
+
 [data-section='card-section'] .card-container {
   --column: 3;
   --gap-x: var(--spacing-sm);
@@ -3239,6 +3263,54 @@ html.no-touchevents [data-section='whats-on-global-club'] .tags-filter__tag:not(
   margin-bottom: var(--spacing-sm);
 }
 
+[data-card='whats-on-image'] .card-media {
+  aspect-ratio: 0.8;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+[data-card='whats-on-image'] .icon {
+  position: absolute;
+  bottom: var(--spacing-md);
+  right: var(--spacing-md);
+  font-size: 4rem;
+  color: var(--color-white);
+}
+
+[data-card='whats-on-image'].is-fancybox {
+  cursor: pointer;
+}
+
+/* Whats On Daily Live Music */
+.whats-on-daily-live-music {
+  background-color: var(--color-beige);
+  color: var(--color-dark-brown);
+}
+
+.whats-on-daily-live-music .sc-ttl {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+
+  &:after {
+    content: '';
+    width: 1.8rem;
+    aspect-ratio: 1;
+    transform: rotate(45deg);
+    background-color: var(--color-cloud-11-pink);
+  }
+}
+
+.whats-on-daily-live-music .card-container {
+  --column: 3;
+  --gap-x: var(--spacing-xs);
+}
+
+.whats-on-daily-live-music .sc-nav [class*='swiper-button-']:after {
+  color: var(--color-dark-brown);
+}
+
 /* Whats On Others */
 .whats-on-others {
   color: var(--color-white);
@@ -3246,21 +3318,6 @@ html.no-touchevents [data-section='whats-on-global-club'] .tags-filter__tag:not(
 
 .whats-on-others .card-container {
   --column: 3.5;
-}
-
-.whats-on-others .swiper .swiper-button-next {
-  right: 0;
-  top: calc(-1 * var(--spacing-2lg));
-  margin-top: 0;
-  transform: translateY(-100%);
-}
-
-.whats-on-others .swiper .swiper-button-prev {
-  left: auto;
-  right: calc(var(--swiper-navigation-size) + var(--spacing-md));
-  top: calc(-1 * var(--spacing-2lg));
-  margin-top: 0;
-  transform: translateY(-100%);
 }
 
 /* PAGE: BRANCH WHATS SINGLE */

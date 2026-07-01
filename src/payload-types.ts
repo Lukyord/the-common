@@ -1013,6 +1013,13 @@ export interface BranchWhatsOnPage {
     background?: string | null;
     allBranchesBackground?: string | null;
   };
+  dailyLiveMusic?: {
+    title?: string | null;
+    /**
+     * Recommended aspect ratio: 0.8 (4 / 5)
+     */
+    images?: (number | Media)[] | null;
+  };
   club?: {
     title?: string | null;
     mainTag?: (number | null) | WhatsOnMainTag;
@@ -1622,6 +1629,12 @@ export interface BranchWhatsOnPagesSelect<T extends boolean = true> {
         title?: T;
         background?: T;
         allBranchesBackground?: T;
+      };
+  dailyLiveMusic?:
+    | T
+    | {
+        title?: T;
+        images?: T;
       };
   club?:
     | T

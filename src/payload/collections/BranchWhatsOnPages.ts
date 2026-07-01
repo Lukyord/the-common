@@ -140,6 +140,34 @@ export const BranchWhatsOnPages: CollectionConfig = {
         ],
       },
     ]),
+    section('Daily Live Music', [
+      {
+        name: 'dailyLiveMusic',
+        type: 'group',
+        label: 'Daily Live Music',
+        admin: {
+          hideGutter: true,
+        },
+        fields: [
+          {
+            name: 'title',
+            type: 'text',
+            label: 'Title',
+          },
+          {
+            name: 'images',
+            type: 'upload',
+            relationTo: 'media',
+            label: 'Images',
+            hasMany: true,
+            admin: {
+              className: 'upload-field--aspect-0-8',
+              description: 'Recommended aspect ratio: 0.8 (4 / 5)',
+            },
+          },
+        ],
+      },
+    ]),
     section('Club', [
       {
         name: 'club',

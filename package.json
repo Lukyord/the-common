@@ -43,6 +43,7 @@
     "export:vendors": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/migration/export-vendors.ts"
   },
   "dependencies": {
+    "@fancyapps/ui": "^6.1.14",
     "@opennextjs/cloudflare": "^1.11.0",
     "@panzoom/panzoom": "^4.6.2",
     "@payloadcms/db-d1-sqlite": "3.82.1",

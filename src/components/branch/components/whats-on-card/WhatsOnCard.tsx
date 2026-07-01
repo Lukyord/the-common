@@ -70,7 +70,7 @@ export default function WhatsOnCard({
         </div>
       )}
       <div className="card-header">
-        <div className="card-date-time type-d-label type-m-body-s letter-spacing-002">
+        <div className="card-date-time type-d-label type-m-body-xs letter-spacing-002">
           {date && <span data-field="date">{date}</span>}
           {time && (
             <span data-field="time">
@@ -83,7 +83,7 @@ export default function WhatsOnCard({
         <div className="card-ttl">
           <MarkdownContent
             as="h3"
-            className="type-d-body-l type-m-title letter-spacing-002 weight-medium"
+            className="type-d-body-l type-m-body-s letter-spacing-002 weight-medium"
           >
             {title}
           </MarkdownContent>
@@ -93,10 +93,7 @@ export default function WhatsOnCard({
       </div>
       <div className="card-tags">
         {mainTag && (
-          <Link
-            href={`/whats-on/filter?tag=${encodeURIComponent(mainTag)}`}
-            className="tag main"
-          >
+          <Link href={`/whats-on/filter?tag=${encodeURIComponent(mainTag)}`} className="tag main">
             <p className="type-d-body-xs type-m-caption letter-spacing-002">{mainTag}</p>
           </Link>
         )}

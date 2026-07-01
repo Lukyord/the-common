@@ -2,10 +2,12 @@ import React from 'react'
 import type { Metadata } from 'next'
 
 import WhatsOnClub from '@/components/branch/whats-on/WhatsOnClub'
+import WhatsOnDailyLiveMusic from '@/components/branch/whats-on/WhatsOnDailyLiveMusic'
 import WhatsOnLanding from '@/components/branch/whats-on/WhatsOnLanding'
 import WhatsOnLatest from '@/components/branch/whats-on/WhatsOnLatest'
 import WhatsOnOthers from '@/components/branch/whats-on/WhatsOnOthers'
 import { generateMeta } from '@/lib/generateMeta'
+import { resolveMedia } from '@/lib/resolveMedia'
 import {
   getBranchBySlug,
   getBranchWhatsOnByMainTag,
@@ -57,6 +59,14 @@ export default async function WhatsOnPage({ params }: Props) {
 
   const uniqueOthersCards = Array.from(new Map(othersCards.map((c) => [c.id, c])).values())
 
+  const dailyLiveMusicImages =
+    page.dailyLiveMusic?.images
+      ?.map((item) => {
+        const media = resolveMedia(item)
+        return media ? { media } : null
+      })
+      .filter((item): item is { media: { src: string; alt: string } } => Boolean(item)) ?? []
+
   return (
     <main id="main" className="whats-on-page">
       <WhatsOnLanding data={page.landing} />
@@ -73,6 +83,14 @@ export default async function WhatsOnPage({ params }: Props) {
         cards={whatsOnCards}
         emptyMessage="Hang tight—good things take time! We’re currently hand-picking meaningful activities to share with the community."
       />
+
+      <WhatsOnDailyLiveMusic
+        sectionClassName="whats-on-daily-live-music"
+        scInnerClassName="pc-t-100 pc-b-100 mb-t-75 mb-b-75"
+        title={page.dailyLiveMusic?.title}
+        cards={dailyLiveMusicImages}
+      />
+
       <WhatsOnClub
         sectionClassName="whats-on-club bg-checked"
         scInnerClassName="pc-t-100 pc-b-100 mb-t-75 mb-b-75"

@@ -17,6 +17,10 @@ export default function WhatsOnClub({
   cards,
   cta,
 }: WhatsOnClubProps) {
+  if (cards.length === 0) {
+    return null
+  }
+
   return (
     <CardSection
       scInnerClassName={scInnerClassName}
