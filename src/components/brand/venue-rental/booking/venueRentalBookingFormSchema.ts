@@ -1,5 +1,10 @@
 import { z } from 'zod'
 
+import {
+  FORM_SUBMISSION_ERROR_TOAST_MESSAGE,
+  FORM_VALIDATION_TOAST_MESSAGE,
+} from '@/constants/formToastMessages'
+
 import { getTodayDateString } from './venueRentalFormUtils'
 import {
   buildVenueRentalStartTimes,
@@ -133,13 +138,11 @@ export function fieldErrorsFromZodError(
 
 export function venueRentalBookingFormErrorToastMessage(
   fieldErrors: Partial<Record<VenueRentalBookingFormFieldKey, string>>,
-  fallback = 'Please check the form and try again.',
+  fallback = FORM_SUBMISSION_ERROR_TOAST_MESSAGE,
 ): string {
-  const messages = venueRentalBookingFormFieldKeys
-    .map((key) => fieldErrors[key])
-    .filter((message): message is string => Boolean(message))
+  const hasFieldErrors = venueRentalBookingFormFieldKeys.some((key) => fieldErrors[key])
 
-  return messages.length > 0 ? messages.join(' ') : fallback
+  return hasFieldErrors ? FORM_VALIDATION_TOAST_MESSAGE : fallback
 }
 
 export function getBookingTimeLabel(bookingTime: string): string {

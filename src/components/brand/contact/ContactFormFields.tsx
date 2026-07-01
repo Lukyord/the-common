@@ -13,6 +13,7 @@ import {
   normalizeContactFormValues,
   type ContactFormFieldKey,
 } from './contactFormSchema'
+import { FORM_SUBMISSION_ERROR_TOAST_MESSAGE } from '@/constants/formToastMessages'
 import { resolveContactSubjects } from './contactFormSubjects'
 
 type ContactFormFieldsProps = {
@@ -76,11 +77,11 @@ export default function ContactFormFields({ subjects, buttonColor }: ContactForm
           setErrors(fieldErrors)
         }
 
-        const message = fieldErrors
-          ? contactFormErrorToastMessage(fieldErrors, payload?.error)
-          : payload?.error
-
-        toast.error(message ?? 'Unable to send your message. Please try again.')
+        toast.error(
+          fieldErrors
+            ? contactFormErrorToastMessage(fieldErrors)
+            : FORM_SUBMISSION_ERROR_TOAST_MESSAGE,
+        )
         return
       }
 
@@ -88,7 +89,7 @@ export default function ContactFormFields({ subjects, buttonColor }: ContactForm
       syncFormControlsFilled(form)
       toast.success('Thank you. Your message has been sent.')
     } catch {
-      toast.error('Unable to send your message. Please try again.')
+      toast.error(FORM_SUBMISSION_ERROR_TOAST_MESSAGE)
     } finally {
       setIsSubmitting(false)
     }

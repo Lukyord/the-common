@@ -8,6 +8,7 @@ import {
   type ContactFormValues,
 } from '@/components/brand/contact/contactFormSchema'
 import { resolveContactSubjects } from '@/components/brand/contact/contactFormSubjects'
+import { FORM_SUBMISSION_ERROR_TOAST_MESSAGE } from '@/constants/formToastMessages'
 import { sendContactInquiry } from '@/lib/email/sendContactInquiry'
 import { getResendConfig, readWorkerEnv } from '@/lib/email/resendConfig'
 import { getContactPayloadData } from '@/payload/queries/contact'
@@ -75,7 +76,7 @@ export async function POST(request: Request) {
     const isDev = process.env.NODE_ENV === 'development'
     return NextResponse.json(
       {
-        error: isDev ? result.error : 'Unable to send your message. Please try again later.',
+        error: isDev ? result.error : FORM_SUBMISSION_ERROR_TOAST_MESSAGE,
       },
       { status: 502 },
     )

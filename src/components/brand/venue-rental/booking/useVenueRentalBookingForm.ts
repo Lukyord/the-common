@@ -12,6 +12,7 @@ import {
   venueRentalBookingFormValuesFromFormData,
   type VenueRentalBookingFormFieldKey,
 } from './venueRentalBookingFormSchema'
+import { FORM_SUBMISSION_ERROR_TOAST_MESSAGE } from '@/constants/formToastMessages'
 import {
   buildVenueRentalStartTimes,
   VENUE_RENTAL_BOOKING_TIME_OPTIONS,
@@ -92,11 +93,11 @@ export function useVenueRentalBookingForm({
           setErrors(fieldErrors)
         }
 
-        const message = fieldErrors
-          ? venueRentalBookingFormErrorToastMessage(fieldErrors, payload?.error)
-          : payload?.error
-
-        toast.error(message ?? 'Unable to send your inquiry. Please try again.')
+        toast.error(
+          fieldErrors
+            ? venueRentalBookingFormErrorToastMessage(fieldErrors)
+            : FORM_SUBMISSION_ERROR_TOAST_MESSAGE,
+        )
         return
       }
 
@@ -105,7 +106,7 @@ export function useVenueRentalBookingForm({
       syncFormControlsFilled(form)
       onSubmitSuccess?.()
     } catch {
-      toast.error('Unable to send your inquiry. Please try again.')
+      toast.error(FORM_SUBMISSION_ERROR_TOAST_MESSAGE)
     } finally {
       setIsSubmitting(false)
     }

@@ -7,6 +7,7 @@ import {
   venueRentalBookingFormErrorToastMessage,
   type VenueRentalBookingFormValues,
 } from '@/components/brand/venue-rental/booking/venueRentalBookingFormSchema'
+import { FORM_SUBMISSION_ERROR_TOAST_MESSAGE } from '@/constants/formToastMessages'
 import { sendVenueRentalBookingInquiry } from '@/lib/email/sendVenueRentalBookingInquiry'
 import { getResendConfig, readWorkerEnv } from '@/lib/email/resendConfig'
 
@@ -62,7 +63,7 @@ export async function POST(request: Request) {
     const isDev = process.env.NODE_ENV === 'development'
     return NextResponse.json(
       {
-        error: isDev ? result.error : 'Unable to send your inquiry. Please try again later.',
+        error: isDev ? result.error : FORM_SUBMISSION_ERROR_TOAST_MESSAGE,
       },
       { status: 502 },
     )
