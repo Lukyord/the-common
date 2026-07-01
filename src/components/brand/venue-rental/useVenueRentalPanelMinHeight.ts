@@ -5,13 +5,16 @@ import { useCallback, useEffect, useRef } from 'react'
 const MOBILE_QUERY = '(max-width: 991px)'
 const MEASURING_CLASS = 'is-measuring'
 
-function measureTabContents(container: HTMLElement) {
+function measurePanelContents(container: HTMLElement) {
   const tabContents = container.querySelectorAll<HTMLElement>('.tab-content')
   let maxHeight = 0
 
   tabContents.forEach((tabContent) => {
+    const panelContent = tabContent.querySelector<HTMLElement>('.venue-rental-panel__content')
+    if (!panelContent) return
+
     tabContent.classList.add(MEASURING_CLASS)
-    maxHeight = Math.max(maxHeight, tabContent.offsetHeight)
+    maxHeight = Math.max(maxHeight, panelContent.offsetHeight)
     tabContent.classList.remove(MEASURING_CLASS)
   })
 
@@ -31,7 +34,7 @@ export function useVenueRentalPanelMinHeight(activeTab: string | null) {
         return
       }
 
-      const maxHeight = measureTabContents(container)
+      const maxHeight = measurePanelContents(container)
       if (maxHeight > 0) {
         container.style.setProperty('--venue-rental-panel-min-height', `${maxHeight}px`)
       }

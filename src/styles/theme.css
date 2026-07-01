@@ -3228,7 +3228,7 @@ html.no-touchevents [data-section='whats-on-global-club'] .tags-filter__tag:not(
   display: flex;
   gap: var(--spacing-2sm);
   padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid #e8e4db66;
+  /* border-bottom: 1px solid #e8e4db66; */
   height: 100%;
 }
 
@@ -3975,7 +3975,7 @@ html.no-touchevents
 
 [data-section='content-single'].vendor-single .vs-tags .amenity-list__item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--spacing-4xs);
 }
 
@@ -3997,10 +3997,6 @@ html.no-touchevents
 }
 .amenity-list__icon .ic-offer-vegan {
   font-size: 1.2rem;
-}
-
-[data-section='content-single'].vendor-single .vs-tags .amenity-list__name {
-  margin-top: var(--spacing-5xs);
 }
 
 [data-section='content-single'].vendor-single .vs-contact.sc-info {

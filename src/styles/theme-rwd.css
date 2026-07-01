@@ -1484,10 +1484,6 @@
     height: auto !important;
   }
 
-  [data-section='venue-rental-landing'] .venue-rental-tab-contents {
-    min-height: var(--venue-rental-panel-min-height, auto);
-  }
-
   [data-section='venue-rental-landing'] .tab-content.is-measuring {
     position: absolute !important;
     visibility: hidden !important;
@@ -1495,10 +1491,6 @@
     opacity: 0 !important;
     overflow: visible !important;
     pointer-events: none !important;
-  }
-
-  [data-section='venue-rental-landing'] .tab-content.active .venue-rental-panel {
-    min-height: var(--venue-rental-panel-min-height, auto);
   }
 
   [data-section='venue-rental-landing'] .venue-rental-gallery {
@@ -1509,10 +1501,11 @@
   [data-section='venue-rental-landing'] .venue-rental-panel__content {
     position: static;
     padding: var(--spacing-lg) var(--spacing-container);
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     gap: var(--spacing-2sm);
+    min-height: var(--venue-rental-panel-min-height, auto);
   }
 
   [data-section='venue-rental-landing'] .venue-rental-tabs {
@@ -1535,6 +1528,7 @@
 
   [data-section='venue-rental-landing'] .venue-rental-panel__link-container {
     order: 3;
+    width: 100%;
   }
 
   [data-section='venue-rental-landing'] .venue-rental-panel__link {
@@ -1550,6 +1544,9 @@
     padding: 0;
     background-color: unset;
     color: var(--color-white);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   [data-section='venue-rental-landing'] .venue-rental-panel__desc {
@@ -1563,6 +1560,9 @@
 
   [data-section='venue-rental-landing'] .venue-rental-panel__cta {
     margin-top: var(--spacing-lg);
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end;
   }
 
   .modal.venue-rental-modal {
