@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useClickOutside } from '@/hooks/useClickOutside'
 import { getSlugFromPathname } from '@/lib/pathname'
@@ -22,6 +22,14 @@ export const HeaderLocation = ({ className, branches }: props) => {
   const close = () => setIsOpen(false)
   const containerRef = useRef<HTMLDivElement>(null)
   useClickOutside(containerRef, close, isOpen)
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const handleScroll = () => setIsOpen(false)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [isOpen])
 
   return (
     <div ref={containerRef} className={`header-location ${isOpen ? ' is-open' : ''} ${className}`}>
