@@ -39,13 +39,32 @@ type BranchFloorSelectFieldProps = {
   readOnly?: boolean
 }
 
+function cleanFloorDisplayText(value: string | null | undefined): string {
+  if (!value) return ''
+
+  return value
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function formatFloorOptionLabel(floor: BranchFloor): string {
+  const text = cleanFloorDisplayText(floor.text)
+
+  if (text) {
+    return `${floor.floorId} - ${text}`
+  }
+
+  return floor.floorId
+}
+
 function toFloorOptions(floors: BranchFloor[] | null | undefined): OptionObject[] {
   if (!Array.isArray(floors)) return []
 
   return floors
     .filter((floor): floor is BranchFloor & { floorId: string } => Boolean(floor?.floorId))
     .map((floor) => ({
-      label: floor.text || floor.floorId,
+      label: formatFloorOptionLabel(floor),
       value: floor.floorId,
     }))
 }
