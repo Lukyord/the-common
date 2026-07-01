@@ -59,12 +59,25 @@ export function toBranchVenueRentalColContentProps(
   }
 }
 
+function getSingleRowColIndexes(cols: BranchVenueRentalColContentColumn[]): Set<number> {
+  return new Set(
+    cols
+      .map((col, colIndex) => {
+        const filledRowCount = col.cells.filter((cell) => cell.trim()).length
+        return filledRowCount === 1 ? colIndex : -1
+      })
+      .filter((colIndex) => colIndex >= 0),
+  )
+}
+
 function VenueRentalRateTable({
   tableTitle,
   rows,
   cols,
 }: Pick<BranchVenueRentalColContentProps, 'tableTitle' | 'rows' | 'cols'>) {
   if (!rows.length || !cols.length) return null
+
+  const singleRowColIndexes = getSingleRowColIndexes(cols)
 
   return (
     <div className="venue-rental-rate-table">
@@ -100,14 +113,24 @@ function VenueRentalRateTable({
               <th scope="row" className="type-d-body-s type-m-body-s letter-spacing-002">
                 {rowLabel}
               </th>
-              {cols.map((col, colIndex) => (
-                <td
-                  key={`${rowLabel}-${colIndex}`}
-                  className="type-d-body-s type-m-body-s letter-spacing-002"
-                >
-                  {col.cells[rowIndex] ?? ''}
-                </td>
-              ))}
+              {cols.map((col, colIndex) => {
+                const cellValue = col.cells[rowIndex] ?? ''
+                const isSingleRowCell =
+                  singleRowColIndexes.has(colIndex) && cellValue.trim().length > 0
+
+                return (
+                  <td
+                    key={`${rowLabel}-${colIndex}`}
+                    className="type-d-body-s type-m-body-s letter-spacing-002"
+                  >
+                    {isSingleRowCell ? (
+                      <p className="single-row-content">{cellValue}</p>
+                    ) : (
+                      cellValue
+                    )}
+                  </td>
+                )
+              })}
             </AnimateOnScroll>
           ))}
         </tbody>

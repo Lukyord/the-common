@@ -4917,6 +4917,11 @@ html.no-touchevents
   text-align: left;
   text-wrap: balance;
   padding-right: var(--spacing-xs);
+  position: relative;
+}
+
+[data-section='col-content'] .venue-rental-rate-table td .single-row-content {
+  position: absolute;
 }
 
 [data-section='col-content'] .venue-rental-rate-table th {
