@@ -78,7 +78,7 @@ export function HeaderLocationSelectorMobile({
   const panel = (
     <div
       ref={panelRef}
-      className={`header-location-selector-mobile__panel${isOpen ? ' is-open' : ''}`}
+      className={`hidden-device-md header-location-selector-mobile__panel${isOpen ? ' is-open' : ''}`}
     >
       <div className="header-location-selector-mobile__panel-inner">
         <div className="header-location-selector-mobile__items-wrap">
