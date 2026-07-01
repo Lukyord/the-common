@@ -163,7 +163,7 @@ html.no-touchevents .header-location .location-trigger:hover > * {
 }
 
 .header-location .location-panel ul {
-  padding: var(--spacing-xs) var(--spacing-2sm);
+  padding: var(--spacing-xs) var(--spacing-xs);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-2xs);
@@ -171,7 +171,7 @@ html.no-touchevents .header-location .location-trigger:hover > * {
 }
 
 html.page-scrolling .header-location .location-panel ul {
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-xs);
 }
 
 .header-location .location-panel ul a {
