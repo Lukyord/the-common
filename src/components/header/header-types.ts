@@ -3,4 +3,5 @@ export type HeaderBranchItem = {
   name: string
   primaryColor: string | null
   bgColor: string | null
+  logo: { src: string; alt: string } | null
 }

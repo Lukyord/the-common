@@ -1,48 +1,16 @@
 'use client'
 
 import { BranchShape } from '@/components/elements/BranchShape'
+import { getHeaderLocationSelectorColors, isHeaderLocationTarget } from '@/constants/headerLocationSelectorThemes'
+import { LOCATIONS } from '@/constants/locations'
 import Link from 'next/link'
-import { useState, type ComponentProps } from 'react'
-
-type Branch = ComponentProps<typeof BranchShape>['branch']
-
-type Location = {
-  branch: Branch
-  href: string
-  name: string
-  accentColor: string
-  captions: string[]
-}
-
-const LOCATIONS: Location[] = [
-  {
-    branch: 'thonglor',
-    href: '/thonglor',
-    name: 'Thonglor',
-    accentColor: 'var(--color-thonglor-cyan)',
-    captions: ['OPENING HOURS', '8am - 1am'],
-  },
-  {
-    branch: 'saladaeng',
-    href: '/saladaeng',
-    name: 'Saladaeng',
-    accentColor: 'var(--color-saladaeng-orange)',
-    captions: ['OPENING HOURS', '8am - 1am'],
-  },
-  {
-    branch: 'cloud-11',
-    href: '/cloud-11',
-    name: 'Cloud 11',
-    accentColor: 'var(--color-cloud-11-pink)',
-    captions: ['OPENING HOURS', '8am - 12am'],
-  },
-]
+import { useState } from 'react'
 
 export const LocationSelector = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className={`entryTranslateY location-selector ${isOpen ? ' is-open' : ''}`}>
+    <div className={`show-md entryTranslateY location-selector ${isOpen ? ' is-open' : ''}`}>
       <div className="location-selector__inner">
         <button
           type="button"
@@ -58,18 +26,23 @@ export const LocationSelector = () => {
 
         <div className="location-items">
           <div className="location-items__inner">
-            {LOCATIONS.map((location) => (
+            {LOCATIONS.map((location) => {
+              if (!isHeaderLocationTarget(location.slug)) return null
+
+              const colors = getHeaderLocationSelectorColors('brand', location.slug)
+
+              return (
               <div className="location-selector__item" key={location.branch}>
                 <Link href={location.href} className="link-overlay" aria-label={location.name}>
                   &nbsp;
                 </Link>
-                <BranchShape branch={location.branch} />
+                <BranchShape branch={location.branch} mainColor={colors.iconColor} />
                 <div className="item-text">
                   <div className="item-header">
                     <div className="item-ttl">
                       <h3
                         className="type-d-label type-m-body-s letter-spacing-003 uppercase weight-medium"
-                        style={{ color: location.accentColor }}
+                        style={{ color: colors.titleColor }}
                       >
                         {location.name}
                       </h3>
@@ -77,13 +50,17 @@ export const LocationSelector = () => {
                     <i className="ic ic-arrow-square-top-right size-icon-3xs" aria-hidden />
                   </div>
                   {location.captions.map((caption) => (
-                    <p key={caption} className="type-caption letter-spacing-002">
+                    <p
+                      key={caption}
+                      className="type-caption letter-spacing-002"
+                      style={{ color: colors.textColor }}
+                    >
                       {caption}
                     </p>
                   ))}
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         </div>
       </div>

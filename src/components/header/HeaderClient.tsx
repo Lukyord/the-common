@@ -2,15 +2,16 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useState, type SetStateAction } from 'react'
 
 import { branchHeaderThemeStyle } from '@/lib/branchTheme'
 import { getSlugFromPathname } from '@/lib/pathname'
 import { Logo } from './Logo'
 import HeaderMenuCtrl from './HeaderMenuCtrl'
 import { HeaderLocation } from './HeaderLocation'
-import type { HeaderBranchItem } from './header-types'
 import { HeaderLocationMobile } from './HeaderLocationMobile'
+import { HeaderLocationSelectorMobile } from './HeaderLocationSelectorMobile'
+import type { HeaderBranchItem } from './header-types'
 
 const BRAND_HEADER_NAV_ITEMS = [
   { href: '/whats-on', label: "WHAT'S ON" },
@@ -35,6 +36,7 @@ type HeaderClientProps = {
 export function HeaderClient({ branches }: HeaderClientProps) {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isLocationOpen, setIsLocationOpen] = useState(false)
   const slug = getSlugFromPathname(pathname)
   const currentBranch = branches.find((branch) => branch.slug === slug)
   const themeStyle = branchHeaderThemeStyle(currentBranch)
@@ -44,6 +46,19 @@ export function HeaderClient({ branches }: HeaderClientProps) {
         label,
       }))
     : BRAND_HEADER_NAV_ITEMS
+
+  const handleSetMenuOpen = (value: SetStateAction<boolean>) => {
+    setIsMenuOpen((prev) => {
+      const next = typeof value === 'function' ? value(prev) : value
+      if (next) setIsLocationOpen(false)
+      return next
+    })
+  }
+
+  const handleSetLocationOpen = (open: boolean) => {
+    setIsLocationOpen(open)
+    if (open) setIsMenuOpen(false)
+  }
 
   return (
     <header
@@ -66,7 +81,10 @@ export function HeaderClient({ branches }: HeaderClientProps) {
                       <Link
                         href={href}
                         className="underline-hover type-d-label type-m-title letter-spacing-003 uppercase weight-medium"
-                        onClick={() => setIsMenuOpen(false)}
+                        onClick={() => {
+                          setIsMenuOpen(false)
+                          setIsLocationOpen(false)
+                        }}
                       >
                         {label}
                       </Link>
@@ -77,7 +95,7 @@ export function HeaderClient({ branches }: HeaderClientProps) {
                 <HeaderLocationMobile
                   className="hidden-device-md"
                   branches={branches}
-                  setIsMenuOpen={setIsMenuOpen}
+                  setIsMenuOpen={(open) => handleSetMenuOpen(open)}
                 />
               </div>
             </div>
@@ -87,7 +105,13 @@ export function HeaderClient({ branches }: HeaderClientProps) {
         <div className="header-cta">
           <HeaderLocation className="show-md" branches={branches} />
 
-          <HeaderMenuCtrl isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+          <HeaderLocationSelectorMobile
+            branches={branches}
+            isOpen={isLocationOpen}
+            setIsOpen={handleSetLocationOpen}
+          />
+
+          <HeaderMenuCtrl isMenuOpen={isMenuOpen} setIsMenuOpen={handleSetMenuOpen} />
         </div>
       </div>
     </header>

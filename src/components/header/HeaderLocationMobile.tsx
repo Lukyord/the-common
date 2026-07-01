@@ -2,11 +2,12 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useRef, useState } from 'react'
 
-import { useClickOutside } from '@/hooks/useClickOutside'
 import { getSlugFromPathname } from '@/lib/pathname'
+import RenderMedia from '../common/media'
 import type { HeaderBranchItem } from './header-types'
+
+const BRAND_LOGO = '/designs/brand-logo.webp'
 
 type props = {
   className?: string
@@ -15,7 +16,6 @@ type props = {
 }
 
 export const HeaderLocationMobile = ({ className, setIsMenuOpen, branches }: props) => {
-  const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const slug = getSlugFromPathname(pathname)
   const currentBranch = branches.find((branch) => branch.slug === slug)
@@ -23,66 +23,55 @@ export const HeaderLocationMobile = ({ className, setIsMenuOpen, branches }: pro
     ? branches.filter((branch) => branch.slug !== currentBranch.slug)
     : branches
 
-  const close = () => {
-    setIsOpen(false)
-    setIsMenuOpen(false)
-  }
-  const containerRef = useRef<HTMLDivElement>(null)
-  useClickOutside(containerRef, () => setIsOpen(false), isOpen)
+  const close = () => setIsMenuOpen(false)
+
+  const showBrand = Boolean(currentBranch)
+  const hasItems = showBrand || choiceBranches.length > 0
+
+  if (!hasItems) return null
 
   return (
-    <div
-      ref={containerRef}
-      className={`header-location header-location-mobile ${isOpen ? ' is-open' : ''} ${className}`}
-    >
-      <div className="location-trigger">
-        <p className="type-d-label type-m-title letter-spacing-003">Location</p>
-
-        <div className="location-trigger-wrapper">
-          <button
-            type="button"
-            className="location-trigger-inner"
-            aria-expanded={isOpen}
-            onClick={() => setIsOpen((open) => !open)}
-          >
-            <div className="current">
-              <p className="type-m-body-m letter-spacing-002 weight-medium">
-                {currentBranch?.name.toUpperCase() ?? 'theCOMMONS'}
-              </p>
+    <div className={`header-location-mobile ${className ?? ''}`}>
+      <div className="header-location-mobile__items">
+        {showBrand && (
+          <div className="header-location-mobile__item">
+            <Link href="/" onClick={close} className="link-overlay" aria-label="theCOMMONS">
+              &nbsp;
+            </Link>
+            <div className="branch-media">
+              <RenderMedia src={BRAND_LOGO} alt="theCOMMONS" />
             </div>
-
-            <i className="ic ic-chevron-down size-icon-3xs"></i>
-          </button>
-
-          <div className="location-panel">
-            <div className="location-panel-inner">
-              <ul>
-                {currentBranch && (
-                  <li>
-                    <Link
-                      href="/"
-                      onClick={close}
-                      className="type-m-body-m letter-spacing-002 weight-medium"
-                    >
-                      theCOMMONS
-                    </Link>
-                  </li>
-                )}
-                {choiceBranches.map((branch) => (
-                  <li key={branch.slug}>
-                    <Link
-                      href={`/${branch.slug}`}
-                      onClick={close}
-                      className="type-m-body-m letter-spacing-002 weight-medium uppercase"
-                    >
-                      {branch.name.toUpperCase()}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <div className="branch-name">
+              <h3 className="type-d-label type-m-body-s weight-medium letter-spacing-002">
+                theCOMMONS
+              </h3>
+              <i className="ic ic-arrow-square-top-right size-icon-5xs"></i>
             </div>
           </div>
-        </div>
+        )}
+        {choiceBranches.map((branch) => (
+          <div className="header-location-mobile__item" key={branch.slug}>
+            <Link
+              href={`/${branch.slug}`}
+              onClick={close}
+              className="link-overlay"
+              aria-label={branch.name}
+            >
+              &nbsp;
+            </Link>
+            {branch.logo?.src && (
+              <div className="branch-media">
+                <RenderMedia src={branch.logo.src} alt={branch.logo.alt || branch.name} />
+              </div>
+            )}
+            <div className="branch-name">
+              <h3 className="type-d-label type-m-body-s weight-medium letter-spacing-002">
+                {branch.name.toUpperCase()}
+              </h3>
+              <i className="ic ic-arrow-square-top-right size-icon-5xs"></i>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )
