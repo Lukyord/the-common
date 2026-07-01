@@ -3500,6 +3500,7 @@ html.no-touchevents [data-section='whats-on-global-club'] .tags-filter__tag:not(
   margin: 0 auto;
   height: calc(100svh - var(--header-height) - var(--spacing-6xl) - 3rem);
   overflow-y: auto;
+  overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   -ms-overflow-style: none;

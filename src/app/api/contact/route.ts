@@ -7,13 +7,18 @@ import {
   normalizeContactFormValues,
   type ContactFormValues,
 } from '@/components/brand/contact/contactFormSchema'
-import { resolveContactSubjects } from '@/components/brand/contact/contactFormSubjects'
+import {
+  isVenueRentalContactSubject,
+  resolveContactSubjects,
+} from '@/components/brand/contact/contactFormSubjects'
 import { FORM_SUBMISSION_ERROR_TOAST_MESSAGE } from '@/constants/formToastMessages'
 import { sendContactInquiry } from '@/lib/email/sendContactInquiry'
 import { getResendConfig, readWorkerEnv } from '@/lib/email/resendConfig'
 import { getContactPayloadData } from '@/payload/queries/contact'
 
 export const dynamic = 'force-dynamic'
+
+const DEFAULT_VENUE_RENTAL_INQUIRY_TO_EMAIL = 'gatherings@thecommonsbkk.com'
 
 function contactSubjects(contact: Awaited<ReturnType<typeof getContactPayloadData>>['contact']) {
   const fromCms = contact?.contactSubject?.filter((item) => item.trim().length > 0) ?? []
@@ -48,8 +53,15 @@ export async function POST(request: Request) {
     )
   }
 
-  const contactInquiryTo = await readWorkerEnv('CONTACT_INQUIRY_TO_EMAIL')
-  const to = inquiryRecipient(contact, contactInquiryTo)
+  const values = normalizeContactFormValues(parsed.data)
+  const [contactInquiryTo, venueRentalInquiryTo] = await Promise.all([
+    readWorkerEnv('CONTACT_INQUIRY_TO_EMAIL'),
+    readWorkerEnv('VENUE_RENTAL_INQUIRY_TO_EMAIL'),
+  ])
+
+  const to = isVenueRentalContactSubject(values.subject)
+    ? venueRentalInquiryTo || DEFAULT_VENUE_RENTAL_INQUIRY_TO_EMAIL
+    : inquiryRecipient(contact, contactInquiryTo)
   const { apiKey, from } = await getResendConfig()
 
   if (!to) {
@@ -65,7 +77,7 @@ export async function POST(request: Request) {
   }
 
   const result = await sendContactInquiry({
-    values: normalizeContactFormValues(parsed.data),
+    values,
     to,
     from,
     apiKey,

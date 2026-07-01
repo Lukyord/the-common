@@ -32,7 +32,7 @@
     },
   ],
   "vars": {
-    "RESEND_FROM_EMAIL": "The Common <noreply@thecommonsbkk.com>",
+    "RESEND_FROM_EMAIL": "theCOMMONS <noreply@thecommonsbkk.com>",
     "CONTACT_INQUIRY_TO_EMAIL": "info@thecommonsbkk.com",
     "VENUE_RENTAL_INQUIRY_TO_EMAIL": "gatherings@thecommonsbkk.com",
   },
