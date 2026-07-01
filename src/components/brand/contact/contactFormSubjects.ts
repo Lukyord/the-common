@@ -1,4 +1,4 @@
-export const VENUE_RENTAL_CONTACT_SUBJECT = 'Venue Rental'
+export const VENUE_RENTAL_CONTACT_SUBJECT = 'Become our tenant'
 
 export const FALLBACK_CONTACT_SUBJECTS = [
   'Lost & Found',
