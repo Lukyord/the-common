@@ -9,20 +9,32 @@ import {
 } from '@/components/brand/contact/contactFormSchema'
 import {
   isVenueRentalContactSubject,
-  resolveContactSubjects,
+  mergeContactSubjects,
 } from '@/components/brand/contact/contactFormSubjects'
 import { FORM_SUBMISSION_ERROR_TOAST_MESSAGE } from '@/constants/formToastMessages'
 import { sendContactInquiry } from '@/lib/email/sendContactInquiry'
 import { getResendConfig, readWorkerEnv } from '@/lib/email/resendConfig'
+import { getBranchContactPages } from '@/payload/queries/branch'
 import { getContactPayloadData } from '@/payload/queries/contact'
 
 export const dynamic = 'force-dynamic'
 
 const DEFAULT_VENUE_RENTAL_INQUIRY_TO_EMAIL = 'gatherings@thecommonsbkk.com'
 
-function contactSubjects(contact: Awaited<ReturnType<typeof getContactPayloadData>>['contact']) {
-  const fromCms = contact?.contactSubject?.filter((item) => item.trim().length > 0) ?? []
-  return resolveContactSubjects(fromCms)
+function nonEmptySubjects(subjects?: string[] | null): string[] {
+  return subjects?.filter((item) => item.trim().length > 0) ?? []
+}
+
+function allowedContactSubjects(
+  contact: Awaited<ReturnType<typeof getContactPayloadData>>['contact'],
+  branchContactPages: Awaited<ReturnType<typeof getBranchContactPages>>,
+) {
+  const sources = [
+    nonEmptySubjects(contact?.contactSubject),
+    ...branchContactPages.map((page) => nonEmptySubjects(page.contactSubject)),
+  ]
+
+  return mergeContactSubjects(sources)
 }
 
 function inquiryRecipient(
@@ -41,8 +53,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 })
   }
 
-  const { contact } = await getContactPayloadData()
-  const subjects = contactSubjects(contact)
+  const [{ contact }, branchContactPages] = await Promise.all([
+    getContactPayloadData(),
+    getBranchContactPages(),
+  ])
+  const subjects = allowedContactSubjects(contact, branchContactPages)
   const parsed = createContactFormSchema(subjects).safeParse(body as ContactFormValues)
 
   if (!parsed.success) {

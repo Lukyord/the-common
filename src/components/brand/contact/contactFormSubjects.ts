@@ -14,6 +14,21 @@ export function resolveContactSubjects(subjects: string[]): string[] {
   return fromCms.length > 0 ? fromCms : [...FALLBACK_CONTACT_SUBJECTS]
 }
 
+export function mergeContactSubjects(sources: string[][]): string[] {
+  const seen = new Set<string>()
+  const merged: string[] = []
+
+  for (const source of sources) {
+    for (const subject of resolveContactSubjects(source)) {
+      if (seen.has(subject)) continue
+      seen.add(subject)
+      merged.push(subject)
+    }
+  }
+
+  return merged.length > 0 ? merged : [...FALLBACK_CONTACT_SUBJECTS]
+}
+
 export function isVenueRentalContactSubject(subject: string): boolean {
   return subject.trim().toLowerCase() === VENUE_RENTAL_CONTACT_SUBJECT.toLowerCase()
 }
