@@ -48,7 +48,7 @@ export const HeaderLocation = ({ className, branches }: props) => {
                 onClick={close}
                 className={`type-d-body-xs letter-spacing-003 weight-medium underline-hover ${currentBranch === null ? 'is-current' : ''}`}
               >
-                theCOMMONS
+                ALL LOCATIONS
               </Link>
             </li>
             {branches.map((branch) => (
