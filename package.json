@@ -111,6 +111,9 @@
       },
       "CONTACT_INQUIRY_TO_EMAIL": {
         "description": "Optional fallback recipient if Contact global email is empty"
+      },
+      "VENUE_RENTAL_INQUIRY_TO_EMAIL": {
+        "description": "Recipient for venue rental booking inquiries"
       }
     }
   }

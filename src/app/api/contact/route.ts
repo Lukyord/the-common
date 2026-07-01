@@ -9,6 +9,7 @@ import {
 } from '@/components/brand/contact/contactFormSchema'
 import { resolveContactSubjects } from '@/components/brand/contact/contactFormSubjects'
 import { sendContactInquiry } from '@/lib/email/sendContactInquiry'
+import { getResendConfig, readWorkerEnv } from '@/lib/email/resendConfig'
 import { getContactPayloadData } from '@/payload/queries/contact'
 
 export const dynamic = 'force-dynamic'
@@ -18,8 +19,11 @@ function contactSubjects(contact: Awaited<ReturnType<typeof getContactPayloadDat
   return resolveContactSubjects(fromCms)
 }
 
-function inquiryRecipient(contact: Awaited<ReturnType<typeof getContactPayloadData>>['contact']) {
-  return contact?.email?.trim() || process.env.CONTACT_INQUIRY_TO_EMAIL?.trim() || ''
+function inquiryRecipient(
+  contact: Awaited<ReturnType<typeof getContactPayloadData>>['contact'],
+  fallbackTo: string,
+) {
+  return contact?.email?.trim() || fallbackTo
 }
 
 export async function POST(request: Request) {
@@ -43,8 +47,9 @@ export async function POST(request: Request) {
     )
   }
 
-  const to = inquiryRecipient(contact)
-  const from = process.env.RESEND_FROM_EMAIL?.trim()
+  const contactInquiryTo = await readWorkerEnv('CONTACT_INQUIRY_TO_EMAIL')
+  const to = inquiryRecipient(contact, contactInquiryTo)
+  const { apiKey, from } = await getResendConfig()
 
   if (!to) {
     return NextResponse.json({ error: 'Contact recipient is not configured' }, { status: 503 })
@@ -54,10 +59,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Sender address is not configured' }, { status: 503 })
   }
 
+  if (!apiKey) {
+    return NextResponse.json({ error: 'Email service is not configured' }, { status: 503 })
+  }
+
   const result = await sendContactInquiry({
     values: normalizeContactFormValues(parsed.data),
     to,
     from,
+    apiKey,
   })
 
   if (result.ok === false) {

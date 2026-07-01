@@ -11,14 +11,14 @@ export type SendContactInquiryParams = {
   values: ContactFormValues
   to: string
   from: string
+  apiKey: string
 }
 
 export type SendContactInquiryResult =
   | { ok: true }
   | { ok: false; error: string }
 
-function getResendClient(): Resend | null {
-  const apiKey = process.env.RESEND_API_KEY
+function getResendClient(apiKey: string): Resend | null {
   if (!apiKey) return null
   return new Resend(apiKey)
 }
@@ -48,8 +48,9 @@ export async function sendContactInquiry({
   values,
   to,
   from,
+  apiKey,
 }: SendContactInquiryParams): Promise<SendContactInquiryResult> {
-  const resend = getResendClient()
+  const resend = getResendClient(apiKey)
   if (!resend) {
     return { ok: false, error: 'Email service is not configured' }
   }

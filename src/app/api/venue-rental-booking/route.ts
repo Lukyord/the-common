@@ -8,14 +8,11 @@ import {
   type VenueRentalBookingFormValues,
 } from '@/components/brand/venue-rental/booking/venueRentalBookingFormSchema'
 import { sendVenueRentalBookingInquiry } from '@/lib/email/sendVenueRentalBookingInquiry'
+import { getResendConfig, readWorkerEnv } from '@/lib/email/resendConfig'
 
 export const dynamic = 'force-dynamic'
 
 const DEFAULT_INQUIRY_TO_EMAIL = 'gatherings@thecommonsbkk.com'
-
-function inquiryRecipient() {
-  return process.env.VENUE_RENTAL_INQUIRY_TO_EMAIL?.trim() || DEFAULT_INQUIRY_TO_EMAIL
-}
 
 export async function POST(request: Request) {
   let body: unknown
@@ -41,17 +38,23 @@ export async function POST(request: Request) {
     )
   }
 
-  const to = inquiryRecipient()
-  const from = process.env.RESEND_FROM_EMAIL?.trim()
+  const to =
+    (await readWorkerEnv('VENUE_RENTAL_INQUIRY_TO_EMAIL')) || DEFAULT_INQUIRY_TO_EMAIL
+  const { apiKey, from } = await getResendConfig()
 
   if (!from) {
     return NextResponse.json({ error: 'Sender address is not configured' }, { status: 503 })
+  }
+
+  if (!apiKey) {
+    return NextResponse.json({ error: 'Email service is not configured' }, { status: 503 })
   }
 
   const result = await sendVenueRentalBookingInquiry({
     values: normalizeVenueRentalBookingFormValues(parsed.data),
     to,
     from,
+    apiKey,
   })
 
   if (result.ok === false) {
