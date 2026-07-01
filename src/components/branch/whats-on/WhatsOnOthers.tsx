@@ -27,25 +27,23 @@ export default function WhatsOnOthers({
 }: WhatsOnOthersProps) {
   return (
     <>
-      {cards.length > 0 && (
-        <CardSection
-          sectionClassName="whats-on-others dark-bg"
-          sectionStyle={sectionStyle}
-          scInnerClassName="pc-t-100 pc-b-100 mb-t-75 mb-b-75"
-          title={title}
-          cards={cards}
-          slider={{ speed: 1000, navigation: true, pagination: { clickable: true } }}
-          getCardKey={(card) => card.link ?? card.title}
-          renderCard={(card) => (
-            <WhatsOnCard
-              branchSlug={branchSlug}
-              themeColor={themeColor}
-              {...card}
-              backgroundColor={sectionStyle?.backgroundColor}
-            />
-          )}
-        />
-      )}
+      <CardSection
+        sectionClassName="whats-on-others dark-bg"
+        sectionStyle={sectionStyle}
+        scInnerClassName="pc-t-100 pc-b-100 mb-t-75 mb-b-75"
+        title={title}
+        cards={cards}
+        slider={{ speed: 1000, navigation: true, pagination: { clickable: true } }}
+        getCardKey={(card) => card.link ?? card.title}
+        renderCard={(card) => (
+          <WhatsOnCard
+            branchSlug={branchSlug}
+            themeColor={themeColor}
+            {...card}
+            backgroundColor={sectionStyle?.backgroundColor}
+          />
+        )}
+      />
 
       <AnimateOnScroll triggerClass="fadeIn">
         <Link

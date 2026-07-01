@@ -65,7 +65,7 @@ export default function CardSection<TCard>({
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
 
-  if (!title && cards.length === 0) return null
+  if (cards.length === 0) return null
 
   const showNavigation = slider?.navigation === true
   const pagination = resolveSliderPagination(slider?.pagination)
