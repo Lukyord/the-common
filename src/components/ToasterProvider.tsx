@@ -12,8 +12,9 @@ export default function ToasterProvider() {
           background: 'var(--color-dark-brown)',
           color: 'var(--color-beige)',
           border: '1px solid var(--color-beige)',
-          maxWidth: 'min(90vw, 45.6rem)',
+          maxWidth: 'min(90vw, 40.6rem)',
           textAlign: 'center',
+          textWrap: 'balance',
         },
       }}
     />
