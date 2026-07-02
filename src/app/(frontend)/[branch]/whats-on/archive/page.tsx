@@ -37,6 +37,7 @@ export default async function ArchivePage({ params }: Props) {
     getBranchWhatsOnArchived(branch),
   ])
   const eventArchiveBackground = page.allEventsAndWorkshops?.eventArchiveBackground
+  const eventArchiveTextColor = page.allEventsAndWorkshops?.eventArchiveTextColor
 
   return (
     <main id="main" className="branch-archive-page">
@@ -71,7 +72,12 @@ export default async function ArchivePage({ params }: Props) {
         <Link
           href={`/${branchSlug}/whats-on`}
           className="banner-button reverse"
-          style={{ '--button-bg-color': eventArchiveBackground } as CSSProperties}
+          style={
+            {
+              '--button-bg-color': eventArchiveBackground,
+              '--button-text-color': eventArchiveTextColor,
+            } as CSSProperties
+          }
         >
           <p className="type-d-header type-m-headliner-m uppercase weight-medium letter-spacing-002">
             <span>BACK TO WHAT’S ON</span>

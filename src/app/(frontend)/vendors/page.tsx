@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import React from 'react'
 
 import AllVendorsContent from '@/components/brand/vendors/AllVendorsContent'
+import DeliveryCtaSection from '@/components/branch/vendors/DeliveryCtaSection'
 import type { BranchVendorCard } from '@/components/branch/vendors/types'
 import { BRANCH_VENDORS_PAGE_SIZE } from '@/components/branch/vendors/types'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
@@ -90,6 +91,8 @@ export default async function VendorsPage() {
           </div>
         </div>
       </section>
+
+      <DeliveryCtaSection data={vendorsPage ?? {}} />
     </main>
   )
 }

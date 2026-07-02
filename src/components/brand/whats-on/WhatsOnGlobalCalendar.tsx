@@ -21,6 +21,7 @@ type WhatsOnGlobalCalendarProps = {
   description?: string | null
   background?: string | null
   eventArchiveBackground?: string | null
+  eventArchiveTextColor?: string | null
   months: WhatsOnCalendarMonth[]
   mainTagIds: number[]
 }
@@ -126,6 +127,7 @@ export default function WhatsOnGlobalCalendar({
   description,
   background,
   eventArchiveBackground,
+  eventArchiveTextColor,
   months,
   mainTagIds,
 }: WhatsOnGlobalCalendarProps) {
@@ -186,10 +188,11 @@ export default function WhatsOnGlobalCalendar({
       <AnimateOnScroll triggerClass="fadeIn">
         <Link
           href="/whats-on/archive"
-          className="banner-button c-dark-brown"
+          className="banner-button"
           style={
             {
               '--button-bg-color': eventArchiveBackground ?? 'var(--color-saladaeng-orange)',
+              '--button-text-color': eventArchiveTextColor,
             } as CSSProperties
           }
         >

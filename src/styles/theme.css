@@ -53,7 +53,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: var(--color-white);
+  color: var(--button-text-color, var(--color-white));
   background-color: var(--button-bg-color);
   padding: 0 var(--spacing-container);
 }
@@ -2917,8 +2917,8 @@ html.no-touchevents
   justify-content: center;
   padding: var(--spacing-m);
   border-radius: 1.2rem;
-  background-color: var(--card-bg, var(--color-thonglor-cyan));
-  color: var(--color-white);
+  background-color: var(--card-bg, var(--color-saladaeng-orange));
+  color: var(--card-color, var(--color-white));
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   overflow: hidden;

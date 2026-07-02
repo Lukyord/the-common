@@ -110,6 +110,7 @@ export const WhatsOnPage: GlobalConfig = {
                   },
                   colorPickerField('background', 'Background'),
                   colorPickerField('eventArchiveBackground', 'Event Archive Background'),
+                  colorPickerField('eventArchiveTextColor', 'Event Archive Text Color'),
                 ],
               },
             ]),

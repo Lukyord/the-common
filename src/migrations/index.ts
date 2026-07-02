@@ -51,6 +51,7 @@ import * as migration_20260623_131710 from './20260623_131710';
 import * as migration_20260626_014520_branch_socials from './20260626_014520_branch_socials';
 import * as migration_20260701_025102_daily_live_music from './20260701_025102_daily_live_music';
 import * as migration_20260702_070820_vibe_check_title_style from './20260702_070820_vibe_check_title_style';
+import * as migration_20260702_083603_delivery_cta_for_brand_vendors from './20260702_083603_delivery_cta_for_brand_vendors';
 
 export const migrations = [
   {
@@ -316,6 +317,11 @@ export const migrations = [
   {
     up: migration_20260702_070820_vibe_check_title_style.up,
     down: migration_20260702_070820_vibe_check_title_style.down,
-    name: '20260702_070820_vibe_check_title_style'
+    name: '20260702_070820_vibe_check_title_style',
+  },
+  {
+    up: migration_20260702_083603_delivery_cta_for_brand_vendors.up,
+    down: migration_20260702_083603_delivery_cta_for_brand_vendors.down,
+    name: '20260702_083603_delivery_cta_for_brand_vendors'
   },
 ];

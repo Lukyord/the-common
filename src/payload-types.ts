@@ -998,6 +998,7 @@ export interface BranchWhatsOnPage {
     cards?:
       | {
           background?: string | null;
+          color?: string | null;
           pattern?: ('zig-zag' | 'pill') | null;
           front?: {
             title?: string | null;
@@ -1014,6 +1015,7 @@ export interface BranchWhatsOnPage {
     title?: string | null;
     background?: string | null;
     allBranchesBackground?: string | null;
+    allBranchesTextColor?: string | null;
   };
   dailyLiveMusic?: {
     title?: string | null;
@@ -1031,6 +1033,7 @@ export interface BranchWhatsOnPage {
     mainTag?: (number | WhatsOnMainTag)[] | null;
     background?: string | null;
     eventArchiveBackground?: string | null;
+    eventArchiveTextColor?: string | null;
   };
   meta?: {
     title?: string | null;
@@ -1612,6 +1615,7 @@ export interface BranchWhatsOnPagesSelect<T extends boolean = true> {
           | T
           | {
               background?: T;
+              color?: T;
               pattern?: T;
               front?:
                 | T
@@ -1633,6 +1637,7 @@ export interface BranchWhatsOnPagesSelect<T extends boolean = true> {
         title?: T;
         background?: T;
         allBranchesBackground?: T;
+        allBranchesTextColor?: T;
       };
   dailyLiveMusic?:
     | T
@@ -1653,6 +1658,7 @@ export interface BranchWhatsOnPagesSelect<T extends boolean = true> {
         mainTag?: T;
         background?: T;
         eventArchiveBackground?: T;
+        eventArchiveTextColor?: T;
       };
   meta?:
     | T
@@ -2265,6 +2271,26 @@ export interface VenueRentalPage {
 export interface VendorsPage {
   id: number;
   title?: string | null;
+  backgroundColor?: string | null;
+  textColor?: string | null;
+  deliveryTitle?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  grabLink?: string | null;
+  linemanLink?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -2297,6 +2323,7 @@ export interface WhatsOnPage {
     mainTag?: (number | WhatsOnMainTag)[] | null;
     background?: string | null;
     eventArchiveBackground?: string | null;
+    eventArchiveTextColor?: string | null;
   };
   meta?: {
     title?: string | null;
@@ -2621,6 +2648,12 @@ export interface VenueRentalPageSelect<T extends boolean = true> {
  */
 export interface VendorsPageSelect<T extends boolean = true> {
   title?: T;
+  backgroundColor?: T;
+  textColor?: T;
+  deliveryTitle?: T;
+  content?: T;
+  grabLink?: T;
+  linemanLink?: T;
   meta?:
     | T
     | {
@@ -2658,6 +2691,7 @@ export interface WhatsOnPageSelect<T extends boolean = true> {
         mainTag?: T;
         background?: T;
         eventArchiveBackground?: T;
+        eventArchiveTextColor?: T;
       };
   meta?:
     | T

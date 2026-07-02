@@ -5,11 +5,11 @@ import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { LexicalToHTML } from '@/components/common/lexicaltoHTML'
 import { MarkdownContent } from '@/components/common/markdown-content'
 import RenderMedia from '@/components/common/media'
-import type { BranchVendorPage } from '@/payload-types'
+import type { BranchVendorPage, VendorsPage } from '@/payload-types'
 
 type DeliveryCtaSectionProps = {
   data: Pick<
-    BranchVendorPage,
+    BranchVendorPage | VendorsPage,
     'backgroundColor' | 'textColor' | 'deliveryTitle' | 'content' | 'grabLink' | 'linemanLink'
   >
 }

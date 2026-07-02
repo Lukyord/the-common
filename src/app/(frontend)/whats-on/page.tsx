@@ -95,6 +95,7 @@ export default async function WhatsOnPage() {
         description={allEventsAndWorkshops?.description}
         background={allEventsAndWorkshops?.background}
         eventArchiveBackground={allEventsAndWorkshops?.eventArchiveBackground}
+        eventArchiveTextColor={allEventsAndWorkshops?.eventArchiveTextColor}
         months={calendarMonths}
         mainTagIds={eventsMainTagIds}
       />

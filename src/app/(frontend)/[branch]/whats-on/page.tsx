@@ -75,6 +75,7 @@ export default async function WhatsOnPage({ params }: Props) {
         title={page.latest?.title}
         background={page.latest?.background}
         allBranchesBackground={page.latest?.allBranchesBackground}
+        allBranchesTextColor={page.latest?.allBranchesTextColor}
         branchSlug={branch.slug}
         themeColor={{
           bgColor: branch.bgColor,
@@ -119,6 +120,7 @@ export default async function WhatsOnPage({ params }: Props) {
           backgroundColor: page.allEventsAndWorkshops?.background ?? undefined,
         }}
         eventArchiveBackground={page.allEventsAndWorkshops?.eventArchiveBackground}
+        eventArchiveTextColor={page.allEventsAndWorkshops?.eventArchiveTextColor}
         cards={uniqueOthersCards}
       />
     </main>

@@ -15,6 +15,7 @@ type WhatsOnOthersProps = Omit<
   branchSlug: string
   themeColor?: WhatsOnCardProps['themeColor']
   eventArchiveBackground?: string | null
+  eventArchiveTextColor?: string | null
 }
 
 export default function WhatsOnOthers({
@@ -23,6 +24,7 @@ export default function WhatsOnOthers({
   branchSlug,
   themeColor,
   eventArchiveBackground,
+  eventArchiveTextColor,
   cards,
 }: WhatsOnOthersProps) {
   return (
@@ -49,7 +51,12 @@ export default function WhatsOnOthers({
         <Link
           href={`/${branchSlug}/whats-on/archive`}
           className="banner-button"
-          style={{ '--button-bg-color': eventArchiveBackground } as CSSProperties}
+          style={
+            {
+              '--button-bg-color': eventArchiveBackground,
+              '--button-text-color': eventArchiveTextColor,
+            } as CSSProperties
+          }
         >
           <p className="type-d-header type-m-headliner-m uppercase weight-medium letter-spacing-002">
             <span>EVENT ARCHIVE</span>

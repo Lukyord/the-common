@@ -78,6 +78,7 @@ export const BranchWhatsOnPages: CollectionConfig = {
             label: 'Cards',
             fields: [
               colorPickerField('background', 'Background'),
+              colorPickerField('color', 'Text Color'),
               {
                 name: 'pattern',
                 type: 'select',
@@ -137,6 +138,7 @@ export const BranchWhatsOnPages: CollectionConfig = {
           },
           colorPickerField('background', 'Background'),
           colorPickerField('allBranchesBackground', 'All Branches Background'),
+          colorPickerField('allBranchesTextColor', 'All Branches Text Color'),
         ],
       },
     ]),
@@ -214,6 +216,7 @@ export const BranchWhatsOnPages: CollectionConfig = {
           },
           colorPickerField('background', 'Background'),
           colorPickerField('eventArchiveBackground', 'Event Archive Background'),
+          colorPickerField('eventArchiveTextColor', 'Event Archive Text Color'),
         ],
       },
     ]),

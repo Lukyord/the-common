@@ -32,7 +32,8 @@ export function WhatsOnLandingCard({
   onPointerDown,
   onActivate,
 }: WhatsOnLandingCardProps) {
-  const background = card.background || 'var(--color-beige)'
+  const background = card.background || 'var(--color-saladaeng-orange)'
+  const color = card.color || 'var(--color-white)'
   const pattern = card.pattern ?? undefined
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -68,7 +69,7 @@ export function WhatsOnLandingCard({
         <div className={`whats-on-landing-card-inner${isFlipped ? ' is-flipped' : ''}`}>
           <div
             className="whats-on-landing-card-face whats-on-landing-card-face--front"
-            style={{ '--card-bg': background } as CSSProperties}
+            style={{ '--card-bg': background, '--card-color': color } as CSSProperties}
           >
             {pattern && (
               <div className="whats-on-landing-card-pattern" data-pattern={pattern} aria-hidden />
@@ -87,7 +88,7 @@ export function WhatsOnLandingCard({
 
           <div
             className="whats-on-landing-card-face whats-on-landing-card-face--back"
-            style={{ '--card-bg': background } as CSSProperties}
+            style={{ '--card-bg': background, '--card-color': color } as CSSProperties}
           >
             {pattern && (
               <div className="whats-on-landing-card-pattern" data-pattern={pattern} aria-hidden />

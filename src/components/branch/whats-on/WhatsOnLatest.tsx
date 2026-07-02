@@ -26,6 +26,7 @@ type WhatsOnLatestProps = {
   branchSlug: string
   background?: string | null
   allBranchesBackground?: string | null
+  allBranchesTextColor?: string | null
   themeColor?: {
     bgColor: string
     color: string
@@ -41,6 +42,7 @@ export default function WhatsOnLatest({
   branchSlug,
   background,
   allBranchesBackground,
+  allBranchesTextColor,
   themeColor,
   cards = [],
   emptyMessage = 'Nothing scheduled for this period.',
@@ -138,7 +140,12 @@ export default function WhatsOnLatest({
         <Link
           href="/whats-on"
           className="banner-button"
-          style={{ '--button-bg-color': allBranchesBackground } as CSSProperties}
+          style={
+            {
+              '--button-bg-color': allBranchesBackground,
+              '--button-text-color': allBranchesTextColor,
+            } as CSSProperties
+          }
         >
           <p className="type-d-header type-m-headliner-m uppercase weight-medium letter-spacing-002">
             <span className="show-md"> EXPLORE FROM ALL BRANCHES</span>
