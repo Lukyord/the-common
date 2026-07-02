@@ -278,8 +278,10 @@ export const Branches: CollectionConfig = {
                     type: 'text',
                     label: 'Title',
                   },
-                  colorPickerField('primaryColor', 'Primary Color'),
-                  colorPickerField('secondaryColor', 'Secondary Color'),
+                  colorPickerField('titleColor', 'Title Color'),
+                  colorPickerField('titleBgColor', 'Title Background Color'),
+                  colorPickerField('primaryColor', 'Button Primary Color'),
+                  colorPickerField('secondaryColor', 'ButtonSecondary Color'),
                   {
                     name: 'gallery',
                     type: 'array',

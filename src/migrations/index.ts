@@ -50,6 +50,7 @@ import * as migration_20260623_085014_branch_space_rental_collection from './202
 import * as migration_20260623_131710 from './20260623_131710';
 import * as migration_20260626_014520_branch_socials from './20260626_014520_branch_socials';
 import * as migration_20260701_025102_daily_live_music from './20260701_025102_daily_live_music';
+import * as migration_20260702_070820_vibe_check_title_style from './20260702_070820_vibe_check_title_style';
 
 export const migrations = [
   {
@@ -310,6 +311,11 @@ export const migrations = [
   {
     up: migration_20260701_025102_daily_live_music.up,
     down: migration_20260701_025102_daily_live_music.down,
-    name: '20260701_025102_daily_live_music'
+    name: '20260701_025102_daily_live_music',
+  },
+  {
+    up: migration_20260702_070820_vibe_check_title_style.up,
+    down: migration_20260702_070820_vibe_check_title_style.down,
+    name: '20260702_070820_vibe_check_title_style'
   },
 ];

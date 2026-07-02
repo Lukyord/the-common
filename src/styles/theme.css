@@ -2637,6 +2637,12 @@ html.no-touchevents [data-section='contact-re-series'] .hand-flower:hover {
   z-index: 3;
 }
 
+[data-section='vibe'] .sc-ttl {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  color: var(--title-color, var(--color-beige));
+  background-color: var(--title-bg-color, var(--color-dark-brown));
+}
+
 [data-section='vibe'] .container {
   min-height: 100svh;
   display: flex;

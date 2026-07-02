@@ -29,7 +29,11 @@ export function isSameStoreTarget(a: StoreTarget | null, b: StoreTarget | null) 
   return a?.lot === b?.lot
 }
 
-export function withTransitionClassName(base: string, transitionState: TransitionState, extra?: string) {
+export function withTransitionClassName(
+  base: string,
+  transitionState: TransitionState,
+  extra?: string,
+) {
   return [
     base,
     extra,

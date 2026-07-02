@@ -963,6 +963,10 @@
     gap: var(--spacing-2xl);
   }
 
+  [data-section='vibe'] .sc-ttl {
+    padding: var(--spacing-4xs) var(--spacing-2xs);
+  }
+
   [data-section='vibe'] .time-toggle-btn.is-night::after {
     width: 1.4rem;
     margin-left: var(--spacing-5xs);

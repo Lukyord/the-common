@@ -293,6 +293,8 @@ export interface Branch {
   };
   vibesCheck?: {
     title?: string | null;
+    titleColor?: string | null;
+    titleBgColor?: string | null;
     primaryColor?: string | null;
     secondaryColor?: string | null;
     gallery?:
@@ -1303,6 +1305,8 @@ export interface BranchesSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        titleColor?: T;
+        titleBgColor?: T;
         primaryColor?: T;
         secondaryColor?: T;
         gallery?:

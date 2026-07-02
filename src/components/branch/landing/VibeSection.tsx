@@ -92,6 +92,8 @@ export default function VibeSection({ data }: VibeSectionProps) {
       className="branch-vibe"
       style={
         {
+          '--title-color': data.titleColor,
+          '--title-bg-color': data.titleBgColor,
           '--primary-color': data.primaryColor,
           '--secondary-color': data.secondaryColor,
         } as CSSProperties
