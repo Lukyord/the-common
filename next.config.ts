@@ -16,6 +16,38 @@ const nextConfig: NextConfig = {
   // Read more: https://opennext.js.org/cloudflare/howtos/workerd
   serverExternalPackages: ['jose', 'pg-cloudflare'],
 
+  async redirects() {
+    const branchSource = '/:branch(thonglor|saladaeng)'
+
+    return [
+      {
+        source: `${branchSource}/about-us`,
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: `${branchSource}/events`,
+        destination: '/:branch/whats-on',
+        permanent: true,
+      },
+      {
+        source: `${branchSource}/privacy`,
+        destination: '/privacy-policy',
+        permanent: true,
+      },
+      {
+        source: `${branchSource}/faqs`,
+        destination: '/:branch/contact',
+        permanent: true,
+      },
+      {
+        source: `${branchSource}/event-space-rental`,
+        destination: '/:branch/venue-rental',
+        permanent: true,
+      },
+    ]
+  },
+
   // Your Next.js config here
   webpack: (webpackConfig: any) => {
     webpackConfig.resolve.extensionAlias = {

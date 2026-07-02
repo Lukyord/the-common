@@ -1,3 +1,10 @@
+export function getSiteOrigin(): string {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://www.thecommonsbkk.com'
+
+  return baseUrl.replace(/\/$/, '')
+}
+
 export function getAbsoluteUrl(url: string | null | undefined): string {
   if (!url) return ''
 
@@ -8,11 +15,7 @@ export function getAbsoluteUrl(url: string | null | undefined): string {
 
   // Get base URL from environment variable
   // Set NEXT_PUBLIC_SITE_URL=https://pewaflora.com in your environment
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://www.thecommonsbkk.com/'
-
-  // Ensure baseUrl doesn't end with / and url doesn't start with /
-  const cleanBaseUrl = baseUrl.replace(/\/$/, '')
+  const cleanBaseUrl = getSiteOrigin()
   const cleanUrl = url.startsWith('/') ? url : `/${url}`
   return `${cleanBaseUrl}${cleanUrl}`
 }

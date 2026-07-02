@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!--
+    Placeholder sitemap. Regenerate before go-live:
+      pnpm generate:sitemap:prod
+    Then deploy and submit sitemap.xml in Google Search Console.
+  -->
+  <url>
+    <loc>https://www.thecommonsbkk.com/</loc>
+  </url>
+</urlset>
