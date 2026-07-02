@@ -3754,22 +3754,12 @@ html.no-touchevents [data-section='vendor-map'] .map .store-info:hover .ic {
   background-color: var(--color-dark-brown);
   padding: calc(var(--header-height)) var(--spacing-container) 0;
   display: flex;
-}
-
-[data-section='vendor-map'] .info-inner {
-  max-width: 52rem;
-  width: 100%;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-lg);
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  padding: var(--spacing-xl) 0;
   --mask-box-image-offset: var(--spacing-2sm);
   -webkit-mask-box-image: -webkit-linear-gradient(
     90deg,
@@ -3782,6 +3772,16 @@ html.no-touchevents [data-section='vendor-map'] .map .store-info:hover .ic {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+[data-section='vendor-map'] .info-inner {
+  max-width: 52rem;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl) 0;
 }
 
 [data-section='vendor-map'] .info-inner.is-fading-out {

@@ -59,7 +59,13 @@ export function AwardsSection({ title, main, secondary }: AwardsSectionProps) {
                 {main.map((item, index) => (
                   <div key={item.id ?? index} className="award-marquee__item main">
                     {item.link && (
-                      <Link href={item.link} className="link-overlay" aria-label={item.media.alt}>
+                      <Link
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link-overlay"
+                        aria-label={item.media.alt}
+                      >
                         &nbsp;
                       </Link>
                     )}

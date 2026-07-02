@@ -42,7 +42,7 @@ export default function BranchVendorsSection({
       cta={
         branchSlug
           ? {
-              label: 'VIEW VENDORS',
+              label: 'VIEW ALL VENDORS',
               href: `/${branchSlug}/vendors`,
               buttonColor: buttonColor ?? undefined,
             }
