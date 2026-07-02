@@ -5,6 +5,7 @@ import { useState, type CSSProperties } from 'react'
 
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { MarkdownContent } from '@/components/common/markdown-content'
+import { getVenueRentalAvailableTime } from '@/constants/venueRentalAvailableTime'
 import { scrollToTop } from '@/utils/functions/scrollTo'
 
 import VenueRentalBookingModal from './booking/VenueRentalBookingModal'
@@ -32,6 +33,7 @@ export default function VenueRentalPanel({ group }: VenueRentalPanelProps) {
     .filter(Boolean)
     .join(' ')
   const ctaButtonStyle = { '--button-bg-color': group.buttonColor } as CSSProperties
+  const availableTime = getVenueRentalAvailableTime(group.branchSlug)
 
   const openBookingModal = () => {
     if (window.matchMedia('(max-width: 991px)').matches) {
@@ -116,7 +118,7 @@ export default function VenueRentalPanel({ group }: VenueRentalPanelProps) {
               </div>
               <div className="item-content">
                 <p className="type-d-body-s type-m-title letter-spacing-002 weight-medium">
-                  Everyday 08:00 am – Midnight
+                  {availableTime}
                 </p>
               </div>
             </div>

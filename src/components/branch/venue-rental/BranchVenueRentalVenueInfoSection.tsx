@@ -226,7 +226,7 @@ function VenueInfoPanel({ venue }: { venue: BranchVenueRentalVenueInfoItem }) {
             <AnimateOnScroll triggerClass="fadeIn" className="venue-info-panel__cta">
               <Link
                 href={venue.cta.link}
-                className="button-template c-dark-brown-hover"
+                className={`button-template c-dark-brown-hover ${venue.cta.link ? '' : 'disabled'}`}
                 style={{ '--button-bg-color': venue.cta.buttonBgColor } as CSSProperties}
               >
                 <span>

@@ -90,6 +90,8 @@ export const FullscreenSlide = ({ slides: membershipSlides, branch }: Fullscreen
                           <Link
                             href={slide.button.link}
                             className="button-template"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             style={
                               {
                                 '--button-bg-color':

@@ -38,11 +38,11 @@ export default function VenueRentalLinkoutContent({
           )}
         </AnimateOnScroll>
 
-        {bookingCta.linkoutButtonText && bookingCta.linkoutButtonLink && (
+        {bookingCta.linkoutButtonText && (
           <AnimateOnScroll triggerClass="fadeIn">
             <Link
               href={bookingCta.linkoutButtonLink}
-              className="button-template"
+              className={`button-template ${bookingCta.linkoutButtonLink ? '' : 'disabled'}`}
               style={
                 {
                   '--button-bg-color': bookingCta.linkoutButtonBgColor,

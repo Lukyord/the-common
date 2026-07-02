@@ -32,7 +32,7 @@ export type BranchVenueRentalVenueInfoItem = {
   }
   cta?: {
     text: string
-    link: string
+    link?: string
     buttonBgColor?: string
   }
 }
@@ -94,13 +94,12 @@ export function toBranchVenueRentalVenueInfoProps(
             }))
             .filter((item) => item.title || item.description) ?? [],
       },
-      cta:
-        venue.cta?.ctaText?.trim() && venue.cta?.ctaLink?.trim()
-          ? {
-              text: venue.cta.ctaText.trim(),
-              link: venue.cta.ctaLink.trim(),
-              buttonBgColor: venue.cta.buttonBgColor?.trim() || undefined,
-            }
-          : undefined,
+      cta: venue.cta?.ctaText?.trim()
+        ? {
+            text: venue.cta.ctaText.trim(),
+            link: venue.cta.ctaLink.trim(),
+            buttonBgColor: venue.cta.buttonBgColor?.trim() || undefined,
+          }
+        : undefined,
     }))
 }
