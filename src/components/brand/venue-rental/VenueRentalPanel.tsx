@@ -18,9 +18,9 @@ type VenueRentalPanelProps = {
 
 export default function VenueRentalPanel({ group }: VenueRentalPanelProps) {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
+  const isLinkoutCta = group.bookingCta?.type === 'linkout'
   const linkoutLink =
     group.bookingCta?.type === 'linkout' ? group.bookingCta.linkoutButtonLink : null
-  const isLinkoutCta = Boolean(linkoutLink)
   const panelStyle = {
     '--venue-rental-text-color': group.textColor ?? undefined,
     '--venue-rental-bg-color': group.bgColor ?? undefined,
@@ -126,10 +126,10 @@ export default function VenueRentalPanel({ group }: VenueRentalPanelProps) {
 
           {group.cta?.text && (
             <div className="venue-rental-panel__cta">
-              {isLinkoutCta && linkoutLink ? (
+              {isLinkoutCta ? (
                 <Link
                   href={linkoutLink}
-                  className={ctaButtonClassName}
+                  className={`${ctaButtonClassName} ${linkoutLink ? '' : 'disabled'}`}
                   style={ctaButtonStyle}
                   target={linkoutLink.startsWith('http') ? '_blank' : undefined}
                   rel={linkoutLink.startsWith('http') ? 'noopener noreferrer' : undefined}
