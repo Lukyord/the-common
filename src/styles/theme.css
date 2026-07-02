@@ -4160,6 +4160,13 @@ html.no-touchevents
 
 [data-section='all-vendors'] .result-label {
   margin-bottom: var(--spacing-sm);
+  font-size: 2.8rem;
+}
+
+@media (min-width: 991px) {
+  [data-section='all-vendors'] .tags-filter .tags-filter__text {
+    font-size: 2rem;
+  }
 }
 
 [data-section='all-vendors'] .branch-filter {
@@ -4174,7 +4181,12 @@ html.no-touchevents
   padding: 0;
   background: none;
   cursor: pointer;
+  opacity: 0.64;
   transition: var(--duration) var(--timing-function);
+}
+
+[data-section='all-vendors'] .branch-filter__item.is-active {
+  opacity: 1;
 }
 
 .branch-filter__item--all {
@@ -4254,9 +4266,11 @@ html.no-touchevents .branch-filter__item.branch-filter__item--saladaeng:hover,
   transform: translate(0.2rem, 0.6rem);
 }
 
-html.no-touchevents [data-section='all-vendors'] .branch-filter__item:hover,
-[data-section='all-vendors'] .branch-filter__item.is-active {
+html.no-touchevents [data-section='all-vendors'] .branch-filter__item:hover {
   z-index: 3;
+}
+[data-section='all-vendors'] .branch-filter__item.is-active {
+  z-index: 10;
 }
 
 [data-section='all-vendors'] .tags-filter-wrapper {

@@ -271,7 +271,7 @@
 
   [data-section='homepage-about'] .content {
     flex-direction: column;
-    gap: var(--spacing-2sm);
+    gap: var(--spacing-2xs);
   }
 
   [data-section='homepage-about'] .content-header,

@@ -441,7 +441,7 @@ export default function AllVendorsContent({
               data-section="vendors-list"
             >
               <div className="result-label">
-                <p className="type-d-header type-m-headliner-m letter-spacing-002 weight-medium">
+                <p className="type-m-headliner-m letter-spacing-002 weight-medium">
                   I’M LOOKING FOR...
                 </p>
               </div>
