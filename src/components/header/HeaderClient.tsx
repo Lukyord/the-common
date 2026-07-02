@@ -14,11 +14,11 @@ import { HeaderLocationSelectorMobile } from './HeaderLocationSelectorMobile'
 import type { HeaderBranchItem } from './header-types'
 
 const BRAND_HEADER_NAV_ITEMS = [
+  { href: '/about', label: 'ABOUT' },
   { href: '/whats-on', label: "WHAT'S ON" },
   { href: '/vendors', label: 'VENDORS' },
-  { href: '/blogs', label: 'BLOG' },
   { href: '/venue-rental', label: 'VENUE RENTAL' },
-  { href: '/about', label: 'ABOUT' },
+  { href: '/blogs', label: 'BLOG' },
   { href: '/contact', label: 'CONTACT' },
 ] as const
 

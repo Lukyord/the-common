@@ -32,6 +32,8 @@ export function FooterLeft({ currentBranch, branches, contact }: FooterLeftProps
           <AnimateOnScroll triggerClass="fadeIn" className="email">
             <Link
               href={emailHref}
+              target="_blank"
+              rel="noopener noreferrer"
               className="type-d-body-l type-m-title weight-medium letter-spacing-003"
             >
               {contact.email}

@@ -81,6 +81,8 @@ export default function ContactAccordion({ items }: ContactAccordionProps) {
                   <Link
                     href={item.link}
                     className="button-template"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={
                       {
                         '--button-bg-color': 'var(--color-saladaeng-orange)',

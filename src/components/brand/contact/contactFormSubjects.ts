@@ -1,10 +1,10 @@
-export const VENUE_RENTAL_CONTACT_SUBJECT = 'Become our tenant'
+export const VENUE_RENTAL_CONTACT_SUBJECT = 'Venue Rental'
 
 export const FALLBACK_CONTACT_SUBJECTS = [
   'Lost & Found',
   VENUE_RENTAL_CONTACT_SUBJECT,
-  'Business Interest',
-  'Brand Collaboration',
+  'Become our tenant',
+  'Brand Collaborations & Sponsorships',
   'General Inquiry',
   'Event Sponsership',
 ] as const
