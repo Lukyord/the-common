@@ -3754,11 +3754,11 @@ html.no-touchevents [data-section='vendor-map'] .map .store-info:hover .ic {
   background-color: var(--color-dark-brown);
   padding: calc(var(--header-height)) var(--spacing-container) 0;
   display: flex;
-  align-items: center;
 }
 
 [data-section='vendor-map'] .info-inner {
   max-width: 52rem;
+  width: 100%;
   height: fit-content;
   display: flex;
   flex-direction: column;
