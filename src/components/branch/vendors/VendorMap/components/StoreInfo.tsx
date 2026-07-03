@@ -33,6 +33,12 @@ export default function StoreInfo({ vendor, className, style }: StoreInfoProps) 
     .filter(Boolean)
     .join(' ')
 
+  const counterText = vendor.isMapOnlyLot
+    ? vendor.lotLabel
+    : vendor.lotNumber
+      ? String(vendor.lotNumber).padStart(2, '0')
+      : undefined
+
   return (
     <div className={rootClassName} style={style}>
       <Link href={vendor.link} className="link-overlay" aria-label={vendor.name}>
@@ -56,16 +62,14 @@ export default function StoreInfo({ vendor, className, style }: StoreInfoProps) 
       </div>
       <div className="store-content">
         <div className="content-header">
-          {vendor.lotLabel ? (
-            <div className="counter type-d-body-l type-m-body-m weight-medium letter-spacing-002">
-              {String(vendor.lotNumber).padStart(2, '0')}
+          {counterText ? (
+            <div className="counter type-d-body-m type-m-body-m weight-medium letter-spacing-002">
+              {counterText}
             </div>
           ) : (
-            <div className="content-header">
-              <h3 className="type-d-body-m type-m-body-m weight-medium letter-spacing-002">
-                {vendor.name}
-              </h3>
-            </div>
+            <h3 className="type-d-body-m type-m-body-m weight-medium letter-spacing-002">
+              {vendor.name}
+            </h3>
           )}
 
           <Link href={vendor.link} className="icon" aria-label={vendor.name}>
@@ -74,12 +78,10 @@ export default function StoreInfo({ vendor, className, style }: StoreInfoProps) 
         </div>
 
         <div className="content-text">
-          {vendor.lotLabel ? (
-            <div className="content-header">
-              <h3 className="type-d-body-m type-m-body-m weight-medium letter-spacing-002">
-                {vendor.name}
-              </h3>
-            </div>
+          {counterText ? (
+            <h3 className="type-d-body-m type-m-body-m weight-medium letter-spacing-002">
+              {vendor.name}
+            </h3>
           ) : null}
           <HtmlContent className="opening-hours">{vendor.openingHoursHtml}</HtmlContent>
         </div>
