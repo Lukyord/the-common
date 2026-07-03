@@ -8,6 +8,7 @@ import {
   preloadImages,
 } from '@/components/brand/homepage/mood/moodImagePreload'
 import type { HomeLifestyle } from '@/payload/queries/home'
+import { MOBILE_BREAKPOINT } from '@/utils/utils'
 
 const SHOWCASE_INTERVAL_MS = 2000
 const TRACK_TRANSITION_MS = 700
@@ -24,6 +25,16 @@ function buildTrackItems(lifestyles: HomeLifestyle[], loop: boolean) {
   return [...lifestyles, lifestyles[0]]
 }
 
+function measureNaturalContentWidth(item: HTMLElement) {
+  const clone = item.cloneNode(true) as HTMLElement
+  clone.style.cssText =
+    'position:absolute;visibility:hidden;pointer-events:none;white-space:nowrap;width:max-content;max-width:none;'
+  document.body.appendChild(clone)
+  const width = clone.getBoundingClientRect().width
+  document.body.removeChild(clone)
+  return width
+}
+
 export const MoodSelector = ({
   lifestyles,
   vendorPool,
@@ -36,10 +47,13 @@ export const MoodSelector = ({
   const trackRef = useRef<HTMLDivElement>(null)
   const trackIndexRef = useRef(0)
   const isResettingRef = useRef(false)
+  const hasAppliedWidthRef = useRef(false)
+  const skipMeasureIndexEffectRef = useRef(true)
   const [currentWidth, setCurrentWidth] = useState<number | null>(null)
   const [underlineWidth, setUnderlineWidth] = useState<number | null>(null)
   const [itemHeight, setItemHeight] = useState<number | null>(null)
   const [isOpen, setIsOpen] = useState(false)
+  const [isTruncated, setIsTruncated] = useState(false)
   const [showcaseIndex, setShowcaseIndex] = useState(0)
   const [trackIndex, setTrackIndex] = useState(0)
 
@@ -58,6 +72,81 @@ export const MoodSelector = ({
         : showcaseIndex
 
   const displayText = lifestyles[measureIndex]?.text
+
+  const computeCurrentSizes = useCallback(() => {
+    const current = currentRef.current
+    const track = trackRef.current
+    const dropdown = dropdownRef.current
+    if (!current || !track || !dropdown) return null
+
+    const activeItem = track.querySelectorAll<HTMLParagraphElement>('.odometer__item')[measureIndex]
+    if (!activeItem) return null
+
+    const isMobileViewport = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches
+    const { paddingLeft, paddingRight } = getComputedStyle(current)
+    const paddingX = parseFloat(paddingLeft) + parseFloat(paddingRight)
+    const naturalContentWidth = measureNaturalContentWidth(activeItem)
+    const naturalCurrentWidth = naturalContentWidth + paddingX
+
+    let nextCurrentWidth = naturalCurrentWidth
+    let nextUnderlineWidth = naturalContentWidth
+    let nextIsTruncated = false
+
+    if (isMobileViewport) {
+      const moodSelector = dropdown.closest<HTMLElement>('.mood-selector')
+      const label = moodSelector?.querySelector<HTMLElement>('.mood-selector__label')
+      const trigger = dropdown.querySelector<HTMLElement>('.mood-selector__trigger')
+      const icon = trigger?.querySelector<HTMLElement>('.icon')
+
+      if (moodSelector && label && trigger) {
+        const rowWidth = moodSelector.getBoundingClientRect().width
+        const labelWidth = label.getBoundingClientRect().width
+        const triggerStyle = getComputedStyle(trigger)
+        const triggerGap = parseFloat(triggerStyle.columnGap || triggerStyle.gap) || 0
+        const iconWidth = icon?.getBoundingClientRect().width ?? 0
+        const maxCurrentWidth = rowWidth - labelWidth - iconWidth - triggerGap
+
+        if (maxCurrentWidth > 0 && naturalCurrentWidth > maxCurrentWidth) {
+          nextCurrentWidth = maxCurrentWidth
+          nextUnderlineWidth = Math.max(0, maxCurrentWidth - paddingX)
+          nextIsTruncated = true
+        }
+      }
+    }
+
+    return {
+      currentWidth: nextCurrentWidth,
+      underlineWidth: nextUnderlineWidth,
+      isTruncated: nextIsTruncated,
+    }
+  }, [measureIndex])
+
+  const applyCurrentSizes = useCallback(
+    (deferTransition = false) => {
+      const sizes = computeCurrentSizes()
+      if (!sizes) return
+
+      const apply = () => {
+        setCurrentWidth(sizes.currentWidth)
+        setUnderlineWidth(sizes.underlineWidth)
+        setIsTruncated(sizes.isTruncated)
+        hasAppliedWidthRef.current = true
+      }
+
+      const shouldDefer =
+        deferTransition &&
+        hasAppliedWidthRef.current &&
+        window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches
+
+      if (shouldDefer) {
+        requestAnimationFrame(apply)
+        return
+      }
+
+      apply()
+    },
+    [computeCurrentSizes],
+  )
 
   const resetTrackToStart = useCallback(() => {
     const track = trackRef.current
@@ -85,6 +174,8 @@ export const MoodSelector = ({
     setShowcaseIndex(0)
     setTrackIndex(0)
     trackIndexRef.current = 0
+    hasAppliedWidthRef.current = false
+    skipMeasureIndexEffectRef.current = true
   }, [lifestyles])
 
   useLayoutEffect(() => {
@@ -96,19 +187,41 @@ export const MoodSelector = ({
   }, [lifestyles, isLooping])
 
   useLayoutEffect(() => {
-    const current = currentRef.current
-    const track = trackRef.current
-    if (!current || !track) return
+    applyCurrentSizes()
 
-    const activeItem = track.querySelectorAll<HTMLParagraphElement>('.odometer__item')[measureIndex]
-    if (!activeItem) return
+    const moodSelector = dropdownRef.current?.closest('.mood-selector')
+    if (!moodSelector) return
 
-    const { paddingLeft, paddingRight } = getComputedStyle(current)
-    const paddingX = parseFloat(paddingLeft) + parseFloat(paddingRight)
+    let frameId = 0
+    const observer = new ResizeObserver(() => {
+      cancelAnimationFrame(frameId)
+      frameId = requestAnimationFrame(() => applyCurrentSizes())
+    })
 
-    setCurrentWidth(activeItem.scrollWidth + paddingX)
-    setUnderlineWidth(activeItem.scrollWidth)
-  }, [measureIndex, lifestyles, trackItems.length])
+    observer.observe(moodSelector)
+
+    return () => {
+      cancelAnimationFrame(frameId)
+      observer.disconnect()
+    }
+  }, [applyCurrentSizes, lifestyles, trackItems.length])
+
+  useEffect(() => {
+    if (skipMeasureIndexEffectRef.current) {
+      skipMeasureIndexEffectRef.current = false
+      return
+    }
+
+    applyCurrentSizes(true)
+  }, [measureIndex, applyCurrentSizes])
+
+  useEffect(() => {
+    if (!document.fonts?.ready) return
+
+    document.fonts.ready.then(() => {
+      applyCurrentSizes()
+    })
+  }, [applyCurrentSizes, lifestyles])
 
   useEffect(() => {
     if (!isLooping) return
@@ -255,7 +368,7 @@ export const MoodSelector = ({
   return (
     <div
       ref={dropdownRef}
-      className={`mood-selector__dropdown${isOpen ? ' is-open' : ''}${!hasSelection ? ' is-showcasing' : ''}`}
+      className={`mood-selector__dropdown${isOpen ? ' is-open' : ''}${!hasSelection ? ' is-showcasing' : ''}${isTruncated ? ' is-truncated' : ''}`}
     >
       <button
         type="button"

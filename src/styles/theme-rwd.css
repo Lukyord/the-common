@@ -390,6 +390,10 @@
     min-height: unset;
   }
 
+  [data-section='scroll-shape'] .content {
+    padding: 0 var(--spacing-container);
+  }
+
   [data-card='hexagon-1'] .card-media {
     width: 24.2rem;
   }
@@ -551,18 +555,54 @@
     }
   }
 
+  [data-section='mood'] .mood-selector__dropdown {
+    min-width: 0;
+    flex: 0 1 auto;
+    max-width: 100%;
+  }
+
+  [data-section='mood'] .mood-selector__trigger {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   [data-section='mood'] .mood-selector__dropdown .current {
     --current-min-w: unset;
+    max-width: 100%;
+    transition: width var(--transition-duration) var(--timing-function);
+  }
+
+  [data-section='mood'] .mood-selector__dropdown .current__underline {
+    min-width: unset;
+    height: 0.16rem;
+    margin-top: 0.2rem;
+    transition: width var(--transition-duration) cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-section='mood'] .mood-selector__dropdown.is-truncated .current__content {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  [data-section='mood'] .mood-selector__dropdown.is-truncated .odometer {
+    max-width: 100%;
+  }
+
+  [data-section='mood'] .mood-selector__dropdown.is-truncated .odometer__item {
+    width: max-content;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  [data-section='mood'] .mood-selector__panel {
+    left: auto;
+    right: 0;
   }
 
   [data-section='mood'] .mood-selector__label {
     padding: var(--spacing-7xs) var(--spacing-6xs);
     flex-shrink: 0;
-  }
-
-  [data-section='mood'] .mood-selector__dropdown .current__underline {
-    height: 0.16rem;
-    margin-top: 0.2rem;
   }
 
   [data-section='mood'] .content-wrapper {

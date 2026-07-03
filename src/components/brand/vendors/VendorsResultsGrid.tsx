@@ -1,7 +1,7 @@
 'use client'
 
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useEffect, useRef, type ReactNode } from 'react'
+import { useEffect, useRef } from 'react'
 
 import VendorCard from '@/components/branch/components/vendor-card/VendorCard'
 import VendorCardMultipleBranch from '@/components/branch/components/vendor-card/VendorCardMultipleBranch'
