@@ -380,6 +380,7 @@ html.page-scrolling .header-location .location-panel ul {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-4xs);
   }
 
   .header-location-selector-mobile__item {
@@ -414,6 +415,20 @@ html.page-scrolling .header-location .location-panel ul {
 
   .header-location-selector-mobile__item .branch-shape svg {
     width: 100%;
+  }
+
+  .header-location-selector-mobile__item .all-location-icon {
+    width: 5rem;
+    margin: 0.5rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-location-selector-mobile__item .all-location-icon svg {
+    width: 3.3rem;
+    height: auto;
   }
 
   .header-location-selector-mobile__item .item-text {

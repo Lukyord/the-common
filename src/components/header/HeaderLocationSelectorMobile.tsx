@@ -1,5 +1,6 @@
 'use client'
 
+import { AllLocationSvgIcon } from '@/components/elements/AllLocationSvgIcon'
 import { BranchShape } from '@/components/elements/BranchShape'
 import { BranchSvgIcon, isBranchSvgSlug } from '@/components/elements/BranchSvgIcon'
 import {
@@ -69,9 +70,9 @@ export function HeaderLocationSelectorMobile({
 
   const close = () => setIsOpen(false)
   const triggerTheme = getHeaderLocationSelectorColors(context, triggerTarget)
-  //   const brandTheme = getHeaderLocationSelectorColors(context, 'brand')
-  const showBrand = Boolean(currentBranch)
-  const hasItems = showBrand || choiceBranches.length > 0
+  const brandTheme = getHeaderLocationSelectorColors(context, 'brand')
+  const showAllLocations = Boolean(currentBranch)
+  const hasItems = showAllLocations || choiceBranches.length > 0
 
   if (!hasItems) return null
 
@@ -83,24 +84,29 @@ export function HeaderLocationSelectorMobile({
       <div className="header-location-selector-mobile__panel-inner">
         <div className="header-location-selector-mobile__items-wrap">
           <div className="header-location-selector-mobile__items">
-            {/* {showBrand && (
+            {showAllLocations && (
               <div
                 className="header-location-selector-mobile__item"
                 style={locationThemeStyle(brandTheme)}
               >
-                <Link href="/" onClick={close} className="link-overlay" aria-label="theCOMMONS">
+                <Link href="/" onClick={close} className="link-overlay" aria-label="All locations">
                   &nbsp;
                 </Link>
+                <div className="all-location-icon">
+                  <AllLocationSvgIcon color={brandTheme.iconColor} />
+                </div>
                 <div className="item-text">
                   <div className="item-header">
-                    <p className="header-location-selector-mobile__title type-d-label type-m-body-s letter-spacing-003 uppercase weight-medium">
-                      theCOMMONS
-                    </p>
+                    <div className="item-ttl">
+                      <h3 className="header-location-selector-mobile__title type-d-label type-m-body-s letter-spacing-003 uppercase weight-medium">
+                        All locations
+                      </h3>
+                    </div>
                     <i className="ic ic-arrow-square-top-right size-icon-3xs" aria-hidden />
                   </div>
                 </div>
               </div>
-            )} */}
+            )}
             {choiceBranches.map((branch) => {
               const location = LOCATION_BY_SLUG[branch.slug]
               if (!location || !isHeaderLocationTarget(branch.slug)) return null

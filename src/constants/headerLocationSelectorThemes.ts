@@ -19,7 +19,7 @@ export function getHeaderLocationSelectorContext(slug: string | undefined): Head
 /**
  * Colors for each location item in the mobile header selector.
  * Outer key: branch/page the user is currently on.
- * Inner key: location row or trigger being rendered.
+ * Inner key: location row or trigger being rendered (`brand` = All locations).
  */
 export type LocationThemeColors = {
   iconColor: string
@@ -55,9 +55,9 @@ export const HEADER_LOCATION_SELECTOR_THEMES: Record<
   },
   thonglor: {
     brand: {
-      iconColor: 'var(--color-beige)',
-      titleColor: 'var(--color-beige)',
-      textColor: 'var(--color-beige)',
+      iconColor: 'var(--color-dark-brown)',
+      titleColor: 'var(--color-dark-brown)',
+      textColor: 'var(--color-dark-brown)',
     },
     thonglor: {
       iconColor: 'var(--color-thonglor-navy)',
@@ -66,24 +66,24 @@ export const HEADER_LOCATION_SELECTOR_THEMES: Record<
     },
     saladaeng: {
       iconColor: 'var(--color-saladaeng-orange)',
-      titleColor: 'var(--color-dark-brown)',
+      titleColor: 'var(--color-saladaeng-orange)',
       textColor: 'var(--color-dark-brown)',
     },
     'cloud-11': {
       iconColor: 'var(--color-cloud-11-pink)',
-      titleColor: 'var(--color-dark-brown)',
+      titleColor: 'var(--color-cloud-11-pink)',
       textColor: 'var(--color-dark-brown)',
     },
   },
   saladaeng: {
     brand: {
-      iconColor: 'var(--color-beige)',
-      titleColor: 'var(--color-beige)',
-      textColor: 'var(--color-beige)',
+      iconColor: 'var(--color-dark-brown)',
+      titleColor: 'var(--color-dark-brown)',
+      textColor: 'var(--color-dark-brown)',
     },
     thonglor: {
       iconColor: 'var(--color-thonglor-navy)',
-      titleColor: 'var(--color-dark-brown)',
+      titleColor: 'var(--color-thonglor-navy)',
       textColor: 'var(--color-dark-brown)',
     },
     saladaeng: {
@@ -93,7 +93,7 @@ export const HEADER_LOCATION_SELECTOR_THEMES: Record<
     },
     'cloud-11': {
       iconColor: 'var(--color-cloud-11-pink)',
-      titleColor: 'var(--color-dark-brown)',
+      titleColor: 'var(--color-cloud-11-pink)',
       textColor: 'var(--color-dark-brown)',
     },
   },
@@ -105,12 +105,12 @@ export const HEADER_LOCATION_SELECTOR_THEMES: Record<
     },
     thonglor: {
       iconColor: 'var(--color-thonglor-cyan)',
-      titleColor: 'var(--color-white)',
+      titleColor: 'var(--color-thonglor-cyan)',
       textColor: 'var(--color-white)',
     },
     saladaeng: {
       iconColor: 'var(--color-saladaeng-orange)',
-      titleColor: 'var(--color-white)',
+      titleColor: 'var(--color-saladaeng-orange)',
       textColor: 'var(--color-white)',
     },
     'cloud-11': {
