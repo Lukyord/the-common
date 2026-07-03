@@ -5,7 +5,7 @@ import { generateMeta } from '@/lib/generateMeta'
 
 export const metadata: Metadata = generateMeta({
   fallbackTitle: 'Coming soon | The Common',
-  fallbackDescription: 'Cloud 11 is coming soon. Please check back later.',
+  fallbackDescription: 'Cloud11 is coming soon. Please check back later.',
 })
 
 export default function Cloud11ComingSoonPage() {

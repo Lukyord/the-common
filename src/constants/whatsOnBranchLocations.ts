@@ -1,11 +1,10 @@
 export const WHATS_ON_BRANCH_LOCATION_FIELDS = [
   { slug: 'thonglor', name: 'thonglor', label: 'Thonglor Location' },
   { slug: 'saladaeng', name: 'saladaeng', label: 'Saladaeng Location' },
-  { slug: 'cloud-11', name: 'cloud11', label: 'Cloud 11 Location' },
+  { slug: 'cloud-11', name: 'cloud11', label: 'Cloud11 Location' },
 ] as const
 
-export type WhatsOnBranchLocationSlug =
-  (typeof WHATS_ON_BRANCH_LOCATION_FIELDS)[number]['slug']
+export type WhatsOnBranchLocationSlug = (typeof WHATS_ON_BRANCH_LOCATION_FIELDS)[number]['slug']
 
 type WhatsOnBranchLocationsValue = Partial<
   Record<(typeof WHATS_ON_BRANCH_LOCATION_FIELDS)[number]['name'], string | null | undefined>

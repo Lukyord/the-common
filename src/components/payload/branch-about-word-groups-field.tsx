@@ -136,10 +136,7 @@ export const BranchAboutWordGroupsField: ArrayFieldClientComponent = ({
         path,
         rowIndex: index,
         schemaPath: resolvedSchemaPath,
-        subFieldState: buildSubFieldState(
-          existingByWord.get(word),
-          word,
-        ) as FormState,
+        subFieldState: buildSubFieldState(existingByWord.get(word), word) as FormState,
       })
     })
 
@@ -164,7 +161,7 @@ export const BranchAboutWordGroupsField: ArrayFieldClientComponent = ({
 
       {!slug ? (
         <Banner type="info">
-          Save a branch slug (Thonglor, Saladaeng, or Cloud 11) to show its word groups.
+          Save a branch slug (Thonglor, Saladaeng, or Cloud11) to show its word groups.
         </Banner>
       ) : null}
 
