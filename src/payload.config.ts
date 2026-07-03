@@ -42,10 +42,11 @@ const isCLI = process.argv.some((value) => {
   return resolved?.endsWith(path.join('payload', 'bin.js')) ?? false
 })
 const isMigrationScript = process.argv.some((value) => value?.includes('scripts/migration/'))
+const isSitemapScript = process.argv.some((value) => value?.includes('scripts/generate-sitemap'))
 const isProduction = process.env.NODE_ENV === 'production'
 const useLocalD1 = process.env.USE_LOCAL_D1 === 'true'
 
-const useWranglerProxy = isCLI || isMigrationScript || !isProduction || useLocalD1
+const useWranglerProxy = isCLI || isMigrationScript || isSitemapScript || !isProduction || useLocalD1
 
 const createLog =
   (level: string, fn: typeof console.log) => (objOrMsg: object | string, msg?: string) => {

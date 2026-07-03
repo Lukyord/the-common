@@ -41,18 +41,34 @@ function formatLastmod(value?: string | null) {
   return date.toISOString().split('T')[0]
 }
 
-function addEntry(entries: Map<string, SitemapEntry>, path: string, lastmod?: string | null) {
+const PRIORITY = {
+  home: 1,
+  section: 0.8,
+  page: 0.64,
+} as const
+
+function addEntry(
+  entries: Map<string, SitemapEntry>,
+  path: string,
+  options: { lastmod?: string | null; priority: number },
+) {
   const loc = getAbsoluteUrl(path)
-  const formattedLastmod = formatLastmod(lastmod)
+  const formattedLastmod = formatLastmod(options.lastmod)
   const existing = entries.get(loc)
 
+  const entry: SitemapEntry = {
+    loc,
+    priority: options.priority,
+    ...(formattedLastmod ? { lastmod: formattedLastmod } : {}),
+  }
+
   if (!existing) {
-    entries.set(loc, formattedLastmod ? { loc, lastmod: formattedLastmod } : { loc })
+    entries.set(loc, entry)
     return
   }
 
   if (formattedLastmod && (!existing.lastmod || formattedLastmod > existing.lastmod)) {
-    entries.set(loc, { loc, lastmod: formattedLastmod })
+    entries.set(loc, { ...existing, lastmod: formattedLastmod })
   }
 }
 
@@ -116,35 +132,35 @@ async function findAllDocs<TSlug extends SitemapCollectionSlug>(
   return docs
 }
 
-const BRAND_STATIC_PATHS = [
-  '/',
-  '/about',
-  '/contact',
-  '/vendors',
-  '/vendors/filter',
-  '/whats-on',
-  '/whats-on/filter',
-  '/whats-on/archive',
-  '/blogs',
-  '/venue-rental',
-  '/privacy-policy',
-] as const
+const BRAND_STATIC_PATHS: { path: string; priority: number }[] = [
+  { path: '/', priority: PRIORITY.home },
+  { path: '/about', priority: PRIORITY.section },
+  { path: '/contact', priority: PRIORITY.section },
+  { path: '/vendors', priority: PRIORITY.section },
+  { path: '/vendors/filter', priority: PRIORITY.page },
+  { path: '/whats-on', priority: PRIORITY.section },
+  { path: '/whats-on/filter', priority: PRIORITY.page },
+  { path: '/whats-on/archive', priority: PRIORITY.page },
+  { path: '/blogs', priority: PRIORITY.section },
+  { path: '/venue-rental', priority: PRIORITY.section },
+  { path: '/privacy-policy', priority: PRIORITY.page },
+]
 
-const BRANCH_STATIC_PATHS = [
-  '',
-  '/contact',
-  '/vendors',
-  '/whats-on',
-  '/whats-on/archive',
-  '/venue-rental',
-] as const
+const BRANCH_STATIC_PATHS: { suffix: string; priority: number }[] = [
+  { suffix: '', priority: PRIORITY.section },
+  { suffix: '/contact', priority: PRIORITY.section },
+  { suffix: '/vendors', priority: PRIORITY.section },
+  { suffix: '/whats-on', priority: PRIORITY.section },
+  { suffix: '/whats-on/archive', priority: PRIORITY.page },
+  { suffix: '/venue-rental', priority: PRIORITY.section },
+]
 
 export async function collectSitemapUrls(payload: Payload): Promise<SitemapEntry[]> {
   const entries = new Map<string, SitemapEntry>()
   const generatedAt = new Date().toISOString()
 
-  for (const path of BRAND_STATIC_PATHS) {
-    addEntry(entries, path, generatedAt)
+  for (const { path, priority } of BRAND_STATIC_PATHS) {
+    addEntry(entries, path, { lastmod: generatedAt, priority })
   }
 
   const branches = await findAllDocs(payload, 'branches', {
@@ -155,8 +171,8 @@ export async function collectSitemapUrls(payload: Payload): Promise<SitemapEntry
   for (const branch of branches) {
     if (!branch.slug) continue
 
-    for (const suffix of BRANCH_STATIC_PATHS) {
-      addEntry(entries, `/${branch.slug}${suffix}`, branch.updatedAt)
+    for (const { suffix, priority } of BRANCH_STATIC_PATHS) {
+      addEntry(entries, `/${branch.slug}${suffix}`, { lastmod: branch.updatedAt, priority })
     }
   }
 
@@ -168,11 +184,14 @@ export async function collectSitemapUrls(payload: Payload): Promise<SitemapEntry
   for (const vendor of vendors) {
     if (!vendor.slug) continue
 
-    addEntry(entries, `/vendors/${vendor.slug}`, vendor.updatedAt)
+    addEntry(entries, `/vendors/${vendor.slug}`, { lastmod: vendor.updatedAt, priority: PRIORITY.page })
 
     const branchSlug = getVendorBranchSlug(vendor)
     if (branchSlug) {
-      addEntry(entries, `/${branchSlug}/vendors/${vendor.slug}`, vendor.updatedAt)
+      addEntry(entries, `/${branchSlug}/vendors/${vendor.slug}`, {
+        lastmod: vendor.updatedAt,
+        priority: PRIORITY.page,
+      })
     }
   }
 
@@ -186,7 +205,10 @@ export async function collectSitemapUrls(payload: Payload): Promise<SitemapEntry
     if (!item.slug) continue
 
     for (const branchSlug of getBranchSlugs(item.branch)) {
-      addEntry(entries, `/${branchSlug}/whats-on/${item.slug}`, item.updatedAt)
+      addEntry(entries, `/${branchSlug}/whats-on/${item.slug}`, {
+        lastmod: item.updatedAt,
+        priority: PRIORITY.page,
+      })
     }
   }
 
@@ -198,7 +220,7 @@ export async function collectSitemapUrls(payload: Payload): Promise<SitemapEntry
 
   for (const blog of blogs) {
     if (!blog.slug) continue
-    addEntry(entries, `/blogs/${blog.slug}`, blog.updatedAt)
+    addEntry(entries, `/blogs/${blog.slug}`, { lastmod: blog.updatedAt, priority: PRIORITY.page })
   }
 
   return [...entries.values()].sort((a, b) => a.loc.localeCompare(b.loc))

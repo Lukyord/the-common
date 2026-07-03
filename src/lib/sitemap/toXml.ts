@@ -13,8 +13,9 @@ export function sitemapEntriesToXml(entries: SitemapEntry[]) {
   const urls = entries
     .map((entry) => {
       const lastmod = entry.lastmod ? `\n    <lastmod>${escapeXml(entry.lastmod)}</lastmod>` : ''
+      const priority = `\n    <priority>${entry.priority.toFixed(2)}</priority>`
 
-      return `  <url>\n    <loc>${escapeXml(entry.loc)}</loc>${lastmod}\n  </url>`
+      return `  <url>\n    <loc>${escapeXml(entry.loc)}</loc>${lastmod}${priority}\n  </url>`
     })
     .join('\n')
 
