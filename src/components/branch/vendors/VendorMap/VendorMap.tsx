@@ -84,7 +84,6 @@ function VendorMapContent({
     branchSlug,
     mapVendors,
     displayedFloor,
-    floorVendors,
     floorMapOnlyLots,
     isMobile,
     sectionRef,

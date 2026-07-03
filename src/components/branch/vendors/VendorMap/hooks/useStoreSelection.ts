@@ -1,4 +1,4 @@
-import type { FloorMapOnlyLots, MapVendor } from '@/constants/vendorMapData/index'
+import type { FloorMapOnlyLots } from '@/constants/vendorMapData/index'
 import type { VendorMapFloorId } from '@/constants/vendorMapData/index'
 import type { VendorMapListItem } from '@/components/branch/vendors/types'
 import { useEffect, useMemo, useState, type RefObject } from 'react'
@@ -7,17 +7,12 @@ import { FADE_IN_DURATION_MS, FADE_OUT_DURATION_MS } from '../lib/constants'
 import { scrollToElement } from '@/utils/functions/scrollTo'
 import { preloadVendorMapImage } from './useVendorMapImagePreload'
 import { isSameStoreTarget, type StoreTarget, type TransitionState } from '../lib/shared'
-import {
-  getFirstFloorVendorWithData,
-  getMapOnlyLotStoreInfoItem,
-  getVendorByLot,
-} from '../lib/utils'
+import { getMapOnlyLotStoreInfoItem, getVendorByLot } from '../lib/utils'
 
 type UseStoreSelectionOptions = {
   branchSlug: string
   mapVendors: VendorMapListItem[]
   displayedFloor: VendorMapFloorId
-  floorVendors: MapVendor[]
   floorMapOnlyLots: FloorMapOnlyLots | null
   isMobile: boolean
   sectionRef: RefObject<HTMLElement | null>
@@ -27,7 +22,6 @@ export function useStoreSelection({
   branchSlug,
   mapVendors,
   displayedFloor,
-  floorVendors,
   floorMapOnlyLots,
   isMobile,
   sectionRef,
@@ -99,15 +93,7 @@ export function useStoreSelection({
 
     return undefined
   }, [displayedStore, branchSlug, floorMapOnlyLots, mapVendors])
-  const defaultMobileStoreVendor = getFirstFloorVendorWithData(
-    mapVendors,
-    displayedFloor,
-    floorVendors,
-  )
-  const storeInfoVendor = isMobile
-    ? (displayedStoreVendor ?? defaultMobileStoreVendor)
-    : displayedStoreVendor
-  const isDefaultMobileStore = isMobile && !displayedStoreVendor && Boolean(defaultMobileStoreVendor)
+  const storeInfoVendor = displayedStoreVendor
   const isStoreInfoHidden = !isMobile && !storeInfoVendor
 
   const storeInfoVendorKey = storeInfoVendor
@@ -182,17 +168,15 @@ export function useStoreSelection({
     isStoreInfoHidden && 'is-hidden',
     !isStoreInfoHidden &&
       storeInfoVendor &&
-      !isDefaultMobileStore &&
       storeTransitionState === 'fading-out' &&
       'is-fading-out',
     !isStoreInfoHidden &&
       storeInfoVendor &&
-      !isDefaultMobileStore &&
       storeTransitionState === 'fading-in' &&
       'is-fading-in',
     !isStoreInfoHidden &&
       storeInfoVendor &&
-      (isDefaultMobileStore || storeTransitionState === 'idle') &&
+      storeTransitionState === 'idle' &&
       'is-visible',
   ]
     .filter(Boolean)

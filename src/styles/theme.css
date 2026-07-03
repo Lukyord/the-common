@@ -2145,7 +2145,7 @@ html.no-touchevents [data-section='kinnest-marquee'] .kinnest-cta:hover .ic {
   justify-content: center;
   text-align: center;
   height: 100%;
-  max-width: calc(40rem + var(--spacing-container) * 2);
+  max-width: calc(50rem + var(--spacing-container) * 2);
 }
 
 [data-section='not-found'] .not-found-illus {
