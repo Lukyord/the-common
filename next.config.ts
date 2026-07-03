@@ -17,9 +17,54 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ['jose', 'pg-cloudflare'],
 
   async redirects() {
-    const branchSource = '/:branch(thonglor|saladaeng)'
+    const branch = '(thonglor|saladaeng)'
+    const branchSource = `/:branch${branch}`
+    // Legacy slugs without a branch suffix; skip slugs that already end with -thonglor|-saladaeng
+    const legacySlug = ':slug((?![^/]*-(?:thonglor|saladaeng)$)[^/]+)'
 
     return [
+      // Vendor slugs that changed beyond the -{branch} suffix convention
+      {
+        source: '/thonglor/vendors/the-commons-kitchen-bar',
+        destination: '/thonglor/vendors/thecommons-kitchen-bar-thonglor',
+        permanent: true,
+      },
+
+      // Legacy branch vendor detail → append branch suffix (e.g. all-kinds → all-kinds-thonglor)
+      {
+        source: `${branchSource}/vendors/${legacySlug}`,
+        destination: '/:branch/vendors/:slug-:branch',
+        permanent: true,
+      },
+
+      // Legacy site-wide events hub
+      {
+        source: '/all/events',
+        destination: '/whats-on',
+        permanent: true,
+      },
+
+      // Legacy branch blog detail → brand blog with branch suffix
+      {
+        source: `${branchSource}/blogs/${legacySlug}`,
+        destination: '/blogs/:slug-:branch',
+        permanent: true,
+      },
+
+      // Legacy branch blog listing
+      {
+        source: `${branchSource}/blogs`,
+        destination: '/blogs',
+        permanent: true,
+      },
+
+      // Legacy find-us page
+      {
+        source: `${branchSource}/find-us`,
+        destination: '/:branch/contact',
+        permanent: true,
+      },
+
       {
         source: `${branchSource}/about-us`,
         destination: '/about',
