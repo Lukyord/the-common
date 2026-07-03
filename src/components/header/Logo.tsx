@@ -24,9 +24,10 @@ function isBranchLogoSlug(slug?: string): slug is BranchLogoSlug {
 type LogoProps = {
   branchSlug?: string
   color?: string
+  onClick?: () => void
 }
 
-export const Logo = ({ branchSlug, color }: LogoProps) => {
+export const Logo = ({ branchSlug, color, onClick }: LogoProps) => {
   const showBranchLogo = isBranchLogoSlug(branchSlug)
   const fillColor = color ?? (showBranchLogo ? BRANCH_LOGO_DEFAULT_COLORS[branchSlug] : '#E8E4DB')
   const aspectRatio = showBranchLogo ? LOGO_ASPECT_RATIO[branchSlug] : LOGO_ASPECT_RATIO.main
@@ -36,6 +37,7 @@ export const Logo = ({ branchSlug, color }: LogoProps) => {
       href={showBranchLogo ? `/${branchSlug}` : '/'}
       className={`logo-wrapper${showBranchLogo ? ' logo-wrapper--branch' : ''}`}
       style={{ aspectRatio }}
+      onClick={onClick}
     >
       {!showBranchLogo && (
         <svg

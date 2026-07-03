@@ -465,7 +465,7 @@ html.page-scrolling .header-location .location-panel ul {
 
   .header-location-mobile__items {
     display: flex;
-    gap: var(--spacing-2xs);
+    gap: var(--spacing-sm);
     justify-content: center;
   }
 

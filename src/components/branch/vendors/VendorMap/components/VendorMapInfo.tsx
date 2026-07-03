@@ -28,6 +28,7 @@ type VendorMapInfoProps = {
   onMobileAmenitySelect?: (amenityId: AmenityId) => void
   onStoreHover: (lotNumber: number) => void
   onMobileVendorSelect: (lotNumber: number) => void
+  selectedLotNumber?: number
 }
 
 export default function VendorMapInfo({
@@ -45,6 +46,7 @@ export default function VendorMapInfo({
   onMobileAmenitySelect,
   onStoreHover,
   onMobileVendorSelect,
+  selectedLotNumber,
 }: VendorMapInfoProps) {
   return (
     <div className="info">
@@ -96,6 +98,7 @@ export default function VendorMapInfo({
             floorId={displayedFloor}
             mapVendors={floorVendors}
             cmsVendors={mapVendors}
+            selectedLotNumber={selectedLotNumber}
             onVendorMouseEnter={onStoreHover}
             onVendorClick={isMobile ? onMobileVendorSelect : undefined}
           />

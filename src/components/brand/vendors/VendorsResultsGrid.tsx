@@ -9,15 +9,6 @@ import type { BranchVendorCard, MultiBranchVendorInfo } from '@/components/branc
 import { toBrandVendorDetailHref } from '@/lib/vendorDetailLink'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 
-const DEFAULT_EMPTY_MESSAGE = (
-  <>
-    We&apos;re having trouble tracking down
-    <br className="hidden-device-md" /> spots you&apos;re looking for.
-    <br />
-    Please try searching again.
-  </>
-)
-
 type VendorsResultsGridProps = {
   branchSlug: string
   cards: BranchVendorCard[]
@@ -25,7 +16,6 @@ type VendorsResultsGridProps = {
   isLoading: boolean
   isFilterLoading?: boolean
   multiBranchVendorsByName?: Record<string, MultiBranchVendorInfo>
-  emptyMessage?: ReactNode
   seeMoreLabel?: string
   vendorLinkFormat?: 'branch' | 'brand'
   onLoadMore: () => void
@@ -38,7 +28,6 @@ export default function VendorsResultsGrid({
   isLoading,
   isFilterLoading = false,
   multiBranchVendorsByName = {},
-  emptyMessage = DEFAULT_EMPTY_MESSAGE,
   seeMoreLabel = 'SEE MORE',
   vendorLinkFormat = 'branch',
   onLoadMore,
@@ -97,12 +86,19 @@ export default function VendorsResultsGrid({
           })}
         </div>
       ) : (
-        <p
-          className={`vendors-empty type-d-title type-m-body-s letter-spacing-002 weight-medium${isFilterLoading ? ' is-filter-loading' : ''}`}
+        <div
+          className={`vendors-empty ${isFilterLoading ? ' is-filter-loading' : ''}`}
           aria-busy={isFilterLoading}
         >
-          {emptyMessage}
-        </p>
+          <h3 className="type-d-header type-m-headliner-m letter-spacing-002 weight-medium">
+            No matches this time.
+          </h3>
+          <p className="type-d-body-s type-m-body-s letter-spacing-002">
+            No worries! Why not explore All vendors?
+            <br className="show-md" />
+            You never know—you might find a new favorite.
+          </p>
+        </div>
       )}
 
       {hasMore ? (

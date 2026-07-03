@@ -609,6 +609,9 @@ html.no-touchevents [data-section='vendors-list'] .tags-filter__tag:not(.is-acti
   text-align: center;
   padding-top: var(--spacing-6xl);
   padding-bottom: var(--spacing-6xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xs);
 }
 
 [data-section='vendors-list'] .vendors-see-more {
@@ -3873,6 +3876,16 @@ html.no-touchevents
   [data-section='vendor-map']
   .vendor-list__item:has(.vendor-list__name:not(.vendor-list__name--empty)):hover
   .vendor-list__name {
+  opacity: 1;
+  color: var(--color);
+}
+
+[data-section='vendor-map'] .vendor-list__item--active .vendor-list__counter {
+  background-color: var(--bg-color);
+  color: var(--color);
+}
+
+[data-section='vendor-map'] .vendor-list__item--active .vendor-list__name {
   opacity: 1;
   color: var(--color);
 }

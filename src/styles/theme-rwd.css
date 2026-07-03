@@ -742,6 +742,33 @@
     margin-left: 2vw;
   }
 
+  [data-section='about-re'] .re-trigger.is-active {
+    z-index: 10;
+  }
+
+  [data-section='about-re']
+    .trigger-wrapper:has(.re-trigger.is-active)
+    .re-trigger:not(.is-active)
+    .cover {
+    opacity: 0.6;
+  }
+
+  [data-section='about-re'] .re-trigger[data-type='recycle'].is-active {
+    transform: translate(var(--hover-offset-neg), var(--hover-offset-neg));
+  }
+
+  [data-section='about-re'] .re-trigger[data-type='reuse'].is-active {
+    transform: translate(var(--hover-offset), var(--hover-offset-neg));
+  }
+
+  [data-section='about-re'] .re-trigger[data-type='refill'].is-active {
+    transform: translate(var(--hover-offset-neg), var(--hover-offset));
+  }
+
+  [data-section='about-re'] .re-trigger[data-type='redistribute'].is-active {
+    transform: translate(var(--hover-offset), var(--hover-offset));
+  }
+
   [data-section='about-re'] .content-desc {
     margin-top: var(--spacing-3xs);
     padding-right: 0;
@@ -1426,6 +1453,7 @@
   [data-section='all-vendors'] .search-form__input {
     height: 3.8rem;
     padding-right: var(--spacing-2sm);
+    border-bottom: 1px solid rgba(var(--color-dark-brown-rgb), 0.4);
   }
 
   [data-section='all-vendors'] .branch-filter {

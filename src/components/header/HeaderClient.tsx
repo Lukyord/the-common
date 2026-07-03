@@ -68,7 +68,14 @@ export function HeaderClient({ branches }: HeaderClientProps) {
     >
       <div className="header-nav">
         <div className="header-logo">
-          <Logo branchSlug={currentBranch?.slug} color={currentBranch?.primaryColor ?? undefined} />
+          <Logo
+            branchSlug={currentBranch?.slug}
+            color={currentBranch?.primaryColor ?? undefined}
+            onClick={() => {
+              setIsMenuOpen(false)
+              setIsLocationOpen(false)
+            }}
+          />
         </div>
 
         <nav className="header-menu">

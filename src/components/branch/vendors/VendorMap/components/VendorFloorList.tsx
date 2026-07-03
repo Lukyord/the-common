@@ -16,16 +16,19 @@ type VendorFloorListProps = {
   floorId: string
   mapVendors: MapVendor[]
   cmsVendors: VendorMapListItem[]
+  selectedLotNumber?: number
   onVendorMouseEnter?: (lotNumber: number) => void
   onVendorClick?: (lotNumber: number) => void
 }
 
 function VendorListSlide({
   vendors,
+  selectedLotNumber,
   onVendorMouseEnter,
   onVendorClick,
 }: {
   vendors: ReturnType<typeof buildFloorVendorList>
+  selectedLotNumber?: number
   onVendorMouseEnter?: (lotNumber: number) => void
   onVendorClick?: (lotNumber: number) => void
 }) {
@@ -33,6 +36,7 @@ function VendorListSlide({
     <ul className="vendor-list__items">
       {vendors.map((vendor) => {
         const isSelectable = Boolean(onVendorClick && vendor.name)
+        const isActive = Boolean(vendor.name && selectedLotNumber === vendor.lotNumber)
 
         return (
           <li
@@ -40,6 +44,7 @@ function VendorListSlide({
             className={[
               'vendor-list__item',
               isSelectable && 'vendor-list__item--selectable',
+              isActive && 'vendor-list__item--active',
             ]
               .filter(Boolean)
               .join(' ')}
@@ -80,6 +85,7 @@ export default function VendorFloorList({
   floorId,
   mapVendors,
   cmsVendors,
+  selectedLotNumber,
   onVendorMouseEnter,
   onVendorClick,
 }: VendorFloorListProps) {
@@ -106,6 +112,7 @@ export default function VendorFloorList({
           <SwiperSlide key={`${floorId}-slide-${index}`}>
             <VendorListSlide
               vendors={slideVendors}
+              selectedLotNumber={selectedLotNumber}
               onVendorMouseEnter={onVendorMouseEnter}
               onVendorClick={onVendorClick}
             />

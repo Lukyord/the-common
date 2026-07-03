@@ -87,9 +87,10 @@ export const ReSection = () => {
                 <AnimateOnScroll
                   key={type}
                   triggerClass="fadeIn"
-                  className={`re-trigger`}
+                  className={`re-trigger ${activeType === type ? 'is-active' : ''}`}
                   data-type={type}
                   onMouseEnter={() => setActiveType(type)}
+                  onClick={() => setActiveType(type)}
                 >
                   <div className="cover">
                     <RenderMedia src={bg} alt={alt} />

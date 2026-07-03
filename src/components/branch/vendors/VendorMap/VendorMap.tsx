@@ -210,6 +210,7 @@ function VendorMapContent({
         onMobileAmenitySelect={handleMobileAmenitySelect}
         onStoreHover={(lotNumber) => handleStoreHover(lotNumber, displayedFloor)}
         onMobileVendorSelect={handleMobileVendorSelect}
+        selectedLotNumber={selectedLotNumber}
       />
     </section>
   )
