@@ -3079,7 +3079,7 @@ html.no-touchevents
 
 [data-section='whats-on-global-club'] .sc-nav .swiper-button-prev,
 [data-section='whats-on-global-club'] .sc-nav .swiper-button-next {
-  position: static;
+  position: relative;
   margin: 0;
   transform: none;
   width: 2.4rem;
@@ -3087,7 +3087,7 @@ html.no-touchevents
   aspect-ratio: 0.6666666667;
 }
 
-[data-section='whats-on-global-club'] .sc-nav [class*='swiper-button-']:before {
+[data-section='whats-on-global-club'] .sc-nav [class*='swiper-button-']:after {
   width: auto;
   aspect-ratio: unset;
   margin: 0;
@@ -3096,13 +3096,13 @@ html.no-touchevents
   font-family: 'iconfont';
 }
 
-[data-section='whats-on-global-club'] .sc-nav .swiper-button-prev::before {
+/* [data-section='whats-on-global-club'] .sc-nav .swiper-button-prev::before {
   content: '\e90d';
 }
 
 [data-section='whats-on-global-club'] .sc-nav .swiper-button-next::before {
   content: '\e90e';
-}
+} */
 
 [data-section='whats-on-global-club'] .tags-filter {
   display: flex;

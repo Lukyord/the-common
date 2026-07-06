@@ -25,7 +25,7 @@ export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig>
         label: '2',
         mapSrc: '/map/tl/2f/TL-2F-outline.svg',
         mapAlt: 'Thonglor Floor 2 Map Plan',
-        vendors: Array.from({ length: 3 }, (_, index) => ({ lotNumber: index + 1 })),
+        vendors: Array.from({ length: 2 }, (_, index) => ({ lotNumber: index + 1 })),
       },
       {
         id: '3',

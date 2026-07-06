@@ -22,7 +22,7 @@
   cursor: pointer;
 }
 
-.lot__shape:hover,
+.lot:has(.lot__shape:hover) .lot__shape,
 .lot:has(.lot__label:hover) .lot__shape,
 .lot.is-active .lot__shape {
   fill: var(--lot-active-color);
@@ -39,7 +39,7 @@
   cursor: default;
 }
 
-.lot--map-only .lot__shape:hover,
+.lot--map-only:has(.lot__shape:hover) .lot__shape,
 .lot--map-only:has(.lot__label:hover) .lot__shape {
   fill: var(--lot-active-color);
 }

@@ -30,10 +30,16 @@ export type LotLayout = {
   left: string
 }
 
-export type LotDefinition = {
-  viewBox: string
+export type LotShape = {
   shapePath: string
   labelPath: string
+}
+
+export type LotDefinition = {
+  viewBox: string
+  shapePath?: string
+  labelPath?: string
+  shapes?: LotShape[]
   layout?: LotLayout
 }
 

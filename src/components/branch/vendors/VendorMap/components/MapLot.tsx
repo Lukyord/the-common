@@ -19,6 +19,12 @@ type MapLotProps = LotDefinition & {
   onMouseLeave?: () => void
 }
 
+function getLotShapes({ shapePath, labelPath, shapes }: LotDefinition): LotDefinition['shapes'] {
+  if (shapes?.length) return shapes
+  if (shapePath && labelPath) return [{ shapePath, labelPath }]
+  return []
+}
+
 export default function MapLot({
   lotNumber,
   mapKey,
@@ -29,6 +35,7 @@ export default function MapLot({
   viewBox,
   shapePath,
   labelPath,
+  shapes,
   layout,
   href,
   label,
@@ -36,7 +43,8 @@ export default function MapLot({
   onMouseEnter,
   onMouseLeave,
 }: MapLotProps) {
-  if (!layout) return null
+  const lotShapes = getLotShapes({ viewBox, shapePath, labelPath, shapes })
+  if (!layout || !lotShapes?.length) return null
 
   const style = {
     top: layout.top,
@@ -58,8 +66,12 @@ export default function MapLot({
 
   const lotSvg = (
     <svg viewBox={viewBox} fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path className="lot__shape" d={shapePath} />
-      <path className="lot__label" opacity="0.9" d={labelPath} />
+      {lotShapes.map((lotShape, index) => (
+        <g key={index}>
+          <path className="lot__shape" d={lotShape.shapePath} />
+          <path className="lot__label" opacity="0.9" d={lotShape.labelPath} />
+        </g>
+      ))}
     </svg>
   )
 
