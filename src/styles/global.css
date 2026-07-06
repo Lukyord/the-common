@@ -287,6 +287,8 @@ html {
   font-size: 62.5%;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  color-scheme: light only;
+  background: var(--color-dark-brown);
 }
 /* @view-transition {
   navigation: auto;
@@ -381,6 +383,13 @@ fieldset {
   margin: 0 !important;
   padding: 0 !important;
 }
+img,
+svg,
+video,
+iframe {
+  color-scheme: light only;
+}
+
 img {
   border: 0;
   outline: 0;

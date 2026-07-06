@@ -43,6 +43,9 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en" className={akzidenzGrotesk.variable}>
+      <head>
+        <meta name="color-scheme" content="light only" />
+      </head>
       <SafariProvider>
         <LenisProvider>
           <body>
