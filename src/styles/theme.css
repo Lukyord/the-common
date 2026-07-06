@@ -2659,19 +2659,21 @@ html.no-touchevents [data-section='contact-re-series'] .hand-flower:hover {
   z-index: 0;
 }
 
-[data-section='vibe'] .sc-media *:is(figure, img, video, picture) {
+[data-section='vibe'] .sc-media-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s var(--timing-function);
+  pointer-events: none;
+}
+
+[data-section='vibe'] .sc-media-layer.is-active {
+  opacity: 1;
+}
+
+[data-section='vibe'] .sc-media-layer *:is(figure, img, video, picture) {
   width: 100%;
   height: 100%;
-}
-
-[data-section='vibe'] .sc-media.is-fading-out {
-  opacity: 1;
-  animation: vibe-fade-out 0.2s var(--timing-function) forwards;
-}
-
-[data-section='vibe'] .sc-media.is-fading-in {
-  opacity: 0;
-  animation: vibe-fade-in 0.2s var(--timing-function) forwards;
 }
 
 [data-section='vibe'] .sc-header {

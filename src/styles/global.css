@@ -1364,6 +1364,7 @@ textarea {
   min-width: 100%;
   max-width: 100%;
   min-height: var(--height);
+  padding-top: var(--spacing-adxs);
 }
 
 .input.filled :is(input, textarea, select) {

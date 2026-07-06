@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import type { Branch } from '@/payload-types'
 import { resolveMedia } from '@/lib/resolveMedia'
@@ -13,78 +13,97 @@ type VibeSectionProps = {
   data?: Branch['vibesCheck'] | null
 }
 
-const FADE_OUT_DURATION_MS = 200
-const FADE_IN_DURATION_MS = 400
+type MediaLayer = {
+  key: string
+  index: number
+  isNight: boolean
+  media: { src: string; alt: string }
+  mediaMobile?: { src: string; alt: string }
+  alt: string
+}
+
+function VibeMediaLayer({
+  isActive,
+  priority,
+  ...mediaProps
+}: {
+  isActive: boolean
+  priority?: boolean
+  src: string
+  srcMobile?: string
+  alt?: string
+}) {
+  const layerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const videos = layerRef.current?.querySelectorAll('video')
+    videos?.forEach((video) => {
+      if (isActive) {
+        void video.play().catch((): void => undefined)
+      } else {
+        video.pause()
+      }
+    })
+  }, [isActive])
+
+  return (
+    <div ref={layerRef} className={`sc-media-layer${isActive ? ' is-active' : ''}`}>
+      <RenderMedia {...mediaProps} priority={priority} />
+    </div>
+  )
+}
 
 export default function VibeSection({ data }: VibeSectionProps) {
-  const gallery = data?.gallery?.filter((item) => item?.day?.media || item?.night?.media) || []
+  const gallery = useMemo(
+    () => data?.gallery?.filter((item) => item?.day?.media || item?.night?.media) || [],
+    [data?.gallery],
+  )
   const [selectedIsNight, setSelectedIsNight] = useState(false)
-  const [displayedIsNight, setDisplayedIsNight] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const [displayedIndex, setDisplayedIndex] = useState(0)
-  const [transitionState, setTransitionState] = useState<'idle' | 'fading-out' | 'fading-in'>(
-    'idle',
-  )
 
-  const activeItem = gallery[displayedIndex]
-  const targetMedia = useMemo(
-    () => resolveMedia(displayedIsNight ? activeItem?.night?.media : activeItem?.day?.media),
-    [activeItem, displayedIsNight],
-  )
-  const targetMediaMobile = useMemo(
-    () =>
-      resolveMedia(
-        displayedIsNight ? activeItem?.night?.mediaMobile : activeItem?.day?.mediaMobile,
-      ),
-    [activeItem, displayedIsNight],
-  )
+  const mediaLayers = useMemo(() => {
+    const layers: MediaLayer[] = []
 
-  useEffect(() => {
-    const hasPendingChange =
-      selectedIndex !== displayedIndex || selectedIsNight !== displayedIsNight
-    if (transitionState === 'idle' && hasPendingChange) {
-      setTransitionState('fading-out')
-    }
-  }, [selectedIndex, displayedIndex, selectedIsNight, displayedIsNight, transitionState])
+    gallery.forEach((item, index) => {
+      const dayMedia = resolveMedia(item.day?.media)
+      const nightMedia = resolveMedia(item.night?.media)
+      const dayMediaMobile = resolveMedia(item.day?.mediaMobile)
+      const nightMediaMobile = resolveMedia(item.night?.mediaMobile)
+      const fallbackAlt = item.title || data?.title || ''
 
-  useEffect(() => {
-    if (transitionState === 'fading-out') {
-      const timeout = window.setTimeout(() => {
-        setDisplayedIndex(selectedIndex)
-        setDisplayedIsNight(selectedIsNight)
-        setTransitionState('fading-in')
-      }, FADE_OUT_DURATION_MS)
-      return () => window.clearTimeout(timeout)
-    }
+      if (dayMedia?.src) {
+        layers.push({
+          key: `${index}-day`,
+          index,
+          isNight: false,
+          media: dayMedia,
+          mediaMobile: dayMediaMobile,
+          alt: dayMedia.alt || fallbackAlt,
+        })
+      }
 
-    if (transitionState === 'fading-in') {
-      const timeout = window.setTimeout(() => {
-        const hasPendingChange =
-          selectedIndex !== displayedIndex || selectedIsNight !== displayedIsNight
-        setTransitionState(hasPendingChange ? 'fading-out' : 'idle')
-      }, FADE_IN_DURATION_MS)
-      return () => window.clearTimeout(timeout)
-    }
+      if (nightMedia?.src) {
+        layers.push({
+          key: `${index}-night`,
+          index,
+          isNight: true,
+          media: nightMedia,
+          mediaMobile: nightMediaMobile,
+          alt: nightMedia.alt || fallbackAlt,
+        })
+      }
+    })
 
-    return undefined
-  }, [transitionState, selectedIndex, displayedIndex, selectedIsNight, displayedIsNight])
+    return layers
+  }, [gallery, data?.title])
 
   useEffect(() => {
     if (!gallery.length) return
     if (selectedIndex >= gallery.length) setSelectedIndex(0)
-    if (displayedIndex >= gallery.length) setDisplayedIndex(0)
-  }, [gallery.length, selectedIndex, displayedIndex])
+  }, [gallery.length, selectedIndex])
 
   if (!data?.title && !gallery.length) return null
-  if (!gallery.length || !targetMedia?.src) return null
-
-  const scMediaClassName = `sc-media cover ${
-    transitionState === 'fading-out'
-      ? 'is-fading-out'
-      : transitionState === 'fading-in'
-        ? 'is-fading-in'
-        : ''
-  }`.trim()
+  if (!gallery.length || !mediaLayers.length) return null
 
   return (
     <section
@@ -99,13 +118,21 @@ export default function VibeSection({ data }: VibeSectionProps) {
         } as CSSProperties
       }
     >
-      <div className={scMediaClassName} aria-hidden>
-        <RenderMedia
-          key={`${targetMedia.src}-${targetMediaMobile?.src || targetMedia.src}`}
-          src={targetMedia.src}
-          srcMobile={targetMediaMobile?.src || targetMedia.src}
-          alt={targetMedia.alt || activeItem?.title || data?.title || ''}
-        />
+      <div className="sc-media cover" aria-hidden>
+        {mediaLayers.map((layer, layerIndex) => {
+          const isActive = layer.index === selectedIndex && layer.isNight === selectedIsNight
+
+          return (
+            <VibeMediaLayer
+              key={layer.key}
+              isActive={isActive}
+              priority={layerIndex === 0}
+              src={layer.media.src}
+              srcMobile={layer.mediaMobile?.src || layer.media.src}
+              alt={layer.alt}
+            />
+          )
+        })}
       </div>
 
       <div className="container">
