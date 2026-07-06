@@ -70,7 +70,12 @@ export default function DeliveryCtaSection({ data }: DeliveryCtaSectionProps) {
                 <RenderMedia src="/designs/paper-bag.webp" alt="Paper Bag" />
               </div>
               <div className="grab">
-                <Link href={data.grabLink ?? ''} className="link-overlay">
+                <Link
+                  href={data.grabLink ?? ''}
+                  className="link-overlay"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   &nbsp;
                 </Link>
                 <RenderMedia src="/designs/grab.webp" alt="Grab" />
