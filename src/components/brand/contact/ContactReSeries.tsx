@@ -67,9 +67,7 @@ export default function ContactReSeries() {
                 <AnimateOnScroll triggerClass="fadeIn">
                   <p>
                     If you know someone in the community who needs support, then email us at{` `}
-                    <a href="mailto:communityrelations@thecommonsbkk.com">
-                      communityrelations@thecommonsbkk.com
-                    </a>
+                    <a href="mailto:info@thecommonsbkk.com">info@thecommonsbkk.com</a>
                   </p>
                 </AnimateOnScroll>
               </li>

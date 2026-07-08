@@ -112,20 +112,20 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
+    homepage: Homepage;
     about: About;
     'blog-page': BlogPage;
     contact: Contact;
-    homepage: Homepage;
     'privacy-policy': PrivacyPolicy;
     'venue-rental-page': VenueRentalPage;
     'vendors-page': VendorsPage;
     'whats-on-page': WhatsOnPage;
   };
   globalsSelect: {
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
     'blog-page': BlogPageSelect<false> | BlogPageSelect<true>;
     contact: ContactSelect<false> | ContactSelect<true>;
-    homepage: HomepageSelect<false> | HomepageSelect<true>;
     'privacy-policy': PrivacyPolicySelect<false> | PrivacyPolicySelect<true>;
     'venue-rental-page': VenueRentalPageSelect<false> | VenueRentalPageSelect<true>;
     'vendors-page': VendorsPageSelect<false> | VendorsPageSelect<true>;
@@ -1886,6 +1886,137 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: number;
+  announcementShow?: boolean | null;
+  announcement?: {
+    format?: ('square' | 'vertical' | 'landscape') | null;
+    media?: (number | null) | Media;
+    link?: string | null;
+  };
+  hero?: {
+    backgroundMedia?: (number | null) | Media;
+    mobileBackgroundMedia?: (number | null) | Media;
+    title?: string | null;
+  };
+  motto?:
+    | {
+        text?: string | null;
+        shape?: ('hexagon' | 'circle' | 'square') | null;
+        id?: string | null;
+      }[]
+    | null;
+  about?: {
+    title?: string | null;
+    description?: string | null;
+    stickyNotes?:
+      | {
+          /**
+           * Recommended aspect ratio: 1.4326
+           */
+          media?: (number | null) | Media;
+          shape?: ('square' | 'circle' | 'heart') | null;
+          text?: string | null;
+          bgColor?: string | null;
+          textColor?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  peopleOfTheCommons?: {
+    title?: string | null;
+    cards?:
+      | {
+          media?: (number | null) | Media;
+          title?: string | null;
+          description?: string | null;
+          link?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  flexibleSectionShow?: boolean | null;
+  flexibleSection?:
+    | {
+        title?: string | null;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        bgColor?: string | null;
+        media?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  whatAreYouInTheMoodFor?: {
+    titleLineOne?: string | null;
+    titleLineTwo?: string | null;
+    preSentence?: string | null;
+    preSentenceMobile?: string | null;
+    lifestyles?: (number | Lifestyle)[] | null;
+  };
+  membership?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        button?: {
+          text?: string | null;
+          link?: string | null;
+        };
+        media?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  bingo?: {
+    title?: string | null;
+    grid?:
+      | {
+          text?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about".
  */
 export interface About {
@@ -2059,137 +2190,6 @@ export interface Contact {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepage".
- */
-export interface Homepage {
-  id: number;
-  announcementShow?: boolean | null;
-  announcement?: {
-    format?: ('square' | 'vertical' | 'landscape') | null;
-    media?: (number | null) | Media;
-    link?: string | null;
-  };
-  hero?: {
-    backgroundMedia?: (number | null) | Media;
-    mobileBackgroundMedia?: (number | null) | Media;
-    title?: string | null;
-  };
-  motto?:
-    | {
-        text?: string | null;
-        shape?: ('hexagon' | 'circle' | 'square') | null;
-        id?: string | null;
-      }[]
-    | null;
-  about?: {
-    title?: string | null;
-    description?: string | null;
-    stickyNotes?:
-      | {
-          /**
-           * Recommended aspect ratio: 1.4326
-           */
-          media?: (number | null) | Media;
-          shape?: ('square' | 'circle' | 'heart') | null;
-          text?: string | null;
-          bgColor?: string | null;
-          textColor?: string | null;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  peopleOfTheCommons?: {
-    title?: string | null;
-    cards?:
-      | {
-          media?: (number | null) | Media;
-          title?: string | null;
-          description?: string | null;
-          link?: string | null;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  flexibleSectionShow?: boolean | null;
-  flexibleSection?:
-    | {
-        title?: string | null;
-        description?: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        bgColor?: string | null;
-        media?: (number | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  whatAreYouInTheMoodFor?: {
-    titleLineOne?: string | null;
-    titleLineTwo?: string | null;
-    preSentence?: string | null;
-    preSentenceMobile?: string | null;
-    lifestyles?: (number | Lifestyle)[] | null;
-  };
-  membership?:
-    | {
-        title?: string | null;
-        description?: string | null;
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        button?: {
-          text?: string | null;
-          link?: string | null;
-        };
-        media?: (number | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  bingo?: {
-    title?: string | null;
-    grid?:
-      | {
-          text?: string | null;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
-  };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "privacy-policy".
  */
 export interface PrivacyPolicy {
@@ -2338,6 +2338,119 @@ export interface WhatsOnPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  announcementShow?: T;
+  announcement?:
+    | T
+    | {
+        format?: T;
+        media?: T;
+        link?: T;
+      };
+  hero?:
+    | T
+    | {
+        backgroundMedia?: T;
+        mobileBackgroundMedia?: T;
+        title?: T;
+      };
+  motto?:
+    | T
+    | {
+        text?: T;
+        shape?: T;
+        id?: T;
+      };
+  about?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        stickyNotes?:
+          | T
+          | {
+              media?: T;
+              shape?: T;
+              text?: T;
+              bgColor?: T;
+              textColor?: T;
+              id?: T;
+            };
+      };
+  peopleOfTheCommons?:
+    | T
+    | {
+        title?: T;
+        cards?:
+          | T
+          | {
+              media?: T;
+              title?: T;
+              description?: T;
+              link?: T;
+              id?: T;
+            };
+      };
+  flexibleSectionShow?: T;
+  flexibleSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        bgColor?: T;
+        media?: T;
+        id?: T;
+      };
+  whatAreYouInTheMoodFor?:
+    | T
+    | {
+        titleLineOne?: T;
+        titleLineTwo?: T;
+        preSentence?: T;
+        preSentenceMobile?: T;
+        lifestyles?: T;
+      };
+  membership?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        richText?: T;
+        button?:
+          | T
+          | {
+              text?: T;
+              link?: T;
+            };
+        media?: T;
+        id?: T;
+      };
+  bingo?:
+    | T
+    | {
+        title?: T;
+        grid?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
@@ -2464,119 +2577,6 @@ export interface ContactSelect<T extends boolean = true> {
         instagram?: T;
         facebook?: T;
         line?: T;
-      };
-  meta?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        image?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepage_select".
- */
-export interface HomepageSelect<T extends boolean = true> {
-  announcementShow?: T;
-  announcement?:
-    | T
-    | {
-        format?: T;
-        media?: T;
-        link?: T;
-      };
-  hero?:
-    | T
-    | {
-        backgroundMedia?: T;
-        mobileBackgroundMedia?: T;
-        title?: T;
-      };
-  motto?:
-    | T
-    | {
-        text?: T;
-        shape?: T;
-        id?: T;
-      };
-  about?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        stickyNotes?:
-          | T
-          | {
-              media?: T;
-              shape?: T;
-              text?: T;
-              bgColor?: T;
-              textColor?: T;
-              id?: T;
-            };
-      };
-  peopleOfTheCommons?:
-    | T
-    | {
-        title?: T;
-        cards?:
-          | T
-          | {
-              media?: T;
-              title?: T;
-              description?: T;
-              link?: T;
-              id?: T;
-            };
-      };
-  flexibleSectionShow?: T;
-  flexibleSection?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        bgColor?: T;
-        media?: T;
-        id?: T;
-      };
-  whatAreYouInTheMoodFor?:
-    | T
-    | {
-        titleLineOne?: T;
-        titleLineTwo?: T;
-        preSentence?: T;
-        preSentenceMobile?: T;
-        lifestyles?: T;
-      };
-  membership?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        richText?: T;
-        button?:
-          | T
-          | {
-              text?: T;
-              link?: T;
-            };
-        media?: T;
-        id?: T;
-      };
-  bingo?:
-    | T
-    | {
-        title?: T;
-        grid?:
-          | T
-          | {
-              text?: T;
-              id?: T;
-            };
       };
   meta?:
     | T

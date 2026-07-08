@@ -46,7 +46,8 @@ const isSitemapScript = process.argv.some((value) => value?.includes('scripts/ge
 const isProduction = process.env.NODE_ENV === 'production'
 const useLocalD1 = process.env.USE_LOCAL_D1 === 'true'
 
-const useWranglerProxy = isCLI || isMigrationScript || isSitemapScript || !isProduction || useLocalD1
+const useWranglerProxy =
+  isCLI || isMigrationScript || isSitemapScript || !isProduction || useLocalD1
 
 const createLog =
   (level: string, fn: typeof console.log) => (objOrMsg: object | string, msg?: string) => {
@@ -104,10 +105,10 @@ export default buildConfig({
     WhatsOnSubTags,
   ],
   globals: [
+    Homepage,
     About,
     BlogPage,
     Contact,
-    Homepage,
     PrivacyPolicy,
     VenueRentalPage,
     VendorsPage,

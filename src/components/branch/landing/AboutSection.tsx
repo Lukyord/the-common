@@ -1,7 +1,7 @@
 'use client'
 
 import type { CSSProperties } from 'react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import type { Branch } from '@/payload-types'
 import {
@@ -13,6 +13,9 @@ import { resolveMedia } from '@/lib/resolveMedia'
 import RenderMedia from '@/components/common/media'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { MarkdownContent } from '@/components/common/markdown-content'
+import { useIsMobile } from '@/components/branch/vendors/VendorMap/hooks/useIsMobile'
+
+const MOBILE_ROTATE_INTERVAL_MS = 2500
 
 type AboutSectionProps = {
   data?: Branch['about'] | null
@@ -31,6 +34,41 @@ type ResolvedWordGroup = {
   hasTitle: boolean
   description?: string
   hasDescription: boolean
+}
+
+function AboutMediaLayer({
+  isActive,
+  priority,
+  src,
+  alt,
+}: {
+  isActive: boolean
+  priority?: boolean
+  src: string
+  alt: string
+}) {
+  const layerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const videos = layerRef.current?.querySelectorAll('video')
+    videos?.forEach((video) => {
+      if (isActive) {
+        void video.play().catch((): void => undefined)
+      } else {
+        video.pause()
+      }
+    })
+  }, [isActive])
+
+  return (
+    <div
+      ref={layerRef}
+      className={`media-slide${isActive ? ' is-active' : ''}`}
+      aria-hidden={!isActive}
+    >
+      <RenderMedia src={src} alt={alt} priority={priority} />
+    </div>
+  )
 }
 
 function getWordGroupsForBranch(
@@ -77,9 +115,22 @@ export default function AboutSection({ data, branchSlug }: AboutSectionProps) {
     [data?.wordGroups, branchSlug],
   )
 
+  const mediaLayers = useMemo(
+    () =>
+      groups
+        .map((group, index) => ({ group, index }))
+        .filter(
+          (entry): entry is { group: ResolvedWordGroup & { media: { src: string; alt: string } }; index: number } =>
+            Boolean(entry.group.hasMedia && entry.group.media?.src),
+        ),
+    [groups],
+  )
+
   const defaultMediaIndex = findFirstIndex(groups, 'hasMedia')
   const defaultTitleIndex = findFirstIndex(groups, 'hasTitle')
   const defaultDescriptionIndex = findFirstIndex(groups, 'hasDescription')
+
+  const isMobile = useIsMobile()
 
   const [hoveredIndex, setHoveredIndex] = useState(0)
   const [mediaIndex, setMediaIndex] = useState(defaultMediaIndex)
@@ -92,6 +143,23 @@ export default function AboutSection({ data, branchSlug }: AboutSectionProps) {
     setDescriptionIndex(defaultDescriptionIndex)
     setHoveredIndex(0)
   }, [defaultMediaIndex, defaultTitleIndex, defaultDescriptionIndex, groups])
+
+  useEffect(() => {
+    if (!isMobile || groups.length <= 1) return
+
+    const interval = window.setInterval(() => {
+      setHoveredIndex((prev) => {
+        const next = (prev + 1) % groups.length
+        const group = groups[next]
+        if (group?.hasMedia) setMediaIndex(next)
+        if (group?.hasTitle) setTitleIndex(next)
+        if (group?.hasDescription) setDescriptionIndex(next)
+        return next
+      })
+    }, MOBILE_ROTATE_INTERVAL_MS)
+
+    return () => window.clearInterval(interval)
+  }, [isMobile, groups])
 
   const hasContent = Boolean(
     data?.bgColor ||
@@ -114,27 +182,9 @@ export default function AboutSection({ data, branchSlug }: AboutSectionProps) {
     const group = groups[index]
     if (!group) return
 
-    if (group.hasMedia && group.media?.src) {
-      const currentSrc = mediaIndex >= 0 ? groups[mediaIndex]?.media?.src : undefined
-      if (group.media.src !== currentSrc) {
-        setMediaIndex(index)
-      }
-    }
-
-    if (group.hasTitle && group.title) {
-      const currentTitle = titleIndex >= 0 ? groups[titleIndex]?.title : undefined
-      if (group.title !== currentTitle) {
-        setTitleIndex(index)
-      }
-    }
-
-    if (group.hasDescription && group.description) {
-      const currentDescription =
-        descriptionIndex >= 0 ? groups[descriptionIndex]?.description : undefined
-      if (group.description !== currentDescription) {
-        setDescriptionIndex(index)
-      }
-    }
+    if (group.hasMedia) setMediaIndex(index)
+    if (group.hasTitle) setTitleIndex(index)
+    if (group.hasDescription) setDescriptionIndex(index)
   }
 
   return (
@@ -155,17 +205,15 @@ export default function AboutSection({ data, branchSlug }: AboutSectionProps) {
                     alt="Branch Landing Frame"
                   />
                   <div className="clip-double-rect">
-                    {groups.map((group, index) =>
-                      group.hasMedia && group.media?.src ? (
-                        <div
-                          key={group.id}
-                          className={`media-slide ${safeMediaIndex === index ? 'is-active' : ''}`}
-                          aria-hidden={safeMediaIndex !== index}
-                        >
-                          <RenderMedia src={group.media.src} alt={group.media.alt} />
-                        </div>
-                      ) : null,
-                    )}
+                    {mediaLayers.map(({ group, index }, layerIndex) => (
+                      <AboutMediaLayer
+                        key={group.id}
+                        isActive={safeMediaIndex === index}
+                        priority={layerIndex === 0}
+                        src={group.media.src}
+                        alt={group.media.alt}
+                      />
+                    ))}
                   </div>
                 </div>
               </AnimateOnScroll>
@@ -176,7 +224,7 @@ export default function AboutSection({ data, branchSlug }: AboutSectionProps) {
                   <AnimateOnScroll
                     triggerClass="fadeIn"
                     key={group.id}
-                    className="about-word-trigger letter-spacing-002 weight-medium"
+                    className={`about-word-trigger letter-spacing-002 weight-medium${isMobile && safeHoveredIndex === index ? ' is-hovered' : ''}`}
                     data-word={group.word}
                     onMouseEnter={() => handleWordHover(index)}
                     onFocus={() => handleWordHover(index)}

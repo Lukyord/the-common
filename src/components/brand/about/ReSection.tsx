@@ -3,7 +3,10 @@
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
 import { MarkdownContent } from '@/components/common/markdown-content'
 import RenderMedia from '@/components/common/media'
-import React, { useState } from 'react'
+import { useIsMobile } from '@/components/branch/vendors/VendorMap/hooks/useIsMobile'
+import React, { useEffect, useRef, useState } from 'react'
+
+const MOBILE_ROTATE_INTERVAL_MS = 2500
 
 const RE_TRIGGERS = [
   {
@@ -39,7 +42,37 @@ const RE_TRIGGERS = [
 type ReType = (typeof RE_TRIGGERS)[number]['type']
 
 export const ReSection = () => {
+  const isMobile = useIsMobile()
   const [activeType, setActiveType] = useState<ReType>('recycle')
+  const triggerWrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!isMobile || RE_TRIGGERS.length <= 1) return
+
+    const interval = window.setInterval(() => {
+      setActiveType((prev) => {
+        const currentIndex = RE_TRIGGERS.findIndex((trigger) => trigger.type === prev)
+        const nextIndex = (currentIndex + 1) % RE_TRIGGERS.length
+        return RE_TRIGGERS[nextIndex].type
+      })
+    }, MOBILE_ROTATE_INTERVAL_MS)
+
+    return () => window.clearInterval(interval)
+  }, [isMobile])
+
+  useEffect(() => {
+    if (!isMobile) return
+
+    const wrapper = triggerWrapperRef.current
+    const activeTrigger = wrapper?.querySelector<HTMLElement>(
+      `.re-trigger[data-type='${activeType}']`,
+    )
+    if (!wrapper || !activeTrigger) return
+
+    const left =
+      activeTrigger.offsetLeft - (wrapper.clientWidth - activeTrigger.offsetWidth) / 2
+    wrapper.scrollTo({ left, behavior: 'smooth' })
+  }, [activeType, isMobile])
 
   return (
     <section data-section="about-re">
@@ -82,7 +115,7 @@ export const ReSection = () => {
                 </div>
               </div>
             </div>
-            <div className="trigger-wrapper">
+            <div className="trigger-wrapper" ref={triggerWrapperRef}>
               {RE_TRIGGERS.map(({ type, bg, alt }) => (
                 <AnimateOnScroll
                   key={type}

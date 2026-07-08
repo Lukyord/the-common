@@ -83,7 +83,7 @@ export default function CardSection<TCard>({
               <AnimateOnScroll triggerClass="fadeIn" className="sc-ttl">
                 <MarkdownContent
                   as="h2"
-                  className="type-d-header type-m-headliner-m letter-spacing-002 weight-medium uppercase"
+                  className="type-d-header type-m-headliner-m letter-spacing-002 weight-medium"
                 >
                   {title}
                 </MarkdownContent>

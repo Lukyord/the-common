@@ -2477,7 +2477,8 @@ html.no-touchevents [data-section='contact-re-series'] .hand-flower:hover {
   background-repeat: no-repeat;
 }
 
-.about-word-trigger:hover {
+.about-word-trigger:hover,
+.about-word-trigger.is-hovered {
   transform: translate(var(--hover-x), var(--hover-y));
 }
 
@@ -3275,7 +3276,7 @@ html.no-touchevents [data-section='whats-on-global-club'] .tags-filter__tag:not(
 }
 
 [data-card='whats-on-image'] .card-media {
-  aspect-ratio: 0.8;
+  aspect-ratio: 0.7070303127;
   height: auto;
   overflow: hidden;
   position: relative;

@@ -1189,6 +1189,7 @@
     z-index: 2;
     color: var(--color-beige);
     font-size: 1.4rem;
+    mix-blend-mode: difference;
 
     .ic {
       font-size: 1rem !important;
