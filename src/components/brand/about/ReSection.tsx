@@ -44,10 +44,11 @@ type ReType = (typeof RE_TRIGGERS)[number]['type']
 export const ReSection = () => {
   const isMobile = useIsMobile()
   const [activeType, setActiveType] = useState<ReType>('recycle')
+  const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false)
   const triggerWrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!isMobile || RE_TRIGGERS.length <= 1) return
+    if (!isMobile || isAutoPlayPaused || RE_TRIGGERS.length <= 1) return
 
     const interval = window.setInterval(() => {
       setActiveType((prev) => {
@@ -58,7 +59,12 @@ export const ReSection = () => {
     }, MOBILE_ROTATE_INTERVAL_MS)
 
     return () => window.clearInterval(interval)
-  }, [isMobile])
+  }, [isMobile, isAutoPlayPaused])
+
+  const handleTriggerSelect = (type: ReType) => {
+    setIsAutoPlayPaused(true)
+    setActiveType(type)
+  }
 
   useEffect(() => {
     if (!isMobile) return
@@ -122,8 +128,8 @@ export const ReSection = () => {
                   triggerClass="fadeIn"
                   className={`re-trigger ${activeType === type ? 'is-active' : ''}`}
                   data-type={type}
-                  onMouseEnter={() => setActiveType(type)}
-                  onClick={() => setActiveType(type)}
+                  onMouseEnter={() => handleTriggerSelect(type)}
+                  onClick={() => handleTriggerSelect(type)}
                 >
                   <div className="cover">
                     <RenderMedia src={bg} alt={alt} />

@@ -136,16 +136,18 @@ export default function AboutSection({ data, branchSlug }: AboutSectionProps) {
   const [mediaIndex, setMediaIndex] = useState(defaultMediaIndex)
   const [titleIndex, setTitleIndex] = useState(defaultTitleIndex)
   const [descriptionIndex, setDescriptionIndex] = useState(defaultDescriptionIndex)
+  const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false)
 
   useEffect(() => {
     setMediaIndex(defaultMediaIndex)
     setTitleIndex(defaultTitleIndex)
     setDescriptionIndex(defaultDescriptionIndex)
     setHoveredIndex(0)
+    setIsAutoPlayPaused(false)
   }, [defaultMediaIndex, defaultTitleIndex, defaultDescriptionIndex, groups])
 
   useEffect(() => {
-    if (!isMobile || groups.length <= 1) return
+    if (!isMobile || isAutoPlayPaused || groups.length <= 1) return
 
     const interval = window.setInterval(() => {
       setHoveredIndex((prev) => {
@@ -159,7 +161,7 @@ export default function AboutSection({ data, branchSlug }: AboutSectionProps) {
     }, MOBILE_ROTATE_INTERVAL_MS)
 
     return () => window.clearInterval(interval)
-  }, [isMobile, groups])
+  }, [isMobile, isAutoPlayPaused, groups])
 
   const hasContent = Boolean(
     data?.bgColor ||
@@ -176,7 +178,8 @@ export default function AboutSection({ data, branchSlug }: AboutSectionProps) {
 
   const hasMedia = defaultMediaIndex >= 0
 
-  const handleWordHover = (index: number) => {
+  const handleWordSelect = (index: number) => {
+    setIsAutoPlayPaused(true)
     setHoveredIndex(index)
 
     const group = groups[index]
@@ -226,8 +229,9 @@ export default function AboutSection({ data, branchSlug }: AboutSectionProps) {
                     key={group.id}
                     className={`about-word-trigger letter-spacing-002 weight-medium${isMobile && safeHoveredIndex === index ? ' is-hovered' : ''}`}
                     data-word={group.word}
-                    onMouseEnter={() => handleWordHover(index)}
-                    onFocus={() => handleWordHover(index)}
+                    onMouseEnter={() => handleWordSelect(index)}
+                    onFocus={() => handleWordSelect(index)}
+                    onClick={() => handleWordSelect(index)}
                     aria-pressed={safeHoveredIndex === index}
                   >
                     {group.label}
