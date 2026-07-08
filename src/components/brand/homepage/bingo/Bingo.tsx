@@ -90,6 +90,10 @@ export const Bingo = ({ data }: BingoProps) => {
               })}
             </AnimateOnScroll>
 
+            <AnimateOnScroll triggerClass="fadeIn" className="drag-label hidden-device-md">
+              <p className="type-m-body-m letter-spacing-002 weight-medium">Drag!</p>
+            </AnimateOnScroll>
+
             <div ref={bingo.poolMeasureRef} className="bingo-stamps-pool" aria-hidden>
               <div className="bingo-stamps-pool-slot" />
             </div>

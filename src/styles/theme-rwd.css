@@ -529,7 +529,7 @@
     margin-top: var(--spacing-4xs);
     aspect-ratio: unset;
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 4;
   }
 
   [data-section='bingo'] .bingo-stamps-pool-slot {

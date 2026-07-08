@@ -1423,7 +1423,8 @@ html.no-touchevents .location-selector__item:hover .branch-shape {
 }
 
 .text-cursor,
-.bingo-cursor {
+.bingo-cursor,
+.drag-label {
   font-size: 1.6rem;
   line-height: 1.28;
   letter-spacing: 0.02em;
@@ -1437,6 +1438,11 @@ html.no-touchevents .location-selector__item:hover .branch-shape {
   justify-content: center;
   box-shadow: 0px 6px 12px 4px #2f2f2f1a;
   text-wrap: nowrap;
+}
+
+.drag-label {
+  width: fit-content;
+  margin: 0 auto;
 }
 
 [data-section='bingo'] .bingo-interactive {
