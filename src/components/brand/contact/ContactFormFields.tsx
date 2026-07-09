@@ -102,7 +102,7 @@ export default function ContactFormFields({ subjects, buttonColor }: ContactForm
       <div className="fields">
         <AnimateOnScroll triggerClass="fadeIn" className="form-label">
           <h3 className="type-d-body-l type-m-headliner-m weight-medium letter-spacing-002">
-            Send Inquiry
+            SEND INQUIRY
           </h3>
         </AnimateOnScroll>
 

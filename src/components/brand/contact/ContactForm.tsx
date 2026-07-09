@@ -29,7 +29,7 @@ export type ContactFormProps = {
 
 export function toContactFormProps(data?: ContactFormData | null): ContactFormProps {
   return {
-    title: data?.title ?? 'Contact',
+    title: data?.title ?? 'CONTACT',
     bg: resolveMedia(data?.contactBg),
     bgMobile: resolveMedia(data?.contactBgMobile),
     tel: data?.tel ?? null,
@@ -41,7 +41,7 @@ export function toContactFormProps(data?: ContactFormData | null): ContactFormPr
 }
 
 export default function ContactForm({
-  title = 'Contact',
+  title = 'CONTACT',
   bg,
   bgMobile,
   tel,
