@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-import { getComingSoonRewritePath } from '@/constants/comingSoonBranches'
+import {
+  COMING_SOON_PREVIEW_COOKIE,
+  COMING_SOON_PREVIEW_QUERY_PARAM,
+  COMING_SOON_PREVIEW_SECRET,
+  getComingSoonRewritePath,
+  isComingSoonPreviewActive,
+} from '@/constants/comingSoonBranches'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -9,7 +15,9 @@ export function middleware(request: NextRequest) {
   requestHeaders.set('x-pathname', pathname)
 
   const comingSoonPath = getComingSoonRewritePath(pathname)
-  if (comingSoonPath) {
+  const isPreview = isComingSoonPreviewActive(request)
+
+  if (comingSoonPath && !isPreview) {
     const url = request.nextUrl.clone()
     url.pathname = comingSoonPath
 
@@ -18,9 +26,25 @@ export function middleware(request: NextRequest) {
     })
   }
 
-  return NextResponse.next({
+  const response = NextResponse.next({
     request: { headers: requestHeaders },
   })
+
+  if (
+    comingSoonPath &&
+    request.nextUrl.searchParams.get(COMING_SOON_PREVIEW_QUERY_PARAM) ===
+      COMING_SOON_PREVIEW_SECRET
+  ) {
+    response.cookies.set(COMING_SOON_PREVIEW_COOKIE, COMING_SOON_PREVIEW_SECRET, {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+      maxAge: 60 * 60 * 24,
+    })
+  }
+
+  return response
 }
 
 export const config = {

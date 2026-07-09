@@ -11,7 +11,7 @@ export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig>
         label: 'M',
         mapSrc: '/map/tl/mf/TL-MF-outline.svg',
         mapAlt: 'Thonglor M Floor Map Plan',
-        vendors: Array.from({ length: 20 }, (_, index) => ({ lotNumber: index + 1 })),
+        vendors: Array.from({ length: 21 }, (_, index) => ({ lotNumber: index + 1 })),
       },
       {
         id: '1',
@@ -81,7 +81,7 @@ export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig>
         label: '3',
         mapSrc: '/map/c11/3-mk/CL11-MK-outline.svg',
         mapAlt: 'Cloud11 Commons Market Map Plan',
-        vendors: Array.from({ length: 21 }, (_, index) => ({ lotNumber: index + 1 })),
+        vendors: Array.from({ length: 23 }, (_, index) => ({ lotNumber: index + 1 })),
       },
       {
         id: '2',
