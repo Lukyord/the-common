@@ -3531,6 +3531,7 @@ html.no-touchevents [data-section='whats-on-global-club'] .tags-filter__tag:not(
     white calc(100% - var(--mask-box-image-offset)),
     transparent 100%
   );
+  overscroll-behavior: auto;
 
   &::-webkit-scrollbar {
     display: none;
