@@ -1,4 +1,4 @@
-export const COMING_SOON_BRANCH_SLUGS = ['cloud-11'] as const
+export const COMING_SOON_BRANCH_SLUGS = [''] as const
 
 export type ComingSoonBranchSlug = (typeof COMING_SOON_BRANCH_SLUGS)[number]
 
