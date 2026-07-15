@@ -1476,6 +1476,15 @@
     color: var(--color-dark-brown);
   }
 
+  .mobile-section-toggle.cloud-11-toggle {
+    .mobile-section-toggle__control {
+      color: var(--color-dark-brown);
+    }
+
+    .mobile-section-toggle__control.is-active {
+      color: var(--color-white);
+    }
+  }
   /* PAGE: VENDORS */
   [data-section='all-vendors'] .sc-header {
     grid-template-columns: 1fr;

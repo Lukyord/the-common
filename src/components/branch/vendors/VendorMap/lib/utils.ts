@@ -18,7 +18,9 @@ export function buildFloorVendorList(
   floorId: string,
 ): FloorVendorListItem[] {
   const cmsByLot = new Map(
-    cmsVendors.filter((vendor) => vendor.floor === floorId).map((vendor) => [vendor.lotNumber, vendor]),
+    cmsVendors
+      .filter((vendor) => vendor.floor === floorId)
+      .map((vendor) => [vendor.lotNumber, vendor]),
   )
 
   return mapVendors.map(({ lotNumber }) => {
@@ -72,7 +74,7 @@ export function getMapOnlyLotStoreInfoItem(
     lotNumber: 0,
     floor: floorId,
     name: storeInfo.name,
-    link: `/${branchSlug}/space-rental`,
+    link: `/${branchSlug}/venue-rental`,
     tags: [],
     lotLabel: storeInfo.lotLabel,
     isMapOnlyLot: true,

@@ -45,7 +45,10 @@ export default async function VendorPage({ params }: Props) {
 
   return (
     <main id="main" className="vendors-page">
-      <MobileSectionToggle theme={{ bgColor: branch.primaryColor, color: branch.bgColor }}>
+      <MobileSectionToggle
+        branchSlug={branch.slug}
+        theme={{ bgColor: branch.primaryColor, color: branch.bgColor }}
+      >
         <MobileSectionToggle.Section label="FLOOR PLAN">
           <VendorMap
             branchSlug={branch.slug}

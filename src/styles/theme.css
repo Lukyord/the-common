@@ -3900,6 +3900,14 @@ html.no-touchevents
   color: var(--color);
 }
 
+html.no-touchevents
+  [data-section='vendor-map'].cloud-11-map
+  .vendor-list__item:has(.vendor-list__name:not(.vendor-list__name--empty)):hover
+  .vendor-list__name,
+[data-section='vendor-map'].cloud-11-map .vendor-list__item--active .vendor-list__name {
+  color: var(--color-cloud-11-pink);
+}
+
 [data-section='vendor-map'] .vendor-list__name--empty {
   opacity: 0.4;
   pointer-events: none;

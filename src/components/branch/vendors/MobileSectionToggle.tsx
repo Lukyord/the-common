@@ -44,6 +44,7 @@ export function MobileSectionToggleSection({ children }: SectionProps) {
 
 type MobileSectionToggleProps = {
   children: ReactNode
+  branchSlug?: string
   theme?: {
     bgColor?: string | null
     color?: string | null
@@ -73,7 +74,7 @@ function getSections(children: ReactNode): SectionItem[] {
   }))
 }
 
-function MobileSectionToggle({ children, theme }: MobileSectionToggleProps) {
+function MobileSectionToggle({ children, branchSlug, theme }: MobileSectionToggleProps) {
   const sections = getSections(children)
   const isMobile = useIsMobile()
   const [activeIndex, setActiveIndex] = useState(0)
@@ -109,7 +110,7 @@ function MobileSectionToggle({ children, theme }: MobileSectionToggleProps) {
   return (
     <div
       ref={containerRef}
-      className="mobile-section-toggle"
+      className={`mobile-section-toggle${branchSlug ? ` ${branchSlug}-toggle` : ''}`}
       style={{ '--color': theme?.color, '--bg-color': theme?.bgColor } as React.CSSProperties}
     >
       {sections.map((section, index) => (
