@@ -49,6 +49,7 @@ const resolveHref = (node: SerializedLinkNode) => {
 }
 
 const BR_ONLY_PARAGRAPH_RE = /<p(\s[^>]*)?>\s*(<br\s*\/?>)\s*<\/p>/gi
+const MEDIA_TAG_RE = /<(img|video|iframe|svg|audio)\b/i
 
 function markBrOnlyParagraphs(html: string): string {
   return html.replace(BR_ONLY_PARAGRAPH_RE, (_, attrs = '', brTag) => {
@@ -60,6 +61,18 @@ function markBrOnlyParagraphs(html: string): string {
   })
 }
 
+function hasRichTextContent(html: string): boolean {
+  if (MEDIA_TAG_RE.test(html)) return true
+
+  const text = html
+    .replace(/<br\s*\/?>/gi, '')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/<[^>]+>/g, '')
+    .trim()
+
+  return text.length > 0
+}
+
 export function lexicalToHtml(data: BranchRichText | SerializedEditorState | null | undefined): string {
   if (!data) return ''
 
@@ -69,6 +82,8 @@ export function lexicalToHtml(data: BranchRichText | SerializedEditorState | nul
       converters: extendLinkFeature,
     }),
   )
+
+  if (!hasRichTextContent(html)) return ''
 
   if (html.includes('class="payload-richtext"')) {
     return html.replace('class="payload-richtext"', 'class="payload-richtext entry-content"')
