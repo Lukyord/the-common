@@ -88,7 +88,7 @@ export const VENDOR_MAP_DATA: Record<VendorMapBranchSlug, VendorMapBranchConfig>
         label: '2',
         mapSrc: '/map/c11/2-py/CL11-PY-outline.svg',
         mapAlt: 'Cloud11 Play Yard Map Plan',
-        vendors: Array.from({ length: 2 }, (_, index) => ({ lotNumber: index + 1 })),
+        vendors: Array.from({ length: 3 }, (_, index) => ({ lotNumber: index + 1 })),
       },
       {
         id: '1',
