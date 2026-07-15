@@ -127,7 +127,7 @@ export default function VendorMapPlan({
           Object.entries(floorMapOnlyLots).map(([mapKey, lot]) => {
             const { storeInfo, ...lotShape } = lot
             const isInteractive = Boolean(storeInfo?.name)
-            const spaceRentalLink = `/${branchSlug}/space-rental`
+            const venueRentalLink = `/${branchSlug}/venue-rental`
 
             return (
               <MapLot
@@ -135,7 +135,7 @@ export default function VendorMapPlan({
                 mapKey={mapKey}
                 interactive={isInteractive}
                 label={storeInfo?.name ?? mapKey.charAt(0).toUpperCase() + mapKey.slice(1)}
-                href={isInteractive && !isMobile ? spaceRentalLink : undefined}
+                href={isInteractive && !isMobile ? venueRentalLink : undefined}
                 isActive={selectedMapKey === mapKey}
                 defaultColor={defaultColor}
                 activeColor={activeColor}
