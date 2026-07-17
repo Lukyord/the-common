@@ -7,8 +7,9 @@ export const cloud111FloorAmenities: FloorAmenities = [
     pins: [{ top: '45%', left: '41%' }],
   },
   {
-    id: 'photobooth',
-    label: 'Photobooth',
+    id: 'meeting-room',
+    key: 'meeting-pods',
+    label: 'Meeting Pods',
     pins: [
       { top: '55.5%', left: '52%' },
       {
@@ -19,6 +20,7 @@ export const cloud111FloorAmenities: FloorAmenities = [
   },
   {
     id: 'meeting-room',
+    key: 'meeting-room',
     label: 'Meeting room',
     pins: [{ top: '41%', left: '59%' }],
   },

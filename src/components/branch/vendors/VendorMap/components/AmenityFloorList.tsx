@@ -1,13 +1,15 @@
-import type { FloorAmenities } from '@/constants/vendorMapData/index'
-import { getAmenityIconClass } from '@/constants/vendorMapData/index'
-import type { AmenityId } from '@/constants/vendorMapData/index'
+import {
+  getAmenityEntryKey,
+  getAmenityIconClass,
+  type FloorAmenities,
+} from '@/constants/vendorMapData/index'
 
 type AmenityFloorListProps = {
   pinColor: string
   amenities: FloorAmenities
-  onAmenityMouseEnter?: (amenityId: AmenityId) => void
+  onAmenityMouseEnter?: (amenityKey: string) => void
   onAmenityMouseLeave?: () => void
-  onAmenityClick?: (amenityId: AmenityId) => void
+  onAmenityClick?: (amenityKey: string) => void
 }
 
 export default function AmenityFloorList({
@@ -23,21 +25,22 @@ export default function AmenityFloorList({
     <ul className="amenity-list__items">
       {amenities.map((amenity) => {
         const isSelectable = Boolean(onAmenityClick)
+        const amenityKey = getAmenityEntryKey(amenity)
 
         return (
           <li
-            key={amenity.id}
+            key={amenityKey}
             className={['amenity-list__item', isSelectable && 'amenity-list__item--selectable']
               .filter(Boolean)
               .join(' ')}
             onMouseEnter={() => {
-              if (!onAmenityClick) onAmenityMouseEnter?.(amenity.id)
+              if (!onAmenityClick) onAmenityMouseEnter?.(amenityKey)
             }}
             onMouseLeave={() => {
               if (!onAmenityClick) onAmenityMouseLeave?.()
             }}
             onClick={() => {
-              if (isSelectable) onAmenityClick(amenity.id)
+              if (isSelectable) onAmenityClick(amenityKey)
             }}
             style={
               {

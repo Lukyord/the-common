@@ -1,4 +1,3 @@
-import type { AmenityId } from '@/constants/vendorMapData/index'
 import type { VendorMapFloorId } from '@/constants/vendorMapData/index'
 import { useEffect, useState, type RefObject } from 'react'
 
@@ -17,8 +16,8 @@ export function useAmenitySelection({
   isMobile,
   sectionRef,
 }: UseAmenitySelectionOptions) {
-  const [hoveredAmenityId, setHoveredAmenityId] = useState<AmenityId | null>(null)
-  const [displayedAmenityId, setDisplayedAmenityId] = useState<AmenityId | null>()
+  const [hoveredAmenityId, setHoveredAmenityId] = useState<string | null>(null)
+  const [displayedAmenityId, setDisplayedAmenityId] = useState<string | null>()
   const [amenityTransitionState, setAmenityTransitionState] = useState<TransitionState>('idle')
 
   useEffect(() => {
@@ -60,7 +59,7 @@ export function useAmenitySelection({
     return undefined
   }, [amenityTransitionState, hoveredAmenityId, displayedAmenityId])
 
-  const hoverAmenity = (amenityId: AmenityId) => {
+  const hoverAmenity = (amenityId: string) => {
     if (isMobile) return
     setHoveredAmenityId(amenityId)
   }
@@ -69,7 +68,7 @@ export function useAmenitySelection({
     setHoveredAmenityId(null)
   }
 
-  const selectMobileAmenity = (amenityId: AmenityId) => {
+  const selectMobileAmenity = (amenityId: string) => {
     setHoveredAmenityId(amenityId)
     if (sectionRef.current) scrollToElement(sectionRef.current)
   }

@@ -1,5 +1,4 @@
 import type {
-  AmenityId,
   FloorAmenities,
   MapVendor,
   VendorMapFloorId,
@@ -23,9 +22,9 @@ type VendorMapInfoProps = {
   floorVendors: MapVendor[]
   mapVendors: VendorMapListItem[]
   isMobile: boolean
-  onAmenityHover: (amenityId: AmenityId) => void
+  onAmenityHover: (amenityKey: string) => void
   onAmenityLeave: () => void
-  onMobileAmenitySelect?: (amenityId: AmenityId) => void
+  onMobileAmenitySelect?: (amenityKey: string) => void
   onStoreHover: (lotNumber: number) => void
   onMobileVendorSelect: (lotNumber: number) => void
   selectedLotNumber?: number

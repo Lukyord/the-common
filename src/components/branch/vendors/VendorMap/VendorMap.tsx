@@ -7,7 +7,6 @@ import {
   getFloorVendors,
   getVendorMapConfig,
   getVendorMapFloor,
-  type AmenityId,
   type VendorMapBranchConfig,
   type VendorMapFloorId,
 } from '@/constants/vendorMapData/index'
@@ -115,15 +114,15 @@ function VendorMapContent({
     hoverStore(lotNumber, floor)
   }
 
-  const handleAmenityHover = (amenityId: AmenityId) => {
+  const handleAmenityHover = (amenityKey: string) => {
     clearStore()
-    hoverAmenity(amenityId)
+    hoverAmenity(amenityKey)
   }
 
-  const handleMobileAmenitySelect = (amenityId: AmenityId) => {
+  const handleMobileAmenitySelect = (amenityKey: string) => {
     clearStore()
     panzoomRef.current?.reset({ animate: false })
-    selectMobileAmenity(amenityId)
+    selectMobileAmenity(amenityKey)
   }
 
   const handleMobileVendorSelect = (lotNumber: number) => {

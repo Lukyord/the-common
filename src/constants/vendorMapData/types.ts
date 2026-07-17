@@ -84,6 +84,7 @@ export type AmenityPin = LotLayout
 
 export type FloorAmenity = {
   id: AmenityId
+  key?: string
   label: string
   pins: AmenityPin[]
 }

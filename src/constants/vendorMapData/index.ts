@@ -1,5 +1,9 @@
 export { VENDOR_MAP_DATA } from './branches'
-export { getAmenityIconClass, AMENITY_LABELS } from './amenities/constants'
+export {
+  getAmenityEntryKey,
+  getAmenityIconClass,
+  AMENITY_LABELS,
+} from './amenities/constants'
 export {
   getFloorAmenities,
   getFloorLots,

@@ -1,11 +1,11 @@
-import type {
-  AmenityId,
-  FloorAmenities,
-  FloorLots,
-  FloorMapOnlyLots,
-  MapVendor,
-  VendorMapBranchConfig,
-  VendorMapFloorId,
+import {
+  getAmenityEntryKey,
+  type FloorAmenities,
+  type FloorLots,
+  type FloorMapOnlyLots,
+  type MapVendor,
+  type VendorMapBranchConfig,
+  type VendorMapFloorId,
 } from '@/constants/vendorMapData/index'
 import type { RefObject } from 'react'
 import type { CSSProperties } from 'react'
@@ -30,7 +30,7 @@ type VendorMapPlanProps = {
   floorLots: FloorLots | null
   floorMapOnlyLots: FloorMapOnlyLots | null
   floorAmenities: FloorAmenities
-  displayedAmenityId: AmenityId | null
+  displayedAmenityId: string | null
   amenityPinsClassName: string
   floorVendors: MapVendor[]
   mapVendors: VendorMapListItem[]
@@ -90,7 +90,9 @@ export default function VendorMapPlan({
   storeInfoClassName,
   themeStyle,
 }: VendorMapPlanProps) {
-  const displayedAmenity = floorAmenities.find((amenity) => amenity.id === displayedAmenityId)
+  const displayedAmenity = floorAmenities.find(
+    (amenity) => getAmenityEntryKey(amenity) === displayedAmenityId,
+  )
 
   return (
     <div className="map" ref={viewportRef}>
@@ -155,7 +157,11 @@ export default function VendorMapPlan({
         {displayedAmenity ? (
           <div className={amenityPinsClassName}>
             {displayedAmenity.pins.map((pin, index) => (
-              <MapPin key={`${displayedAmenity.id}-${index}`} layout={pin} color={pinColor} />
+              <MapPin
+                key={`${getAmenityEntryKey(displayedAmenity)}-${index}`}
+                layout={pin}
+                color={pinColor}
+              />
             ))}
           </div>
         ) : null}

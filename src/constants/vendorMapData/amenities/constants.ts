@@ -1,7 +1,11 @@
-import type { AmenityId } from '../types'
+import type { AmenityId, FloorAmenity } from '../types'
 
 export function getAmenityIconClass(id: AmenityId) {
   return `ic-amen-${id}`
+}
+
+export function getAmenityEntryKey(amenity: FloorAmenity) {
+  return amenity.key ?? amenity.id
 }
 
 export const AMENITY_LABELS: Record<AmenityId, string> = {
