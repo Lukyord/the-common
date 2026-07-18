@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     meta: event.meta,
     fallbackTitle: event.title,
     fallbackDescription: event.date ? `${event.title} — ${event.date}` : event.title,
+    pathname: `/${branch}/whats-on/${slug}`,
   })
 }
 

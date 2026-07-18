@@ -1,5 +1,6 @@
 import { GridCardContainer } from '@/components/branch/GridCardContainer'
 import AnimateOnScroll from '@/components/common/animate-on-scroll'
+import { generateMeta } from '@/lib/generateMeta'
 import { getGlobalWhatsOnArchived } from '@/payload/queries/branch'
 import { Metadata } from 'next'
 import Link from 'next/link'
@@ -8,10 +9,11 @@ import React from 'react'
 export const dynamic = 'force-dynamic'
 
 export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: 'The Common | Event Archive',
-    description: 'Event Archive at The Common',
-  }
+  return generateMeta({
+    fallbackTitle: 'Event Archive | The Common',
+    fallbackDescription: 'Event Archive at The Common',
+    pathname: '/whats-on/archive',
+  })
 }
 
 export default async function WhatsOnArchivePage() {

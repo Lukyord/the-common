@@ -137,9 +137,7 @@ const BRAND_STATIC_PATHS: { path: string; priority: number }[] = [
   { path: '/about', priority: PRIORITY.section },
   { path: '/contact', priority: PRIORITY.section },
   { path: '/vendors', priority: PRIORITY.section },
-  { path: '/vendors/filter', priority: PRIORITY.page },
   { path: '/whats-on', priority: PRIORITY.section },
-  { path: '/whats-on/filter', priority: PRIORITY.page },
   { path: '/whats-on/archive', priority: PRIORITY.page },
   { path: '/blogs', priority: PRIORITY.section },
   { path: '/venue-rental', priority: PRIORITY.section },
@@ -184,15 +182,13 @@ export async function collectSitemapUrls(payload: Payload): Promise<SitemapEntry
   for (const vendor of vendors) {
     if (!vendor.slug) continue
 
-    addEntry(entries, `/vendors/${vendor.slug}`, { lastmod: vendor.updatedAt, priority: PRIORITY.page })
-
     const branchSlug = getVendorBranchSlug(vendor)
-    if (branchSlug) {
-      addEntry(entries, `/${branchSlug}/vendors/${vendor.slug}`, {
-        lastmod: vendor.updatedAt,
-        priority: PRIORITY.page,
-      })
-    }
+    if (!branchSlug) continue
+
+    addEntry(entries, `/${branchSlug}/vendors/${vendor.slug}`, {
+      lastmod: vendor.updatedAt,
+      priority: PRIORITY.page,
+    })
   }
 
   const whatsOnItems = await findAllDocs(payload, 'whats-on', {

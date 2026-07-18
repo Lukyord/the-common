@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     meta: blog.meta,
     fallbackTitle: blog.title,
     fallbackDescription: blog.date ? `${blog.title} — ${blog.date}` : blog.title,
+    pathname: `/blogs/${slug}`,
   })
 }
 

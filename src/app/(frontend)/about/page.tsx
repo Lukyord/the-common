@@ -22,6 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
     meta: about?.meta,
     fallbackTitle: about?.hero?.title || 'About | The Common',
     fallbackDescription: 'About The Common',
+    pathname: '/about',
   })
 }
 

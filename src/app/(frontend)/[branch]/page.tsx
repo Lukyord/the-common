@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     meta: branch.meta,
     fallbackTitle: branch.hero?.title || branch.name,
     fallbackDescription: branch.name ? `${branch.name} | The Common` : 'The Common',
+    pathname: `/${slug}`,
   })
 }
 

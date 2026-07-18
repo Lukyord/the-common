@@ -26,6 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
     meta: vendorsPage?.meta,
     fallbackTitle: vendorsPage?.title || 'Vendors | The Common',
     fallbackDescription: 'Vendors at The Common',
+    pathname: '/vendors',
   })
 }
 

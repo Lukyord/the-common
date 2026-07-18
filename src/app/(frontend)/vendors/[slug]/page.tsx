@@ -31,6 +31,7 @@ function getVendorBranchSlug(vendor: Awaited<ReturnType<typeof getGlobalVendorBy
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const vendor = await getGlobalVendorBySlug(slug)
+  const branchSlug = getVendorBranchSlug(vendor)
   const branchName = typeof vendor.branch === 'object' ? vendor.branch.name : null
   const categoryLabel = getVendorCategoryLabel(vendor.category)
 
@@ -43,6 +44,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         : branchName
           ? `${vendor.name} at ${branchName}`
           : vendor.name,
+    pathname: `/vendors/${slug}`,
+    ...(branchSlug ? { canonicalPath: `/${branchSlug}/vendors/${slug}` } : {}),
   })
 }
 

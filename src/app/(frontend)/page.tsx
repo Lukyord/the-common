@@ -26,6 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return generateMeta({
     meta: homepage?.meta,
+    pathname: '/',
   })
 }
 

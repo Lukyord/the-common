@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     fallbackDescription: branchName
       ? `Event Archive at ${branchName}`
       : 'Event Archive at The Common',
+    pathname: `/${branch}/whats-on/archive`,
   })
 }
 

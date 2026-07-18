@@ -17,6 +17,11 @@ interface GenerateMetaArgs {
   meta?: PayloadMeta
   fallbackTitle?: string | null
   fallbackDescription?: string | null
+  /** Self-canonical path, e.g. `/vendors` or `/{branch}/vendors/{slug}` */
+  pathname?: string
+  /** Override canonical when it differs from the page URL (e.g. brand → branch vendor) */
+  canonicalPath?: string
+  robots?: Metadata['robots']
 }
 
 function resolveImage(
@@ -38,10 +43,18 @@ function resolveImage(
   }
 }
 
+function normalizePath(path: string): string {
+  if (!path) return '/'
+  return path.startsWith('/') ? path : `/${path}`
+}
+
 export function generateMeta({
   meta,
   fallbackTitle,
   fallbackDescription,
+  pathname,
+  canonicalPath,
+  robots,
 }: GenerateMetaArgs = {}): Metadata {
   const title = meta?.title?.trim() || fallbackTitle?.trim() || METADATA_FALLBACK.title
   const description =
@@ -69,9 +82,13 @@ export function generateMeta({
 
   const twitterImages = openGraphImages?.map((image) => image.url)
 
+  const canonical = canonicalPath ?? pathname
+
   return {
     title,
     description,
+    ...(canonical ? { alternates: { canonical: normalizePath(canonical) } } : {}),
+    ...(robots !== undefined ? { robots } : {}),
     openGraph: {
       title: ogTitle,
       description: ogDescription,

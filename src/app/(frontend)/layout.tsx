@@ -18,8 +18,10 @@ import { Footer } from '@/components/footer/Footer'
 import ClientInit from '@/components/ClientInit'
 import CookieConsent from '@/components/cookie-consent/CookieConsent'
 import ToasterProvider from '@/components/ToasterProvider'
+import { getSiteOrigin } from '@/lib/url'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteOrigin()),
   description: 'The Common',
   title: 'The Common Description',
   icons: {

@@ -36,6 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         : branchName
           ? `${vendor.name} at ${branchName}`
           : vendor.name,
+    pathname: `/${branch}/vendors/${slug}`,
   })
 }
 

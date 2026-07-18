@@ -24,6 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     meta: whatsOnPage?.meta,
     fallbackTitle: whatsOnPage?.hero?.title || "What's On | The Common",
     fallbackDescription: "What's On at The Common",
+    pathname: '/whats-on',
   })
 }
 

@@ -30,6 +30,8 @@ function getSearchParam(value?: string | string[]) {
   }
 }
 
+const FILTER_ROBOTS = { index: false, follow: true } as const
+
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const params = await searchParams
   const branchSlug = getSearchParam(params.branch)
@@ -41,6 +43,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     return generateMeta({
       fallbackTitle: tagLabel ? `${tagLabel} | The Common` : 'Events | The Common',
       fallbackDescription: tagLabel ? `${tagLabel} events at The Common` : 'Events at The Common',
+      canonicalPath: '/whats-on',
+      robots: FILTER_ROBOTS,
     })
   }
 
@@ -51,6 +55,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     fallbackDescription: tagLabel
       ? `${tagLabel} events at ${branch.name}`
       : `Events at ${branch.name}`,
+    canonicalPath: `/${branch.slug}/whats-on`,
+    robots: FILTER_ROBOTS,
   })
 }
 

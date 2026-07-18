@@ -17,6 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
     meta: contact?.meta,
     fallbackTitle: 'Contact | The Common',
     fallbackDescription: 'Contact The Common',
+    pathname: '/contact',
   })
 }
 

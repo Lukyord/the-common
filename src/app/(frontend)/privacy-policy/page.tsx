@@ -16,6 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     meta: privacyPolicy?.meta,
     fallbackTitle: privacyPolicy?.title || 'Privacy Policy | The Common',
     fallbackDescription: 'Privacy Policy for The Common',
+    pathname: '/privacy-policy',
   })
 }
 

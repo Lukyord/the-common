@@ -19,6 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     meta: blogPage?.meta,
     fallbackTitle: blogPage?.hero?.title || 'Blog | The Common',
     fallbackDescription: 'Blog at The Common',
+    pathname: '/blogs',
   })
 }
 

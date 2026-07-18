@@ -16,6 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     meta: venueRentalPage?.meta,
     fallbackTitle: 'Venue Rental | The Common',
     fallbackDescription: 'Venue Rental at The Common',
+    pathname: '/venue-rental',
   })
 }
 

@@ -32,6 +32,8 @@ function getSearchParam(value?: string | string[]) {
   }
 }
 
+const FILTER_ROBOTS = { index: false, follow: true } as const
+
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const params = await searchParams
   const branchSlug = getSearchParam(params.branch)
@@ -45,6 +47,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       fallbackDescription: categoryLabel
         ? `${categoryLabel} vendors at The Common`
         : 'Vendors at The Common',
+      canonicalPath: '/vendors',
+      robots: FILTER_ROBOTS,
     })
   }
 
@@ -55,6 +59,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     fallbackDescription: categoryLabel
       ? `${categoryLabel} vendors at ${branch.name}`
       : `Vendors at ${branch.name}`,
+    canonicalPath: `/${branch.slug}/vendors`,
+    robots: FILTER_ROBOTS,
   })
 }
 

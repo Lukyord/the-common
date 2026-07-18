@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     meta: page.meta,
     fallbackTitle: page.title || (branchName ? `What's On | ${branchName}` : "What's On"),
     fallbackDescription: branchName ? `What's On at ${branchName}` : "What's On at The Common",
+    pathname: `/${branch}/whats-on`,
   })
 }
 
