@@ -8,6 +8,7 @@ import {
   type ContactFormValues,
 } from '@/components/brand/contact/contactFormSchema'
 import {
+  isBecomeOurTenantContactSubject,
   isVenueRentalContactSubject,
   mergeContactSubjects,
 } from '@/components/brand/contact/contactFormSubjects'
@@ -20,6 +21,7 @@ import { getContactPayloadData } from '@/payload/queries/contact'
 export const dynamic = 'force-dynamic'
 
 const DEFAULT_VENUE_RENTAL_INQUIRY_TO_EMAIL = 'gatherings@thecommonsbkk.com'
+const DEFAULT_BECOME_OUR_TENANT_INQUIRY_TO_EMAIL = 'curation@thecommonsbkk.com'
 
 function nonEmptySubjects(subjects?: string[] | null): string[] {
   return subjects?.filter((item) => item.trim().length > 0) ?? []
@@ -69,14 +71,17 @@ export async function POST(request: Request) {
   }
 
   const values = normalizeContactFormValues(parsed.data)
-  const [contactInquiryTo, venueRentalInquiryTo] = await Promise.all([
+  const [contactInquiryTo, venueRentalInquiryTo, becomeOurTenantInquiryTo] = await Promise.all([
     readWorkerEnv('CONTACT_INQUIRY_TO_EMAIL'),
     readWorkerEnv('VENUE_RENTAL_INQUIRY_TO_EMAIL'),
+    readWorkerEnv('BECOME_OUR_TENANT_INQUIRY_TO_EMAIL'),
   ])
 
   const to = isVenueRentalContactSubject(values.subject)
     ? venueRentalInquiryTo || DEFAULT_VENUE_RENTAL_INQUIRY_TO_EMAIL
-    : inquiryRecipient(contact, contactInquiryTo)
+    : isBecomeOurTenantContactSubject(values.subject)
+      ? becomeOurTenantInquiryTo || DEFAULT_BECOME_OUR_TENANT_INQUIRY_TO_EMAIL
+      : inquiryRecipient(contact, contactInquiryTo)
   const { apiKey, from } = await getResendConfig()
 
   if (!to) {

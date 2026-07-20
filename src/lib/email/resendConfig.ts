@@ -5,6 +5,7 @@ type WorkerStringBinding =
   | 'RESEND_FROM_EMAIL'
   | 'CONTACT_INQUIRY_TO_EMAIL'
   | 'VENUE_RENTAL_INQUIRY_TO_EMAIL'
+  | 'BECOME_OUR_TENANT_INQUIRY_TO_EMAIL'
 
 export async function readWorkerEnv(name: WorkerStringBinding): Promise<string> {
   const fromProcess = process.env[name]?.trim()
