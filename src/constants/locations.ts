@@ -32,7 +32,7 @@ export const LOCATIONS: LocationMeta[] = [
     slug: 'cloud-11',
     href: '/cloud-11',
     name: 'Cloud11',
-    captions: ['OPENING HOURS', '8am - 12am'],
+    captions: ['OPENING HOURS', '10am - 12am'],
     // captions: ['Coming soon'],
   },
 ]
