@@ -2,10 +2,21 @@ import type Lenis from 'lenis'
 
 export const SCROLL_DURATION = 0.8
 
+declare global {
+  interface Window {
+    __lenis?: Lenis | null
+    __autoScrollCleanup?: () => void
+  }
+}
+
 let lenisInstance: Lenis | null = null
 
 export function registerLenis(lenis: Lenis | null): void {
   lenisInstance = lenis
+  // Used by reels/auto-scroll.js when recording page animations
+  if (typeof window !== 'undefined') {
+    window.__lenis = lenis
+  }
 }
 
 type ScrollOptions = {

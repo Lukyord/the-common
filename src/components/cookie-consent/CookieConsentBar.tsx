@@ -46,7 +46,9 @@ export default function CookieConsentBar() {
             style={{ '--button-bg-color': 'var(--color-saladaeng-orange)' } as React.CSSProperties}
             onClick={acceptCookies}
           >
-            CONTINUE
+            <span>
+              <span>CONTINUE</span>
+            </span>
           </button>
         </div>
       </div>

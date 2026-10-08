@@ -8,6 +8,9 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
+/** Flip to true while recording “no animation” vs animate-on-scroll comparisons. */
+const DISABLE_FOR_RECORDING = false
+
 const PENDING_CLASS = 'animate-on-scroll-pending'
 
 const SCROLLABLE_OVERFLOW = new Set(['auto', 'scroll', 'overlay'])

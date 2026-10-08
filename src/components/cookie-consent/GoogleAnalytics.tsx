@@ -2,9 +2,10 @@
 
 import Script from 'next/script'
 
+import { GA_MEASUREMENT_ID as DEFAULT_GA_MEASUREMENT_ID } from '@/constants/cookieConsent'
 import { useCookieConsent } from '@/context/CookieConsentContext'
 
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || DEFAULT_GA_MEASUREMENT_ID
 
 export default function GoogleAnalytics() {
   const { hasConsented } = useCookieConsent()

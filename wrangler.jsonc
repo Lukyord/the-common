@@ -32,10 +32,12 @@
     },
   ],
   "vars": {
+    "BECOME_OUR_TENANT_INQUIRY_TO_EMAIL": "curation@thecommonsbkk.com",
     "RESEND_FROM_EMAIL": "theCOMMONS <noreply@thecommonsbkk.com>",
     "CONTACT_INQUIRY_TO_EMAIL": "info@thecommonsbkk.com",
     "VENUE_RENTAL_INQUIRY_TO_EMAIL": "gatherings@thecommonsbkk.com",
     "NEXT_PUBLIC_SITE_URL": "https://www.thecommonsbkk.com",
+    "NEXT_PUBLIC_GA_MEASUREMENT_ID": "G-C2W4MYC1KZ",
   },
   "r2_buckets": [
     {
