@@ -6,7 +6,7 @@ const useLocalD1 = process.env.USE_LOCAL_D1 === 'true'
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   experimental: {
-    middlewareClientMaxBodySize: '100mb',
+    proxyClientMaxBodySize: '100mb',
     ...(useLocalD1 ? { cpus: 1 } : {}),
   },
   images: {
