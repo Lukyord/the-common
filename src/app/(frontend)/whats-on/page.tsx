@@ -42,7 +42,9 @@ export default async function WhatsOnPage() {
       .filter((id): id is number => typeof id === 'number' && Boolean(id)) ?? []
 
   const [clubCards, calendarMonths] = await Promise.all([
-    typeof clubMainTagId === 'number' ? getGlobalWhatsOnByMainTag(clubMainTagId) : Promise.resolve([]),
+    typeof clubMainTagId === 'number'
+      ? getGlobalWhatsOnByMainTag(clubMainTagId)
+      : Promise.resolve([]),
     eventsMainTagIds.length
       ? getGlobalWhatsOnCalendarMonths(eventsMainTagIds)
       : Promise.resolve([]),
@@ -89,8 +91,6 @@ export default async function WhatsOnPage() {
         </div>
       </section>
 
-      <WhatsOnGlobalClub title={club?.title} cards={clubCards} branches={branchFilters} />
-
       <WhatsOnGlobalCalendar
         title={allEventsAndWorkshops?.title}
         description={allEventsAndWorkshops?.description}
@@ -100,6 +100,8 @@ export default async function WhatsOnPage() {
         months={calendarMonths}
         mainTagIds={eventsMainTagIds}
       />
+
+      <WhatsOnGlobalClub title={club?.title} cards={clubCards} branches={branchFilters} />
     </main>
   )
 }
