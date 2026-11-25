@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@fancyapps/ui": "^6.1.14",
-    "@opennextjs/cloudflare": "^1.11.0",
+    "@opennextjs/cloudflare": "1.20.18",
     "@panzoom/panzoom": "^4.6.2",
     "@payloadcms/db-d1-sqlite": "3.82.1",
     "@payloadcms/next": "3.82.1",
@@ -88,7 +88,7 @@
     "typescript": "5.7.3",
     "vite-tsconfig-paths": "6.0.5",
     "vitest": "4.0.18",
-    "wrangler": "~4.98.0"
+    "wrangler": "~4.168.0"
   },
   "engines": {
     "node": ">=24.15.0",
@@ -98,7 +98,8 @@
     "onlyBuiltDependencies": [
       "sharp",
       "esbuild",
-      "unrs-resolver"
+      "unrs-resolver",
+      "workerd"
     ]
   },
   "cloudflare": {
